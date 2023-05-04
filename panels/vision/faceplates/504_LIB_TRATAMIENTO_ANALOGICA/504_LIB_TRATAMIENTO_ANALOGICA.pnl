@@ -1,0 +1,452 @@
+V 14
+7
+LANG:10001 0 
+LANG:10010 9 ANALOGICA
+LANG:10011 0 
+LANG:10009 12 MOTOR SIMPLE
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+PANEL,-1 -1 410 448 N "LIB_IRC_BLANCO" 5
+"$AUTO_MODIF"
+"$ELEM"
+"$INHA"
+"$INST"
+"$TAG"
+"main()
+{
+  string descripcion;
+
+  descripcion = getCatStr(\"dps\", $INST);
+
+  addGlobal(\"nom_btn_panel_fp\", DYN_STRING_VAR);  //Creamos la variable global para utilizarla en todo el panel
+
+       nom_btn_panel_fp = makeDynString(\"btn_principal\", \"btn_config\");  //Agregamos al Array todos los botones a los cuales les cambiaremos su aspecto al ser pulsado uno de ellos
+
+  activarAddressFP($INST); //Función para establecer como activa los address de una instancia
+  setWindowTitle(myModuleName(), myPanelName(), \"PRINCIPAL - \" + descripcion);//Setea el nombre en la cabecera del módulo
+  windowStyle(myModuleName(), myPanelName(), 0, 0);
+}
+" 0
+ "main()
+{
+  desactivarAddressFP($INST); //Función para establecer como desactiva los address de una instancia
+}
+" 0
+ E E E 1 -1 -1 0  40 40
+""0  1
+E E 6
+"CBRef" "1"
+"EClose" E
+"windowIcon" "iconos/ventanas/seleccion.svg"
+"type" "BG_ACCIONAMIENTO_MOTOR_S"
+"dpi" "96"
+"pdpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10001 0 
+LANG:10010 0 
+29 19
+"body"
+""
+1 0 -2 E E E 1 E 1 E N "_3DText" E N "_3DFace" E E
+ E E
+18 0 0 0 0 0
+E E E
+0
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+11
+"newPanelAnimDuration" "int 0"
+"oldPanelAnimDuration" "int 0"
+"newPanelAnimateOpacity" "bool TRUE"
+"oldPanelAnimateOpacity" "bool TRUE"
+"newPanelAnimateSize" "bool TRUE"
+"oldPanelAnimateSize" "bool TRUE"
+"newPanelAnimType" "string TopLeft"
+"oldPanelAnimType" "string BottomRight"
+"layoutAlignment" "AlignNone"
+"focusPolicy" "StrongFocus"
+"showFocus" "0"
+7
+LANG:10001 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10010 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10011 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10009 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10008 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10018 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10005 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  0 48 409.0000000000001 447
+15 Canvas.Canvas.1
+0
+"main()
+{
+  this.ModuleName = \"FP\" + $INST;
+  cambiarPanelActivo(0, $INST, $AUTO_MODIF, $ELEM, $INHA, \"FP\" + $INST, $TAG);
+}
+" 0
+13 25
+"btn_principal"
+""
+1 -59 -5 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "LIB_IRC_AZUL_01" E E
+ E E
+24 0 0 0 0 0
+E E E
+1
+7
+LANG:10001 9 Principal
+LANG:10010 9 Principal
+LANG:10011 9 Principal
+LANG:10009 9 Principal
+LANG:10008 9 Principal
+LANG:10018 9 Principal
+LANG:10005 0 
+
+5
+"hoverfclr" "N \"_Transparent\""
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"focusPolicy" "NoFocus"
+"showFocus" "0"
+7
+LANG:10001 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10010 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10011 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10009 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10008 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10018 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10005 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  -2 0 137 48
+
+P 
+4294967295
+"pictures/iconos/faceplates/fp_principal/home_on.svg"
+2
+LANG:10001 0 
+LANG:10010 4 home
+"main(mapping event)
+{
+  string descripcion;
+
+  descripcion = getCatStr(\"dps\", $INST);//Traduce el nombre de la instancia mediante el catálogo \"dps\"
+
+  cambiarPanelActivo(0, $INST, \"\", \"\", \"\", \"FP\" + $INST, $TAG); //Cambia el panel activo del faceplate
+  setWindowTitle(myModuleName(), myPanelName(), \"PRINCIPAL - \" + descripcion);//Setea el nombre en la cabecera del módulo
+  cambiar_fondo_btns_objeto(this.name, nom_btn_panel_fp); //\"nom_btn_panel_fp\" es una variable global (array) con todos los botones (Ver Initialize del Panel)
+}
+" 0
+ E E "main()
+{
+  this.backCol(\"LIB_DEUSER_AZUL_06\"); // Cambiamos el color a la pestaña Principal.
+}" 0
+
+13 26
+"btn_config"
+""
+1 140.5678391959799 2 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "LIB_IRC_AZUL_01" E E
+ E E
+25 0 0 0 0 0
+E E E
+1
+7
+LANG:10001 14 Configuración
+LANG:10010 14 Configuración
+LANG:10011 14 Configuración
+LANG:10009 14 Configuración
+LANG:10008 14 Configuración
+LANG:10018 14 Configuración
+LANG:10005 0 
+
+4
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"focusPolicy" "StrongFocus"
+"showFocus" "0"
+7
+LANG:10001 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10010 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10011 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10009 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10008 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10018 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10005 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  136 0 275 48
+
+P 
+4294967295
+"pictures/iconos/faceplates/fp_config/fp_config_on.svg"
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+"main(mapping event)
+{
+  string descripcion;
+  int n_permiso = 11;
+  bool permiso = permisos_usuario_operacion(n_permiso, FALSE);
+
+  if (permiso)
+  {
+    descripcion = getCatStr(\"dps\", $INST);//Traduce el nombre de la instancia mediante el catálogo \"dps\"
+
+    cambiarPanelActivo(1, $INST, \"\", \"\", \"\", \"FP\" + $INST, $TAG); //Cambia el panel activo del faceplate
+    setWindowTitle(myModuleName(), myPanelName(), \"CONFIGURACIÓN - \" + descripcion);//Setea el nombre en la cabecera del módulo
+    cambiar_fondo_btns_objeto(this.name, nom_btn_panel_fp); //\"nom_btn_panel_fp\" es una variable global (array) con todos los botones (Ver Initialize del Panel)
+  }
+}
+" 0
+ E E E
+6 35
+"RECTANGLE1"
+""
+1 0.246042650920458 0.5 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_AZUL_01" E E
+ E E
+34 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+4
+"hoverbclr" "N \"_Transparent\""
+"layoutAlignment" "AlignNone"
+"dashclr"N "LIB_IRC_AZUL_01"
+"antiAliased" "0"
+E E 0 1 3 2 1 E U  1 E 0.246042650920458 0.5 410 50
+13 36
+"btn_grafica"
+""
+1 528.2688503916102 -203 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "LIB_IRC_AZUL_01" E E
+ E E
+35 0 0 0 0 0
+E E E
+1
+7
+LANG:10001 8 Gráfica
+LANG:10010 8 Gráfica
+LANG:10011 8 Gráfica
+LANG:10009 8 Gráfica
+LANG:10008 8 Gráfica
+LANG:10018 8 Gráfica
+LANG:10005 0 
+
+4
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"focusPolicy" "StrongFocus"
+"showFocus" "0"
+7
+LANG:10001 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10010 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10011 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10009 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10008 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10018 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10005 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  273 0 412 48
+
+P 
+4294967295
+"pictures/iconos/faceplates/fp_grafica/grafica_on.svg"
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+"main(mapping event)
+{
+  string descripcion;
+  int n_permiso = 11;
+  bool permiso = permisos_usuario_operacion(n_permiso, FALSE);
+
+  if (permiso)
+  {
+    descripcion = getCatStr(\"dps\", $INST);//Traduce el nombre de la instancia mediante el catálogo \"dps\"
+
+    cambiarPanelActivo(3, $INST, \"\", \"\", \"\", \"FP\" + $INST, $TAG); //Cambia el panel activo del faceplate
+    setWindowTitle(myModuleName(), myPanelName(), \"GRÁFICA - \" + descripcion);//Setea el nombre en la cabecera del módulo
+    cambiar_fondo_btns_objeto(this.name, nom_btn_panel_fp); //\"nom_btn_panel_fp\" es una variable global (array) con todos los botones (Ver Initialize del Panel)
+  }
+}
+" 0
+ E E E
+13 37
+"PUSH_BUTTON5"
+""
+1 132.2579146981591 72 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+36 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  272 2 276 46
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+0
+LAYER, 1 
+2
+LANG:10001 0 
+LANG:10010 0 
+13 30
+"linea_1"
+""
+1 -4.742085301840902 72 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+29 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  135 2 139 46
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+13 32
+"PUSH_BUTTON2"
+""
+1 61 72 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+31 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  -2.257914698159098 45 510.7420853018409 50
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+13 33
+"PUSH_BUTTON3"
+""
+1 -72.7420853018409 -12 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+32 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  -2 -2 511 2
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+13 34
+"PUSH_BUTTON4"
+""
+1 61.75000000000001 25 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+33 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  -1.507914698159084 -2 511.4920853018409 3
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+0
+LAYER, 2 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 3 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 4 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 5 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 6 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 7 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+0

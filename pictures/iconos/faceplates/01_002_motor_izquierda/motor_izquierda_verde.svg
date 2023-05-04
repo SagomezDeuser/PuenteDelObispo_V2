@@ -1,0 +1,933 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generator: Adobe Illustrator 23.0.3, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   version="1.1"
+   x="0px"
+   y="0px"
+   viewBox="0 0 7672.0003 6481.9997"
+   xml:space="preserve"
+   id="svg398"
+   sodipodi:docname="motor_izquierda_verde.svg"
+   width="7672"
+   height="6482"
+   inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)"><metadata
+   id="metadata404"><rdf:RDF><cc:Work
+       rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type
+         rdf:resource="http://purl.org/dc/dcmitype/StillImage" /><dc:title></dc:title></cc:Work></rdf:RDF></metadata><defs
+   id="defs402">
+	
+
+		
+		
+		
+	</defs><sodipodi:namedview
+   pagecolor="#ffffff"
+   bordercolor="#666666"
+   borderopacity="1"
+   objecttolerance="10"
+   gridtolerance="10"
+   guidetolerance="10"
+   inkscape:pageopacity="0"
+   inkscape:pageshadow="2"
+   inkscape:window-width="2400"
+   inkscape:window-height="1316"
+   id="namedview400"
+   showgrid="false"
+   fit-margin-top="0"
+   fit-margin-left="0"
+   fit-margin-right="0"
+   fit-margin-bottom="0"
+   inkscape:zoom="0.11381172"
+   inkscape:cx="3948.1559"
+   inkscape:cy="3698.0174"
+   inkscape:window-x="-11"
+   inkscape:window-y="-9"
+   inkscape:window-maximized="1"
+   inkscape:current-layer="svg398" />
+<style
+   type="text/css"
+   id="style2">
+	.st0{enable-background:new    ;}
+	.st1{fill:#D9D9D9;}
+	.st2{fill:#636363;}
+	.st3{fill:#5B1016;}
+	.st4{fill:#3B0B0C;}
+	.st5{fill:#CDCCCC;}
+	.st6{fill:#868686;}
+	.st7{fill:#440C0E;}
+	.st8{fill:#5A1013;}
+	.st9{fill:#4C0E10;}
+	.st10{fill:#651215;}
+	.st11{fill-rule:evenodd;clip-rule:evenodd;fill:#868686;}
+	.st12{fill:#6ABA82;}
+	.st13{fill:#035426;}
+	.st14{fill:#31AA59;}
+	.st15{fill:#006E32;}
+	.st16{fill-rule:evenodd;clip-rule:evenodd;fill:#006E32;}
+	.st17{fill:#BFC9E8;}
+	.st18{fill:#264B8C;}
+	.st19{fill:#9FABD8;}
+	.st20{fill:#3458A3;}
+	.st21{fill-rule:evenodd;clip-rule:evenodd;fill:#3458A3;}
+	.st22{fill:#CC5261;}
+	.st23{fill:#BD1622;}
+	.st24{fill:#751518;}
+	.st25{fill-rule:evenodd;clip-rule:evenodd;fill:#751518;}
+</style>
+
+<g
+   id="g1906"
+   transform="matrix(100.0196,0,0,99.949187,0,-0.12066959)"><g
+     id="Capa_2">
+</g><g
+     id="g13">
+			<g
+   style="enable-background:new"
+   id="g11"
+   class="st0">
+				<path
+   style="fill:#6aba82"
+   inkscape:connector-curvature="0"
+   id="path5"
+   d="M 76.7,26.9 C 76.5,19.5 72.7,12 67.7,6.7 63.8,2.6 57.1,-2.2 51.5,1.1 c -7,4.1 -1,0.6 -4.1,2.4 6,1.7 15.6,6.2 19.2,12.2 3.7,6.2 1.7,23.7 1.7,23.7 0,0 0.5,-0.3 3.2,-1.9 3.9,-2.2 5.3,-6.1 5.2,-10.6 z"
+   class="st12" />
+				<g
+   id="g9">
+					<path
+   style="fill:#035426"
+   inkscape:connector-curvature="0"
+   id="path7"
+   d="M 57.8,4.6 C 66,9.3 72.5,20.7 72.5,30 72.5,39.3 65.9,43.1 57.7,38.4 49.6,33.7 43,22.3 43,13 43.1,3.6 49.7,-0.1 57.8,4.6 Z"
+   class="st13" />
+				</g>
+			</g>
+		</g><g
+     id="g289">
+			<g
+   style="enable-background:new"
+   id="g27"
+   class="st0">
+				<g
+   id="g17">
+					<polygon
+   style="fill:#5b1016"
+   id="polygon15"
+   points="12.4,25.1 12.7,24.9 14.8,28.5 14.5,28.7 "
+   class="st3" />
+				</g>
+				<g
+   id="g21">
+					<polygon
+   style="fill:#3b0b0c"
+   id="polygon19"
+   points="12.4,25.1 47.6,4.6 48,4.5 12.7,24.9 "
+   class="st4" />
+				</g>
+				<g
+   id="g25">
+					<polygon
+   style="fill:#31aa59"
+   id="polygon23"
+   points="12.7,24.9 48,4.5 50,8.1 14.8,28.5 "
+   class="st14" />
+				</g>
+			</g>
+			<g
+   style="enable-background:new"
+   id="g41"
+   class="st0">
+				<g
+   id="g31">
+					<polygon
+   style="fill:#5b1016"
+   id="polygon29"
+   points="9.5,28.7 9.6,28.3 12.4,31.1 12.2,31.5 "
+   class="st3" />
+				</g>
+				<g
+   id="g35">
+					<polygon
+   style="fill:#006e32"
+   id="polygon33"
+   points="9.6,28.3 44.9,7.8 47.6,10.7 12.4,31.1 "
+   class="st15" />
+				</g>
+				<g
+   id="g39">
+					<polygon
+   style="fill:#440c0e"
+   id="polygon37"
+   points="12.4,31.1 47.6,10.7 47.4,11.1 12.2,31.5 "
+   class="st7" />
+				</g>
+			</g>
+			<g
+   style="enable-background:new"
+   id="g55"
+   class="st0">
+				<g
+   id="g45">
+					<polygon
+   style="fill:#5b1016"
+   id="polygon43"
+   points="11.4,35.3 11.4,35.9 8.5,34.2 8.5,33.6 "
+   class="st3" />
+				</g>
+				<g
+   id="g49">
+					<polygon
+   style="fill:#5a1013"
+   id="polygon47"
+   points="11.4,35.3 46.7,14.9 46.7,15.4 11.4,35.9 "
+   class="st8" />
+				</g>
+				<g
+   id="g53">
+					<polygon
+   style="fill:#006e32"
+   id="polygon51"
+   points="8.5,33.6 43.7,13.2 46.7,14.9 11.4,35.3 "
+   class="st15" />
+				</g>
+			</g>
+			<g
+   style="enable-background:new"
+   id="g69"
+   class="st0">
+				<g
+   id="g59">
+					<polygon
+   style="fill:#5b1016"
+   id="polygon57"
+   points="26.3,55.8 26.7,55.8 27.8,59.6 27.4,59.6 "
+   class="st3" />
+				</g>
+				<g
+   id="g63">
+					<polygon
+   style="fill:#4c0e10"
+   id="polygon61"
+   points="26.3,55.8 61.5,35.3 61.9,35.4 26.7,55.8 "
+   class="st9" />
+				</g>
+				<g
+   id="g67">
+					<polygon
+   style="fill:#006e32"
+   id="polygon65"
+   points="26.7,55.8 61.9,35.4 63.1,39.1 27.8,59.6 "
+   class="st15" />
+				</g>
+			</g>
+			<g
+   style="enable-background:new"
+   id="g83"
+   class="st0">
+				<g
+   id="g73">
+					<polygon
+   style="fill:#5b1016"
+   id="polygon71"
+   points="29.8,55.2 30.1,55 32.2,58.6 31.9,58.8 "
+   class="st3" />
+				</g>
+				<g
+   id="g77">
+					<polygon
+   style="fill:#3b0b0c"
+   id="polygon75"
+   points="29.8,55.2 65,34.8 65.4,34.6 30.1,55 "
+   class="st4" />
+				</g>
+				<g
+   id="g81">
+					<polygon
+   style="fill:#31aa59"
+   id="polygon79"
+   points="30.1,55 65.4,34.6 67.4,38.2 32.2,58.6 "
+   class="st14" />
+				</g>
+			</g>
+			<g
+   style="enable-background:new"
+   id="g97"
+   class="st0">
+				<g
+   id="g87">
+					<polygon
+   style="fill:#5b1016"
+   id="polygon85"
+   points="22,57.6 22,54.2 22.5,54.5 22.5,57.9 "
+   class="st3" />
+				</g>
+				<g
+   id="g91">
+					<polygon
+   style="fill:#651215"
+   id="polygon89"
+   points="22,54.2 57.3,33.7 57.7,34 22.5,54.5 "
+   class="st10" />
+				</g>
+				<g
+   id="g95">
+					<polygon
+   style="fill:#006e32"
+   id="polygon93"
+   points="22.5,54.5 57.7,34 57.7,37.4 22.5,57.9 "
+   class="st15" />
+				</g>
+			</g>
+			<g
+   style="enable-background:new"
+   id="g111"
+   class="st0">
+				<g
+   id="g101">
+					<polygon
+   style="fill:#006e32"
+   id="polygon99"
+   points="31.6,52.2 31.6,54.8 29.3,53.5 29.3,50.9 "
+   class="st15" />
+				</g>
+				<g
+   id="g105">
+					<polygon
+   style="fill:#31aa59"
+   id="polygon103"
+   points="31.6,52.2 50.9,41 50.8,43.6 31.6,54.8 "
+   class="st14" />
+				</g>
+				<g
+   id="g109">
+					<polygon
+   style="fill:#6aba82"
+   id="polygon107"
+   points="29.3,50.9 48.6,39.7 50.9,41 31.6,52.2 "
+   class="st12" />
+				</g>
+			</g>
+			<g
+   id="g121">
+				<g
+   style="enable-background:new"
+   id="g119"
+   class="st0">
+					<path
+   style="fill:#006e32"
+   inkscape:connector-curvature="0"
+   id="path113"
+   d="M 68.2,27.7 C 68,22 65.1,16.2 61.2,12.1 58.2,8.9 53,5.2 48.6,7.8 43.3,10.9 16.2,27 13.8,28.4 c 4.6,1.3 12.1,4.8 14.9,9.5 2.8,4.8 1.3,18.3 1.3,18.3 0,0 32,-19 34.1,-20.2 3,-1.8 4.2,-4.8 4.1,-8.3 z"
+   class="st15" />
+					<g
+   id="g117">
+						<path
+   style="fill:#006e32"
+   inkscape:connector-curvature="0"
+   id="path115"
+   d="M 22,29.2 C 28.3,32.8 33.4,41.6 33.4,48.9 33.4,56.1 28.3,59 22,55.4 15.7,51.8 10.6,42.9 10.6,35.7 10.5,28.5 15.7,25.6 22,29.2 Z"
+   class="st15" />
+					</g>
+				</g>
+			</g>
+			<g
+   style="enable-background:new"
+   id="g135"
+   class="st0">
+				<g
+   id="g125">
+					<polygon
+   style="fill:#5b1016"
+   id="polygon123"
+   points="37.8,11.9 38.3,11.9 39.4,15.7 39,15.7 "
+   class="st3" />
+				</g>
+				<g
+   id="g129">
+					<polygon
+   style="fill:#6aba82"
+   id="polygon127"
+   points="37.8,11.9 52,3.7 52.4,3.7 38.3,11.9 "
+   class="st12" />
+				</g>
+				<g
+   id="g133">
+					<polygon
+   style="fill:#31aa59"
+   id="polygon131"
+   points="38.3,11.9 52.4,3.7 53.6,7.5 39.4,15.7 "
+   class="st14" />
+				</g>
+			</g>
+			<g
+   style="enable-background:new"
+   id="g149"
+   class="st0">
+				<g
+   id="g139">
+					<polygon
+   style="fill:#5b1016"
+   id="polygon137"
+   points="43.3,16.9 43.3,13.5 43.8,13.8 43.8,17.2 "
+   class="st3" />
+				</g>
+				<g
+   id="g143">
+					<polygon
+   style="fill:#6aba82"
+   id="polygon141"
+   points="43.3,13.5 57.3,5.4 57.8,5.7 43.8,13.8 "
+   class="st12" />
+				</g>
+				<g
+   id="g147">
+					<polygon
+   style="fill:#31aa59"
+   id="polygon145"
+   points="43.8,13.8 57.8,5.7 57.8,9.1 43.8,17.2 "
+   class="st14" />
+				</g>
+			</g>
+			<g
+   style="enable-background:new"
+   id="g163"
+   class="st0">
+				<g
+   id="g153">
+					<polygon
+   style="fill:#5b1016"
+   id="polygon151"
+   points="29.8,37.2 31.9,36 32.2,36.6 30.2,37.8 "
+   class="st3" />
+				</g>
+				<g
+   id="g157">
+					<polygon
+   style="fill:#3b0b0c"
+   id="polygon155"
+   points="29.8,37.2 65.1,16.7 67.2,15.5 31.9,36 "
+   class="st4" />
+				</g>
+				<g
+   id="g161">
+					<polygon
+   style="fill:#6aba82"
+   id="polygon159"
+   points="31.9,36 67.2,15.5 67.5,16.1 32.2,36.6 "
+   class="st12" />
+				</g>
+			</g>
+			<g
+   style="enable-background:new"
+   id="g177"
+   class="st0">
+				<g
+   id="g167">
+					<polygon
+   style="fill:#5b1016"
+   id="polygon165"
+   points="32.2,52.6 32.4,52.2 35.1,55.1 34.9,55.5 "
+   class="st3" />
+				</g>
+				<g
+   id="g171">
+					<polygon
+   style="fill:#31aa59"
+   id="polygon169"
+   points="32.4,52.2 67.6,31.8 70.4,34.6 35.1,55.1 "
+   class="st14" />
+				</g>
+				<g
+   id="g175">
+					<polygon
+   style="fill:#6aba82"
+   id="polygon173"
+   points="35.1,55.1 70.4,34.6 70.2,35 34.9,55.5 "
+   class="st12" />
+				</g>
+			</g>
+			<g
+   style="enable-background:new"
+   id="g191"
+   class="st0">
+				<g
+   id="g181">
+					<polygon
+   style="fill:#5b1016"
+   id="polygon179"
+   points="33.2,47.9 36.1,49.6 36.1,50.1 33.1,48.4 "
+   class="st3" />
+				</g>
+				<g
+   id="g185">
+					<polygon
+   style="fill:#31aa59"
+   id="polygon183"
+   points="33.2,47.9 68.4,27.4 71.3,29.1 36.1,49.6 "
+   class="st14" />
+				</g>
+				<g
+   id="g189">
+					<polygon
+   style="fill:#6aba82"
+   id="polygon187"
+   points="36.1,49.6 71.3,29.1 71.3,29.6 36.1,50.1 "
+   class="st12" />
+				</g>
+			</g>
+			<g
+   style="enable-background:new"
+   id="g205"
+   class="st0">
+				<g
+   id="g195">
+					<polygon
+   style="fill:#5b1016"
+   id="polygon193"
+   points="35.2,43.7 32.5,43.4 32.3,42.8 35,43.1 "
+   class="st3" />
+				</g>
+				<g
+   id="g199">
+					<polygon
+   style="fill:#31aa59"
+   id="polygon197"
+   points="32.3,42.8 67.5,22.3 70.3,22.6 35,43.1 "
+   class="st14" />
+				</g>
+				<g
+   id="g203">
+					<polygon
+   style="fill:#6aba82"
+   id="polygon201"
+   points="35,43.1 70.3,22.6 70.4,23.2 35.2,43.7 "
+   class="st12" />
+				</g>
+			</g>
+			<g
+   id="g247">
+				<polygon
+   style="fill:#31aa59"
+   id="polygon207"
+   points="24.7,12.7 38.2,5.3 49.7,11.9 36.3,22.4 "
+   class="st14" />
+				<polygon
+   style="fill:#035426"
+   id="polygon209"
+   points="36.2,27 36.3,19.5 49.7,11.9 49.6,19.3 "
+   class="st13" />
+				<polygon
+   style="fill:#035426"
+   id="polygon211"
+   points="36.2,27 24.7,20.2 24.7,12.7 36.3,19.5 "
+   class="st13" />
+				<g
+   id="g223">
+					<g
+   id="g217">
+						<path
+   style="clip-rule:evenodd;fill:#006e32;fill-rule:evenodd"
+   inkscape:connector-curvature="0"
+   id="path213"
+   d="m 37.8,21 c 0.4,-1.4 1.5,-2.2 2.5,-1.9 0.1,0 0.3,0.2 0.3,0.2 0,0 0,0 0,0 l 0.7,0.4 -2.2,4.6 -0.7,-0.4 C 37.8,23.3 37.5,22.2 37.8,21 Z"
+   class="st16" />
+						
+							<ellipse
+   style="fill:#31aa59"
+   id="ellipse215"
+   ry="1.9"
+   rx="2.5999999"
+   cy="22"
+   cx="40.299999"
+   class="st14"
+   transform="matrix(0.2824,-0.9593,0.9593,0.2824,7.8504,54.4342)" />
+					</g>
+					<g
+   id="g221">
+						<path
+   style="fill:#006e32"
+   inkscape:connector-curvature="0"
+   id="path219"
+   d="m 39.7,23.7 c -0.1,0 -0.1,0 -0.2,0 -0.2,-0.1 -0.3,-0.4 -0.2,-0.6 l 1.3,-2.7 c 0.1,-0.2 0.4,-0.3 0.6,-0.2 0.2,0.1 0.3,0.4 0.2,0.6 l -1.3,2.7 c 0,0.1 -0.2,0.2 -0.4,0.2 z"
+   class="st15" />
+					</g>
+				</g>
+				<g
+   id="g235">
+					<g
+   id="g229">
+						<path
+   style="clip-rule:evenodd;fill:#006e32;fill-rule:evenodd"
+   inkscape:connector-curvature="0"
+   id="path225"
+   d="m 44.3,17 c 0.4,-1.4 1.5,-2.2 2.5,-1.9 0.1,0 0.3,0.2 0.3,0.2 0,0 0,0 0,0 l 0.7,0.4 -2.2,4.6 L 45,19.8 C 44.3,19.3 44,18.2 44.3,17 Z"
+   class="st16" />
+						
+							<ellipse
+   style="fill:#31aa59"
+   id="ellipse227"
+   ry="1.9"
+   rx="2.5999999"
+   cy="17.9"
+   cx="46.799999"
+   class="st14"
+   transform="matrix(0.2824,-0.9593,0.9593,0.2824,16.3796,57.7415)" />
+					</g>
+					<g
+   id="g233">
+						<path
+   style="fill:#006e32"
+   inkscape:connector-curvature="0"
+   id="path231"
+   d="m 46.2,19.7 c -0.1,0 -0.1,0 -0.2,0 -0.2,-0.1 -0.3,-0.4 -0.2,-0.6 l 1.3,-2.7 c 0.1,-0.2 0.4,-0.3 0.6,-0.2 0.2,0.1 0.3,0.4 0.2,0.6 l -1.3,2.7 c -0.1,0.1 -0.2,0.2 -0.4,0.2 z"
+   class="st15" />
+					</g>
+				</g>
+				<g
+   id="g245">
+					<polygon
+   style="fill:#6aba82"
+   id="polygon237"
+   points="23.8,12.7 38.2,4.8 50.6,11.8 36.2,20 "
+   class="st12" />
+					<g
+   id="g243">
+						<polygon
+   style="fill:#31aa59"
+   id="polygon239"
+   points="36.2,21.5 36.2,20 50.6,11.8 50.5,13.2 "
+   class="st14" />
+						<polygon
+   style="fill:#006e32"
+   id="polygon241"
+   points="36.2,21.5 23.7,14.1 23.8,12.7 36.2,20 "
+   class="st15" />
+					</g>
+				</g>
+			</g>
+			<g
+   style="enable-background:new"
+   id="g261"
+   class="st0">
+				<g
+   id="g251">
+					<polygon
+   style="fill:#5b1016"
+   id="polygon249"
+   points="26.4,32.7 27.6,30.3 28,30.7 26.8,33.1 "
+   class="st3" />
+				</g>
+				<g
+   id="g255">
+					<polygon
+   style="fill:#6aba82"
+   id="polygon253"
+   points="27.6,30.3 62.8,9.8 63.3,10.2 28,30.7 "
+   class="st12" />
+				</g>
+				<g
+   id="g259">
+					<polygon
+   style="fill:#31aa59"
+   id="polygon257"
+   points="28,30.7 63.3,10.2 62.1,12.7 26.8,33.1 "
+   class="st14" />
+				</g>
+			</g>
+			<g
+   style="enable-background:new"
+   id="g275"
+   class="st0">
+				<g
+   id="g265">
+					<polygon
+   style="fill:#5b1016"
+   id="polygon263"
+   points="16.8,24.2 17.2,24.2 18.3,28 17.9,27.9 "
+   class="st3" />
+				</g>
+				<g
+   id="g269">
+					<polygon
+   style="fill:#6aba82"
+   id="polygon267"
+   points="16.8,24.2 27.6,17.9 28.1,17.9 17.2,24.2 "
+   class="st12" />
+				</g>
+				<g
+   id="g273">
+					<polygon
+   style="fill:#31aa59"
+   id="polygon271"
+   points="17.2,24.2 28.1,17.9 29.2,21.7 18.3,28 "
+   class="st14" />
+				</g>
+			</g>
+			<g
+   id="g287">
+				<g
+   id="g279">
+					<polygon
+   style="fill:#5b1016"
+   id="polygon277"
+   points="22.1,29.3 22.1,25.9 22.6,26.2 22.6,29.5 "
+   class="st3" />
+				</g>
+				<g
+   id="g283">
+					<polygon
+   style="fill:#6aba82"
+   id="polygon281"
+   points="22.1,25.9 31.6,20.4 32,20.7 22.6,26.2 "
+   class="st12" />
+				</g>
+				<polygon
+   style="fill:#31aa59"
+   id="polygon285"
+   points="22.6,26.2 32,20.7 32,24 22.6,29.5 "
+   class="st14" />
+			</g>
+		</g><g
+     id="g393">
+			<g
+   id="g331">
+				<g
+   id="g299">
+					<g
+   style="enable-background:new"
+   id="g297"
+   class="st0">
+						<path
+   style="fill:#6aba82"
+   inkscape:connector-curvature="0"
+   id="path291"
+   d="m 36.5,50.4 c -0.2,-7.6 -4.1,-15.3 -9.3,-20.8 -4,-4.3 -10.9,-9.2 -16.7,-5.7 -7.2,4.2 0.9,-0.5 -2.3,1.4 6.2,1.7 16.2,6.3 19.8,12.5 3.8,6.4 1.7,24.4 1.7,24.4 0,0 -1.5,0.8 1.3,-0.8 4.2,-2.4 5.7,-6.4 5.5,-11 z"
+   class="st12" />
+						<g
+   id="g295">
+							<path
+   style="fill:#006e32"
+   inkscape:connector-curvature="0"
+   id="path293"
+   d="M 19.1,26.3 C 27.5,31.1 34.2,42.9 34.2,52.5 34.2,62.1 27.4,66 19,61.2 10.6,56.3 3.8,44.6 3.8,34.9 3.9,25.3 10.7,21.4 19.1,26.3 Z"
+   class="st15" />
+						</g>
+					</g>
+				</g>
+				<g
+   id="g309">
+					<g
+   style="enable-background:new"
+   id="g307"
+   class="st0">
+						<path
+   style="fill:#6aba82"
+   inkscape:connector-curvature="0"
+   id="path301"
+   d="M 34,52 C 33.8,44.4 29.9,36.7 24.7,31.2 20.7,26.9 13.8,22 8,25.5 0.8,29.7 8.9,25 5.7,26.9 c 6.2,1.8 16.1,6.4 19.8,12.6 3.8,6.4 1.7,24.4 1.7,24.4 0,0 -1.5,0.8 1.3,-0.8 4.2,-2.5 5.7,-6.5 5.5,-11.1 z"
+   class="st12" />
+						<g
+   id="g305">
+							<path
+   style="fill:#006e32"
+   inkscape:connector-curvature="0"
+   id="path303"
+   d="m 16.6,27.9 c 8.4,4.8 15.1,16.6 15.1,26.2 0,9.6 -6.8,13.5 -15.2,8.7 C 8.1,57.9 1.3,46.2 1.3,36.5 1.4,26.9 8.2,23 16.6,27.9 Z"
+   class="st15" />
+						</g>
+					</g>
+				</g>
+				<g
+   id="g319">
+					<g
+   style="enable-background:new"
+   id="g317"
+   class="st0">
+						<path
+   style="fill:#31aa59"
+   inkscape:connector-curvature="0"
+   id="path311"
+   d="M 24.6,51.3 C 24.5,46.4 22,41.4 18.6,37.8 16,35 11.6,31.9 7.8,34.1 3.2,36.8 7.1,34.7 5.1,35.8 9,37 15.4,40 17.8,44 c 2.5,4.1 1.1,15.8 1.1,15.8 0,0 0.3,-0.3 2.1,-1.4 2.7,-1.5 3.6,-4.1 3.6,-7.1 z"
+   class="st14" />
+						<g
+   id="g315">
+							<path
+   style="fill:#006e32"
+   inkscape:connector-curvature="0"
+   id="path313"
+   d="m 12,36.6 c 5.4,3.1 9.8,10.7 9.8,17 0,6.2 -4.4,8.7 -9.8,5.6 C 6.5,56 2.1,48.4 2.1,42.2 2.2,36 6.6,33.4 12,36.6 Z"
+   class="st15" />
+						</g>
+					</g>
+				</g>
+				<g
+   id="g329">
+					<g
+   style="enable-background:new"
+   id="g327"
+   class="st0">
+						<path
+   style="fill:#31aa59"
+   inkscape:connector-curvature="0"
+   id="path321"
+   d="M 14.8,49.6 C 14.7,47.9 13.9,46.2 12.7,45 11.8,44 10.3,43 9,43.7 c -1.6,0.9 -7.4,4.1 -8.1,4.5 1.4,0.4 3.6,1.4 4.4,2.8 0.8,1.4 0.4,5.4 0.4,5.4 0,0 7.2,-4 7.8,-4.3 1,-0.6 1.4,-1.5 1.3,-2.5 z"
+   class="st14" />
+						<g
+   id="g325">
+							<path
+   style="fill:#006e32"
+   inkscape:connector-curvature="0"
+   id="path323"
+   d="m 3.4,48.4 c 1.9,1.1 3.4,3.7 3.4,5.8 0,2.1 -1.5,3 -3.4,1.9 C 1.5,55.1 0,52.5 0,50.3 c 0,-2.1 1.5,-3 3.4,-1.9 z"
+   class="st15" />
+						</g>
+					</g>
+				</g>
+			</g>
+			<g
+   id="g341">
+				<g
+   style="enable-background:new"
+   id="g339"
+   class="st0">
+					<path
+   style="fill:#6aba82"
+   inkscape:connector-curvature="0"
+   id="path333"
+   d="M 8.2,32.2 C 8.2,31.6 7.9,31.1 7.5,30.7 7.2,30.4 6.7,30 6.3,30.3 5.8,30.6 6.1,30.5 5.8,30.6 6.3,30.7 7,31 7.3,31.5 c 0.3,0.5 0.1,1.8 0.1,1.8 0,0 0.2,-0.1 0.4,-0.3 0.3,-0.2 0.4,-0.5 0.4,-0.8 z"
+   class="st12" />
+					<g
+   id="g337">
+						<path
+   style="fill:#31aa59"
+   inkscape:connector-curvature="0"
+   id="path335"
+   d="m 6.6,30.6 c 0.6,0.4 1.1,1.2 1.1,1.9 0,0.7 -0.5,1 -1.1,0.6 C 6,32.8 5.5,32 5.5,31.3 c 0,-0.7 0.5,-1 1.1,-0.7 z"
+   class="st14" />
+					</g>
+				</g>
+			</g>
+			<g
+   id="g351">
+				<g
+   style="enable-background:new"
+   id="g349"
+   class="st0">
+					<path
+   style="fill:#6aba82"
+   inkscape:connector-curvature="0"
+   id="path343"
+   d="m 15.6,31.2 c 0,-0.6 -0.3,-1.1 -0.7,-1.5 -0.3,-0.3 -0.8,-0.7 -1.2,-0.4 -0.5,0.3 -0.2,0.2 -0.5,0.3 0.5,0.1 1.2,0.5 1.5,0.9 0.3,0.5 0.1,1.8 0.1,1.8 0,0 0.2,-0.1 0.4,-0.3 0.3,-0.1 0.4,-0.4 0.4,-0.8 z"
+   class="st12" />
+					<g
+   id="g347">
+						<path
+   style="fill:#31aa59"
+   inkscape:connector-curvature="0"
+   id="path345"
+   d="m 14,29.7 c 0.6,0.4 1.1,1.2 1.1,1.9 0,0.7 -0.5,1 -1.1,0.6 -0.6,-0.4 -1.1,-1.2 -1.1,-1.9 0,-0.7 0.5,-1 1.1,-0.6 z"
+   class="st14" />
+					</g>
+				</g>
+			</g>
+			<g
+   id="g361">
+				<g
+   style="enable-background:new"
+   id="g359"
+   class="st0">
+					<path
+   style="fill:#6aba82"
+   inkscape:connector-curvature="0"
+   id="path353"
+   d="m 23.4,37 c 0,-0.6 -0.3,-1.1 -0.7,-1.5 -0.3,-0.3 -0.8,-0.7 -1.2,-0.4 -0.5,0.3 -0.2,0.2 -0.5,0.3 0.5,0.1 1.2,0.5 1.5,0.9 0.3,0.5 0.1,1.8 0.1,1.8 0,0 0.2,-0.1 0.4,-0.3 0.3,-0.2 0.4,-0.5 0.4,-0.8 z"
+   class="st12" />
+					<g
+   id="g357">
+						<path
+   style="fill:#31aa59"
+   inkscape:connector-curvature="0"
+   id="path355"
+   d="m 21.8,35.4 c 0.6,0.4 1.1,1.2 1.1,1.9 0,0.7 -0.5,1 -1.1,0.6 -0.6,-0.4 -1.1,-1.2 -1.1,-1.9 0,-0.7 0.5,-1 1.1,-0.6 z"
+   class="st14" />
+					</g>
+				</g>
+			</g>
+			<g
+   id="g371">
+				<g
+   style="enable-background:new"
+   id="g369"
+   class="st0">
+					<path
+   style="fill:#6aba82"
+   inkscape:connector-curvature="0"
+   id="path363"
+   d="m 28.3,45.6 c 0,-0.6 -0.3,-1.1 -0.7,-1.5 -0.3,-0.3 -0.8,-0.7 -1.2,-0.4 -0.5,0.3 -0.2,0.2 -0.5,0.3 0.5,0.1 1.2,0.5 1.5,0.9 0.3,0.5 0.1,1.8 0.1,1.8 0,0 0.2,-0.1 0.4,-0.3 0.3,-0.2 0.4,-0.5 0.4,-0.8 z"
+   class="st12" />
+					<g
+   id="g367">
+						<path
+   style="fill:#31aa59"
+   inkscape:connector-curvature="0"
+   id="path365"
+   d="m 26.7,44 c 0.6,0.4 1.1,1.2 1.1,1.9 0,0.7 -0.5,1 -1.1,0.6 -0.6,-0.4 -1.1,-1.2 -1.1,-1.9 0,-0.7 0.5,-1 1.1,-0.6 z"
+   class="st14" />
+					</g>
+				</g>
+			</g>
+			<g
+   id="g381">
+				<g
+   style="enable-background:new"
+   id="g379"
+   class="st0">
+					<path
+   style="fill:#6aba82"
+   inkscape:connector-curvature="0"
+   id="path373"
+   d="m 29.1,56.3 c 0,-0.6 -0.3,-1.1 -0.7,-1.5 -0.3,-0.3 -0.8,-0.7 -1.2,-0.4 -0.5,0.3 -0.2,0.2 -0.5,0.3 0.5,0.1 1.2,0.5 1.5,0.9 0.3,0.5 0.1,1.8 0.1,1.8 0,0 0.2,-0.1 0.4,-0.3 0.3,-0.1 0.4,-0.4 0.4,-0.8 z"
+   class="st12" />
+					<g
+   id="g377">
+						<path
+   style="fill:#31aa59"
+   inkscape:connector-curvature="0"
+   id="path375"
+   d="m 27.5,54.8 c 0.6,0.4 1.1,1.2 1.1,1.9 0,0.7 -0.5,1 -1.1,0.6 -0.6,-0.4 -1.1,-1.2 -1.1,-1.9 0,-0.7 0.5,-1 1.1,-0.6 z"
+   class="st14" />
+					</g>
+				</g>
+			</g>
+			<g
+   id="g391">
+				<g
+   style="enable-background:new"
+   id="g389"
+   class="st0">
+					<path
+   style="fill:#6aba82"
+   inkscape:connector-curvature="0"
+   id="path383"
+   d="M 24,61.2 C 24,60.6 23.7,60.1 23.3,59.7 23,59.4 22.5,59 22.1,59.3 c -0.5,0.3 -0.2,0.2 -0.5,0.3 0.5,0.1 1.2,0.5 1.5,0.9 0.3,0.5 0.1,1.8 0.1,1.8 0,0 0.2,-0.1 0.4,-0.3 0.3,-0.1 0.4,-0.4 0.4,-0.8 z"
+   class="st12" />
+					<g
+   id="g387">
+						<path
+   style="fill:#31aa59"
+   inkscape:connector-curvature="0"
+   id="path385"
+   d="m 22.4,59.6 c 0.6,0.4 1.1,1.2 1.1,1.9 0,0.7 -0.5,1 -1.1,0.6 -0.6,-0.4 -1.1,-1.2 -1.1,-1.9 0,-0.6 0.5,-0.9 1.1,-0.6 z"
+   class="st14" />
+					</g>
+				</g>
+			</g>
+		</g></g>
+</svg>

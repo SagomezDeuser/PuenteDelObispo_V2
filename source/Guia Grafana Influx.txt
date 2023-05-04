@@ -1,0 +1,32 @@
+Usar GRAFANA con Influx DB
+
+- Primero y más evidente, guardar en influxdb, activando el archive, las variables que querramos graficar para que se almacenen
+- Importar en Grafana los dashboards diseñados para esto.
+	* Estos dashboards tienen los siguientes parámetros, según el número de elementos que grafiquemos
+		+ tipo_dato, tipo_dato2, tipo_dato3....   - Este parámetro es el tipo de dato, con formato original_value_float, donde float debe cambiarse por
+									  el tipo de dato de la variable a graficar en cuestión
+		+ dp, dp2, dp3.....				- El dp a graficar, INCLUYENDO EL SYSTEM1: ya que el OA guarda los dps con el System
+		+ leyenda, leyenda2, leyenda3....		- El string que le vayamos a poner como Leyenda a la gráfica
+		+ grupo, grupo2, grupo3.....			- El grupo al que pertenece la variable en el archive. Para automatizar este paso, se puede hacer lo siguiente:
+
+										string archive, grupo;
+
+										dpGet("VARIABLE_A_GRAFICAR:_archive.1._class",archive);
+										dpGet(archive + ".displayName", grupo);
+
+una vez calculados estos parámetros, habría que cargar en el webview una url como la siguiente:
+
+http://localhost:3000/d/influx-1dp/influx-1dp?orgId=1&from=now-15m&to=now&var-tipo_dato=original_value_float&var-dp=System1:PRUEBAS.pruebaFloat&var-leyenda=LEYENDA&var-grupo=EV_ACCIONAMIENTOS
+http://localhost:3000/d/influx-1dp/influx-1dp?orgId=1&from=1652688000000&to=1652713200000&var-tipo_dato=original_value_float&var-dp=System1:PRUEBAS.pruebaFloat&var-leyenda=LEYENDA&var-grupo=EV_ACCIONAMIENTOS
+
+Como podemos observar, en ambos enlaces se le pasan los parámetros adecuados para graficar. La única diferencia entre ellos es el rango de tiempo, la primera sería para graficar a tiempo real, entre el momento actual
+y los últimos 15 minutos, por lo que la propia gráfica se iría refrescando con un tiempo por defecto (este también puede ser fijado en la url con &refresh=5s por ejemplo) y en el segundo rango de tiempo se indican dos
+fechas concretas, ambas expresadas en formato UNIX, para conseguir esto desde WinCC OA, solo debemos obtener el rango de tiempo en tipo time y asignárselo a una variable de tipo double (float largo) y el OA hace la conversión.
+
+ Ejemplo con la fecha y hora actual:
+
+	double rango;
+	time fecha;
+	
+	fecha = getCurrentTime();
+	rango = fecha;

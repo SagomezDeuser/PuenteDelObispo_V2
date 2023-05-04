@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="2000"
+   height="500"
+   version="1.1"
+   id="svg18"
+   sodipodi:docname="generar_ficheros.svg"
+   inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)">
+  <metadata
+     id="metadata24">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs22" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1920"
+     inkscape:window-height="1057"
+     id="namedview20"
+     showgrid="false"
+     inkscape:pagecheckerboard="true"
+     inkscape:zoom="0.24928571"
+     inkscape:cx="989.37901"
+     inkscape:cy="250"
+     inkscape:window-x="1592"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg18" />
+  <g
+     id="g5">
+    <title
+       id="title2">background</title>
+    <rect
+       id="canvas_background"
+       height="502"
+       width="1402"
+       y="-1"
+       x="-1"
+       style="fill:none" />
+  </g>
+  <text
+     style="font-size:113.33333588px;font-family:Tahoma, Gadget, sans-serif;text-anchor:start;fill:#ffffff;stroke:#ffffff;stroke-width:0"
+     x="766"
+     y="291.19955"
+     id="svg_7"
+     font-size="105"
+     xml:space="preserve"><tspan
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:113.33333588px;font-family:Tahoma;-inkscape-font-specification:Tahoma"
+       id="tspan858">GENERAR FICHEROS</tspan></text>
+  <g
+     id="g826"
+     transform="matrix(0.47958943,0,0,0.47958943,126.90077,10.157326)"
+     style="fill:#ffffff;fill-opacity:1">
+    <path
+       id="path824"
+       d="m 849.1,250.2 v 50 H 153.8 v -50 c 0,-14.7 4.3,-26.3 13,-35 8.7,-8.7 17,-13.7 25,-15 h 12 595.5 c 4,0 8.7,0.3 14,1 5.3,0.7 12.7,5.3 22,14 9.2,8.7 13.8,20.4 13.8,35 v 0 M 701.3,100.4 c 4,0 8.7,0.3 14,1 5.3,0.7 12.7,5.3 22,14 9.3,8.7 14,20.3 14,35 H 253.7 c 0,-14.7 4.3,-26.3 13,-35 8.7,-8.7 17,-13.7 25,-15 h 12 397.6 v 0 M 949,300.2 c 22.6,21.3 35.3,36.6 38,46 4,12 4,30 0,54 l -75.9,449.6 c -2.7,14.7 -9.3,26.3 -20,35 -10.7,8.7 -20,13.7 -28,15 h -14 -695.3 c -34.6,0 -54.6,-16.7 -59.9,-50 -4,-17.3 -17,-91.6 -39,-222.8 -22,-131.2 -35,-206.8 -39,-226.8 -6.7,-14.7 -7.7,-29.3 -3,-44 4.7,-14.7 8,-23.3 10,-26 2,-2.7 9,-9.3 21,-20 l 10,-10 30,-30 v 79.9 h 835.2 v -79.9 l 29.9,30 M 701.3,569.9 V 470 h -69.9 v 80 H 371.6 v -80 h -67.9 v 99.9 c 0,33.3 16,50 48,50 h 299.7 c 14.7,0 26.3,-4 35,-12 8.7,-8 13,-16 13,-24 l 1.9,-14"
+       inkscape:connector-curvature="0"
+       style="fill:#ffffff;fill-opacity:1" />
+  </g>
+</svg>

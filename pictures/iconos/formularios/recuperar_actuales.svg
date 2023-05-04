@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="4000"
+   height="1200"
+   version="1.1"
+   id="svg16"
+   sodipodi:docname="recuperar_actuales.svg"
+   inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)">
+  <defs
+     id="defs20" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1920"
+     inkscape:window-height="1057"
+     id="namedview18"
+     showgrid="false"
+     inkscape:pagecheckerboard="true"
+     inkscape:zoom="0.24678027"
+     inkscape:cx="1998.5887"
+     inkscape:cy="413.42666"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg16" />
+  <metadata
+     id="metadata2">Svg Vector Icons : http://www.onlinewebfonts.com/icon<rdf:RDF>
+  <cc:Work
+     rdf:about="">
+    <dc:format>image/svg+xml</dc:format>
+    <dc:type
+       rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+    <dc:title></dc:title>
+  </cc:Work>
+</rdf:RDF>
+</metadata>
+  <g
+     id="g7"
+     transform="translate(0,200)">
+    <title
+       id="title4">background</title>
+    <rect
+       x="-1"
+       y="-1"
+       width="4002"
+       height="1002"
+       id="canvas_background"
+       style="fill:none" />
+  </g>
+  <path
+     d="M 795.68076,166.54552 C 602.52209,47.94513 355.42419,118.21462 243.91675,323.74462 132.4093,529.27465 198.71996,792.04298 391.87856,910.64336 457.52941,950.8916 529.44843,969.3662 600.0478,968.21155 l -0.16496,93.03285 c 1.6495,25.8974 6.43311,37.939 26.88714,23.918 L 881.12576,930.10766 c 45.8566,-36.12445 17.3199,-38.59873 -8.4125,-53.60933 L 624.95553,724.24774 c -22.26848,-10.88681 -26.55722,0.82476 -24.74276,26.72222 L 600.0478,848.4565 C 548.58283,849.77612 496.29309,836.41501 448.45705,807.21855 309.5676,721.93844 262.06144,533.06854 342.0631,385.43662 422.2297,237.80471 599.71791,187.1645 738.60737,272.44461 857.53766,345.35333 909.49746,494.30486 871.72356,628.24577 l 100.2907,61.0322 c 68.29004,-192.99368 -2.8043,-416.00859 -176.3336,-522.73245 z"
+     id="svg_2"
+     inkscape:connector-curvature="0"
+     style="fill:#ffffff;stroke:#ffffff;stroke-width:2.22050476"
+     sodipodi:nodetypes="cscccccccccccccccc" />
+  <text
+     style="font-size:319.77319336px;font-family:Tahoma, Gadget, sans-serif;text-anchor:start;fill:#ffffff;stroke:#ffffff;stroke-width:0"
+     xml:space="preserve"
+     font-size="220"
+     id="svg_3"
+     y="375.59131"
+     x="1393.5204">RECUPERAR</text>
+  <text
+     style="font-size:319.77319336px;font-family:Tahoma, Gadget, sans-serif;text-anchor:start;fill:#ffffff;stroke:#ffffff;stroke-width:0"
+     xml:space="preserve"
+     font-size="220"
+     id="svg_3-5"
+     y="715.93341"
+     x="1393.5204">VALORES</text>
+  <text
+     style="font-size:319.77319336px;font-family:Tahoma, Gadget, sans-serif;text-anchor:start;fill:#ffffff;stroke:#ffffff;stroke-width:0"
+     xml:space="preserve"
+     font-size="220"
+     id="svg_3-4"
+     y="1049.0109"
+     x="1393.5204">ACTUALES</text>
+</svg>

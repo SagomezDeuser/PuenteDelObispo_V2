@@ -1,0 +1,5092 @@
+V 14
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+PANEL,-1 -1 1920 960 N "white" 0
+E E E E E 1 -1 -1 0  0 0
+""0  1
+E "void controles_inactivos()
+{
+  setMultiValue(\"tabla_valores\", \"transparentForMouse\", TRUE,
+                \"btn_buscar\", \"transparentForMouse\", TRUE);
+}
+
+void controles_activos()
+{
+  setMultiValue(\"tabla_valores\", \"transparentForMouse\", FALSE,
+                \"btn_buscar\", \"transparentForMouse\", FALSE);
+}
+void pintar_tabla_valores(dyn_dyn_anytype resultado)
+{
+  string img;
+  int decoded;
+  controles_inactivos();  //Ponemos el símbolo de cargando, e inhabilitamos los controles hasta acabar el llenado de la tabla
+
+  for (int i = 1; i <= dynlen(resultado); i++) //Para cada motor traido del Query, separamos las partes de su DP y rellenamos las columnas de la tabla
+  {
+    setValue(\"tabla_valores\", \"appendLine\",
+             \"fecha_hora\",  resultado[i][1],
+             \"descripcion\",     resultado[i][2],
+             \"modo\",      resultado[i][3],
+             \"estado\", resultado[i][4],
+             \"icono\",      resultado[i][5]);
+  }
+
+  tabla_valores.selectLineN(0);
+  tabla_valores.selectByClick(0);
+
+  controles_activos();  //Rehabilitamos los mandos de control de la tabla, y quitamos el símbolo de cargando
+}
+
+
+void actualizar_tabla_dps()
+{
+  int rc, anio, mes, dia;
+  bool entrada, acuse, salida;
+  dyn_string fecha_hora, descripcion;
+  dyn_dyn_anytype resultado_consulta_1, datos_tabla;
+  string img, select_sql_1, inst_bd, cuadro, fecha_actual, fecha_ini, fecha_fin, hora_ini, min_ini, dia_ini, mes_ini, ano_ini, hora_fin, min_fin, dia_fin, mes_fin, ano_fin, modo, estado, descripciones;
+  time fecha_ini_time, fecha_fin_time;
+
+
+  hora_ini = cbb_hora_ini.selectedText;
+  min_ini = cbb_min_ini.selectedText;
+  dia_ini = cbb_dia_ini.selectedText;
+  mes_ini = cbb_mes_ini.selectedText;
+  ano_ini = cbb_ano_ini.selectedText;
+  fecha_ini = dia_ini + \"-\" + mes_ini + \"-\" + ano_ini + \" \" + hora_ini + \":\" + min_ini + \":00\";
+
+  fecha_ini_time = fecha_ini;
+
+  hora_fin = cbb_hora_fin.selectedText;
+  min_fin = cbb_min_fin.selectedText;
+  dia_fin = cbb_dia_fin.selectedText;
+  mes_fin = cbb_mes_fin.selectedText;
+  ano_fin = cbb_ano_fin.selectedText;
+  fecha_fin = dia_fin + \"-\" + mes_fin + \"-\" + ano_fin + \" \" + hora_fin + \":\" + min_fin + \":59\";
+
+  fecha_fin_time = fecha_fin;
+
+
+
+
+  inst_bd = instancia_bd();
+  select_sql_1 = \"SELECT DISTINCT Descripcion \" +
+                 \"FROM \" + inst_bd + \"[Estado_Accionamiento] \" +
+                 \"WHERE Fecha_Hora BETWEEN ' \" + fecha_ini + \" ' AND ' \" + fecha_fin + \" ' \" +
+                 \"ORDER BY Descripcion ASC\";
+
+  tabla_desc.deleteAllLines();
+
+  resultado_consulta_1 = select_bd(\"SQL\", select_sql_1);
+
+  for (int i = 1; i <= dynlen(resultado_consulta_1); i++)
+  {
+    tabla_desc.appendLine(\"accionamientos\", resultado_consulta_1[i][1]);
+  }
+}
+/******* Fin de la función pintar_tabla_alarmas() *********/
+" 0
+ 4
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+"pdpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10001 0 
+LANG:10010 0 
+25 2
+"tabla_valores"
+"MEDIANO_AZUL"
+1 7.759635488986305 -10.1461276382671 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_BLANCO" E E
+ E E
+1 0 0 0 0 0
+E E E
+0
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+5
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+7
+LANG:10001 26 Arial,-1,12,5,75,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10011 26 Arial,-1,12,5,75,0,0,0,0,0
+LANG:10009 26 Arial,-1,12,5,75,0,0,0,0,0
+LANG:10008 26 Arial,-1,12,5,75,0,0,0,0,0
+LANG:10018 26 Arial,-1,12,5,75,0,0,0,0,0
+LANG:10005 26 Arial,-1,12,5,75,0,0,0,0,0
+0  6.000000000000021 9.842802605234485 1406.998538011696 937.3985739751017
+"main()
+{
+  setValue(\"\", \"deleteAllLines\");
+  formatear_estilo_tabla(\"tabla_valores\", \"AlignVCenter | AlignHCenter\", \"LIB_IRC_BLANCO\", \"{240,250,255}\");  //Damos formato a la tabla con el listado de variables
+}
+" 0
+E 1 0 1 5 0 "fecha_hora" 12 1 0 "[0s,,,AlignHCenter|AlignVCenter]" 7
+LANG:10001 13 Fecha entrada
+LANG:10010 12 FECHA - HORA
+LANG:10011 14 Eintrittsdatum
+LANG:10009 13 Fecha entrada
+LANG:10008 15 Data di entrata
+LANG:10018 15 Data de entrada
+LANG:10005 10 Entry date
+E
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+200 "descripcion" 22 1 0 "[255s,,,AlignHCenter|AlignVCenter]" 7
+LANG:10001 11 Fecha acuse
+LANG:10010 11 DESCRIPCION
+LANG:10011 12 Abreisedatum
+LANG:10009 11 Fecha acuse
+LANG:10008 16 Data di partenza
+LANG:10018 14 Data de saída
+LANG:10005 11 Output date
+E
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+400 "modo" 14 1 0 "[0s,,,AlignHCenter|AlignVCenter]" 7
+LANG:10001 8 Elemento
+LANG:10010 4 MODO
+LANG:10011 7 Element
+LANG:10009 8 Elemento
+LANG:10008 8 Elemento
+LANG:10018 8 Elemento
+LANG:10005 7 Element
+E
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+200 "estado" 27 1 0 "[0s,,,AlignHCenter|AlignVCenter]" 7
+LANG:10001 12 Descripción
+LANG:10010 6 ESTADO
+LANG:10011 12 Beschreibung
+LANG:10009 12 Descripción
+LANG:10008 11 Descrizione
+LANG:10018 11 Descrição
+LANG:10005 11 Description
+E
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+408 "icono" 13 1 0 "[h,,,AlignLeft|AlignVCenter]" 7
+LANG:10001 9 nombreDPE
+LANG:10010 5 ICONO
+LANG:10011 9 nombreDPE
+LANG:10009 9 nombreDPE
+LANG:10008 9 nombreDPE
+LANG:10018 9 nombreDPE
+LANG:10005 9 nombreDPE
+E
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+200 
+75 75 10 0
+7
+LANG:10001 26 Arial,-1,12,5,75,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10011 26 Arial,-1,12,5,75,0,0,0,0,0
+LANG:10009 26 Arial,-1,12,5,75,0,0,0,0,0
+LANG:10008 26 Arial,-1,12,5,75,0,0,0,0,0
+LANG:10018 26 Arial,-1,12,5,75,0,0,0,0,0
+LANG:10005 26 Arial,-1,12,5,75,0,0,0,0,0
+0 0 1 0 1 7
+1 0
+13 93
+"btn_buscar"
+"GRANDE_AZUL"
+1 1567.881234821121 721.7023573659827 E E E 1 E 1 E N "LIB_DEUSER_BLANCO" E N "LIB_IRC_AZUL_01" E E
+ E E
+92 0 0 0 0 0
+E E E
+1
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+6
+"hoverbclr" "N \"AZUL_01\""
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+7
+LANG:10001 35 Tahoma,-1,21,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,21,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,21,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,21,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,21,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,21,5,75,0,0,0,0,0,Negrita
+LANG:10005 35 Tahoma,-1,21,5,75,0,0,0,0,0,Negrita
+0  1566.232125089775 719.8088821115371 1787.232125089775 764.8088821115368
+
+P 
+4294967295
+"pictures/iconos/botoneras/Iconos/buscar_texto.svg"
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+"main(mapping event)
+{
+
+  controles_inactivos();
+
+  setValue(\"tabla_valores\", \"deleteAllLines\");
+
+
+  consulta_sql();
+
+  controles_activos();
+
+}
+
+/***************************************************************************************
+  @author dceballos
+  @date 06/09/2019.
+  @brief Se realiza la consulta de las alarmas en función del tipo de fecha a la base de
+  datos.
+  @return No devuelve nada.
+****************************************************************************************/
+void consulta_sql()
+{
+  int rc, anio, mes, dia, nRegistrosSelect;
+  bool entrada, acuse, salida;
+  dyn_int filas;
+  dyn_string fecha_hora;
+  dyn_dyn_anytype resultado_consulta_1, datos_tabla;
+  string img, select_sql_1, inst_bd, cuadro, fecha_actual, fecha_ini, fecha_fin, hora_ini, min_ini, dia_ini, mes_ini, ano_ini, hora_fin, min_fin, dia_fin, mes_fin, ano_fin, modo, estado, descripcion, descripciones = \"\";
+  time fecha_ini_time, fecha_fin_time;
+
+
+  hora_ini = cbb_hora_ini.selectedText;
+  min_ini = cbb_min_ini.selectedText;
+  dia_ini = cbb_dia_ini.selectedText;
+  mes_ini = cbb_mes_ini.selectedText;
+  ano_ini = cbb_ano_ini.selectedText;
+  fecha_ini = dia_ini + \"-\" + mes_ini + \"-\" + ano_ini + \" \" + hora_ini + \":\" + min_ini + \":00\";
+
+  fecha_ini_time = makeTime(ano_ini,mes_ini,dia_ini,hora_ini,min_ini,0);
+
+  hora_fin = cbb_hora_fin.selectedText;
+  min_fin = cbb_min_fin.selectedText;
+  dia_fin = cbb_dia_fin.selectedText;
+  mes_fin = cbb_mes_fin.selectedText;
+  ano_fin = cbb_ano_fin.selectedText;
+  fecha_fin = dia_fin+\"-\"+mes_fin+\"-\"+ano_fin+\" \"+hora_fin+\":\"+min_fin+\":59\";
+
+  fecha_fin_time=makeTime(ano_fin,mes_fin,dia_fin,hora_fin,min_fin,0);
+
+  if (fecha_ini_time > fecha_fin_time)
+  {
+    fecha_fin = dia_ini + \"-\" + mes_ini + \"-\" + ano_ini + \" \" + hora_ini + \":\" + min_ini + \":59\";
+
+    cbb_hora_fin.backCol = \"LIB_IRC_ROJO_09\";
+    cbb_min_fin.backCol = \"LIB_IRC_ROJO_09\";
+    cbb_dia_fin.backCol = \"LIB_IRC_ROJO_09\";
+    cbb_mes_fin.backCol = \"LIB_IRC_ROJO_09\";
+    cbb_ano_fin.backCol = \"LIB_IRC_ROJO_09\";
+
+    cbb_hora_fin.selectedPos = cbb_hora_ini.selectedPos;
+    cbb_min_fin.selectedPos = cbb_min_ini.selectedPos;
+    cbb_dia_fin.selectedPos = cbb_dia_ini.selectedPos;
+    cbb_mes_fin.selectedPos = cbb_mes_ini.selectedPos;
+    cbb_ano_fin.selectedPos = cbb_ano_ini.selectedPos;
+    actualizar_tabla_dps();
+
+    delay(0, 500);
+
+    cbb_hora_fin.backCol = \"LIB_IRC_BLANCO\";
+    cbb_min_fin.backCol = \"LIB_IRC_BLANCO\";
+    cbb_dia_fin.backCol = \"LIB_IRC_BLANCO\";
+    cbb_mes_fin.backCol = \"LIB_IRC_BLANCO\";
+    cbb_ano_fin.backCol = \"LIB_IRC_BLANCO\";
+
+  }
+
+  getValue(\"tabla_desc\", \"getSelectedLines\", filas);
+
+  for (int i = 1; i <= dynlen(filas); i++)
+  {
+
+    getValue(\"tabla_desc\", \"cellValueRC\", filas[i], \"accionamientos\", descripcion);
+
+    if (i == dynlen(filas)) descripciones = descripciones + \"'\" + descripcion + \"'\";
+    else descripciones = descripciones + \"'\" + descripcion + \"',\";
+  }
+
+
+  inst_bd = instancia_bd();
+  dpGet(\"ConfiguracionSCADA.configuracion_bd.nMaxSelect\", nRegistrosSelect);
+
+  select_sql_1 = \"SELECT TOP (\" + nRegistrosSelect + \") FORMAT(Fecha_Hora,'dd-MM-yyyy HH:mm'), Descripcion, Valor, Tipo \" +
+                 \"FROM \" + inst_bd + \"[Estado_Accionamiento] \" +
+                 \"WHERE Fecha_Hora BETWEEN '\" + fecha_ini + \"' AND '\" + fecha_fin + \"' AND Descripcion IN(\" + descripciones + \") \" +
+                 \"ORDER BY Fecha_Hora\";
+
+  resultado_consulta_1 = select_bd(\"SQL\", select_sql_1);
+
+  for (int i = 1; i <= dynlen(resultado_consulta_1); i++)
+  {
+    switch (resultado_consulta_1[i][4])
+    {
+      case \"Motor\": switch (resultado_consulta_1[i][3])
+        {
+          case 0: modo = \"AUTOMATICO\";
+            estado = \"Sin ordenes de funcionamiento ni confirmaciones\";
+            dpGet(\"System1:Variables_Internas_Scada.images_base64.accionamientos.motor_gris\", img);
+            img = \"<img src=\" + img + \">\";
+            break;
+
+          case 1: modo = \"AUTOMATICO\";
+            estado = \"Orden de avance sin confirmación\";
+            dpGet(\"System1:Variables_Internas_Scada.images_base64.accionamientos.motor_verde\", img);
+            img = \"<img src=\" + img + \">\";
+            break;
+
+          case 2: modo = \"AUTOMATICO\";
+            estado = \"Confirmación de avance\";
+            dpGet(\"System1:Variables_Internas_Scada.images_base64.accionamientos.motor_verde\", img);
+            img = \"<img src=\" + img + \">\";
+            break;
+
+          case 3: modo = \"AUTOMATICO\";
+            estado = \"Orden de retroceso sin confirmación\";
+            dpGet(\"System1:Variables_Internas_Scada.images_base64.accionamientos.motor_gris\", img);
+            img = \"<img src=\" + img + \">\";
+            break;
+
+          case 4: modo = \"AUTOMATICO\";
+            estado = \"Confirmación de avance\";
+            dpGet(\"System1:Variables_Internas_Scada.images_base64.accionamientos.motor_verde\", img);
+            img = \"<img src=\" + img + \">\";
+            break;
+
+          case 10: modo = \"MANUAL REMOTO\";
+            estado = \"Sin ordenes de funcionamiento ni confirmaciones\";
+            dpGet(\"System1:Variables_Internas_Scada.images_base64.accionamientos.motor_gris\", img);
+            img = \"<img src=\" + img + \">\";
+            break;
+
+          case 11: modo = \"MANUAL REMOTO\";
+            estado = \"Orden de avance sin confirmación\";
+            dpGet(\"System1:Variables_Internas_Scada.images_base64.accionamientos.motor_gris\", img);
+            img = \"<img src=\" + img + \">\";
+            break;
+
+          case 12: modo = \"MANUAL REMOTO\";
+            estado = \"Confirmación de avance\";
+            dpGet(\"System1:Variables_Internas_Scada.images_base64.accionamientos.motor_verde\", img);
+            img = \"<img src=\" + img + \">\";
+            break;
+
+          case 13: modo = \"MANUAL REMOTO\";
+            estado = \"Orden de avance sin confirmación\";
+            dpGet(\"System1:Variables_Internas_Scada.images_base64.accionamientos.motor_gris\", img);
+            img = \"<img src=\" + img + \">\";
+            break;
+
+          case 14: modo = \"MANUAL REMOTO\";
+            estado = \"Confirmación de avance\";
+            dpGet(\"System1:Variables_Internas_Scada.images_base64.accionamientos.motor_verde\", img);
+            img = \"<img src=\" + img + \">\";
+            break;
+
+          case 20: modo = \"MANUAL LOCAL\";
+            estado = \"Modo manual local activo\";
+            dpGet(\"System1:Variables_Internas_Scada.images_base64.accionamientos.motor_gris\", img);
+            img = \"<img src=\" + img + \">\";
+            break;
+
+          case 21: modo = \"MANUAL MANTENIMIENTO\";
+            estado = \"Modo manual mantenimiento activo\";
+            dpGet(\"System1:Variables_Internas_Scada.images_base64.accionamientos.motor_gris\", img);
+            img = \"<img src=\" + img + \">\";
+            break;
+
+          case 100: modo = \"AUTOMATICO (ALARMA)\";
+            estado = \"Sin confirmaciones\";
+            dpGet(\"System1:Variables_Internas_Scada.images_base64.accionamientos.motor_rojo\", img);
+            img = \"<img src=\" + img + \">\";
+            break;
+
+          case 101: modo = \"AUTOMATICO (ALARMA)\";
+            estado = \"Confirmación de avance\";
+            dpGet(\"System1:Variables_Internas_Scada.images_base64.accionamientos.motor_rojo\", img);
+            img = \"<img src=\" + img + \">\";
+            break;
+
+          case 102: modo = \"AUTOMATICO (ALARMA)\";
+            estado = \"Confirmación de avance\";
+            dpGet(\"System1:Variables_Internas_Scada.images_base64.accionamientos.motor_rojo\", img);
+            img = \"<img src=\" + img + \">\";
+            break;
+
+          case 110: modo = \"MANUAL REMOTO (ALARMA)\";
+            estado = \"Sin confirmaciones\";
+            dpGet(\"System1:Variables_Internas_Scada.images_base64.accionamientos.motor_rojo\", img);
+            img = \"<img src=\" + img + \">\";
+            break;
+
+          case 111: modo = \"MANUAL REMOTO (ALARMA)\";
+            estado = \"Confirmación de avance\";
+            dpGet(\"System1:Variables_Internas_Scada.images_base64.accionamientos.motor_rojo\", img);
+            img = \"<img src=\" + img + \">\";
+            break;
+
+          case 112: modo = \"MANUAL REMOTO (ALARMA)\";
+            estado = \"Confirmación de avance\";
+            dpGet(\"System1:Variables_Internas_Scada.images_base64.accionamientos.motor_rojo\", img);
+            img = \"<img src=\" + img + \">\";
+            break;
+
+          case 225: modo = \"INHABILITACION\";
+            estado = \"Modo inhabilitación activo\";
+            dpGet(\"System1:Variables_Internas_Scada.images_base64.accionamientos.motor_gris\", img);
+            img = \"<img src=\" + img + \">\";
+            break;
+        } break;
+
+      case \"Cinta\": switch (resultado_consulta_1[i][3])
+        {
+          case 0: modo = \"AUTOMATICO\";
+            estado = \"Sin ordenes de funcionamiento ni confirmaciones\";
+            dpGet(\"System1:Variables_Internas_Scada.images_base64.accionamientos.cinta_gris\", img);
+            img = \"<img src=\" + img + \">\";
+            break;
+
+          case 1: modo = \"AUTOMATICO\";
+            estado = \"Orden de avance sin confirmación\";
+            dpGet(\"System1:Variables_Internas_Scada.images_base64.accionamientos.cinta_verde\", img);
+            img = \"<img src=\" + img + \">\";
+            break;
+
+          case 2: modo = \"AUTOMATICO\";
+            estado = \"Confirmación de avance\";
+            dpGet(\"System1:Variables_Internas_Scada.images_base64.accionamientos.cinta_verde\", img);
+            img = \"<img src=\" + img + \">\";
+            break;
+
+          case 3: modo = \"AUTOMATICO\";
+            estado = \"Orden de retroceso sin confirmación\";
+            dpGet(\"System1:Variables_Internas_Scada.images_base64.accionamientos.cinta_gris\", img);
+            img = \"<img src=\" + img + \">\";
+            break;
+
+          case 4: modo = \"AUTOMATICO\";
+            estado = \"Confirmación de avance\";
+            dpGet(\"System1:Variables_Internas_Scada.images_base64.accionamientos.cinta_verde\", img);
+            img = \"<img src=\" + img + \">\";
+            break;
+
+          case 10: modo = \"MANUAL REMOTO\";
+            estado = \"Sin ordenes de funcionamiento ni confirmaciones\";
+            dpGet(\"System1:Variables_Internas_Scada.images_base64.accionamientos.cinta_gris\", img);
+            img = \"<img src=\" + img + \">\";
+            break;
+
+          case 11: modo = \"MANUAL REMOTO\";
+            estado = \"Orden de avance sin confirmación\";
+            dpGet(\"System1:Variables_Internas_Scada.images_base64.accionamientos.cinta_gris\", img);
+            img = \"<img src=\" + img + \">\";
+            break;
+
+          case 12: modo = \"MANUAL REMOTO\";
+            estado = \"Confirmación de avance\";
+            dpGet(\"System1:Variables_Internas_Scada.images_base64.accionamientos.cinta_verde\", img);
+            img = \"<img src=\" + img + \">\";
+            break;
+
+          case 13: modo = \"MANUAL REMOTO\";
+            estado = \"Orden de avance sin confirmación\";
+            dpGet(\"System1:Variables_Internas_Scada.images_base64.accionamientos.cinta_gris\", img);
+            img = \"<img src=\" + img + \">\";
+            break;
+
+          case 14: modo = \"MANUAL REMOTO\";
+            estado = \"Confirmación de avance\";
+            dpGet(\"System1:Variables_Internas_Scada.images_base64.accionamientos.cinta_verde\", img);
+            img = \"<img src=\" + img + \">\";
+            break;
+
+          case 20: modo = \"MANUAL LOCAL\";
+            estado = \"Modo manual local activo\";
+            dpGet(\"System1:Variables_Internas_Scada.images_base64.accionamientos.cinta_gris\", img);
+            img = \"<img src=\" + img + \">\";
+            break;
+
+          case 21: modo = \"MANUAL MANTENIMIENTO\";
+            estado = \"Modo manual mantenimiento activo\";
+            dpGet(\"System1:Variables_Internas_Scada.images_base64.accionamientos.cinta_gris\", img);
+            img = \"<img src=\" + img + \">\";
+            break;
+
+          case 100: modo = \"AUTOMATICO (ALARMA)\";
+            estado = \"Sin confirmaciones\";
+            dpGet(\"System1:Variables_Internas_Scada.images_base64.accionamientos.cinta_rojo\", img);
+            img = \"<img src=\" + img + \">\";
+            break;
+
+          case 101: modo = \"AUTOMATICO (ALARMA)\";
+            estado = \"Confirmación de avance\";
+            dpGet(\"System1:Variables_Internas_Scada.images_base64.accionamientos.cinta_rojo\", img);
+            img = \"<img src=\" + img + \">\";
+            break;
+
+          case 102: modo = \"AUTOMATICO (ALARMA)\";
+            estado = \"Confirmación de avance\";
+            dpGet(\"System1:Variables_Internas_Scada.images_base64.accionamientos.cinta_rojo\", img);
+            img = \"<img src=\" + img + \">\";
+            break;
+
+          case 110: modo = \"MANUAL REMOTO (ALARMA)\";
+            estado = \"Sin confirmaciones\";
+            dpGet(\"System1:Variables_Internas_Scada.images_base64.accionamientos.cinta_rojo\", img);
+            img = \"<img src=\" + img + \">\";
+            break;
+
+          case 111: modo = \"MANUAL REMOTO (ALARMA)\";
+            estado = \"Confirmación de avance\";
+            dpGet(\"System1:Variables_Internas_Scada.images_base64.accionamientos.cinta_rojo\", img);
+            img = \"<img src=\" + img + \">\";
+            break;
+
+          case 112: modo = \"MANUAL REMOTO (ALARMA)\";
+            estado = \"Confirmación de avance\";
+            dpGet(\"System1:Variables_Internas_Scada.images_base64.accionamientos.cinta_rojo\", img);
+            img = \"<img src=\" + img + \">\";
+            break;
+
+          case 225: modo = \"INHABILITACION\";
+            estado = \"Modo inhabilitación activo\";
+            dpGet(\"System1:Variables_Internas_Scada.images_base64.accionamientos.cinta_gris\", img);
+            img = \"<img src=\" + img + \">\";
+            break;
+        }
+
+        break;
+
+      case \"Bomba\": switch (resultado_consulta_1[i][3])
+        {
+          case 0: modo = \"AUTOMATICO\";
+            estado = \"Sin ordenes de funcionamiento ni confirmaciones\";
+            dpGet(\"System1:Variables_Internas_Scada.images_base64.accionamientos.bomba_gris\", img);
+            img = \"<img src=\" + img + \">\";
+            break;
+
+          case 1: modo = \"AUTOMATICO\";
+            estado = \"Orden de avance sin confirmación\";
+            dpGet(\"System1:Variables_Internas_Scada.images_base64.accionamientos.bomba_verde\", img);
+            img = \"<img src=\" + img + \">\";
+            break;
+
+          case 2: modo = \"AUTOMATICO\";
+            estado = \"Confirmación de avance\";
+            dpGet(\"System1:Variables_Internas_Scada.images_base64.accionamientos.bomba_verde\", img);
+            img = \"<img src=\" + img + \">\";
+            break;
+
+          case 3: modo = \"AUTOMATICO\";
+            estado = \"Orden de retroceso sin confirmación\";
+            dpGet(\"System1:Variables_Internas_Scada.images_base64.accionamientos.bomba_gris\", img);
+            img = \"<img src=\" + img + \">\";
+            break;
+
+          case 4: modo = \"AUTOMATICO\";
+            estado = \"Confirmación de avance\";
+            dpGet(\"System1:Variables_Internas_Scada.images_base64.accionamientos.bomba_verde\", img);
+            img = \"<img src=\" + img + \">\";
+            break;
+
+          case 10: modo = \"MANUAL REMOTO\";
+            estado = \"Sin ordenes de funcionamiento ni confirmaciones\";
+            dpGet(\"System1:Variables_Internas_Scada.images_base64.accionamientos.bomba_gris\", img);
+            img = \"<img src=\" + img + \">\";
+            break;
+
+          case 11: modo = \"MANUAL REMOTO\";
+            estado = \"Orden de avance sin confirmación\";
+            dpGet(\"System1:Variables_Internas_Scada.images_base64.accionamientos.bomba_gris\", img);
+            img = \"<img src=\" + img + \">\";
+            break;
+
+          case 12: modo = \"MANUAL REMOTO\";
+            estado = \"Confirmación de avance\";
+            dpGet(\"System1:Variables_Internas_Scada.images_base64.accionamientos.bomba_verde\", img);
+            img = \"<img src=\" + img + \">\";
+            break;
+
+          case 13: modo = \"MANUAL REMOTO\";
+            estado = \"Orden de avance sin confirmación\";
+            dpGet(\"System1:Variables_Internas_Scada.images_base64.accionamientos.bomba_gris\", img);
+            img = \"<img src=\" + img + \">\";
+            break;
+
+          case 14: modo = \"MANUAL REMOTO\";
+            estado = \"Confirmación de avance\";
+            dpGet(\"System1:Variables_Internas_Scada.images_base64.accionamientos.bomba_verde\", img);
+            img = \"<img src=\" + img + \">\";
+            break;
+
+          case 20: modo = \"MANUAL LOCAL\";
+            estado = \"Modo manual local activo\";
+            dpGet(\"System1:Variables_Internas_Scada.images_base64.accionamientos.bomba_gris\", img);
+            img = \"<img src=\" + img + \">\";
+            break;
+
+          case 21: modo = \"MANUAL MANTENIMIENTO\";
+            estado = \"Modo manual mantenimiento activo\";
+            dpGet(\"System1:Variables_Internas_Scada.images_base64.accionamientos.bomba_gris\", img);
+            img = \"<img src=\" + img + \">\";
+            break;
+
+          case 100: modo = \"AUTOMATICO (ALARMA)\";
+            estado = \"Sin confirmaciones\";
+            dpGet(\"System1:Variables_Internas_Scada.images_base64.accionamientos.bomba_rojo\", img);
+            img = \"<img src=\" + img + \">\";
+            break;
+
+          case 101: modo = \"AUTOMATICO (ALARMA)\";
+            estado = \"Confirmación de avance\";
+            dpGet(\"System1:Variables_Internas_Scada.images_base64.accionamientos.bomba_rojo\", img);
+            img = \"<img src=\" + img + \">\";
+            break;
+
+          case 102: modo = \"AUTOMATICO (ALARMA)\";
+            estado = \"Confirmación de avance\";
+            dpGet(\"System1:Variables_Internas_Scada.images_base64.accionamientos.bomba_rojo\", img);
+            img = \"<img src=\" + img + \">\";
+            break;
+
+          case 110: modo = \"MANUAL REMOTO (ALARMA)\";
+            estado = \"Sin confirmaciones\";
+            dpGet(\"System1:Variables_Internas_Scada.images_base64.accionamientos.bomba_rojo\", img);
+            img = \"<img src=\" + img + \">\";
+            break;
+
+          case 111: modo = \"MANUAL REMOTO (ALARMA)\";
+            estado = \"Confirmación de avance\";
+            dpGet(\"System1:Variables_Internas_Scada.images_base64.accionamientos.bomba_rojo\", img);
+            img = \"<img src=\" + img + \">\";
+            break;
+
+          case 112: modo = \"MANUAL REMOTO (ALARMA)\";
+            estado = \"Confirmación de avance\";
+            dpGet(\"System1:Variables_Internas_Scada.images_base64.accionamientos.bomba_rojo\", img);
+            img = \"<img src=\" + img + \">\";
+            break;
+
+          case 225: modo = \"INHABILITACION\";
+            estado = \"Modo inhabilitación activo\";
+            dpGet(\"System1:Variables_Internas_Scada.images_base64.accionamientos.bomba_gris\", img);
+            img = \"<img src=\" + img + \">\";
+            break;
+        }
+
+        break;
+
+      case \"Sinfín\": switch (resultado_consulta_1[i][3])
+        {
+          case 0: modo = \"AUTOMATICO\";
+            estado = \"Sin ordenes de funcionamiento ni confirmaciones\";
+            dpGet(\"System1:Variables_Internas_Scada.images_base64.accionamientos.sinfin_gris\", img);
+            img = \"<img src=\" + img + \">\";
+            break;
+
+          case 1: modo = \"AUTOMATICO\";
+            estado = \"Orden de avance sin confirmación\";
+            dpGet(\"System1:Variables_Internas_Scada.images_base64.accionamientos.sinfin_verde\", img);
+            img = \"<img src=\" + img + \">\";
+            break;
+
+          case 2: modo = \"AUTOMATICO\";
+            estado = \"Confirmación de avance\";
+            dpGet(\"System1:Variables_Internas_Scada.images_base64.accionamientos.sinfin_verde\", img);
+            img = \"<img src=\" + img + \">\";
+            break;
+
+          case 3: modo = \"AUTOMATICO\";
+            estado = \"Orden de retroceso sin confirmación\";
+            dpGet(\"System1:Variables_Internas_Scada.images_base64.accionamientos.sinfin_gris\", img);
+            img = \"<img src=\" + img + \">\";
+            break;
+
+          case 4: modo = \"AUTOMATICO\";
+            estado = \"Confirmación de avance\";
+            dpGet(\"System1:Variables_Internas_Scada.images_base64.accionamientos.sinfin_verde\", img);
+            img = \"<img src=\" + img + \">\";
+            break;
+
+          case 10: modo = \"MANUAL REMOTO\";
+            estado = \"Sin ordenes de funcionamiento ni confirmaciones\";
+            dpGet(\"System1:Variables_Internas_Scada.images_base64.accionamientos.sinfin_gris\", img);
+            img = \"<img src=\" + img + \">\";
+            break;
+
+          case 11: modo = \"MANUAL REMOTO\";
+            estado = \"Orden de avance sin confirmación\";
+            dpGet(\"System1:Variables_Internas_Scada.images_base64.accionamientos.sinfin_gris\", img);
+            img = \"<img src=\" + img + \">\";
+            break;
+
+          case 12: modo = \"MANUAL REMOTO\";
+            estado = \"Confirmación de avance\";
+            dpGet(\"System1:Variables_Internas_Scada.images_base64.accionamientos.sinfin_verde\", img);
+            img = \"<img src=\" + img + \">\";
+            break;
+
+          case 13: modo = \"MANUAL REMOTO\";
+            estado = \"Orden de avance sin confirmación\";
+            dpGet(\"System1:Variables_Internas_Scada.images_base64.accionamientos.sinfin_gris\", img);
+            img = \"<img src=\" + img + \">\";
+            break;
+
+          case 14: modo = \"MANUAL REMOTO\";
+            estado = \"Confirmación de avance\";
+            dpGet(\"System1:Variables_Internas_Scada.images_base64.accionamientos.sinfin_verde\", img);
+            img = \"<img src=\" + img + \">\";
+            break;
+
+          case 20: modo = \"MANUAL LOCAL\";
+            estado = \"Modo manual local activo\";
+            dpGet(\"System1:Variables_Internas_Scada.images_base64.accionamientos.sinfin_gris\", img);
+            img = \"<img src=\" + img + \">\";
+            break;
+
+          case 21: modo = \"MANUAL MANTENIMIENTO\";
+            estado = \"Modo manual mantenimiento activo\";
+            dpGet(\"System1:Variables_Internas_Scada.images_base64.accionamientos.sinfin_gris\", img);
+            img = \"<img src=\" + img + \">\";
+            break;
+
+          case 100: modo = \"AUTOMATICO (ALARMA)\";
+            estado = \"Sin confirmaciones\";
+            dpGet(\"System1:Variables_Internas_Scada.images_base64.accionamientos.sinfin_rojo\", img);
+            img = \"<img src=\" + img + \">\";
+            break;
+
+          case 101: modo = \"AUTOMATICO (ALARMA)\";
+            estado = \"Confirmación de avance\";
+            dpGet(\"System1:Variables_Internas_Scada.images_base64.accionamientos.sinfin_rojo\", img);
+            img = \"<img src=\" + img + \">\";
+            break;
+
+          case 102: modo = \"AUTOMATICO (ALARMA)\";
+            estado = \"Confirmación de avance\";
+            dpGet(\"System1:Variables_Internas_Scada.images_base64.accionamientos.sinfin_rojo\", img);
+            img = \"<img src=\" + img + \">\";
+            break;
+
+          case 110: modo = \"MANUAL REMOTO (ALARMA)\";
+            estado = \"Sin confirmaciones\";
+            dpGet(\"System1:Variables_Internas_Scada.images_base64.accionamientos.sinfin_rojo\", img);
+            img = \"<img src=\" + img + \">\";
+            break;
+
+          case 111: modo = \"MANUAL REMOTO (ALARMA)\";
+            estado = \"Confirmación de avance\";
+            dpGet(\"System1:Variables_Internas_Scada.images_base64.accionamientos.sinfin_rojo\", img);
+            img = \"<img src=\" + img + \">\";
+            break;
+
+          case 112: modo = \"MANUAL REMOTO (ALARMA)\";
+            estado = \"Confirmación de avance\";
+            dpGet(\"System1:Variables_Internas_Scada.images_base64.accionamientos.sinfin_rojo\", img);
+            img = \"<img src=\" + img + \">\";
+            break;
+
+          case 225: modo = \"INHABILITACION\";
+            estado = \"Modo inhabilitación activo\";
+            dpGet(\"System1:Variables_Internas_Scada.images_base64.accionamientos.sinfin_gris\", img);
+            img = \"<img src=\" + img + \">\";
+            break;
+        } break;
+
+      case \"Válvula\": switch (resultado_consulta_1[i][3])
+        {
+          case 0: modo = \"AUTOMATICO\";
+            estado = \"Sin ordenes de funcionamiento ni confirmaciones\";
+            dpGet(\"System1:Variables_Internas_Scada.images_base64.accionamientos.valvula_gris\", img);
+            img = \"<img src=\" + img + \">\";
+            break;
+
+          case 1: modo = \"AUTOMATICO\";
+            estado = \"Orden de apertura sin confirmación\";
+            dpGet(\"System1:Variables_Internas_Scada.images_base64.accionamientos.valvula_verde\", img);
+            img = \"<img src=\" + img + \">\";
+            break;
+
+          case 2: modo = \"AUTOMATICO\";
+            estado = \"Confirmación de apertura\";
+            dpGet(\"System1:Variables_Internas_Scada.images_base64.accionamientos.valvula_verde\", img);
+            img = \"<img src=\" + img + \">\";
+            break;
+
+          case 3: modo = \"AUTOMATICO\";
+            estado = \"Orden de cierre sin confirmación\";
+            dpGet(\"System1:Variables_Internas_Scada.images_base64.accionamientos.valvula_gris\", img);
+            img = \"<img src=\" + img + \">\";
+            break;
+
+          case 4: modo = \"AUTOMATICO\";
+            estado = \"Confirmación de apertura\";
+            dpGet(\"System1:Variables_Internas_Scada.images_base64.accionamientos.valvula_verde\", img);
+            img = \"<img src=\" + img + \">\";
+            break;
+
+          case 10: modo = \"MANUAL REMOTO\";
+            estado = \"Sin ordenes de funcionamiento ni confirmaciones\";
+            dpGet(\"System1:Variables_Internas_Scada.images_base64.accionamientos.valvula_gris\", img);
+            img = \"<img src=\" + img + \">\";
+            break;
+
+          case 11: modo = \"MANUAL REMOTO\";
+            estado = \"Orden de apertura sin confirmación\";
+            dpGet(\"System1:Variables_Internas_Scada.images_base64.accionamientos.valvula_gris\", img);
+            img = \"<img src=\" + img + \">\";
+            break;
+
+          case 12: modo = \"MANUAL REMOTO\";
+            estado = \"Confirmación de apertura\";
+            dpGet(\"System1:Variables_Internas_Scada.images_base64.accionamientos.valvula_verde\", img);
+            img = \"<img src=\" + img + \">\";
+            break;
+
+          case 13: modo = \"MANUAL REMOTO\";
+            estado = \"Orden de apertura sin confirmación\";
+            dpGet(\"System1:Variables_Internas_Scada.images_base64.accionamientos.valvula_gris\", img);
+            img = \"<img src=\" + img + \">\";
+            break;
+
+          case 14: modo = \"MANUAL REMOTO\";
+            estado = \"Confirmación de cierre\";
+            dpGet(\"System1:Variables_Internas_Scada.images_base64.accionamientos.valvula_gris\", img);
+            img = \"<img src=\" + img + \">\";
+            break;
+
+          case 20: modo = \"MANUAL LOCAL\";
+            estado = \"Modo manual local activo\";
+            dpGet(\"System1:Variables_Internas_Scada.images_base64.accionamientos.valvula_gris\", img);
+            img = \"<img src=\" + img + \">\";
+            break;
+
+          case 21: modo = \"MANUAL MANTENIMIENTO\";
+            estado = \"Modo manual mantenimiento activo\";
+            dpGet(\"System1:Variables_Internas_Scada.images_base64.accionamientos.valvula_gris\", img);
+            img = \"<img src=\" + img + \">\";
+            break;
+
+          case 100: modo = \"AUTOMATICO (ALARMA)\";
+            estado = \"Sin confirmaciones\";
+            dpGet(\"System1:Variables_Internas_Scada.images_base64.accionamientos.valvula_rojo\", img);
+            img = \"<img src=\" + img + \">\";
+            break;
+
+          case 101: modo = \"AUTOMATICO (ALARMA)\";
+            estado = \"Confirmación apertura\";
+            dpGet(\"System1:Variables_Internas_Scada.images_base64.accionamientos.valvula_rojo\", img);
+            img = \"<img src=\" + img + \">\";
+            break;
+
+          case 102: modo = \"AUTOMATICO (ALARMA)\";
+            estado = \"Confirmación de cierre\";
+            dpGet(\"System1:Variables_Internas_Scada.images_base64.accionamientos.valvula_rojo\", img);
+            img = \"<img src=\" + img + \">\";
+            break;
+
+          case 110: modo = \"MANUAL REMOTO (ALARMA)\";
+            estado = \"Sin confirmaciones\";
+            dpGet(\"System1:Variables_Internas_Scada.images_base64.accionamientos.valvula_rojo\", img);
+            img = \"<img src=\" + img + \">\";
+            break;
+
+          case 111: modo = \"MANUAL REMOTO (ALARMA)\";
+            estado = \"Confirmación de apertura\";
+            dpGet(\"System1:Variables_Internas_Scada.images_base64.accionamientos.valvula_rojo\", img);
+            img = \"<img src=\" + img + \">\";
+            break;
+
+          case 112: modo = \"MANUAL REMOTO (ALARMA)\";
+            estado = \"Confirmación de cierre\";
+            dpGet(\"System1:Variables_Internas_Scada.images_base64.accionamientos.valvula_rojo\", img);
+            img = \"<img src=\" + img + \">\";
+            break;
+
+          case 225: modo = \"INHABILITACION\";
+            estado = \"Modo inhabilitación activo\";
+            dpGet(\"System1:Variables_Internas_Scada.images_base64.accionamientos.valvula_gris\", img);
+            img = \"<img src=\" + img + \">\";
+            break;
+        } break;
+    }
+    datos_tabla[i][1] = resultado_consulta_1[i][1];
+    datos_tabla[i][2] = resultado_consulta_1[i][2];
+    datos_tabla[i][3] = modo;
+    datos_tabla[i][4] = estado;
+    datos_tabla[i][5] = img;
+  }
+
+  pintar_tabla_valores(datos_tabla);
+}
+
+/******* Fin de la función consulta_alarmas_bd() *********/
+" 0
+ E E E
+6 147
+"RECTANGLE128"
+""
+1 1250 12 E E E 1 E 1 E N {179,200,224} E N {255,255,255} E E
+ E E
+146 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+7
+"shadowOffset" "[4,4]"
+"shadowColor" "{63,63,63,63}"
+"shadowRadius" "8"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 2 3 2 1 E 0.7508250825082509 0 0.2368739034710966 509.1083187633699 795.1575131583468 1 E 1250 12 1856 592
+14 149
+"nombre_archivo"
+"PEQUENIO_AZUL"
+1 1550 845.386864013236 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+148 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+2
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10010 34 Consolas,-1,16,5,75,0,0,0,0,0,Bold
+LANG:10011 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10009 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10008 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10018 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  1548 835.386864013236 1894 863.386864013236
+3 "0s" 0 0 0 9 0 -1  E E E
+13 150
+"export_bottom"
+"GRANDE_AZUL"
+1 1766.09141623993 158.9829355450617 E E E 1 E 1 E N "LIB_DEUSER_BLANCO" E N "LIB_IRC_AZUL_01" E E
+ E E
+149 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10010 34 Consolas,-1,16,5,75,0,0,0,0,0,Bold
+LANG:10011 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10009 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10008 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10018 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  1636.139671898683 864.693432006618 1714.139671898683 917.693432006618
+
+P 
+4294967295
+"pictures/iconos/botoneras/aceptar.svg"
+6
+LANG:10001 13 PUSH_BUTTON13
+LANG:10010 22 Confirmar Exportación
+LANG:10011 13 PUSH_BUTTON13
+LANG:10009 13 PUSH_BUTTON13
+LANG:10008 13 PUSH_BUTTON13
+LANG:10018 13 PUSH_BUTTON13
+"main(mapping event)
+{
+  string path;
+  dyn_anytype respuesta;
+  /*Permisos de usuario - Operación. Devuelve un bool.
+  Parametros obligatorios de la función:
+    - Número de permiso que se comprobará. Desde 10 a 32. De 0 a 9 se usan para Wincc OA.
+    - Comprobar permiso de forma individual (TRUE) o el número de permiso y los superiores (FALSE).
+  Parametros opcionales de la función:
+    - Mostrar mensaje - El usuario no tiene permisos. Por defecto (TRUE).
+  */
+  int n_permiso = 12;
+  bool permiso = permisos_usuario_operacion(n_permiso, FALSE);
+
+  if (permiso)
+  {
+
+    if (nombre_archivo.text != \"\")
+    {
+      path = \"C:/ficheros_csv/estados_accionamientos/\" + nombre_archivo.text + \".csv\";
+
+      if (access(path, F_OK) != 0) // Si el archivo no existe, se crea y se añaden los valores.
+      {
+        tabla_valores.writeToFile(path, TABLE_WRITE_VISIBLE_COLUMNS | TABLE_WRITE_COLUMN_HEADER, \";\");
+        mostrar_msg_emergente(3, \"exportar_tabla\");
+        nombre_archivo.text(\"\");
+      }
+      else
+      {
+        respuesta = mostrar_msg_emergente(2, \"existe_csv\", \"titulo_sobrescribir_csv\");
+
+        if (respuesta[1][1] == 1)
+        {
+          tabla_valores.writeToFile(path, TABLE_WRITE_VISIBLE_COLUMNS | TABLE_WRITE_COLUMN_HEADER, \";\");
+          mostrar_msg_emergente(3, \"exportar_tabla\");
+          nombre_archivo.text(\"\");
+        }
+      }
+    }
+    else
+    {
+      nombre_archivo.backCol(\"LIB_IRC_ROJO_12\");
+      delay(2, 000);
+      nombre_archivo.backCol(\"LIB_DEUSER_BLANCO\");
+    }
+  }
+}
+" 0
+ E E E
+6 196
+"RECTANGLE66"
+""
+1 1250 12 E E E 1 E 1 E N {179,200,224} E N {255,255,255} E E
+ E E
+195 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+7
+"shadowOffset" "[4,4]"
+"shadowColor" "{63,63,63,63}"
+"shadowRadius" "8"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 2 3 2 1 E 0.7541254125412538 0 1.274104978258743 504.9829062221163 20.72985287082374 1 E 1250 12 1856 592
+6 197
+"RECTANGLE125"
+""
+1 936 120 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_AZUL_03" E E
+ E E
+196 0 0 0 0 0
+E E E
+0
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+4
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 2 2 1 1 E 8.679999999999978 0 1 -6663.840328101296 -28.98088739007133 1 E 936 120 986 170
+6 199
+"RECTANGLE127"
+""
+1 936 120 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_AZUL_03" E E
+ E E
+198 0 0 0 0 0
+E E E
+0
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+4
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 2 2 1 1 E 8.659999999999993 0 0.9999999999999996 -6645.120328101311 51.01911260992881 1 E 936 120 986 170
+22 201
+"cbb_dia_ini"
+"MEDIANO_AZUL"
+1 1381.639671898683 -255.9808873900713 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_BLANCO" E E
+ E E
+200 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 15 Rango de tiempo
+LANG:10010 0 
+LANG:10011 15 Rango de tiempo
+LANG:10009 15 Rango de tiempo
+LANG:10008 15 Rango de tiempo
+LANG:10018 15 Rango de tiempo
+
+2
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,12,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+0  1643.205563371552 102.5191126099286 1716.205563371552 129.5191126099286
+31
+6
+LANG:10001 3 ???
+LANG:10010 2 01
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 02
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 03
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 04
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 05
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 06
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 07
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 08
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 09
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 10
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 11
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 12
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 13
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 14
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 15
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 16
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 17
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 18
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 19
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 20
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 21
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 22
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 23
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 24
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 25
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 26
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 27
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 28
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 29
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 30
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 31
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+
+"
+main()
+{
+  addGlobal(\"valor_previo\", INT_VAR);
+  valor_previo = 0;
+}
+" 0
+
+"main()
+{
+  actualizar_tabla_dps();
+}" 0
+
+E
+ 0 0
+22 202
+"cbb_mes_ini"
+"MEDIANO_AZUL"
+1 1468.836001577743 -255.9808873900713 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_BLANCO" E E
+ E E
+201 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 15 Rango de tiempo
+LANG:10010 0 
+LANG:10011 15 Rango de tiempo
+LANG:10009 15 Rango de tiempo
+LANG:10008 15 Rango de tiempo
+LANG:10018 15 Rango de tiempo
+
+2
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,12,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+0  1721.205563371552 102.5191126099286 1794.205563371552 129.5191126099286
+12
+6
+LANG:10001 3 ???
+LANG:10010 2 01
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 02
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 03
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 04
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 05
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 06
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 07
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 08
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 09
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 10
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 11
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 12
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+
+"
+main()
+{
+  addGlobal(\"valor_previo\", INT_VAR);
+  valor_previo = 0;
+}
+" 0
+
+"main()
+{
+  actualizar_tabla_dps();
+}" 0
+
+E
+ 0 0
+22 203
+"cbb_ano_ini"
+"MEDIANO_AZUL"
+1 1495.004012983954 -255.9808873900714 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_BLANCO" E E
+ E E
+202 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 15 Rango de tiempo
+LANG:10010 0 
+LANG:10011 15 Rango de tiempo
+LANG:10009 15 Rango de tiempo
+LANG:10008 15 Rango de tiempo
+LANG:10018 15 Rango de tiempo
+
+2
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,12,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+0  1799.205563371552 102.0191126099288 1882.205563371552 130.0191126099284
+39
+6
+LANG:10001 3 ???
+LANG:10010 4 2022
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2023
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2024
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2025
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2026
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2027
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2028
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2029
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2030
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2031
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2032
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2033
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2034
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2035
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2036
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2037
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2038
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2039
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2040
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2041
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2042
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2043
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2044
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2045
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2046
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2047
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2048
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2049
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2050
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2051
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2052
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2053
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2054
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2055
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2056
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2057
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2058
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2059
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2060
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+
+"
+main()
+{
+  addGlobal(\"valor_previo\", INT_VAR);
+  valor_previo = 0;
+}
+" 0
+
+"main()
+{
+  actualizar_tabla_dps();
+}" 0
+
+E
+ 0 0
+22 204
+"cbb_hora_ini"
+"MEDIANO_AZUL"
+1 1212.205563371552 -255.9808873900713 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_BLANCO" E E
+ E E
+203 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 15 Rango de tiempo
+LANG:10010 0 
+LANG:10011 15 Rango de tiempo
+LANG:10009 15 Rango de tiempo
+LANG:10008 15 Rango de tiempo
+LANG:10018 15 Rango de tiempo
+
+2
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,12,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+0  1473.771454844418 102.5191126099286 1546.771454844418 129.5191126099286
+24
+6
+LANG:10001 3 ???
+LANG:10010 2 00
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 01
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 02
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 03
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 04
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 05
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 06
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 07
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 08
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 09
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 10
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 11
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 12
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 13
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 14
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 15
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 16
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 17
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 18
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 19
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 20
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 21
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 22
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 23
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+
+"
+main()
+{
+  addGlobal(\"valor_previo\", INT_VAR);
+  valor_previo = 0;
+}
+" 0
+
+"main()
+{
+  actualizar_tabla_dps();
+}" 0
+
+E
+ 0 0
+22 205
+"cbb_min_ini"
+"MEDIANO_AZUL"
+1 1294.205563371552 -255.9808873900713 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_BLANCO" E E
+ E E
+204 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 15 Rango de tiempo
+LANG:10010 0 
+LANG:10011 15 Rango de tiempo
+LANG:10009 15 Rango de tiempo
+LANG:10008 15 Rango de tiempo
+LANG:10018 15 Rango de tiempo
+
+2
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,12,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+0  1555.771454844418 102.5191126099286 1628.771454844418 129.5191126099286
+60
+6
+LANG:10001 3 ???
+LANG:10010 2 00
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 01
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 02
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 03
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 04
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 05
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 06
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 07
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 08
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 09
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 10
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 11
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 12
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 13
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 14
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 15
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 16
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 17
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 18
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 19
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 20
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 21
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 22
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 23
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 24
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 25
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 26
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 27
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 28
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 29
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 30
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 31
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 32
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 33
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 34
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 35
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 36
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 37
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 38
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 39
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 40
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 41
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 42
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 43
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 44
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 45
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 46
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 47
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 48
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 49
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 50
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 51
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 52
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 53
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 54
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 55
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 56
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 57
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 58
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 59
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+
+"
+main()
+{
+  addGlobal(\"valor_previo\", INT_VAR);
+  valor_previo = 0;
+}
+" 0
+
+"main()
+{
+  actualizar_tabla_dps();
+}" 0
+
+E
+ 0 0
+2 206
+"PRIMITIVE_TEXT6"
+""
+1 255 526 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+205 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+5
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E 0.0977048745603928 0 0.5439115737511401 1524.290820358651 -181.2285624450695 0 E 255 526 322 567
+0 2 2 "0s" 0 0 0 72 0 0  255 526 1
+6
+LANG:10001 34 Tahoma,-1,13,5,50,0,0,0,0,0,Normal
+LANG:10010 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10011 34 Tahoma,-1,13,5,50,0,0,0,0,0,Normal
+LANG:10009 34 Tahoma,-1,13,5,50,0,0,0,0,0,Normal
+LANG:10008 34 Tahoma,-1,13,5,50,0,0,0,0,0,Normal
+LANG:10018 34 Tahoma,-1,13,5,50,0,0,0,0,0,Normal
+0 6
+LANG:10001 16 Tiempo arranque:
+LANG:10010 1 :
+LANG:10011 16 Tiempo arranque:
+LANG:10009 16 Tiempo arranque:
+LANG:10008 16 Tiempo arranque:
+LANG:10018 16 Tiempo arranque:
+22 207
+"cbb_dia_fin"
+"MEDIANO_AZUL"
+1 1381.073780425814 -175.9808873900713 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_BLANCO" E E
+ E E
+206 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 15 Rango de tiempo
+LANG:10010 0 
+LANG:10011 15 Rango de tiempo
+LANG:10009 15 Rango de tiempo
+LANG:10008 15 Rango de tiempo
+LANG:10018 15 Rango de tiempo
+
+2
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,12,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+0  1642.639671898683 182.5191126099286 1715.639671898683 209.5191126099286
+31
+6
+LANG:10001 3 ???
+LANG:10010 2 01
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 02
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 03
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 04
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 05
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 06
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 07
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 08
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 09
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 10
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 11
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 12
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 13
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 14
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 15
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 16
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 17
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 18
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 19
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 20
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 21
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 22
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 23
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 24
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 25
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 26
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 27
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 28
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 29
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 30
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 31
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+
+"
+main()
+{
+  addGlobal(\"valor_previo\", INT_VAR);
+  valor_previo = 0;
+}
+" 0
+
+"main()
+{
+  actualizar_tabla_dps();
+}" 0
+
+E
+ 0 0
+22 208
+"cbb_mes_fin"
+"MEDIANO_AZUL"
+1 1468.270110104874 -175.9808873900713 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_BLANCO" E E
+ E E
+207 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 15 Rango de tiempo
+LANG:10010 0 
+LANG:10011 15 Rango de tiempo
+LANG:10009 15 Rango de tiempo
+LANG:10008 15 Rango de tiempo
+LANG:10018 15 Rango de tiempo
+
+2
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,12,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+0  1720.639671898683 182.5191126099286 1793.639671898683 209.5191126099286
+12
+6
+LANG:10001 3 ???
+LANG:10010 2 01
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 02
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 03
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 04
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 05
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 06
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 07
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 08
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 09
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 10
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 11
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 12
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+
+"
+main()
+{
+  addGlobal(\"valor_previo\", INT_VAR);
+  valor_previo = 0;
+}
+" 0
+
+"main()
+{
+  actualizar_tabla_dps();
+}" 0
+
+E
+ 0 0
+22 209
+"cbb_ano_fin"
+"MEDIANO_AZUL"
+1 1494.438121511088 -175.9808873900714 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_BLANCO" E E
+ E E
+208 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 15 Rango de tiempo
+LANG:10010 0 
+LANG:10011 15 Rango de tiempo
+LANG:10009 15 Rango de tiempo
+LANG:10008 15 Rango de tiempo
+LANG:10018 15 Rango de tiempo
+
+2
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,12,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+0  1798.639671898683 182.0191126099288 1881.639671898683 210.0191126099284
+39
+6
+LANG:10001 3 ???
+LANG:10010 4 2022
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2023
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2024
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2025
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2026
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2027
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2028
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2029
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2030
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2031
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2032
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2033
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2034
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2035
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2036
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2037
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2038
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2039
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2040
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2041
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2042
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2043
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2044
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2045
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2046
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2047
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2048
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2049
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2050
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2051
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2052
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2053
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2054
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2055
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2056
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2057
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2058
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2059
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2060
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+
+"
+main()
+{
+  addGlobal(\"valor_previo\", INT_VAR);
+  valor_previo = 0;
+}
+" 0
+
+"main()
+{
+  actualizar_tabla_dps();
+}" 0
+
+E
+ 0 0
+22 210
+"cbb_hora_fin"
+"MEDIANO_AZUL"
+1 1211.639671898683 -175.9808873900713 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_BLANCO" E E
+ E E
+209 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 15 Rango de tiempo
+LANG:10010 0 
+LANG:10011 15 Rango de tiempo
+LANG:10009 15 Rango de tiempo
+LANG:10008 15 Rango de tiempo
+LANG:10018 15 Rango de tiempo
+
+2
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,12,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+0  1473.205563371552 182.5191126099286 1546.205563371552 209.5191126099286
+24
+6
+LANG:10001 3 ???
+LANG:10010 2 00
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 01
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 02
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 03
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 04
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 05
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 06
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 07
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 08
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 09
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 10
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 11
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 12
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 13
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 14
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 15
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 16
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 17
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 18
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 19
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 20
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 21
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 22
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 23
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+
+"
+main()
+{
+  addGlobal(\"valor_previo\", INT_VAR);
+  valor_previo = 0;
+}
+" 0
+
+"main()
+{
+  actualizar_tabla_dps();
+}" 0
+
+E
+ 0 0
+22 211
+"cbb_min_fin"
+"MEDIANO_AZUL"
+1 1293.639671898683 -175.9808873900713 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_BLANCO" E E
+ E E
+210 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 15 Rango de tiempo
+LANG:10010 0 
+LANG:10011 15 Rango de tiempo
+LANG:10009 15 Rango de tiempo
+LANG:10008 15 Rango de tiempo
+LANG:10018 15 Rango de tiempo
+
+2
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,12,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+0  1555.205563371552 182.5191126099286 1628.205563371552 209.5191126099286
+60
+6
+LANG:10001 3 ???
+LANG:10010 2 00
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 01
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 02
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 03
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 04
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 05
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 06
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 07
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 08
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 09
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 10
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 11
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 12
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 13
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 14
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 15
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 16
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 17
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 18
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 19
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 20
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 21
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 22
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 23
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 24
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 25
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 26
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 27
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 28
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 29
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 30
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 31
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 32
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 33
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 34
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 35
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 36
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 37
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 38
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 39
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 40
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 41
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 42
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 43
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 44
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 45
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 46
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 47
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 48
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 49
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 50
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 51
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 52
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 53
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 54
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 55
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 56
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 57
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 58
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 59
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+
+"
+main()
+{
+  addGlobal(\"valor_previo\", INT_VAR);
+  valor_previo = 0;
+}
+" 0
+
+"main()
+{
+  actualizar_tabla_dps();
+}" 0
+
+E
+ 0 0
+2 212
+"PRIMITIVE_TEXT8"
+""
+1 255 526 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+211 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+5
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E 0.0977048745603928 0 0.5439115737511401 1523.724928885782 -101.2285624450695 0 E 255 526 322 567
+0 2 2 "0s" 0 0 0 72 0 0  255 526 1
+6
+LANG:10001 34 Tahoma,-1,13,5,50,0,0,0,0,0,Normal
+LANG:10010 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10011 34 Tahoma,-1,13,5,50,0,0,0,0,0,Normal
+LANG:10009 34 Tahoma,-1,13,5,50,0,0,0,0,0,Normal
+LANG:10008 34 Tahoma,-1,13,5,50,0,0,0,0,0,Normal
+LANG:10018 34 Tahoma,-1,13,5,50,0,0,0,0,0,Normal
+0 6
+LANG:10001 16 Tiempo arranque:
+LANG:10010 1 :
+LANG:10011 16 Tiempo arranque:
+LANG:10009 16 Tiempo arranque:
+LANG:10008 16 Tiempo arranque:
+LANG:10018 16 Tiempo arranque:
+25 218
+"tabla_desc"
+"MEDIANO_AZUL"
+1 1462.427376938463 255.0089503670669 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_BLANCO" E E
+ E E
+217 0 0 0 0 0
+E E E
+0
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+5
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+7
+LANG:10001 26 Arial,-1,12,5,75,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10011 26 Arial,-1,12,5,75,0,0,0,0,0
+LANG:10009 26 Arial,-1,12,5,75,0,0,0,0,0
+LANG:10008 26 Arial,-1,12,5,75,0,0,0,0,0
+LANG:10018 26 Arial,-1,12,5,75,0,0,0,0,0
+LANG:10005 26 Arial,-1,12,5,75,0,0,0,0,0
+0  1461 263 1894 711
+"main()
+{
+  setValue(\"\", \"deleteAllLines\");
+  formatear_estilo_tabla(\"tabla_desc\", \"AlignVCenter | AlignHCenter\", \"LIB_IRC_BLANCO\", \"{240,250,255}\");  //Damos formato a la tabla con el listado de variables
+  this.tableMode(TABLE_SELECT_MULTIPLE);
+  this.selectByClick(TABLE_SELECT_LINE);
+}
+" 0
+"main(int row, string column, string value)
+{
+  cb_accionamientos.state(0,FALSE);
+}" 0
+ 1 0 1 1 0 "accionamientos" 6 1 0 "[0s,,,AlignLeft]" 6
+LANG:10001 2 #1
+LANG:10010 14 ACCIONAMIENTOS
+LANG:10011 2 #1
+LANG:10009 2 #1
+LANG:10008 2 #1
+LANG:10018 2 #1
+E
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+415 
+28 28 10 0
+7
+LANG:10001 26 Arial,-1,12,5,75,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10011 26 Arial,-1,12,5,75,0,0,0,0,0
+LANG:10009 26 Arial,-1,12,5,75,0,0,0,0,0
+LANG:10008 26 Arial,-1,12,5,75,0,0,0,0,0
+LANG:10018 26 Arial,-1,12,5,75,0,0,0,0,0
+LANG:10005 26 Arial,-1,12,5,75,0,0,0,0,0
+0 0 2 0 1 7
+1 0
+20 219
+"cb_accionamientos"
+"PEQUENIO_AZUL"
+1 1468 231 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_3DFace" E E
+ E E
+218 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+2
+"layoutAlignment" "AlignNone"
+"showBackground" "0"
+6
+LANG:10001 35 Tahoma,-1,11,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,11,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,11,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,11,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,11,5,75,0,0,0,0,0,Negrita
+0  1466 229 1777 257
+1
+T 
+6
+LANG:10001 3 ???
+LANG:10010 36 Seleccionar todos los accionamientos
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0 
+2
+LANG:10001 0 
+LANG:10010 0 
+E E
+0 0 0 0 0
+0
+E"main(int button, int state)
+{
+  if (state)
+  {
+    for (int i = 1; i <= tabla_desc.lineCount(); i++)
+    {
+      tabla_desc.selectLineN(i - 1);
+    }
+  }
+  else
+  {
+    for (int i = 1; i <= tabla_desc.lineCount(); i++)
+    {
+      tabla_desc.deleteSelection();
+    }
+  }
+}
+" 0
+29 221
+"Label1"
+"GRANDE_AZUL"
+1 1618.420258176951 8.783939145663126 E E E 1 E 1 E N "_3DText" E N "_Transparent" E E
+ E E
+220 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"text" "string Búsqueda:"
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 27 Tahoma,-1,16,5,50,0,0,0,0,0
+0  1618.420258176951 8.783939145663126 1732.859085620415 31.22047592196112
+5 Label
+0
+E29 222
+"Label2"
+"MEDIANO_AZUL"
+1 1489.605721444416 65.30909260422742 E E E 1 E 1 E N "_3DText" E N "_Transparent" E E
+ E E
+221 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"text" "string Hora"
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 27 Tahoma,-1,16,5,50,0,0,0,0,0
+0  1489.605721444416 65.30909260422742 1530.93718824442 87.74562938052541
+5 Label
+0
+E29 223
+"Label3"
+"MEDIANO_AZUL"
+1 1577.605721444416 64.88731979606881 E E E 1 E 1 E N "_3DText" E N "_Transparent" E E
+ E E
+222 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"text" "string Min"
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 27 Tahoma,-1,16,5,50,0,0,0,0,0
+0  1577.605721444416 64.88731979606881 1606.93718824442 87.32385657236681
+5 Label
+0
+E29 224
+"Label4"
+"MEDIANO_AZUL"
+1 1665.2199687805 64.55858135220636 E E E 1 E 1 E N "_3DText" E N "_Transparent" E E
+ E E
+223 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"text" "string Día"
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 27 Tahoma,-1,16,5,50,0,0,0,0,0
+0  1665.2199687805 64.55858135220636 1694.191157962605 86.99511812850436
+5 Label
+0
+E29 225
+"Label5"
+"MEDIANO_AZUL"
+1 1741.230403828595 64.77917635931554 E E E 1 E 1 E N "_3DText" E N "_Transparent" E E
+ E E
+224 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"text" "string Mes"
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 27 Tahoma,-1,16,5,50,0,0,0,0,0
+0  1741.230403828595 64.77917635931554 1774.180722914509 87.21571313561354
+5 Label
+0
+E29 226
+"Label6"
+"MEDIANO_AZUL"
+1 1825.914861956342 65.64640449970862 E E E 1 E 1 E N "_3DText" E N "_Transparent" E E
+ E E
+225 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"text" "string Año"
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 27 Tahoma,-1,16,5,50,0,0,0,0,0
+0  1825.914861956342 65.64640449970862 1855.496264786762 88.08294127600662
+5 Label
+0
+E29 227
+"Label7"
+"MEDIANO_AZUL"
+1 1459.639671898683 45.87123042154951 E E E 1 E 1 E N "_3DText" E N "_Transparent" E E
+ E E
+226 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"text" "string Desde:"
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 27 Tahoma,-1,16,5,50,0,0,0,0,0
+0  1459.639671898683 45.87123042154951 1518.794821026039 68.30776719784751
+5 Label
+0
+E29 228
+"Label8"
+"MEDIANO_AZUL"
+1 1459.639671898683 147.6626572537974 E E E 1 E 1 E N "_3DText" E N "_Transparent" E E
+ E E
+227 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"text" "string Hasta:"
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 27 Tahoma,-1,16,5,50,0,0,0,0,0
+0  1459.639671898683 147.6626572537974 1510.202628659949 170.0991940300954
+5 Label
+0
+E29 229
+"Label9"
+"GRANDE_AZUL"
+1 1602.163649997973 806.9085291629266 E E E 1 E 1 E N "_3DText" E N "_Transparent" E E
+ E E
+228 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"text" "string Exportar tabla"
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 27 Tahoma,-1,16,5,50,0,0,0,0,0
+0  1602.163649997973 806.9085291629266 1755.803744835669 829.3450659392246
+5 Label
+0
+E29 230
+"TEXT_EDIT2"
+"MEDIANO_AZUL"
+1 1471 826.8615813610625 E E E 1 E 1 E N "_WindowText" E N "_Transparent" E E
+ E E
+229 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"text" "string Nombre Archivo"
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 27 Tahoma,-1,16,5,50,0,0,0,0,0
+0  1471 826.8615813610625 1550 871.30404888847
+15 PVSS.TextEdit.1
+0
+E0
+LAYER, 1 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 2 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 3 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 4 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 5 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 6 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 7 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+0

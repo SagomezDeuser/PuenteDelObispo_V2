@@ -1,0 +1,1385 @@
+V 14
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+PANEL,-1 -1 1920 980 N "white" 0
+"main()
+{
+  dia_desde.text(day(getCurrentTime()));
+  mes_desde.text(month(getCurrentTime()));
+  anio_desde.text(year(getCurrentTime()));
+  hour_desde.text(hour(getCurrentTime()));
+  min_desde.text(minute(getCurrentTime()));
+  dia_hasta.text(day(getCurrentTime()));
+  mes_hasta.text(month(getCurrentTime()));
+  anio_hasta.text(year(getCurrentTime()));
+  hour_hasta.text(hour(getCurrentTime()));
+  min_hasta.text(minute(getCurrentTime()));
+}" 0
+ E E E E 1 -1 -1 0  0 0
+""0  1
+E "
+
+dyn_string g_alarmasActivas2;
+dyn_string g_elementos;
+
+/***************************************************************************************
+  @author dceballos
+  @date 06/09/2019.
+  @brief Se deshabilitan haciendo no visibles los controles para la tabla de alarmas.
+  @return No devuelve nada.
+****************************************************************************************/
+void controles_inactivos(){
+  setMultiValue(\"tabla_alarmas_historico\", \"transparentForMouse\", TRUE,
+                \"btn_buscar\", \"transparentForMouse\", TRUE);
+}
+/******* Fin de la función controles_inactivos() *********/
+
+/***************************************************************************************
+  @author dceballos
+  @date 06/09/2019.
+  @brief Se habilitan haciendo visibles los controles para la tabla de alarmas.
+  @return No devuelve nada.
+****************************************************************************************/
+void controles_activos(){
+  setMultiValue(\"tabla_alarmas_historico\", \"transparentForMouse\", FALSE,
+                \"btn_buscar\", \"transparentForMouse\", FALSE);
+}
+/******* Fin de la función controles_activos() *********/
+
+/***************************************************************************************
+  @author dceballos
+  @date 06/09/2019.
+  @brief Se realiza el pintado y el coloreado de las celdas de la tabla de alarmas.
+  @return No devuelve nada.
+****************************************************************************************/
+void pintar_tabla_alarmas(dyn_dyn_anytype resultado){
+  dyn_string g_elementos;
+
+  controles_inactivos();  //Ponemos el símbolo de cargando, e inhabilitamos los controles hasta acabar el llenado de la tabla
+
+  for(int i = 1; i <= dynlen(resultado); i++)//Para cada alarma traida del Query, separamos las partes de su DP y rellenamos las columnas de la tabla
+  {
+
+    setValue(\"tabla_alarmas_historico\", \"appendLine\",
+                                        \"fecha_inicio\",  resultado[i][1],
+                                        \"acuse\",         resultado[i][2],
+                                        \"fecha_acuse\",   resultado[i][3],
+                                        \"fecha_fin\",     resultado[i][4],
+                                        \"duracion\",      resultado[i][5],
+                                        \"tag_electrico\", resultado[i][6],
+                                        \"elemento\",      resultado[i][9],
+                                        \"descripcion\",   resultado[i][8],
+                                        \"nombre_dpe\",     resultado[i][9]);
+     g_elementos[i] = resultado[i][7];
+  }
+
+  tabla_alarmas_historico.sort(FALSE, \"fecha_inicio\");
+  tabla_alarmas_historico.selectLineN(0);
+  tabla_alarmas_historico.selectByClick(0);
+  dynSort(g_elementos, TRUE);  //Ordenamos los elementos del Array
+
+  controles_activos();  //Rehabilitamos los mandos de control de la tabla, y quitamos el símbolo de cargando
+}
+/******* Fin de la función pintar_tabla_alarmas() *********/
+" 0
+ 4
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+"pdpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10001 0 
+LANG:10010 0 
+13 93
+"btn_buscar"
+"GRANDE_AZUL"
+1 1543.149109731346 219 E E E 1 E 1 E N "LIB_DEUSER_BLANCO" E N "LIB_IRC_AZUL_01" E E
+ E E
+92 0 0 0 0 0
+E E E
+1
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+6
+"hoverbclr" "N \"AZUL_01\""
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+7
+LANG:10001 35 Tahoma,-1,21,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,21,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,21,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,21,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,21,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,21,5,75,0,0,0,0,0,Negrita
+LANG:10005 35 Tahoma,-1,21,5,75,0,0,0,0,0,Negrita
+0  1541.5 217.1065247455543 1762.5 262.1065247455542
+
+P 
+4294967295
+"pictures/iconos/botoneras/Iconos/buscar_texto.svg"
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+"main(mapping event)
+{
+
+  controles_inactivos();
+
+  setValue(\"tabla_alarmas_historico\", \"deleteAllLines\");
+
+
+  consulta_alarmas_bd();
+
+  controles_activos();
+
+}
+
+/***************************************************************************************
+  @author dceballos
+  @date 06/09/2019.
+  @brief Se realiza la consulta de las alarmas en función del tipo de fecha a la base de
+  datos.
+  @return No devuelve nada.
+****************************************************************************************/
+void consulta_alarmas_bd()
+{
+  dbRecordset rs;
+  dbConnection conexion;
+  int rc, anio, mes, dia, nRegistrosSelect;
+  bool entrada, acuse, salida;
+  dyn_dyn_anytype resultado_consulta_1;
+  string select_sql_1, inst_bd, cuadro, fecha_actual, fecha_ini, fecha_fin, hora_ini, min_ini, dia_ini, mes_ini, ano_ini, hora_fin, min_fin, dia_fin, mes_fin, ano_fin;
+  time fecha_ini_time, fecha_fin_time;
+
+  anio = year(getCurrentTime());
+  mes = month(getCurrentTime());
+  dia = day(getCurrentTime());
+
+  if (mes >= 10) fecha_actual = anio + \"-\" + mes;
+  else fecha_actual = anio + \"-0\" + mes;
+
+  if (dia >= 10) fecha_actual = fecha_actual + \"-\" + dia + \" 23:59\";
+  else fecha_actual = fecha_actual + \"-0\" + dia + \" 23:59\";
+
+  hora_ini = hour_desde.text();
+  min_ini = min_desde.text();
+  dia_ini = dia_desde.text();
+  mes_ini = mes_desde.text();
+  ano_ini = anio_desde.text();
+  fecha_ini = ano_ini + \"-\" + mes_ini + \"-\" + dia_ini + \"T\" + hora_ini + \":\" + min_ini + \":00\";
+
+  fecha_ini_time = makeTime(ano_ini, mes_ini, dia_ini, hora_ini, min_ini);
+
+  hora_fin = hour_hasta.text();
+  min_fin = min_hasta.text();
+  dia_fin = dia_hasta.text();
+  mes_fin = mes_hasta.text();
+  ano_fin = anio_hasta.text();
+  fecha_fin = ano_fin + \"-\" + mes_fin + \"-\" + dia_fin + \"T\" + hora_fin + \":\" + min_fin + \":59\";
+
+  fecha_fin_time = makeTime(ano_fin, mes_fin, dia_fin, hora_fin, min_fin);
+
+  if (fecha_ini_time > fecha_fin_time)
+  {
+    fecha_fin = ano_ini + \"-\" + mes_ini + \"-\" + dia_ini + \"T\" + hora_ini + \":\" + min_ini + \":59\";
+
+    RECTANGLE10.backCol = \"LIB_IRC_ROJO_09\";
+//     hour_hasta.backCol = \"LIB_IRC_ROJO_09\";
+//     min_hasta.backCol = \"LIB_IRC_ROJO_09\";
+//     dia_hasta.backCol = \"LIB_IRC_ROJO_09\";
+//     mes_hasta.backCol = \"LIB_IRC_ROJO_09\";
+//     anio_hasta.backCol = \"LIB_IRC_ROJO_09\";
+
+    hour_hasta.text(hour_desde.text());
+    min_hasta.text(min_desde.text());
+    dia_hasta.text(dia_desde.text());
+    mes_hasta.text(mes_desde.text());
+    anio_hasta.text(anio_desde.text());
+
+    delay(0, 500);
+
+    RECTANGLE10.backCol = \"LIB_IRC_BLANCO\";
+//     hour_hasta.backCol = \"LIB_IRC_BLANCO\";
+//     min_hasta.backCol = \"LIB_IRC_BLANCO\";
+//     dia_hasta.backCol = \"LIB_IRC_BLANCO\";
+//     mes_hasta.backCol = \"LIB_IRC_BLANCO\";
+//     anio_hasta.backCol = \"LIB_IRC_BLANCO\";
+
+  }
+
+  strreplace(fecha_actual, \" \", \"T\");  //Quitamos los guiones de la fecha
+
+  getMultiValue(\"cb_fecha\", \"state\", 0, entrada,
+                \"cb_fecha\", \"state\", 1, acuse,
+                \"cb_fecha\", \"state\", 2, salida);
+
+
+  inst_bd = instancia_bd();
+  dpGet(\"ConfiguracionSCADA.configuracion_bd.nMaxSelect\", nRegistrosSelect);
+
+  if (entrada)
+  {
+    select_sql_1 = \"SELECT TOP (\" + nRegistrosSelect + \") fecha_hora_entrada, acuse, fecha_hora_acuse, fecha_hora_salida, duracion, tag, elemento, descripcion, nombre_dpe \" +
+                   \"FROM \" + inst_bd + \"[ALARMAS] \" +
+                   \"WHERE fecha_hora_entrada BETWEEN '\" + fecha_ini + \"' AND '\" + fecha_fin + \"' \" +
+                   \"ORDER BY fecha_hora_entrada ASC\";
+  }
+  else if (acuse)
+  {
+    select_sql_1 = \"SELECT TOP (\" + nRegistrosSelect + \") fecha_hora_entrada, acuse, fecha_hora_acuse, fecha_hora_salida, duracion, tag, elemento, descripcion, nombre_dpe \" +
+                   \"FROM \" + inst_bd + \"[ALARMAS] \" +
+                   \"WHERE fecha_hora_acuse BETWEEN '\" + fecha_ini + \"' AND '\" + fecha_fin + \"' \" +
+                   \"ORDER BY fecha_hora_acuse ASC\";
+  }
+  else if (salida)
+  {
+    select_sql_1 = \"SELECT TOP (\" + nRegistrosSelect + \") fecha_hora_entrada, acuse, fecha_hora_acuse, fecha_hora_salida, duracion, tag, elemento, descripcion, nombre_dpe \" +
+                   \"FROM \" + inst_bd + \"[ALARMAS] \" +
+                   \"WHERE fecha_hora_salida BETWEEN '\" + fecha_ini + \"' AND '\" + fecha_fin + \"' \" +
+                   \"ORDER BY fecha_hora_salida ASC\";
+  }
+
+
+
+
+  resultado_consulta_1 = select_bd(\"SQL\", select_sql_1);
+  pintar_tabla_alarmas(resultado_consulta_1);
+}
+/******* Fin de la función consulta_alarmas_bd() *********/
+" 0
+ E E E
+6 134
+"RECTANGLE66"
+""
+1 1250 12 E E E 1 E 1 E N {179,200,224} E N {255,255,255} E E
+ E E
+133 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+7
+"shadowOffset" "[4,4]"
+"shadowColor" "{63,63,63,63}"
+"shadowRadius" "8"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 2 3 2 1 E 0.7541254125412538 0 0.4120689655172414 481.3432343234329 36.0551724137931 1 E 1250 12 1856 592
+25 2
+"tabla_alarmas_historico"
+"PEQUENIO_AZUL"
+1 9.999999999999901 -12.87806695100371 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_BLANCO" E E
+ E E
+1 0 0 0 0 0
+E E E
+0
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+5
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+7
+LANG:10001 26 Arial,-1,12,5,75,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10011 26 Arial,-1,12,5,75,0,0,0,0,0
+LANG:10009 26 Arial,-1,12,5,75,0,0,0,0,0
+LANG:10008 26 Arial,-1,12,5,75,0,0,0,0,0
+LANG:10018 26 Arial,-1,12,5,75,0,0,0,0,0
+LANG:10005 26 Arial,-1,12,5,75,0,0,0,0,0
+0  7.999999999999901 8.077482943345816 1407 962
+"main()
+{
+  setValue(\"\", \"deleteAllLines\");
+  formatear_estilo_tabla(\"tabla_alarmas_historico\", \"AlignVCenter | AlignHCenter\", \"LIB_IRC_BLANCO\", \"{240,250,255}\");  //Damos formato a la tabla con el listado de variables
+}
+" 0
+E 1 0 1 9 0 "fecha_inicio" 12 1 0 "[%Y-%m-%d %H:%Mt,False,,AlignHCenter|AlignVCenter]" 7
+LANG:10001 13 Fecha entrada
+LANG:10010 12 Fecha inicio
+LANG:10011 14 Eintrittsdatum
+LANG:10009 13 Fecha entrada
+LANG:10008 15 Data di entrata
+LANG:10018 15 Data de entrada
+LANG:10005 10 Entry date
+E
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+150 "acuse" 2 0 0 "s" 7
+LANG:10001 13 Fecha entrada
+LANG:10010 1  
+LANG:10011 14 Eintrittsdatum
+LANG:10009 13 Fecha entrada
+LANG:10008 15 Data di entrata
+LANG:10018 15 Data de entrada
+LANG:10005 10 Entry date
+E
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+30 "fecha_acuse" 12 1 0 "[%Y-%m-%d %H:%Mt,False,,AlignHCenter|AlignVCenter]" 7
+LANG:10001 6  Acuse
+LANG:10010 11 Fecha acuse
+LANG:10011 18 Bestätigungsdatum
+LANG:10009 6  Acuse
+LANG:10008 16 Data di conferma
+LANG:10018 21 Data de confirmação
+LANG:10005 19 Acknowledgment date
+E
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+150 "fecha_fin" 12 1 0 "[%Y-%m-%d %H:%Mt,False,,AlignHCenter|AlignVCenter]" 7
+LANG:10001 11 Fecha acuse
+LANG:10010 9 Fecha fin
+LANG:10011 12 Abreisedatum
+LANG:10009 11 Fecha acuse
+LANG:10008 16 Data di partenza
+LANG:10018 14 Data de saída
+LANG:10005 11 Output date
+E
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+150 "duracion" 6 1 0 "[0s,,,AlignHCenter|AlignVCenter]" 7
+LANG:10001 11 Fecha acuse
+LANG:10010 9 Duración
+LANG:10011 12 Abreisedatum
+LANG:10009 11 Fecha acuse
+LANG:10008 16 Data di partenza
+LANG:10018 14 Data de saída
+LANG:10005 11 Output date
+E
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+75 "tag_electrico" 12 0 0 "[0s,,,AlignHCenter|AlignVCenter]" 7
+LANG:10001 11 Fecha acuse
+LANG:10010 3 Tag
+LANG:10011 6 Gruppe
+LANG:10009 11 Fecha acuse
+LANG:10008 6 Gruppo
+LANG:10018 5 Grupo
+LANG:10005 5 Group
+E
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+150 "elemento" 47 1 0 "[0s,,,AlignLeft|AlignVCenter]" 7
+LANG:10001 8 Elemento
+LANG:10010 8 Elemento
+LANG:10011 7 Element
+LANG:10009 8 Elemento
+LANG:10008 8 Elemento
+LANG:10018 8 Elemento
+LANG:10005 7 Element
+E
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+530 "descripcion" 26 1 0 "[0s,,,AlignLeft|AlignVCenter]" 7
+LANG:10001 12 Descripción
+LANG:10010 12 Descripción
+LANG:10011 12 Beschreibung
+LANG:10009 12 Descripción
+LANG:10008 11 Descrizione
+LANG:10018 11 Descrição
+LANG:10005 11 Description
+E
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+340 "nombre_dpe" 0 0 0 "s" 7
+LANG:10001 9 nombreDPE
+LANG:10010 10 nombre_dpe
+LANG:10011 9 nombreDPE
+LANG:10009 9 nombreDPE
+LANG:10008 9 nombreDPE
+LANG:10018 9 nombreDPE
+LANG:10005 9 nombreDPE
+E
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+0 
+24 24 10 0
+7
+LANG:10001 26 Arial,-1,12,5,75,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10011 26 Arial,-1,12,5,75,0,0,0,0,0
+LANG:10009 26 Arial,-1,12,5,75,0,0,0,0,0
+LANG:10008 26 Arial,-1,12,5,75,0,0,0,0,0
+LANG:10018 26 Arial,-1,12,5,75,0,0,0,0,0
+LANG:10005 26 Arial,-1,12,5,75,0,0,0,0,0
+0 0 1 0 1 7
+1 0
+6 85
+"RECTANGLE125"
+""
+1 936 120 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_AZUL_03" E E
+ E E
+84 0 0 0 0 0
+E E E
+0
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+4
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 2 2 1 1 E 8.679999999999978 0 0.9600000000000002 -6687.47999999998 27.79999999999996 1 E 936 120 986 170
+20 127
+"cb_fecha"
+"PEQUENIO_AZUL"
+1 1523.5 70.00000000000003 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+126 0 0 0 0 0
+E E E
+0
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+3
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"horizontal" ""
+7
+LANG:10001 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,12,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10018 34 Tahoma,-1,13,5,50,0,0,0,0,0,Normal
+LANG:10005 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+0  1521.499999999999 67.99999999999999 1784.499999999999 103
+3
+T 
+7
+LANG:10001 5 Entry
+LANG:10010 7 Entrada
+LANG:10011 9 Eintritts
+LANG:10009 5 Entry
+LANG:10008 7 Entrata
+LANG:10018 7 Entrada
+LANG:10005 5 Entry
+
+1 
+2
+LANG:10001 0 
+LANG:10010 0 
+E E
+0 0 0 0 0
+T 
+7
+LANG:10001 14 Acknowledgment
+LANG:10010 5 Acuse
+LANG:10011 13 Bestätigungs
+LANG:10009 14 Acknowledgment
+LANG:10008 8 Conferma
+LANG:10018 13 Confirmação
+LANG:10005 14 Acknowledgment
+
+0 
+2
+LANG:10001 0 
+LANG:10010 0 
+E E
+0 0 0 0 0
+T 
+7
+LANG:10001 6 Output
+LANG:10010 6 Salida
+LANG:10011 7 Abreise
+LANG:10009 6 Output
+LANG:10008 8 Partenza
+LANG:10018 6 Saída
+LANG:10005 6 Output
+
+0 
+2
+LANG:10001 0 
+LANG:10010 0 
+E E
+0 0 0 0 0
+0
+E"main(int button, int state)
+{
+  if(button == 0 && state == TRUE){
+    setMultiValue(\"\", \"state\", 1, FALSE,
+                  \"\", \"state\", 2, FALSE);
+  }else if(button == 1 && state == TRUE){
+    setMultiValue(\"\", \"state\", 0, FALSE,
+                  \"\", \"state\", 2, FALSE);
+  }else if(button == 2 && state == TRUE){
+    setMultiValue(\"\", \"state\", 0, FALSE,
+                  \"\", \"state\", 1, FALSE);
+  }
+}
+" 0
+6 136
+"RECTANGLE1"
+""
+1 10 30 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_AZUL_03" E E
+ E E
+135 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+7
+"shadowOffset" "[4,4]"
+"shadowColor" "{63,63,63,60}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 2 2 2 1 E 1.170270270270271 0 0.2380952380952381 1425.297297297296 53.85714285714285 1 E 10 30 380 240
+29 190
+"Label1"
+"GRANDE_AZUL"
+1 1582.719235794637 14.65607391659795 E E E 1 E 1 E N "_3DText" E N "WF_EwoWaitBackground" E E
+ E E
+189 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"text" "string Búsqueda:"
+"alignment" "enum 132"
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 27 Tahoma,-1,16,5,50,0,0,0,0,0
+0  1582.719235794637 14.65607391659795 1723.280764205363 34.4343447801669
+5 Label
+0
+E29 191
+"Label2"
+"PEQUENIO_AZUL"
+1 1434.999999999999 44.05315391093396 E E E 1 E 1 E N "_3DText" E N "_3DFace" E E
+ E E
+190 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"text" "string FECHA DE:"
+"alignment" "enum 1"
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 34 Tahoma,-1,12,5,50,0,0,0,0,0,Normal
+0  1434.999999999999 44.05315391093396 1522.941330911495 63.83142477450291
+5 Label
+0
+E29 192
+"Label3"
+"MEDIANO_AZUL"
+1 1435.999999999999 122 E E E 1 E 1 E N "_3DText" E N "_3DFace" E E
+ E E
+191 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"text" "string Desde:"
+"alignment" "enum 1"
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 34 Tahoma,-1,12,5,50,0,0,0,0,0,Normal
+0  1435.999999999999 122 1523.941330911495 141.7782708635689
+5 Label
+0
+E29 198
+"Label9"
+"MEDIANO_AZUL"
+1 1685.029334544251 121.9999999999999 E E E 1 E 1 E N "_3DText" E N "_3DFace" E E
+ E E
+197 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"text" "string Hasta:"
+"alignment" "enum 1"
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 34 Tahoma,-1,12,5,50,0,0,0,0,0,Normal
+0  1685.029334544251 121.9999999999999 1772.970665455747 141.7782708635689
+5 Label
+0
+E6 202
+"RECTANGLE9"
+""
+1 110 180 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "White" E E
+ E E
+201 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 2 3 2 1 E 0.9448986746250921 0 0.726027397260274 1340.911470692885 23.06506849315068 1 E 110 180 297.846793343228 216.5
+2 203
+"PRIMITIVE_TEXT10"
+""
+1 146.3506072806383 195 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+202 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E 0.4090909090909091 0 0.4827604166666661 1410.629014642564 62.70651041666679 0 E 146.3506072806383 195 168.3506072806383 235
+0 2 2 "0s" 0 0 0 73 0 0  146.3506072806383 195 1
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+0 2
+LANG:10001 2 01
+LANG:10010 1 -
+2 204
+"PRIMITIVE_TEXT11"
+""
+1 146.3506072806383 195 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+203 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E 0.4090909090909091 0 0.4827604166666661 1443.651288752374 62.70651041666679 0 E 146.3506072806383 195 168.3506072806383 235
+0 2 2 "0s" 0 0 0 73 0 0  146.3506072806383 195 1
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+0 2
+LANG:10001 2 01
+LANG:10010 1 -
+2 205
+"PRIMITIVE_TEXT13"
+""
+1 146.3506072806383 195 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+204 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E 0.4090909090909091 0 0.4827604166666661 1526.80105641878 62.70651041666679 0 E 146.3506072806383 195 168.3506072806383 235
+0 2 2 "0s" 0 0 0 73 0 0  146.3506072806383 195 1
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+0 2
+LANG:10001 2 01
+LANG:10010 1 :
+14 206
+"dia_desde"
+""
+1 1447.499717621007 158.4539930555556 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+205 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+0  1445.499717621007 154.8447916666667 1471.499717621007 178.1552083333334
+2 "0s" 0 0 0 0 0 -1  "main(mapping event)
+{
+  teclado(\"\", \"keypad\");
+  int i = this.text();
+
+  if (i == 0)
+  {
+    this.text = \"01\";
+  }
+  else if (i  > 31)
+  {
+    this.text = 31;
+  }
+  else if (i <= 9)
+  {
+    this.text = \"0\" + this.text;
+  }
+}
+" 0
+ "main()
+{
+  int i = this.text();
+  if (i <= 9)
+  {
+    this.text = \"0\" + this.text;
+  }
+}
+" 0
+ E
+14 207
+"mes_desde"
+""
+1 1480.560379661465 158.4539930555556 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+206 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+0  1478.560379661465 154.8447916666667 1504.560379661465 178.1552083333334
+2 "0s" 0 0 0 0 0 -1  "main(mapping event)
+{
+  teclado(\"\", \"keypad\");
+  int i = this.text();
+
+  if (i == 0)
+  {
+    this.text = \"01\";
+  }
+  else if (i  > 12)
+  {
+    this.text = 12;
+  }
+  else if (i <= 9)
+  {
+    this.text = \"0\" + this.text;
+  }
+}
+" 0
+ "main()
+{
+  int i = this.text();
+  if (i <= 9)
+  {
+    this.text = \"0\" + this.text;
+  }
+}
+" 0
+ E
+14 208
+"anio_desde"
+""
+1 1513.557247609754 158.4539930555556 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+207 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+0  1511.557247609754 154.8447916666667 1559.139213309081 178.1552083333334
+2 "0s" 0 0 0 0 0 -1  "main(mapping event)
+{
+    teclado(\"\", \"keypad\");
+
+  if (this.text > year(getCurrentTime()))
+  {
+    this.text = year(getCurrentTime());
+  }
+}" 0
+ E E
+14 209
+"hour_desde"
+""
+1 1563.710147327871 158.4539930555556 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+208 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+0  1561.710147327871 154.8447916666667 1587.710147327871 178.1552083333334
+2 "0s" 0 0 0 0 0 -1  "main(mapping event)
+{
+  teclado(\"\", \"keypad\");
+  int i = this.text();
+
+  if (i  > 23)
+  {
+    this.text = 23;
+  }
+  else if (i <= 9)
+  {
+    this.text = \"0\" + this.text;
+  }
+}" 0
+ "main()
+{
+  int i = this.text();
+  if (i <= 9)
+  {
+    this.text = \"0\" + this.text;
+  }
+}
+" 0
+ E
+14 210
+"min_desde"
+""
+1 1596.499717621007 158.4539930555556 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+209 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+0  1594.499717621007 154.8447916666667 1620.499717621007 178.1552083333334
+2 "0s" 0 0 0 0 0 -1  "main(mapping event)
+{
+  teclado(\"\", \"keypad\");
+  int i = this.text();
+
+  if (i  > 59)
+  {
+    this.text = 59;
+  }
+  else if (i <= 9)
+  {
+    this.text = \"0\" + this.text;
+  }
+}" 0
+ "main()
+{
+  int i = this.text();
+  if (i <= 9)
+  {
+    this.text = \"0\" + this.text;
+  }
+}
+" 0
+ E
+6 211
+"RECTANGLE10"
+""
+1 110 180 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "White" E E
+ E E
+210 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 2 3 2 1 E 0.9448986746250921 0 0.726027397260274 1581.075813063366 23.06506849315066 1 E 110 180 297.846793343228 216.5
+2 212
+"PRIMITIVE_TEXT18"
+""
+1 146.3506072806383 195 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+211 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E 0.4090909090909091 0 0.4827604166666661 1650.793357013045 62.70651041666673 0 E 146.3506072806383 195 168.3506072806383 235
+0 2 2 "0s" 0 0 0 73 0 0  146.3506072806383 195 1
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+0 2
+LANG:10001 2 01
+LANG:10010 1 -
+2 213
+"PRIMITIVE_TEXT19"
+""
+1 146.3506072806383 195 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+212 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E 0.4727284933728181 0 0.4827604166666661 1673.102205163123 62.70651041666676 0 E 146.3506072806383 195 168.3506072806383 235
+0 2 2 "0s" 0 0 0 73 0 0  146.3506072806383 195 1
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+0 2
+LANG:10001 2 01
+LANG:10010 1 -
+2 214
+"PRIMITIVE_TEXT21"
+""
+1 146.3506072806383 195 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+213 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E 0.4090909090909091 0 0.4827604166666661 1766.965398789261 62.70651041666673 0 E 146.3506072806383 195 168.3506072806383 235
+0 2 2 "0s" 0 0 0 73 0 0  146.3506072806383 195 1
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+0 2
+LANG:10001 2 01
+LANG:10010 1 :
+14 215
+"dia_hasta"
+""
+1 1688.014667272126 157.1644965277777 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+214 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+0  1686.014667272126 153.2973958333333 1713.225645206638 179.7026041666666
+2 "0s" 0 0 0 0 0 -1  "main(mapping event)
+{
+  teclado(\"\", \"keypad\");
+  int i = this.text();
+
+  if (i == 0)
+  {
+    this.text = \"01\";
+  }
+  else if (i  > 31)
+  {
+    this.text = 31;
+  }
+  else if (i <= 9)
+  {
+    this.text = \"0\" + this.text;
+  }
+}
+" 0
+ "main()
+{
+  int i = this.text();
+  if (i <= 9)
+  {
+    this.text = \"0\" + this.text;
+  }
+}
+" 0
+ E
+14 216
+"mes_hasta"
+""
+1 1720.286307247096 158.4539930555555 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+215 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+0  1718.286307247096 154.8447916666666 1744.286307247096 178.1552083333333
+2 "0s" 0 0 0 0 0 -1  "main(mapping event)
+{
+  teclado(\"\", \"keypad\");
+  int i = this.text();
+
+  if (i == 0)
+  {
+    this.text = \"01\";
+  }
+  else if (i  > 12)
+  {
+    this.text = 12;
+  }
+  else if (i <= 9)
+  {
+    this.text = \"0\" + this.text;
+  }
+}
+" 0
+ "main()
+{
+  int i = this.text();
+  if (i <= 9)
+  {
+    this.text = \"0\" + this.text;
+  }
+}
+" 0
+ E
+14 217
+"anio_hasta"
+""
+1 1753.283175195386 158.4539930555555 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+216 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+0  1751.283175195386 154.8447916666666 1798.865140894712 178.1552083333333
+2 "0s" 0 0 0 0 0 -1  "main(mapping event)
+{
+    teclado(\"\", \"keypad\");
+
+  if (this.text > year(getCurrentTime()))
+  {
+    this.text = year(getCurrentTime());
+  }
+}" 0
+ E E
+14 218
+"hour_hasta"
+""
+1 1803.436074913502 158.4539930555555 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+217 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+0  1801.436074913502 154.8447916666666 1827.436074913502 178.1552083333333
+2 "0s" 0 0 0 0 0 -1  "main(mapping event)
+{
+  teclado(\"\", \"keypad\");
+  int i = this.text();
+
+  if (i  > 23)
+  {
+    this.text = 23;
+  }
+  else if (i <= 9)
+  {
+    this.text = \"0\" + this.text;
+  }
+}" 0
+ "main()
+{
+  int i = this.text();
+  if (i <= 9)
+  {
+    this.text = \"0\" + this.text;
+  }
+}
+" 0
+ E
+14 219
+"min_hasta"
+""
+1 1836.225645206638 158.4539930555555 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+218 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+0  1834.225645206638 154.8447916666666 1860.225645206638 178.1552083333333
+2 "0s" 0 0 0 0 0 -1  "main(mapping event)
+{
+  teclado(\"\", \"keypad\");
+  int i = this.text();
+
+  if (i  > 59)
+  {
+    this.text = 59;
+  }
+  else if (i <= 9)
+  {
+    this.text = \"0\" + this.text;
+  }
+}" 0
+ "main()
+{
+  int i = this.text();
+  if (i <= 9)
+  {
+    this.text = \"0\" + this.text;
+  }
+}
+" 0
+ E
+0
+LAYER, 1 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 2 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 3 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 4 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 5 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 6 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 7 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+1 0 "date_fecha_ini" -1
+9 0 
+202 203 204 205 206 207 208 209 210 
+
+"layoutAlignment" "AlignNone"
+"" ""
+1 1 "date_fecha_fin" -1
+9 0 
+211 212 213 214 215 216 217 218 219 
+
+"layoutAlignment" "AlignNone"
+"" ""
+0

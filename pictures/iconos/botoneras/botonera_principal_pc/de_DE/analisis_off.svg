@@ -1,0 +1,30 @@
+<svg width="1450" height="640" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid meet">
+ <defs>
+  <path d="m441,66.150002c0,-11.650002 9.859985,-21.150002 22,-21.150002c11,0 99,0 110,0c12.119995,0 22,9.5 22,21.150002c0,50.769997 0,456.930016 0,507.699974c0,11.650024 -9.880005,21.150024 -22,21.150024c-7.330017,0 -44,0 -110,0c-14.670013,-6.330017 -22,-13.380005 -22,-21.150024c0,-50.769958 0,-456.929977 0,-507.699974z" id="ebhoJeEao"/>
+  <path d="m256,191.830002c0,-11.660004 9.859985,-21.160004 22,-21.160004c11,0 99,0 110,0c12.119995,0 22,9.5 22,21.160004c0,38.069992 0,342.690018 0,380.769974c0,11.650024 -9.880005,21.150024 -22,21.150024c-7.329987,0 -44,0 -110,0c-14.670013,-6.330017 -22,-13.380005 -22,-21.150024c0,-38.079956 0,-342.699982 0,-380.769974z" id="awQeqoTxE"/>
+  <path d="m45,320c0,-11.660004 9.860001,-21.149994 22,-21.149994c11,0 99,0 110,0c12.119995,0 22,9.48999 22,21.149994c0,25.380005 0,228.460022 0,253.849976c0,11.650024 -9.880005,21.150024 -22,21.150024c-7.330002,0 -44,0 -110,0c-14.669998,-6.330017 -22,-13.380005 -22,-21.150024c0,-25.389954 0,-228.469971 0,-253.849976z" id="a20riFUTuB"/>
+ </defs>
+ <g>
+  <g stroke="null" id="svg_1">
+   <g stroke="null" id="svg_3">
+    <use x="0" y="0" transform="matrix(0.87636399269104,0,0,1,5.563620328903198,0) " stroke="null" xlink:href="#ebhoJeEao" fill="#B3C8E0" id="svg_4"/>
+    <g stroke="null" id="svg_5">
+     <use x="0" y="0" transform="matrix(0.87636399269104,0,0,1,5.563620328903198,0) " stroke="#000000" xlink:href="#ebhoJeEao" fill-opacity="0" stroke-opacity="0" id="svg_6"/>
+    </g>
+   </g>
+   <g stroke="null" id="svg_11">
+    <use x="0" y="0" transform="matrix(0.87636399269104,0,0,1,5.563620328903198,0) " stroke="null" xlink:href="#awQeqoTxE" fill="#B3C8E0" id="svg_12"/>
+    <g stroke="null" id="svg_13">
+     <use x="0" y="0" transform="matrix(0.87636399269104,0,0,1,5.563620328903198,0) " stroke="#000000" xlink:href="#awQeqoTxE" fill-opacity="0" stroke-opacity="0" id="svg_14"/>
+    </g>
+   </g>
+   <g stroke="null" id="svg_19">
+    <use x="0" y="0" transform="matrix(0.87636399269104,0,0,1,5.563620328903198,0) " stroke="null" xlink:href="#a20riFUTuB" fill="#B3C8E0" id="svg_20"/>
+    <g stroke="null" id="svg_21">
+     <use x="0" y="0" transform="matrix(0.87636399269104,0,0,1,5.563620328903198,0) " stroke="#000000" xlink:href="#a20riFUTuB" fill-opacity="0" stroke-opacity="0" id="svg_22"/>
+    </g>
+   </g>
+  </g>
+  <text font-weight="bold" xml:space="preserve" text-anchor="start" font-family="'Trebuchet MS', Gadget, sans-serif" font-size="180" id="svg_2" y="384" x="700" stroke-width="null" stroke="#B3C8E0" fill="#B3C8E0">ANALYSE</text>
+ </g>
+</svg>

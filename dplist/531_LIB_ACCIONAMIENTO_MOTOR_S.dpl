@@ -1,0 +1,134 @@
+# ascii dump of database
+
+# DpType
+TypeName
+531_LIB_ACCIONAMIENTO_MOTOR_S.531_LIB_ACCIONAMIENTO_MOTOR_S	1#1
+	Input	1#2
+		Xd_INHA	23#4
+		Xi_MODO	21#5
+	Output	1#9
+		Yb_EST	21#10
+	InOut	1#12
+		Xd_M_OM_F1	23#13
+	Static	1#16
+		DATOS_ALARMA	1#21
+			Input	1#22
+				Xt_TiempoVigilancia_CM_F1	22#23
+				Xt_TiempoVigilancia_CP_F1	22#24
+			Output	1#26
+				Yd_Alarma_General	23#27
+				Yd_Alarma_EP	23#28
+				Yd_Alarma_CM_F1	23#30
+				Yd_Alarma_CP_F1	23#31
+				Yd_Alarma_EXT	23#58
+		DATOS_TIEMPOS_MARCHA	1#32
+			Input	1#33
+				Xd_RESET_PARCIAL	23#34
+				Xd_RESET_TOTAL	23#35
+				Xd_HABILITAR	23#60
+			Output	1#36
+				Yi_Contador_Seg_Parciales	21#37
+				Yi_Contador_Min_Parciales	21#38
+				Yi_Contador_Horas_Parciales	21#39
+				Yi_Contador_Dias_Parciales	21#40
+				Yi_Contador_Seg_Totales	21#41
+				Yi_Contador_Min_Totales	21#42
+				Yi_Contador_Horas_Totales	21#43
+				Yi_Contador_Dias_Totales	21#44
+		archivado_bbdd	23#53
+
+# Datapoint/DpId
+DpName	TypeName	ID
+_mp_531_LIB_ACCIONAMIENTO_MOTOR_S	531_LIB_ACCIONAMIENTO_MOTOR_S	36141
+
+# Aliases/Comments
+AliasId	AliasName	CommentName
+_mp_531_LIB_ACCIONAMIENTO_MOTOR_S.InOut.Xd_M_OM_F1	""	lt:2 LANG:10010 "Orden de marcha manual funcionamiento 1 - Avance@@" LANG:10001 "Orden de marcha manual funcionamiento 1 - Avance@@" 
+_mp_531_LIB_ACCIONAMIENTO_MOTOR_S.Static.DATOS_ALARMA.Input.Xt_TiempoVigilancia_CM_F1	""	lt:2 LANG:10010 " Tiempo de vigilancia de confirmación de marcha funcionamiento 1 - Avance@@" LANG:10001 " Tiempo de vigilancia de confirmación de marcha funcionamiento 1 - Avance@@" 
+_mp_531_LIB_ACCIONAMIENTO_MOTOR_S.Static.DATOS_ALARMA.Input.Xt_TiempoVigilancia_CP_F1	""	lt:2 LANG:10010 " Tiempo de vigilancia de confirmación de paro funcionamiento 1 - Avance@@" LANG:10001 " Tiempo de vigilancia de confirmación de paro funcionamiento 1 - Avance@@" 
+_mp_531_LIB_ACCIONAMIENTO_MOTOR_S.Static.DATOS_ALARMA.Output.Yd_Alarma_CM_F1	""	lt:2 LANG:10010 "Alarma por NO confirmación de marcha funcionamiento 1 - Avance@@" LANG:10001 "Alarma por NO confirmación de marcha funcionamiento 1 - Avance@@" 
+_mp_531_LIB_ACCIONAMIENTO_MOTOR_S.Static.DATOS_ALARMA.Output.Yd_Alarma_CP_F1	""	lt:2 LANG:10010 "Alarma por NO confirmación de paro funcionamiento 1 - Avance@@" LANG:10001 "Alarma por NO confirmación de paro funcionamiento 1 - Avance@@" 
+
+# DpValue
+Manager/User	ElementName	TypeName	_original.._value	_original.._status64	_original.._stime
+ASC (1)/0	_mp_531_LIB_ACCIONAMIENTO_MOTOR_S.Static.DATOS_TIEMPOS_MARCHA.Input.Xd_RESET_PARCIAL	531_LIB_ACCIONAMIENTO_MOTOR_S	0	0x8300000000000101	14.02.2022 14:28:08.173
+
+# AlertValue
+Manager/User	StampSec	StampMSec	ElementName	TypeName	DetailNr	_alert_hdl.._type	_alert_hdl.._l_limit	_alert_hdl.._u_limit	_alert_hdl.._l_incl	_alert_hdl.._u_incl	_alert_hdl.._panel	_alert_hdl.._panel_param	_alert_hdl.._help	_alert_hdl.._min_prio	_alert_hdl.._class	_alert_hdl.._text	_alert_hdl.._active	_alert_hdl.._orig_hdl	_alert_hdl.._ok_range	_alert_hdl.._hyst_type	_alert_hdl.._hyst_time	_alert_hdl.._multi_instance	_alert_hdl.._l_hyst_limit	_alert_hdl.._u_hyst_limit	_alert_hdl.._text1	_alert_hdl.._text0	_alert_hdl.._ack_has_prio	_alert_hdl.._order	_alert_hdl.._dp_pattern	_alert_hdl.._dp_list	_alert_hdl.._prio_pattern	_alert_hdl.._abbr_pattern	_alert_hdl.._ack_deletes	_alert_hdl.._non_ack	_alert_hdl.._came_ack	_alert_hdl.._pair_ack	_alert_hdl.._both_ack	_alert_hdl.._impulse	_alert_hdl.._filter_threshold	_alert_hdl.._went_text	_alert_hdl.._add_text	_alert_hdl.._status64_pattern	_alert_hdl.._neg	_alert_hdl.._status64_match	_alert_hdl.._match	_alert_hdl.._set
+ASC (1)/0	1643904377	78	_mp_531_LIB_ACCIONAMIENTO_MOTOR_S.Static.DATOS_ALARMA.Output.Yd_Alarma_General	531_LIB_ACCIONAMIENTO_MOTOR_S		12					""	""	lt:2 LANG:10010 "" LANG:10001 "" 	\0	IRC_Alarma.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:2 LANG:10010 "Alarma General [IN]" LANG:10001 "Alarma General" 	lt:2 LANG:10010 "" LANG:10001 "" 												0								
+ASC (1)/0	1644848921	929	_mp_531_LIB_ACCIONAMIENTO_MOTOR_S.Static.DATOS_ALARMA.Output.Yd_Alarma_General	531_LIB_ACCIONAMIENTO_MOTOR_S		12					""	""	lt:2 LANG:10010 "" LANG:10001 "" 	\0	IRC_Alarma.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:2 LANG:10010 "Alarma General" LANG:10001 "Alarma General" 	lt:2 LANG:10010 "" LANG:10001 "" 												0								
+ASC (1)/0	1643904377	80	_mp_531_LIB_ACCIONAMIENTO_MOTOR_S.Static.DATOS_ALARMA.Output.Yd_Alarma_EP	531_LIB_ACCIONAMIENTO_MOTOR_S		12					""	""	lt:2 LANG:10010 "" LANG:10001 "" 	\0	IRC_Alarma.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:2 LANG:10010 "Alarma EP [IN]" LANG:10001 "Alarma EP" 	lt:2 LANG:10010 "" LANG:10001 "" 												0								
+ASC (1)/0	1644848921	944	_mp_531_LIB_ACCIONAMIENTO_MOTOR_S.Static.DATOS_ALARMA.Output.Yd_Alarma_EP	531_LIB_ACCIONAMIENTO_MOTOR_S		12					""	""	lt:2 LANG:10010 "" LANG:10001 "" 	\0	IRC_Alarma.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:2 LANG:10010 "Alarma EP" LANG:10001 "Alarma EP" 	lt:2 LANG:10010 "" LANG:10001 "" 												0								
+ASC (1)/0	1643904377	85	_mp_531_LIB_ACCIONAMIENTO_MOTOR_S.Static.DATOS_ALARMA.Output.Yd_Alarma_CM_F1	531_LIB_ACCIONAMIENTO_MOTOR_S		12					""	""	lt:2 LANG:10010 "" LANG:10001 "" 	\0	IRC_Alarma.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:2 LANG:10010 "Alarma CM F1 [IN]" LANG:10001 "Alarma CM F1" 	lt:2 LANG:10010 "" LANG:10001 "" 												0								
+ASC (1)/0	1644848921	950	_mp_531_LIB_ACCIONAMIENTO_MOTOR_S.Static.DATOS_ALARMA.Output.Yd_Alarma_CM_F1	531_LIB_ACCIONAMIENTO_MOTOR_S		12					""	""	lt:2 LANG:10010 "" LANG:10001 "" 	\0	IRC_Alarma.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:2 LANG:10010 "Alarma CM F1 [IN]" LANG:10001 "Alarma CM F1" 	lt:2 LANG:10010 "" LANG:10001 "" 												0								
+UI (3)/0	1645119844	680	_mp_531_LIB_ACCIONAMIENTO_MOTOR_S.Static.DATOS_ALARMA.Output.Yd_Alarma_CM_F1	531_LIB_ACCIONAMIENTO_MOTOR_S		12					""	""	lt:2 LANG:10010 "" LANG:10001 "" 	\0	IRC_Alarma.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:2 LANG:10010 "Alarma CM F1" LANG:10001 "Alarma CM F1" 	lt:2 LANG:10010 "" LANG:10001 "" 												0								
+ASC (1)/0	1643904377	89	_mp_531_LIB_ACCIONAMIENTO_MOTOR_S.Static.DATOS_ALARMA.Output.Yd_Alarma_CP_F1	531_LIB_ACCIONAMIENTO_MOTOR_S		12					""	""	lt:2 LANG:10010 "" LANG:10001 "" 	\0	IRC_Alarma.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:2 LANG:10010 "Alarma CP F1 [IN]" LANG:10001 "Alarma CP F1" 	lt:2 LANG:10010 "" LANG:10001 "" 												0								
+ASC (1)/0	1644848921	954	_mp_531_LIB_ACCIONAMIENTO_MOTOR_S.Static.DATOS_ALARMA.Output.Yd_Alarma_CP_F1	531_LIB_ACCIONAMIENTO_MOTOR_S		12					""	""	lt:2 LANG:10010 "" LANG:10001 "" 	\0	IRC_Alarma.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:2 LANG:10010 "Alarma CP F1 [IN]" LANG:10001 "Alarma CP F1" 	lt:2 LANG:10010 "" LANG:10001 "" 												0								
+UI (1)/0	1648464084	570	_mp_531_LIB_ACCIONAMIENTO_MOTOR_S.Static.DATOS_ALARMA.Output.Yd_Alarma_CP_F1	531_LIB_ACCIONAMIENTO_MOTOR_S		12					""	""	lt:2 LANG:10010 "" LANG:10001 "" 	\0	IRC_Alarma.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:2 LANG:10010 "Alarma CP F1" LANG:10001 "Alarma CP F1" 	lt:2 LANG:10010 "" LANG:10001 "" 												0								
+ASC (1)/0	1643904377	92	_mp_531_LIB_ACCIONAMIENTO_MOTOR_S.Static.DATOS_ALARMA.Output.Yd_Alarma_EXT	531_LIB_ACCIONAMIENTO_MOTOR_S		12					""	""	lt:2 LANG:10010 "" LANG:10001 "" 	\0	IRC_Alarma.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:2 LANG:10010 "Alarma EXT [IN]" LANG:10001 "Alarma EXT" 	lt:2 LANG:10010 "" LANG:10001 "" 												0								
+ASC (1)/0	1644848921	959	_mp_531_LIB_ACCIONAMIENTO_MOTOR_S.Static.DATOS_ALARMA.Output.Yd_Alarma_EXT	531_LIB_ACCIONAMIENTO_MOTOR_S		12					""	""	lt:2 LANG:10010 "" LANG:10001 "" 	\0	IRC_Alarma.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:2 LANG:10010 "Alarma EXT [IN]" LANG:10001 "Alarma EXT" 	lt:2 LANG:10010 "" LANG:10001 "" 												0								
+UI (1)/0	1648464066	135	_mp_531_LIB_ACCIONAMIENTO_MOTOR_S.Static.DATOS_ALARMA.Output.Yd_Alarma_EXT	531_LIB_ACCIONAMIENTO_MOTOR_S		12					""	""	lt:2 LANG:10010 "" LANG:10001 "" 	\0	IRC_Alarma.		0	1	0	0	01.01.1970 00:00:00.000	0			lt:2 LANG:10010 "Alarma EXT" LANG:10001 "Alarma EXT" 	lt:2 LANG:10010 "" LANG:10001 "" 												0								
+
+# DistributionInfo
+Manager/User	StampSec	StampMSec	ElementName	TypeName	_distrib.._type	_distrib.._driver
+ASC (1)/0	1631528329	546	_mp_531_LIB_ACCIONAMIENTO_MOTOR_S.Input.Xd_INHA	531_LIB_ACCIONAMIENTO_MOTOR_S	56	\1
+ASC (1)/0	1631528329	558	_mp_531_LIB_ACCIONAMIENTO_MOTOR_S.Input.Xi_MODO	531_LIB_ACCIONAMIENTO_MOTOR_S	56	\1
+ASC (1)/0	1631528329	558	_mp_531_LIB_ACCIONAMIENTO_MOTOR_S.Output.Yb_EST	531_LIB_ACCIONAMIENTO_MOTOR_S	56	\1
+ASC (1)/0	1631528329	559	_mp_531_LIB_ACCIONAMIENTO_MOTOR_S.InOut.Xd_M_OM_F1	531_LIB_ACCIONAMIENTO_MOTOR_S	56	\1
+ASC (1)/0	1631528329	574	_mp_531_LIB_ACCIONAMIENTO_MOTOR_S.Static.DATOS_ALARMA.Input.Xt_TiempoVigilancia_CM_F1	531_LIB_ACCIONAMIENTO_MOTOR_S	56	\1
+ASC (1)/0	1631528329	574	_mp_531_LIB_ACCIONAMIENTO_MOTOR_S.Static.DATOS_ALARMA.Input.Xt_TiempoVigilancia_CP_F1	531_LIB_ACCIONAMIENTO_MOTOR_S	56	\1
+ASC (1)/0	1631528329	575	_mp_531_LIB_ACCIONAMIENTO_MOTOR_S.Static.DATOS_ALARMA.Output.Yd_Alarma_General	531_LIB_ACCIONAMIENTO_MOTOR_S	56	\1
+ASC (1)/0	1631528329	576	_mp_531_LIB_ACCIONAMIENTO_MOTOR_S.Static.DATOS_ALARMA.Output.Yd_Alarma_EP	531_LIB_ACCIONAMIENTO_MOTOR_S	56	\1
+ASC (1)/0	1631528329	589	_mp_531_LIB_ACCIONAMIENTO_MOTOR_S.Static.DATOS_ALARMA.Output.Yd_Alarma_CM_F1	531_LIB_ACCIONAMIENTO_MOTOR_S	56	\1
+ASC (1)/0	1631528329	589	_mp_531_LIB_ACCIONAMIENTO_MOTOR_S.Static.DATOS_ALARMA.Output.Yd_Alarma_CP_F1	531_LIB_ACCIONAMIENTO_MOTOR_S	56	\1
+ASC (1)/0	1631528329	590	_mp_531_LIB_ACCIONAMIENTO_MOTOR_S.Static.DATOS_TIEMPOS_MARCHA.Input.Xd_RESET_PARCIAL	531_LIB_ACCIONAMIENTO_MOTOR_S	56	\1
+ASC (1)/0	1631528329	590	_mp_531_LIB_ACCIONAMIENTO_MOTOR_S.Static.DATOS_TIEMPOS_MARCHA.Input.Xd_RESET_TOTAL	531_LIB_ACCIONAMIENTO_MOTOR_S	56	\1
+ASC (1)/0	1631528329	590	_mp_531_LIB_ACCIONAMIENTO_MOTOR_S.Static.DATOS_TIEMPOS_MARCHA.Output.Yi_Contador_Seg_Parciales	531_LIB_ACCIONAMIENTO_MOTOR_S	56	\1
+ASC (1)/0	1631528329	604	_mp_531_LIB_ACCIONAMIENTO_MOTOR_S.Static.DATOS_TIEMPOS_MARCHA.Output.Yi_Contador_Min_Parciales	531_LIB_ACCIONAMIENTO_MOTOR_S	56	\1
+ASC (1)/0	1631528329	604	_mp_531_LIB_ACCIONAMIENTO_MOTOR_S.Static.DATOS_TIEMPOS_MARCHA.Output.Yi_Contador_Horas_Parciales	531_LIB_ACCIONAMIENTO_MOTOR_S	56	\1
+ASC (1)/0	1631528329	605	_mp_531_LIB_ACCIONAMIENTO_MOTOR_S.Static.DATOS_TIEMPOS_MARCHA.Output.Yi_Contador_Dias_Parciales	531_LIB_ACCIONAMIENTO_MOTOR_S	56	\1
+ASC (1)/0	1631528329	605	_mp_531_LIB_ACCIONAMIENTO_MOTOR_S.Static.DATOS_TIEMPOS_MARCHA.Output.Yi_Contador_Seg_Totales	531_LIB_ACCIONAMIENTO_MOTOR_S	56	\1
+ASC (1)/0	1631528329	606	_mp_531_LIB_ACCIONAMIENTO_MOTOR_S.Static.DATOS_TIEMPOS_MARCHA.Output.Yi_Contador_Min_Totales	531_LIB_ACCIONAMIENTO_MOTOR_S	56	\1
+ASC (1)/0	1631528329	619	_mp_531_LIB_ACCIONAMIENTO_MOTOR_S.Static.DATOS_TIEMPOS_MARCHA.Output.Yi_Contador_Horas_Totales	531_LIB_ACCIONAMIENTO_MOTOR_S	56	\1
+ASC (1)/0	1631528329	619	_mp_531_LIB_ACCIONAMIENTO_MOTOR_S.Static.DATOS_TIEMPOS_MARCHA.Output.Yi_Contador_Dias_Totales	531_LIB_ACCIONAMIENTO_MOTOR_S	56	\1
+ASC (1)/0	1631528329	634	_mp_531_LIB_ACCIONAMIENTO_MOTOR_S.Static.DATOS_ALARMA.Output.Yd_Alarma_EXT	531_LIB_ACCIONAMIENTO_MOTOR_S	56	\1
+ASC (1)/0	1631528329	634	_mp_531_LIB_ACCIONAMIENTO_MOTOR_S.Static.DATOS_TIEMPOS_MARCHA.Input.Xd_HABILITAR	531_LIB_ACCIONAMIENTO_MOTOR_S	56	\1
+
+# PeriphAddrMain
+Manager/User	StampSec	StampMSec	ElementName	TypeName	_address.._type	_address.._reference	_address.._poll_group	_address.._connection	_address.._offset	_address.._subindex	_address.._direction	_address.._internal	_address.._lowlevel	_address.._active	_address.._start	_address.._interval	_address.._reply	_address.._datatype	_address.._drv_ident
+ASC (1)/0	1644849112	584	_mp_531_LIB_ACCIONAMIENTO_MOTOR_S.Input.Xd_INHA	531_LIB_ACCIONAMIENTO_MOTOR_S	16	"*.Xd_INHA"	_531_LIB_ACCIONAMIENTO_MOTOR_S	_s7_secaderos	0	0	\7	0	1	0	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	1002	"S7PLUS"
+ASC (1)/0	1644849112	605	_mp_531_LIB_ACCIONAMIENTO_MOTOR_S.Input.Xi_MODO	531_LIB_ACCIONAMIENTO_MOTOR_S	16	"*.Xi_MODO"	_531_LIB_ACCIONAMIENTO_MOTOR_S	_s7_secaderos	0	0	\7	0	1	0	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	1012	"S7PLUS"
+ASC (1)/0	1644849112	610	_mp_531_LIB_ACCIONAMIENTO_MOTOR_S.Output.Yb_EST	531_LIB_ACCIONAMIENTO_MOTOR_S	16	"*.Yb_EST"	_531_LIB_ACCIONAMIENTO_MOTOR_S	_s7_secaderos	0	0	\7	0	1	0	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	1003	"S7PLUS"
+ASC (1)/0	1644849112	615	_mp_531_LIB_ACCIONAMIENTO_MOTOR_S.InOut.Xd_M_OM_F1	531_LIB_ACCIONAMIENTO_MOTOR_S	16	"*.Xd_M_OM_F1"	_531_LIB_ACCIONAMIENTO_MOTOR_S	_s7_secaderos	0	0	\7	0	1	0	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	1002	"S7PLUS"
+ASC (1)/0	1644849112	636	_mp_531_LIB_ACCIONAMIENTO_MOTOR_S.Static.DATOS_ALARMA.Input.Xt_TiempoVigilancia_CM_F1	531_LIB_ACCIONAMIENTO_MOTOR_S	16	"*.DATOS_ALARMA.Xt_TiempoVigilancia_CM_F1"	_531_LIB_ACCIONAMIENTO_MOTOR_S	_s7_secaderos	0	0	\7	0	1	0	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	1019	"S7PLUS"
+ASC (1)/0	1644849112	642	_mp_531_LIB_ACCIONAMIENTO_MOTOR_S.Static.DATOS_ALARMA.Input.Xt_TiempoVigilancia_CP_F1	531_LIB_ACCIONAMIENTO_MOTOR_S	16	"*.DATOS_ALARMA.Xt_TiempoVigilancia_CP_F1"	_531_LIB_ACCIONAMIENTO_MOTOR_S	_s7_secaderos	0	0	\7	0	1	0	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	1019	"S7PLUS"
+ASC (1)/0	1644849112	653	_mp_531_LIB_ACCIONAMIENTO_MOTOR_S.Static.DATOS_ALARMA.Output.Yd_Alarma_General	531_LIB_ACCIONAMIENTO_MOTOR_S	16	"*.DATOS_ALARMA.Yd_Alarma_General"	_531_LIB_ACCIONAMIENTO_MOTOR_S	_s7_secaderos	0	0	\7	0	1	0	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	1002	"S7PLUS"
+ASC (1)/0	1644849112	658	_mp_531_LIB_ACCIONAMIENTO_MOTOR_S.Static.DATOS_ALARMA.Output.Yd_Alarma_EP	531_LIB_ACCIONAMIENTO_MOTOR_S	16	"*.DATOS_ALARMA.Yd_Alarma_EP"	_531_LIB_ACCIONAMIENTO_MOTOR_S	_s7_secaderos	0	0	\7	0	1	0	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	1002	"S7PLUS"
+ASC (1)/0	1644849112	667	_mp_531_LIB_ACCIONAMIENTO_MOTOR_S.Static.DATOS_ALARMA.Output.Yd_Alarma_CM_F1	531_LIB_ACCIONAMIENTO_MOTOR_S	16	"*.DATOS_ALARMA.Yd_Alarma_CM_F1"	_531_LIB_ACCIONAMIENTO_MOTOR_S	_s7_secaderos	0	0	\7	0	1	0	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	1002	"S7PLUS"
+ASC (1)/0	1644849112	672	_mp_531_LIB_ACCIONAMIENTO_MOTOR_S.Static.DATOS_ALARMA.Output.Yd_Alarma_CP_F1	531_LIB_ACCIONAMIENTO_MOTOR_S	16	"*.DATOS_ALARMA.Yd_Alarma_CP_F1"	_531_LIB_ACCIONAMIENTO_MOTOR_S	_s7_secaderos	0	0	\7	0	1	0	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	1002	"S7PLUS"
+ASC (1)/0	1644849112	678	_mp_531_LIB_ACCIONAMIENTO_MOTOR_S.Static.DATOS_TIEMPOS_MARCHA.Input.Xd_RESET_PARCIAL	531_LIB_ACCIONAMIENTO_MOTOR_S	16	"*.DATOS_TIEMPOS_MARCHA.Xd_RESET_PARCIAL"	_531_LIB_ACCIONAMIENTO_MOTOR_S	_s7_secaderos	0	0	\7	0	1	0	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	1002	"S7PLUS"
+ASC (1)/0	1644849112	683	_mp_531_LIB_ACCIONAMIENTO_MOTOR_S.Static.DATOS_TIEMPOS_MARCHA.Input.Xd_RESET_TOTAL	531_LIB_ACCIONAMIENTO_MOTOR_S	16	"*.DATOS_TIEMPOS_MARCHA.Xd_RESET_TOTAL"	_531_LIB_ACCIONAMIENTO_MOTOR_S	_s7_secaderos	0	0	\7	0	1	0	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	1002	"S7PLUS"
+ASC (1)/0	1644849112	689	_mp_531_LIB_ACCIONAMIENTO_MOTOR_S.Static.DATOS_TIEMPOS_MARCHA.Output.Yi_Contador_Seg_Parciales	531_LIB_ACCIONAMIENTO_MOTOR_S	16	"*.DATOS_TIEMPOS_MARCHA.Yi_Contador_Seg_Parciales"	_531_LIB_ACCIONAMIENTO_MOTOR_S	_s7_secaderos	0	0	\7	0	1	0	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	1012	"S7PLUS"
+ASC (1)/0	1644849112	699	_mp_531_LIB_ACCIONAMIENTO_MOTOR_S.Static.DATOS_TIEMPOS_MARCHA.Output.Yi_Contador_Min_Parciales	531_LIB_ACCIONAMIENTO_MOTOR_S	16	"*.DATOS_TIEMPOS_MARCHA.Yi_Contador_Min_Parciales"	_531_LIB_ACCIONAMIENTO_MOTOR_S	_s7_secaderos	0	0	\7	0	1	0	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	1012	"S7PLUS"
+ASC (1)/0	1644849112	705	_mp_531_LIB_ACCIONAMIENTO_MOTOR_S.Static.DATOS_TIEMPOS_MARCHA.Output.Yi_Contador_Horas_Parciales	531_LIB_ACCIONAMIENTO_MOTOR_S	16	"*.DATOS_TIEMPOS_MARCHA.Yi_Contador_Horas_Parciales"	_531_LIB_ACCIONAMIENTO_MOTOR_S	_s7_secaderos	0	0	\7	0	1	0	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	1012	"S7PLUS"
+ASC (1)/0	1644849112	713	_mp_531_LIB_ACCIONAMIENTO_MOTOR_S.Static.DATOS_TIEMPOS_MARCHA.Output.Yi_Contador_Dias_Parciales	531_LIB_ACCIONAMIENTO_MOTOR_S	16	"*.DATOS_TIEMPOS_MARCHA.Yi_Contador_Dias_Parciales"	_531_LIB_ACCIONAMIENTO_MOTOR_S	_s7_secaderos	0	0	\7	0	1	0	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	1012	"S7PLUS"
+ASC (1)/0	1644849112	720	_mp_531_LIB_ACCIONAMIENTO_MOTOR_S.Static.DATOS_TIEMPOS_MARCHA.Output.Yi_Contador_Seg_Totales	531_LIB_ACCIONAMIENTO_MOTOR_S	16	"*.DATOS_TIEMPOS_MARCHA.Yi_Contador_Seg_Totales"	_531_LIB_ACCIONAMIENTO_MOTOR_S	_s7_secaderos	0	0	\7	0	1	0	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	1012	"S7PLUS"
+ASC (1)/0	1644849112	726	_mp_531_LIB_ACCIONAMIENTO_MOTOR_S.Static.DATOS_TIEMPOS_MARCHA.Output.Yi_Contador_Min_Totales	531_LIB_ACCIONAMIENTO_MOTOR_S	16	"*.DATOS_TIEMPOS_MARCHA.Yi_Contador_Min_Totales"	_531_LIB_ACCIONAMIENTO_MOTOR_S	_s7_secaderos	0	0	\7	0	1	0	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	1012	"S7PLUS"
+ASC (1)/0	1644849112	746	_mp_531_LIB_ACCIONAMIENTO_MOTOR_S.Static.DATOS_TIEMPOS_MARCHA.Output.Yi_Contador_Horas_Totales	531_LIB_ACCIONAMIENTO_MOTOR_S	16	"*.DATOS_TIEMPOS_MARCHA.Yi_Contador_Horas_Totales"	_531_LIB_ACCIONAMIENTO_MOTOR_S	_s7_secaderos	0	0	\7	0	1	0	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	1012	"S7PLUS"
+ASC (1)/0	1644849112	752	_mp_531_LIB_ACCIONAMIENTO_MOTOR_S.Static.DATOS_TIEMPOS_MARCHA.Output.Yi_Contador_Dias_Totales	531_LIB_ACCIONAMIENTO_MOTOR_S	16	"*.DATOS_TIEMPOS_MARCHA.Yi_Contador_Dias_Totales"	_531_LIB_ACCIONAMIENTO_MOTOR_S	_s7_secaderos	0	0	\7	0	1	0	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	1012	"S7PLUS"
+ASC (1)/0	1644849112	778	_mp_531_LIB_ACCIONAMIENTO_MOTOR_S.Static.DATOS_ALARMA.Output.Yd_Alarma_EXT	531_LIB_ACCIONAMIENTO_MOTOR_S	16	"*.DATOS_ALARMA.Yd_Alarma_EXT"	_531_LIB_ACCIONAMIENTO_MOTOR_S	_s7_secaderos	0	0	\7	0	1	0	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	1002	"S7PLUS"
+ASC (1)/0	1644849112	784	_mp_531_LIB_ACCIONAMIENTO_MOTOR_S.Static.DATOS_TIEMPOS_MARCHA.Input.Xd_HABILITAR	531_LIB_ACCIONAMIENTO_MOTOR_S	16	"*.DATOS_TIEMPOS_MARCHA.Xd_HABILITAR"	_531_LIB_ACCIONAMIENTO_MOTOR_S	_s7_secaderos	0	0	\7	0	1	0	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	1002	"S7PLUS"
+# ascii dump of database
+
+# Datapoint/DpId
+DpName	TypeName	ID
+_dt_531_LIB_ACCIONAMIENTO_MOTOR_S	_DynamicDatapoints	36153
+_ds_531_LIB_ACCIONAMIENTO_MOTOR_S	_DynamicDptSettings	79744
+
+# DpValue
+Manager/User	ElementName	TypeName	_original.._value	_original.._status64	_original.._stime
+UI (1)/0	_dt_531_LIB_ACCIONAMIENTO_MOTOR_S.Leaf	_DynamicDatapoints	"_mp_531_LIB_ACCIONAMIENTO_MOTOR_S.InOut.Xd_M_OM_F1:_address", "_mp_531_LIB_ACCIONAMIENTO_MOTOR_S.InOut.Xd_M_OM_F1:_distrib", "_mp_531_LIB_ACCIONAMIENTO_MOTOR_S.Input.Xd_INHA:_address", "_mp_531_LIB_ACCIONAMIENTO_MOTOR_S.Input.Xd_INHA:_distrib", "_mp_531_LIB_ACCIONAMIENTO_MOTOR_S.Input.Xi_MODO:_address", "_mp_531_LIB_ACCIONAMIENTO_MOTOR_S.Input.Xi_MODO:_distrib", "_mp_531_LIB_ACCIONAMIENTO_MOTOR_S.Output.Yb_EST:_address", "_mp_531_LIB_ACCIONAMIENTO_MOTOR_S.Output.Yb_EST:_distrib", "_mp_531_LIB_ACCIONAMIENTO_MOTOR_S.Static.DATOS_ALARMA.Input.Xt_TiempoVigilancia_CM_F1:_address", "_mp_531_LIB_ACCIONAMIENTO_MOTOR_S.Static.DATOS_ALARMA.Input.Xt_TiempoVigilancia_CM_F1:_distrib", "_mp_531_LIB_ACCIONAMIENTO_MOTOR_S.Static.DATOS_ALARMA.Input.Xt_TiempoVigilancia_CP_F1:_address", "_mp_531_LIB_ACCIONAMIENTO_MOTOR_S.Static.DATOS_ALARMA.Input.Xt_TiempoVigilancia_CP_F1:_distrib", "_mp_531_LIB_ACCIONAMIENTO_MOTOR_S.Static.DATOS_ALARMA.Output.Yd_Alarma_CM_F1:_address", "_mp_531_LIB_ACCIONAMIENTO_MOTOR_S.Static.DATOS_ALARMA.Output.Yd_Alarma_CM_F1:_alert_hdl", "_mp_531_LIB_ACCIONAMIENTO_MOTOR_S.Static.DATOS_ALARMA.Output.Yd_Alarma_CM_F1:_distrib", "_mp_531_LIB_ACCIONAMIENTO_MOTOR_S.Static.DATOS_ALARMA.Output.Yd_Alarma_CP_F1:_address", "_mp_531_LIB_ACCIONAMIENTO_MOTOR_S.Static.DATOS_ALARMA.Output.Yd_Alarma_CP_F1:_alert_hdl", "_mp_531_LIB_ACCIONAMIENTO_MOTOR_S.Static.DATOS_ALARMA.Output.Yd_Alarma_CP_F1:_distrib", "_mp_531_LIB_ACCIONAMIENTO_MOTOR_S.Static.DATOS_ALARMA.Output.Yd_Alarma_EP:_address", "_mp_531_LIB_ACCIONAMIENTO_MOTOR_S.Static.DATOS_ALARMA.Output.Yd_Alarma_EP:_alert_hdl", "_mp_531_LIB_ACCIONAMIENTO_MOTOR_S.Static.DATOS_ALARMA.Output.Yd_Alarma_EP:_distrib", "_mp_531_LIB_ACCIONAMIENTO_MOTOR_S.Static.DATOS_ALARMA.Output.Yd_Alarma_EXT:_address", "_mp_531_LIB_ACCIONAMIENTO_MOTOR_S.Static.DATOS_ALARMA.Output.Yd_Alarma_EXT:_alert_hdl", "_mp_531_LIB_ACCIONAMIENTO_MOTOR_S.Static.DATOS_ALARMA.Output.Yd_Alarma_EXT:_distrib", "_mp_531_LIB_ACCIONAMIENTO_MOTOR_S.Static.DATOS_ALARMA.Output.Yd_Alarma_General:_address", "_mp_531_LIB_ACCIONAMIENTO_MOTOR_S.Static.DATOS_ALARMA.Output.Yd_Alarma_General:_alert_hdl", "_mp_531_LIB_ACCIONAMIENTO_MOTOR_S.Static.DATOS_ALARMA.Output.Yd_Alarma_General:_distrib", "_mp_531_LIB_ACCIONAMIENTO_MOTOR_S.Static.DATOS_TIEMPOS_MARCHA.Input.Xd_HABILITAR:_address", "_mp_531_LIB_ACCIONAMIENTO_MOTOR_S.Static.DATOS_TIEMPOS_MARCHA.Input.Xd_HABILITAR:_distrib", "_mp_531_LIB_ACCIONAMIENTO_MOTOR_S.Static.DATOS_TIEMPOS_MARCHA.Input.Xd_RESET_PARCIAL:_address", "_mp_531_LIB_ACCIONAMIENTO_MOTOR_S.Static.DATOS_TIEMPOS_MARCHA.Input.Xd_RESET_PARCIAL:_distrib", "_mp_531_LIB_ACCIONAMIENTO_MOTOR_S.Static.DATOS_TIEMPOS_MARCHA.Input.Xd_RESET_TOTAL:_address", "_mp_531_LIB_ACCIONAMIENTO_MOTOR_S.Static.DATOS_TIEMPOS_MARCHA.Input.Xd_RESET_TOTAL:_distrib", "_mp_531_LIB_ACCIONAMIENTO_MOTOR_S.Static.DATOS_TIEMPOS_MARCHA.Output.Yi_Contador_Dias_Parciales:_address", "_mp_531_LIB_ACCIONAMIENTO_MOTOR_S.Static.DATOS_TIEMPOS_MARCHA.Output.Yi_Contador_Dias_Parciales:_distrib", "_mp_531_LIB_ACCIONAMIENTO_MOTOR_S.Static.DATOS_TIEMPOS_MARCHA.Output.Yi_Contador_Dias_Totales:_address", "_mp_531_LIB_ACCIONAMIENTO_MOTOR_S.Static.DATOS_TIEMPOS_MARCHA.Output.Yi_Contador_Dias_Totales:_distrib", "_mp_531_LIB_ACCIONAMIENTO_MOTOR_S.Static.DATOS_TIEMPOS_MARCHA.Output.Yi_Contador_Horas_Parciales:_address", "_mp_531_LIB_ACCIONAMIENTO_MOTOR_S.Static.DATOS_TIEMPOS_MARCHA.Output.Yi_Contador_Horas_Parciales:_distrib", "_mp_531_LIB_ACCIONAMIENTO_MOTOR_S.Static.DATOS_TIEMPOS_MARCHA.Output.Yi_Contador_Horas_Totales:_address", "_mp_531_LIB_ACCIONAMIENTO_MOTOR_S.Static.DATOS_TIEMPOS_MARCHA.Output.Yi_Contador_Horas_Totales:_distrib", "_mp_531_LIB_ACCIONAMIENTO_MOTOR_S.Static.DATOS_TIEMPOS_MARCHA.Output.Yi_Contador_Min_Parciales:_address", "_mp_531_LIB_ACCIONAMIENTO_MOTOR_S.Static.DATOS_TIEMPOS_MARCHA.Output.Yi_Contador_Min_Parciales:_distrib", "_mp_531_LIB_ACCIONAMIENTO_MOTOR_S.Static.DATOS_TIEMPOS_MARCHA.Output.Yi_Contador_Min_Totales:_address", "_mp_531_LIB_ACCIONAMIENTO_MOTOR_S.Static.DATOS_TIEMPOS_MARCHA.Output.Yi_Contador_Min_Totales:_distrib", "_mp_531_LIB_ACCIONAMIENTO_MOTOR_S.Static.DATOS_TIEMPOS_MARCHA.Output.Yi_Contador_Seg_Parciales:_address", "_mp_531_LIB_ACCIONAMIENTO_MOTOR_S.Static.DATOS_TIEMPOS_MARCHA.Output.Yi_Contador_Seg_Parciales:_distrib", "_mp_531_LIB_ACCIONAMIENTO_MOTOR_S.Static.DATOS_TIEMPOS_MARCHA.Output.Yi_Contador_Seg_Totales:_address", "_mp_531_LIB_ACCIONAMIENTO_MOTOR_S.Static.DATOS_TIEMPOS_MARCHA.Output.Yi_Contador_Seg_Totales:_distrib", "_mp_531_LIB_ACCIONAMIENTO_MOTOR_S.InOut.Xd_M_OM_F1:_common", "_mp_531_LIB_ACCIONAMIENTO_MOTOR_S.Static.DATOS_ALARMA.Input.Xt_TiempoVigilancia_CM_F1:_common", "_mp_531_LIB_ACCIONAMIENTO_MOTOR_S.Static.DATOS_ALARMA.Input.Xt_TiempoVigilancia_CP_F1:_common", "_mp_531_LIB_ACCIONAMIENTO_MOTOR_S.Static.DATOS_ALARMA.Output.Yd_Alarma_CM_F1:_common", "_mp_531_LIB_ACCIONAMIENTO_MOTOR_S.Static.DATOS_ALARMA.Output.Yd_Alarma_CP_F1:_common"	0x8300000000000101	10.03.2022 10:08:18.958
+UI (1)/0	_dt_531_LIB_ACCIONAMIENTO_MOTOR_S.DynamicAttribute	_DynamicDatapoints	"_da_address", "_da_notself", "_da_address", "_da_notself", "_da_address", "_da_notself", "_da_address", "_da_notself", "_da_address", "_da_notself", "_da_address", "_da_notself", "_da_address", "_da_alert_hdl", "_da_notself", "_da_address", "_da_alert_hdl", "_da_notself", "_da_address", "_da_alert_hdl", "_da_notself", "_da_address", "_da_alert_hdl", "_da_notself", "_da_address", "_da_alert_hdl", "_da_notself", "_da_address", "_da_notself", "_da_address", "_da_notself", "_da_address", "_da_notself", "_da_address", "_da_notself", "_da_address", "_da_notself", "_da_address", "_da_notself", "_da_address", "_da_notself", "_da_address", "_da_notself", "_da_address", "_da_notself", "_da_address", "_da_notself", "_da_address", "_da_notself", "_da_common", "_da_common", "_da_common", "_da_common", "_da_common"	0x8300000000000101	10.03.2022 10:08:18.958
+UI (3)/0	_ds_531_LIB_ACCIONAMIENTO_MOTOR_S.symbols	_DynamicDptSettings		0x8300000000000101	22.02.2022 18:47:13.186
+UI (3)/0	_ds_531_LIB_ACCIONAMIENTO_MOTOR_S.symboldefault	_DynamicDptSettings	""	0x8300000000000101	22.02.2022 18:47:13.189
+UI (3)/0	_ds_531_LIB_ACCIONAMIENTO_MOTOR_S.trendElements	_DynamicDptSettings		0x8300000000000101	22.02.2022 18:47:13.191

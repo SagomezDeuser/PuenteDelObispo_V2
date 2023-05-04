@@ -1,0 +1,167 @@
+# ascii dump of database
+
+# DpType
+TypeName
+_TimedFunc._TimedFunc	1#1
+	delay	21#2
+	interval	20#3
+	mode	20#4
+	month	5#5
+	monthDay	5#6
+	result	1#7
+		inPeriod	23#8
+	syncDay	21#9
+	syncMonth	21#10
+	syncTime	21#11
+	syncWeekDay	21#12
+	time	5#13
+	validFrom	26#14
+	validUntil	26#15
+	weekDay	5#16
+
+# Datapoint/DpId
+DpName	TypeName	ID
+_TimedFunc	_TimedFunc	51
+_FileChange	_TimedFunc	69
+_FileArchiv	_TimedFunc	70
+_AlertFileArchiv	_TimedFunc	71
+_AlertFileChange	_TimedFunc	72
+_EventFileChange	_TimedFunc	96
+_EventFileArchiv	_TimedFunc	97
+_EventFileArchiv_2	_TimedFunc	130
+_AlertFileArchiv_2	_TimedFunc	131
+_OnlineBackup	_TimedFunc	134
+_OnlineBackup_2	_TimedFunc	135
+_ssc_tf_KPI	_TimedFunc	421
+_ssc_tf_1Hour	_TimedFunc	422
+_ssc_tf_1Day	_TimedFunc	423
+_ssc_tf_1Week	_TimedFunc	424
+_ssc_tf_15Min	_TimedFunc	425
+_Intervalo_1Dia_DP	_TimedFunc	40186
+_Intervalo_60_Segundos_Insert_Bd	_TimedFunc	40187
+_1sec	_TimedFunc	40471
+
+# DpValue
+Manager/User	ElementName	TypeName	_original.._value	_original.._status64	_original.._stime
+ASC (1)/0	_AlertFileArchiv.delay	_TimedFunc	0	0x8300000000000101	25.04.2022 09:21:13.835
+ASC (1)/0	_AlertFileArchiv.interval	_TimedFunc	86400	0x8300000000000101	25.04.2022 09:21:13.836
+ASC (1)/0	_AlertFileArchiv.month	_TimedFunc		0x8300000000000101	25.04.2022 09:21:13.836
+ASC (1)/0	_AlertFileArchiv.monthDay	_TimedFunc		0x8300000000000101	25.04.2022 09:21:13.845
+ASC (1)/0	_AlertFileArchiv.syncDay	_TimedFunc	1	0x8300000000200101	25.04.2022 09:21:13.846
+ASC (1)/0	_AlertFileArchiv.syncMonth	_TimedFunc	1	0x8300000000200101	25.04.2022 09:21:13.847
+ASC (1)/0	_AlertFileArchiv.syncTime	_TimedFunc	300	0x8300000000000101	25.04.2022 09:21:13.848
+ASC (1)/0	_AlertFileArchiv.syncWeekDay	_TimedFunc	1	0x8300000000200101	25.04.2022 09:21:13.849
+ASC (1)/0	_AlertFileArchiv.time	_TimedFunc		0x8300000000000101	25.04.2022 09:21:13.861
+ASC (1)/0	_AlertFileArchiv.validFrom	_TimedFunc	01.01.1970 00:00:00.000	0x8300000000000101	25.04.2022 09:21:13.862
+ASC (1)/0	_AlertFileArchiv.validUntil	_TimedFunc	01.01.1970 00:00:01.000	0x8300000000000101	25.04.2022 09:21:13.863
+ASC (1)/0	_AlertFileArchiv.weekDay	_TimedFunc		0x8300000000000101	25.04.2022 09:21:13.863
+ASC (1)/0	_AlertFileChange.delay	_TimedFunc	0	0x8300000000000101	25.04.2022 09:21:13.864
+ASC (1)/0	_AlertFileChange.interval	_TimedFunc	604800	0x8300000000000101	25.04.2022 09:21:13.876
+ASC (1)/0	_AlertFileChange.month	_TimedFunc		0x8300000000000101	25.04.2022 09:21:13.876
+ASC (1)/0	_AlertFileChange.monthDay	_TimedFunc		0x8300000000000101	25.04.2022 09:21:13.877
+ASC (1)/0	_AlertFileChange.syncDay	_TimedFunc	1	0x8300000000000101	25.04.2022 09:21:13.877
+ASC (1)/0	_AlertFileChange.syncMonth	_TimedFunc	1	0x8300000000000101	25.04.2022 09:21:13.878
+ASC (1)/0	_AlertFileChange.syncTime	_TimedFunc	300	0x8300000000000101	25.04.2022 09:21:13.891
+ASC (1)/0	_AlertFileChange.syncWeekDay	_TimedFunc	1	0x8300000000000101	25.04.2022 09:21:13.892
+ASC (1)/0	_AlertFileChange.time	_TimedFunc		0x8300000000000101	25.04.2022 09:21:13.893
+ASC (1)/0	_AlertFileChange.validFrom	_TimedFunc	01.01.1970 00:00:00.000	0x8300000000000101	25.04.2022 09:21:13.893
+ASC (1)/0	_AlertFileChange.validUntil	_TimedFunc	01.01.1970 00:00:00.000	0x8300000000000101	25.04.2022 09:21:13.894
+ASC (1)/0	_AlertFileChange.weekDay	_TimedFunc		0x8300000000000101	25.04.2022 09:21:13.907
+ASC (1)/0	_EventFileChange.delay	_TimedFunc	0	0x8300000000000101	25.04.2022 09:21:13.907
+ASC (1)/0	_EventFileChange.interval	_TimedFunc	86400	0x8300000000000101	25.04.2022 09:21:13.908
+ASC (1)/0	_EventFileChange.month	_TimedFunc		0x8300000000000101	25.04.2022 09:21:13.908
+ASC (1)/0	_EventFileChange.monthDay	_TimedFunc		0x8300000000000101	25.04.2022 09:21:13.909
+ASC (1)/0	_EventFileChange.syncDay	_TimedFunc	1	0x8300000000000101	25.04.2022 09:21:13.921
+ASC (1)/0	_EventFileChange.syncMonth	_TimedFunc	1	0x8300000000000101	25.04.2022 09:21:13.922
+ASC (1)/0	_EventFileChange.syncTime	_TimedFunc	0	0x8300000000000101	25.04.2022 09:21:13.922
+ASC (1)/0	_EventFileChange.syncWeekDay	_TimedFunc	1	0x8300000000000101	25.04.2022 09:21:13.923
+ASC (1)/0	_EventFileChange.time	_TimedFunc		0x8300000000000101	25.04.2022 09:21:13.924
+ASC (1)/0	_EventFileChange.validFrom	_TimedFunc	01.01.1970 00:00:00.000	0x8300000000000101	25.04.2022 09:21:13.938
+ASC (1)/0	_EventFileChange.validUntil	_TimedFunc	01.01.1970 00:00:01.000	0x8300000000000101	25.04.2022 09:21:13.939
+ASC (1)/0	_EventFileChange.weekDay	_TimedFunc		0x8300000000000101	25.04.2022 09:21:13.940
+ASC (1)/0	_EventFileArchiv.delay	_TimedFunc	0	0x8300000000000101	25.04.2022 09:21:13.942
+ASC (1)/0	_EventFileArchiv.interval	_TimedFunc	86400	0x8300000000000101	25.04.2022 09:21:13.943
+ASC (1)/0	_EventFileArchiv.month	_TimedFunc		0x8300000000000101	25.04.2022 09:21:13.954
+ASC (1)/0	_EventFileArchiv.monthDay	_TimedFunc		0x8300000000000101	25.04.2022 09:21:13.955
+ASC (1)/0	_EventFileArchiv.syncDay	_TimedFunc	1	0x8300000000000101	25.04.2022 09:21:13.957
+ASC (1)/0	_EventFileArchiv.syncMonth	_TimedFunc	1	0x8300000000000101	25.04.2022 09:21:13.959
+ASC (1)/0	_EventFileArchiv.syncTime	_TimedFunc	1800	0x8300000000000101	25.04.2022 09:21:13.960
+ASC (1)/0	_EventFileArchiv.syncWeekDay	_TimedFunc	1	0x8300000000000101	25.04.2022 09:21:13.969
+ASC (1)/0	_EventFileArchiv.time	_TimedFunc		0x8300000000000101	25.04.2022 09:21:13.971
+ASC (1)/0	_EventFileArchiv.validFrom	_TimedFunc	01.01.1970 00:00:00.000	0x8300000000000101	25.04.2022 09:21:13.972
+ASC (1)/0	_EventFileArchiv.validUntil	_TimedFunc	01.01.1970 00:00:01.000	0x8300000000000101	25.04.2022 09:21:13.973
+ASC (1)/0	_EventFileArchiv.weekDay	_TimedFunc		0x8300000000000101	25.04.2022 09:21:13.975
+ASC (1)/0	_EventFileArchiv_2.delay	_TimedFunc	0	0x8300000000000101	25.04.2022 09:21:13.984
+ASC (1)/0	_EventFileArchiv_2.interval	_TimedFunc	86400	0x8300000000000101	25.04.2022 09:21:13.986
+ASC (1)/0	_EventFileArchiv_2.month	_TimedFunc		0x8300000000000101	25.04.2022 09:21:13.987
+ASC (1)/0	_EventFileArchiv_2.monthDay	_TimedFunc		0x8300000000000101	25.04.2022 09:21:13.989
+ASC (1)/0	_EventFileArchiv_2.syncDay	_TimedFunc	1	0x8300000000000101	25.04.2022 09:21:13.990
+ASC (1)/0	_EventFileArchiv_2.syncMonth	_TimedFunc	1	0x8300000000000101	25.04.2022 09:21:14.000
+ASC (1)/0	_EventFileArchiv_2.syncTime	_TimedFunc	1800	0x8300000000000101	25.04.2022 09:21:14.001
+ASC (1)/0	_EventFileArchiv_2.syncWeekDay	_TimedFunc	1	0x8300000000000101	25.04.2022 09:21:14.001
+ASC (1)/0	_EventFileArchiv_2.time	_TimedFunc		0x8300000000000101	25.04.2022 09:21:14.002
+ASC (1)/0	_EventFileArchiv_2.validFrom	_TimedFunc	01.01.1970 00:00:00.000	0x8300000000000101	25.04.2022 09:21:14.003
+ASC (1)/0	_EventFileArchiv_2.validUntil	_TimedFunc	01.01.1970 00:00:01.000	0x8300000000000101	25.04.2022 09:21:14.016
+ASC (1)/0	_EventFileArchiv_2.weekDay	_TimedFunc		0x8300000000000101	25.04.2022 09:21:14.017
+ASC (1)/0	_AlertFileArchiv_2.delay	_TimedFunc	0	0x8300000000000101	25.04.2022 09:21:14.017
+ASC (1)/0	_AlertFileArchiv_2.interval	_TimedFunc	86400	0x8300000000000101	25.04.2022 09:21:14.018
+ASC (1)/0	_AlertFileArchiv_2.month	_TimedFunc		0x8300000000000101	25.04.2022 09:21:14.019
+ASC (1)/0	_AlertFileArchiv_2.monthDay	_TimedFunc		0x8300000000000101	25.04.2022 09:21:14.032
+ASC (1)/0	_AlertFileArchiv_2.syncDay	_TimedFunc	-1	0x8300000000000101	25.04.2022 09:21:14.034
+ASC (1)/0	_AlertFileArchiv_2.syncMonth	_TimedFunc	-1	0x8300000000000101	25.04.2022 09:21:14.035
+ASC (1)/0	_AlertFileArchiv_2.syncTime	_TimedFunc	3600	0x8300000000000101	25.04.2022 09:21:14.037
+ASC (1)/0	_AlertFileArchiv_2.syncWeekDay	_TimedFunc	-1	0x8300000000000101	25.04.2022 09:21:14.038
+ASC (1)/0	_AlertFileArchiv_2.time	_TimedFunc		0x8300000000000101	25.04.2022 09:21:14.048
+ASC (1)/0	_AlertFileArchiv_2.validFrom	_TimedFunc	01.01.1970 00:00:00.000	0x8300000000000101	25.04.2022 09:21:14.049
+ASC (1)/0	_AlertFileArchiv_2.validUntil	_TimedFunc	01.01.1970 00:00:01.000	0x8300000000000101	25.04.2022 09:21:14.051
+ASC (1)/0	_AlertFileArchiv_2.weekDay	_TimedFunc		0x8300000000000101	25.04.2022 09:21:14.053
+ASC (1)/0	_OnlineBackup.interval	_TimedFunc	86400	0x8300000000200101	25.04.2022 09:21:14.054
+ASC (1)/0	_OnlineBackup.syncDay	_TimedFunc	-1	0x8300000000000101	25.04.2022 09:21:14.064
+ASC (1)/0	_OnlineBackup.syncMonth	_TimedFunc	-1	0x8300000000000101	25.04.2022 09:21:14.065
+ASC (1)/0	_OnlineBackup.syncTime	_TimedFunc	14400	0x8300000000200101	25.04.2022 09:21:14.067
+ASC (1)/0	_OnlineBackup.syncWeekDay	_TimedFunc	-1	0x8300000000000101	25.04.2022 09:21:14.068
+ASC (1)/0	_OnlineBackup.validFrom	_TimedFunc	01.01.1970 00:00:00.000	0x8300000000000101	25.04.2022 09:21:14.069
+ASC (1)/0	_OnlineBackup.validUntil	_TimedFunc	31.12.2037 23:00:00.000	0x8300000000200101	25.04.2022 09:21:14.080
+ASC (1)/0	_OnlineBackup_2.interval	_TimedFunc	0	0x8300000000000101	25.04.2022 09:21:14.081
+ASC (1)/0	_OnlineBackup_2.syncDay	_TimedFunc	-1	0x8300000000000101	25.04.2022 09:21:14.083
+ASC (1)/0	_OnlineBackup_2.syncMonth	_TimedFunc	-1	0x8300000000000101	25.04.2022 09:21:14.085
+ASC (1)/0	_OnlineBackup_2.syncTime	_TimedFunc	13500	0x8300000000000101	25.04.2022 09:21:14.086
+ASC (1)/0	_OnlineBackup_2.syncWeekDay	_TimedFunc	2	0x8300000000000101	25.04.2022 09:21:14.096
+ASC (1)/0	_OnlineBackup_2.validFrom	_TimedFunc	01.01.2035 00:00:00.000	0x8300000000000101	25.04.2022 09:21:14.097
+ASC (1)/0	_OnlineBackup_2.validUntil	_TimedFunc	01.01.1970 00:00:00.000	0x8300000000000101	25.04.2022 09:21:14.099
+ASC (1)/0	_ssc_tf_KPI.interval	_TimedFunc	5	0x8300000000000101	25.04.2022 09:21:14.100
+ASC (1)/0	_ssc_tf_KPI.syncDay	_TimedFunc	-1	0x8300000000000101	25.04.2022 09:21:14.102
+ASC (1)/0	_ssc_tf_KPI.syncMonth	_TimedFunc	-1	0x8300000000000101	25.04.2022 09:21:14.111
+ASC (1)/0	_ssc_tf_KPI.syncWeekDay	_TimedFunc	-1	0x8300000000000101	25.04.2022 09:21:14.112
+ASC (1)/0	_ssc_tf_1Hour.interval	_TimedFunc	3600	0x8300000000000101	25.04.2022 09:21:14.113
+ASC (1)/0	_ssc_tf_1Hour.syncDay	_TimedFunc	-1	0x8300000000000101	25.04.2022 09:21:14.114
+ASC (1)/0	_ssc_tf_1Hour.syncMonth	_TimedFunc	-1	0x8300000000000101	25.04.2022 09:21:14.115
+ASC (1)/0	_ssc_tf_1Hour.syncWeekDay	_TimedFunc	-1	0x8300000000000101	25.04.2022 09:21:14.126
+ASC (1)/0	_ssc_tf_1Day.interval	_TimedFunc	86400	0x8300000000000101	25.04.2022 09:21:14.127
+ASC (1)/0	_ssc_tf_1Day.syncDay	_TimedFunc	-1	0x8300000000000101	25.04.2022 09:21:14.127
+ASC (1)/0	_ssc_tf_1Day.syncMonth	_TimedFunc	-1	0x8300000000000101	25.04.2022 09:21:14.128
+ASC (1)/0	_ssc_tf_1Day.syncWeekDay	_TimedFunc	-1	0x8300000000000101	25.04.2022 09:21:14.129
+ASC (1)/0	_ssc_tf_1Week.mode	_TimedFunc	0	0x8300000000000101	25.04.2022 09:21:14.143
+ASC (1)/0	_ssc_tf_1Week.syncDay	_TimedFunc	-1	0x8300000000000101	25.04.2022 09:21:14.144
+ASC (1)/0	_ssc_tf_1Week.syncMonth	_TimedFunc	-1	0x8300000000000101	25.04.2022 09:21:14.146
+ASC (1)/0	_ssc_tf_1Week.syncWeekDay	_TimedFunc	-1	0x8300000000000101	25.04.2022 09:21:14.148
+ASC (1)/0	_ssc_tf_1Week.time	_TimedFunc	0	0x8300000000000101	25.04.2022 09:21:14.149
+ASC (1)/0	_ssc_tf_1Week.weekDay	_TimedFunc	1	0x8300000000000101	25.04.2022 09:21:14.159
+ASC (1)/0	_ssc_tf_15Min.interval	_TimedFunc	900	0x8300000000000101	25.04.2022 09:21:14.161
+ASC (1)/0	_ssc_tf_15Min.syncDay	_TimedFunc	-1	0x8300000000000101	25.04.2022 09:21:14.162
+ASC (1)/0	_ssc_tf_15Min.syncMonth	_TimedFunc	-1	0x8300000000000101	25.04.2022 09:21:14.164
+ASC (1)/0	_ssc_tf_15Min.syncWeekDay	_TimedFunc	-1	0x8300000000000101	25.04.2022 09:21:14.166
+ASC (1)/0	_Intervalo_1Dia_DP.interval	_TimedFunc	86400	0x8300000000000101	25.04.2022 09:21:14.174
+ASC (1)/0	_Intervalo_1Dia_DP.syncDay	_TimedFunc	-1	0x8300000000000101	25.04.2022 09:21:14.175
+ASC (1)/0	_Intervalo_1Dia_DP.syncMonth	_TimedFunc	-1	0x8300000000000101	25.04.2022 09:21:14.177
+ASC (1)/0	_Intervalo_1Dia_DP.syncWeekDay	_TimedFunc	-1	0x8300000000000101	25.04.2022 09:21:14.179
+ASC (1)/0	_Intervalo_60_Segundos_Insert_Bd.interval	_TimedFunc	60	0x8300000000000101	25.04.2022 09:21:14.180
+ASC (1)/0	_Intervalo_60_Segundos_Insert_Bd.syncDay	_TimedFunc	-1	0x8300000000000101	25.04.2022 09:21:14.190
+ASC (1)/0	_Intervalo_60_Segundos_Insert_Bd.syncMonth	_TimedFunc	-1	0x8300000000000101	25.04.2022 09:21:14.192
+ASC (1)/0	_Intervalo_60_Segundos_Insert_Bd.syncWeekDay	_TimedFunc	-1	0x8300000000000101	25.04.2022 09:21:14.193
+ASC (1)/0	_1sec.delay	_TimedFunc	0	0x8300000000000101	25.04.2022 09:21:14.195
+ASC (1)/0	_1sec.interval	_TimedFunc	5	0x8300000000000101	25.04.2022 09:21:14.197
+ASC (1)/0	_1sec.syncDay	_TimedFunc	-1	0x8300000000000101	25.04.2022 09:21:14.205
+ASC (1)/0	_1sec.syncMonth	_TimedFunc	-1	0x8300000000000101	25.04.2022 09:21:14.207
+ASC (1)/0	_1sec.syncWeekDay	_TimedFunc	-1	0x8300000000000101	25.04.2022 09:21:14.209
+# ascii dump of database

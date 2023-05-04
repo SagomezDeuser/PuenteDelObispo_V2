@@ -1,0 +1,688 @@
+V 14
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+PANEL,-1 -1 500 500 N "white" 1
+"$INST"
+E E E E E 1 -1 -1 0  108 28
+""0  1
+E "lib_siwarex_500 c = lib_siwarex_500($INST,\"\");
+" 0
+ 4
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+"pdpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10001 0 
+LANG:10010 0 
+6 27
+"RECTANGLE8"
+""
+1 30 290 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_BLANCO" E E
+ E E
+26 0 0 0 0 0
+E E E
+0
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 2 3 2 1 E 1.62616131301963 0 1.705882352941176 -31.28643574585475 -185.7058823529411 1 E 30 290 316 392
+2 1
+"label_tag"
+""
+1 10 0 E E E 1 E 1 E N "white" E N {1,72,152} E E
+ E E
+0 0 0 0 0 0
+E E E
+0
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+  dpConnect(\"mostrar_estado\", c.get_nombre());
+}
+
+void mostrar_estado(string dpSource, string estado){
+  this.text(estado);
+}
+" 0
+ E 0 10 2 1 1 E 1.012252448631711 0 0.4059480553791773 62.27276840967464 34.07168015063968 1 E 10 0 360 60
+0 2 2 "0s" 0 0 0 65 0 0  10 0 1
+7
+LANG:10001 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10005 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+0 7
+LANG:10001 10 PARAMETROS
+LANG:10010 10 SCALE_NAME
+LANG:10011 6 ALARME
+LANG:10009 10 PARAMETROS
+LANG:10008 7 ALLARMI
+LANG:10018 7 ALARMES
+LANG:10005 6 ALARMS
+14 20
+"es_cf"
+"txf_standard_1"
+1 16.46099524113734 87184.81182114352 E E E 1 E 1 E N {1,72,152} E N "_Window" E E
+ E E
+19 0 0 0 0 0
+E E E
+0
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+1
+"layoutAlignment" "AlignNone"
+7
+LANG:10001 35 Tahoma,-1,37,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,37,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,37,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,37,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,37,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,37,5,75,0,0,0,0,0,Negrita
+LANG:10005 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  14.0189375256378 93.39634727360675 483.0189375256378 164
+2 "15s" 15 0 0 9 0 -1  E "main()
+{
+  dpConnect(\"mostrar_estado\", c.get_valor());
+}
+
+void mostrar_estado(string dpSource, string estado){
+  this.text(estado);
+}
+" 0
+ E
+13 22
+"btn_automatico"
+"btn_formulario_1"
+1 214.7239165878515 -40.27238084794953 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Button" E E
+ E E
+21 0 0 0 0 0
+E E E
+1
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+3
+"layoutAlignment" "AlignNone"
+"focusPolicy" "NoFocus"
+"showFocus" "0"
+7
+LANG:10001 35 Tahoma,-1,21,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,21,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,21,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,21,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,21,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,21,5,75,0,0,0,0,0,Negrita
+LANG:10005 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  171.928170806245 189.2310313089462 327.1507720068375 245.7784768793336
+
+T 
+6
+LANG:10001 4 AUTO
+LANG:10010 4 AUTO
+LANG:10011 4 AUTO
+LANG:10009 4 AUTO
+LANG:10008 4 AUTO
+LANG:10018 4 AUTO
+"main(mapping event)
+{
+  c.set_comandos(1001, 1);
+}
+" 0
+ E E E
+6 24
+"RECTANGLE6"
+""
+1 90 200 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_AZUL_03" E E
+ E E
+23 0 0 0 0 0
+E E E
+0
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 2 3 2 1 E 1.629514222943381 0 1 -129.6373425392665 72.85638717805841 1 E 90 200 376 226
+2 25
+"txf_estados"
+""
+1 10 0 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+24 0 0 0 0 0
+E E E
+0
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+  //this.text(getCatStr(\"objetos\",this.name));
+}" 0
+ E 0 10 2 1 1 E 0.4820095343662528 0 0.2952129059352812 160.3677075487844 276 1 E 10 0 360 60
+0 2 2 "0s" 0 0 0 65 0 0  10 0 1
+7
+LANG:10001 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10005 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+0 7
+LANG:10001 10 PARAMETROS
+LANG:10010 7 ESTADOS
+LANG:10011 6 ALARME
+LANG:10009 10 PARAMETROS
+LANG:10008 7 ALLARMI
+LANG:10018 7 ALARMES
+LANG:10005 6 ALARMS
+6 28
+"RECTANGLE126"
+""
+1 209 106.0000000000002 E E E 1 E 1 E N {0,0,0} E N "LIB_IRC_AZUL_18" E E
+ E E
+27 0 0 0 0 0
+E E E
+0
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E -1 1 3 2 1 E 1 0 0.7777777777777777 38.0394714065412 217.5555555555554 1 E 209 106.0000000000002 214 115
+2 29
+"txf_vacia"
+""
+1 10 0 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+28 0 0 0 0 0
+E E E
+0
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+  //this.text(getCatStr(\"objetos\",this.name));
+}" 0
+ E 0 1 2 1 1 E 1.072114761645038 0 0.2952129059352812 58.38773488203868 326.1436128219415 1 E 10 0 360 60
+0 2 2 "0s" 0 0 0 64 0 0  10 0 1
+7
+LANG:10001 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10005 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+0 7
+LANG:10001 10 PARAMETROS
+LANG:10010 6 VACÍA
+LANG:10011 6 ALARME
+LANG:10009 10 PARAMETROS
+LANG:10008 7 ALLARMI
+LANG:10018 7 ALARMES
+LANG:10005 6 ALARMS
+2 30
+"txf_ptara"
+""
+1 10 0 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+29 0 0 0 0 0
+E E E
+0
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+    //this.text(getCatStr(\"objetos\",this.name));
+}
+" 0
+ E 0 1 2 1 1 E 1.122846114436381 0 0.2952129059352812 57.88042135412527 417.446812989929 1 E 10 0 360 60
+0 2 2 "0s" 0 0 0 64 0 0  10 0 1
+7
+LANG:10001 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10005 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+0 7
+LANG:10001 10 PARAMETROS
+LANG:10010 18 PRESELECCIÓN TARA
+LANG:10011 6 ALARME
+LANG:10009 10 PARAMETROS
+LANG:10008 7 ALLARMI
+LANG:10018 7 ALARMES
+LANG:10005 6 ALARMS
+2 31
+"txf_error"
+""
+1 10 0 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+30 0 0 0 0 0
+E E E
+0
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+    //this.text(getCatStr(\"objetos\",this.name));
+}
+" 0
+ E 0 1 2 1 1 E 1.072114761645038 0 0.2712930909928327 58.38773488203868 449.1644074382024 1 E 10 0 360 60
+0 2 2 "0s" 0 0 0 64 0 0  10 0 1
+7
+LANG:10001 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10005 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+0 7
+LANG:10001 10 PARAMETROS
+LANG:10010 5 ERROR
+LANG:10011 6 ALARME
+LANG:10009 10 PARAMETROS
+LANG:10008 7 ALLARMI
+LANG:10018 7 ALARMES
+LANG:10005 6 ALARMS
+7 32
+"ell_estado_prot"
+""
+1 80 200 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_GRIS_03" E E
+ E E
+31 0 0 0 0 0
+E E E
+0
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+  dpConnect(\"cambiar_estado\", c.get_vacia());  //\"s_IO_DATA.SCALE_STATUS.EMPTY\";
+}
+
+void cambiar_estado(string dp, bool estado){
+  if(estado)  setValue(\"\", \"backCol\", \"LIB_IRC_AMARILLO_01\");
+  else  setValue(\"\", \"backCol\", \"LIB_IRC_GRIS_03\");
+}
+" 0
+ E 0 2 3 2 1 E 0.9474887243886986 0 1 -29.3242107072089 134.9999999999999 1 E 80 200 10 10
+7 33
+"ell_alarma_cm"
+""
+1 80 200 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_GRIS_03" E E
+ E E
+32 0 0 0 0 0
+E E E
+0
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+  dpConnect(\"cambiar_estado\", c.get_ptara());  //\"s_IO_DATA.SCALE_STATUS.PRESET_TARA\"
+}
+
+void cambiar_estado(string dp2, bool valor){
+  if(valor)  setValue(\"\", \"backCol\", \"LIB_IRC_VERDE_01\");
+  else  setValue(\"\", \"backCol\", \"LIB_IRC_GRIS_03\");
+}
+" 0
+ E 0 2 3 2 1 E 0.9474887243886986 0 1 -29.32421070720891 226.3032001679875 1 E 80 200 10 10
+7 34
+"ell_alama_cp"
+""
+1 80 200 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_GRIS_03" E E
+ E E
+33 0 0 0 0 0
+E E E
+0
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+  dpConnect(\"cambiar_estado\", c.get_error());  //\"s_IO_DATA.SCALE_STATUS.ERROR\"
+}
+
+void cambiar_estado(string dp2, bool valor){
+  if(valor)  setValue(\"\", \"backCol\", \"LIB_IRC_ROJO_12\");
+  else  setValue(\"\", \"backCol\", \"LIB_IRC_GRIS_03\");
+}
+" 0
+ E 0 2 3 2 1 E 0.9474887243886986 0 1 -29.32421070720891 257.3032001679874 1 E 80 200 10 10
+2 35
+"txf_parada"
+""
+1 10 0 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+34 0 0 0 0 0
+E E E
+0
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+    //this.text(getCatStr(\"objetos\",this.name));
+}" 0
+ E 0 1 2 1 1 E 1.122846114436381 0 0.2952129059352812 57.88042135412527 355.7292185416556 1 E 10 0 360 60
+0 2 2 "0s" 0 0 0 64 0 0  10 0 1
+7
+LANG:10001 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10005 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+0 7
+LANG:10001 10 PARAMETROS
+LANG:10010 7 ESTABLE
+LANG:10011 6 ALARME
+LANG:10009 10 PARAMETROS
+LANG:10008 7 ALLARMI
+LANG:10018 7 ALARMES
+LANG:10005 6 ALARMS
+2 36
+"txf_tara"
+""
+1 10 0 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+35 0 0 0 0 0
+E E E
+0
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+    //this.text(getCatStr(\"objetos\",this.name));
+}
+" 0
+ E 0 1 2 1 1 E 1.072114761645038 0 0.2712930909928327 58.38773488203868 387.446812989929 1 E 10 0 360 60
+0 2 2 "0s" 0 0 0 64 0 0  10 0 1
+7
+LANG:10001 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10005 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+0 7
+LANG:10001 10 PARAMETROS
+LANG:10010 4 TARA
+LANG:10011 6 ALARME
+LANG:10009 10 PARAMETROS
+LANG:10008 7 ALLARMI
+LANG:10018 7 ALARMES
+LANG:10005 6 ALARMS
+7 37
+"ELLIPSE1"
+""
+1 80 200 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_GRIS_03" E E
+ E E
+36 0 0 0 0 0
+E E E
+0
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+  dpConnect(\"cambiar_estado\", c.get_distinto());  //\"s_IO_DATA.SCALE_STATUS.STANDSTILL\"
+}
+
+void cambiar_estado(string dp1, bool valor){
+  if(valor)  setValue(\"\", \"backCol\", \"LIB_IRC_VERDE_01\");
+  else  setValue(\"\", \"backCol\", \"LIB_IRC_GRIS_03\");
+}
+" 0
+ E 0 2 3 2 1 E 0.9474887243886986 0 1 -29.32421070720891 164.5856057197141 1 E 80 200 10 10
+7 38
+"ELLIPSE2"
+""
+1 80 200 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_GRIS_03" E E
+ E E
+37 0 0 0 0 0
+E E E
+0
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+  dpConnect(\"cambiar_estado\", c.get_tara());  //\"s_IO_DATA.SCALE_STATUS.TARA\"
+}
+
+void cambiar_estado(string dp1, bool valor){
+  if(valor)  setValue(\"\", \"backCol\", \"LIB_IRC_VERDE_01\");
+  else  setValue(\"\", \"backCol\", \"LIB_IRC_GRIS_03\");
+}
+" 0
+ E 0 2 3 2 1 E 0.9474887243886986 0 1 -29.32421070720891 195.585605719714 1 E 80 200 10 10
+0
+LAYER, 1 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 2 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 3 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 4 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 5 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 6 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 7 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+0

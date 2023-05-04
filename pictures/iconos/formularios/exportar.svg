@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="1400"
+   height="500"
+   version="1.1"
+   id="svg18"
+   sodipodi:docname="exportar.svg"
+   inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)">
+  <metadata
+     id="metadata24">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs22" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1920"
+     inkscape:window-height="1057"
+     id="namedview20"
+     showgrid="false"
+     inkscape:pagecheckerboard="true"
+     inkscape:zoom="0.24928571"
+     inkscape:cx="700"
+     inkscape:cy="250"
+     inkscape:window-x="1592"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg18" />
+  <g
+     id="g5">
+    <title
+       id="title2">background</title>
+    <rect
+       id="canvas_background"
+       height="502"
+       width="1402"
+       y="-1"
+       x="-1"
+       style="fill:none" />
+  </g>
+  <text
+     style="font-size:105px;font-family:Tahoma, Gadget, sans-serif;text-anchor:start;fill:#ffffff;stroke:#ffffff;stroke-width:0"
+     x="740"
+     y="292.00519"
+     id="svg_7"
+     font-size="105"
+     xml:space="preserve"><tspan
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Tahoma;-inkscape-font-specification:Tahoma"
+       id="tspan858">EXPORTAR</tspan></text>
+  <g
+     id="g864"
+     transform="matrix(0.50059492,0,0,0.50059492,100.59444,1.0375765)"
+     style="fill:#ffffff;fill-opacity:1">
+    <path
+       id="path862"
+       d="m 797,632.3 v 100.1 c 0,44.2 -15.7,82.2 -47.5,113.5 -31.3,31.9 -69.4,47.6 -113.5,47.6 H 171.1 C 126.9,893.5 88.9,877.8 57,845.9 25.7,814.6 10,776.5 10,732.4 V 267.6 c 0,-44.2 15.7,-82.2 47,-113.5 31.9,-31.9 69.9,-47.5 114.1,-47.5 h 393.8 c 9.5,0 17.3,7.3 17.3,17.9 v 35.8 c 0,10.6 -7.8,17.9 -17.3,17.9 H 171.1 c -24.6,0 -45.9,9 -63.2,26.3 -17.3,17.3 -26.3,38.6 -26.3,63.2 v 464.8 c 0,24.6 9,45.9 26.3,63.2 17.3,17.3 38.6,26.3 63.2,26.3 h 464.8 c 24.6,0 45.9,-9 63.2,-26.3 17.3,-17.3 26.3,-38.6 26.3,-63.2 V 632.3 c 0,-10.6 7.3,-17.3 17.9,-17.3 h 35.8 c 10.6,-0.1 17.9,6.7 17.9,17.3 z M 983.3,350.4 800.4,532.7 c -14.5,15.7 -38,3.4 -38,-15.7 v -91.2 h -80.5 c -23.5,0 -54.3,1.1 -92.9,2.8 -38.6,1.7 -76.6,8.4 -114.7,19.6 -37.5,11.2 -67.7,24 -90.6,38.6 -22.4,14.5 -38,29.1 -47.5,43.6 -9,14 -16.8,33 -24.1,56.5 -7.3,23.5 -10.6,47 -10.6,71 0,12.9 0.6,28 1.7,44.2 0,2.8 1.7,13.4 1.7,17.9 0,6.7 -4.5,12.3 -11.2,12.3 -4.5,0 -7.8,-2.2 -10.1,-6.2 -3.9,-5 -10.1,-20.7 -13.4,-26.8 -30.2,-67.7 -39.7,-137 -28,-207.5 6.2,-48.7 31.3,-95.7 76.1,-140.4 C 390.9,279.3 512.3,243 681.8,243 h 80.5 v -91.7 c 0,-19.6 23.5,-30.8 38,-16.2 L 983.2,318 c 9,9.4 9,23.4 0.1,32.4 z"
+       inkscape:connector-curvature="0"
+       style="fill:#ffffff;fill-opacity:1" />
+  </g>
+</svg>

@@ -1,0 +1,12 @@
+# ascii dump of database
+
+# DpType
+TypeName
+000_CONFIGURACION_PANTALLA.000_CONFIGURACION_PANTALLA	1#1
+	pantallas_disponibles	21#2
+	posicion_x	5#3
+	posicion_y	5#4
+	coord_x	5#5
+	coord_y	5#6
+	pantallas_configuradas	21#7
+# ascii dump of database

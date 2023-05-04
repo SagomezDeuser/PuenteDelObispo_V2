@@ -1,0 +1,124 @@
+V 14
+2
+LANG:10001 0 
+LANG:10010 0 
+PANEL,-1 -1 216 104 N "_3DFace" 0
+E E E E E 1 -1 -1 0  42 41
+""0  1
+E E 4
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+"pdpi" "52.0986"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10001 0 
+LANG:10010 0 
+13 1
+"PUSH_BUTTON1"
+""
+1 42 39 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+0 0 0 0 0 0
+E E E
+8
+2
+LANG:10001 0 
+LANG:10010 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  40 33 164 66
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON1
+LANG:10010 7 ARCHIVE
+"main(mapping event)
+{
+  string consulta = \"SELECT '_original.._value' FROM '*' WHERE (_DPT LIKE \\\"531_LIB_ACCIONAMIENTO_*\\\" AND (_EL LIKE \\\"*Xr_Dato_*\\\" OR _EL LIKE \\\"*Yb_EST\\\"))\" +
+                    \" OR (_DPT LIKE \\\"504_LIB_TRATAMIENTO_ANALOGICA\\\" AND _EL LIKE \\\"*ValorEscalado\\\") OR (_DPT LIKE \\\"*ENERGY_METER\\\")\";
+  dyn_dyn_anytype resultadoConsulta;
+  string dp;
+
+  dpQuery(consulta, resultadoConsulta);
+
+  for (int i = 1; i <= dynlen(resultadoConsulta); i++)
+  {
+    string dp = resultadoConsulta[i][1];
+    string dpt = dpTypeName(dp);
+
+//     dpSetWait(dp + \":_archive.._type\", DPCONFIG_DB_ARCHIVEINFO);
+
+//     if (dpt.contains(\"ACCIONAMIENTO\"))
+//     {
+//       dpSetWait(dp + \":_archive.1._class\", \"_NGA_G_EV_ACCIONAMIENTOS\");
+//     }
+//     else if (dpt.contains(\"ANALOGICA\"))
+//     {
+//       dpSetWait(dp + \":_archive.1._class\", \"_NGA_G_Group1\");
+//     }
+//     else
+//     {
+//       dpSetWait(dp + \":_archive.1._class\", \"_NGA_G_EV_ANALIZADORES\");
+//     }
+//
+//
+//     dpSetWait(dp + \":_archive.1._type\", DPATTR_ARCH_PROC_SIMPLESM);
+//     dpSetWait(dp + \":_archive.1._std_type\", 9);
+//     dpSetWait(dp + \":_archive.1._std_tol\", 2);
+//     dpSetWait(dp + \":_archive.1._std_time\", 60);
+
+    if (!dp.contains(\"_mp_\"))
+    {
+      dpSetWait(dp + \":_archive.._archive\", TRUE);
+    }
+  }
+
+
+}
+" 0
+ E E E
+0
+LAYER, 1 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 2 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 3 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 4 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 5 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 6 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 7 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+0

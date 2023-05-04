@@ -1,0 +1,150 @@
+V 14
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10005 0 
+LANG:10018 0 
+LANG:10008 0 
+LANG:10011 0 
+PANEL,-1 -1 1920 980 N "white" 0
+E "main()
+{
+  desactivar_address_fp(\"_09_IG4_AR_Interruptor_Horno_1\", \"090_LIB_ENERGY_METER\");
+  desactivar_address_fp(\"_09_Secad_AR_Interruptor_Secadero_1\", \"090_LIB_ENERGY_METER\");
+  desactivar_address_fp(\"_09_Secad_AR_Interruptor_Secadero_2\", \"090_LIB_ENERGY_METER\");
+  desactivar_address_fp(\"_09_IG4_AR_Interruptor_Horno_2\", \"090_LIB_ENERGY_METER\");
+  desactivar_address_fp(\"_09_Secad_AR_Interruptor_Secadero_4\", \"090_LIB_ENERGY_METER\");
+  desactivar_address_fp(\"_09_Secad_AR_Interruptor_Secadero_5\", \"090_LIB_ENERGY_METER\");
+  desactivar_address_fp(\"_09_Secad_AR_Interruptor_Secadero_6\", \"090_LIB_ENERGY_METER\");
+  desactivar_address_fp(\"_09_IG2_AR_Interruptor_CGD_Extraccion/Refrigeracion\", \"090_LIB_ENERGY_METER\");
+  desactivar_address_fp(\"_09_IG2_AR_Interruptor_CTF_Grupo_1\", \"090_LIB_ENERGY_METER\");
+  desactivar_address_fp(\"_09_IG2_AR_Interruptor_CTF_Grupo_2\", \"090_LIB_ENERGY_METER\");
+  desactivar_address_fp(\"_09_IG2_AR_Interruptor_CTF_Grupo_3\", \"090_LIB_ENERGY_METER\");
+  desactivar_address_fp(\"_09_IG1_AR_BateriaCond_CT1\", \"090_LIB_ENERGY_METER\");
+  desactivar_address_fp(\"_09_IG2_AR_BateriaCond_CT2\", \"090_LIB_ENERGY_METER\");
+  desactivar_address_fp(\"_09_IG1_AR_Interruptor_Transfo_1\", \"090_LIB_ENERGY_METER\");
+  desactivar_address_fp(\"_09_IG1_AR_Interruptor_Transfo_2\", \"090_LIB_ENERGY_METER\");
+  desactivar_address_fp(\"_09_IG2_AR_Interruptor_Transfo_1\", \"090_LIB_ENERGY_METER\");
+  desactivar_address_fp(\"_09_IG2_AR_Interruptor_Transfo_2\", \"090_LIB_ENERGY_METER\");
+  desactivar_address_fp(\"_09_IG2_AR_Interruptor_Bascula\", \"090_LIB_ENERGY_METER\");
+  desactivar_address_fp(\"_09_IG2_AR_Interruptor_C_Evaporador\", \"090_LIB_ENERGY_METER\");
+  desactivar_address_fp(\"_09_IG4_AR_Cuadro_Caldera_1\", \"090_LIB_ENERGY_METER\");
+  desactivar_address_fp(\"_09_IG4_AR_Cuadro_Caldera_2\", \"090_LIB_ENERGY_METER\");
+  desactivar_address_fp(\"_09_IG4_AR_Subcuadro_Alimentacion\", \"090_LIB_ENERGY_METER\");
+  desactivar_address_fp(\"_09_IG4_AR_Subcuadro_Balsa_2\", \"090_LIB_ENERGY_METER\");
+  desactivar_address_fp(\"_09_Secad_AR_TransportesComunes\", \"090_LIB_ENERGY_METER\");
+}
+" 0
+ E E E 1 -1 -1 0  0 0
+""0  1
+E E 5
+"CBRef" "1"
+"EClose" E
+"windowIcon" "Iconos/Ventana/gestion_icon.svg"
+"dpi" "96"
+"pdpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10001 0 
+LANG:10010 0 
+28 1500
+"tab_analizadores_redes"
+"tab_widget_standard_1"
+1 7.105427357601002e-14 2.486899575160351e-14 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+818 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"layoutAlignment" "AlignNone"
+"selchangedcb" "main()
+{
+  string modulo = myModuleName(), url;
+  if(isPanelOpen(\"graficas_analizador_\" + modulo)) PanelOffPanel(\"graficas_analizador_\" + modulo);
+  url = \"http://localhost:3000/d/winccoa-0dp/winccoa-0dp?orgId=1&kiosk&from=now-1h&to=now&viewPanel=2&refresh=3s\";
+  dpSetWait(\"ConfiguracionSCADA.configuracion_grafica_analizador_red.url_grafica\",url,
+            \"ConfiguracionSCADA.configuracion_graficas.indiceGraficaAnalizadorRed\",0);
+}
+"
+"showBackground" "0"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+0  -2 -2 1921 981
+E4 "general" 2
+LANG:10001 2 #1
+LANG:10010 7 General
+1 "vision/sinopticos/11_analizadores_redes/analizadores_redes/tab_analizador_red_general_general.pnl" 2
+LANG:10001 0 
+LANG:10010 0 
+0
+
+"secaderos" 2
+LANG:10001 2 #1
+LANG:10010 9 Secaderos
+1 "vision/sinopticos/11_analizadores_redes/analizadores_redes/tab_analizador_red_general_secaderos.pnl" 2
+LANG:10001 0 
+LANG:10010 0 
+0
+
+"extraccion" 2
+LANG:10001 2 #1
+LANG:10010 11 Extracción
+1 "vision/sinopticos/11_analizadores_redes/analizadores_redes/tab_analizador_red_general_extraccion.pnl" 2
+LANG:10001 0 
+LANG:10010 0 
+0
+
+"otros" 2
+LANG:10001 2 #1
+LANG:10010 5 Otros
+1 "vision/sinopticos/11_analizadores_redes/analizadores_redes/tab_analizador_red_general_otros.pnl" 2
+LANG:10001 0 
+LANG:10010 0 
+0
+
+
+0
+LAYER, 1 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 2 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 3 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 4 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 5 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 6 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 7 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+0

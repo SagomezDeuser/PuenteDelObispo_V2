@@ -1,0 +1,288 @@
+V 14
+6
+LANG:10001 0 
+LANG:10010 11 principal_2
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+PANEL,-1 -1 1920 1080 N "LIB_IRC_BLANCO" 0
+"main()
+{
+  moduleShowFullScreen(myModuleName());
+  setWindowTitle(myModuleName(), \"PLANTILLA - PANTALLA 2\");
+}" 0
+ E E E E 1 -1 -1 0  0 0
+""0  1
+E "
+" 0
+ 5
+"CBRef" "1"
+"EClose" E
+"windowIcon" "logotipos/logo_cliente_sin_nombre_blanco.svg"
+"dpi" "96"
+"pdpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10001 0 
+LANG:10010 0 
+29 11
+"principal_2"
+""
+1 97 206 E E E 1 E 1 E N "_3DText" E N "_Transparent" E E
+ E E
+10 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+13
+"newPanelAnimDuration" "int 0"
+"oldPanelAnimDuration" "int 0"
+"newPanelAnimateOpacity" "bool TRUE"
+"oldPanelAnimateOpacity" "bool TRUE"
+"newPanelAnimateSize" "bool TRUE"
+"oldPanelAnimateSize" "bool TRUE"
+"newPanelAnimType" "string TopLeft"
+"oldPanelAnimType" "string BottomRight"
+"ModuleName" "string pantalla_principal_2"
+"verticalScrollBarPolicy" "enum 1"
+"alignment" "enum 132"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10010 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10011 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10009 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10008 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10018 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  0 100 1919 1019
+15 Canvas.Canvas.1
+0
+"main()
+{
+  RootPanelOnModule(\"vision/irc/01_alarmas/alarmas/alarmas.pnl\", \"Alarmas\", \"pantalla_principal_2\", \"\");
+}
+" 0
+6 87
+"RECTANGLE4"
+""
+1 2.080870106436669 1.110223024625157e-16 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+43 0 0 0 0 0
+E E E
+0
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+4
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  //dpConnect(\"cambiar_estado_alarma\", \"01_ZONA.alarma:_online.._value\", \"02_ZONA.alarma:_online.._value\", \"03_ZONA.alarma:_online.._value\", \"04_ZONA.alarma:_online.._value\", \"05_ZONA.alarma:_online.._value\");
+}
+
+void cambiar_estado_alarma(string dp_1, bool alarma_1, string dp_2, bool alarma_2, string dp_3, bool alarma_3, string dp_4, bool alarma_4, string dp_5, bool alarma_5)
+{
+  if(alarma_1 || alarma_2 || alarma_3 || alarma_4 || alarma_5){
+    setValue(\"\", \"fill\", \"[gradient,[linear,pad,0.012,-0.482,0,1.02,0,LIB_IRC_ROJOTRNAS_01,0.99,_Transparent]]\");
+  }else{
+    setValue(\"\", \"fill\", \"[gradient,[linear,pad,0.012,-0.482,0,1.02,0,LIB_IRC_AZUL_01,0.99,_Transparent]]\");
+  }
+}" 0
+ E -1 1 3 2 1 E 1.000000542252593 0 0.5880957763358395 -2.080871234793904 0 4 "[linear,pad,0.0482,1,0.0361,-0.012,0.00336,LIB_IRC_BLANCO,0.99,LIB_IRC_AZUL_01]" E 2 0 1921 99
+6 89
+"RECTANGLE2"
+""
+1 1400 38 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+45 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 12 Cerrar SCADA
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+7
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E -1 1 3 2 1 E 3.249999999999999 0 0.8790123456790124 -4499.999999999999 -28.40246913580247 2  1 0  "pictures/logotipos/logo_cliente.svg" 4294967295 E 1400 38 1492 137
+6 90
+"logo_irc"
+""
+1 39 30 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+46 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+7
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,80}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E -1 1 3 2 1 E 0.415384834463782 0 0.9135669959473152 1803.799991455913 -22.40700987841944 2  1 0  "pictures/logotipos/logo_deuser_sin_nombre.svg" 4294967295 E 39 30 248 138
+29 95
+"menu_botonera_fija"
+""
+1 0 39 E E E 1 E 1 E N "_3DText" E N "_Transparent" E E
+ E E
+51 0 0 0 0 0
+E E E
+0
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+11
+"newPanelAnimDuration" "int 0"
+"oldPanelAnimDuration" "int 0"
+"newPanelAnimateOpacity" "bool TRUE"
+"oldPanelAnimateOpacity" "bool TRUE"
+"newPanelAnimateSize" "bool TRUE"
+"oldPanelAnimateSize" "bool TRUE"
+"newPanelAnimType" "string None"
+"oldPanelAnimType" "string None"
+"ModuleName" "string Botonera_Principal_Fija_2"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+7
+LANG:10001 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10010 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10011 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10009 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10008 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10018 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10005 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  0 1018.5 719 1078.5
+15 Canvas.Canvas.1
+0
+"main()
+{
+  RootPanelOnModule(\"vision/sinopticos/00_principal/principal/botonera_fija.pnl\", \"Botonera\", \"Botonera_Principal_Fija_2\", makeDynString());
+}" 0
+29 96
+"menu_botonera_movil"
+""
+1 0 0 E E E 1 E 1 E N "_3DText" E N "_Transparent" E E
+ E E
+52 0 0 0 0 0
+E E E
+0
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+12
+"newPanelAnimDuration" "int 0"
+"oldPanelAnimDuration" "int 0"
+"newPanelAnimateOpacity" "bool TRUE"
+"oldPanelAnimateOpacity" "bool TRUE"
+"newPanelAnimateSize" "bool TRUE"
+"oldPanelAnimateSize" "bool TRUE"
+"newPanelAnimType" "string None"
+"oldPanelAnimType" "string None"
+"ModuleName" "string Botonera_Principal_Movil_2"
+"horizontalScrollBarPolicy" "enum 1"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+7
+LANG:10001 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10010 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10011 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10009 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10008 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10018 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10005 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  720 1018.5 1919 1078.5
+15 Canvas.Canvas.1
+0
+"main()
+{
+  RootPanelOnModule(\"vision/sinopticos/00_principal/principal/botonera_movil.pnl\", \"Botonera\", \"Botonera_Principal_Movil_2\", makeDynString());
+}" 0
+0
+LAYER, 1 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 2 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 3 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 4 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 5 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 6 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 7 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+0

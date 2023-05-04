@@ -1,0 +1,283 @@
+V 14
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+PANEL,-1 -1 161 68 N "LIB_IRC_BLANCO" 7
+"$AUTO_MODIF"
+"$ELEM"
+"$ESQ_ELEC"
+"$INHA"
+"$INST"
+"$TAG"
+"$TEXTO"
+"main()
+{
+  /*Tratamos los $ para que tengan unos valores definidos
+    Para todos los $ de visibilidad si no es == \"TRUE\" se pondrá por defecto FALSE
+    Para el $ELEM si es NULL el valor por defecto será motor
+    Se definen en el Initialize del panel para poder usarlo en todos los objetos
+  */
+  if (autoModificable != \"TRUE\")
+  {
+    autoModificable = \"FALSE\";
+  }
+
+  if (elemento == \"NULL\")
+  {
+    elemento = \"motor\";
+  }
+
+  if (inhabilitado != \"TRUE\")
+  {
+    inhabilitado = \"FALSE\";
+  }
+
+  if (esquema != \"TRUE\")
+  {
+    esquema = \"FALSE\";
+  }
+
+  if (tag != \"TRUE\")
+  {
+    tag = FALSE;
+
+  }
+
+  parametrosOK = parametrosRellenos(); //Comprobamos si todos los $ estan rellenos. Si no se usan, se usará NULL.
+}" 0
+ E E E E 1 -1 -1 0  0 0
+""0  1
+E "/***********************VARIABLES COMUNES PARA EL OBJETO***************************
+  $INHA - Sirve para indicar si queremos una botonera de accionamiento con el botón/opción de Inhabilitar (TRUE/FALSE).
+  $ESQ_ELEC - Sirve para indicar si queremos una botonera con el botón/opción Esquemas Eléctricos (TRUE/FALSE).
+  $INST = Nombre de la instancia
+  $TIPO_INST = Nombre de la clase de la instancia
+  $VAR = Nombre de la variable, incluyendo el tipo (Ejemplo: \"Input.Xr_Dato_1\")
+  $AUTO_MODIF = se usa para modifcar o no el la consigna de auto
+  $ELEM = se usa para seleccionar la imagen que se mostrará en el faceplate motor, bomba, sinfin, cinta...
+  $TAG = se usa para mostrar o no el TAG en el faceplate
+  $texto = se usa para mostrar la flecha de sentido de giro
+  ******************/
+string autoModificable = $AUTO_MODIF, elemento = $ELEM, inhabilitado = $INHA, esquema = $ESQ_ELEC, texto = $TEXTO;
+bool tag = $TAG, parametrosOK = FALSE;
+
+bool parametrosRellenos()//Comprobamos que todos los parametros del objeto esten rellenos, sino el objeto será de color morado.
+{
+  if ($INST != \"\" && $AUTO_MODIF != \"\" && $ELEM != \"\" && $INHA != \"\" && $ESQ_ELEC != \"\" && $TAG != \"\" && $TEXTO != \"\")
+  {
+    return TRUE;// Si todos los parametros están rellenos devolvemos TRUE.
+  }
+  else
+  {
+    btn_indicador.buttonType = BT_PIXMAP;
+    btn_indicador.buttonDownPixmap = \"iconos/indicador_modo/indicador_error_270.svg\";
+    btn_indicador.buttonUpPixmap = \"iconos/indicador_modo/indicador_error_270.svg\";
+//     setValue(\"\", \"buttonType\", BT_PIXMAP,
+//              \"buttonDownPixmap\", \"iconos/indicador_modo/indicador_error_0.svg\",
+//              \"buttonUpPixmap\", \"iconos/indicador_modo/indicador_error_0.svg\");
+    //setMultiValue(\"txf_valor\", \"color\", \"LIB_IRC_MORADO_01\", \"\", \"foreCol\", \"LIB_IRC_MORADO_01\");
+    return FALSE;
+  }
+}
+" 0
+ 4
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+"pdpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10001 0 
+LANG:10010 0 
+13 4
+"btn_indicador"
+""
+1 110 16 E E E 1 E 1 E N "_ButtonText" E N "_Transparent" E E
+ E E
+3 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+3
+"layoutAlignment" "AlignNone"
+"focusPolicy" "NoFocus"
+"showFocus" "0"
+6
+LANG:10001 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10010 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10011 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10009 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10008 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10018 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  107.5 14.36266349583828 155.5 67.36266349583828
+
+P 
+4294967295
+"pictures/iconos/indicador_modo/indicador_autooff_270.svg"
+6
+LANG:10001 12 PUSH_BUTTON1
+LANG:10010 12 PUSH_BUTTON1
+LANG:10011 12 PUSH_BUTTON1
+LANG:10009 12 PUSH_BUTTON1
+LANG:10008 12 PUSH_BUTTON1
+LANG:10018 12 PUSH_BUTTON1
+"main(mapping event)
+{
+  if (parametrosOK)
+  {
+    //INST = Nombre de la instancia
+    abrirFaceplates($INST, autoModificable, elemento, inhabilitado, esquema, tag);
+  }
+}
+" 0
+ E E "main()
+{
+  if (parametrosOK)
+  {
+    //INST = Nombre de la instancia
+    cambiarEstadoIndicador($INST, \"270\");
+  }
+}
+" 0
+
+6 5
+"sentido_180"
+""
+1 68 19 E E E 1 E 0 E N "_Transparent" E N {255,255,255} E E
+ E E
+4 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+4
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  if (parametrosOK)
+  {
+    //INST = Nombre de la instancia
+    cambiarSentidoGiro($INST, \"arriba\");
+  }
+}
+" 0
+ E 0 0 3 2 1 E 1.068181818181818 0 1.857142857142857 35.3636363636364 -33.923050789876 2  1 0  "pictures/iconos/indicador_modo/flecha_horario_arriba.svg" 4294967295 E 68 19 112 33
+29 6
+"TEXT_EDIT3"
+"MULTI_PEQUENIO"
+1 4.75 28.52394329393285 E E E 1 E 0 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+5 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+16
+"alignment" "enum 132"
+"horizontalScrollBarPolicy" "enum 1"
+"bold" "bool TRUE"
+"contextMenuPolicy" "enum 0"
+"lineWidth" "int 1"
+"verticalScrollBarPolicy" "enum 1"
+"autoFormatting" "enum 0"
+"textFormat" "enum 0"
+"text" "string Inst"
+"markdown" "string **Inst**
+
+"
+"frameShape" "enum 0"
+"frameShadow" "enum 16"
+"textInteractionFlags" "enum 0"
+"transparentForMouse" ""
+"layoutAlignment" "AlignTrailing|AlignBottom"
+"showFocus" "0"
+2
+LANG:10001 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+0  4.75 28.52394329393285 109.75 52.67576482031091
+15 PVSS.TextEdit.1
+0
+"main()
+{
+  if (parametrosOK)
+  {
+    if (texto == \"FALSE\")//Si el parametro TEXTO es FALSE se oculta el texto
+    {
+      this.visible = FALSE;
+    }
+    else if (texto == \"NULL\")// Si el parametro TEXTO es NULL se muestra por defecto el tag de la varaible
+    {
+      this.text = dpGetAlias($INST + \".\");
+      this.visible = TRUE;
+      this.alignment(\"AlignCenter\");
+    }
+    else// Si es diferente a lo anterior se muestra el texto que escribamos
+    {
+      this.text = texto;
+      this.visible = TRUE;
+    }
+  }
+}
+" 0
+0
+LAYER, 1 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 2 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 3 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 4 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 5 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 6 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 7 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+0

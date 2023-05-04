@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="2000"
+   height="600"
+   version="1.1"
+   id="svg872"
+   sodipodi:docname="consulta.svg"
+   inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)">
+  <defs
+     id="defs876" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1920"
+     inkscape:window-height="1057"
+     id="namedview874"
+     showgrid="false"
+     inkscape:pagecheckerboard="true"
+     inkscape:zoom="0.1745"
+     inkscape:cx="1000"
+     inkscape:cy="300"
+     inkscape:window-x="1592"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg872" />
+  <metadata
+     id="metadata857">Svg Vector Icons : http://www.onlinewebfonts.com/icon<rdf:RDF>
+  <cc:Work
+     rdf:about="">
+    <dc:format>image/svg+xml</dc:format>
+    <dc:type
+       rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+    <dc:title></dc:title>
+  </cc:Work>
+</rdf:RDF>
+</metadata>
+  <g
+     id="g862">
+    <title
+       id="title859">background</title>
+    <rect
+       fill="none"
+       id="canvas_background"
+       height="602"
+       width="2002"
+       y="-1"
+       x="-1" />
+  </g>
+  <text
+     style="font-size:180px;font-family:Tahoma, Gadget, sans-serif;text-anchor:start;fill:#ffffff;stroke:#ffffff;stroke-width:0"
+     x="833.25"
+     y="369"
+     id="svg_4"
+     font-size="180"
+     xml:space="preserve"><tspan
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Tahoma;-inkscape-font-specification:Tahoma"
+       id="tspan1428">CONSULTA</tspan></text>
+  <g
+     id="g1434"
+     transform="matrix(0.48856819,0,0,0.48856819,139.1715,58.346412)"
+     style="fill-opacity:1;fill:#fffff7">
+    <path
+       id="path1432"
+       d="m 648.6,641 h -406 c -7.4,0 -13.4,6 -13.4,13.4 0,7.4 6,13.3 13.4,13.3 h 406 c 7.4,0 13.3,-6 13.3,-13.3 0,-7.3 -6,-13.4 -13.3,-13.4 z m 0,-137.2 h -406 c -7.4,0 -13.4,6 -13.4,13.4 0,7.4 6,13.3 13.4,13.3 h 406 c 7.4,0 13.3,-6 13.3,-13.3 0,-7.4 -6,-13.4 -13.3,-13.4 z m 0,-137.1 h -406 c -7.4,0 -13.4,6 -13.4,13.3 0,7.4 6,13.4 13.4,13.4 h 406 c 7.4,0 13.3,-6 13.3,-13.4 0,-7.4 -6,-13.3 -13.3,-13.3 z M 937,133.5 C 937,65.4 880.1,10 810.2,10 h -622 c -0.3,0 -0.5,0 -0.9,0.1 C 187,10.1 186.7,10 186.4,10 118.4,10 63,65.4 63,133.5 v 722.1 c 0,9.1 3.7,17.8 10.2,24 l 100.9,97.3 c 13,12.5 33.4,12.5 46.4,0 l 102.9,-99.3 106.8,103 c 13,12.5 33.4,12.5 46.4,0 l 106.8,-103 106.8,103 c 6.5,6.2 14.8,9.4 23.2,9.4 8.4,0 16.7,-3.1 23.2,-9.4 l 96.7,-93.2 c 6.5,-6.3 10.2,-15 10.2,-24 V 252.6 C 897.3,238.2 937,190.3 937,133.5 Z M 713.4,910.3 606.6,807.3 c -12.9,-12.5 -33.4,-12.5 -46.4,0 l -106.8,103 -106.8,-103 c -13,-12.5 -33.4,-12.5 -46.4,0 l -102.9,99.3 -67.5,-65.1 v -708 c 0,-31.3 25.5,-56.8 56.8,-56.8 0.3,0 0.5,-0.1 0.8,-0.1 0.3,0 0.6,0.1 0.9,0.1 h 0.1 c 33.1,0.1 60,25.5 60,56.8 0,31.3 -26.9,56.8 -60.1,56.8 -18.5,0 -33.4,14.9 -33.4,33.4 0,18.5 14.9,33.4 33.4,33.4 h 588.6 v 592.1 z m 96.8,-720 H 300.9 c 9,-17 14.2,-36.3 14.2,-56.8 0,-20.5 -5.2,-39.7 -14.2,-56.8 h 509.3 c 33.2,0 60.1,25.5 60.1,56.8 -0.1,31.3 -27,56.8 -60.1,56.8 z"
+       inkscape:connector-curvature="0"
+       style="fill-opacity:1;fill:#fffff7" />
+  </g>
+</svg>

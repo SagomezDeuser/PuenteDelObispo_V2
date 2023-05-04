@@ -1,0 +1,915 @@
+V 14
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+PANEL,-1 -1 450 100 N "_Transparent" 1
+"$INST"
+E E E E E 1 -1 -1 0  33.99999999999989 -1.499999999999986
+""0  1
+E "//Clases importadas a utilizar por las funciones de la librería
+lib_servo accionamiento_servo = lib_servo($INST, \"asdf\");
+" 0
+ 4
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+"pdpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10001 0 
+LANG:10010 0 
+6 18
+"RECTANGLE1"
+""
+1 5.232244589164764 4.354826373973452 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+17 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+4
+"layoutAlignment" "AlignNone"
+"focusPolicy" "StrongFocus"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 2 3 2 1 E 1 0 1 -5 -4 1 E 5.232244589164764 4.354826373973452 454 103
+13 4
+"btn_manual_on"
+""
+1 156.2701248067376 45.24212871469543 E E E 1 E 1 E N "_Transparent" E N "_Transparent" E E
+ E E
+3 0 0 0 0 0
+E E E
+1
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"focusPolicy" "StrongFocus"
+7
+LANG:10001 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10010 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10011 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10009 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10008 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10018 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10005 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  71.5 42.82232819342963 124.5 95.82232819342963
+
+P 
+4294967295
+"pictures/iconos/faceplates/fp_on/on_off.svg"
+7
+LANG:10001 12 PUSH_BUTTON1
+LANG:10010 12 PUSH_BUTTON1
+LANG:10011 12 PUSH_BUTTON1
+LANG:10009 12 PUSH_BUTTON1
+LANG:10008 12 PUSH_BUTTON1
+LANG:10018 12 PUSH_BUTTON1
+LANG:10005 12 PUSH_BUTTON1
+E "main(mapping event)
+{
+  while (this.armed()){
+    accionamiento_servo.set_jog_oma(TRUE);
+    accionamiento_servo.set_jog_om(TRUE);
+    delay(0.5);
+  }
+}
+" 0
+ "main(mapping event)
+{
+  accionamiento_servo.set_jog_oma(FALSE);
+  accionamiento_servo.set_jog_om(FALSE);
+}
+" 0
+ "main()
+{
+  if(!dpExists(accionamiento_servo.get_vel_om_av())){  //Comprobamos si no existe el DP
+    setMultiValue(\"\", \"color\", \"LIB_IRC_MORADO_01\", \"\", \"foreCol\", \"LIB_IRC_MORADO_01\");
+    return;
+  }
+
+  dpConnect(\"cambiar_estado_btn_fp\", accionamiento_servo.get_vel_om_av());
+}
+
+void cambiar_estado_btn_fp(string dp1, bool estado){
+  shape shape_objeto;
+  string path_downpixmap, path_uppixmap, nom_obj;
+  nom_obj = this.name();
+  shape_objeto = getShape(nom_obj);  //Recuperamos el shape del objeto que se va a cambiar su estado
+  path_downpixmap = shape_objeto.buttonDownPixmap();  //Recuperamos el buttonDownPixmap de relleno del objeto
+  path_uppixmap = shape_objeto.buttonUpPixmap();  //Recuperamos el buttonUpPixmap de relleno del objeto
+
+  if(path_downpixmap.isEmpty())  path_downpixmap = path_uppixmap;  //Si el path de la imagen del button DownPixmap está vacia se rellena con la del UpPixmap que debe estar rellena al colocar el button
+
+  setValue(nom_obj, \"transparentForMouse\", 0);  //Establecemos el nuevo estado de botón
+
+  if(estado){
+    strreplace(path_downpixmap, \"_inha\", \"\");  //Remplazamos la ruta de la imagen del button DownPixmap INHA por el normal
+    strreplace(path_downpixmap, \"_off.\", \"_on.\");  //Remplazamos la ruta de la imagen del button DownPixmap de OFF A ON
+    strreplace(path_uppixmap, \"_inha\", \"\");  //Remplazamos la ruta de la imagen del button UpPixmap INHA por el normal
+    strreplace(path_uppixmap, \"_off.\", \"_on.\");  //Remplazamos la ruta de la imagen del button UpPixmap de OFF A ON
+  }else{
+    strreplace(path_downpixmap, \"_inha\", \"\");  //Remplazamos la ruta de la imagen del button DownPixmap INHA por el normal
+    strreplace(path_downpixmap, \"_on.\", \"_off.\");  //Remplazamos la ruta de la imagen del button DownPixmap de ON A OFF
+    strreplace(path_uppixmap, \"_inha\", \"\");  //Remplazamos la ruta de la imagen del button UpPixmap INHA por el normal
+    strreplace(path_uppixmap, \"_on.\", \"_off.\");  //Remplazamos la ruta de la imagen del button UpPixmap de ON A OFF
+  }
+
+  setValue(nom_obj, \"buttonType\", BT_PIXMAP,
+                    \"buttonDownPixmap\", path_downpixmap,
+                    \"buttonUpPixmap\", path_uppixmap);
+}
+" 0
+
+14 6
+"TEXT_FIELD1"
+"txf_standard_1"
+1 19.12621330343948 15.01572510948742 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+5 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+2
+"layoutAlignment" "AlignNone"
+"focusPolicy" "StrongFocus"
+6
+LANG:10001 34 Consolas,-1,16,5,75,0,0,0,0,0,Bold
+LANG:10010 34 Consolas,-1,12,5,75,0,0,0,0,0,Bold
+LANG:10011 34 Consolas,-1,16,5,75,0,0,0,0,0,Bold
+LANG:10009 34 Consolas,-1,16,5,75,0,0,0,0,0,Bold
+LANG:10008 34 Consolas,-1,16,5,75,0,0,0,0,0,Bold
+LANG:10018 34 Consolas,-1,16,5,75,0,0,0,0,0,Bold
+0  16.99999999999997 22.03145021897484 110.1818181818182 45.51572510948742
+3 "10s" 10 0 0 2 0 -1  E "main()
+{
+  dpConnect(\"cambiar_velocidad_csg\", accionamiento_servo.get_jog_vel());  //Input.Er_Dato_3
+}
+
+void cambiar_velocidad_csg(string dp, float estado){
+  setValue(\"\", \"text\", estado);
+}" 0
+ "main()
+{
+  int error;
+  string descripcion, motivo;
+  float valor_ini, valor_fin;
+
+  dpGet($INST + \".Xr_JOG_VEL:_online.._value\", valor_ini);
+  getValue(\"\", \"text\", valor_fin);
+
+  if(valor_fin >= 0){
+    accionamiento_servo.set_jog_vel(valor_fin);
+    setValue(\"\", \"text\", valor_fin);
+
+    descripcion = dpGetAlias($INST + \".\");
+    motivo = \"Cambio de valor de: \" + descripcion;
+
+    writeAuditEntry($INST + \".Xr_JOG_VEL\", valor_ini, valor_fin, error, motivo);
+  }else{
+    valor_fin = 0;
+    setValue(\"\", \"text\", valor_fin);
+
+    descripcion = dpGetAlias($INST + \".\");
+    motivo = \"Cambio de valor de: \" + descripcion;
+
+    writeAuditEntry($INST + \".Xr_JOG_VEL\", valor_ini, valor_fin, error, motivo);
+  }
+}" 0
+
+2 8
+"label_vel_csg"
+""
+1 10 0 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+7 0 0 0 0 0
+E E E
+0
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+5
+"layoutAlignment" "AlignNone"
+"focusPolicy" "StrongFocus"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+  this.text(getCatStr(\"objetos\",this.name));
+}
+" 0
+ E 0 10 2 1 1 E 0.3871243051444183 0 0.3189371758612646 1.361001537720581 4.354826373973452 1 E 10 0 360 60
+0 2 2 "0s" 0 0 0 73 0 0  10 0 1
+7
+LANG:10001 35 Tahoma,-1,11,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,11,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,11,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 MS Shell Dlg 2,-1,15,5,75,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10005 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+0 7
+LANG:10001 10 PARAMETROS
+LANG:10010 18 VELOCIDAD CONSIGNA
+LANG:10011 6 ALARME
+LANG:10009 10 PARAMETROS
+LANG:10008 7 ALLARMI
+LANG:10018 7 ALARMES
+LANG:10005 6 ALARMS
+13 10
+"btn_manual_on_inv"
+""
+1 24.9255110242851 45.07393292370418 E E E 1 E 1 E N "_Transparent" E N "_Transparent" E E
+ E E
+9 0 0 0 0 0
+E E E
+1
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"focusPolicy" "StrongFocus"
+7
+LANG:10001 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10010 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10011 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10009 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10008 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10018 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10005 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  22.5 42.88679383211556 75.5 95.88679383211556
+
+P 
+4294967295
+"pictures/iconos/faceplates/fp_on/on_off_inv.svg"
+7
+LANG:10001 12 PUSH_BUTTON1
+LANG:10010 12 PUSH_BUTTON1
+LANG:10011 12 PUSH_BUTTON1
+LANG:10009 12 PUSH_BUTTON1
+LANG:10008 12 PUSH_BUTTON1
+LANG:10018 12 PUSH_BUTTON1
+LANG:10005 12 PUSH_BUTTON1
+E "main(mapping event)
+{
+  while(this.armed()){
+    accionamiento_servo.set_jog_omr(TRUE);
+    accionamiento_servo.set_jog_om(TRUE);
+    delay(0.5);
+  }
+}
+" 0
+ "main(mapping event)
+{
+  accionamiento_servo.set_jog_omr(FALSE);
+  accionamiento_servo.set_jog_om(FALSE);
+}
+" 0
+ "main()
+{
+  if(!dpExists(accionamiento_servo.get_vel_om_rt())){  //Comprobamos si no existe el DP
+    setMultiValue(\"\", \"color\", \"LIB_IRC_MORADO_01\", \"\", \"foreCol\", \"LIB_IRC_MORADO_01\");
+    return;
+  }
+
+  dpConnect(\"cambiar_estado_btn_fp\",accionamiento_servo.get_vel_om_rt());
+}
+
+void cambiar_estado_btn_fp(string dp1, bool estado){
+  shape shape_objeto;
+  string path_downpixmap, path_uppixmap, nom_obj;
+
+  nom_obj = this.name();
+  shape_objeto = getShape(nom_obj);  //Recuperamos el shape del objeto que se va a cambiar su estado
+  path_downpixmap = shape_objeto.buttonDownPixmap();  //Recuperamos el buttonDownPixmap de relleno del objeto
+  path_uppixmap = shape_objeto.buttonUpPixmap();  //Recuperamos el buttonUpPixmap de relleno del objeto
+
+  if(path_downpixmap.isEmpty())  path_downpixmap = path_uppixmap;  //Si el path de la imagen del button DownPixmap está vacia se rellena con la del UpPixmap que debe estar rellena al colocar el button
+
+  setValue(nom_obj, \"transparentForMouse\", 0);  //Establecemos el nuevo estado de botón
+
+  if(estado){
+    strreplace(path_downpixmap, \"_inha\", \"\");  //Remplazamos la ruta de la imagen del button DownPixmap INHA por el normal
+    strreplace(path_downpixmap, \"_off_\", \"_on_\");  //Remplazamos la ruta de la imagen del button DownPixmap de OFF A ON
+    strreplace(path_uppixmap, \"_inha\", \"\");  //Remplazamos la ruta de la imagen del button UpPixmap INHA por el normal
+    strreplace(path_uppixmap, \"_off_\", \"_on_\");  //Remplazamos la ruta de la imagen del button UpPixmap de OFF A ON
+  }else{
+    strreplace(path_downpixmap, \"_inha\", \"\");  //Remplazamos la ruta de la imagen del button DownPixmap INHA por el normal
+    strreplace(path_downpixmap, \"_on_\", \"_off_\");  //Remplazamos la ruta de la imagen del button DownPixmap de ON A OFF
+    strreplace(path_uppixmap, \"_inha\", \"\");  //Remplazamos la ruta de la imagen del button UpPixmap INHA por el normal
+    strreplace(path_uppixmap, \"_on_\", \"_off_\");  //Remplazamos la ruta de la imagen del button UpPixmap de ON A OFF
+  }
+
+  setValue(nom_obj, \"buttonType\", BT_PIXMAP,
+                    \"buttonDownPixmap\", path_downpixmap,
+                    \"buttonUpPixmap\", path_uppixmap);
+}
+" 0
+
+14 11
+"TEXT_FIELD2"
+"txf_standard_1"
+1 169.1472153140015 13 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+10 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+2
+"layoutAlignment" "AlignNone"
+"focusPolicy" "StrongFocus"
+6
+LANG:10001 34 Consolas,-1,16,5,75,0,0,0,0,0,Bold
+LANG:10010 34 Consolas,-1,12,5,75,0,0,0,0,0,Bold
+LANG:10011 34 Consolas,-1,16,5,75,0,0,0,0,0,Bold
+LANG:10009 34 Consolas,-1,16,5,75,0,0,0,0,0,Bold
+LANG:10008 34 Consolas,-1,16,5,75,0,0,0,0,0,Bold
+LANG:10018 34 Consolas,-1,16,5,75,0,0,0,0,0,Bold
+0  167.021002010562 20.01572510948742 260.2028201923802 43.5
+3 "10s" 10 0 0 2 0 -1  E "main()
+{
+  dpConnect(\"cambiar_velocidad_csg\", accionamiento_servo.get_mov_vel());  //Input.Er_Dato_3
+}
+
+void cambiar_velocidad_csg(string dp, float estado){
+  setValue(\"\", \"text\", estado);
+}" 0
+ "main()
+{
+  int error;
+  string descripcion, motivo;
+  float valor_ini, valor_fin;
+
+  dpGet($INST + \".Xr_MOV_VEL:_online.._value\", valor_ini);
+  getValue(\"\", \"text\", valor_fin);
+
+  if(valor_fin >= 0){
+    accionamiento_servo.set_mov_vel(valor_fin);
+    setValue(\"\", \"text\", valor_fin);
+
+    descripcion = dpGetAlias($INST + \".\");
+    motivo = \"Cambio de valor de: \" + descripcion;
+
+    writeAuditEntry($INST + \".Xr_MOV_VEL\", valor_ini, valor_fin, error, motivo);
+  }else{
+    valor_fin = 0;
+    setValue(\"\", \"text\", valor_fin);
+
+    descripcion = dpGetAlias($INST + \".\");
+    motivo = \"Cambio de valor de: \" + descripcion;
+
+    writeAuditEntry($INST + \".Xr_MOV_VEL\", valor_ini, valor_fin, error, motivo);
+  }
+}" 0
+
+2 12
+"label_vel_csg_1"
+""
+1 10 0 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+11 0 0 0 0 0
+E E E
+0
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+5
+"layoutAlignment" "AlignNone"
+"focusPolicy" "StrongFocus"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+  this.text(getCatStr(\"objetos\",this.name));
+}
+" 0
+ E 0 10 2 1 1 E 0.3871243051444183 0 0.3189371758612646 151.9030055588447 4.225895096601597 1 E 10 0 360 60
+0 2 2 "0s" 0 0 0 73 0 0  10 0 1
+7
+LANG:10001 35 Tahoma,-1,11,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,11,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,11,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 MS Shell Dlg 2,-1,15,5,75,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10005 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+0 7
+LANG:10001 10 PARAMETROS
+LANG:10010 18 VELOCIDAD CONSIGNA
+LANG:10011 6 ALARME
+LANG:10009 10 PARAMETROS
+LANG:10008 7 ALLARMI
+LANG:10018 7 ALARMES
+LANG:10005 6 ALARMS
+4 13
+"LINE1"
+""
+1 145.7500000000001 0 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N {255,255,255} E E
+ E E
+12 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+4
+"layoutAlignment" "AlignNone"
+"focusPolicy" "StrongFocus"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 2 3 2 1 E  145.7500000000001 0 145.7500000000001 100
+14 14
+"TEXT_FIELD3"
+"txf_standard_1"
+1 169.1472153140015 62.19339691605779 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+13 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+2
+"layoutAlignment" "AlignNone"
+"focusPolicy" "StrongFocus"
+6
+LANG:10001 34 Consolas,-1,16,5,75,0,0,0,0,0,Bold
+LANG:10010 34 Consolas,-1,12,5,75,0,0,0,0,0,Bold
+LANG:10011 34 Consolas,-1,16,5,75,0,0,0,0,0,Bold
+LANG:10009 34 Consolas,-1,16,5,75,0,0,0,0,0,Bold
+LANG:10008 34 Consolas,-1,16,5,75,0,0,0,0,0,Bold
+LANG:10018 34 Consolas,-1,16,5,75,0,0,0,0,0,Bold
+0  167.021002010562 69.20912202554521 260.2028201923802 92.69339691605779
+3 "10s" 10 0 0 2 0 -1  E "main()
+{
+  dpConnect(\"cambiar_posicion_csg\", accionamiento_servo.get_mov_csg());  //Input.Er_Dato_3
+}
+
+void cambiar_posicion_csg(string dp, float estado){
+  setValue(\"\", \"text\", estado);
+}" 0
+ "main()
+{
+  int error;
+  string descripcion, motivo;
+  float valor_ini, valor_fin;
+
+  dpGet($INST + \".Xr_MOV_CSG:_online.._value\", valor_ini);
+  getValue(\"\", \"text\", valor_fin);
+
+  accionamiento_servo.set_mov_csg(valor_fin);
+  setValue(\"\", \"text\", valor_fin);
+
+  descripcion = dpGetAlias($INST + \".\");
+  motivo = \"Cambio de valor de: \" + descripcion;
+
+  writeAuditEntry($INST + \".Xr_MOV_CSG\", valor_ini, valor_fin, error, motivo);
+}" 0
+
+2 15
+"label_pos_csg"
+""
+1 10 0 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+14 0 0 0 0 0
+E E E
+0
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+5
+"layoutAlignment" "AlignNone"
+"focusPolicy" "StrongFocus"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+  this.text(getCatStr(\"objetos\",this.name));
+}
+" 0
+ E 0 10 2 1 1 E 0.3871243051444183 0 0.3189371758612646 151.9030055588447 51.41929201265938 1 E 10 0 360 60
+0 2 2 "0s" 0 0 0 73 0 0  10 0 1
+7
+LANG:10001 35 Tahoma,-1,11,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,11,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,11,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 MS Shell Dlg 2,-1,15,5,75,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10005 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+0 7
+LANG:10001 10 PARAMETROS
+LANG:10010 17 POSICION CONSIGNA
+LANG:10011 6 ALARME
+LANG:10009 10 PARAMETROS
+LANG:10008 7 ALLARMI
+LANG:10018 7 ALARMES
+LANG:10005 6 ALARMS
+13 16
+"PUSH_BUTTON1"
+""
+1 477.7701248067376 25.9198005212658 E E E 1 E 1 E N "_Transparent" E N "_Transparent" E E
+ E E
+15 0 0 0 0 0
+E E E
+1
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"focusPolicy" "StrongFocus"
+7
+LANG:10001 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10010 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10011 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10009 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10008 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10018 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10005 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  393 23.5 446 76.5
+
+P 
+4294967295
+"pictures/iconos/faceplates/fp_on/on_off.svg"
+7
+LANG:10001 12 PUSH_BUTTON1
+LANG:10010 12 PUSH_BUTTON1
+LANG:10011 12 PUSH_BUTTON1
+LANG:10009 12 PUSH_BUTTON1
+LANG:10008 12 PUSH_BUTTON1
+LANG:10018 12 PUSH_BUTTON1
+LANG:10005 12 PUSH_BUTTON1
+"main()
+{
+  int error;
+  bool valor_ini, valor_fin;
+  string descripcion, motivo;
+
+  dpGet($INST + \".InOut.Ed_M_OM_F1:_online.._value\", valor_ini);
+
+  valor_fin = TRUE;
+
+  accionamiento_servo.set_mov_om(valor_fin);
+
+  descripcion = dpGetAlias($INST + \".\");
+  motivo = \"Cambio de valor de: \" + descripcion;
+
+  writeAuditEntry($INST + \".InOut.Ed_M_OM_F1\", valor_ini, valor_fin, error, motivo);
+
+}" 0
+ E E "main()
+{
+  if(!dpExists(accionamiento_servo.get_mov_om())){  //Comprobamos si no existe el DP
+    setMultiValue(\"\", \"color\", \"LIB_IRC_MORADO_01\", \"\", \"foreCol\", \"LIB_IRC_MORADO_01\");
+    return;
+  }
+
+  dpConnect(\"cambiar_estado_btn_fp\", accionamiento_servo.get_mov_om());
+}
+
+void cambiar_estado_btn_fp(string dp1, bool estado){
+  shape shape_objeto;
+  string path_downpixmap, path_uppixmap, nom_obj;
+  nom_obj = this.name();
+  shape_objeto = getShape(nom_obj);  //Recuperamos el shape del objeto que se va a cambiar su estado
+  path_downpixmap = shape_objeto.buttonDownPixmap();  //Recuperamos el buttonDownPixmap de relleno del objeto
+  path_uppixmap = shape_objeto.buttonUpPixmap();  //Recuperamos el buttonUpPixmap de relleno del objeto
+
+  if(path_downpixmap.isEmpty())  path_downpixmap = path_uppixmap;  //Si el path de la imagen del button DownPixmap está vacia se rellena con la del UpPixmap que debe estar rellena al colocar el button
+
+  setValue(nom_obj, \"transparentForMouse\", 0);  //Establecemos el nuevo estado de botón
+
+  if(estado){
+    strreplace(path_downpixmap, \"_inha\", \"\");  //Remplazamos la ruta de la imagen del button DownPixmap INHA por el normal
+    strreplace(path_downpixmap, \"_off.\", \"_on.\");  //Remplazamos la ruta de la imagen del button DownPixmap de OFF A ON
+    strreplace(path_uppixmap, \"_inha\", \"\");  //Remplazamos la ruta de la imagen del button UpPixmap INHA por el normal
+    strreplace(path_uppixmap, \"_off.\", \"_on.\");  //Remplazamos la ruta de la imagen del button UpPixmap de OFF A ON
+  }else{
+    strreplace(path_downpixmap, \"_inha\", \"\");  //Remplazamos la ruta de la imagen del button DownPixmap INHA por el normal
+    strreplace(path_downpixmap, \"_on.\", \"_off.\");  //Remplazamos la ruta de la imagen del button DownPixmap de ON A OFF
+    strreplace(path_uppixmap, \"_inha\", \"\");  //Remplazamos la ruta de la imagen del button UpPixmap INHA por el normal
+    strreplace(path_uppixmap, \"_on.\", \"_off.\");  //Remplazamos la ruta de la imagen del button UpPixmap de ON A OFF
+  }
+
+  setValue(nom_obj, \"buttonType\", BT_PIXMAP,
+                    \"buttonDownPixmap\", path_downpixmap,
+                    \"buttonUpPixmap\", path_uppixmap);
+}
+" 0
+
+19 17
+"RADIO_BOX1"
+"rb_standard_1"
+1 288.9928368045469 10.00000000000001 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+16 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+2
+"layoutAlignment" "AlignNone"
+"focusPolicy" "StrongFocus"
+7
+LANG:10001 35 Tahoma,-1,12,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,11,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,12,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 MS Shell Dlg 2,-1,15,5,75,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10005 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+0  286.9928368045469 8.000000000000007 394 92
+2
+T 
+6
+LANG:10001 3 ???
+LANG:10010 8 ABSOLUTO
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+1 
+2
+LANG:10001 0 
+LANG:10010 0 
+E E
+0 0 0 0 0
+T 
+6
+LANG:10001 3 ???
+LANG:10010 8 RELATIVO
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0 
+2
+LANG:10001 0 
+LANG:10010 0 
+E E
+0 0 0 0 0
+1
+"main()
+{
+  this.text(0, getCatStr(\"objetos\", \"label_absoluto\"));
+  this.text(1, getCatStr(\"objetos\", \"label_relativo\"));
+}
+" 0
+ "main(int button)
+{
+  accionamiento_servo.set_mov_mod(this.number());
+}
+" 0
+
+2 19
+"PRIMITIVE_TEXT1"
+""
+1 225 27 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Window" E E
+ E E
+18 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+  this.text = accionamiento_servo.unidad_vel();
+}" 0
+ E 0 1 3 2 1 E 0.7322916666666665 0 0.3771025684069162 -51.21013257575751 17.57672238672239 0 E 225 27 268 68
+0 2 2 "0s" 0 0 0 64 0 0  225 27 1
+6
+LANG:10001 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,12,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10009 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10008 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10018 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0 6
+LANG:10001 1 c
+LANG:10010 2 Hz
+LANG:10011 1 c
+LANG:10009 1 c
+LANG:10008 1 c
+LANG:10018 1 c
+2 20
+"PRIMITIVE_TEXT2"
+""
+1 225 27 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Window" E E
+ E E
+19 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+  this.text = accionamiento_servo.unidad_vel();
+}" 0
+ E 0 1 3 2 1 E 0.7322916666666665 0 0.3771025684069162 96.33578509619014 13.84549055541519 0 E 225 27 268 68
+0 2 2 "0s" 0 0 0 64 0 0  225 27 1
+6
+LANG:10001 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,12,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10009 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10008 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10018 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0 6
+LANG:10001 1 c
+LANG:10010 2 Hz
+LANG:10011 1 c
+LANG:10009 1 c
+LANG:10008 1 c
+LANG:10018 1 c
+2 21
+"PRIMITIVE_TEXT3"
+""
+1 225 27 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Window" E E
+ E E
+20 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+  this.text = accionamiento_servo.unidad_dist();
+}" 0
+ E 0 1 3 2 1 E 0.7322916666666665 0 0.3771025684069162 96.33578509619014 63.60282021151586 0 E 225 27 268 68
+0 2 2 "0s" 0 0 0 64 0 0  225 27 1
+6
+LANG:10001 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,12,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10009 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10008 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10018 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0 6
+LANG:10001 1 c
+LANG:10010 2 Hz
+LANG:10011 1 c
+LANG:10009 1 c
+LANG:10008 1 c
+LANG:10018 1 c
+0
+LAYER, 1 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 2 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 3 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 4 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 5 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 6 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 7 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+0

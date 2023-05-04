@@ -1,0 +1,4021 @@
+V 14
+2
+LANG:10001 0 
+LANG:10010 0 
+PANEL,-1 -1 1911 980 N "White" 0
+E E E E E 1 -1 -1 0  560 310
+""0  1
+E "const mapping estado_decanter = makeMapping(0, \"PARO\",
+                                   1, \"MARCHA\",
+                                   2, \"ALARMA\",
+                                   3, \"F. CARRERA\");
+
+const mapping paneles_menu_scada = makeMapping(1, \"vision/sinopticos/00_sinoptico_general/sinoptico_general\",
+                                   2, \"vision/sinopticos/01_alarmas/alarmas\",
+                                   3, \"vision/sinopticos/02_historicos/historicos\",
+                                   6, \"vision/sinopticos/06_configuracion/configuracion\",
+                                   7, \"vision/sinopticos/04_incidencias/incidencias\",
+                                   8, \"vision/sinopticos/03_informes/informes\",
+                                   9, \"vision/sinopticos/08_audit_trail/audit_trail\",
+                                   10, \"vision/sinopticos/07_esquematica/esquematica\",
+                                   11, \"vision/sinopticos/09_manual/manual\",
+                                   12, \"vision/inicio\",
+                                   13, \"vision/sinopticos/05_graficas/graficas_influx\",
+                                   14, \"vision/sinopticos/05_graficas/multigraficas_influx\",
+                                   15, \"vision/sinopticos/10_registros/registros\",
+                                   16, \"vision/sinopticos/13_bodega/depositos\",
+                                   17, \"vision/sinopticos/12_granuladora/sinoptico\",
+                                   18, \"vision/sinopticos/14_extractora/sinoptico\",
+                                   19, \"vision/sinopticos/15_preparacion/sinoptico\",
+                                   20, \"vision/sinopticos/16_secadero/sinoptico\",
+                                   21, \"vision/sinopticos/17_repaso/sinoptico\",
+                                   22, \"vision/sinopticos/18_hueso/sinoptico\",
+                                   23, \"vision/sinopticos/15_preparacion/alimentacion\",
+                                   24, \"vision/sinopticos/15_preparacion/salida\",
+                                   25, \"vision/sinopticos/15_preparacion/granuladora1\",
+                                   26, \"vision/sinopticos/15_preparacion/granuladora2\",
+                                   100, \"vision/sinopticos/06_configuracion/configuracion/config_dp_emergentes/configuracion_principal\");
+
+void cambiar_panel_activo(int clave)
+{
+  string nom;
+  mapping paneles;
+  int x, y, g;
+  int n_pantalla = numero_pantalla();
+
+  nom = paneles_menu_scada.value(clave);
+
+//   getValue(\"botonera\", \"position\", x, y);
+//   g = createAnimation();
+//   animate(g, \"btn_desplegable\", \"positionAsDyn\", makeDynInt(50, y), makeDynInt(50, y), makeMapping(\"duration\", 300));
+//   animate(g, \"btn_desplegable\", \"sizeAsDyn\", makeDynInt(50, 40), makeDynInt(50, 40), makeMapping(\"duration\", 300));
+
+  paneles = get_mapa_nombres_paneles();
+
+  if (myModuleName() == \"PRINCIPALPANTALLA1\")
+  {
+//     animate(\"botonera\", \"positionAsDyn\", makeDynInt(x, y), makeDynInt(x - 135, y), makeMapping(\"duration\", 200));
+//     startAnimation(g, \"keep\", makeMapping(\"direction\", \"Backward\"));
+    RootPanelOnModule(nom + \".pnl\", nom, \"PRINCIPALPANTALLA1\", makeDynString(\"$MODULO:\" + myModuleName(), \"$N_PANTALLA:\" + n_pantalla));
+  }
+  else if (myModuleName() == \"PRINCIPALPANTALLA2\")
+  {
+//     animate(\"botonera\", \"positionAsDyn\", makeDynInt(x, y), makeDynInt(x - 135, y), makeMapping(\"duration\", 200));
+//     startAnimation(g, \"keep\", makeMapping(\"direction\", \"Backward\"));
+    RootPanelOnModule(nom + \".pnl\", nom, \"PRINCIPALPANTALLA2\", makeDynString(\"$MODULO:\" + myModuleName(), \"$N_PANTALLA:\" + n_pantalla));
+  }
+  else if (myModuleName() == \"PRINCIPALPANTALLA3\")
+  {
+//     animate(\"botonera\", \"positionAsDyn\", makeDynInt(x, y), makeDynInt(x - 135, y), makeMapping(\"duration\", 200));
+//     startAnimation(g, \"keep\", makeMapping(\"direction\", \"Backward\"));
+    RootPanelOnModule(nom + \".pnl\", nom, \"PRINCIPALPANTALLA3\", makeDynString(\"$MODULO:\" + myModuleName(), \"$N_PANTALLA:\" + n_pantalla));
+  }
+  else if (myModuleName() == \"PRINCIPALPANTALLA4\")
+  {
+//     animate(\"botonera\", \"positionAsDyn\", makeDynInt(x, y), makeDynInt(x - 135, y), makeMapping(\"duration\", 200));
+//     startAnimation(g, \"keep\", makeMapping(\"direction\", \"Backward\"));
+    RootPanelOnModule(nom + \".pnl\", nom, \"PRINCIPALPANTALLA4\", makeDynString(\"$MODULO:\" + myModuleName(), \"$N_PANTALLA:\" + n_pantalla));
+  }
+  else if (myModuleName() == \"PRINCIPALPANTALLA5\")
+  {
+//     animate(\"botonera\", \"positionAsDyn\", makeDynInt(x, y), makeDynInt(x - 135, y), makeMapping(\"duration\", 200));
+//     startAnimation(g, \"keep\", makeMapping(\"direction\", \"Backward\"));
+    RootPanelOnModule(nom + \".pnl\", nom, \"PRINCIPALPANTALLA5\", makeDynString(\"$MODULO:\" + myModuleName(), \"$N_PANTALLA:\" + n_pantalla));
+  }
+  else if (myModuleName() == \"PRINCIPALPANTALLA6\")
+  {
+//     animate(\"botonera\", \"positionAsDyn\", makeDynInt(x, y), makeDynInt(x - 135, y), makeMapping(\"duration\", 200));
+//     startAnimation(g, \"keep\", makeMapping(\"direction\", \"Backward\"));
+    RootPanelOnModule(nom + \".pnl\", nom, \"PRINCIPALPANTALLA6\", makeDynString(\"$MODULO:\" + myModuleName(), \"$N_PANTALLA:\" + n_pantalla));
+  }
+}
+
+mapping get_mapa_nombres_paneles()
+{
+  return (paneles_menu_scada);
+}
+
+void cambiar_pantalla_actual_preparacion(string pantalla_actual, string pantalla = myModuleName())
+{
+  int n_ui = myUiNumber();
+  strreplace(pantalla, \"PRINCIPALPANTALLA\", \"\");
+  dpSetWait(\"ui_\" + n_ui + \"_pantalla_\" + pantalla + \".pantalla_actual\", pantalla_actual);
+}
+
+void convertir_decimal_hex(string dp, int decimal){
+  int  cociente, cociente_aux, resto;
+  string hexa;
+  for(int i=1; i<=2; i++){
+    if(i == 1){
+      cociente = floor(decimal/16);
+      resto = decimal%16;
+      if(resto < 10) hexa.insert(0,resto);
+      else if(resto == 10) hexa.insert(0,\"A\");
+      else if(resto == 11) hexa.insert(0,\"B\");
+      else if(resto == 12) hexa.insert(0,\"C\");
+      else if(resto == 13) hexa.insert(0,\"D\");
+      else if(resto == 14) hexa.insert(0,\"E\");
+      else if(resto == 15) hexa.insert(0,\"F\");
+    }
+    else{
+      cociente_aux = floor(cociente/16);
+      resto = cociente%16;
+      cociente = cociente_aux;
+      if(resto < 10) hexa.insert(0,resto);
+      else if(resto == 10) hexa.insert(0,\"A\");
+      else if(resto == 11) hexa.insert(0,\"B\");
+      else if(resto == 12) hexa.insert(0,\"C\");
+      else if(resto == 13) hexa.insert(0,\"D\");
+      else if(resto == 14) hexa.insert(0,\"E\");
+      else if(resto == 15) hexa.insert(0,\"F\");
+    }
+  }
+  this.text = hexa;
+}" 0
+ 4
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+"pdpi" "141.951"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10001 0 
+LANG:10010 0 
+6 29
+"RECTANGLE29"
+""
+1 340 620 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+28 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E -1 0 3 2 1 E 0.887621753246753 0 1.486699507389162 338.2086038961039 -671.7536945812805 2  1 0  "pictures/maquinarias/deshuesadora.png" 4294967295 E 340 620 780 910
+6 754
+"RECTANGLE68"
+""
+1 282 34 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+188 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+4
+"transparentForMouseInGedi" ""
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 2 3 2 1 E 2.695849129487736 0 3.594932715871767 263.5990780665285 -65.54027987606236 1 E 282 34 371 102
+6 20
+"RECTANGLE20"
+""
+1 90 120 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+19 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E -1 0 3 2 1 E 1.74 0 0.2095238095238095 353.9535714285713 676.0000000000003 2  1 0  "pictures/maquinarias/sinfin_hor_largo_gris.svg" 4294967295 E 90 120 390 260
+6 22
+"RECTANGLE22"
+""
+1 90 120 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+21 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E -1 0 3 2 1 E 0.6999295221449297 0 1.760760812481405 1157.006343006956 208.7087025022314 2  1 0  "pictures/maquinarias/tolva_gris.svg" 4294967295 E 90 120 390 260
+6 23
+"RECTANGLE23"
+""
+1 90 120 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+22 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E -1 0 3 2 1 E 1.356044932381139 0 0.2095238095238096 1131.142476371356 654.625000000001 2  1 0  "pictures/maquinarias/sinfin_hor_gris_invert.svg" 4294967295 E 90 120 390 260
+6 40
+"RECTANGLE40"
+""
+1 90 120 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+39 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E -1 0 3 2 1 E 0.4998773219401642 0 1.735714285714287 1005.011041025385 281.7142857142856 2  1 0  "pictures/maquinarias/elevador4.png" 4294967295 E 90 120 390 260
+6 49
+"RECTANGLE49"
+""
+1 90 120 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+48 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E -1 0 3 2 1 E 1.087040378006874 0 0.1660311191268783 432.7199374079526 179.2191228476321 2  1 0  "pictures/maquinarias/sinfin_hor_gris.svg" 4294967295 E 90 120 390 260
+6 54
+"RECTANGLE54"
+""
+1 90 120 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+53 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E -1 0 3 2 1 E 0.4998998389366479 0 1.735714285714286 1504.796042345036 230.2464172356173 2  1 0  "pictures/maquinarias/elevador2.png" 4294967295 E 90 120 390 260
+13 68
+"PUSH_BUTTON6"
+""
+1 1560 880 E E E 1 E 1 E N "white" E N "LIB_IRC_AZUL_01" E E
+ E E
+67 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 8 Synoptic
+LANG:10010 6 Inicio
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,21,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  1558 878 1741.315125259452 951.9019159511146
+
+T 
+2
+LANG:10001 0 
+LANG:10010 12 REARME
+MOTOR
+"main(mapping event)
+{
+  dpSet(\"015_PREPARACION.cio15008\", TRUE);
+  delay(1);
+  dpSet(\"015_PREPARACION.cio15008\", FALSE);
+}" 0
+ E E "main()
+{
+  dpConnect(\"cambiar_fondo\", \"015_PREPARACION.cio15015\");
+}
+
+void cambiar_fondo(string dp, bool valor)
+{
+  if(valor)
+  {
+    this.backCol(\"LIB_IRC_ROJO_12\");
+  }
+  else
+  {
+    this.backCol(\"LIB_IRC_AZUL_01\");
+  }
+}" 0
+
+13 69
+"PUSH_BUTTON7"
+""
+1 1359.684874740546 880.0000000000001 E E E 1 E 1 E N "white" E N "LIB_IRC_AZUL_01" E E
+ E E
+68 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 8 Synoptic
+LANG:10010 6 Inicio
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,21,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  1357.684874740546 878.0000000000001 1540.999999999999 951.9019159511147
+
+T 
+2
+LANG:10001 0 
+LANG:10010 11 PARO
+BOCINA
+"main(mapping event)
+{
+  dpSet(\"015_PREPARACION.cio15009\", TRUE);
+  delay(1);
+  dpSet(\"015_PREPARACION.cio15009\", FALSE);
+}" 0
+ E E "main()
+{
+  dpConnect(\"cambiar_fondo\", \"015_PREPARACION.cio15014\");
+}
+
+void cambiar_fondo(string dp, bool valor)
+{
+  if(valor)
+  {
+    this.backCol(\"LIB_IRC_ROJO_12\");
+  }
+  else
+  {
+    this.backCol(\"LIB_IRC_AZUL_01\");
+  }
+}" 0
+
+1 913 11 "" 6
+0
+1 915 12 "" 6
+0
+2 124
+"PRIMITIVE_TEXT1"
+""
+1 1060 500 E E E 1 E 1 E N "White" E N "LIB_IRC_ROJO_12" E E
+ E E
+97 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+  dpConnect(\"cambiar_visibilidad\", \"015_PREPARACION.cio20210\");
+}
+
+void cambiar_visibilidad(string dp, bool valor)
+{
+  this.visible(!valor);
+}" 0
+ E 0 1 3 2 1 E 1.280822323281807 0 0.9985987993016368 -1284.579475921648 -175.2217175898005 1 E 1060 500 1200 570
+0 2 2 "0s" 0 0 0 73 0 0  1060 500 1
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+0 2
+LANG:10001 20 N. CONFIRMA EXTRAC
+LANG:10010 20 N. CONFIRMA EXTRAC
+6 448
+"RECTANGLE67"
+""
+1 220.0516583860348 -24.04707586893039 E E E 1 E 1 E N "LIB_IRC_AZULTRANS_03" E N "LIB_IRC_AZUL_03" E E
+ E E
+121 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+7
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,80}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "LIB_IRC_BLANCO"
+"antiAliased" "1"
+E E 0 2 3 2 1 E -0.7809409846412841 0 0.2899283639734003 2011.847358771937 566.9719293650232 1 E 220 40 360 150
+14 450
+"TEXT_FIELD10"
+""
+1 1794.8191531471 447.1906094956842 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+123 0 0 0 0 0
+E E E
+1
+9
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10011 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10009 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10008 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,11,5,75,0,0,0,0,0,Negrita
+0  1794.892784338747 580.1220080004672 1842.040342150855 608.3357761164095
+2 "0s" 0 0 0 9 0 -1  E "main()
+{
+  this.text(\"Hz\");
+}" 0
+ E
+1 917 30 "" 6
+0
+1 918 31 "" 6
+0
+1 919 32 "" 6
+0
+1 921 46 "" 1
+0
+1 922 47 "" 1
+0
+1 923 48 "" 1
+0
+1 924 49 "" 1
+0
+1 925 50 "" 1
+0
+1 926 51 "" 1
+0
+1 927 52 "" 1
+0
+1 920 33 "" 6
+0
+1 928 53 "" 1
+0
+2 674
+"PRIMITIVE_TEXT10"
+""
+1 1060 500 E E E 1 E 1 E N "White" E N "LIB_IRC_ROJO_12" E E
+ E E
+176 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+  dpConnect(\"cambiar_visibilidad\", \"015_PREPARACION.cio10304\");
+}
+
+void cambiar_visibilidad(string dp, bool valor)
+{
+  this.visible(valor);
+}" 0
+ E 0 1 3 2 1 E 0.6061224489795899 0 0.285714285714286 758.7297344441902 223.7468250106589 1 E 1060 500 1200 570
+0 2 2 "0s" 0 0 0 73 0 0  1060 500 1
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+0 2
+LANG:10001 20 N. CONFIRMA EXTRAC
+LANG:10010 3 max
+2 675
+"PRIMITIVE_TEXT11"
+""
+1 1060 500 E E E 1 E 1 E N "White" E N "LIB_IRC_ROJO_12" E E
+ E E
+177 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+  dpConnect(\"cambiar_visibilidad\", \"015_PREPARACION.cio10305\");
+}
+
+void cambiar_visibilidad(string dp, bool valor)
+{
+  this.visible(valor);
+}" 0
+ E 0 1 3 2 1 E 0.6061224489795899 0 0.285714285714286 758.7297344441902 249.4736206213947 1 E 1060 500 1200 570
+0 2 2 "0s" 0 0 0 73 0 0  1060 500 1
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+0 2
+LANG:10001 20 N. CONFIRMA EXTRAC
+LANG:10010 3 min
+13 744
+"PUSH_BUTTON8"
+""
+1 483.3811261683723 135.5111932734931 E E E 1 E 1 E N "white" E N "LIB_IRC_AZUL_01" E E
+ E E
+178 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 8 Synoptic
+LANG:10010 6 Inicio
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,21,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  481.3811261683723 133.5111932734931 546.3811261683722 185.5111932734931
+
+T 
+2
+LANG:10001 0 
+LANG:10010 1 M
+"main(mapping event)
+{
+  dpSet(\"015_PREPARACION.cio10209\", TRUE);
+}" 0
+ E E "main()
+{
+  dpConnect(\"cambiar_fondo\", \"015_PREPARACION.cio12209\");
+}
+
+void cambiar_fondo(string dp, bool valor)
+{
+  if(valor)
+  {
+    this.backCol(\"LIB_IRC_VERDE_01\");
+  }
+  else
+  {
+    this.backCol(\"LIB_IRC_AZUL_01\");
+  }
+}" 0
+
+13 745
+"PUSH_BUTTON9"
+""
+1 322.5535714285713 104.4038162924033 E E E 1 E 1 E N "white" E N "LIB_IRC_AZUL_01" E E
+ E E
+179 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 8 Synoptic
+LANG:10010 6 Inicio
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,21,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  554.5535714285713 133.5111932734931 619.5535714285713 185.5111932734931
+
+T 
+2
+LANG:10001 0 
+LANG:10010 1 P
+"main(mapping event)
+{
+  dpGet(\"015_PREPARACION.cio10209\", FALSE);
+}" 0
+ E E "main()
+{
+  dpConnect(\"cambiar_fondo\", \"015_PREPARACION.cio12209\");
+}
+
+void cambiar_fondo(string dp, bool valor)
+{
+  if(valor)
+  {
+    this.backCol(\"LIB_IRC_AZUL_01\");
+  }
+  else
+  {
+    this.backCol(\"LIB_IRC_ROJO_12\");
+  }
+}" 0
+
+2 746
+"PRIMITIVE_TEXT4"
+""
+1 310 470 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Window" E E
+ E E
+180 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E 2.064285714285714 0 1.227226477486457 1.17857142857153 -433.5107301329202 0 E 310 470 450 500
+0 2 2 "0s" 0 0 0 73 0 0  310 470 1
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+0 2
+LANG:10001 9 FALLO RPM
+LANG:10010 25 SF.   RECO.   GRANULADORA
+13 748
+"PUSH_BUTTON11"
+""
+1 485.5535714285713 249.1428571428575 E E E 1 E 1 E N "white" E N "LIB_IRC_AZUL_01" E E
+ E E
+182 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 8 Synoptic
+LANG:10010 6 Inicio
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,21,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  717.5535714285713 278.2502341239473 782.5535714285713 330.2502341239473
+
+T 
+2
+LANG:10001 0 
+LANG:10010 1 P
+"main(mapping event)
+{
+  dpGet(\"015_PREPARACION.cio10214\", FALSE);
+}" 0
+ E E "main()
+{
+  dpConnect(\"cambiar_fondo\", \"015_PREPARACION.cio12214\");
+}
+
+void cambiar_fondo(string dp, bool valor)
+{
+  if(valor)
+  {
+    this.backCol(\"LIB_IRC_AZUL_01\");
+  }
+  else
+  {
+    this.backCol(\"LIB_IRC_ROJO_12\");
+  }
+}" 0
+
+13 749
+"PUSH_BUTTON12"
+""
+1 485.5535714285713 196.7650354817389 E E E 1 E 1 E N "white" E N "LIB_IRC_AZUL_01" E E
+ E E
+183 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 8 Synoptic
+LANG:10010 6 Inicio
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,21,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  717.5535714285713 225.8724124628287 782.5535714285713 277.8724124628288
+
+T 
+2
+LANG:10001 0 
+LANG:10010 1 P
+"main(mapping event)
+{
+  dpGet(\"015_PREPARACION.cio10204\", FALSE);
+}" 0
+ E E "main()
+{
+  dpConnect(\"cambiar_fondo\", \"015_PREPARACION.cio12204\");
+}
+
+void cambiar_fondo(string dp, bool valor)
+{
+  if(valor)
+  {
+    this.backCol(\"LIB_IRC_AZUL_01\");
+  }
+  else
+  {
+    this.backCol(\"LIB_IRC_ROJO_12\");
+  }
+}" 0
+
+13 750
+"PUSH_BUTTON13"
+""
+1 645.0535714285713 227.8724124628287 E E E 1 E 1 E N "white" E N "LIB_IRC_AZUL_01" E E
+ E E
+184 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 8 Synoptic
+LANG:10010 6 Inicio
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,21,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  643.0535714285713 225.8724124628287 708.0535714285713 277.8724124628288
+
+T 
+2
+LANG:10001 0 
+LANG:10010 1 M
+"main(mapping event)
+{
+  dpSet(\"015_PREPARACION.cio10204\", TRUE);
+}" 0
+ E E "main()
+{
+  dpConnect(\"cambiar_fondo\", \"015_PREPARACION.cio12204\");
+}
+
+void cambiar_fondo(string dp, bool valor)
+{
+  if(valor)
+  {
+    this.backCol(\"LIB_IRC_VERDE_01\");
+  }
+  else
+  {
+    this.backCol(\"LIB_IRC_AZUL_01\");
+  }
+}" 0
+
+13 751
+"PUSH_BUTTON14"
+""
+1 645.0535714285713 280.2502341239473 E E E 1 E 1 E N "white" E N "LIB_IRC_AZUL_01" E E
+ E E
+185 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 8 Synoptic
+LANG:10010 6 Inicio
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,21,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  643.0535714285713 278.2502341239473 708.0535714285713 330.2502341239473
+
+T 
+2
+LANG:10001 0 
+LANG:10010 1 M
+"main(mapping event)
+{
+  dpSet(\"015_PREPARACION.cio10214\", TRUE);
+}" 0
+ E E "main()
+{
+  dpConnect(\"cambiar_fondo\", \"015_PREPARACION.cio12214\");
+}
+
+void cambiar_fondo(string dp, bool valor)
+{
+  if(valor)
+  {
+    this.backCol(\"LIB_IRC_VERDE_01\");
+  }
+  else
+  {
+    this.backCol(\"LIB_IRC_AZUL_01\");
+  }
+}" 0
+
+2 752
+"PRIMITIVE_TEXT12"
+""
+1 310 470 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Window" E E
+ E E
+186 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E 1.859795918367348 0 1.227226477486457 -195.9831632653063 -335.817457574254 0 E 310 470 450 500
+0 2 2 "0s" 0 0 0 73 0 0  310 470 1
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+0 2
+LANG:10001 9 FALLO RPM
+LANG:10010 20 ALVEOLEAR   ENFRIDOR
+2 753
+"PRIMITIVE_TEXT13"
+""
+1 310 470 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Window" E E
+ E E
+187 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E 1.145510204081634 0 1.227226477486457 125.4454081632647 -289.3038626761203 0 E 310 470 450 500
+0 2 2 "0s" 0 0 0 73 0 0  310 470 1
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+0 2
+LANG:10001 9 FALLO RPM
+LANG:10010 13 PIST   CICLON
+2 755
+"PRIMITIVE_TEXT26"
+""
+1 310 470 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Window" E E
+ E E
+189 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E 1.193433605126407 0 2.925522176215656 690.5891538393852 -1313.8525656785 0 E 310 470 450 500
+0 2 2 "0s" 0 0 0 73 0 0  310 470 1
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+0 2
+LANG:10001 9 FALLO RPM
+LANG:10010 31 SELECCION MODO SALIDA  PRO.
+13 756
+"PUSH_BUTTON41"
+""
+1 1054.436361157693 172.1260082345622 E E E 1 E 1 E N "white" E N "LIB_IRC_AZUL_01" E E
+ E E
+190 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 8 Synoptic
+LANG:10010 6 Inicio
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,21,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  1052.436361157693 170.1260082345622 1235.751486417145 223.1428571428582
+
+T 
+2
+LANG:10001 0 
+LANG:10010 3 AUT
+"main(mapping event)
+{
+  dpSet(\"015_PREPARACION.cio15004\", TRUE);
+}" 0
+ E E "main()
+{
+  dpConnect(\"cambiar_fondo\", \"015_PREPARACION.cio15004\");
+}
+
+void cambiar_fondo(string dp, bool valor)
+{
+  if(valor)
+  {
+    this.backCol(\"LIB_IRC_VERDE_01\");
+  }
+  else
+  {
+    this.backCol(\"LIB_IRC_AZUL_01\");
+  }
+}" 0
+
+13 757
+"PUSH_BUTTON42"
+""
+1 1054.436361157693 231.1428571428579 E E E 1 E 1 E N "white" E N "LIB_IRC_AZUL_01" E E
+ E E
+191 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 8 Synoptic
+LANG:10010 6 Inicio
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,21,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  1052.436361157693 229.1428571428579 1235.751486417146 282.1597060511539
+
+T 
+2
+LANG:10001 0 
+LANG:10010 3 MAN
+"main(mapping event)
+{
+  dpSet(\"015_PREPARACION.cio15004\", FALSE);
+}" 0
+ E E "main()
+{
+  dpConnect(\"cambiar_fondo\", \"015_PREPARACION.cio15004\");
+}
+
+void cambiar_fondo(string dp, bool valor)
+{
+  if(valor)
+  {
+    this.backCol(\"LIB_IRC_AZUL_01\");
+  }
+  else
+  {
+    this.backCol(\"LIB_IRC_ROJO_12\");
+  }
+}" 0
+
+6 774
+"RECTANGLE60"
+""
+1 220.0516583860348 -24.04707586893039 E E E 1 E 1 E N "LIB_IRC_AZULTRANS_03" E N "LIB_IRC_AZUL_03" E E
+ E E
+192 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+7
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,80}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "LIB_IRC_BLANCO"
+"antiAliased" "1"
+E E 0 2 3 2 1 E -0.7809409846412841 0 0.2899283639734003 345.5870602353825 65.61491883324615 1 E 220 40 360 150
+14 775
+"txf_valor"
+""
+1 64.82916858317162 -54.27328509406374 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+193 0 0 0 0 0
+E E E
+1
+9
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10011 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10009 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10008 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,11,5,75,0,0,0,0,0,Negrita
+0  66.45089871958157 78.65811341071938 145.8108812805906 106.8718815266615
+2 "0.1f" 2 0 0 9 0 -1  E "main()
+{
+  dpConnect(\"cambiar_valor\", \"015_PREPARACION.d25166\");
+}
+
+void cambiar_valor(string dp, float valor)
+{
+  this.text(valor);
+}" 0
+ E
+14 776
+"TEXT_FIELD13"
+""
+1 140.2773531454816 8.140921546310892 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+194 0 0 0 0 0
+E E E
+1
+9
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+2
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10011 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10009 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10008 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,11,5,75,0,0,0,0,0,Negrita
+0  139.7271305736776 79.07222048329999 173.8937077594896 106.6715425700229
+2 "0s" 0 0 0 9 0 -1  E "main()
+{
+  this.text(\"C\");
+}" 0
+ E
+2 777
+"PRIMITIVE_TEXT27"
+""
+1 310 470 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Window" E E
+ E E
+195 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E 1.287309783044292 0 1.227226477486457 -356.8417307305488 -538.8556383060193 0 E 310 470 450 500
+0 2 2 "0s" 0 0 0 73 0 0  310 470 1
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+0 2
+LANG:10001 9 FALLO RPM
+LANG:10010 15 TMP   ENFRIADOR
+6 778
+"RECTANGLE69"
+""
+1 220.0516583860348 -24.04707586893039 E E E 1 E 1 E N "LIB_IRC_AZULTRANS_03" E N "LIB_IRC_AZUL_03" E E
+ E E
+196 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+7
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,80}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "LIB_IRC_BLANCO"
+"antiAliased" "1"
+E E 0 2 3 2 1 E -0.7809409846412841 0 0.2899283639734003 345.9961753703617 160.7687390605827 1 E 220 40 360 150
+14 779
+"TEXT_FIELD14"
+""
+1 65.23828371814966 40.88053513327301 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+197 0 0 0 0 0
+E E E
+1
+9
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10011 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10009 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10008 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,11,5,75,0,0,0,0,0,Negrita
+0  66.86001385455961 173.8119336380561 146.2199964155686 202.0257017539983
+2 "0.1f" 2 0 0 9 0 -1  E "main()
+{
+  dpConnect(\"cambiar_valor\", \"015_PREPARACION.d25192\");
+}
+
+void cambiar_valor(string dp, float valor)
+{
+  this.text(valor);
+}" 0
+ E
+14 780
+"TEXT_FIELD15"
+""
+1 140.6864682804605 103.2947417736477 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+198 0 0 0 0 0
+E E E
+1
+9
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+2
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10011 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10009 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10008 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,11,5,75,0,0,0,0,0,Negrita
+0  140.1362457086557 174.2260407106368 174.3028228944677 201.8253627973597
+2 "0s" 0 0 0 9 0 -1  E "main()
+{
+  this.text(\"C\");
+}" 0
+ E
+2 781
+"PRIMITIVE_TEXT28"
+""
+1 310 470 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Window" E E
+ E E
+199 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E 1.287309783044292 0 1.227226477486457 -356.4326155955705 -443.7018180786828 0 E 310 470 450 500
+0 2 2 "0s" 0 0 0 73 0 0  310 470 1
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+0 2
+LANG:10001 9 FALLO RPM
+LANG:10010 17 SP   TMP   MAXIMA
+6 782
+"RECTANGLE70"
+""
+1 220.0516583860348 -24.04707586893039 E E E 1 E 1 E N "LIB_IRC_AZULTRANS_03" E N "LIB_IRC_AZUL_03" E E
+ E E
+200 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+7
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,80}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "LIB_IRC_BLANCO"
+"antiAliased" "1"
+E E 0 2 3 2 1 E -0.7809409846412841 0 0.2899283639734003 347.7908776066977 256.7504628140384 1 E 220 40 360 150
+14 783
+"TEXT_FIELD16"
+""
+1 67.03298595448564 136.8622588867286 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+201 0 0 0 0 0
+E E E
+1
+9
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10011 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10009 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10008 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,11,5,75,0,0,0,0,0,Negrita
+0  68.65471609089559 269.7936573915117 148.0146986519046 298.007425507454
+2 "0.1f" 2 0 0 9 0 -1  E "main()
+{
+  dpConnect(\"cambiar_valor\", \"015_PREPARACION.d25194\");
+}
+
+void cambiar_valor(string dp, float valor)
+{
+  this.text(valor);
+}" 0
+ E
+14 784
+"TEXT_FIELD17"
+""
+1 142.4811705167965 199.2764655271034 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+202 0 0 0 0 0
+E E E
+1
+9
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+2
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10011 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10009 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10008 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,11,5,75,0,0,0,0,0,Negrita
+0  141.9309479449917 270.2077644640925 176.0975251308037 297.8070865508153
+2 "0s" 0 0 0 9 0 -1  E "main()
+{
+  this.text(\"C\");
+}" 0
+ E
+2 785
+"PRIMITIVE_TEXT29"
+""
+1 310 470 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Window" E E
+ E E
+203 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E 1.287309783044292 0 1.227226477486457 -354.6379133592345 -347.7200943252271 0 E 310 470 450 500
+0 2 2 "0s" 0 0 0 73 0 0  310 470 1
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+0 2
+LANG:10001 9 FALLO RPM
+LANG:10010 17 SP   TMP   MINIMA
+2 804
+"PRIMITIVE_TEXT30"
+""
+1 1060 500 E E E 1 E 1 E N "White" E N "LIB_IRC_ROJO_12" E E
+ E E
+206 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+  dpConnect(\"cambiar_visibilidad\", \"015_PREPARACION.cio20113\");
+}
+
+void cambiar_visibilidad(string dp, bool valor)
+{
+  this.visible(valor);
+}" 0
+ E 0 1 3 2 1 E 0.8928571428571433 0 0.3428571428571431 33.5714285714281 158.5714285714285 1 E 1060 500 1200 570
+0 2 2 "0s" 0 0 0 73 0 0  1060 500 1
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+0 2
+LANG:10001 20 N. CONFIRMA EXTRAC
+LANG:10010 10 N. MAX SEG
+2 805
+"PRIMITIVE_TEXT31"
+""
+1 1060 500 E E E 1 E 1 E N "White" E N "LIB_IRC_ROJO_12" E E
+ E E
+207 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+  dpConnect(\"cambiar_visibilidad\", \"015_PREPARACION.cio20112\");
+}
+
+void cambiar_visibilidad(string dp, bool valor)
+{
+  this.visible(valor);
+}" 0
+ E 0 1 3 2 1 E 0.8761904761904755 0 0.3428571428571431 52.40476190476299 196.9125736138117 1 E 1060 500 1200 570
+0 2 2 "0s" 0 0 0 73 0 0  1060 500 1
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+0 2
+LANG:10001 20 N. CONFIRMA EXTRAC
+LANG:10010 6 N. MAX
+1 929 56 "" 6
+0
+1 931 57 "" 6
+0
+13 810
+"PUSH_BUTTON43"
+""
+1 460.5535714285713 395.1428571428575 E E E 1 E 1 E N "white" E N "LIB_IRC_AZUL_01" E E
+ E E
+210 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 8 Synoptic
+LANG:10010 6 Inicio
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,21,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  458.5535714285713 393.1428571428575 523.5535714285713 445.1428571428575
+
+T 
+2
+LANG:10001 0 
+LANG:10010 1 M
+"main(mapping event)
+{
+  dpSet(\"015_PREPARACION.cio10205\", TRUE);
+}" 0
+ E E "main()
+{
+  dpConnect(\"cambiar_fondo\", \"015_PREPARACION.cio12205\");
+}
+
+void cambiar_fondo(string dp, bool valor)
+{
+  if(valor)
+  {
+    this.backCol(\"LIB_IRC_VERDE_01\");
+  }
+  else
+  {
+    this.backCol(\"LIB_IRC_AZUL_01\");
+  }
+}" 0
+
+13 811
+"PUSH_BUTTON44"
+""
+1 299.7260166887704 364.0354801617677 E E E 1 E 1 E N "white" E N "LIB_IRC_AZUL_01" E E
+ E E
+211 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 8 Synoptic
+LANG:10010 6 Inicio
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,21,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  531.7260166887704 393.1428571428575 596.7260166887704 445.1428571428575
+
+T 
+2
+LANG:10001 0 
+LANG:10010 1 P
+"main(mapping event)
+{
+  dpGet(\"015_PREPARACION.cio10205\", FALSE);
+}" 0
+ E E "main()
+{
+  dpConnect(\"cambiar_fondo\", \"015_PREPARACION.cio12205\");
+}
+
+void cambiar_fondo(string dp, bool valor)
+{
+  if(valor)
+  {
+    this.backCol(\"LIB_IRC_AZUL_01\");
+  }
+  else
+  {
+    this.backCol(\"LIB_IRC_ROJO_12\");
+  }
+}" 0
+
+2 812
+"PRIMITIVE_TEXT32"
+""
+1 310 470 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Window" E E
+ E E
+212 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E 1.145510204081634 0 1.227226477486457 55.44540816326474 -215.6535872757773 0 E 310 470 450 500
+0 2 2 "0s" 0 0 0 73 0 0  310 470 1
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+0 2
+LANG:10001 9 FALLO RPM
+LANG:10010 14 VENT.  CENTRI.
+13 813
+"PUSH_BUTTON45"
+""
+1 530.5535714285713 491.1428571428575 E E E 1 E 1 E N "white" E N "LIB_IRC_AZUL_01" E E
+ E E
+213 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 8 Synoptic
+LANG:10010 6 Inicio
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,21,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  528.5535714285713 489.1428571428575 593.5535714285713 541.1428571428575
+
+T 
+2
+LANG:10001 0 
+LANG:10010 1 M
+"main(mapping event)
+{
+  dpSet(\"015_PREPARACION.cio10206\", TRUE);
+}" 0
+ E E "main()
+{
+  dpConnect(\"cambiar_fondo\", \"015_PREPARACION.cio12206\");
+}
+
+void cambiar_fondo(string dp, bool valor)
+{
+  if(valor)
+  {
+    this.backCol(\"LIB_IRC_VERDE_01\");
+  }
+  else
+  {
+    this.backCol(\"LIB_IRC_AZUL_01\");
+  }
+}" 0
+
+13 814
+"PUSH_BUTTON46"
+""
+1 369.7260166887704 460.0354801617677 E E E 1 E 1 E N "white" E N "LIB_IRC_AZUL_01" E E
+ E E
+214 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 8 Synoptic
+LANG:10010 6 Inicio
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,21,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  601.7260166887704 489.1428571428575 666.7260166887704 541.1428571428575
+
+T 
+2
+LANG:10001 0 
+LANG:10010 1 P
+"main(mapping event)
+{
+  dpGet(\"015_PREPARACION.cio10206\", FALSE);
+}" 0
+ E E "main()
+{
+  dpConnect(\"cambiar_fondo\", \"015_PREPARACION.cio12206\");
+}
+
+void cambiar_fondo(string dp, bool valor)
+{
+  if(valor)
+  {
+    this.backCol(\"LIB_IRC_AZUL_01\");
+  }
+  else
+  {
+    this.backCol(\"LIB_IRC_ROJO_12\");
+  }
+}" 0
+
+2 815
+"PRIMITIVE_TEXT33"
+""
+1 310 470 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Window" E E
+ E E
+215 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E 1.314285714285715 0 1.227226477486457 73.12499999999974 -119.6535872757773 0 E 310 470 450 500
+0 2 2 "0s" 0 0 0 73 0 0  310 470 1
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+0 2
+LANG:10001 9 FALLO RPM
+LANG:10010 14 ESCLUSA CICLON
+2 816
+"PRIMITIVE_TEXT34"
+""
+1 310 470 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Window" E E
+ E E
+216 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E 2.275552610307042 0 1.227226477486457 -615.4213091951831 -116.7964444186348 0 E 310 470 450 500
+0 2 2 "0s" 0 0 0 73 0 0  310 470 1
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+0 2
+LANG:10001 9 FALLO RPM
+LANG:10010 14 PIST ENFRIADOR
+13 817
+"PUSH_BUTTON47"
+""
+1 763.0195190255149 606.9710736480841 E E E 1 E 1 E N "white" E N "LIB_IRC_AZUL_01" E E
+ E E
+217 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 8 Synoptic
+LANG:10010 6 Inicio
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,21,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  995.0195190255149 636.0784506291739 1060.019519025515 688.0784506291741
+
+T 
+2
+LANG:10001 0 
+LANG:10010 1 P
+"main(mapping event)
+{
+  dpGet(\"015_PREPARACION.cio10207\", FALSE);
+}" 0
+ E E "main()
+{
+  dpConnect(\"cambiar_fondo\", \"015_PREPARACION.cio12207\");
+}
+
+void cambiar_fondo(string dp, bool valor)
+{
+  if(valor)
+  {
+    this.backCol(\"LIB_IRC_AZUL_01\");
+  }
+  else
+  {
+    this.backCol(\"LIB_IRC_ROJO_12\");
+  }
+}" 0
+
+13 818
+"PUSH_BUTTON48"
+""
+1 922.519519025515 638.078450629174 E E E 1 E 1 E N "white" E N "LIB_IRC_AZUL_01" E E
+ E E
+218 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 8 Synoptic
+LANG:10010 6 Inicio
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,21,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  920.519519025515 636.078450629174 985.5195190255149 688.0784506291741
+
+T 
+2
+LANG:10001 0 
+LANG:10010 1 M
+"main(mapping event)
+{
+  dpSet(\"015_PREPARACION.cio10207\", TRUE);
+}" 0
+ E E "main()
+{
+  dpConnect(\"cambiar_fondo\", \"015_PREPARACION.cio12207\");
+}
+
+void cambiar_fondo(string dp, bool valor)
+{
+  if(valor)
+  {
+    this.backCol(\"LIB_IRC_VERDE_01\");
+  }
+  else
+  {
+    this.backCol(\"LIB_IRC_AZUL_01\");
+  }
+}" 0
+
+2 819
+"PRIMITIVE_TEXT35"
+""
+1 310 470 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Window" E E
+ E E
+219 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E 1.413124115488375 0 1.227226477486457 282.4850956271753 66.87360904824236 0 E 310 470 450 500
+0 2 2 "0s" 0 0 0 73 0 0  310 470 1
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+0 2
+LANG:10001 9 FALLO RPM
+LANG:10010 19 ESP.  SALI.  PELETS
+1 933 58 "" 1
+0
+13 824
+"PUSH_BUTTON49"
+""
+1 55.0390798863516 538.4417163609264 E E E 1 E 1 E N "white" E N "LIB_IRC_AZUL_01" E E
+ E E
+224 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 8 Synoptic
+LANG:10010 6 Inicio
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,21,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  53.0390798863516 536.4417163609264 118.0390798863516 588.4417163609264
+
+T 
+2
+LANG:10001 0 
+LANG:10010 1 M
+"main(mapping event)
+{
+  dpSet(\"015_PREPARACION.cio10107\", TRUE);
+}" 0
+ E E "main()
+{
+  dpConnect(\"cambiar_fondo\", \"015_PREPARACION.cio12109\");
+}
+
+void cambiar_fondo(string dp, bool valor)
+{
+  if(valor)
+  {
+    this.backCol(\"LIB_IRC_VERDE_01\");
+  }
+  else
+  {
+    this.backCol(\"LIB_IRC_AZUL_01\");
+  }
+}" 0
+
+13 825
+"PUSH_BUTTON50"
+""
+1 -105.7884748534493 507.3343393798366 E E E 1 E 1 E N "white" E N "LIB_IRC_AZUL_01" E E
+ E E
+225 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 8 Synoptic
+LANG:10010 6 Inicio
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,21,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  126.2115251465507 536.4417163609264 191.2115251465507 588.4417163609264
+
+T 
+2
+LANG:10001 0 
+LANG:10010 1 P
+"main(mapping event)
+{
+  dpGet(\"015_PREPARACION.cio10107\", FALSE);
+}" 0
+ E E "main()
+{
+  dpConnect(\"cambiar_fondo\", \"015_PREPARACION.cio12109\");
+}
+
+void cambiar_fondo(string dp, bool valor)
+{
+  if(valor)
+  {
+    this.backCol(\"LIB_IRC_AZUL_01\");
+  }
+  else
+  {
+    this.backCol(\"LIB_IRC_ROJO_12\");
+  }
+}" 0
+
+2 826
+"PRIMITIVE_TEXT36"
+""
+1 310 470 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Window" E E
+ E E
+226 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E 0.9181316724193589 0 1.227226477486457 -226.4189865567448 -77.85547798650759 0 E 310 470 450 500
+0 2 2 "0s" 0 0 0 73 0 0  310 470 1
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+0 2
+LANG:10001 9 FALLO RPM
+LANG:10010 8 REDLER 1
+1 934 59 "" 1
+0
+13 832
+"PUSH_BUTTON53"
+""
+1 299.2655937537618 538.4417163609264 E E E 1 E 1 E N "white" E N "LIB_IRC_AZUL_01" E E
+ E E
+232 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 8 Synoptic
+LANG:10010 6 Inicio
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,21,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  297.2655937537618 536.4417163609264 362.2655937537618 588.4417163609264
+
+T 
+2
+LANG:10001 0 
+LANG:10010 1 M
+"main(mapping event)
+{
+  dpSet(\"015_PREPARACION.cio10108\", TRUE);
+}" 0
+ E E "main()
+{
+  dpConnect(\"cambiar_fondo\", \"015_PREPARACION.cio12110\");
+}
+
+void cambiar_fondo(string dp, bool valor)
+{
+  if(valor)
+  {
+    this.backCol(\"LIB_IRC_VERDE_01\");
+  }
+  else
+  {
+    this.backCol(\"LIB_IRC_AZUL_01\");
+  }
+}" 0
+
+13 833
+"PUSH_BUTTON54"
+""
+1 138.4380390139609 507.3343393798366 E E E 1 E 1 E N "white" E N "LIB_IRC_AZUL_01" E E
+ E E
+233 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 8 Synoptic
+LANG:10010 6 Inicio
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,21,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  370.4380390139609 536.4417163609264 435.4380390139609 588.4417163609264
+
+T 
+2
+LANG:10001 0 
+LANG:10010 1 P
+"main(mapping event)
+{
+  dpGet(\"015_PREPARACION.cio10108\", FALSE);
+}" 0
+ E E "main()
+{
+  dpConnect(\"cambiar_fondo\", \"015_PREPARACION.cio12110\");
+}
+
+void cambiar_fondo(string dp, bool valor)
+{
+  if(valor)
+  {
+    this.backCol(\"LIB_IRC_AZUL_01\");
+  }
+  else
+  {
+    this.backCol(\"LIB_IRC_ROJO_12\");
+  }
+}" 0
+
+2 834
+"PRIMITIVE_TEXT38"
+""
+1 310 470 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Window" E E
+ E E
+234 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E 0.9181316724193589 0 1.227226477486457 17.80752731066539 -77.85547798650759 0 E 310 470 450 500
+0 2 2 "0s" 0 0 0 73 0 0  310 470 1
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+0 2
+LANG:10001 9 FALLO RPM
+LANG:10010 8 REDLER 2
+1 935 60 "" 1
+0
+13 840
+"PUSH_BUTTON57"
+""
+1 54.85336560063723 649.2036211228312 E E E 1 E 1 E N "white" E N "LIB_IRC_AZUL_01" E E
+ E E
+241 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 8 Synoptic
+LANG:10010 6 Inicio
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,21,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  52.85336560063723 647.2036211228312 117.8533656006372 699.2036211228312
+
+T 
+2
+LANG:10001 0 
+LANG:10010 1 M
+"main(mapping event)
+{
+  dpSet(\"015_PREPARACION.cio10109\", TRUE);
+}" 0
+ E E "main()
+{
+  dpConnect(\"cambiar_fondo\", \"015_PREPARACION.cio12111\");
+}
+
+void cambiar_fondo(string dp, bool valor)
+{
+  if(valor)
+  {
+    this.backCol(\"LIB_IRC_VERDE_01\");
+  }
+  else
+  {
+    this.backCol(\"LIB_IRC_AZUL_01\");
+  }
+}" 0
+
+13 841
+"PUSH_BUTTON58"
+""
+1 -105.9741891391636 618.0962441417414 E E E 1 E 1 E N "white" E N "LIB_IRC_AZUL_01" E E
+ E E
+242 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 8 Synoptic
+LANG:10010 6 Inicio
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,21,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  126.0258108608364 647.2036211228312 191.0258108608364 699.2036211228312
+
+T 
+2
+LANG:10001 0 
+LANG:10010 1 P
+"main(mapping event)
+{
+  dpGet(\"015_PREPARACION.cio10109\", FALSE);
+}" 0
+ E E "main()
+{
+  dpConnect(\"cambiar_fondo\", \"015_PREPARACION.cio12111\");
+}
+
+void cambiar_fondo(string dp, bool valor)
+{
+  if(valor)
+  {
+    this.backCol(\"LIB_IRC_AZUL_01\");
+  }
+  else
+  {
+    this.backCol(\"LIB_IRC_ROJO_12\");
+  }
+}" 0
+
+2 842
+"PRIMITIVE_TEXT40"
+""
+1 310 470 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Window" E E
+ E E
+243 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E 0.9181316724193589 0 1.227226477486457 -226.6047008424592 32.90642677539722 0 E 310 470 450 500
+0 2 2 "0s" 0 0 0 73 0 0  310 470 1
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+0 2
+LANG:10001 9 FALLO RPM
+LANG:10010 8 REDLER 3
+1 936 61 "" 1
+0
+13 844
+"PUSH_BUTTON59"
+""
+1 299.0798794680474 649.2036211228312 E E E 1 E 1 E N "white" E N "LIB_IRC_AZUL_01" E E
+ E E
+244 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 8 Synoptic
+LANG:10010 6 Inicio
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,21,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  297.0798794680474 647.2036211228312 362.0798794680474 699.2036211228312
+
+T 
+2
+LANG:10001 0 
+LANG:10010 1 M
+"main(mapping event)
+{
+  dpSet(\"015_PREPARACION.cio10110\", TRUE);
+}" 0
+ E E "main()
+{
+  dpConnect(\"cambiar_fondo\", \"015_PREPARACION.cio12112\");
+}
+
+void cambiar_fondo(string dp, bool valor)
+{
+  if(valor)
+  {
+    this.backCol(\"LIB_IRC_VERDE_01\");
+  }
+  else
+  {
+    this.backCol(\"LIB_IRC_AZUL_01\");
+  }
+}" 0
+
+13 845
+"PUSH_BUTTON60"
+""
+1 138.2523247282465 618.0962441417414 E E E 1 E 1 E N "white" E N "LIB_IRC_AZUL_01" E E
+ E E
+245 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 8 Synoptic
+LANG:10010 6 Inicio
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,21,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  370.2523247282465 647.2036211228312 435.2523247282465 699.2036211228312
+
+T 
+2
+LANG:10001 0 
+LANG:10010 1 P
+"main(mapping event)
+{
+  dpGet(\"015_PREPARACION.cio10110\", FALSE);
+}" 0
+ E E "main()
+{
+  dpConnect(\"cambiar_fondo\", \"015_PREPARACION.cio12112\");
+}
+
+void cambiar_fondo(string dp, bool valor)
+{
+  if(valor)
+  {
+    this.backCol(\"LIB_IRC_AZUL_01\");
+  }
+  else
+  {
+    this.backCol(\"LIB_IRC_ROJO_12\");
+  }
+}" 0
+
+2 846
+"PRIMITIVE_TEXT41"
+""
+1 310 470 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Window" E E
+ E E
+246 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E 0.9181316724193589 0 1.227226477486457 17.62181302495097 32.90642677539722 0 E 310 470 450 500
+0 2 2 "0s" 0 0 0 73 0 0  310 470 1
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+0 2
+LANG:10001 9 FALLO RPM
+LANG:10010 8 REDLER 4
+13 855
+"PUSH_BUTTON65"
+""
+1 410 537.596482311365 E E E 1 E 1 E N "white" E N "LIB_IRC_AZUL_01" E E
+ E E
+255 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 8 Synoptic
+LANG:10010 6 Inicio
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,21,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  899.568727615517 568.0000000000001 1031.712712164861 622
+
+T 
+2
+LANG:10001 0 
+LANG:10010 1 P
+"main(mapping event)
+{
+  dpGet(\"015_PREPARACION.cio10213\", FALSE);
+}" 0
+ E E "main()
+{
+  dpConnect(\"cambiar_fondo\", \"015_PREPARACION.cio12213\");
+}
+
+void cambiar_fondo(string dp, bool valor)
+{
+  if(valor)
+  {
+    this.backCol(\"LIB_IRC_AZUL_01\");
+  }
+  else
+  {
+    this.backCol(\"LIB_IRC_ROJO_12\");
+  }
+}" 0
+
+13 856
+"PUSH_BUTTON66"
+""
+1 730 570 E E E 1 E 1 E N "white" E N "LIB_IRC_AZUL_01" E E
+ E E
+256 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 8 Synoptic
+LANG:10010 6 Inicio
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,21,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  728 568 860.1439845493445 622
+
+T 
+2
+LANG:10001 0 
+LANG:10010 1 M
+"main(mapping event)
+{
+  dpSet(\"015_PREPARACION.cio10213\", TRUE);
+}" 0
+ E E "main()
+{
+  dpConnect(\"cambiar_fondo\", \"015_PREPARACION.cio12213\");
+}
+
+void cambiar_fondo(string dp, bool valor)
+{
+  if(valor)
+  {
+    this.backCol(\"LIB_IRC_VERDE_01\");
+  }
+  else
+  {
+    this.backCol(\"LIB_IRC_AZUL_01\");
+  }
+}" 0
+
+13 857
+"PUSH_BUTTON67"
+""
+1 1000.753310900503 505.7451614756499 E E E 1 E 1 E N "white" E N "LIB_IRC_AZUL_01" E E
+ E E
+257 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 8 Synoptic
+LANG:10010 6 Inicio
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,21,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  998.7533109005035 503.7451614756499 1063.753310900503 555.7451614756499
+
+T 
+2
+LANG:10001 0 
+LANG:10010 1 M
+"main(mapping event)
+{
+  dpSet(\"015_PREPARACION.cio10208\", TRUE);
+}" 0
+ E E "main()
+{
+  dpConnect(\"cambiar_fondo\", \"015_PREPARACION.cio12208\");
+}
+
+void cambiar_fondo(string dp, bool valor)
+{
+  if(valor)
+  {
+    this.backCol(\"LIB_IRC_VERDE_01\");
+  }
+  else
+  {
+    this.backCol(\"LIB_IRC_AZUL_01\");
+  }
+}" 0
+
+13 858
+"PUSH_BUTTON68"
+""
+1 839.9257561607027 474.6377844945601 E E E 1 E 1 E N "white" E N "LIB_IRC_AZUL_01" E E
+ E E
+258 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 8 Synoptic
+LANG:10010 6 Inicio
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,21,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  1071.925756160703 503.7451614756499 1136.925756160703 555.7451614756499
+
+T 
+2
+LANG:10001 0 
+LANG:10010 1 P
+"main(mapping event)
+{
+  dpGet(\"015_PREPARACION.cio10208\", FALSE);
+}" 0
+ E E "main()
+{
+  dpConnect(\"cambiar_fondo\", \"015_PREPARACION.cio12208\");
+}
+
+void cambiar_fondo(string dp, bool valor)
+{
+  if(valor)
+  {
+    this.backCol(\"LIB_IRC_AZUL_01\");
+  }
+  else
+  {
+    this.backCol(\"LIB_IRC_ROJO_12\");
+  }
+}" 0
+
+2 859
+"PRIMITIVE_TEXT44"
+""
+1 310 470 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Window" E E
+ E E
+259 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E 1.114885264947083 0 1.227226477486457 644.3855678664042 -106.7964444186348 0 E 310 470 450 500
+0 2 2 "0s" 0 0 0 73 0 0  310 470 1
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+0 2
+LANG:10001 9 FALLO RPM
+LANG:10010 14 ELEV.   PELETS
+6 860
+"RECTANGLE71"
+""
+1 220.0516583860348 -24.04707586893039 E E E 1 E 1 E N "LIB_IRC_AZULTRANS_03" E N "LIB_IRC_AZUL_03" E E
+ E E
+260 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+7
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,80}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "LIB_IRC_BLANCO"
+"antiAliased" "1"
+E E 0 2 3 2 1 E -0.7809409846412841 0 0.2899283639734003 1251.847358771937 426.9719293650232 1 E 220 40 360 150
+14 861
+"TEXT_FIELD18"
+""
+1 971.0894671197258 307.0837254377133 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+261 0 0 0 0 0
+E E E
+1
+9
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10011 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10009 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10008 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,11,5,75,0,0,0,0,0,Negrita
+0  972.711197256136 440.0151239424964 1052.071179817145 468.2288920584385
+2 "0.1f" 2 0 0 9 0 -1  E "main()
+{
+  dpConnect(\"cambiar_valor\", \"015_PREPARACION.d25166\");
+}
+
+void cambiar_valor(string dp, float valor)
+{
+  this.text(valor);
+}" 0
+ E
+14 862
+"TEXT_FIELD19"
+""
+1 1046.537651682036 369.497932078088 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+262 0 0 0 0 0
+E E E
+1
+9
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+2
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10011 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10009 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10008 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,11,5,75,0,0,0,0,0,Negrita
+0  1045.987429110232 440.4292310150772 1080.154006296044 468.0285531018001
+2 "0s" 0 0 0 9 0 -1  E "main()
+{
+  this.text(\"C\");
+}" 0
+ E
+2 863
+"PRIMITIVE_TEXT45"
+""
+1 310 470 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Window" E E
+ E E
+263 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E 1.287309783044292 0 1.227226477486457 562.9339672562695 -171.7964444186348 0 E 310 470 450 500
+0 2 2 "0s" 0 0 0 73 0 0  310 470 1
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+0 2
+LANG:10001 9 FALLO RPM
+LANG:10010 15 TMP   ENFRIADOR
+2 864
+"PRIMITIVE_TEXT46"
+""
+1 1060 500 E E E 1 E 1 E N "White" E N "LIB_IRC_ROJO_12" E E
+ E E
+264 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+  dpConnect(\"cambiar_visibilidad\", \"015_PREPARACION.cio25004\");
+}
+
+void cambiar_visibilidad(string dp, bool valor)
+{
+  this.visible(valor);
+}" 0
+ E 0 1 3 2 1 E 0.7809409846412851 0 0.412889054051406 262.3346765476373 232.9528133583274 1 E 1060 500 1200 570
+0 2 2 "0s" 0 0 0 73 0 0  1060 500 1
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+0 2
+LANG:10001 20 N. CONFIRMA EXTRAC
+LANG:10010 6 T. MAX
+13 865
+"PUSH_BUTTON69"
+""
+1 1400 900 E E E 1 E 1 E N "white" E N "LIB_IRC_AZUL_01" E E
+ E E
+265 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 8 Synoptic
+LANG:10010 6 Inicio
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,21,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  198.3707355993574 890.9999999999999 342.3707355993574 953.9999999999999
+
+P 
+4294967295
+"pictures/iconos/botoneras/flecha_izq_off_blanco.svg"
+2
+LANG:10001 0 
+LANG:10010 11 PARO
+BOCINA
+"main(mapping event)
+{
+  cambiar_panel_activo(19);
+  cambiar_pantalla_actual_preparacion(\"PREPARACIÓN\\nSINÓPTICO\");
+  int n_ui = myUiNumber();
+  int n_pantalla = numero_pantalla();
+}" 0
+ E E E
+13 866
+"PUSH_BUTTON70"
+""
+1 1263.850968302669 453.2625616982539 E E E 1 E 1 E N "white" E N "LIB_IRC_AZUL_01" E E
+ E E
+266 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 8 Synoptic
+LANG:10010 6 Inicio
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,21,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  1261.850968302669 451.2625616982539 1326.850968302669 503.2625616982539
+
+T 
+2
+LANG:10001 0 
+LANG:10010 1 M
+"main(mapping event)
+{
+  dpSet(\"015_PREPARACION.cio10104\", TRUE);
+}" 0
+ E E "main()
+{
+  dpConnect(\"cambiar_fondo\", \"015_PREPARACION.cio10104\");
+}
+
+void cambiar_fondo(string dp, bool valor)
+{
+  if(valor)
+  {
+    this.backCol(\"LIB_IRC_VERDE_01\");
+  }
+  else
+  {
+    this.backCol(\"LIB_IRC_AZUL_01\");
+  }
+}" 0
+
+13 867
+"PUSH_BUTTON71"
+""
+1 1103.023413562868 422.155184717164 E E E 1 E 1 E N "white" E N "LIB_IRC_AZUL_01" E E
+ E E
+267 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 8 Synoptic
+LANG:10010 6 Inicio
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,21,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  1335.023413562868 451.2625616982539 1400.023413562868 503.2625616982539
+
+T 
+2
+LANG:10001 0 
+LANG:10010 1 P
+"main(mapping event)
+{
+  dpGet(\"015_PREPARACION.cio10104\", FALSE);
+}" 0
+ E E "main()
+{
+  dpConnect(\"cambiar_fondo\", \"015_PREPARACION.cio10104\");
+}
+
+void cambiar_fondo(string dp, bool valor)
+{
+  if(valor)
+  {
+    this.backCol(\"LIB_IRC_AZUL_01\");
+  }
+  else
+  {
+    this.backCol(\"LIB_IRC_ROJO_12\");
+  }
+}" 0
+
+2 868
+"PRIMITIVE_TEXT47"
+""
+1 310 470 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Window" E E
+ E E
+268 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E 0.7857142857142866 0 1.227226477486457 1044.864428321739 -228.8922952589709 0 E 310 470 450 500
+0 2 2 "0s" 0 0 0 73 0 0  310 470 1
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+0 2
+LANG:10001 9 FALLO RPM
+LANG:10010 10 P.  REBOSE
+13 869
+"PUSH_BUTTON72"
+""
+1 1120.093923787419 670.4345238095248 E E E 1 E 1 E N "white" E N "LIB_IRC_AZUL_01" E E
+ E E
+269 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 8 Synoptic
+LANG:10010 6 Inicio
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,21,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  1118.093923787419 668.4345238095248 1183.093923787419 720.4345238095248
+
+T 
+2
+LANG:10001 0 
+LANG:10010 1 M
+"main(mapping event)
+{
+  dpSet(\"015_PREPARACION.cio10215\", TRUE);
+}" 0
+ E E "main()
+{
+  dpConnect(\"cambiar_fondo\", \"015_PREPARACION.cio12215\");
+}
+
+void cambiar_fondo(string dp, bool valor)
+{
+  if(valor)
+  {
+    this.backCol(\"LIB_IRC_VERDE_01\");
+  }
+  else
+  {
+    this.backCol(\"LIB_IRC_AZUL_01\");
+  }
+}" 0
+
+13 871
+"PUSH_BUTTON74"
+""
+1 886.0939237874196 693 E E E 1 E 1 E N "white" E N "LIB_IRC_AZUL_01" E E
+ E E
+271 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 8 Synoptic
+LANG:10010 6 Inicio
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,21,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  1118.093923787419 722.1073769810898 1183.093923787419 774.1073769810898
+
+T 
+2
+LANG:10001 0 
+LANG:10010 1 P
+"main(mapping event)
+{
+  dpGet(\"015_PREPARACION.cio10215\", FALSE);
+}" 0
+ E E "main()
+{
+  dpConnect(\"cambiar_fondo\", \"015_PREPARACION.cio12215\");
+}
+
+void cambiar_fondo(string dp, bool valor)
+{
+  if(valor)
+  {
+    this.backCol(\"LIB_IRC_AZUL_01\");
+  }
+  else
+  {
+    this.backCol(\"LIB_IRC_ROJO_12\");
+  }
+}" 0
+
+2 872
+"PRIMITIVE_TEXT48"
+""
+1 310 470 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Window" E E
+ E E
+272 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E 1.217696462742923 0 1.227226477486457 692.0365917656848 197.7653855174279 0 E 310 470 450 500
+0 2 2 "0s" 0 0 0 73 0 0  310 470 1
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+0 2
+LANG:10001 9 FALLO RPM
+LANG:10010 15 PIST.  S. PALES
+2 873
+"PRIMITIVE_TEXT49"
+""
+1 310 470 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Window" E E
+ E E
+273 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E 1.217696462742923 0 1.227226477486457 692.5140965496939 223.2035555813652 0 E 310 470 450 500
+0 2 2 "0s" 0 0 0 73 0 0  310 470 1
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+0 2
+LANG:10001 9 FALLO RPM
+LANG:10010 16 PATIO  O  EXTRA.
+13 874
+"PUSH_BUTTON75"
+""
+1 1577.777981190899 378.8935199378764 E E E 1 E 1 E N "white" E N "LIB_IRC_AZUL_01" E E
+ E E
+274 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 8 Synoptic
+LANG:10010 6 Inicio
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,21,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  1575.777981190899 376.8935199378764 1640.777981190899 428.8935199378764
+
+T 
+2
+LANG:10001 0 
+LANG:10010 1 M
+"main(mapping event)
+{
+  dpSet(\"015_PREPARACION.cio10211\", TRUE);
+}" 0
+ E E "main()
+{
+  dpConnect(\"cambiar_fondo\", \"015_PREPARACION.cio12211\");
+}
+
+void cambiar_fondo(string dp, bool valor)
+{
+  if(valor)
+  {
+    this.backCol(\"LIB_IRC_VERDE_01\");
+  }
+  else
+  {
+    this.backCol(\"LIB_IRC_AZUL_01\");
+  }
+}" 0
+
+13 875
+"PUSH_BUTTON76"
+""
+1 1416.950426451098 347.7861429567866 E E E 1 E 1 E N "white" E N "LIB_IRC_AZUL_01" E E
+ E E
+275 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 8 Synoptic
+LANG:10010 6 Inicio
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,21,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  1648.950426451098 376.8935199378764 1713.950426451098 428.8935199378764
+
+T 
+2
+LANG:10001 0 
+LANG:10010 1 P
+"main(mapping event)
+{
+  dpGet(\"015_PREPARACION.cio10211\", FALSE);
+}" 0
+ E E "main()
+{
+  dpConnect(\"cambiar_fondo\", \"015_PREPARACION.cio12211\");
+}
+
+void cambiar_fondo(string dp, bool valor)
+{
+  if(valor)
+  {
+    this.backCol(\"LIB_IRC_AZUL_01\");
+  }
+  else
+  {
+    this.backCol(\"LIB_IRC_ROJO_12\");
+  }
+}" 0
+
+2 876
+"PRIMITIVE_TEXT50"
+""
+1 310 470 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Window" E E
+ E E
+276 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E 1.285714285714287 0 1.227226477486457 1158.135124048041 -229.1151381924521 0 E 310 470 450 500
+0 2 2 "0s" 0 0 0 73 0 0  310 470 1
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+0 2
+LANG:10001 9 FALLO RPM
+LANG:10010 17 ELEV.  T.  REBOSE
+13 877
+"PUSH_BUTTON77"
+""
+1 1714.794117984603 657.5789470258998 E E E 1 E 1 E N "white" E N "LIB_IRC_AZUL_01" E E
+ E E
+277 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 8 Synoptic
+LANG:10010 6 Inicio
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,21,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  1712.794117984603 655.5789470258998 1777.794117984603 707.5789470258998
+
+T 
+2
+LANG:10001 0 
+LANG:10010 1 M
+"main(mapping event)
+{
+  dpSet(\"015_PREPARACION.cio10210\", TRUE);
+}" 0
+ E E "main()
+{
+  dpConnect(\"cambiar_fondo\", \"015_PREPARACION.cio12210\");
+}
+
+void cambiar_fondo(string dp, bool valor)
+{
+  if(valor)
+  {
+    this.backCol(\"LIB_IRC_VERDE_01\");
+  }
+  else
+  {
+    this.backCol(\"LIB_IRC_AZUL_01\");
+  }
+}" 0
+
+13 878
+"PUSH_BUTTON78"
+""
+1 1553.966563244802 626.4715700448099 E E E 1 E 1 E N "white" E N "LIB_IRC_AZUL_01" E E
+ E E
+278 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 8 Synoptic
+LANG:10010 6 Inicio
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,21,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  1785.966563244802 655.5789470258998 1850.966563244802 707.5789470258998
+
+T 
+2
+LANG:10001 0 
+LANG:10010 1 P
+"main(mapping event)
+{
+  dpGet(\"015_PREPARACION.cio10210\", FALSE);
+}" 0
+ E E "main()
+{
+  dpConnect(\"cambiar_fondo\", \"015_PREPARACION.cio12210\");
+}
+
+void cambiar_fondo(string dp, bool valor)
+{
+  if(valor)
+  {
+    this.backCol(\"LIB_IRC_AZUL_01\");
+  }
+  else
+  {
+    this.backCol(\"LIB_IRC_ROJO_12\");
+  }
+}" 0
+
+2 879
+"PRIMITIVE_TEXT51"
+""
+1 310 470 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Window" E E
+ E E
+279 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E 1.535038707561938 0 1.227226477486457 1198.205103737846 36.11919249737176 0 E 310 470 450 500
+0 2 2 "0s" 0 0 0 73 0 0  310 470 1
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+0 2
+LANG:10001 9 FALLO RPM
+LANG:10010 16 ESP.  T.  REBOSE
+13 880
+"PUSH_BUTTON79"
+""
+1 1354.095382906487 747.2267956107354 E E E 1 E 1 E N "white" E N "LIB_IRC_AZUL_01" E E
+ E E
+280 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 8 Synoptic
+LANG:10010 6 Inicio
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,21,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  1352.095382906487 745.2267956107354 1633.199374107641 798.2436445190315
+
+T 
+2
+LANG:10001 0 
+LANG:10010 16 VACIADO T REBOSE
+"main(mapping event)
+{
+  dpSet(\"015_PREPARACION.cio15006\", TRUE);
+}" 0
+ E E "main()
+{
+  dpConnect(\"cambiar_fondo\", \"015_PREPARACION.cio15006\");
+}
+
+void cambiar_fondo(string dp, bool valor)
+{
+  if(valor)
+  {
+    this.backCol(\"LIB_IRC_VERDE_01\");
+  }
+  else
+  {
+    this.backCol(\"LIB_IRC_AZUL_01\");
+  }
+}" 0
+
+13 881
+"PUSH_BUTTON80"
+""
+1 1651.727782365913 747.2267956107354 E E E 1 E 1 E N "white" E N "LIB_IRC_AZUL_01" E E
+ E E
+281 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 8 Synoptic
+LANG:10010 6 Inicio
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,21,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  1649.727782365913 745.2267956107354 1833.042907625366 798.2436445190314
+
+T 
+2
+LANG:10001 0 
+LANG:10010 5 PARAR
+"main(mapping event)
+{
+  dpSet(\"015_PREPARACION.cio15006\", FALSE);
+}" 0
+ E E "main()
+{
+  dpConnect(\"cambiar_fondo\", \"015_PREPARACION.cio15006\");
+}
+
+void cambiar_fondo(string dp, bool valor)
+{
+  if(valor)
+  {
+    this.backCol(\"LIB_IRC_AZUL_01\");
+  }
+  else
+  {
+    this.backCol(\"LIB_IRC_ROJO_12\");
+  }
+}" 0
+
+1 937 62 "" 6
+0
+13 884
+"PUSH_BUTTON81"
+""
+1 951 850 E E E 1 E 1 E N "white" E N "LIB_IRC_AZUL_01" E E
+ E E
+283 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 8 Synoptic
+LANG:10010 6 Inicio
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,21,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  949 848 1096.652157355212 885.8854253275105
+
+T 
+2
+LANG:10001 0 
+LANG:10010 5 PATIO
+"main(mapping event)
+{
+  dpSet(\"015_PREPARACION.cio15005\", TRUE);
+}" 0
+ E E "main()
+{
+  dpConnect(\"cambiar_fondo\", \"015_PREPARACION.cio15005\");
+}
+
+void cambiar_fondo(string dp, bool valor)
+{
+  if(valor)
+  {
+    this.backCol(\"LIB_IRC_VERDE_01\");
+  }
+  else
+  {
+    this.backCol(\"LIB_IRC_AZUL_01\");
+  }
+}" 0
+
+13 885
+"PUSH_BUTTON82"
+""
+1 1109.38754988277 850.0572873362448 E E E 1 E 1 E N "white" E N "LIB_IRC_AZUL_01" E E
+ E E
+284 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 8 Synoptic
+LANG:10010 6 Inicio
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,21,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  1107.38754988277 848.0572873362448 1255.039707237983 885.9427126637553
+
+T 
+2
+LANG:10001 0 
+LANG:10010 6 EXTRAC
+"main(mapping event)
+{
+  dpSet(\"015_PREPARACION.cio15005\", FALSE);
+}" 0
+ E E "main()
+{
+  dpConnect(\"cambiar_fondo\", \"015_PREPARACION.cio15005\");
+}
+
+void cambiar_fondo(string dp, bool valor)
+{
+  if(valor)
+  {
+    this.backCol(\"LIB_IRC_AZUL_01\");
+  }
+  else
+  {
+    this.backCol(\"LIB_IRC_VERDE_01\");
+  }
+}" 0
+
+14 912
+"TEXT_FIELD9"
+""
+1 1731.497115255291 447.3157731481013 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "White" E E
+ E E
+285 0 0 0 0 0
+E E E
+1
+9
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10011 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10009 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10008 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,11,5,75,0,0,0,0,0,Negrita
+0  1732.49423096048 580.2471716528844 1798.857405125704 608.4609397688266
+3 "0s" 0 0 0 9 0 -1  "
+main(mapping event)
+{
+  teclado(\"015_PREPARACION.d212\", \"keypad\", FALSE, 0, \"\", \"100\", \"0\");
+}" 0
+ "main()
+{
+  dpConnect(\"cambiar_estado_decanter\", \"015_PREPARACION.d212\");
+}
+
+void cambiar_estado_decanter(string dp, int valor)
+{
+  this.text = valor;
+}" 0
+ E
+0
+LAYER, 1 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 2 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 3 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 4 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 5 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 6 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 7 
+2
+LANG:10001 0 
+LANG:10010 0 
+1 914 11 "" 5
+0
+1 916 12 "" 5
+0
+1 930 56 "" 5
+0
+1 932 57 "" 5
+0
+1 938 62 "" 5
+0
+0
+3 11 "PANEL_REF12" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/indicadoresSeñales/01_indicador_filtro_digital.pnl" 1030.312270430464 240.2116240642181 T 84 1.644730548719087 0 1.540467694129335 -829.5860658971054 -66.69710158288547
+5
+"$COLOR_ACTIVO""LIB_IRC_ROJO_12"
+"$COLOR_INACTIVO""LIB_IRC_GRIS_03"
+"$INST""015_PREPARACION.cio20113"
+"$POSICION""NULL"
+"$TEXTO""NULL"
+3 12 "PANEL_REF13" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/indicadoresSeñales/01_indicador_filtro_digital.pnl" 1030.312270430464 240.2116240642181 T 85 1.644730548719087 0 1.540467694129335 -829.5860658971054 -27.5382466252687
+5
+"$COLOR_ACTIVO""LIB_IRC_ROJO_12"
+"$COLOR_INACTIVO""LIB_IRC_GRIS_03"
+"$INST""015_PREPARACION.cio20112"
+"$POSICION""NULL"
+"$TEXTO""NULL"
+3 30 "PANEL_REF31" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/indicadoresSeñales/01_indicador_filtro_digital_2.pnl" 11.53164291507399 467.9139699089235 T 127 1.625 0 1.624999999999999 656.8146516915762 -455.2173439591426
+5
+"$COL1""LIB_IRC_VERDE_01"
+"$COL2""LIB_IRC_ROJO_12"
+"$COL3""LIB_IRC_GRIS_03"
+"$COL4""LIB_IRC_GRIS_03"
+"$DP""015_PREPARACION.d134"
+3 31 "PANEL_REF32" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/indicadoresSeñales/01_indicador_filtro_digital_2.pnl" 11.53164291507399 467.9139699089235 T 128 1.625 0 1.624999999999999 781.2610802630047 -206.2685519423362
+5
+"$COL1""LIB_IRC_VERDE_01"
+"$COL2""LIB_IRC_GRIS_03"
+"$COL3""LIB_IRC_AZUL_01"
+"$COL4""LIB_IRC_ROJO_12"
+"$DP""015_PREPARACION.d133"
+3 32 "PANEL_REF33" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/indicadoresSeñales/01_indicador_filtro_digital_2.pnl" 11.53164291507399 467.9139699089235 T 129 1.625 0 1.624999999999999 1001.261080263005 -80.36020110200013
+5
+"$COL1""LIB_IRC_VERDE_01"
+"$COL2""LIB_IRC_GRIS_03"
+"$COL3""LIB_IRC_GRIS_03"
+"$COL4""LIB_IRC_ROJO_12"
+"$DP""015_PREPARACION.d135"
+3 33 "PANEL_REF34" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/indicadoresSeñales/01_indicador_filtro_digital_2.pnl" 11.53164291507399 467.9139699089235 T 129 1.625 0 1.624999999999999 1225.696937156173 -393.4560519423363
+5
+"$COL1""LIB_IRC_GRIS_03"
+"$COL2""LIB_IRC_VERDE_01"
+"$COL3""LIB_IRC_ROJO_12"
+"$COL4""LIB_IRC_ROJO_12"
+"$DP""015_PREPARACION.d136"
+3 46 "PANEL_REF47" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/motores/motor.pnl" 67.89656669456852 209.9912964713296 T 141 0.7114121690664167 0 0.7727221929902082 482.2511276442256 33.83524529109255
+2
+"$DP""015_PREPARACION.d129"
+"$INVERT""FALSE"
+3 47 "PANEL_REF49" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/motores/motor.pnl" 67.89656669456852 209.9912964713296 T 143 0.7114121690664167 0 0.7727221929902082 741.2511276442257 110.8779220246747
+2
+"$DP""015_PREPARACION.d124"
+"$INVERT""FALSE"
+3 48 "PANEL_REF50" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/motores/motor.pnl" 67.89656669456852 209.9912964713296 T 144 0.7114121690664167 0 0.7727221929902082 556.2511276442258 231.8779220246747
+2
+"$DP""015_PREPARACION.d125"
+"$INVERT""FALSE"
+3 49 "PANEL_REF51" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/motores/motor.pnl" 67.89656669456852 209.9912964713296 T 145 0.544200333503381 0 0.6498216588981917 638.6042371896525 356.6859645156761
+2
+"$DP""015_PREPARACION.d126"
+"$INVERT""FALSE"
+3 50 "PANEL_REF52" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/motores/motor.pnl" 67.89656669456852 209.9912964713296 T 146 0.91824215849123 0 0.9484580246511151 918.208081472807 498.6415935644001
+2
+"$DP""015_PREPARACION.d127"
+"$INVERT""FALSE"
+3 51 "PANEL_REF53" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/motores/motor.pnl" 67.89656669456852 209.9912964713296 T 147 0.7114121690664167 0 0.7727221929902082 1112.806969774548 319.1327605490248
+2
+"$DP""015_PREPARACION.d128"
+"$INVERT""FALSE"
+3 52 "PANEL_REF54" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/motores/motor.pnl" 67.89656669456852 209.9912964713296 T 148 0.7114121690664168 0 0.7727221929902082 1605.652419190722 276.2688404961578
+2
+"$DP""015_PREPARACION.d131"
+"$INVERT""TRUE"
+3 53 "PANEL_REF55" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/motores/motor.pnl" 67.89656669456852 209.9912964713296 T 149 0.9423956994814668 0 0.9484580246511121 1556.014567537482 477.2665935644016
+2
+"$DP""015_PREPARACION.d130"
+"$INVERT""TRUE"
+3 56 "PANEL_REF58" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/indicadoresSeñales/01_indicador_filtro_digital.pnl" 1030.312270430464 240.2116240642181 T 208 1.644730548719087 0 1.540467694129335 -1541.378007348734 -220.6220527677813
+5
+"$COLOR_ACTIVO""LIB_IRC_ROJO_12"
+"$COLOR_INACTIVO""LIB_IRC_GRIS_03"
+"$INST""015_PREPARACION.cio25004"
+"$POSICION""NULL"
+"$TEXTO""NULL"
+3 57 "PANEL_REF59" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/indicadoresSeñales/01_indicador_filtro_digital.pnl" 1030.312270430464 240.2116240642181 T 209 1.644730548719087 0 1.540467694129335 -1538.711340682067 -124.6220527677814
+5
+"$COLOR_ACTIVO""LIB_IRC_ROJO_12"
+"$COLOR_INACTIVO""LIB_IRC_GRIS_03"
+"$INST""015_PREPARACION.cio25005"
+"$POSICION""NULL"
+"$TEXTO""NULL"
+3 58 "PANEL_REF60" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/motores/motor.pnl" 67.89656669456852 209.9912964713296 T 220 0.91824215849123 0 0.9484580246511151 133.5643727543743 345.2737861158024
+2
+"$DP""015_PREPARACION.d139"
+"$INVERT""FALSE"
+3 59 "PANEL_REF65" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/motores/motor.pnl" 67.89656669456852 209.9912964713296 T 231 0.91824215849123 0 0.9484580246511151 377.7908866217845 345.2737861158024
+2
+"$DP""015_PREPARACION.d140"
+"$INVERT""FALSE"
+3 60 "PANEL_REF67" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/motores/motor.pnl" 67.89656669456852 209.9912964713296 T 239 0.91824215849123 0 0.9484580246511151 133.37865846866 456.0356908777072
+2
+"$DP""015_PREPARACION.d141"
+"$INVERT""FALSE"
+3 61 "PANEL_REF68" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/motores/motor.pnl" 67.89656669456852 209.9912964713296 T 240 0.91824215849123 0 0.9484580246511151 377.6051723360703 456.0356908777072
+2
+"$DP""015_PREPARACION.d142"
+"$INVERT""FALSE"
+3 62 "PANEL_REF71" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/indicadoresSeñales/01_indicador_filtro_digital.pnl" 1030.312270430464 240.2116240642181 T 282 1.644730548719087 0 1.540467694129335 -344.5860658971055 409.9617533747312
+5
+"$COLOR_ACTIVO""LIB_IRC_VERDE_01"
+"$COLOR_INACTIVO""LIB_IRC_ROJO_12"
+"$INST""015_PREPARACION.cio20300"
+"$POSICION""IZQUIERDA"
+"$TEXTO""\"NIVEL  ALTO\""
+0

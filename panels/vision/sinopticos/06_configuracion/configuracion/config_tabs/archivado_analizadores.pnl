@@ -1,0 +1,603 @@
+V 14
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+PANEL,-1 -1 1920 940 N "LIB_IRC_BLANCO" 0
+"main()
+{
+  string consulta;
+
+  setValue(\"tabla_analizadores\", \"sortOnClick\", FALSE);
+  setValue(\"tabla_analizadores\", \"tableMode\", TABLE_SELECT_BROWSE);
+  setValue(\"tabla_analizadores\", \"selectByClick\", TABLE_SELECT_LINE);
+  formatear_estilo_tabla(\"tabla_analizadores\", \"AlignVCenter | AlignHCenter\", \"LIB_IRC_BLANCO\", \"LIB_IRC_AZUL_03\");  //Damos formato a la tabla con el listado de DP's
+  setValue(\"tabla_analizadores_selec\", \"sortOnClick\", FALSE);
+  setValue(\"tabla_analizadores_selec\", \"tableMode\", TABLE_SELECT_BROWSE);
+  setValue(\"tabla_analizadores_selec\", \"selectByClick\", TABLE_SELECT_LINE);
+  formatear_estilo_tabla(\"tabla_analizadores_selec\", \"AlignVCenter | AlignHCenter\", \"LIB_IRC_BLANCO\", \"LIB_IRC_AZUL_03\");  //Damos formato a la tabla con el listado de DP's
+
+  //Sentencia para la consulta/
+  consulta = \"SELECT '_online.._value' \" +
+             \"FROM '*' \" +
+             \"WHERE ((_EL = \\\"Static.archivado_bbdd\\\") AND (_DPT LIKE \\\"090_LIB_ENERGY_METER\\\") AND (_DP NOT LIKE \\\"_mp*\\\"))\";
+  dpQueryConnectSingle(\"motores_bbdd\", TRUE, consulta, consulta);
+}
+
+motores_bbdd(string consulta, dyn_dyn_anytype resultado_consulta)
+{
+  string nombre_dp, descripcion;
+  bool archivado;
+
+  for (int i = 2; i <= dynlen(resultado_consulta); i++)
+  {
+    nombre_dp = dpSubStr(resultado_consulta[i][1], DPSUB_DP);
+    dpGet(nombre_dp + \".Static.archivado_bbdd\", archivado);
+    descripcion = getCatStr(\"dps\", nombre_dp); //Si el SCADA no va en varios idiomas, usar dpGetDescription
+
+    if (!archivado)
+    {
+      tabla_analizadores.appendLine(\"descripcion\", descripcion, \"dp\", nombre_dp + \".Static.archivado_bbdd\");
+      tabla_analizadores_selec.deleteLine(1, \"dp\", nombre_dp + \".Static.archivado_bbdd\");
+    }
+    else
+    {
+      tabla_analizadores_selec.appendLine(\"descripcion\", descripcion, \"dp\", nombre_dp + \".Static.archivado_bbdd\");
+      tabla_analizadores.deleteLine(1, \"dp\", nombre_dp + \".Static.archivado_bbdd\");
+
+    }
+  }
+}
+" 0
+ E E E E 1 -1 -1 0  -459.9999999999999 0
+""0  1
+E E 4
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+"pdpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10001 0 
+LANG:10010 0 
+25 6
+"tabla_analizadores_selec"
+"GRANDE_AZUL"
+1 449 2.515057275076842 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_BLANCO" E E
+ E E
+5 0 0 0 0 0
+E E E
+0
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+6
+"shadowOffset" "[0,5]"
+"shadowColor" "{63,63,63,80}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+"snapMode" "None"
+"showFocus" "0"
+7
+LANG:10001 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10005 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+0  1003 8.000000000000028 1906 912
+EE 1 0 1 2 0 "descripcion" 43 1 0 "[0s,,,AlignLeft|AlignVCenter]" 6
+LANG:10001 2 ID
+LANG:10010 32 Analizadores Redes Seleccionados
+LANG:10011 2 #1
+LANG:10009 2 #1
+LANG:10008 2 #1
+LANG:10018 2 #1
+E
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+900 "dp" 6 0 0 "[0s,,,AlignLeft|AlignVCenter]" 6
+LANG:10001 2 #1
+LANG:10010 2 dp
+LANG:10011 2 #1
+LANG:10009 2 #1
+LANG:10008 2 #1
+LANG:10018 2 #1
+E
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+0 
+30 30 10 0
+7
+LANG:10001 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10005 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+0 0 1 1 1 7
+1 0
+13 43
+"btn_der_1"
+""
+1 531.5 32.10416666666681 E E E 1 E 1 E N "LIB_DEUSER_BLANCO" E N "LIB_IRC_AZUL_01" E E
+ E E
+42 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 6 Accept
+LANG:10010 32 Añadir accionamiento a la lista
+LANG:10011 6 Accept
+LANG:10009 8 Accepter
+LANG:10008 6 Accept
+LANG:10018 6 Accept
+
+6
+"hoverbclr" "N \"AZUL_01\""
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10011 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10018 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  933 300.1041666666667 986 383.1041666666667
+
+P 
+4294967295
+"pictures/iconos/formularios/flecha_derecha.svg"
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+"main(mapping event)
+{
+  dyn_int lineas;
+  string dp;
+  getValue(\"tabla_analizadores\", \"getSelectedLines\", lineas);
+
+  if (dynlen(lineas) != 0)
+  {
+    getValue(\"tabla_analizadores\", \"cellValueRC\", lineas[1], \"dp\", dp);
+    dpSetWait(dp, TRUE);
+  }
+}
+" 0
+ E E E
+13 44
+"btn_todo_der_1"
+""
+1 316 -194.0455508474577 E E E 1 E 1 E N "LIB_DEUSER_BLANCO" E N "LIB_IRC_AZUL_01" E E
+ E E
+43 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 6 Accept
+LANG:10010 43 Añadir todos los accionamientos a la lista
+LANG:10011 6 Accept
+LANG:10009 8 Accepter
+LANG:10008 6 Accept
+LANG:10018 6 Accept
+
+6
+"hoverbclr" "N \"AZUL_01\""
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10011 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10018 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  933 379.2708333333335 986 462.2708333333335
+
+P 
+4294967295
+"pictures/iconos/formularios/doble_flecha_derecha.svg"
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+"main(mapping event)
+{
+  int lineas;
+  string dp;
+  dyn_string dps;
+  lineas = tabla_analizadores.lineCount;
+
+  for (int i = 1; i <= lineas; i++)
+  {
+    getValue(\"tabla_analizadores\", \"cellValueRC\", i - 1, \"dp\", dp);
+    dynAppend(dps, dp);
+  }
+
+  for (int i = 1; i <= dynlen(dps); i++)
+  {
+    dpSetWait(dps[i], TRUE);
+  }
+}
+" 0
+ E E E
+13 45
+"btn_izq_1"
+""
+1 314.9677606627301 -192.6769067796611 E E E 1 E 1 E N "LIB_DEUSER_BLANCO" E N "LIB_IRC_AZUL_01" E E
+ E E
+44 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 6 Accept
+LANG:10010 32 Quitar accionamiento de la lista
+LANG:10011 6 Accept
+LANG:10009 8 Accepter
+LANG:10008 6 Accept
+LANG:10018 6 Accept
+
+6
+"hoverbclr" "N \"AZUL_01\""
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10011 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10018 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  932.9677606627301 457.8541666666667 985.9677606627301 540.8541666666667
+
+P 
+4294967295
+"pictures/iconos/formularios/flecha_izquierda.svg"
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+"main(mapping event)
+{
+  dyn_int lineas;
+  string dp;
+  getValue(\"tabla_analizadores_selec\", \"getSelectedLines\", lineas);
+
+  if (dynlen(lineas) != 0)
+  {
+    getValue(\"tabla_analizadores_selec\", \"cellValueRC\", lineas[1], \"dp\", dp);
+    dpSetWait(dp, FALSE);
+  }
+}
+" 0
+ E E E
+13 46
+"btn_todo_izq_1"
+""
+1 64.52417950295251 0.8958333333334245 E E E 1 E 1 E N "LIB_DEUSER_BLANCO" E N "LIB_IRC_AZUL_01" E E
+ E E
+45 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 6 Accept
+LANG:10010 43 Quitar todos los accionamientos de la lista
+LANG:10011 6 Accept
+LANG:10009 8 Accepter
+LANG:10008 6 Accept
+LANG:10018 6 Accept
+
+6
+"hoverbclr" "N \"AZUL_01\""
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10011 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10018 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  933.0241795029524 536.8958333333335 986.0241795029524 619.8958333333334
+
+P 
+4294967295
+"pictures/iconos/formularios/doble_flecha_izquierda.svg"
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+"main(mapping event)
+{
+  int lineas;
+  string dp;
+  dyn_string dps;
+  lineas = tabla_analizadores_selec.lineCount;
+
+  for (int i = 1; i <= lineas; i++)
+  {
+    getValue(\"tabla_analizadores_selec\", \"cellValueRC\", i - 1, \"dp\", dp);
+    dynAppend(dps, dp);
+  }
+
+  for (int i = 1; i <= dynlen(dps); i++)
+  {
+    dpSetWait(dps[i], FALSE);
+  }
+}
+" 0
+ E E E
+25 47
+"tabla_analizadores"
+"GRANDE_AZUL"
+1 -20 -220.0279329608938 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_BLANCO" E E
+ E E
+46 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+6
+"shadowOffset" "[0,0]"
+"shadowColor" "{63,63,63,131}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+"snapMode" "None"
+"showFocus" "0"
+6
+LANG:10001 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10009 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10008 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10018 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  18 8.000000000000028 921 912
+EE 1 0 1 2 0 "descripcion" 43 1 0 "[0s,,,AlignLeft|AlignVCenter]" 6
+LANG:10001 46 ______________________________________________
+LANG:10010 18 Analizadores Redes
+LANG:10011 46 ______________________________________________
+LANG:10009 46 ______________________________________________
+LANG:10008 46 ______________________________________________
+LANG:10018 46 ______________________________________________
+E
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+900 "dp" 6 0 0 "[0s,,,AlignLeft|AlignVCenter]" 6
+LANG:10001 2 #1
+LANG:10010 2 dp
+LANG:10011 2 #1
+LANG:10009 2 #1
+LANG:10008 2 #1
+LANG:10018 2 #1
+E
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+0 
+30 30 10 10
+6
+LANG:10001 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10009 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10008 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10018 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0 0 1 0 4 7
+1 0
+13 50
+"PUSH_BUTTON1"
+""
+1 935.0644786745398 460.1041666666667 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+49 0 0 0 0 0
+E E "main(bool enter)
+{
+  botonera_sec.visible = FALSE;
+  botonera_ext.visible = FALSE;
+}" 0
+
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  933.0644786745398 458.1041666666667 985.9355213254603 462.1041666666667
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+13 51
+"PUSH_BUTTON2"
+""
+1 935.0483590059049 538.8958333333335 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+50 0 0 0 0 0
+E E "main(bool enter)
+{
+  botonera_sec.visible = FALSE;
+  botonera_ext.visible = FALSE;
+}" 0
+
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  933.0483590059049 536.8958333333335 985.9194016568254 540.8958333333335
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+13 52
+"linea_1"
+""
+1 935.0644786745398 381.1041666666667 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+51 0 0 0 0 0
+E E "main(bool enter)
+{
+  botonera_sec.visible = FALSE;
+  botonera_ext.visible = FALSE;
+}" 0
+
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  933.0644786745398 379.1041666666667 985.9355213254603 383.1041666666667
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+29 53
+"txf_error"
+"MEDIANO_AZUL"
+1 22 895.5373297800609 E E E 1 E 0 E N "LIB_IRC_ROJO_12" E N "_Transparent" E E
+ E E
+52 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"text" "string SE HA PRODUCIDO UN ERROR, LOS SIGUIENTES DATAPOINTS NO EXISTEN"
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 27 Tahoma,-1,16,5,50,0,0,0,0,0
+0  22 895.5373297800609 672.0000000000009 955.5373297800609
+5 Label
+0
+E0
+LAYER, 1 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 2 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 3 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 4 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 5 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 6 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 7 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+0

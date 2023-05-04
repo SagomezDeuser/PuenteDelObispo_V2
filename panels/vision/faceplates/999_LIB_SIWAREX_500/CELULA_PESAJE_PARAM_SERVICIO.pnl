@@ -1,0 +1,340 @@
+V 14
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+PANEL,-1 -1 500 500 N "white" 1
+"$INST"
+E E E E E 1 -1 -1 0  210 50
+""0  1
+E "
+lib_siwarex_500 c = lib_siwarex_500($INST,\"\");
+const mapping paneles = makeMapping(0, \"CELULA_PESAJE_PAR_AVAN_1\");
+
+mapping get_mapa_nom_paneles_config(){
+  return (paneles);
+}
+
+cambiar_panel_activo_config(int clave){
+  string ruta_compartida = \"vision/faceplates/999_LIB_SIWAREX_500/\";
+  mapping paneles_config = get_mapa_nom_paneles_config();
+  string nombre = paneles_config.value(clave, \"\");
+  string nombre_1 = myModuleName();
+  RootPanelOnModule(ruta_compartida + nombre + \".pnl\", nombre, nombre_1, makeDynString(\"$INST:\"+$INST));
+}
+" 0
+ 4
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+"pdpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10001 0 
+LANG:10010 0 
+6 6
+"RECTANGLE1"
+""
+1 0 160 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+5 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 2 3 1 1 E 0.9835853114483593 0 0.7333333333333333 9.06107010169319 22.66666666666667 1 E 0 160 490 310
+2 2
+"PRIMITIVE_TEXT6"
+""
+1 10 0 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+1 0 0 0 0 0
+E E E
+0
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 3 2 1 1 E 0.6704563929028395 0 0.6351198440047988 125.5050387195159 40 1 E 10 0 360 60
+0 2 2 "0s" 0 0 0 73 0 0  10 0 1
+7
+LANG:10001 35 MS Shell Dlg 2,-1,15,5,75,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 MS Shell Dlg 2,-1,15,5,75,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10005 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+0 7
+LANG:10001 10 PARAMETROS
+LANG:10010 8 ¡AVISO!
+LANG:10011 6 ALARME
+LANG:10009 10 PARAMETROS
+LANG:10008 7 ALLARMI
+LANG:10018 7 ALARMES
+LANG:10005 6 ALARMS
+2 3
+"PRIMITIVE_TEXT2"
+""
+1 10 0 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+2 0 0 0 0 0
+E E E
+0
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 2 1 1 E 1.296896014912549 0 1.493629598436523 9.613708647719607 153.3445283710979 1 E 10 0 360 60
+0 2 2 "0s" 0 0 0 73 0 0  10 0 3
+7
+LANG:10001 35 MS Shell Dlg 2,-1,15,5,75,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 MS Shell Dlg 2,-1,15,5,75,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10005 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+0 7
+LANG:10001 10 PARAMETROS
+LANG:10010 69 Para los siguientes pasos, la báscula debe estar en modo de servicio
+LANG:10011 6 ALARME
+LANG:10009 10 PARAMETROS
+LANG:10008 7 ALLARMI
+LANG:10018 7 ALARMES
+LANG:10005 6 ALARMS
+7
+LANG:10001 35 MS Shell Dlg 2,-1,15,5,75,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 MS Shell Dlg 2,-1,15,5,75,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10005 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+0 6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+7
+LANG:10001 35 MS Shell Dlg 2,-1,15,5,75,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 MS Shell Dlg 2,-1,15,5,75,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10005 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+0 6
+LANG:10001 0 
+LANG:10010 47 ¡Usted tendrá acceso a parámetros críticos!
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+13 9
+"btn_config"
+"btn_formulario_1"
+1 462 155 E E E 1 E 1 E N "_Transparent" E N "_Button" E E
+ E E
+8 0 0 0 0 0
+E E E
+1
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+3
+"layoutAlignment" "AlignNone"
+"focusPolicy" "NoFocus"
+"showFocus" "0"
+7
+LANG:10001 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10010 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10011 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10009 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10008 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10018 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10005 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  408.4926027507828 442.7427250009637 486.4926027507828 485.7427250009637
+
+P 
+4294967295
+"pictures/iconos/botoneras/Iconos/sig_icon.svg"
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+"main(mapping event)
+{
+
+  cambiar_panel_activo_config(0);
+
+}
+" 0
+ E E "main()
+{
+
+  dpConnect(\"modo_servicio\", c.get_service());
+
+ }
+
+/**
+  * Cambia el color de fondo del círculo dependiendo de si la alarma está activa o no.
+  * dpSource el nombre del datapoint
+  * valor el valor del datapoint
+  **/
+void modo_servicio(string dpSource, bool valor)
+{
+  if(valor == TRUE){
+   setValue(\"\", \"visible\", TRUE);
+  }else{
+   setValue(\"\", \"visible\", FALSE);
+  }
+}" 0
+
+13 11
+"btn_modo_servicio"
+"btn_formulario_1"
+1 130.0394714065412 322.8571428571429 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "LIB_IRC_ROJO_04" E E
+ E E
+10 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+1
+"layoutAlignment" "AlignNone"
+6
+LANG:10001 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+0  128.0394714065412 290.0000000000001 371.0394714065412 362
+
+T 
+6
+LANG:10001 21 ACTIVAR
+MODO SERVICIO
+LANG:10010 23 ACTIVAR
+"MODO SERVICIO"
+LANG:10011 21 ACTIVAR
+MODO SERVICIO
+LANG:10009 21 ACTIVAR
+MODO SERVICIO
+LANG:10008 21 ACTIVAR
+MODO SERVICIO
+LANG:10018 21 ACTIVAR
+MODO SERVICIO
+"main(mapping event)
+{
+    c.set_comandos(1, 1);
+}" 0
+ E E "main()
+{
+  dpConnect(\"cambiar_estado\", $INST + \".s_IO_DATA.SCALE_STATUS.SERVICE_MODE\");
+}
+
+cambiar_estado(string dp, bool valor){
+
+  if(valor){
+    this.backCol=\"LIB_IRC_VERDE_01\";
+    this.text=\"ACTIVADO \\n MODO SERVICIO\";
+  }
+  else{
+    this.backCol=\"LIB_IRC_ROJO_12\";
+    this.text=\"ACTIVAR \\n MODO SERVICIO\";
+  }
+}
+" 0
+
+0
+LAYER, 1 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 2 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 3 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 4 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 5 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 6 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 7 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+0

@@ -1,0 +1,1288 @@
+V 14
+7
+LANG:10001 0 
+LANG:10010 20 MOTOR_D_VF_AN_CONFIG
+LANG:10011 0 
+LANG:10009 17 MOTOR_D_VF_CONFIG
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+PANEL,-1 -1 475 560 N "white" 1
+"$INST"
+E E E E E 1 -1 -1 0  0 0
+""0  1
+E "//--------------------------------------------------------------------------------
+//Clases importadas a utilizar por las funciones de la librería
+lib_servo accionamiento_servo = lib_servo($INST, \"asdf\");
+
+//---------------Variables auxiliares---------------------
+//Seleccionado cuando el foco actual está en este campo
+bool mov_vel_seleccionado = FALSE;
+
+//Confirmado cuando se pulsa intro estando en este campo
+bool mov_acc_seleccionado = FALSE;
+
+//Seleccionado cuando el foco actual está en este campo
+bool mol_decc_seleccionado = FALSE;
+
+//Seleccionado cuando el foco actual está en este campo
+bool mol_jerk_seleccionado = FALSE;
+
+//Seleccionado cuando el foco actual está en este campo
+bool vel_om_av_seleccionado = FALSE;
+
+//Seleccionado cuando el foco actual está en este campo
+bool vel_om_rt_seleccionado= FALSE;
+
+//Seleccionado cuando el foco actual está en este campo
+bool vel_acc_seleccionado = FALSE;
+
+//Seleccionado cuando el foco actual está en este campo
+bool vel_dec_seleccionado = FALSE;
+
+//Seleccionado cuando el foco actual está en este campo
+bool vel_jerk_seleccionado = FALSE;
+
+//Confirmado cuando se pulsa intro estando en este campo
+bool tp_confirmado = FALSE;
+" 0
+ 4
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+"pdpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10001 0 
+LANG:10010 0 
+2 33
+"label_eje_preparado"
+""
+1 10 0 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+32 0 0 0 0 0
+E E E
+0
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+5
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+  int indice, err;
+  dyn_string resultado;
+  string indice_cat, nombre;
+
+  nombre = this.name();
+  indice = regexpSplit(\"_[0-9]+\", this.name, resultado);
+
+  if(indice >= 0)  err = strreplace(nombre,resultado[1], \"\");
+
+  this.text(getCatStr(\"objetos\", nombre));
+}
+" 0
+ E 0 1 2 1 1 E 0.3657097806218758 0 0.2429644685391898 43.92883456296809 52.99999999999999 1 E 10 0 360 60
+0 2 2 "0s" 0 0 0 72 0 0  10 0 1
+7
+LANG:10001 35 MS Shell Dlg 2,-1,15,5,75,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 MS Shell Dlg 2,-1,15,5,75,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10005 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+0 7
+LANG:10001 10 PARAMETROS
+LANG:10010 13 EJE PREPARADO
+LANG:10011 6 ALARME
+LANG:10009 10 PARAMETROS
+LANG:10008 7 ALLARMI
+LANG:10018 7 ALARMES
+LANG:10005 6 ALARMS
+6 78
+"RECTANGLE1"
+""
+1 90 200 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_AZUL_03" E E
+ E E
+77 0 0 0 0 0
+E E E
+0
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+4
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 2 3 2 1 E 1.587412587412588 0 1 -131.8671328671329 199.9999999999999 1 E 90 200 376 226
+2 79
+"txf_enc_alarmas"
+""
+1 10 0 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+78 0 0 0 0 0
+E E E
+0
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+5
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+    this.text(getCatStr(\"objetos\",this.name));
+}" 0
+ E 0 10 2 1 1 E 0.672209365432615 0 0.2952129059352812 113.1412673949663 403.1436128219416 1 E 10 0 360 60
+0 2 2 "0s" 0 0 0 65 0 0  10 0 1
+7
+LANG:10001 35 MS Shell Dlg 2,-1,15,5,75,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 MS Shell Dlg 2,-1,15,5,75,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10005 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+0 7
+LANG:10001 10 PARAMETROS
+LANG:10010 23 MODOS DE FUNCIONAMIENTO
+LANG:10011 6 ALARME
+LANG:10009 10 PARAMETROS
+LANG:10008 7 ALLARMI
+LANG:10018 7 ALARMES
+LANG:10005 6 ALARMS
+6 80
+"RECTANGLE2"
+""
+1 30 290 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_BLANCO" E E
+ E E
+79 0 0 0 0 0
+E E E
+0
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+4
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 2 3 2 1 E 1.587412587412588 0 1.026145930854764 -36.62237762237766 135.4176800521181 1 E 30 290 316 392
+6 81
+"RECTANGLE126"
+""
+1 209 106.0000000000002 E E E 1 E 1 E N {0,0,0} E N "LIB_IRC_AZUL_18" E E
+ E E
+80 0 0 0 0 0
+E E E
+0
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+4
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E -1 1 3 2 1 E 1 0 0.7777777777777777 24.00000000000004 343.5555555555554 1 E 209 106.0000000000002 214 115
+7 100
+"ELLIPSE3"
+""
+1 80 200 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_GRIS_03" E E
+ E E
+99 0 0 0 0 0
+E E E
+0
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+4
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+  dpConnect(\"cambiar_estado\", accionamiento_servo.get_eje_preparado());  //Static.DATOS_ALARMA.Output.Alarma_EP
+}
+
+void cambiar_estado(string dp, bool estado){
+  if(estado)  setValue(\"\", \"backCol\", \"LIB_IRC_VERDE_01\");
+  else  setValue(\"\", \"backCol\", \"LIB_IRC_GRIS_03\");
+}
+" 0
+ E 0 2 3 2 1 E 1 0 1 0 13 1 E 28.10660885302388 47.28893405617569 10.5 10
+2 150
+"label_eje_habilitado"
+""
+1 10 0 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+149 0 0 0 0 0
+E E E
+0
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+5
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+  int indice, err;
+  dyn_string resultado;
+  string indice_cat, nombre;
+
+  nombre = this.name();
+  indice = regexpSplit(\"_[0-9]+\", this.name, resultado);
+
+  if(indice >= 0)  err = strreplace(nombre,resultado[1], \"\");
+
+  this.text(getCatStr(\"objetos\",nombre));
+}
+" 0
+ E 0 1 2 1 1 E 0.3657097806218758 0 0.2429644685391898 43.92883456296809 136.6666666666667 1 E 10 0 360 60
+0 2 2 "0s" 0 0 0 72 0 0  10 0 1
+7
+LANG:10001 35 MS Shell Dlg 2,-1,15,5,75,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 MS Shell Dlg 2,-1,15,5,75,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10005 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+0 7
+LANG:10001 10 PARAMETROS
+LANG:10010 14 EJE HABILITADO
+LANG:10011 6 ALARME
+LANG:10009 10 PARAMETROS
+LANG:10008 7 ALLARMI
+LANG:10018 7 ALARMES
+LANG:10005 6 ALARMS
+7 151
+"ELLIPSE28"
+""
+1 80 200 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_GRIS_03" E E
+ E E
+150 0 0 0 0 0
+E E E
+0
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+4
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+  dpConnect(\"cambiar_estado\", accionamiento_servo.get_eje_habilitado());  //Static.DATOS_ALARMA.Output.Alarma_EP
+}
+
+void cambiar_estado(string dp, bool estado){
+  if(estado)  setValue(\"\", \"backCol\", \"LIB_IRC_VERDE_01\");
+  else  setValue(\"\", \"backCol\", \"LIB_IRC_GRIS_03\");
+}
+" 0
+ E 0 2 3 2 1 E 1 0 1 0 32.66666666666664 1 E 28.10660885302388 111.2889340561757 10.5 10
+2 152
+"label_eje_alarma"
+""
+1 10 0 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+151 0 0 0 0 0
+E E E
+0
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+5
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+  int indice, err;
+  dyn_string resultado;
+  string indice_cat, nombre;
+
+  nombre = this.name();
+  indice = regexpSplit(\"_[0-9]+\", this.name, resultado);
+
+  if(indice >= 0)  err = strreplace(nombre,resultado[1], \"\");
+
+  this.text(getCatStr(\"objetos\",nombre));
+}
+" 0
+ E 0 1 2 1 1 E 0.3657097806218758 0 0.2429644685391898 44.88583194379862 220.3333333333333 1 E 10 0 360 60
+0 2 2 "0s" 0 0 0 72 0 0  10 0 1
+7
+LANG:10001 35 MS Shell Dlg 2,-1,15,5,75,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 MS Shell Dlg 2,-1,15,5,75,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10005 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+0 7
+LANG:10001 10 PARAMETROS
+LANG:10010 13 EJE EN ALARMA
+LANG:10011 6 ALARME
+LANG:10009 10 PARAMETROS
+LANG:10008 7 ALLARMI
+LANG:10018 7 ALARMES
+LANG:10005 6 ALARMS
+7 153
+"ELLIPSE29"
+""
+1 80 200 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_GRIS_03" E E
+ E E
+152 0 0 0 0 0
+E E E
+0
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+4
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+  dpConnect(\"cambiar_estado\", accionamiento_servo.get_eje_en_alarma()());  //Static.DATOS_ALARMA.Output.Alarma_EP
+}
+
+void cambiar_estado(string dp, bool estado){
+  if(estado)  setValue(\"\", \"backCol\", \"LIB_IRC_ROJO_12\");
+  else  setValue(\"\", \"backCol\", \"LIB_IRC_GRIS_03\");
+}
+" 0
+ E 0 2 3 2 1 E 1 0 1 0 52.33333333333331 1 E 28.10660885302388 175.2889340561757 10.5 10
+2 154
+"label_eje_movimiento"
+""
+1 10 0 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+153 0 0 0 0 0
+E E E
+0
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+5
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+  int indice, err;
+  dyn_string resultado;
+  string indice_cat, nombre;
+
+  nombre = this.name();
+  indice = regexpSplit(\"_[0-9]+\", this.name, resultado);
+
+  if(indice >= 0)  err = strreplace(nombre,resultado[1], \"\");
+
+  this.text(getCatStr(\"objetos\",nombre));
+}
+" 0
+ E 0 1 2 1 1 E 0.4636366374264949 0 0.2429644685391898 43.48511009023213 304 1 E 10 0 360 60
+0 2 2 "0s" 0 0 0 72 0 0  10 0 1
+7
+LANG:10001 35 MS Shell Dlg 2,-1,15,5,75,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 MS Shell Dlg 2,-1,15,5,75,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10005 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+0 7
+LANG:10001 10 PARAMETROS
+LANG:10010 17 EJE EN MOVIMIENTO
+LANG:10011 6 ALARME
+LANG:10009 10 PARAMETROS
+LANG:10008 7 ALLARMI
+LANG:10018 7 ALARMES
+LANG:10005 6 ALARMS
+7 155
+"ELLIPSE30"
+""
+1 80 200 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_GRIS_03" E E
+ E E
+154 0 0 0 0 0
+E E E
+0
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+4
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+  dpConnect(\"cambiar_estado\", accionamiento_servo.get_eje_en_movimiento());  //Static.DATOS_ALARMA.Output.Alarma_EP
+}
+
+void cambiar_estado(string dp, bool estado){
+  if(estado)  setValue(\"\", \"backCol\", \"LIB_IRC_VERDE_01\");
+  else  setValue(\"\", \"backCol\", \"LIB_IRC_GRIS_03\");
+}
+" 0
+ E 0 2 3 2 1 E 1 0 1 0 72 1 E 28.10660885302388 239.2889340561757 10.5 10
+2 156
+"label_eje_referenciado"
+""
+1 10 0 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+155 0 0 0 0 0
+E E E
+0
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+5
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+  int indice, err;
+  dyn_string resultado;
+  string indice_cat, nombre;
+
+  nombre = this.name();
+  indice = regexpSplit(\"_[0-9]+\", this.name, resultado);
+
+  if(indice >= 0)  err = strreplace(nombre,resultado[1], \"\");
+
+  this.text(getCatStr(\"objetos\",nombre));
+}
+" 0
+ E 0 1 2 1 1 E 0.4244729179758361 0 0.2429644685391898 257.5541107222207 220.3333333333333 1 E 10 0 360 60
+0 2 2 "0s" 0 0 0 72 0 0  10 0 1
+7
+LANG:10001 35 MS Shell Dlg 2,-1,15,5,75,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 MS Shell Dlg 2,-1,15,5,75,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10005 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+0 7
+LANG:10001 10 PARAMETROS
+LANG:10010 16 EJE REFERENCIADO
+LANG:10011 6 ALARME
+LANG:10009 10 PARAMETROS
+LANG:10008 7 ALLARMI
+LANG:10018 7 ALARMES
+LANG:10005 6 ALARMS
+7 157
+"ELLIPSE31"
+""
+1 80 200 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_GRIS_03" E E
+ E E
+156 0 0 0 0 0
+E E E
+0
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+4
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+  dpConnect(\"cambiar_estado\", accionamiento_servo.get_eje_referenciado());  //Static.DATOS_ALARMA.Output.Alarma_EP
+}
+
+void cambiar_estado(string dp, bool estado){
+  if(estado)  setValue(\"\", \"backCol\", \"LIB_IRC_VERDE_01\");
+  else  setValue(\"\", \"backCol\", \"LIB_IRC_GRIS_03\");
+}
+" 0
+ E 0 2 3 2 1 E 1 0 1 210.0918881139648 -75.66666666666671 1 E 28.10660885302388 303.2889340561757 10.5 10
+2 160
+"label_eje_posicionado"
+""
+1 10 0 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+159 0 0 0 0 0
+E E E
+0
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+5
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+  int indice, err;
+  dyn_string resultado;
+  string indice_cat, nombre;
+
+  nombre = this.name();
+  indice = regexpSplit(\"_[0-9]+\", this.name, resultado);
+
+  if(indice >= 0)  err = strreplace(nombre,resultado[1], \"\");
+
+  this.text(getCatStr(\"objetos\",nombre));
+}
+" 0
+ E 0 1 2 1 1 E 0.4250431455916779 0 0.2429644685391898 257.5484084460623 304 1 E 10 0 360 60
+0 2 2 "0s" 0 0 0 72 0 0  10 0 1
+7
+LANG:10001 35 MS Shell Dlg 2,-1,15,5,75,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 MS Shell Dlg 2,-1,15,5,75,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10005 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+0 7
+LANG:10001 10 PARAMETROS
+LANG:10010 15 EJE POSICIONADO
+LANG:10011 6 ALARME
+LANG:10009 10 PARAMETROS
+LANG:10008 7 ALLARMI
+LANG:10018 7 ALARMES
+LANG:10005 6 ALARMS
+7 161
+"ELLIPSE33"
+""
+1 80 200 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_GRIS_03" E E
+ E E
+160 0 0 0 0 0
+E E E
+0
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+4
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+  dpConnect(\"cambiar_estado\", accionamiento_servo.get_eje_posicionado());  //Static.DATOS_ALARMA.Output.Alarma_EP
+}
+
+void cambiar_estado(string dp, bool estado){
+  if(estado)  setValue(\"\", \"backCol\", \"LIB_IRC_VERDE_01\");
+  else  setValue(\"\", \"backCol\", \"LIB_IRC_GRIS_03\");
+}
+" 0
+ E 0 2 3 2 1 E 1 0 1 210.0918881139648 -56.00000000000003 1 E 28.10660885302388 367.2889340561757 10.5 10
+2 162
+"label_posicion_actualizada"
+""
+1 10 0 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+161 0 0 0 0 0
+E E E
+0
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+5
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+  int indice, err;
+  dyn_string resultado;
+  string indice_cat, nombre;
+
+  nombre = this.name();
+  indice = regexpSplit(\"_[0-9]+\", this.name, resultado);
+
+  if(indice >= 0)  err = strreplace(nombre,resultado[1], \"\");
+
+  this.text(getCatStr(\"objetos\",nombre));
+}
+" 0
+ E 0 1 2 1 1 E 0.5886437055248388 0 0.2862713743148001 255.9124046517435 51.70079282673169 1 E 10 0 360 60
+0 2 2 "0s" 0 0 0 72 0 0  10 0 1
+7
+LANG:10001 35 MS Shell Dlg 2,-1,15,5,75,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 MS Shell Dlg 2,-1,15,5,75,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10005 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+0 7
+LANG:10001 10 PARAMETROS
+LANG:10010 21 POSICIÓN ACTUALIZADA
+LANG:10011 6 ALARME
+LANG:10009 10 PARAMETROS
+LANG:10008 7 ALLARMI
+LANG:10018 7 ALARMES
+LANG:10005 6 ALARMS
+7 163
+"ELLIPSE34"
+""
+1 80 200 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_GRIS_03" E E
+ E E
+162 0 0 0 0 0
+E E E
+0
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+4
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+  dpConnect(\"cambiar_estado\", accionamiento_servo.get_eje_posicion_actualizada());  //Static.DATOS_ALARMA.Output.Alarma_EP
+}
+
+void cambiar_estado(string dp, bool estado){
+  if(estado)  setValue(\"\", \"backCol\", \"LIB_IRC_VERDE_01\");
+  else  setValue(\"\", \"backCol\", \"LIB_IRC_GRIS_03\");
+}
+" 0
+ E 0 2 3 2 1 E 1 0 1 0 13 1 E 238.1984969669887 47.28893405617569 10.5 10
+2 164
+"label_eje_sincronizado"
+""
+1 10 0 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+163 0 0 0 0 0
+E E E
+0
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+5
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+  int indice, err;
+  dyn_string resultado;
+  string indice_cat, nombre;
+
+  nombre = this.name();
+  indice = regexpSplit(\"_[0-9]+\", this.name, resultado);
+
+  if(indice >= 0)  err = strreplace(nombre,resultado[1], \"\");
+
+  this.text(getCatStr(\"objetos\",nombre));
+}
+" 0
+ E 0 1 2 1 1 E 0.4737703093496075 0 0.2429644685391898 257.061136808483 136.6666666666667 1 E 10 0 360 60
+0 2 2 "0s" 0 0 0 72 0 0  10 0 1
+7
+LANG:10001 35 MS Shell Dlg 2,-1,15,5,75,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 MS Shell Dlg 2,-1,15,5,75,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10005 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+0 7
+LANG:10001 10 PARAMETROS
+LANG:10010 16 EJE SINCRONIZADO
+LANG:10011 6 ALARME
+LANG:10009 10 PARAMETROS
+LANG:10008 7 ALLARMI
+LANG:10018 7 ALARMES
+LANG:10005 6 ALARMS
+7 165
+"ELLIPSE35"
+""
+1 80 200 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_GRIS_03" E E
+ E E
+164 0 0 0 0 0
+E E E
+0
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+4
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+  dpConnect(\"cambiar_estado\", accionamiento_servo.get_ejesincronizado_gear());  //Static.DATOS_ALARMA.Output.Alarma_EP
+}
+
+void cambiar_estado(string dp, bool estado){
+  if(estado)  setValue(\"\", \"backCol\", \"LIB_IRC_VERDE_01\");
+  else  setValue(\"\", \"backCol\", \"LIB_IRC_GRIS_03\");
+}
+" 0
+ E 0 2 3 2 1 E 1 0 1 0 32.66666666666664 1 E 238.1984969669887 111.2889340561757 10.5 10
+2 166
+"label_modo_pc"
+""
+1 10 0 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+165 0 0 0 0 0
+E E E
+0
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+5
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+  int indice, err;
+  dyn_string resultado;
+  string indice_cat, nombre;
+
+  nombre = this.name();
+  indice = regexpSplit(\"_[0-9]+\", this.name, resultado);
+
+  if(indice >= 0)  err = strreplace(nombre,resultado[1], \"\");
+
+  this.text(getCatStr(\"objetos\",nombre));
+}
+" 0
+ E 0 1 2 1 1 E 0.3978668901892526 0 0.2429644685391898 68.34673106046338 449.1002569183688 1 E 10 0 360 60
+0 2 2 "0s" 0 0 0 72 0 0  10 0 1
+7
+LANG:10001 35 MS Shell Dlg 2,-1,15,5,75,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 MS Shell Dlg 2,-1,15,5,75,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10005 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+0 7
+LANG:10001 10 PARAMETROS
+LANG:10010 7 MODO PC
+LANG:10011 6 ALARME
+LANG:10009 10 PARAMETROS
+LANG:10008 7 ALLARMI
+LANG:10018 7 ALARMES
+LANG:10005 6 ALARMS
+7 167
+"ELLIPSE36"
+""
+1 80 200 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_GRIS_03" E E
+ E E
+166 0 0 0 0 0
+E E E
+0
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+4
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+  dpConnect(\"cambiar_estado\", accionamiento_servo.get_ejeenmodo_pc());  //Static.DATOS_ALARMA.Output.Alarma_EP
+}
+
+void cambiar_estado(string dp, bool estado){
+  if(estado)  setValue(\"\", \"backCol\", \"LIB_IRC_VERDE_01\");
+  else  setValue(\"\", \"backCol\", \"LIB_IRC_GRIS_03\");
+}
+" 0
+ E 0 2 3 2 1 E 1 0 1 -189.0918881139648 281.1002569183688 1 E 238.1984969669887 175.2889340561757 10.5 10
+2 168
+"label_modo_jog"
+""
+1 10 0 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+167 0 0 0 0 0
+E E E
+0
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+5
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+  int indice, err;
+  dyn_string resultado;
+  string indice_cat, nombre;
+
+  nombre = this.name();
+  indice = regexpSplit(\"_[0-9]+\", this.name, resultado);
+
+  if(indice >= 0)  err = strreplace(nombre,resultado[1], \"\");
+
+  this.text(getCatStr(\"objetos\",nombre));
+}
+" 0
+ E 0 1 2 1 1 E 0.3978668901892526 0 0.2429644685391898 68.34673106046338 503.3891909745444 1 E 10 0 360 60
+0 2 2 "0s" 0 0 0 72 0 0  10 0 1
+7
+LANG:10001 35 MS Shell Dlg 2,-1,15,5,75,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 MS Shell Dlg 2,-1,15,5,75,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10005 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+0 7
+LANG:10001 10 PARAMETROS
+LANG:10010 8 MODO JOG
+LANG:10011 6 ALARME
+LANG:10009 10 PARAMETROS
+LANG:10008 7 ALLARMI
+LANG:10018 7 ALARMES
+LANG:10005 6 ALARMS
+7 169
+"ELLIPSE37"
+""
+1 80 200 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_GRIS_03" E E
+ E E
+168 0 0 0 0 0
+E E E
+0
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+4
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+  dpConnect(\"cambiar_estado\", accionamiento_servo.get_ejeenmodo_jog());  //Static.DATOS_ALARMA.Output.Alarma_EP
+}
+
+void cambiar_estado(string dp, bool estado){
+  if(estado)  setValue(\"\", \"backCol\", \"LIB_IRC_VERDE_01\");
+  else  setValue(\"\", \"backCol\", \"LIB_IRC_GRIS_03\");
+}
+" 0
+ E 0 2 3 2 1 E 1 0 1 -189.0918881139648 271.3891909745445 1 E 237.6348178639822 239.2889340561757 10.5 10
+2 170
+"label_modo_mov"
+""
+1 10 0 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+169 0 0 0 0 0
+E E E
+0
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+5
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+  int indice, err;
+  dyn_string resultado;
+  string indice_cat, nombre;
+
+  nombre = this.name();
+  indice = regexpSplit(\"_[0-9]+\", this.name, resultado);
+
+  if(indice >= 0)  err = strreplace(nombre,resultado[1], \"\");
+
+  this.text(getCatStr(\"objetos\",nombre));
+}
+" 0
+ E 0 1 2 1 1 E 0.3978668901892526 0 0.2429644685391898 266.7975961439953 449.1002569183688 1 E 10 0 360 60
+0 2 2 "0s" 0 0 0 72 0 0  10 0 1
+7
+LANG:10001 35 MS Shell Dlg 2,-1,15,5,75,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 MS Shell Dlg 2,-1,15,5,75,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10005 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+0 7
+LANG:10001 10 PARAMETROS
+LANG:10010 8 MODO MOV
+LANG:10011 6 ALARME
+LANG:10009 10 PARAMETROS
+LANG:10008 7 ALLARMI
+LANG:10018 7 ALARMES
+LANG:10005 6 ALARMS
+7 171
+"ELLIPSE38"
+""
+1 80 200 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_GRIS_03" E E
+ E E
+170 0 0 0 0 0
+E E E
+0
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+4
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+  dpConnect(\"cambiar_estado\", accionamiento_servo.get_ejeenmodo_mov());  //Static.DATOS_ALARMA.Output.Alarma_EP
+}
+
+void cambiar_estado(string dp, bool estado){
+  if(estado)  setValue(\"\", \"backCol\", \"LIB_IRC_VERDE_01\");
+  else  setValue(\"\", \"backCol\", \"LIB_IRC_GRIS_03\");
+}
+" 0
+ E 0 2 3 2 1 E 1 0 1 0 153.1002569183688 1 E 238.1984969669887 303.2889340561757 10.5 10
+2 172
+"label_modo_vel"
+""
+1 10 0 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+171 0 0 0 0 0
+E E E
+0
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+5
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+  int indice, err;
+  dyn_string resultado;
+  string indice_cat, nombre;
+
+  nombre = this.name();
+  indice = regexpSplit(\"_[0-9]+\", this.name, resultado);
+
+  if(indice >= 0)  err = strreplace(nombre,resultado[1], \"\");
+
+  this.text(getCatStr(\"objetos\",nombre));
+}
+" 0
+ E 0 1 2 1 1 E 0.3978668901892526 0 0.2429644685391898 266.7975961439952 503.3891909745445 1 E 10 0 360 60
+0 2 2 "0s" 0 0 0 72 0 0  10 0 1
+7
+LANG:10001 35 MS Shell Dlg 2,-1,15,5,75,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 MS Shell Dlg 2,-1,15,5,75,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10005 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+0 7
+LANG:10001 10 PARAMETROS
+LANG:10010 8 MODO VEL
+LANG:10011 6 ALARME
+LANG:10009 10 PARAMETROS
+LANG:10008 7 ALLARMI
+LANG:10018 7 ALARMES
+LANG:10005 6 ALARMS
+7 173
+"ELLIPSE39"
+""
+1 80 200 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_GRIS_03" E E
+ E E
+172 0 0 0 0 0
+E E E
+0
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+4
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+  dpConnect(\"cambiar_estado\", accionamiento_servo.get_ejeenmodo_vel());  //Static.DATOS_ALARMA.Output.Alarma_EP
+}
+
+void cambiar_estado(string dp, bool estado){
+  if(estado)  setValue(\"\", \"backCol\", \"LIB_IRC_VERDE_01\");
+  else  setValue(\"\", \"backCol\", \"LIB_IRC_GRIS_03\");
+}
+" 0
+ E 0 2 3 2 1 E 1 0 1 0 143.3891909745445 1 E 238.1984969669887 367.2889340561757 10.5 10
+29 174
+"Label1"
+"MEDIANO_AZUL"
+1 48.54214135884564 89 E E E 1 E 1 E N "_3DText" E N "_3DFace" E E
+ E E
+173 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"text" "string EJE PREPARADO"
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  48.54214135884564 89 176.5421413588456 114
+5 Label
+0
+E0
+LAYER, 1 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 2 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 3 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 4 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 5 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 6 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 7 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+0

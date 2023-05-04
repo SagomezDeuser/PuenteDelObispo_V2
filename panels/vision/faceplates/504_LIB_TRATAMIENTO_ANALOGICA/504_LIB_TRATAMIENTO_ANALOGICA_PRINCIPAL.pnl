@@ -1,0 +1,638 @@
+V 14
+7
+LANG:10001 0 
+LANG:10010 19 ANALOGICA_PRINCIPAL
+LANG:10011 0 
+LANG:10009 17 MOTOR_S_PRINCIPAL
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+PANEL,-1 -1 410 400 N "white" 2
+"$INST"
+"$TAG"
+E E E E E 1 -1 -1 0  0 0
+""0  1
+E "//--------------------------------------------------------------------------------
+//Clases importadas a utilizar por las funciones de la librería
+lib_tratamiento_analogica tratamiento = lib_tratamiento_analogica($INST, \"asdf\");
+" 0
+ 5
+"CBRef" "1"
+"EClose" E
+"type" "BG_ACCIONAMIENTO_MOTOR_S"
+"dpi" "96"
+"pdpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10001 0 
+LANG:10010 0 
+29 40
+"l_tag"
+""
+1 201.1288368087915 25.43514886093608 E E E 1 E 1 E N "_3DText" E N "_3DFace" E E
+ E E
+39 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+4
+"text" "string 0358x9"
+"alignment" "enum 132"
+"styleSheet" "string "
+"layoutAlignment" "AlignNone"
+6
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10011 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10018 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  5.128836808791521 5.43514886093609 122.1288368087915 27.4351488609361
+5 Label
+0
+"main()
+{
+  this.visible($TAG);
+  this.text(dpGetAlias($INST + \".\"));
+}" 0
+14 53
+"txf_valor_actual"
+"MEDIANO_AZUL"
+1 96.7919547006575 171.666708726196 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_BLANCO" E E
+ E E
+52 0 0 0 0 0
+E E E
+1
+9
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+2
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+9
+LANG:10001 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10005 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10000 30 Noto Sans,-1,13,5,50,0,0,0,0,0
+LANG:10027 30 Noto Sans,-1,13,5,50,0,0,0,0,0
+0  191.5000000000001 116.4089730079478 314.5 143.3912372896996
+2 "0.2f" 3 0 0 9 0 -1  E "main()
+{
+  string instancia, variable;
+
+  instancia = getDollarValue(\"$INST\"); //Recuperamos el valor del $ con la instancia
+  variable = \"Output.Yr_ValorEscalado\"; //Recuperamos el valor del $ con la variable
+
+  if(!instancia.isEmpty() && !variable.isEmpty()){  //Comprobamos que hemos rellenado los $
+    //INST = Nombre de la instancia
+    //VAR = Nombre de la variable, incluyendo el tipo (Ejemplo: Output.Si_CSG)
+    cambiar_valor_analogica($INST, \"Output.Yr_ValorEscalado\", \"\", FALSE, this.name());
+  }else{
+    setMultiValue(\"\", \"color\", \"LIB_IRC_MORADO_01\", \"\", \"foreCol\", \"LIB_IRC_MORADO_01\");
+  }
+}
+" 0
+ E
+6 55
+"rect_tipo_sp"
+""
+1 1738 18 E E E 1 E 1 E N {0,0,0} E N "_Transparent" E E
+ E E
+54 0 0 0 0 0
+E E E
+0
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+4
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  dpConnect(\"cambioIndicador\", $INST + \".\" + \"Output.Yr_ValorEscalado:_online.._value\",
+                               $INST + \".\" + \"Input.Xr_SP_ALL:_online.._value\",
+                               $INST + \".\" + \"Input.Xr_SP_AL:_online.._value\",
+                               $INST + \".\" + \"Input.Xr_SP_AHH:_online.._value\",
+                               $INST + \".\" + \"Input.Xr_SP_AH:_online.._value\",
+                               $INST + \".\" + \"Input.Xd_Habilitar_ALL:_online.._value\",
+                               $INST + \".\" + \"Input.Xd_Habilitar_AL:_online.._value\",
+                               $INST + \".\" + \"Input.Xd_Habilitar_AH:_online.._value\",
+                               $INST + \".\" + \"Input.Xd_Habilitar_AHH:_online.._value\");
+}
+
+void cambioIndicador(string dp1, float valor_actual,string dp2, float valor_ll, string dp3, float valor_l, string dp4, float valor_hh, string dp5,
+                     float valor_h, string dp6, bool habilitar_ll, string dp7, bool habilitar_l, string dp8, bool habilitar_h, string dp9, bool habilitar_hh)
+{
+  if(valor_actual>=valor_hh && habilitar_hh){
+    //Mostramos indicador de muy alto si el valor sobrepasa el SP y está habilitada su alarma
+    setMultiValue(\"rect_tipo_sp\", \"visible\", TRUE, \"rect_tipo_sp\", \"fill\", \"[pattern,[tile,any,iconos/botoneras/Iconos/doble_flecha_arriba_icon.svg]]\");
+  }else if(valor_actual < valor_hh && valor_actual >= valor_h && habilitar_h && habilitar_hh || valor_actual >= valor_h && habilitar_h && !habilitar_hh){
+    //Mostramos indicador de alto si el valor está entre los SP alto y muy alto con ambos habilitados, o si es mayor que el alto con solo este habilitado
+    setMultiValue(\"rect_tipo_sp\", \"visible\", TRUE, \"rect_tipo_sp\", \"fill\", \"[pattern,[tile,any,iconos/botoneras/Iconos/flecha_arriba_icon.svg]]\");
+  }else if(valor_actual < valor_l && valor_actual >= valor_ll && habilitar_l && habilitar_ll || valor_actual < valor_l && habilitar_l && !habilitar_ll){
+    //Mostramos indicador de bajo si el valor está entre los SP bajo y muy bajo con ambos habilitados, o si es menor que el bajo con solo este habilitado
+    setMultiValue(\"rect_tipo_sp\", \"visible\", TRUE, \"rect_tipo_sp\", \"fill\", \"[pattern,[tile,any,iconos/botoneras/Iconos/flecha_abajo_icon.svg]]\");
+  }else if(valor_actual < valor_ll && habilitar_ll){
+    //Mostramos indicador de muy bajo si el valor es menor que el SP y está habilitada su alarma
+    setMultiValue(\"rect_tipo_sp\", \"visible\", TRUE, \"rect_tipo_sp\", \"fill\", \"[pattern,[tile,any,iconos/botoneras/Iconos/doble_flecha_abajo_icon.svg]]\");
+  }else{
+    //En caso de que ninguno de los anteriores esté activo, no tenemos alarma
+    setMultiValue(\"rect_tipo_sp\", \"visible\", TRUE, \"rect_tipo_sp\", \"fill\", \"[pattern,[tile,any,iconos/botoneras/Iconos/ok.svg]]\");
+  }
+}
+" 0
+ E -1 1 3 2 1 E 0.8614997457960389 0 0.8633746801515634 -1477.319449987589 71.62231423859316 1 E 1738 18 1837 117
+6 56
+"RECTANGLE127"
+""
+1 104 298 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_BLANCO" E E
+ E E
+55 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 2 3 2 1 E 1 0 1.083333333333333 -95 -47.8333333333333 1 E 104 298 497 406
+6 57
+"RECTANGLE1"
+""
+1 90 200 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_AZUL_03" E E
+ E E
+56 0 0 0 0 0
+E E E
+0
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+4
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 2 3 2 1 E 1.374125874125874 0 1 -114.6713286713286 41 1 E 90 200 376 226
+2 58
+"txf_enc_alarmas"
+""
+1 10 0 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+57 0 0 0 0 0
+E E E
+0
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+5
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+  this.text(getCatStr(\"objetos\",this.name));
+}" 0
+ E 0 10 2 1 1 E 0.4820095343662528 0 0.2952129059352812 115.404417626701 244.6436128219416 1 E 10 0 360 60
+0 2 2 "0s" 0 0 0 65 0 0  10 0 1
+7
+LANG:10001 35 MS Shell Dlg 2,-1,15,5,75,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 MS Shell Dlg 2,-1,15,5,75,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10005 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+0 7
+LANG:10001 10 PARAMETROS
+LANG:10010 7 ALARMAS
+LANG:10011 6 ALARME
+LANG:10009 10 PARAMETROS
+LANG:10008 7 ALLARMI
+LANG:10018 7 ALARMES
+LANG:10005 6 ALARMS
+6 59
+"RECTANGLE126"
+""
+1 209 106.0000000000002 E E E 1 E 1 E N {0,0,0} E N "LIB_IRC_AZUL_18" E E
+ E E
+58 0 0 0 0 0
+E E E
+0
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+4
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E -1 1 3 2 1 E 1 0 0.7777777777777777 -7.923818515542209 183.5555555555554 1 E 209 106.0000000000002 214 115
+29 60
+"ell_alarma_vf"
+"lblCircle"
+1 46.5410897326044 281.0431648935177 E E E 1 E 1 E N "_3DText" E N "_3DFace" E E
+ E E
+59 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+1
+"layoutAlignment" "AlignNone"
+6
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10011 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10018 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  46.5410897326044 281.0431648935177 66.54108973260439 301.0431648935177
+5 Label
+0
+"main()
+{
+  dpConnect(\"cambiar_estado\", $INST + \".Output.Yd_AHH\"); //Mediante la instacia de librería, obtenemos el estado de la alarma (\"Static.DATOS_ALARMA.Output.Yd_Alarma_VF\")
+}
+
+//Cambia el color de fondo según el estado de la alarma
+void cambiar_estado(string dp, bool estado){
+  if(estado)  setValue(\"\", \"backCol\", \"LIB_IRC_ROJO_12\");
+  else  setValue(\"\", \"backCol\", \"LIB_IRC_GRIS_03\");
+}
+" 0
+29 61
+"ell_alarma_cm"
+"lblCircle"
+1 46.54108973260443 337.0431648935177 E E E 1 E 1 E N "_3DText" E N "_3DFace" E E
+ E E
+60 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+1
+"layoutAlignment" "AlignNone"
+6
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10011 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10018 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  46.54108973260443 337.0431648935177 66.54108973260441 357.0431648935177
+5 Label
+0
+"main()
+{
+  dpConnect(\"cambiar_estado\", $INST + \".Output.Yd_AL\"); //Mediante la instacia de librería, obtenemos el estado de la alarma (\"Static.DATOS_ALARMA.Output.Yd_Alarma_CM_F1\")
+}
+
+//Cambia el color de fondo según el estado de la alarma
+void cambiar_estado(string dp, bool estado){
+  if(estado)  setValue(\"\", \"backCol\", \"LIB_IRC_AMARILLO_01\");
+  else  setValue(\"\", \"backCol\", \"LIB_IRC_GRIS_03\");
+}
+" 0
+29 62
+"ell_alama_cp"
+"lblCircle"
+1 46.54108973260441 365.0431648935177 E E E 1 E 1 E N "_3DText" E N "_3DFace" E E
+ E E
+61 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+1
+"layoutAlignment" "AlignNone"
+6
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10011 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10018 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  46.54108973260441 365.0431648935177 66.54108973260441 385.0431648935177
+5 Label
+0
+"main()
+{
+  dpConnect(\"cambiar_estado\", $INST + \".Output.Yd_ALL\"); //Mediante la instacia de librería, obtenemos el estado de la alarma (\"Static.DATOS_ALARMA.Output.Yd_Alarma_CP_F1\")
+}
+
+//Cambia el color de fondo según el estado de la alarma
+void cambiar_estado(string dp, bool estado){
+  if(estado)  setValue(\"\", \"backCol\", \"LIB_IRC_ROJO_12\");
+  else  setValue(\"\", \"backCol\", \"LIB_IRC_GRIS_03\");
+}
+" 0
+29 63
+"ell_fallo_ext"
+"lblCircle"
+1 46.54108973260439 309.0431648935177 E E E 1 E 1 E N "_3DText" E N "_3DFace" E E
+ E E
+62 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+1
+"layoutAlignment" "AlignNone"
+6
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10011 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10018 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  46.54108973260439 309.0431648935177 66.54108973260439 329.0431648935177
+5 Label
+0
+"main()
+{
+  dpConnect(\"cambiar_estado\", $INST + \".Output.Yd_AH\"); //Mediante la instacia de librería, obtenemos el estado de la alarma (\"Static.DATOS_ALARMA.Output.Yd_Alarma_EXT\")
+}
+
+//Cambia el color de fondo según el estado de la alarma
+void cambiar_estado(string dp, bool estado){
+  if(estado)  setValue(\"\", \"backCol\", \"LIB_IRC_AMARILLO_01\");
+  else  setValue(\"\", \"backCol\", \"LIB_IRC_GRIS_03\");
+}
+" 0
+2 68
+"PRIMITIVE_TEXT138"
+""
+1 -3847.850135839573 -173.9982346302482 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_BLANCO" E E
+ E E
+67 0 0 0 0 0
+E E E
+0
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+5
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+  string unidad = dpGetUnit($INST + \".\");
+  this.text = unidad;
+}
+" 0
+ E 0 1 3 2 1 E 0.1768178895342843 0 0.09622476609823721 313.5164735351091 115.6107273832355 0 E 40 36 376 261
+0 2 2 "0s" 0 0 0 72 0 0  40 36 1
+7
+LANG:10001 39 Siemens Sans Black,-1,13,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10009 39 Siemens Sans Black,-1,13,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10005 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+0 7
+LANG:10001 12 VCC PANELES:
+LANG:10010 3 ºC
+LANG:10011 11 Startkarte:
+LANG:10009 12 VCC PANELES:
+LANG:10008 19 Biglietto d'inizio:
+LANG:10018 17 Comece o bilhete:
+LANG:10005 13 Start ticket:
+29 70
+"Label1"
+"MEDIANO_AZUL"
+1 197.7322642026396 87.30318658231184 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+69 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+4
+"text" "string Valor actual"
+"alignment" "enum 132"
+"styleSheet" "string "
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 27 Tahoma,-1,16,5,50,0,0,0,0,0
+0  197.7322642026396 87.30318658231184 308.7322642026396 118.3031865823118
+5 Label
+0
+E29 75
+"Label10"
+"MEDIANO_AZUL"
+1 71.7705448663022 274.3867172323595 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+74 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"text" "string Alarma alta (HH)"
+"alignment" "enum 128"
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 27 Tahoma,-1,16,5,50,0,0,0,0,0
+0  71.7705448663022 274.3867172323595 201.6645099250069 305.3867172323595
+5 Label
+0
+E29 76
+"Label11"
+"MEDIANO_AZUL"
+1 71.7705448663022 303.3867172323595 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+75 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+4
+"text" "string Aviso alta (H)"
+"alignment" "enum 128"
+"styleSheet" "string QWidget{font-family: \"Tahoma\"; font-size: 15px; font-style: normal; font-weight: 700; }QWidget:enabled {background: #00000000; color: #ff014898; }"
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 27 Tahoma,-1,16,5,50,0,0,0,0,0
+0  71.7705448663022 303.3867172323595 201.6645099250069 334.3867172323595
+5 Label
+0
+E29 77
+"Label12"
+"MEDIANO_AZUL"
+1 71.7705448663022 331.4541498395592 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+76 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"text" "string Aviso baja (L)"
+"alignment" "enum 128"
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 27 Tahoma,-1,16,5,50,0,0,0,0,0
+0  71.7705448663022 331.4541498395592 201.6645099250069 362.4541498395592
+5 Label
+0
+E29 78
+"Label13"
+"MEDIANO_AZUL"
+1 71.7705448663022 358.5215824467589 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+77 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"text" "string Alarma baja (LL)"
+"alignment" "enum 128"
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 27 Tahoma,-1,16,5,50,0,0,0,0,0
+0  71.7705448663022 358.5215824467589 201.6645099250069 389.5215824467589
+5 Label
+0
+E0
+LAYER, 1 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 2 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 3 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 4 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 5 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 6 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 7 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+0

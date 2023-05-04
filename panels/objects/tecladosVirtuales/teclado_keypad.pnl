@@ -1,0 +1,1167 @@
+V 14
+14
+LANG:10011 0 
+LANG:10001 0 
+LANG:10010 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:1 0 
+LANG:11 0 
+LANG:9 0 
+LANG:10 0 
+LANG:18 0 
+LANG:27 0 
+LANG:29 0 
+LANG:4 0 
+PANEL,-1 -1 281 471 N "LIB_IRC_BLANCO" 1
+"$DPE"
+"main()
+{
+  //titleBar(0, myModuleName());  //Quitamos el borde del Frame de la ventana de Login
+  setWindowTitle(myModuleName(), myPanelName(), \"Teclado Virtual Keypad\");  //Eliminamos el title que aparece en el Frame del Panel
+  windowStyle(myModuleName(), myPanelName(), 0, 0);  //Eliminamos los botones para maximizar y minimizar el Panel
+}" 0
+ E E E E 1 -1 -1 0  0 0
+""0  1
+E "string display;
+
+public nuevo_caracter(string chr){
+  if(chr == \"\\b\")  display = substr(display, 0, strlen(display) - 1);
+  else display = display + chr;
+
+  cambiar_display(display);
+}
+
+public cambiar_display(string caracter){
+  setValue(\"txf_valor\", \"text\", caracter);
+  display = caracter;
+}
+" 0
+ 6
+"CBRef" "1"
+"EClose" E
+"windowIcon" "iconos/ventanas/teclado.svg"
+"type" "panel_vis_util_tecl_virt_1"
+"dpi" "96"
+"pdpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+6
+LANG:10011 0 
+LANG:10001 0 
+LANG:10010 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+14 2
+"txf_valor"
+"txf_standard_1"
+1 11.99615384615386 10.5 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_BLANCO" E E
+ E E
+2 0 0 0 0 0
+E E E
+1
+14
+LANG:10011 0 
+LANG:10001 0 
+LANG:10010 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:1 0 
+LANG:11 0 
+LANG:9 0 
+LANG:10 0 
+LANG:18 0 
+LANG:27 0 
+LANG:29 0 
+LANG:4 0 
+
+7
+"hoverfclr" "N \"_Transparent\""
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,80}"
+"shadowRadius" "18"
+"transparentForMouse" ""
+"layoutAlignment" "AlignCenter"
+"showFocus" "0"
+14
+LANG:10011 35 Tahoma,-1,21,5,75,0,0,0,0,0,Negrita
+LANG:10001 35 Tahoma,-1,21,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,21,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,21,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,21,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,21,5,75,0,0,0,0,0,Negrita
+LANG:1 35 MS Shell Dlg 2,12,-1,5,50,0,0,0,0,0
+LANG:11 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:9 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:10 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:18 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:27 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:29 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:4 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+0  9 9 272 43
+2 "0s" 0 0 0 10 0 -1  E E E
+13 23
+"btn_7"
+"btn_formulario_1"
+1 11 55 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Button" E E
+ E E
+23 0 0 0 0 0
+E E E
+1
+14
+LANG:10011 0 
+LANG:10001 0 
+LANG:10010 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:1 0 
+LANG:11 0 
+LANG:9 0 
+LANG:10 0 
+LANG:18 0 
+LANG:27 0 
+LANG:29 0 
+LANG:4 0 
+
+5
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,80}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignCenter"
+"showFocus" "0"
+14
+LANG:10011 35 Tahoma,-1,27,5,75,0,0,0,0,0,Negrita
+LANG:10001 35 Tahoma,-1,27,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,27,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,27,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,27,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,27,5,75,0,0,0,0,0,Negrita
+LANG:1 35 MS Shell Dlg 2,28,-1,5,50,0,0,0,0,0
+LANG:11 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:9 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:10 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:18 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:27 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:29 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:4 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+0  9 53 82 121
+
+T 
+14
+LANG:10011 1 7
+LANG:10001 1 7
+LANG:10010 1 7
+LANG:10009 1 7
+LANG:10008 1 7
+LANG:10018 1 7
+LANG:1 1 8
+LANG:11 12 PUSH_BUTTON5
+LANG:9 12 PUSH_BUTTON5
+LANG:10 12 PUSH_BUTTON5
+LANG:18 12 PUSH_BUTTON5
+LANG:27 12 PUSH_BUTTON5
+LANG:29 12 PUSH_BUTTON5
+LANG:4 12 PUSH_BUTTON5
+"main()
+{
+  nuevo_caracter(this.text);
+}
+" 0
+ E E E
+13 0
+"btn_cancelar"
+"btn_formulario_1"
+1 -8 385 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Button" E E
+ E E
+0 0 0 0 0 0
+E E E
+1
+14
+LANG:10011 0 
+LANG:10001 0 
+LANG:10010 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:1 0 
+LANG:11 0 
+LANG:9 0 
+LANG:10 0 
+LANG:18 0 
+LANG:27 0 
+LANG:29 0 
+LANG:4 0 
+
+5
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,80}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignCenter"
+"showFocus" "0"
+14
+LANG:10011 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10001 35 MS Shell Dlg 2,-1,37,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10008 35 MS Shell Dlg 2,-1,37,5,50,0,0,0,0,0
+LANG:10018 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:1 35 MS Shell Dlg 2,28,-1,5,50,0,0,0,0,0
+LANG:11 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:9 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:10 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:18 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:27 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:29 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:4 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+0  9 383 97 456
+
+P 
+4294967295
+"pictures/iconos/botoneras/cancelar.svg"
+14
+LANG:10011 12 PUSH_BUTTON3
+LANG:10001 8 CANCELAR
+LANG:10010 8 CANCELAR
+LANG:10009 12 PUSH_BUTTON3
+LANG:10008 8 CANCELAR
+LANG:10018 12 PUSH_BUTTON3
+LANG:1 6 CANCEL
+LANG:11 12 PUSH_BUTTON3
+LANG:9 12 PUSH_BUTTON3
+LANG:10 12 PUSH_BUTTON3
+LANG:18 12 PUSH_BUTTON3
+LANG:27 12 PUSH_BUTTON3
+LANG:29 12 PUSH_BUTTON3
+LANG:4 12 PUSH_BUTTON3
+"main()
+{
+  PanelOff();
+}" 0
+ E E E
+13 1
+"btn_aceptar"
+"btn_formulario_1"
+1 186 385.0000000000001 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Button" E E
+ E E
+1 0 0 0 0 0
+E E E
+1
+14
+LANG:10011 0 
+LANG:10001 0 
+LANG:10010 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:1 0 
+LANG:11 0 
+LANG:9 0 
+LANG:10 0 
+LANG:18 0 
+LANG:27 0 
+LANG:29 0 
+LANG:4 0 
+
+5
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,80}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignCenter"
+"showFocus" "0"
+14
+LANG:10011 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10001 35 MS Shell Dlg 2,-1,37,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10008 35 MS Shell Dlg 2,-1,37,5,50,0,0,0,0,0
+LANG:10018 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:1 35 MS Shell Dlg 2,28,-1,5,50,0,0,0,0,0
+LANG:11 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:9 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:10 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:18 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:27 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:29 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:4 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+0  184 383 272 456
+
+P 
+4294967295
+"pictures/iconos/botoneras/aceptar.svg"
+14
+LANG:10011 12 PUSH_BUTTON3
+LANG:10001 7 ACEPTAR
+LANG:10010 7 ACEPTAR
+LANG:10009 12 PUSH_BUTTON3
+LANG:10008 7 ACEPTAR
+LANG:10018 12 PUSH_BUTTON3
+LANG:1 6 ACCEPT
+LANG:11 12 PUSH_BUTTON3
+LANG:9 12 PUSH_BUTTON3
+LANG:10 12 PUSH_BUTTON3
+LANG:18 12 PUSH_BUTTON3
+LANG:27 12 PUSH_BUTTON3
+LANG:29 12 PUSH_BUTTON3
+LANG:4 12 PUSH_BUTTON3
+"main()
+{
+  uint uintval;
+  float floatval;
+  dyn_errClass err;
+  string sTmp, sFormat, sDp;
+  int intval, dpetype, iNewValue;
+
+  dpetype = dpElementType($DPE);
+
+  getValue(\"txf_valor\", \"text\", sTmp);
+  sscanf(sTmp, \"%d\", iNewValue);
+
+  sDp = dpSubStr($DPE,  DPSUB_SYS_DP_EL);
+  if(strpos(sDp,\".\") < 1 )  sDp += \".\";
+
+  sFormat = dpGetFormat(sDp);
+
+  dpSetWait($DPE, sTmp);
+  err = getLastError();
+  if(dynlen(err) > 0)  errorDialog(err);
+
+  setValue(\"\", \"visible\", FALSE);
+
+  PanelOff();
+}" 0
+ E E E
+13 3
+"btn_1"
+"btn_formulario_1"
+1 11 221.2499999999999 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Button" E E
+ E E
+3 0 0 0 0 0
+E E E
+1
+14
+LANG:10011 0 
+LANG:10001 0 
+LANG:10010 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:1 0 
+LANG:11 0 
+LANG:9 0 
+LANG:10 0 
+LANG:18 0 
+LANG:27 0 
+LANG:29 0 
+LANG:4 0 
+
+5
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,80}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignCenter"
+"showFocus" "0"
+14
+LANG:10011 35 Tahoma,-1,27,5,75,0,0,0,0,0,Negrita
+LANG:10001 35 Tahoma,-1,27,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,27,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,27,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,27,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,27,5,75,0,0,0,0,0,Negrita
+LANG:1 35 MS Shell Dlg 2,28,-1,5,50,0,0,0,0,0
+LANG:11 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:9 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:10 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:18 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:27 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:29 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:4 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+0  9 219.25 82 287.25
+
+T 
+14
+LANG:10011 1 1
+LANG:10001 1 1
+LANG:10010 1 1
+LANG:10009 1 1
+LANG:10008 1 1
+LANG:10018 1 1
+LANG:1 1 1
+LANG:11 12 PUSH_BUTTON5
+LANG:9 12 PUSH_BUTTON5
+LANG:10 12 PUSH_BUTTON5
+LANG:18 12 PUSH_BUTTON5
+LANG:27 12 PUSH_BUTTON5
+LANG:29 12 PUSH_BUTTON5
+LANG:4 12 PUSH_BUTTON5
+"main()
+{
+  nuevo_caracter(this.text);
+}
+" 0
+ E E E
+13 11
+"btn_2"
+"btn_formulario_1"
+1 106 221.2499999999999 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Button" E E
+ E E
+11 0 0 0 0 0
+E E E
+1
+14
+LANG:10011 0 
+LANG:10001 0 
+LANG:10010 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:1 0 
+LANG:11 0 
+LANG:9 0 
+LANG:10 0 
+LANG:18 0 
+LANG:27 0 
+LANG:29 0 
+LANG:4 0 
+
+5
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,80}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignCenter"
+"showFocus" "0"
+14
+LANG:10011 35 Tahoma,-1,27,5,75,0,0,0,0,0,Negrita
+LANG:10001 35 Tahoma,-1,27,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,27,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,27,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,27,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,27,5,75,0,0,0,0,0,Negrita
+LANG:1 35 MS Shell Dlg 2,28,-1,5,50,0,0,0,0,0
+LANG:11 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:9 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:10 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:18 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:27 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:29 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:4 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+0  104 219.25 177 287.25
+
+T 
+14
+LANG:10011 1 2
+LANG:10001 1 2
+LANG:10010 1 2
+LANG:10009 1 2
+LANG:10008 1 2
+LANG:10018 1 2
+LANG:1 1 2
+LANG:11 12 PUSH_BUTTON5
+LANG:9 12 PUSH_BUTTON5
+LANG:10 12 PUSH_BUTTON5
+LANG:18 12 PUSH_BUTTON5
+LANG:27 12 PUSH_BUTTON5
+LANG:29 12 PUSH_BUTTON5
+LANG:4 12 PUSH_BUTTON5
+"main()
+{
+  nuevo_caracter(this.text);
+}
+" 0
+ E E E
+13 12
+"btn_3"
+"btn_formulario_1"
+1 201 221.2499999999999 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Button" E E
+ E E
+12 0 0 0 0 0
+E E E
+1
+14
+LANG:10011 0 
+LANG:10001 0 
+LANG:10010 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:1 0 
+LANG:11 0 
+LANG:9 0 
+LANG:10 0 
+LANG:18 0 
+LANG:27 0 
+LANG:29 0 
+LANG:4 0 
+
+5
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,80}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignCenter"
+"showFocus" "0"
+14
+LANG:10011 35 Tahoma,-1,27,5,75,0,0,0,0,0,Negrita
+LANG:10001 35 Tahoma,-1,27,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,27,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,27,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,27,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,27,5,75,0,0,0,0,0,Negrita
+LANG:1 35 MS Shell Dlg 2,28,-1,5,50,0,0,0,0,0
+LANG:11 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:9 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:10 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:18 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:27 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:29 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:4 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+0  199 219.25 272 287.25
+
+T 
+14
+LANG:10011 1 3
+LANG:10001 1 3
+LANG:10010 1 3
+LANG:10009 1 3
+LANG:10008 1 3
+LANG:10018 1 3
+LANG:1 1 3
+LANG:11 12 PUSH_BUTTON5
+LANG:9 12 PUSH_BUTTON5
+LANG:10 12 PUSH_BUTTON5
+LANG:18 12 PUSH_BUTTON5
+LANG:27 12 PUSH_BUTTON5
+LANG:29 12 PUSH_BUTTON5
+LANG:4 12 PUSH_BUTTON5
+"main()
+{
+  nuevo_caracter(this.text);
+}
+" 0
+ E E E
+13 13
+"btn_4"
+"btn_formulario_1"
+1 11 137.625 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Button" E E
+ E E
+13 0 0 0 0 0
+E E E
+1
+14
+LANG:10011 0 
+LANG:10001 0 
+LANG:10010 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:1 0 
+LANG:11 0 
+LANG:9 0 
+LANG:10 0 
+LANG:18 0 
+LANG:27 0 
+LANG:29 0 
+LANG:4 0 
+
+5
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,80}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignCenter"
+"showFocus" "0"
+14
+LANG:10011 35 Tahoma,-1,27,5,75,0,0,0,0,0,Negrita
+LANG:10001 35 Tahoma,-1,27,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,27,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,27,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,27,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,27,5,75,0,0,0,0,0,Negrita
+LANG:1 35 MS Shell Dlg 2,28,-1,5,50,0,0,0,0,0
+LANG:11 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:9 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:10 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:18 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:27 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:29 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:4 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+0  9 136.125 82 204.125
+
+T 
+14
+LANG:10011 1 4
+LANG:10001 1 4
+LANG:10010 1 4
+LANG:10009 1 4
+LANG:10008 1 4
+LANG:10018 1 4
+LANG:1 1 4
+LANG:11 12 PUSH_BUTTON5
+LANG:9 12 PUSH_BUTTON5
+LANG:10 12 PUSH_BUTTON5
+LANG:18 12 PUSH_BUTTON5
+LANG:27 12 PUSH_BUTTON5
+LANG:29 12 PUSH_BUTTON5
+LANG:4 12 PUSH_BUTTON5
+"main()
+{
+  nuevo_caracter(this.text);
+}
+" 0
+ E E E
+13 14
+"btn_5"
+"btn_formulario_1"
+1 106 137.625 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Button" E E
+ E E
+14 0 0 0 0 0
+E E E
+1
+14
+LANG:10011 0 
+LANG:10001 0 
+LANG:10010 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:1 0 
+LANG:11 0 
+LANG:9 0 
+LANG:10 0 
+LANG:18 0 
+LANG:27 0 
+LANG:29 0 
+LANG:4 0 
+
+5
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,80}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignCenter"
+"showFocus" "0"
+14
+LANG:10011 35 Tahoma,-1,27,5,75,0,0,0,0,0,Negrita
+LANG:10001 35 Tahoma,-1,27,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,27,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,27,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,27,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,27,5,75,0,0,0,0,0,Negrita
+LANG:1 35 MS Shell Dlg 2,28,-1,5,50,0,0,0,0,0
+LANG:11 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:9 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:10 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:18 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:27 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:29 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:4 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+0  104 136.125 177 204.125
+
+T 
+14
+LANG:10011 1 5
+LANG:10001 1 5
+LANG:10010 1 5
+LANG:10009 1 5
+LANG:10008 1 5
+LANG:10018 1 5
+LANG:1 1 5
+LANG:11 12 PUSH_BUTTON5
+LANG:9 12 PUSH_BUTTON5
+LANG:10 12 PUSH_BUTTON5
+LANG:18 12 PUSH_BUTTON5
+LANG:27 12 PUSH_BUTTON5
+LANG:29 12 PUSH_BUTTON5
+LANG:4 12 PUSH_BUTTON5
+"main()
+{
+  nuevo_caracter(this.text);
+}
+" 0
+ E E E
+13 15
+"btn_6"
+"btn_formulario_1"
+1 201 137.625 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Button" E E
+ E E
+15 0 0 0 0 0
+E E E
+1
+14
+LANG:10011 0 
+LANG:10001 0 
+LANG:10010 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:1 0 
+LANG:11 0 
+LANG:9 0 
+LANG:10 0 
+LANG:18 0 
+LANG:27 0 
+LANG:29 0 
+LANG:4 0 
+
+5
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,80}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignCenter"
+"showFocus" "0"
+14
+LANG:10011 35 Tahoma,-1,27,5,75,0,0,0,0,0,Negrita
+LANG:10001 35 Tahoma,-1,27,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,27,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,27,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,27,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,27,5,75,0,0,0,0,0,Negrita
+LANG:1 35 MS Shell Dlg 2,28,-1,5,50,0,0,0,0,0
+LANG:11 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:9 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:10 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:18 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:27 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:29 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:4 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+0  199 136.125 272 204.125
+
+T 
+14
+LANG:10011 1 6
+LANG:10001 1 6
+LANG:10010 1 6
+LANG:10009 1 6
+LANG:10008 1 6
+LANG:10018 1 6
+LANG:1 1 6
+LANG:11 12 PUSH_BUTTON5
+LANG:9 12 PUSH_BUTTON5
+LANG:10 12 PUSH_BUTTON5
+LANG:18 12 PUSH_BUTTON5
+LANG:27 12 PUSH_BUTTON5
+LANG:29 12 PUSH_BUTTON5
+LANG:4 12 PUSH_BUTTON5
+"main()
+{
+  nuevo_caracter(this.text);
+}
+" 0
+ E E E
+13 18
+"btn_9"
+"btn_formulario_1"
+1 201 55 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Button" E E
+ E E
+18 0 0 0 0 0
+E E E
+1
+14
+LANG:10011 0 
+LANG:10001 0 
+LANG:10010 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:1 0 
+LANG:11 0 
+LANG:9 0 
+LANG:10 0 
+LANG:18 0 
+LANG:27 0 
+LANG:29 0 
+LANG:4 0 
+
+5
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,80}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignCenter"
+"showFocus" "0"
+14
+LANG:10011 35 Tahoma,-1,27,5,75,0,0,0,0,0,Negrita
+LANG:10001 35 Tahoma,-1,27,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,27,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,27,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,27,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,27,5,75,0,0,0,0,0,Negrita
+LANG:1 35 MS Shell Dlg 2,28,-1,5,50,0,0,0,0,0
+LANG:11 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:9 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:10 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:18 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:27 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:29 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:4 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+0  199 53 272 121
+
+T 
+14
+LANG:10011 1 9
+LANG:10001 1 9
+LANG:10010 1 9
+LANG:10009 1 9
+LANG:10008 1 9
+LANG:10018 1 9
+LANG:1 1 9
+LANG:11 12 PUSH_BUTTON5
+LANG:9 12 PUSH_BUTTON5
+LANG:10 12 PUSH_BUTTON5
+LANG:18 12 PUSH_BUTTON5
+LANG:27 12 PUSH_BUTTON5
+LANG:29 12 PUSH_BUTTON5
+LANG:4 12 PUSH_BUTTON5
+"main()
+{
+  nuevo_caracter(this.text);
+}
+" 0
+ E E E
+13 19
+"btn_0"
+"btn_formulario_1"
+1 11 304.8749999999999 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Button" E E
+ E E
+19 0 0 0 0 0
+E E E
+1
+14
+LANG:10011 0 
+LANG:10001 0 
+LANG:10010 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:1 0 
+LANG:11 0 
+LANG:9 0 
+LANG:10 0 
+LANG:18 0 
+LANG:27 0 
+LANG:29 0 
+LANG:4 0 
+
+5
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,80}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignCenter"
+"showFocus" "0"
+14
+LANG:10011 35 Tahoma,-1,27,5,75,0,0,0,0,0,Negrita
+LANG:10001 35 Tahoma,-1,27,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,27,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,27,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,27,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,27,5,75,0,0,0,0,0,Negrita
+LANG:1 35 MS Shell Dlg 2,28,-1,5,50,0,0,0,0,0
+LANG:11 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:9 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:10 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:18 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:27 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:29 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:4 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+0  9 302.375 82 370.375
+
+T 
+14
+LANG:10011 1 0
+LANG:10001 1 0
+LANG:10010 1 0
+LANG:10009 1 0
+LANG:10008 1 0
+LANG:10018 1 0
+LANG:1 1 0
+LANG:11 12 PUSH_BUTTON5
+LANG:9 12 PUSH_BUTTON5
+LANG:10 12 PUSH_BUTTON5
+LANG:18 12 PUSH_BUTTON5
+LANG:27 12 PUSH_BUTTON5
+LANG:29 12 PUSH_BUTTON5
+LANG:4 12 PUSH_BUTTON5
+"main()
+{
+  nuevo_caracter(this.text);
+}
+" 0
+ E E E
+13 20
+"btn_punto"
+"btn_formulario_1"
+1 106 304.8749999999999 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Button" E E
+ E E
+20 0 0 0 0 0
+E E E
+1
+14
+LANG:10011 0 
+LANG:10001 0 
+LANG:10010 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:1 0 
+LANG:11 0 
+LANG:9 0 
+LANG:10 0 
+LANG:18 0 
+LANG:27 0 
+LANG:29 0 
+LANG:4 0 
+
+5
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,80}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignCenter"
+"showFocus" "0"
+14
+LANG:10011 35 Tahoma,-1,27,5,75,0,0,0,0,0,Negrita
+LANG:10001 35 Tahoma,-1,27,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,27,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,27,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,27,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,27,5,75,0,0,0,0,0,Negrita
+LANG:1 35 MS Shell Dlg 2,28,-1,5,50,0,0,0,0,0
+LANG:11 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:9 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:10 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:18 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:27 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:29 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:4 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+0  104 302.375 177 370.375
+
+T 
+14
+LANG:10011 1 .
+LANG:10001 1 .
+LANG:10010 1 .
+LANG:10009 1 .
+LANG:10008 1 .
+LANG:10018 1 .
+LANG:1 1 .
+LANG:11 12 PUSH_BUTTON5
+LANG:9 12 PUSH_BUTTON5
+LANG:10 12 PUSH_BUTTON5
+LANG:18 12 PUSH_BUTTON5
+LANG:27 12 PUSH_BUTTON5
+LANG:29 12 PUSH_BUTTON5
+LANG:4 12 PUSH_BUTTON5
+"main()
+{
+  int dec_punto;
+
+  dec_punto = strpos(display, \".\");
+
+  if(dec_punto < 0 && strlen(display) >= 1)  nuevo_caracter(this.text);
+}" 0
+ E E E
+13 21
+"btn_borrar"
+"btn_formulario_1"
+1 201 304.8749999999999 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Button" E E
+ E E
+21 0 0 0 0 0
+E E E
+1
+14
+LANG:10011 0 
+LANG:10001 0 
+LANG:10010 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:1 0 
+LANG:11 0 
+LANG:9 0 
+LANG:10 0 
+LANG:18 0 
+LANG:27 0 
+LANG:29 0 
+LANG:4 0 
+
+5
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,80}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignCenter"
+"showFocus" "0"
+14
+LANG:10011 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10001 35 MS Shell Dlg 2,-1,37,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10008 35 MS Shell Dlg 2,-1,37,5,50,0,0,0,0,0
+LANG:10018 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:1 35 MS Shell Dlg 2,28,-1,5,50,0,0,0,0,0
+LANG:11 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:9 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:10 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:18 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:27 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:29 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:4 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+0  199 302.375 272 370.375
+
+P 
+4294967295
+"pictures/iconos/botoneras/borrar_flecha.svg"
+14
+LANG:10011 12 PUSH_BUTTON5
+LANG:10001 3 <--
+LANG:10010 6 BORRAR
+LANG:10009 12 PUSH_BUTTON5
+LANG:10008 3 <--
+LANG:10018 12 PUSH_BUTTON5
+LANG:1 3 <--
+LANG:11 12 PUSH_BUTTON5
+LANG:9 12 PUSH_BUTTON5
+LANG:10 12 PUSH_BUTTON5
+LANG:18 12 PUSH_BUTTON5
+LANG:27 12 PUSH_BUTTON5
+LANG:29 12 PUSH_BUTTON5
+LANG:4 12 PUSH_BUTTON5
+"main()
+{
+  nuevo_caracter(\"\\b\");
+}
+" 0
+ E E E
+13 17
+"btn_8"
+"btn_formulario_1"
+1 106 55 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Button" E E
+ E E
+17 0 0 0 0 0
+E E E
+1
+14
+LANG:10011 0 
+LANG:10001 0 
+LANG:10010 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:1 0 
+LANG:11 0 
+LANG:9 0 
+LANG:10 0 
+LANG:18 0 
+LANG:27 0 
+LANG:29 0 
+LANG:4 0 
+
+5
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,80}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignCenter"
+"showFocus" "0"
+14
+LANG:10011 35 Tahoma,-1,27,5,75,0,0,0,0,0,Negrita
+LANG:10001 35 Tahoma,-1,27,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,27,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,27,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,27,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,27,5,75,0,0,0,0,0,Negrita
+LANG:1 35 MS Shell Dlg 2,28,-1,5,50,0,0,0,0,0
+LANG:11 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:9 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:10 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:18 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:27 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:29 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:4 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+0  104 53 177 121
+
+T 
+14
+LANG:10011 1 8
+LANG:10001 1 8
+LANG:10010 1 8
+LANG:10009 1 8
+LANG:10008 1 8
+LANG:10018 1 8
+LANG:1 1 8
+LANG:11 12 PUSH_BUTTON5
+LANG:9 12 PUSH_BUTTON5
+LANG:10 12 PUSH_BUTTON5
+LANG:18 12 PUSH_BUTTON5
+LANG:27 12 PUSH_BUTTON5
+LANG:29 12 PUSH_BUTTON5
+LANG:4 12 PUSH_BUTTON5
+"main()
+{
+  nuevo_caracter(this.text);
+}
+" 0
+ E E E
+0
+LAYER, 1 
+6
+LANG:10011 0 
+LANG:10001 0 
+LANG:10010 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+0
+LAYER, 2 
+6
+LANG:10011 0 
+LANG:10001 0 
+LANG:10010 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+0
+LAYER, 3 
+6
+LANG:10011 0 
+LANG:10001 0 
+LANG:10010 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+0
+LAYER, 4 
+6
+LANG:10011 0 
+LANG:10001 0 
+LANG:10010 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+0
+LAYER, 5 
+6
+LANG:10011 0 
+LANG:10001 0 
+LANG:10010 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+0
+LAYER, 6 
+6
+LANG:10011 0 
+LANG:10001 0 
+LANG:10010 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+0
+LAYER, 7 
+6
+LANG:10011 0 
+LANG:10001 0 
+LANG:10010 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+0
+0

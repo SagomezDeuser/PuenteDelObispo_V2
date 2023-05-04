@@ -1,0 +1,2084 @@
+V 14
+2
+LANG:10001 0 
+LANG:10010 0 
+PANEL,-1 -1 1920 980 N "White" 0
+E E E E E 1 -1 -1 0  560 310
+""0  1
+E "const mapping estado_decanter = makeMapping(0, \"PARO\",
+                                   1, \"MARCHA\",
+                                   2, \"ALARMA\",
+                                   3, \"F. CARRERA\");
+
+const mapping paneles_menu_scada = makeMapping(1, \"vision/sinopticos/00_sinoptico_general/sinoptico_general\",
+                                   2, \"vision/sinopticos/01_alarmas/alarmas\",
+                                   3, \"vision/sinopticos/02_historicos/historicos\",
+                                   6, \"vision/sinopticos/06_configuracion/configuracion\",
+                                   7, \"vision/sinopticos/04_incidencias/incidencias\",
+                                   8, \"vision/sinopticos/03_informes/informes\",
+                                   9, \"vision/sinopticos/08_audit_trail/audit_trail\",
+                                   10, \"vision/sinopticos/07_esquematica/esquematica\",
+                                   11, \"vision/sinopticos/09_manual/manual\",
+                                   12, \"vision/inicio\",
+                                   13, \"vision/sinopticos/05_graficas/graficas_influx\",
+                                   14, \"vision/sinopticos/05_graficas/multigraficas_influx\",
+                                   15, \"vision/sinopticos/10_registros/registros\",
+                                   16, \"vision/sinopticos/13_bodega/depositos\",
+                                   17, \"vision/sinopticos/12_granuladora/sinoptico\",
+                                   18, \"vision/sinopticos/14_extractora/sinoptico\",
+                                   19, \"vision/sinopticos/15_preparacion/sinoptico\",
+                                   20, \"vision/sinopticos/16_secadero/sinoptico\",
+                                   21, \"vision/sinopticos/17_repaso/sinoptico\",
+                                   22, \"vision/sinopticos/18_hueso/sinoptico\",
+                                   23, \"vision/sinopticos/15_preparacion/alimentacion\",
+                                   24, \"vision/sinopticos/15_preparacion/salida\",
+                                   25, \"vision/sinopticos/15_preparacion/granuladora1\",
+                                   26, \"vision/sinopticos/15_preparacion/granuladora2\",
+                                   100, \"vision/sinopticos/06_configuracion/configuracion/config_dp_emergentes/configuracion_principal\");
+
+void cambiar_panel_activo(int clave)
+{
+  string nom;
+  mapping paneles;
+  int x, y, g;
+  int n_pantalla = numero_pantalla();
+
+  nom = paneles_menu_scada.value(clave);
+
+//   getValue(\"botonera\", \"position\", x, y);
+//   g = createAnimation();
+//   animate(g, \"btn_desplegable\", \"positionAsDyn\", makeDynInt(50, y), makeDynInt(50, y), makeMapping(\"duration\", 300));
+//   animate(g, \"btn_desplegable\", \"sizeAsDyn\", makeDynInt(50, 40), makeDynInt(50, 40), makeMapping(\"duration\", 300));
+
+  paneles = get_mapa_nombres_paneles();
+
+  if (myModuleName() == \"PRINCIPALPANTALLA1\")
+  {
+//     animate(\"botonera\", \"positionAsDyn\", makeDynInt(x, y), makeDynInt(x - 135, y), makeMapping(\"duration\", 200));
+//     startAnimation(g, \"keep\", makeMapping(\"direction\", \"Backward\"));
+    RootPanelOnModule(nom + \".pnl\", nom, \"PRINCIPALPANTALLA1\", makeDynString(\"$MODULO:\" + myModuleName(), \"$N_PANTALLA:\" + n_pantalla));
+  }
+  else if (myModuleName() == \"PRINCIPALPANTALLA2\")
+  {
+//     animate(\"botonera\", \"positionAsDyn\", makeDynInt(x, y), makeDynInt(x - 135, y), makeMapping(\"duration\", 200));
+//     startAnimation(g, \"keep\", makeMapping(\"direction\", \"Backward\"));
+    RootPanelOnModule(nom + \".pnl\", nom, \"PRINCIPALPANTALLA2\", makeDynString(\"$MODULO:\" + myModuleName(), \"$N_PANTALLA:\" + n_pantalla));
+  }
+  else if (myModuleName() == \"PRINCIPALPANTALLA3\")
+  {
+//     animate(\"botonera\", \"positionAsDyn\", makeDynInt(x, y), makeDynInt(x - 135, y), makeMapping(\"duration\", 200));
+//     startAnimation(g, \"keep\", makeMapping(\"direction\", \"Backward\"));
+    RootPanelOnModule(nom + \".pnl\", nom, \"PRINCIPALPANTALLA3\", makeDynString(\"$MODULO:\" + myModuleName(), \"$N_PANTALLA:\" + n_pantalla));
+  }
+  else if (myModuleName() == \"PRINCIPALPANTALLA4\")
+  {
+//     animate(\"botonera\", \"positionAsDyn\", makeDynInt(x, y), makeDynInt(x - 135, y), makeMapping(\"duration\", 200));
+//     startAnimation(g, \"keep\", makeMapping(\"direction\", \"Backward\"));
+    RootPanelOnModule(nom + \".pnl\", nom, \"PRINCIPALPANTALLA4\", makeDynString(\"$MODULO:\" + myModuleName(), \"$N_PANTALLA:\" + n_pantalla));
+  }
+  else if (myModuleName() == \"PRINCIPALPANTALLA5\")
+  {
+//     animate(\"botonera\", \"positionAsDyn\", makeDynInt(x, y), makeDynInt(x - 135, y), makeMapping(\"duration\", 200));
+//     startAnimation(g, \"keep\", makeMapping(\"direction\", \"Backward\"));
+    RootPanelOnModule(nom + \".pnl\", nom, \"PRINCIPALPANTALLA5\", makeDynString(\"$MODULO:\" + myModuleName(), \"$N_PANTALLA:\" + n_pantalla));
+  }
+  else if (myModuleName() == \"PRINCIPALPANTALLA6\")
+  {
+//     animate(\"botonera\", \"positionAsDyn\", makeDynInt(x, y), makeDynInt(x - 135, y), makeMapping(\"duration\", 200));
+//     startAnimation(g, \"keep\", makeMapping(\"direction\", \"Backward\"));
+    RootPanelOnModule(nom + \".pnl\", nom, \"PRINCIPALPANTALLA6\", makeDynString(\"$MODULO:\" + myModuleName(), \"$N_PANTALLA:\" + n_pantalla));
+  }
+}
+
+mapping get_mapa_nombres_paneles()
+{
+  return (paneles_menu_scada);
+}
+
+void cambiar_pantalla_actual_preparacion(string pantalla_actual, string pantalla = myModuleName())
+{
+  int n_ui = myUiNumber();
+  strreplace(pantalla, \"PRINCIPALPANTALLA\", \"\");
+  dpSetWait(\"ui_\" + n_ui + \"_pantalla_\" + pantalla + \".pantalla_actual\", pantalla_actual);
+}" 0
+ 4
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+"pdpi" "141.951"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10001 0 
+LANG:10010 0 
+6 6
+"RECTANGLE6"
+""
+1 90 120 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+5 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E -1 0 3 2 1 E 1.391769028924025 0 0.2195360195360195 364.7407873968377 296.614789422593 2  1 0  "pictures/maquinarias/sinfin_hor_largo_gris.svg" 4294967295 E 90 120 390 260
+6 7
+"RECTANGLE7"
+""
+1 90 120 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+6 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E -1 0 3 2 1 E 0.3133333333333333 0 0.9714156314699803 841.3158560470197 259.1224671313577 2  1 0  "pictures/maquinarias/tolva_gris.svg" 4294967295 E 90 120 390 260
+6 8
+"RECTANGLE8"
+""
+1 90 120 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+7 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E -1 0 3 2 1 E 1.764540378006875 0 0.2195360195360195 779.3738886930678 296.6489774567813 2  1 0  "pictures/maquinarias/sinfin_hor_largo_inv_gris.svg" 4294967295 E 90 120 390 260
+6 36
+"RECTANGLE36"
+""
+1 90 120 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+35 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E -1 0 3 2 1 E 0.07263969072165018 0 1.714285714285714 73.4624278350517 170.1318857395921 2  1 0  "pictures/maquinarias/elevador5.png" 4294967295 E 90 120 390 260
+6 51
+"RECTANGLE51"
+""
+1 90 120 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+50 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E -1 0 3 2 1 E 0.4998773219401639 0 1.735714285714287 1435.90427409458 110.952286792859 2  1 0  "pictures/maquinarias/elevador1.png" 4294967295 E 90 120 390 260
+6 53
+"RECTANGLE53"
+""
+1 90 120 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+52 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E -1 0 3 2 1 E 0.3133333333333333 0 0.9714156314699808 1611.817679249084 423.753411901757 2  1 0  "pictures/maquinarias/tolva_gris.svg" 4294967295 E 90 120 390 260
+13 61
+"btn_alimentacion"
+""
+1 832.3253798565437 67.99329980110355 E E E 1 E 1 E N "white" E N "LIB_IRC_AZUL_01" E E
+ E E
+60 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 8 Synoptic
+LANG:10010 6 Inicio
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,21,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  830.3253798565438 65.99329980110355 1050.039439296691 139.8952157522182
+
+T 
+2
+LANG:10001 0 
+LANG:10010 18 ANULA BOCINA
+NIVEL
+"main(mapping event)
+{
+  dpSet(\"015_PREPARACION.cio15011\", TRUE);
+}" 0
+ E E "main()
+{
+  dpConnect(\"cambiar_fondo\", \"015_PREPARACION.cio15011\");
+}
+
+void cambiar_fondo(string dp, bool valor)
+{
+  if(valor)
+  {
+    this.backCol(\"LIB_IRC_VERDE_01\");
+  }
+  else
+  {
+    this.backCol(\"LIB_IRC_AZUL_01\");
+  }
+}" 0
+
+13 64
+"PUSH_BUTTON2"
+""
+1 832.3253798565437 150.4506756999842 E E E 1 E 1 E N "white" E N "LIB_IRC_AZUL_01" E E
+ E E
+63 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 8 Synoptic
+LANG:10010 6 Inicio
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,21,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  830.3253798565438 148.4506756999842 1050.039439296691 222.3525916510987
+
+T 
+2
+LANG:10001 0 
+LANG:10010 13 ACTIVO BOCINA
+"main(mapping event)
+{
+  dpSet(\"015_PREPARACION.cio15011\", FALSE);
+}" 0
+ E E "main()
+{
+  dpConnect(\"cambiar_fondo\", \"015_PREPARACION.cio15011\");
+}
+
+void cambiar_fondo(string dp, bool valor)
+{
+  if(valor)
+  {
+    this.backCol(\"LIB_IRC_AZUL_01\");
+  }
+  else
+  {
+    this.backCol(\"LIB_IRC_ROJO_12\");
+  }
+}" 0
+
+13 68
+"PUSH_BUTTON6"
+""
+1 1708.666666666667 990.300956893348 E E E 1 E 1 E N "white" E N "LIB_IRC_AZUL_01" E E
+ E E
+67 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 8 Synoptic
+LANG:10010 6 Inicio
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,21,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  1706.666666666667 988.300956893348 1889.981791926119 1062.202872844463
+
+T 
+2
+LANG:10001 0 
+LANG:10010 12 REARME
+MOTOR
+"main(mapping event)
+{
+  dpSet(\"015_PREPARACION.cio15008\", TRUE);
+  delay(1);
+  dpSet(\"015_PREPARACION.cio15008\", FALSE);
+}" 0
+ E E "main()
+{
+  dpConnect(\"cambiar_fondo\", \"015_PREPARACION.cio15015\");
+}
+
+void cambiar_fondo(string dp, bool valor)
+{
+  if(valor)
+  {
+    this.backCol(\"LIB_IRC_ROJO_12\");
+  }
+  else
+  {
+    this.backCol(\"LIB_IRC_AZUL_01\");
+  }
+}" 0
+
+13 69
+"PUSH_BUTTON7"
+""
+1 1508.351541407213 990.3009568933483 E E E 1 E 1 E N "white" E N "LIB_IRC_AZUL_01" E E
+ E E
+68 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 8 Synoptic
+LANG:10010 6 Inicio
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,21,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  1506.351541407213 988.3009568933483 1689.666666666666 1062.202872844463
+
+T 
+2
+LANG:10001 0 
+LANG:10010 11 PARO
+BOCINA
+"main(mapping event)
+{
+  dpSet(\"015_PREPARACION.cio15009\", TRUE);
+  delay(1);
+  dpSet(\"015_PREPARACION.cio15009\", FALSE);
+}" 0
+ E E "main()
+{
+  dpConnect(\"cambiar_fondo\", \"015_PREPARACION.cio15014\");
+}
+
+void cambiar_fondo(string dp, bool valor)
+{
+  if(valor)
+  {
+    this.backCol(\"LIB_IRC_ROJO_12\");
+  }
+  else
+  {
+    this.backCol(\"LIB_IRC_AZUL_01\");
+  }
+}" 0
+
+1 825 25 "" 6
+0
+1 826 34 "" 1
+0
+1 827 35 "" 1
+0
+1 828 56 "" 1
+0
+2 521
+"PRIMITIVE_TEXT5"
+""
+1 1060 500 E E E 1 E 1 E N "White" E N "LIB_IRC_ROJO_12" E E
+ E E
+160 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+  dpConnect(\"cambiar_visibilidad\", \"015_PREPARACION.cio20014\");
+}
+
+void cambiar_visibilidad(string dp, bool valor)
+{
+  this.visible(valor);
+}" 0
+ E 0 1 3 2 1 E 0.8618647458983588 0 0.5522043733337463 66.31345508663571 99.59015624088232 1 E 1060 500 1200 570
+0 2 2 "0s" 0 0 0 73 0 0  1060 500 1
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+0 2
+LANG:10001 20 N. CONFIRMA EXTRAC
+LANG:10010 6 N. MAX
+2 523
+"PRIMITIVE_TEXT7"
+""
+1 1060 500 E E E 1 E 1 E N "White" E N "LIB_IRC_ROJO_12" E E
+ E E
+162 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+  dpConnect(\"cambiar_visibilidad\", \"015_PREPARACION.cio20013\");
+}
+
+void cambiar_visibilidad(string dp, bool valor)
+{
+  this.visible(valor);
+}" 0
+ E 0 1 3 2 1 E 0.866666666666666 0 0.5522043733337463 60.88728461844863 149.0432719304244 1 E 1060 500 1200 570
+0 2 2 "0s" 0 0 0 73 0 0  1060 500 1
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+0 2
+LANG:10001 20 N. CONFIRMA EXTRAC
+LANG:10010 6 N. MIN
+2 594
+"PRIMITIVE_TEXT9"
+""
+1 1060 500 E E E 1 E 1 E N "White" E N "LIB_IRC_ROJO_12" E E
+ E E
+164 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+  dpConnect(\"cambiar_visibilidad\", \"015_PREPARACION.cio10300\");
+}
+
+void cambiar_visibilidad(string dp, bool valor)
+{
+  this.visible(valor);
+}" 0
+ E 0 1 3 2 1 E 0.9285714285714279 0 0.8752329192546597 -852.4231334826738 304.3880327610269 1 E 1060 500 1200 570
+0 2 2 "0s" 0 0 0 73 0 0  1060 500 2
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+0 2
+LANG:10001 20 N. CONFIRMA EXTRAC
+LANG:10010 10 PARO CINTA
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+0 2
+LANG:10001 0 
+LANG:10010 9 POR NIVEL
+1 829 62 "" 1
+0
+13 745
+"PUSH_BUTTON8"
+""
+1 348.2545710663783 246.9908100054911 E E E 1 E 1 E N "white" E N "LIB_IRC_AZUL_01" E E
+ E E
+179 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 8 Synoptic
+LANG:10010 6 Inicio
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,21,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  346.2545710663783 244.9908100054911 415.8025376888373 301.4417679810484
+
+T 
+2
+LANG:10001 0 
+LANG:10010 1 M
+"main(mapping event)
+{
+  dpSet(\"015_PREPARACION.cio10000\", TRUE);
+}" 0
+ E E "main()
+{
+  dpConnect(\"cambiar_fondo\", \"015_PREPARACION.cio12000\");
+}
+
+void cambiar_fondo(string dp, bool valor)
+{
+  if(valor)
+  {
+    this.backCol(\"LIB_IRC_VERDE_01\");
+  }
+  else
+  {
+    this.backCol(\"LIB_IRC_AZUL_01\");
+  }
+}" 0
+
+13 746
+"PUSH_BUTTON9"
+""
+1 423.8083162823696 246.9908100054911 E E E 1 E 1 E N "white" E N "LIB_IRC_AZUL_01" E E
+ E E
+180 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 8 Synoptic
+LANG:10010 6 Inicio
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,21,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  421.8083162823696 244.9908100054911 491.3562829048285 301.4417679810484
+
+T 
+2
+LANG:10001 0 
+LANG:10010 1 P
+"main(mapping event)
+{
+  dpGet(\"015_PREPARACION.cio10000\", FALSE);
+}" 0
+ E E "main()
+{
+  dpConnect(\"cambiar_fondo\", \"015_PREPARACION.cio12000\");
+}
+
+void cambiar_fondo(string dp, bool valor)
+{
+  if(valor)
+  {
+    this.backCol(\"LIB_IRC_AZUL_01\");
+  }
+  else
+  {
+    this.backCol(\"LIB_IRC_ROJO_12\");
+  }
+}" 0
+
+2 747
+"PRIMITIVE_TEXT4"
+""
+1 310 470 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Window" E E
+ E E
+181 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E 0.9285714285714286 0 1.591602837703153 43.95117342522673 -553.955146733901 0 E 310 470 450 500
+0 2 2 "0s" 0 0 0 73 0 0  310 470 1
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+0 2
+LANG:10001 9 FALLO RPM
+LANG:10010 22 SF.   ENT. ORUJO   1
+13 748
+"PUSH_BUTTON10"
+""
+1 753.1881275197991 259.1230901895065 E E E 1 E 1 E N "white" E N "LIB_IRC_AZUL_01" E E
+ E E
+182 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 8 Synoptic
+LANG:10010 6 Inicio
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,21,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  751.1881275197991 257.1230901895065 820.736094142258 313.5740481650637
+
+T 
+2
+LANG:10001 0 
+LANG:10010 1 M
+"main(mapping event)
+{
+  dpSet(\"015_PREPARACION.cio10001\", TRUE);
+}" 0
+ E E "main()
+{
+  dpConnect(\"cambiar_fondo\", \"015_PREPARACION.cio12001\");
+}
+
+void cambiar_fondo(string dp, bool valor)
+{
+  if(valor)
+  {
+    this.backCol(\"LIB_IRC_VERDE_01\");
+  }
+  else
+  {
+    this.backCol(\"LIB_IRC_AZUL_01\");
+  }
+}" 0
+
+13 749
+"PUSH_BUTTON11"
+""
+1 829.5158560470197 259.1230901895065 E E E 1 E 1 E N "white" E N "LIB_IRC_AZUL_01" E E
+ E E
+183 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 8 Synoptic
+LANG:10010 6 Inicio
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,21,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  827.5158560470197 257.1230901895065 897.0638226694787 313.5740481650637
+
+T 
+2
+LANG:10001 0 
+LANG:10010 1 P
+"main(mapping event)
+{
+  dpGet(\"015_PREPARACION.cio10001\", FALSE);
+}" 0
+ E E "main()
+{
+  dpConnect(\"cambiar_fondo\", \"015_PREPARACION.cio12001\");
+}
+
+void cambiar_fondo(string dp, bool valor)
+{
+  if(valor)
+  {
+    this.backCol(\"LIB_IRC_AZUL_01\");
+  }
+  else
+  {
+    this.backCol(\"LIB_IRC_ROJO_12\");
+  }
+}" 0
+
+2 750
+"PRIMITIVE_TEXT10"
+""
+1 310 470 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Window" E E
+ E E
+184 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E 0.9285714285714286 0 1.591602837703153 333.3043727357903 -486.5788071087442 0 E 310 470 450 500
+0 2 2 "0s" 0 0 0 73 0 0  310 470 1
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+0 2
+LANG:10001 9 FALLO RPM
+LANG:10010 22 SF.   ENT. ORUJO   2
+13 751
+"PUSH_BUTTON12"
+""
+1 719.5158560470197 375.6923429077555 E E E 1 E 1 E N "white" E N "LIB_IRC_AZUL_01" E E
+ E E
+185 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 8 Synoptic
+LANG:10010 6 Inicio
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,21,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  717.5158560470197 373.6923429077555 787.0638226694787 430.1433008833127
+
+T 
+2
+LANG:10001 0 
+LANG:10010 1 M
+"main(mapping event)
+{
+  dpSet(\"015_PREPARACION.cio10014\", TRUE);
+}" 0
+ E E "main()
+{
+  dpConnect(\"cambiar_fondo\", \"015_PREPARACION.cio12014\");
+}
+
+void cambiar_fondo(string dp, bool valor)
+{
+  if(valor)
+  {
+    this.backCol(\"LIB_IRC_VERDE_01\");
+  }
+  else
+  {
+    this.backCol(\"LIB_IRC_AZUL_01\");
+  }
+}" 0
+
+13 752
+"PUSH_BUTTON13"
+""
+1 795.8435845742404 375.6923429077555 E E E 1 E 1 E N "white" E N "LIB_IRC_AZUL_01" E E
+ E E
+186 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 8 Synoptic
+LANG:10010 6 Inicio
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,21,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  793.8435845742404 373.6923429077555 863.3915511966993 430.1433008833127
+
+T 
+2
+LANG:10001 0 
+LANG:10010 1 P
+"main(mapping event)
+{
+  dpGet(\"015_PREPARACION.cio10014\", FALSE);
+}" 0
+ E E "main()
+{
+  dpConnect(\"cambiar_fondo\", \"015_PREPARACION.cio12014\");
+}
+
+void cambiar_fondo(string dp, bool valor)
+{
+  if(valor)
+  {
+    this.backCol(\"LIB_IRC_AZUL_01\");
+  }
+  else
+  {
+    this.backCol(\"LIB_IRC_ROJO_12\");
+  }
+}" 0
+
+2 753
+"PRIMITIVE_TEXT11"
+""
+1 310 470 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Window" E E
+ E E
+187 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E 1.193433605126407 0 0.9999999999999951 319.5514384578336 -34.30765709224224 0 E 310 470 450 500
+0 2 2 "0s" 0 0 0 73 0 0  310 470 1
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+0 2
+LANG:10001 9 FALLO RPM
+LANG:10010 14 CRIBA  ENTRADA
+13 754
+"PUSH_BUTTON14"
+""
+1 945.0466346405518 258.006694577207 E E E 1 E 1 E N "white" E N "LIB_IRC_AZUL_01" E E
+ E E
+188 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 8 Synoptic
+LANG:10010 6 Inicio
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,21,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  943.0466346405518 256.006694577207 1012.594601263011 312.4576525527643
+
+T 
+2
+LANG:10001 0 
+LANG:10010 1 M
+"main(mapping event)
+{
+  dpSet(\"015_PREPARACION.cio10004\", TRUE);
+}" 0
+ E E "main()
+{
+  dpConnect(\"cambiar_fondo\", \"015_PREPARACION.cio12004\");
+}
+
+void cambiar_fondo(string dp, bool valor)
+{
+  if(valor)
+  {
+    this.backCol(\"LIB_IRC_VERDE_01\");
+  }
+  else
+  {
+    this.backCol(\"LIB_IRC_AZUL_01\");
+  }
+}" 0
+
+13 755
+"PUSH_BUTTON15"
+""
+1 1021.374363167772 258.006694577207 E E E 1 E 1 E N "white" E N "LIB_IRC_AZUL_01" E E
+ E E
+189 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 8 Synoptic
+LANG:10010 6 Inicio
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,21,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  1019.374363167772 256.006694577207 1088.922329790231 312.4576525527643
+
+T 
+2
+LANG:10001 0 
+LANG:10010 1 P
+"main(mapping event)
+{
+  dpGet(\"015_PREPARACION.cio10004\", FALSE);
+}" 0
+ E E "main()
+{
+  dpConnect(\"cambiar_fondo\", \"015_PREPARACION.cio12004\");
+}
+
+void cambiar_fondo(string dp, bool valor)
+{
+  if(valor)
+  {
+    this.backCol(\"LIB_IRC_AZUL_01\");
+  }
+  else
+  {
+    this.backCol(\"LIB_IRC_ROJO_12\");
+  }
+}" 0
+
+2 756
+"PRIMITIVE_TEXT12"
+""
+1 310 470 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Window" E E
+ E E
+190 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E 1.157142857142858 0 1.591602837703153 728.8015703327335 -487.6952027210436 0 E 310 470 450 500
+0 2 2 "0s" 0 0 0 73 0 0  310 470 1
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+0 2
+LANG:10001 9 FALLO RPM
+LANG:10010 25 SF.   TOLVA   A G1   G2
+2 757
+"PRIMITIVE_TEXT13"
+""
+1 1060 500 E E E 1 E 1 E N "White" E N "LIB_IRC_ROJO_12" E E
+ E E
+191 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+  dpConnect(\"cambiar_visibilidad\", \"015_PREPARACION.cio20100\");
+}
+
+void cambiar_visibilidad(string dp, bool valor)
+{
+  this.visible(valor);
+}" 0
+ E 0 1 3 2 1 E 0.8618647458983588 0 0.5522043733337463 846.2447549785554 268.8718998004939 1 E 1060 500 1200 570
+0 2 2 "0s" 0 0 0 73 0 0  1060 500 1
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+0 2
+LANG:10001 20 N. CONFIRMA EXTRAC
+LANG:10010 6 N. MAX
+2 758
+"PRIMITIVE_TEXT14"
+""
+1 1060 500 E E E 1 E 1 E N "White" E N "LIB_IRC_ROJO_12" E E
+ E E
+192 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+  dpConnect(\"cambiar_visibilidad\", \"015_PREPARACION.cio20015\");
+}
+
+void cambiar_visibilidad(string dp, bool valor)
+{
+  this.visible(valor);
+}" 0
+ E 0 1 3 2 1 E 0.866666666666666 0 0.5522043733337463 840.8185845103683 318.325015490036 1 E 1060 500 1200 570
+0 2 2 "0s" 0 0 0 73 0 0  1060 500 1
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+0 2
+LANG:10001 20 N. CONFIRMA EXTRAC
+LANG:10010 6 N. MIN
+2 759
+"PRIMITIVE_TEXT15"
+""
+1 310 470 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Window" E E
+ E E
+193 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E 0.9285714285714286 0 1.591602837703153 -127.8571428571429 -358.0533337204819 0 E 310 470 450 500
+0 2 2 "0s" 0 0 0 73 0 0  310 470 1
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+0 2
+LANG:10001 9 FALLO RPM
+LANG:10010 14 PISTON CINTA
+13 760
+"PUSH_BUTTON16"
+""
+1 118.2779205134232 444.2297020405211 E E E 1 E 1 E N "white" E N "LIB_IRC_AZUL_01" E E
+ E E
+194 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 8 Synoptic
+LANG:10010 6 Inicio
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,21,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  116.2779205134232 442.2297020405211 185.8258871358822 498.6806600160784
+
+T 
+2
+LANG:10001 0 
+LANG:10010 1 M
+"main(mapping event)
+{
+  dpSet(\"015_PREPARACION.cio10103\", TRUE);
+}" 0
+ E E "main()
+{
+  dpConnect(\"cambiar_fondo\", \"015_PREPARACION.cio10103\");
+}
+
+void cambiar_fondo(string dp, bool valor)
+{
+  if(valor)
+  {
+    this.backCol(\"LIB_IRC_VERDE_01\");
+  }
+  else
+  {
+    this.backCol(\"LIB_IRC_AZUL_01\");
+  }
+}" 0
+
+13 761
+"PUSH_BUTTON17"
+""
+1 193.8316657294143 444.2297020405211 E E E 1 E 1 E N "white" E N "LIB_IRC_AZUL_01" E E
+ E E
+195 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 8 Synoptic
+LANG:10010 6 Inicio
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,21,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  191.8316657294143 442.2297020405211 261.3796323518732 498.6806600160784
+
+T 
+2
+LANG:10001 0 
+LANG:10010 1 P
+"main(mapping event)
+{
+  dpGet(\"015_PREPARACION.cio10103\", FALSE);
+}" 0
+ E E "main()
+{
+  dpConnect(\"cambiar_fondo\", \"015_PREPARACION.cio10103\");
+}
+
+void cambiar_fondo(string dp, bool valor)
+{
+  if(valor)
+  {
+    this.backCol(\"LIB_IRC_AZUL_01\");
+  }
+  else
+  {
+    this.backCol(\"LIB_IRC_ROJO_12\");
+  }
+}" 0
+
+1 830 63 "" 6
+0
+13 764
+"PUSH_BUTTON18"
+""
+1 118.563554946888 564.5052653334806 E E E 1 E 1 E N "white" E N "LIB_IRC_AZUL_01" E E
+ E E
+197 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 8 Synoptic
+LANG:10010 6 Inicio
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,21,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  116.563554946888 562.5052653334806 186.1115215693469 618.9562233090379
+
+T 
+2
+LANG:10001 0 
+LANG:10010 1 M
+"main(mapping event)
+{
+  bool valor;
+
+  dpSet(\"015_PREPARACION.cio16000\", valor);
+  dpSet(\"015_PREPARACION.cio16000\", !valor);
+}" 0
+ E E "main()
+{
+  dpConnect(\"cambiar_fondo\", \"015_PREPARACION.cio16000\");
+}
+
+void cambiar_fondo(string dp, bool valor)
+{
+  if(valor)
+  {
+    this.backCol(\"LIB_IRC_ROJO_12\");
+  }
+  else
+  {
+    this.backCol(\"LIB_IRC_VERDE_01\");
+  }
+}" 0
+
+13 771
+"PUSH_BUTTON23"
+""
+1 1430.323700876151 205.1386544172106 E E E 1 E 1 E N "white" E N "LIB_IRC_AZUL_01" E E
+ E E
+204 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 8 Synoptic
+LANG:10010 6 Inicio
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,21,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  1428.323700876151 203.1386544172106 1497.87166749861 259.5896123927679
+
+T 
+2
+LANG:10001 0 
+LANG:10010 1 M
+"main(mapping event)
+{
+  dpSet(\"015_PREPARACION.cio10009\", TRUE);
+}" 0
+ E E "main()
+{
+  dpConnect(\"cambiar_fondo\", \"015_PREPARACION.cio12009\");
+}
+
+void cambiar_fondo(string dp, bool valor)
+{
+  if(valor)
+  {
+    this.backCol(\"LIB_IRC_VERDE_01\");
+  }
+  else
+  {
+    this.backCol(\"LIB_IRC_AZUL_01\");
+  }
+}" 0
+
+13 772
+"PUSH_BUTTON24"
+""
+1 1506.651429403372 205.1386544172106 E E E 1 E 1 E N "white" E N "LIB_IRC_AZUL_01" E E
+ E E
+205 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 8 Synoptic
+LANG:10010 6 Inicio
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,21,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  1504.651429403372 203.1386544172106 1574.19939602583 259.5896123927679
+
+T 
+2
+LANG:10001 0 
+LANG:10010 1 P
+"main(mapping event)
+{
+  dpGet(\"015_PREPARACION.cio10009\", FALSE);
+}" 0
+ E E "main()
+{
+  dpConnect(\"cambiar_fondo\", \"015_PREPARACION.cio12009\");
+}
+
+void cambiar_fondo(string dp, bool valor)
+{
+  if(valor)
+  {
+    this.backCol(\"LIB_IRC_AZUL_01\");
+  }
+  else
+  {
+    this.backCol(\"LIB_IRC_ROJO_12\");
+  }
+}" 0
+
+2 776
+"PRIMITIVE_TEXT19"
+""
+1 310 470 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Window" E E
+ E E
+209 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E 1.357142857142856 0 1.38283264323486 1007.011691794168 -397.4575429756375 0 E 310 470 450 500
+0 2 2 "0s" 0 0 0 73 0 0  310 470 1
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+0 2
+LANG:10001 9 FALLO RPM
+LANG:10010 13 NORIA   ORUJO
+1 832 64 "" 6
+0
+13 784
+"PUSH_BUTTON31"
+""
+1 1587.151322221346 672.2610731847584 E E E 1 E 1 E N "white" E N "LIB_IRC_AZUL_01" E E
+ E E
+217 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 8 Synoptic
+LANG:10010 6 Inicio
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,21,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  1585.151322221346 670.2610731847584 1654.699288843805 726.7120311603157
+
+T 
+2
+LANG:10001 0 
+LANG:10010 1 M
+"main(mapping event)
+{
+  dpSet(\"015_PREPARACION.cio10102\", TRUE);
+}" 0
+ E E "main()
+{
+  dpConnect(\"cambiar_fondo\", \"015_PREPARACION.cio12102\");
+}
+
+void cambiar_fondo(string dp, bool valor)
+{
+  if(valor)
+  {
+    this.backCol(\"LIB_IRC_VERDE_01\");
+  }
+  else
+  {
+    this.backCol(\"LIB_IRC_AZUL_01\");
+  }
+}" 0
+
+13 785
+"PUSH_BUTTON32"
+""
+1 1718.230976244568 673.4814283419701 E E E 1 E 1 E N "white" E N "LIB_IRC_AZUL_01" E E
+ E E
+218 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 8 Synoptic
+LANG:10010 6 Inicio
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,21,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  1716.230976244568 671.4814283419701 1785.778942867027 727.9323863175273
+
+T 
+2
+LANG:10001 0 
+LANG:10010 1 P
+"main(mapping event)
+{
+  dpGet(\"015_PREPARACION.cio10102\", FALSE);
+}" 0
+ E E "main()
+{
+  dpConnect(\"cambiar_fondo\", \"015_PREPARACION.cio12102\");
+}
+
+void cambiar_fondo(string dp, bool valor)
+{
+  if(valor)
+  {
+    this.backCol(\"LIB_IRC_AZUL_01\");
+  }
+  else
+  {
+    this.backCol(\"LIB_IRC_ROJO_12\");
+  }
+}" 0
+
+2 786
+"PRIMITIVE_TEXT22"
+""
+1 310 470 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Window" E E
+ E E
+219 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E 1.193433605126407 0 0.9999999999999951 1220.053261659898 260.323287678157 0 E 310 470 450 500
+0 2 2 "0s" 0 0 0 73 0 0  310 470 1
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+0 2
+LANG:10001 9 FALLO RPM
+LANG:10010 12 P.   RETORNO
+13 793
+"PUSH_BUTTON37"
+""
+1 1420.134238594617 882 E E E 1 E 1 E N "white" E N "LIB_IRC_AZUL_01" E E
+ E E
+226 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 8 Synoptic
+LANG:10010 6 Inicio
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,21,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  1418.134238594617 880 1601.449363854069 953.9019159511146
+
+T 
+2
+LANG:10001 0 
+LANG:10010 12 REARME
+MOTOR
+"main(mapping event)
+{
+  dpSet(\"015_PREPARACION.cio15008\", TRUE);
+  delay(1);
+  dpSet(\"015_PREPARACION.cio15008\", FALSE);
+}" 0
+ E E "main()
+{
+  dpConnect(\"cambiar_fondo\", \"015_PREPARACION.cio15015\");
+}
+
+void cambiar_fondo(string dp, bool valor)
+{
+  if(valor)
+  {
+    this.backCol(\"LIB_IRC_ROJO_12\");
+  }
+  else
+  {
+    this.backCol(\"LIB_IRC_AZUL_01\");
+  }
+}" 0
+
+13 794
+"PUSH_BUTTON38"
+""
+1 1219.819113335163 882.0000000000001 E E E 1 E 1 E N "white" E N "LIB_IRC_AZUL_01" E E
+ E E
+227 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 8 Synoptic
+LANG:10010 6 Inicio
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,21,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  1217.819113335163 880.0000000000001 1401.134238594616 953.9019159511147
+
+T 
+2
+LANG:10001 0 
+LANG:10010 11 PARO
+BOCINA
+"main(mapping event)
+{
+  dpSet(\"015_PREPARACION.cio15009\", TRUE);
+  delay(1);
+  dpSet(\"015_PREPARACION.cio15009\", FALSE);
+}" 0
+ E E "main()
+{
+  dpConnect(\"cambiar_fondo\", \"015_PREPARACION.cio15014\");
+}
+
+void cambiar_fondo(string dp, bool valor)
+{
+  if(valor)
+  {
+    this.backCol(\"LIB_IRC_ROJO_12\");
+  }
+  else
+  {
+    this.backCol(\"LIB_IRC_AZUL_01\");
+  }
+}" 0
+
+2 795
+"PRIMITIVE_TEXT25"
+""
+1 310 470 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Window" E E
+ E E
+228 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E 1.193433605126407 0 2.925522176215656 478.1115583444982 -772.6721351432037 0 E 310 470 450 500
+0 2 2 "0s" 0 0 0 73 0 0  310 470 1
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+0 2
+LANG:10001 9 FALLO RPM
+LANG:10010 31 SELECCION MODO A.  SECADERO
+13 796
+"PUSH_BUTTON39"
+""
+1 841.9587656628062 713.3064387698585 E E E 1 E 1 E N "white" E N "LIB_IRC_AZUL_01" E E
+ E E
+229 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 8 Synoptic
+LANG:10010 6 Inicio
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,21,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  839.9587656628062 711.3064387698585 1023.273890922259 764.3232876781545
+
+T 
+2
+LANG:10001 0 
+LANG:10010 3 AUT
+"main(mapping event)
+{
+  dpSet(\"015_PREPARACION.cio15000\", TRUE);
+}" 0
+ E E "main()
+{
+  dpConnect(\"cambiar_fondo\", \"015_PREPARACION.cio15000\");
+}
+
+void cambiar_fondo(string dp, bool valor)
+{
+  if(valor)
+  {
+    this.backCol(\"LIB_IRC_VERDE_01\");
+  }
+  else
+  {
+    this.backCol(\"LIB_IRC_AZUL_01\");
+  }
+}" 0
+
+13 797
+"PUSH_BUTTON40"
+""
+1 841.9587656628064 772.3232876781544 E E E 1 E 1 E N "white" E N "LIB_IRC_AZUL_01" E E
+ E E
+230 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 8 Synoptic
+LANG:10010 6 Inicio
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,21,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  839.9587656628064 770.3232876781544 1023.273890922259 823.3401365864505
+
+T 
+2
+LANG:10001 0 
+LANG:10010 3 MAN
+"main(mapping event)
+{
+  dpSet(\"015_PREPARACION.cio15000\", FALSE);
+}" 0
+ E E "main()
+{
+  dpConnect(\"cambiar_fondo\", \"015_PREPARACION.cio15000\");
+}
+
+void cambiar_fondo(string dp, bool valor)
+{
+  if(valor)
+  {
+    this.backCol(\"LIB_IRC_AZUL_01\");
+  }
+  else
+  {
+    this.backCol(\"LIB_IRC_ROJO_12\");
+  }
+}" 0
+
+13 803
+"PUSH_BUTTON43"
+""
+1 1660 900 E E E 1 E 1 E N "white" E N "LIB_IRC_AZUL_01" E E
+ E E
+236 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 8 Synoptic
+LANG:10010 6 Inicio
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,21,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  458.3707355993574 890.9999999999999 602.3707355993574 953.9999999999999
+
+P 
+4294967295
+"pictures/iconos/botoneras/flecha_izq_off_blanco.svg"
+2
+LANG:10001 0 
+LANG:10010 11 PARO
+BOCINA
+"main(mapping event)
+{
+  cambiar_panel_activo(19);
+  cambiar_pantalla_actual_preparacion(\"PREPARACIÓN\\nSINÓPTICO\");
+  int n_ui = myUiNumber();
+  int n_pantalla = numero_pantalla();
+}" 0
+ E E E
+6 822
+"RECTANGLE56"
+""
+1 90 120 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+240 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E -1 0 3 2 1 E 1.224798157734549 0 0.2195360195360195 -30.23183419610943 297.310209340839 2  1 0  "pictures/maquinarias/sinfin_hor_largo_gris.svg" 4294967295 E 90 120 390 260
+1 833 65 "" 1
+0
+6 824
+"RECTANGLE11"
+""
+1 282 34 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+241 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+4
+"transparentForMouseInGedi" ""
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 2 3 2 1 E 2.695849129487736 0 3.594932715871767 51.45130872032405 468.8644613723156 1 E 282 34 371 102
+2 834
+"PRIMITIVE_TEXT1"
+""
+1 1060 500 E E E 1 E 1 E N "White" E N "LIB_IRC_ROJO_12" E E
+ E E
+242 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+  dpConnect(\"cambiar_visibilidad\", \"015_PREPARACION.cio20210\");
+}
+
+void cambiar_visibilidad(string dp, bool valor)
+{
+  this.visible(!valor);
+}" 0
+ E 0 1 3 2 1 E 1.280822323281807 0 0.9985987993016368 -103.2798762708467 -420.9731753505441 1 E 1060 500 1200 570
+0 2 2 "0s" 0 0 0 73 0 0  1060 500 1
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+0 2
+LANG:10001 20 N. CONFIRMA EXTRAC
+LANG:10010 20 N. CONFIRMA EXTRAC
+0
+LAYER, 1 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 2 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 3 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 4 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 5 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 6 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 7 
+2
+LANG:10001 0 
+LANG:10010 0 
+1 831 63 "" 5
+0
+0
+3 25 "PANEL_REF26" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/indicadoresSeñales/01_indicador_filtro_digital_2.pnl" 11.53164291507399 467.9139699089235 T 125 1.625 0 1.624999999999999 41.79167596972638 -387.3945093767888
+5
+"$COL1""LIB_IRC_VERDE_01"
+"$COL2""LIB_IRC_GRIS_03"
+"$COL3""LIB_IRC_ROJO_12"
+"$COL4""LIB_IRC_ROJO_12"
+"$DP""015_PREPARACION.d119"
+3 34 "PANEL_REF35" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/motores/motor.pnl" 67.89656669456852 209.9912964713296 T 130 1 0 1 781.6192893524513 109.3571641639909
+2
+"$DP""015_PREPARACION.d101"
+"$INVERT""FALSE"
+3 35 "PANEL_REF36" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/motores/motor.pnl" 67.89656669456852 209.9912964713296 T 131 1 0 1 851.6192893524513 109.3571641639909
+2
+"$DP""015_PREPARACION.d104"
+"$INVERT""TRUE"
+3 56 "PANEL_REF58" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/motores/motor.pnl" 67.89656669456852 209.9912964713296 T 152 0.7114121690664168 0 0.7727221929902091 1421.213412262674 147.4274077895725
+2
+"$DP""015_PREPARACION.d109"
+"$INVERT""TRUE"
+3 62 "PANEL_REF64" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/motores/motor.pnl" 67.89656669456852 209.9912964713296 T 178 0.7114121690664167 0 0.7727221929902082 841.4145505788251 226.7472702942182
+2
+"$DP""015_PREPARACION.d114"
+"$INVERT""FALSE"
+3 63 "PANEL_REF4" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/indicadoresSeñales/01_indicador_filtro_digital.pnl" 1030.312270430464 240.2116240642181 T 196 1.644730548719087 0 1.540467694129335 -1634.586065897106 119.9617533747312
+5
+"$COLOR_ACTIVO""LIB_IRC_VERDE_01"
+"$COLOR_INACTIVO""LIB_IRC_GRIS_03"
+"$INST""015_PREPARACION.cio415"
+"$POSICION""NULL"
+"$TEXTO""NULL"
+3 64 "PANEL_REF65" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/indicadoresSeñales/01_indicador_filtro_digital_2.pnl" 11.53164291507399 467.9139699089235 T 216 1.625 0 1.624999999999999 1587.725188083516 -98.03691342384536
+5
+"$COL1""LIB_IRC_GRIS_03"
+"$COL2""LIB_IRC_VERDE_01"
+"$COL3""LIB_IRC_ROJO_12"
+"$COL4""LIB_IRC_ROJO_12"
+"$DP""015_PREPARACION.d118"
+3 65 "PANEL_REF67" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/motores/motor.pnl" 67.89656669456852 209.9912964713296 T 239 1 0 1 321.528027995608 110.0525840822368
+2
+"$DP""015_PREPARACION.d100"
+"$INVERT""FALSE"
+0

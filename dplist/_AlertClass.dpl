@@ -1,0 +1,123 @@
+# ascii dump of database
+
+# DpType
+TypeName
+_AlertClass._AlertClass	21#1
+
+# Datapoint/DpId
+DpName	TypeName	ID
+information	_AlertClass	62
+advanceAlarm	_AlertClass	63
+warning	_AlertClass	64
+alert	_AlertClass	65
+danger	_AlertClass	66
+disturbance	_AlertClass	67
+scAlarm	_AlertClass	269
+S7_Alarm	_AlertClass	346
+S7_Warning	_AlertClass	347
+S7_Tolerance	_AlertClass	348
+S7_AS	_AlertClass	349
+S7_OS	_AlertClass	350
+S7_Maintenance	_AlertClass	351
+S7_Process	_AlertClass	352
+S7_Operating	_AlertClass	353
+S7_OP_Request	_AlertClass	354
+S7_OP	_AlertClass	355
+S7_State	_AlertClass	356
+S7_SysMust	_AlertClass	357
+S7_SysNeed	_AlertClass	358
+IRC_Alarma	_AlertClass	36220
+IRC_Aviso	_AlertClass	36221
+
+# AlertClass
+Manager/User	StampSec	StampMSec	ElementName	TypeName	_alert_class.._type	_alert_class.._prior	_alert_class.._abbr	_alert_class.._archive	_alert_class.._ack_type	_alert_class.._single_ack	_alert_class.._inact_ack	_alert_class.._color_none	_alert_class.._fore_color_none	_alert_class.._font_style_none	_alert_class.._color_c_nack	_alert_class.._fore_color_c_nack	_alert_class.._font_style_c_nack	_alert_class.._color_c_ack	_alert_class.._fore_color_c_ack	_alert_class.._font_style_c_ack	_alert_class.._color_g_nack	_alert_class.._fore_color_g_nack	_alert_class.._font_style_g_nack	_alert_class.._color_c_g_nack	_alert_class.._fore_color_c_g_nack	_alert_class.._font_style_c_g_nack	_alert_class.._ctrl_none	_alert_class.._ctrl_c_nack	_alert_class.._ctrl_c_ack	_alert_class.._ctrl_g_nack	_alert_class.._ctrl_c_g_nack	_alert_class.._arg_list	_alert_class.._perm
+ASC (1)/0	1650446008	160	information.	_AlertClass	14	\10	lt:2 LANG:10001 "I" LANG:10010 "I" 	1	1	0	0	""	""	""	"informationCamAckn"	""	""	"informationCamAckn"	""	""	""	""	""	""	""	""	""	""	""	""	""		\5
+ASC (1)/0	1650446008	171	advanceAlarm.	_AlertClass	14	\20	lt:2 LANG:10001 "aA" LANG:10010 "aA" 	1	3	0	0	""	""	""	"advanceAlarmCamUna"	""	""	"advanceAlarmCamAckn"	""	""	"advanceAlarmWentUna"	""	""	""	""	""	""	""	""	""	""		\5
+ASC (1)/0	1650446008	173	warning.	_AlertClass	14	\40	lt:2 LANG:10001 "W" LANG:10010 "W" 	1	3	0	0	""	""	""	"warningCamUna"	""	""	"warningCamAckn"	""	""	"warningCamWentUna"	""	""	"warningCamWentUna"	""	""	""	""	""	""	""		\5
+ASC (1)/0	1650446008	176	alert.	_AlertClass	14	\60	lt:2 LANG:10001 "A" LANG:10010 "A" 	1	3	0	0	""	""	""	"alertCamUna"	""	""	"alertCamAckn"	""	""	"alertWentUna"	""	""	"alertCamWentUna"	""	""	""	""	""	""	""		\5
+ASC (1)/0	1650446008	178	danger.	_AlertClass	14	\80	lt:2 LANG:10001 "Da" LANG:10010 "Da" 	1	3	0	0	""	""	""	"dangerCamUna"	""	""	"dangerCamAckn"	""	""	"dangerWentUna"	""	""	"dangerCamWentUna"	""	""	""	""	""	""	""		\5
+ASC (1)/0	1650446008	181	disturbance.	_AlertClass	14	\100	lt:2 LANG:10001 "Di" LANG:10010 "Di" 	1	3	0	0	""	""	""	"disturbanceCamUna"	""	""	"disturbanceCamAckn"	""	""	"disturbanceWentUna"	""	""	"disturbanceCamWentUna"	""	""	""	""	""	""	""		\5
+ASC (1)/0	1650446008	187	scAlarm.	_AlertClass	14	\90	lt:2 LANG:10001 "ALM" LANG:10010 "ALM" 	1	0	1	0	""	""	""	"alertCamUna"	""	""	"alertCamAckn"	""	""	""	""	""	""	""	""	""	""	""	""	""		\0
+ASC (1)/0	1650446014	281	S7_Alarm.	_AlertClass	14	\230	lt:2 LANG:10001 "A" LANG:10010 "A" 	1	3	1	0	""	""	""	"S7_alarmCameUnq"	"S7_alarmFore"	""	"S7_alarmCameAckn"	"S7_alarmFore"	""	"S7_alarmWentUnq"	"S7_alarmFore"	""	""	""	""	""	""	""	""	""		\0
+ASC (1)/0	1650446014	295	S7_Warning.	_AlertClass	14	\138	lt:2 LANG:10001 "W" LANG:10010 "W" 	1	3	1	0	""	""	""	"S7_warningCameUnq"	"S7_warningFore"	""	"S7_warningCameAckn"	"S7_warningFore"	""	"S7_warningWentUnq"	"S7_warningFore"	""	""	""	""	""	""	""	""	""		\0
+ASC (1)/0	1650446014	298	S7_Tolerance.	_AlertClass	14	\207	lt:2 LANG:10001 "T" LANG:10010 "T" 	1	1	0	0	""	""	""	""	"S7_toleranceFore"	""	"S7_toleranceCameAckn"	"S7_toleranceFore"	""	""	""	""	""	""	""	""	""	""	""	""		\0
+ASC (1)/0	1650446014	299	S7_AS.	_AlertClass	14	\184	lt:2 LANG:10001 "AS" LANG:10010 "AS" 	1	3	1	0	""	""	""	"S7_ASCameUnq"	"S7_ASFore"	""	"S7_ASCameAckn"	"S7_ASFore"	""	"S7_ASWentUnq"	"S7_ASFore"	""	""	""	""	""	""	""	""	""		\0
+ASC (1)/0	1650446014	301	S7_OS.	_AlertClass	14	\161	lt:2 LANG:10001 "OS" LANG:10010 "OS" 	1	2	1	0	""	""	""	"S7_OSCameUnq"	"S7_OSFore"	""	"S7_OSCameAckn"	"S7_OSFore"	""	""	""	""	""	""	""	""	""	""	""	""		\0
+ASC (1)/0	1650446014	303	S7_Maintenance.	_AlertClass	14	\115	lt:2 LANG:10001 "M" LANG:10010 "M" 	1	3	1	0	""	""	""	"S7_maintenanceCameUnq"	"S7_maintenanceFore"	""	"S7_maintenanceCameAckn"	"S7_maintenanceFore"	""	"S7_maintenanceWentUnq"	"S7_maintenanceFore"	""	""	""	""	""	""	""	""	""		\0
+ASC (1)/0	1650446014	310	S7_Process.	_AlertClass	14	\92	lt:2 LANG:10001 "P" LANG:10010 "P" 	1	3	1	0	""	""	""	"S7_processCameUnq"	"S7_processFore"	""	"S7_processCameAckn"	"S7_processFore"	""	"S7_processWentUnq"	"S7_processFore"	""	""	""	""	""	""	""	""	""		\0
+ASC (1)/0	1650446014	312	S7_Operating.	_AlertClass	14	\69	lt:2 LANG:10001 "O" LANG:10010 "O" 	1	1	0	0	""	""	""	""	""	""	"S7_operatingCameAckn"	"S7_operatingFore"	""	""	""	""	""	""	""	""	""	""	""	""		\0
+ASC (1)/0	1650446014	313	S7_OP_Request.	_AlertClass	14	\46	lt:2 LANG:10001 "OR" LANG:10010 "OR" 	1	1	0	0	""	""	""	""	""	""	"S7_requestCameAckn"	"S7_requestFore"	""	""	""	""	""	""	""	""	""	""	""	""		\0
+ASC (1)/0	1650446014	315	S7_OP.	_AlertClass	14	\23	lt:2 LANG:10001 "OP" LANG:10010 "OP" 	1	1	0	0	""	""	""	""	""	""	"S7_OPCameAckn"	"S7_OPFore"	""	""	""	""	""	""	""	""	""	""	""	""		\0
+ASC (1)/0	1650446014	316	S7_State.	_AlertClass	14	\16	lt:2 LANG:10001 "S" LANG:10010 "S" 	1	1	0	0	""	""	""	""	""	""	"S7_stateCameAckn"	"S7_stateFore"	""	""	""	""	""	""	""	""	""	""	""	""		\0
+ASC (1)/0	1650446014	326	S7_SysMust.	_AlertClass	14	\210	lt:2 LANG:10001 "SM" LANG:10010 "SM" 	1	2	1	0	""	""	""	"S7_sysMustCameUnq"	"S7_sysMustFore"	""	"S7_sysMustCameAckn"	"S7_sysMustFore"	""	""	""	""	""	""	""	""	""	""	""	""		\0
+ASC (1)/0	1650446014	328	S7_SysNeed.	_AlertClass	14	\215	lt:2 LANG:10001 "SN" LANG:10010 "SN" 	1	1	0	0	""	""	""	""	""	""	"S7_sysNeedCameAckn"	"S7_sysNeedFore"	""	""	""	""	""	""	""	""	""	""	""	""		\0
+ASC (1)/0	1650452341	781	IRC_Alarma.	_AlertClass	14	\50	lt:2 LANG:10001 "" LANG:10010 "" 	1	3	0	0	""	""	""	"LIB_IRC_ROJO_04"	"LIB_IRC_BLANCO"	"bold"	"LIB_IRC_AZUL_01"	"LIB_IRC_BLANCO"	"bold"	"LIB_IRC_GRIS_03"	"LIB_IRC_ROJO_04"	"bold"	""	""	""	""	""	""	""	""		\0
+ASC (1)/0	1650452341	794	IRC_Alarma.	_AlertClass	14	\1	lt:2 LANG:10001 "" LANG:10010 "" 	1	0	0	0	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""		\0
+ASC (1)/0	1650452341	795	IRC_Alarma.	_AlertClass	14	\50	lt:2 LANG:10001 "" LANG:10010 "" 	1	3	0	0	""	""	""	"LIB_IRC_ROJO_04"	"LIB_IRC_BLANCO"	"bold"	"LIB_IRC_AZUL_01"	"LIB_IRC_BLANCO"	"bold"	"LIB_IRC_GRIS_03"	"LIB_IRC_ROJO_04"	"bold"	""	""	""	""	""	""	""	""		\0
+ASC (1)/0	1650452341	796	IRC_Alarma.	_AlertClass	14	\1	lt:2 LANG:10001 "" LANG:10010 "" 	1	0	0	0	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""		\0
+ASC (1)/0	1650452341	810	IRC_Alarma.	_AlertClass	14	\50	lt:2 LANG:10001 "" LANG:10010 "" 	1	3	0	0	""	""	""	"LIB_IRC_ROJO_04"	"LIB_IRC_BLANCO"	"bold"	"LIB_IRC_AZUL_01"	"LIB_IRC_BLANCO"	"bold"	"LIB_IRC_GRIS_03"	"LIB_IRC_ROJO_04"	"bold"	""	""	""	""	""	""	""	""		\0
+ASC (1)/0	1650452341	811	IRC_Alarma.	_AlertClass	14	\1	lt:2 LANG:10001 "" LANG:10010 "" 	1	0	0	0	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""		\0
+ASC (1)/0	1650452341	812	IRC_Alarma.	_AlertClass	14	\50	lt:2 LANG:10001 "" LANG:10010 "" 	1	3	0	0	""	""	""	"LIB_IRC_ROJO_04"	"LIB_IRC_BLANCO"	"bold"	"LIB_IRC_AZUL_02"	"LIB_IRC_BLANCO"	"bold"	"LIB_IRC_GRIS_03"	"LIB_IRC_ROJO_04"	"bold"	""	""	""	""	""	""	""	""		\0
+ASC (1)/0	1650452341	826	IRC_Alarma.	_AlertClass	14	\50	lt:2 LANG:10001 "" LANG:10010 "" 	1	3	0	0	""	""	""	"LIB_IRC_ROJO_04"	"LIB_IRC_BLANCO"	"bold"	"LIB_IRC_AZUL_03"	"LIB_IRC_ROJO_01"	"bold"	"LIB_IRC_GRIS_03"	"LIB_IRC_ROJO_04"	"bold"	""	""	""	""	""	""	""	""		\0
+ASC (1)/0	1650452341	827	IRC_Alarma.	_AlertClass	14	\50	lt:2 LANG:10001 "" LANG:10010 "" 	1	3	0	1	""	""	""	"LIB_IRC_ROJO_04"	"LIB_IRC_BLANCO"	"bold"	"LIB_IRC_AZUL_03"	"LIB_IRC_ROJO_01"	"bold"	"LIB_IRC_GRIS_03"	"LIB_IRC_ROJO_04"	"bold"	""	""	""	""	""	""	""	""		\0
+ASC (1)/0	1650452443	637	IRC_Alarma.	_AlertClass	14	\50	lt:2 LANG:10001 "" LANG:10010 "" 	1	3	0	0	""	""	""	"LIB_IRC_ROJO_04"	"LIB_IRC_BLANCO"	"bold"	"LIB_IRC_AZUL_01"	"LIB_IRC_BLANCO"	"bold"	"LIB_IRC_GRIS_03"	"LIB_IRC_ROJO_04"	"bold"	""	""	""	""	""	""	""	""		\0
+ASC (1)/0	1650452443	651	IRC_Alarma.	_AlertClass	14	\50	lt:2 LANG:10001 "" LANG:10010 "" 	1	3	0	0	""	""	""	"LIB_IRC_ROJO_04"	"LIB_IRC_BLANCO"	"bold"	"LIB_IRC_AZUL_02"	"LIB_IRC_BLANCO"	"bold"	"LIB_IRC_GRIS_03"	"LIB_IRC_ROJO_04"	"bold"	""	""	""	""	""	""	""	""		\0
+ASC (1)/0	1650452443	652	IRC_Alarma.	_AlertClass	14	\50	lt:2 LANG:10001 "" LANG:10010 "" 	1	3	0	0	""	""	""	"LIB_IRC_ROJO_04"	"LIB_IRC_BLANCO"	"bold"	"LIB_IRC_AZUL_01"	"LIB_IRC_BLANCO"	"bold"	"LIB_IRC_GRIS_03"	"LIB_IRC_ROJO_04"	"bold"	""	""	""	""	""	""	""	""		\0
+ASC (1)/0	1650452443	653	IRC_Alarma.	_AlertClass	14	\50	lt:2 LANG:10001 "" LANG:10010 "" 	1	3	0	0	""	""	""	"LIB_IRC_ROJO_04"	"LIB_IRC_BLANCO"	"bold"	"LIB_IRC_AZUL_02"	"LIB_IRC_BLANCO"	"bold"	"LIB_IRC_GRIS_03"	"LIB_IRC_ROJO_04"	"bold"	""	""	""	""	""	""	""	""		\0
+ASC (1)/0	1650452443	654	IRC_Alarma.	_AlertClass	14	\1	lt:2 LANG:10001 "" LANG:10010 "" 	1	0	0	0	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""		\0
+ASC (1)/0	1650452443	667	IRC_Alarma.	_AlertClass	14	\50	lt:2 LANG:10001 "" LANG:10010 "" 	1	3	0	0	""	""	""	"LIB_IRC_ROJO_04"	"LIB_IRC_BLANCO"	"bold"	"LIB_IRC_AZUL_02"	"LIB_IRC_BLANCO"	"bold"	"LIB_IRC_GRIS_03"	"LIB_IRC_ROJO_04"	"bold"	""	""	""	""	""	""	""	""		\0
+ASC (1)/0	1650452443	668	IRC_Alarma.	_AlertClass	14	\1	lt:2 LANG:10001 "" LANG:10010 "" 	1	0	0	0	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""		\0
+ASC (1)/0	1650452443	669	IRC_Alarma.	_AlertClass	14	\50	lt:2 LANG:10001 "" LANG:10010 "" 	1	3	0	0	""	""	""	"LIB_IRC_ROJO_04"	"LIB_IRC_BLANCO"	"bold"	"LIB_IRC_AZUL_01"	"LIB_IRC_BLANCO"	"bold"	"LIB_IRC_GRIS_03"	"LIB_IRC_ROJO_04"	"bold"	""	""	""	""	""	""	""	""		\0
+ASC (1)/0	1650452443	670	IRC_Alarma.	_AlertClass	14	\50	lt:2 LANG:10001 "" LANG:10010 "" 	1	3	0	0	""	""	""	"LIB_IRC_ROJO_04"	"LIB_IRC_BLANCO"	"bold"	"LIB_IRC_AZUL_02"	"LIB_IRC_BLANCO"	"bold"	"LIB_IRC_GRIS_03"	"LIB_IRC_ROJO_04"	"bold"	""	""	""	""	""	""	""	""		\0
+ASC (1)/0	1650452443	683	IRC_Alarma.	_AlertClass	14	\50	lt:2 LANG:10001 "" LANG:10010 "" 	1	3	0	0	""	""	""	"LIB_IRC_ROJO_04"	"LIB_IRC_BLANCO"	"bold"	"LIB_IRC_AZUL_03"	"LIB_IRC_ROJO_01"	"bold"	"LIB_IRC_GRIS_03"	"LIB_IRC_ROJO_04"	"bold"	""	""	""	""	""	""	""	""		\0
+ASC (1)/0	1650452443	684	IRC_Alarma.	_AlertClass	14	\50	lt:2 LANG:10001 "" LANG:10010 "" 	1	3	0	1	""	""	""	"LIB_IRC_ROJO_04"	"LIB_IRC_BLANCO"	"bold"	"LIB_IRC_AZUL_03"	"LIB_IRC_ROJO_01"	"bold"	"LIB_IRC_GRIS_03"	"LIB_IRC_ROJO_04"	"bold"	""	""	""	""	""	""	""	""		\0
+ASC (1)/0	1650878463	112	IRC_Alarma.	_AlertClass	14	\50	lt:2 LANG:10001 "" LANG:10010 "" 	1	3	0	0	""	""	""	"LIB_IRC_ROJO_04"	"LIB_IRC_BLANCO"	"bold"	"LIB_IRC_AZUL_01"	"LIB_IRC_BLANCO"	"bold"	"LIB_IRC_GRIS_03"	"LIB_IRC_ROJO_04"	"bold"	""	""	""	""	""	""	""	""		\0
+ASC (1)/0	1650878463	126	IRC_Alarma.	_AlertClass	14	\1	lt:2 LANG:10001 "" LANG:10010 "" 	1	0	0	0	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""		\0
+ASC (1)/0	1650878463	127	IRC_Alarma.	_AlertClass	14	\50	lt:2 LANG:10001 "" LANG:10010 "" 	1	3	0	0	""	""	""	"LIB_IRC_ROJO_04"	"LIB_IRC_BLANCO"	"bold"	"LIB_IRC_AZUL_02"	"LIB_IRC_BLANCO"	"bold"	"LIB_IRC_GRIS_03"	"LIB_IRC_ROJO_04"	"bold"	""	""	""	""	""	""	""	""		\0
+ASC (1)/0	1650878463	128	IRC_Alarma.	_AlertClass	14	\1	lt:2 LANG:10001 "" LANG:10010 "" 	1	0	0	0	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""		\0
+ASC (1)/0	1650878463	141	IRC_Alarma.	_AlertClass	14	\50	lt:2 LANG:10001 "" LANG:10010 "" 	1	3	0	0	""	""	""	"LIB_IRC_ROJO_04"	"LIB_IRC_BLANCO"	"bold"	"LIB_IRC_AZUL_01"	"LIB_IRC_BLANCO"	"bold"	"LIB_IRC_GRIS_03"	"LIB_IRC_ROJO_04"	"bold"	""	""	""	""	""	""	""	""		\0
+ASC (1)/0	1650878463	144	IRC_Alarma.	_AlertClass	14	\50	lt:2 LANG:10001 "" LANG:10010 "" 	1	3	0	0	""	""	""	"LIB_IRC_ROJO_04"	"LIB_IRC_BLANCO"	"bold"	"LIB_IRC_AZUL_02"	"LIB_IRC_BLANCO"	"bold"	"LIB_IRC_GRIS_03"	"LIB_IRC_ROJO_04"	"bold"	""	""	""	""	""	""	""	""		\0
+ASC (1)/0	1650878463	146	IRC_Alarma.	_AlertClass	14	\1	lt:2 LANG:10001 "" LANG:10010 "" 	1	0	0	0	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""		\0
+ASC (1)/0	1650878463	148	IRC_Alarma.	_AlertClass	14	\50	lt:2 LANG:10001 "" LANG:10010 "" 	1	3	0	0	""	""	""	"LIB_IRC_ROJO_04"	"LIB_IRC_BLANCO"	"bold"	"LIB_IRC_AZUL_01"	"LIB_IRC_BLANCO"	"bold"	"LIB_IRC_GRIS_03"	"LIB_IRC_ROJO_04"	"bold"	""	""	""	""	""	""	""	""		\0
+ASC (1)/0	1650878463	151	IRC_Alarma.	_AlertClass	14	\50	lt:2 LANG:10001 "" LANG:10010 "" 	1	3	0	0	""	""	""	"LIB_IRC_ROJO_04"	"LIB_IRC_BLANCO"	"bold"	"LIB_IRC_AZUL_02"	"LIB_IRC_BLANCO"	"bold"	"LIB_IRC_GRIS_03"	"LIB_IRC_ROJO_04"	"bold"	""	""	""	""	""	""	""	""		\0
+ASC (1)/0	1650878463	157	IRC_Alarma.	_AlertClass	14	\50	lt:2 LANG:10001 "" LANG:10010 "" 	1	3	0	0	""	""	""	"LIB_IRC_ROJO_04"	"LIB_IRC_BLANCO"	"bold"	"LIB_IRC_AZUL_02"	"LIB_IRC_ROJO_01"	"bold"	"LIB_IRC_GRIS_03"	"LIB_IRC_ROJO_04"	"bold"	""	""	""	""	""	""	""	""		\0
+ASC (1)/0	1650878463	159	IRC_Alarma.	_AlertClass	14	\50	lt:2 LANG:10001 "" LANG:10010 "" 	1	3	0	0	""	""	""	"LIB_IRC_ROJO_04"	"LIB_IRC_BLANCO"	"bold"	"LIB_IRC_AZUL_03"	"LIB_IRC_ROJO_01"	"bold"	"LIB_IRC_GRIS_03"	"LIB_IRC_ROJO_04"	"bold"	""	""	""	""	""	""	""	""		\0
+ASC (1)/0	1650878463	162	IRC_Alarma.	_AlertClass	14	\50	lt:2 LANG:10001 "" LANG:10010 "" 	1	3	0	1	""	""	""	"LIB_IRC_ROJO_04"	"LIB_IRC_BLANCO"	"bold"	"LIB_IRC_AZUL_03"	"LIB_IRC_ROJO_01"	"bold"	"LIB_IRC_GRIS_03"	"LIB_IRC_ROJO_04"	"bold"	""	""	""	""	""	""	""	""		\0
+ASC (1)/0	1650452341	828	IRC_Aviso.	_AlertClass	14	\1	lt:2 LANG:10001 "" LANG:10010 "" 	1	0	0	0	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""		\0
+ASC (1)/0	1650452341	829	IRC_Aviso.	_AlertClass	14	\25	lt:2 LANG:10001 "" LANG:10010 "" 	1	3	0	0	""	""	""	"LIB_IRC_AMARILLO_01"	"LIB_IRC_AZUL_01"	"bold"	"LIB_IRC_AZUL_01"	"LIB_IRC_AMARILLO_01"	"bold"	"LIB_IRC_GRIS_03"	"LIB_IRC_NARANJA_01"	"bold"	""	""	""	""	""	""	""	""		\0
+ASC (1)/0	1650452341	841	IRC_Aviso.	_AlertClass	14	\25	lt:2 LANG:10001 "" LANG:10010 "" 	1	3	0	0	""	""	""	"LIB_IRC_AMARILLO_01"	"LIB_IRC_AZUL_01"	"bold"	"LIB_IRC_AZUL_02"	"LIB_IRC_AMARILLO_01"	"bold"	"LIB_IRC_GRIS_03"	"LIB_IRC_NARANJA_01"	"bold"	""	""	""	""	""	""	""	""		\0
+ASC (1)/0	1650452341	842	IRC_Aviso.	_AlertClass	14	\1	lt:2 LANG:10001 "" LANG:10010 "" 	1	0	0	0	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""		\0
+ASC (1)/0	1650452341	843	IRC_Aviso.	_AlertClass	14	\25	lt:2 LANG:10001 "" LANG:10010 "" 	1	3	0	0	""	""	""	"LIB_IRC_AMARILLO_01"	"LIB_IRC_AZUL_01"	"bold"	"LIB_IRC_AZUL_02"	"LIB_IRC_AMARILLO_01"	"bold"	"LIB_IRC_GRIS_03"	"LIB_IRC_NARANJA_01"	"bold"	""	""	""	""	""	""	""	""		\0
+ASC (1)/0	1650452341	844	IRC_Aviso.	_AlertClass	14	\1	lt:2 LANG:10001 "" LANG:10010 "" 	1	0	0	0	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""		\0
+ASC (1)/0	1650452341	857	IRC_Aviso.	_AlertClass	14	\25	lt:2 LANG:10001 "" LANG:10010 "" 	1	3	0	0	""	""	""	"LIB_IRC_AMARILLO_01"	"LIB_IRC_AZUL_01"	"bold"	"LIB_IRC_AZUL_02"	"LIB_IRC_AMARILLO_01"	"bold"	"LIB_IRC_GRIS_03"	"LIB_IRC_NARANJA_01"	"bold"	""	""	""	""	""	""	""	""		\0
+ASC (1)/0	1650452341	858	IRC_Aviso.	_AlertClass	14	\1	lt:2 LANG:10001 "" LANG:10010 "" 	1	0	0	0	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""		\0
+ASC (1)/0	1650452341	859	IRC_Aviso.	_AlertClass	14	\25	lt:2 LANG:10001 "" LANG:10010 "" 	1	3	0	0	""	""	""	"LIB_IRC_AMARILLO_01"	"LIB_IRC_AZUL_01"	"bold"	"LIB_IRC_AZUL_02"	"LIB_IRC_AMARILLO_01"	"bold"	"LIB_IRC_GRIS_03"	"LIB_IRC_NARANJA_01"	"bold"	""	""	""	""	""	""	""	""		\0
+ASC (1)/0	1650452341	873	IRC_Aviso.	_AlertClass	14	\25	lt:2 LANG:10001 "" LANG:10010 "" 	1	3	0	0	""	""	""	"LIB_IRC_AMARILLO_01"	"LIB_IRC_AZUL_01"	"bold"	"LIB_IRC_AZUL_03"	"LIB_IRC_AMARILLO_01"	"bold"	"LIB_IRC_GRIS_03"	"LIB_IRC_NARANJA_01"	"bold"	""	""	""	""	""	""	""	""		\0
+ASC (1)/0	1650452341	874	IRC_Aviso.	_AlertClass	14	\25	lt:2 LANG:10001 "" LANG:10010 "" 	1	3	0	0	""	""	""	"LIB_IRC_AMARILLO_01"	"LIB_IRC_AZUL_01"	"bold"	"LIB_IRC_AZUL_03"	"LIB_IRC_AMARILLO_04"	"bold"	"LIB_IRC_GRIS_03"	"LIB_IRC_NARANJA_01"	"bold"	""	""	""	""	""	""	""	""		\0
+ASC (1)/0	1650452341	875	IRC_Aviso.	_AlertClass	14	\25	lt:2 LANG:10001 "" LANG:10010 "" 	1	3	0	1	""	""	""	"LIB_IRC_AMARILLO_01"	"LIB_IRC_AZUL_01"	"bold"	"LIB_IRC_AZUL_03"	"LIB_IRC_AMARILLO_04"	"bold"	"LIB_IRC_GRIS_03"	"LIB_IRC_NARANJA_01"	"bold"	""	""	""	""	""	""	""	""		\0
+ASC (1)/0	1650452443	685	IRC_Aviso.	_AlertClass	14	\25	lt:2 LANG:10001 "" LANG:10010 "" 	1	3	0	0	""	""	""	"LIB_IRC_AMARILLO_01"	"LIB_IRC_AZUL_01"	"bold"	"LIB_IRC_AZUL_01"	"LIB_IRC_AMARILLO_01"	"bold"	"LIB_IRC_GRIS_03"	"LIB_IRC_NARANJA_01"	"bold"	""	""	""	""	""	""	""	""		\0
+ASC (1)/0	1650452443	698	IRC_Aviso.	_AlertClass	14	\25	lt:2 LANG:10001 "" LANG:10010 "" 	1	3	0	0	""	""	""	"LIB_IRC_AMARILLO_01"	"LIB_IRC_AZUL_01"	"bold"	"LIB_IRC_AZUL_02"	"LIB_IRC_AMARILLO_01"	"bold"	"LIB_IRC_GRIS_03"	"LIB_IRC_NARANJA_01"	"bold"	""	""	""	""	""	""	""	""		\0
+ASC (1)/0	1650452443	699	IRC_Aviso.	_AlertClass	14	\25	lt:2 LANG:10001 "" LANG:10010 "" 	1	3	0	0	""	""	""	"LIB_IRC_AMARILLO_01"	"LIB_IRC_AZUL_01"	"bold"	"LIB_IRC_AZUL_01"	"LIB_IRC_AMARILLO_01"	"bold"	"LIB_IRC_GRIS_03"	"LIB_IRC_NARANJA_01"	"bold"	""	""	""	""	""	""	""	""		\0
+ASC (1)/0	1650452443	700	IRC_Aviso.	_AlertClass	14	\1	lt:2 LANG:10001 "" LANG:10010 "" 	1	0	0	0	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""		\0
+ASC (1)/0	1650452443	713	IRC_Aviso.	_AlertClass	14	\25	lt:2 LANG:10001 "" LANG:10010 "" 	1	3	0	0	""	""	""	"LIB_IRC_AMARILLO_01"	"LIB_IRC_AZUL_01"	"bold"	"LIB_IRC_AZUL_02"	"LIB_IRC_AMARILLO_01"	"bold"	"LIB_IRC_GRIS_03"	"LIB_IRC_NARANJA_01"	"bold"	""	""	""	""	""	""	""	""		\0
+ASC (1)/0	1650452443	714	IRC_Aviso.	_AlertClass	14	\1	lt:2 LANG:10001 "" LANG:10010 "" 	1	0	0	0	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""		\0
+ASC (1)/0	1650452443	715	IRC_Aviso.	_AlertClass	14	\25	lt:2 LANG:10001 "" LANG:10010 "" 	1	3	0	0	""	""	""	"LIB_IRC_AMARILLO_01"	"LIB_IRC_AZUL_01"	"bold"	"LIB_IRC_AZUL_02"	"LIB_IRC_AMARILLO_01"	"bold"	"LIB_IRC_GRIS_03"	"LIB_IRC_NARANJA_01"	"bold"	""	""	""	""	""	""	""	""		\0
+ASC (1)/0	1650452443	729	IRC_Aviso.	_AlertClass	14	\25	lt:2 LANG:10001 "" LANG:10010 "" 	1	3	0	0	""	""	""	"LIB_IRC_AMARILLO_01"	"LIB_IRC_AZUL_01"	"bold"	"LIB_IRC_AZUL_03"	"LIB_IRC_NARANJA_01"	"bold"	"LIB_IRC_GRIS_03"	"LIB_IRC_NARANJA_01"	"bold"	""	""	""	""	""	""	""	""		\0
+ASC (1)/0	1650452443	730	IRC_Aviso.	_AlertClass	14	\25	lt:2 LANG:10001 "" LANG:10010 "" 	1	3	0	0	""	""	""	"LIB_IRC_AMARILLO_01"	"LIB_IRC_AZUL_01"	"bold"	"LIB_IRC_AZUL_03"	"LIB_IRC_AMARILLO_04"	"bold"	"LIB_IRC_GRIS_03"	"LIB_IRC_NARANJA_01"	"bold"	""	""	""	""	""	""	""	""		\0
+ASC (1)/0	1650452443	731	IRC_Aviso.	_AlertClass	14	\25	lt:2 LANG:10001 "" LANG:10010 "" 	1	3	0	1	""	""	""	"LIB_IRC_AMARILLO_01"	"LIB_IRC_AZUL_01"	"bold"	"LIB_IRC_AZUL_03"	"LIB_IRC_AMARILLO_04"	"bold"	"LIB_IRC_GRIS_03"	"LIB_IRC_NARANJA_01"	"bold"	""	""	""	""	""	""	""	""		\0
+ASC (1)/0	1650878463	163	IRC_Aviso.	_AlertClass	14	\1	lt:2 LANG:10001 "" LANG:10010 "" 	1	0	0	0	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""		\0
+ASC (1)/0	1650878463	164	IRC_Aviso.	_AlertClass	14	\25	lt:2 LANG:10001 "" LANG:10010 "" 	1	3	0	0	""	""	""	"LIB_IRC_AMARILLO_01"	"LIB_IRC_AZUL_01"	"bold"	"LIB_IRC_AZUL_01"	"LIB_IRC_AMARILLO_01"	"bold"	"LIB_IRC_GRIS_03"	"LIB_IRC_NARANJA_01"	"bold"	""	""	""	""	""	""	""	""		\0
+ASC (1)/0	1650878463	172	IRC_Aviso.	_AlertClass	14	\25	lt:2 LANG:10001 "" LANG:10010 "" 	1	3	0	0	""	""	""	"LIB_IRC_AMARILLO_01"	"LIB_IRC_AZUL_01"	"bold"	"LIB_IRC_AZUL_02"	"LIB_IRC_AMARILLO_01"	"bold"	"LIB_IRC_GRIS_03"	"LIB_IRC_NARANJA_01"	"bold"	""	""	""	""	""	""	""	""		\0
+ASC (1)/0	1650878463	173	IRC_Aviso.	_AlertClass	14	\1	lt:2 LANG:10001 "" LANG:10010 "" 	1	0	0	0	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""		\0
+ASC (1)/0	1650878463	174	IRC_Aviso.	_AlertClass	14	\25	lt:2 LANG:10001 "" LANG:10010 "" 	1	3	0	0	""	""	""	"LIB_IRC_AMARILLO_01"	"LIB_IRC_AZUL_01"	"bold"	"LIB_IRC_AZUL_02"	"LIB_IRC_AMARILLO_01"	"bold"	"LIB_IRC_GRIS_03"	"LIB_IRC_NARANJA_01"	"bold"	""	""	""	""	""	""	""	""		\0
+ASC (1)/0	1650878463	175	IRC_Aviso.	_AlertClass	14	\1	lt:2 LANG:10001 "" LANG:10010 "" 	1	0	0	0	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""		\0
+ASC (1)/0	1650878463	187	IRC_Aviso.	_AlertClass	14	\25	lt:2 LANG:10001 "" LANG:10010 "" 	1	3	0	0	""	""	""	"LIB_IRC_AMARILLO_01"	"LIB_IRC_AZUL_01"	"bold"	"LIB_IRC_AZUL_01"	"LIB_IRC_AMARILLO_01"	"bold"	"LIB_IRC_GRIS_03"	"LIB_IRC_NARANJA_01"	"bold"	""	""	""	""	""	""	""	""		\0
+ASC (1)/0	1650878463	188	IRC_Aviso.	_AlertClass	14	\25	lt:2 LANG:10001 "" LANG:10010 "" 	1	3	0	0	""	""	""	"LIB_IRC_AMARILLO_01"	"LIB_IRC_AZUL_01"	"bold"	"LIB_IRC_AZUL_02"	"LIB_IRC_AMARILLO_01"	"bold"	"LIB_IRC_GRIS_03"	"LIB_IRC_NARANJA_01"	"bold"	""	""	""	""	""	""	""	""		\0
+ASC (1)/0	1650878463	189	IRC_Aviso.	_AlertClass	14	\1	lt:2 LANG:10001 "" LANG:10010 "" 	1	0	0	0	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""	""		\0
+ASC (1)/0	1650878463	190	IRC_Aviso.	_AlertClass	14	\25	lt:2 LANG:10001 "" LANG:10010 "" 	1	3	0	0	""	""	""	"LIB_IRC_AMARILLO_01"	"LIB_IRC_AZUL_01"	"bold"	"LIB_IRC_AZUL_01"	"LIB_IRC_AMARILLO_01"	"bold"	"LIB_IRC_GRIS_03"	"LIB_IRC_NARANJA_01"	"bold"	""	""	""	""	""	""	""	""		\0
+ASC (1)/0	1650878463	192	IRC_Aviso.	_AlertClass	14	\25	lt:2 LANG:10001 "" LANG:10010 "" 	1	3	0	0	""	""	""	"LIB_IRC_AMARILLO_01"	"LIB_IRC_AZUL_01"	"bold"	"LIB_IRC_AZUL_02"	"LIB_IRC_AMARILLO_01"	"bold"	"LIB_IRC_GRIS_03"	"LIB_IRC_NARANJA_01"	"bold"	""	""	""	""	""	""	""	""		\0
+ASC (1)/0	1650878463	202	IRC_Aviso.	_AlertClass	14	\25	lt:2 LANG:10001 "" LANG:10010 "" 	1	3	0	0	""	""	""	"LIB_IRC_AMARILLO_01"	"LIB_IRC_AZUL_01"	"bold"	"LIB_IRC_AZUL_03"	"LIB_IRC_AMARILLO_01"	"bold"	"LIB_IRC_GRIS_03"	"LIB_IRC_NARANJA_01"	"bold"	""	""	""	""	""	""	""	""		\0
+ASC (1)/0	1650878463	203	IRC_Aviso.	_AlertClass	14	\25	lt:2 LANG:10001 "" LANG:10010 "" 	1	3	0	0	""	""	""	"LIB_IRC_AMARILLO_01"	"LIB_IRC_AZUL_01"	"bold"	"LIB_IRC_AZUL_03"	"LIB_IRC_NARANJA_01"	"bold"	"LIB_IRC_GRIS_03"	"LIB_IRC_NARANJA_01"	"bold"	""	""	""	""	""	""	""	""		\0
+ASC (1)/0	1650878463	204	IRC_Aviso.	_AlertClass	14	\25	lt:2 LANG:10001 "" LANG:10010 "" 	1	3	0	0	""	""	""	"LIB_IRC_AMARILLO_01"	"LIB_IRC_AZUL_01"	"bold"	"LIB_IRC_AZUL_03"	"LIB_IRC_AMARILLO_04"	"bold"	"LIB_IRC_GRIS_03"	"LIB_IRC_NARANJA_01"	"bold"	""	""	""	""	""	""	""	""		\0
+ASC (1)/0	1650878463	205	IRC_Aviso.	_AlertClass	14	\25	lt:2 LANG:10001 "" LANG:10010 "" 	1	3	0	1	""	""	""	"LIB_IRC_AMARILLO_01"	"LIB_IRC_AZUL_01"	"bold"	"LIB_IRC_AZUL_03"	"LIB_IRC_AMARILLO_04"	"bold"	"LIB_IRC_GRIS_03"	"LIB_IRC_NARANJA_01"	"bold"	""	""	""	""	""	""	""	""		\0
+# ascii dump of database

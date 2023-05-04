@@ -1,0 +1,98 @@
+V 14
+2
+LANG:10001 0 
+LANG:10010 0 
+PANEL,-1 -1 400 400 N "_3DFace" 0
+E E E E E 1 -1 -1 0  80 90
+""0  1
+E E 4
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+"pdpi" "141.951"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10001 0 
+LANG:10010 0 
+13 1
+"PUSH_BUTTON1"
+""
+1 80 90 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+0 0 0 0 0 0
+E E E
+8
+2
+LANG:10001 0 
+LANG:10010 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  78 78 242 122
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON1
+LANG:10010 12 PUSH_BUTTON1
+"main(mapping event)
+{
+  dyn_dyn_anytype result;
+  anytype tipo, conn, mode, datatype;
+  int act, offset;
+
+//   dpQuery(\"SELECT '_online.._value' FROM '015_PREPARACION'\", result);
+//   DebugN(result);
+
+  dpGet(\"015_PREPARACION.d25208:_address.._active\", act);
+  dpGet(\"015_PREPARACION.d25208:_address.._connection\", conn);
+  dpGet(\"015_PREPARACION.d25208:_address.._mode\", mode);
+  dpGet(\"015_PREPARACION.d25208:_address.._offset\", offset);
+  dpGet(\"015_PREPARACION.d25208:_address.._offset\", datatype);
+
+//   dpSet(\"015_PREPARACION.d200:_address.._type\", 16);
+  DebugN(act, conn, mode, offset, datatype);
+}" 0
+ E E E
+0
+LAYER, 1 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 2 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 3 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 4 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 5 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 6 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 7 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+0

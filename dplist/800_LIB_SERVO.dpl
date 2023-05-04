@@ -1,0 +1,58 @@
+# ascii dump of database
+
+# DpType
+TypeName
+800_LIB_SERVO.800_LIB_SERVO	1#1
+	Xd_PC_OM	23#5
+	Xd_MOV_OM	23#6
+	Xr_MOV_CSG	22#7
+	Xr_MOV_VEL	22#8
+	Xr_MOV_ACC	22#9
+	Xr_MOV_DEC	22#10
+	Xr_MOV_JERK	22#11
+	Xr_MOV_DIR	22#12
+	Xr_MOV_BUFFER	22#13
+	Xd_VEL_OM_AV	23#49
+	Xd_VEL_OM_RT	23#50
+	Xr_VEL_CSG	22#16
+	Xr_VEL_ACC	22#17
+	Xr_VEL_DEC	22#18
+	Xr_VEL_JERK	22#19
+	Yd_EjePreparado	23#20
+	Yd_EjeHabilitado	23#21
+	Yd_EjeEnAlarma	23#22
+	Yd_AlarmaEP	23#36
+	Yd_EjeEnMovimiento	23#37
+	Yd_EjeReferenciado	23#38
+	Yd_EjePosicionado	23#39
+	Yd_EjePosicionActualizada	23#40
+	Yd_EjeSincronizado_GEAR	23#41
+	Yd_EjeEnModo_PC	23#42
+	Yd_EjeEnModo_JOG	23#43
+	Yd_EjeEnModo_MOV	23#44
+	Yd_EjeEnModo_VEL	23#45
+	Yr_PosicionActual	22#46
+	Yr_VelocidadActual	22#47
+	Yr_ParActual	22#48
+	Xi_MOV_MOD	21#51
+	Xd_JOG_OM	23#52
+	Xd_JOG_OMA	23#53
+	Xd_JOG_OMR	23#54
+	Xr_JOG_VEL	22#55
+	Xr_OVR	22#56
+
+# Datapoint/DpId
+DpName	TypeName	ID
+_mp_800_LIB_SERVO	800_LIB_SERVO	36147
+
+# DpValue
+Manager/User	ElementName	TypeName	_original.._value	_original.._status64	_original.._stime
+ASC (1)/0	_mp_800_LIB_SERVO.Xd_PC_OM	800_LIB_SERVO	0	0x8300000000000101	14.02.2022 14:28:08.206
+ASC (1)/0	_mp_800_LIB_SERVO.Xr_MOV_VEL	800_LIB_SERVO	0	0x8300000000000101	14.02.2022 14:28:08.211
+ASC (1)/0	_mp_800_LIB_SERVO.Xr_VEL_CSG	800_LIB_SERVO	0	0x8300000000000101	14.02.2022 14:28:08.228
+
+# AlertValue
+Manager/User	ElementName	TypeName	DetailNr	_alert_hdl.._type	_alert_hdl.._l_limit	_alert_hdl.._u_limit	_alert_hdl.._l_incl	_alert_hdl.._u_incl	_alert_hdl.._panel	_alert_hdl.._panel_param	_alert_hdl.._help	_alert_hdl.._min_prio	_alert_hdl.._class	_alert_hdl.._text	_alert_hdl.._active	_alert_hdl.._orig_hdl	_alert_hdl.._ok_range	_alert_hdl.._hyst_type	_alert_hdl.._hyst_time	_alert_hdl.._multi_instance	_alert_hdl.._l_hyst_limit	_alert_hdl.._u_hyst_limit	_alert_hdl.._text1	_alert_hdl.._text0	_alert_hdl.._ack_has_prio	_alert_hdl.._order	_alert_hdl.._dp_pattern	_alert_hdl.._dp_list	_alert_hdl.._prio_pattern	_alert_hdl.._abbr_pattern	_alert_hdl.._ack_deletes	_alert_hdl.._non_ack	_alert_hdl.._came_ack	_alert_hdl.._pair_ack	_alert_hdl.._both_ack	_alert_hdl.._impulse	_alert_hdl.._filter_threshold	_alert_hdl.._went_text	_alert_hdl.._add_text	_alert_hdl.._status64_pattern	_alert_hdl.._neg	_alert_hdl.._status64_match	_alert_hdl.._match	_alert_hdl.._set
+ASC (1)/0	_mp_800_LIB_SERVO.Yd_AlarmaEP	800_LIB_SERVO		13					""	""	lt:2 LANG:10010 "" LANG:10001 "" 	\0			0	1				0																0								
+ASC (1)/0	_mp_800_LIB_SERVO.Yd_AlarmaEP	800_LIB_SERVO	1	5									 	lt:2 LANG:10010 "State OFF" LANG:10001 "State OFF" 				0	01.01.1970 00:00:00.000																			lt:2 LANG:10010 "" LANG:10001 "" 	 	0x0	0	""	"*"	
+ASC (1)/0	_mp_800_LIB_SERVO.Yd_AlarmaEP	800_LIB_SERVO	2	5									 	lt:2 LANG:10010 "State ON" LANG:10001 "State ON" 				0	01.01.1970 00:00:00.000																			lt:2 LANG:10010 "" LANG:10001 "" 	 	0x0	0	""	"1"	

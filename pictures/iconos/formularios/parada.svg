@@ -1,0 +1,15 @@
+<svg width="1000" height="600" xmlns="http://www.w3.org/2000/svg">
+ <metadata>Svg Vector Icons : http://www.onlinewebfonts.com/icon</metadata>
+
+ <g>
+  <title>background</title>
+  <rect x="-1" y="-1" width="1002" height="602" id="canvas_background" fill="none"/>
+ </g>
+ <g>
+  <title>Layer 1</title>
+  <g stroke="null" id="svg_1">
+   <path stroke="null" fill="#ffffff" d="m317.476896,164.212952l-213.379669,0c-16.072754,0 -29.097228,13.024473 -29.097228,29.097228l0,213.379669c0,16.072754 13.024473,29.097228 29.097228,29.097228l213.379669,0c16.072754,0 29.097228,-13.024473 29.097228,-29.097228l0,-213.379669c0,-16.072754 -13.024473,-29.097228 -29.097228,-29.097228z" id="svg_2"/>
+  </g>
+  <text stroke="#ffffff" transform="matrix(1.1259557008743286,0,0,1.1259557008743286,-54.28493901900947,-47.22354753874242) " font-weight="normal" xml:space="preserve" text-anchor="start" font-family="'Tahoma', Gadget, sans-serif" font-size="105" id="svg_3" y="346.57653" x="434.55249" stroke-width="0" fill="#ffffff">PARADA</text>
+ </g>
+</svg>

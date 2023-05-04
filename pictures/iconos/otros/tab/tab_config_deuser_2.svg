@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   height="130"
+   width="130"
+   version="1.1"
+   viewBox="0 0 129.99999 130"
+   data-name="Capa 1"
+   id="Capa_1"
+   sodipodi:docname="tab_config_deuser_2.svg"
+   inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)">
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     id="namedview22"
+     showgrid="false"
+     fit-margin-top="5"
+     fit-margin-left="5"
+     fit-margin-right="5"
+     fit-margin-bottom="5"
+     inkscape:pagecheckerboard="true"
+     inkscape:zoom="2.861626"
+     inkscape:cx="-30.386255"
+     inkscape:cy="60.265697"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="Capa_1" />
+  <metadata
+     id="metadata69">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title>formularios</dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs4">
+    <style
+       id="style2">.cls-1,.cls-3{opacity:0.3;}.cls-2,.cls-3,.cls-4{fill:#014898;}.cls-4{opacity:0.6;}</style>
+  </defs>
+  <title
+     id="title6">formularios</title>
+  <path
+     inkscape:connector-curvature="0"
+     id="path24"
+     d="M 10.963245,5 C 7.6693929,5.00074 4.9996819,7.65876 5.0000359,10.93711 V 22.921553 L 48.350496,66.067935 5.0000359,109.21627 v 9.82694 c -0.01134,3.28603 2.66161,5.95607 5.9632091,5.95679 H 59.034827 C 96.80697,125 125,103.23019 125,64.920271 125,26.610362 96.837663,5 58.852863,5 Z"
+     style="fill:#ffffff;fill-opacity:1;stroke-width:1.01027143"
+     sodipodi:nodetypes="cccccccsssc" />
+</svg>

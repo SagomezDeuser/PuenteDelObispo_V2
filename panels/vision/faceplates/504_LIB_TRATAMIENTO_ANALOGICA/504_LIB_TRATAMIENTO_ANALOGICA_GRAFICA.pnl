@@ -1,0 +1,813 @@
+V 14
+6
+LANG:10001 0 
+LANG:10010 17 ANALOGICA_GRAFICA
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+PANEL,-1 -1 410 400 N "LIB_IRC_BLANCO" 1
+"$INST"
+E E E E E 1 -1 -1 0  0 0
+""0  1
+E "//--------------------------------------------------------------------------------
+//Clases importadas a utilizar por las funciones de la librería
+lib_tratamiento_analogica tratamiento = lib_tratamiento_analogica($INST, \"asdf\");
+
+//---------------Variables auxiliares-------------------
+" 0
+ 5
+"CBRef" "1"
+"EClose" E
+"type" "BG_ACCIONAMIENTO_MOTOR_S"
+"dpi" "96"
+"pdpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10001 0 
+LANG:10010 0 
+6 96
+"RECTANGLE1"
+""
+1 90 200 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_AZUL_03" E E
+ E E
+95 0 0 0 0 0
+E E E
+0
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+4
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 2 3 2 1 E 1.374125874125874 0 1 -114.6713286713287 41 1 E 90 200 376 226
+6 95
+"RECTANGLE127"
+""
+1 104 298 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_BLANCO" E E
+ E E
+94 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 2 3 2 1 E 1 0 1.083333333333333 -95.00000000000003 -47.8333333333333 1 E 104 298 497 406
+2 97
+"txf_enc_alarmas"
+""
+1 10 0 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+96 0 0 0 0 0
+E E E
+0
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+5
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+  this.text(getCatStr(\"objetos\",this.name));
+}" 0
+ E 0 10 2 1 1 E 0.4820095343662528 0 0.2952129059352812 114.8282361422432 245.1436128219416 1 E 10 0 360 60
+0 2 2 "0s" 0 0 0 65 0 0  10 0 1
+7
+LANG:10001 35 MS Shell Dlg 2,-1,15,5,75,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 MS Shell Dlg 2,-1,15,5,75,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10005 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+0 7
+LANG:10001 10 PARAMETROS
+LANG:10010 7 ALARMAS
+LANG:10011 6 ALARME
+LANG:10009 10 PARAMETROS
+LANG:10008 7 ALLARMI
+LANG:10018 7 ALARMES
+LANG:10005 6 ALARMS
+29 99
+"ell_alarma_vf"
+"lblCircle"
+1 46.8939650587047 281.0431648935177 E E E 1 E 1 E N "_3DText" E N "_3DFace" E E
+ E E
+98 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+1
+"layoutAlignment" "AlignNone"
+6
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10011 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10018 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  46.8939650587047 281.0431648935177 66.89396505870469 301.0431648935177
+5 Label
+0
+"main()
+{
+  dpConnect(\"cambiar_estado\", $INST + \".Output.Yd_AHH\"); //Mediante la instacia de librería, obtenemos el estado de la alarma (\"Static.DATOS_ALARMA.Output.Yd_Alarma_VF\")
+}
+
+//Cambia el color de fondo según el estado de la alarma
+void cambiar_estado(string dp, bool estado){
+  if(estado)  this.backCol(\"LIB_IRC_ROJO_12\");
+  else  this.backCol(\"LIB_IRC_GRIS_03\");
+}
+" 0
+29 100
+"ell_alarma_cm"
+"lblCircle"
+1 46.89396505870474 337.0431648935177 E E E 1 E 1 E N "_3DText" E N "_3DFace" E E
+ E E
+99 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+1
+"layoutAlignment" "AlignNone"
+6
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10011 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10018 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  46.89396505870474 337.0431648935177 66.89396505870471 357.0431648935177
+5 Label
+0
+"main()
+{
+  dpConnect(\"cambiar_estado\", $INST + \".Output.Yd_AL\"); //Mediante la instacia de librería, obtenemos el estado de la alarma (\"Static.DATOS_ALARMA.Output.Yd_Alarma_CM_F1\")
+}
+
+//Cambia el color de fondo según el estado de la alarma
+void cambiar_estado(string dp, bool estado){
+  if(estado)  this.backCol(\"LIB_IRC_AMARILLO_04\");
+  else  this.backCol(\"LIB_IRC_GRIS_03\");
+}
+" 0
+29 101
+"ell_alama_cp"
+"lblCircle"
+1 46.89396505870468 365.0431648935177 E E E 1 E 1 E N "_3DText" E N "_3DFace" E E
+ E E
+100 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+1
+"layoutAlignment" "AlignNone"
+6
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10011 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10018 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  46.89396505870468 365.0431648935177 66.89396505870468 385.0431648935177
+5 Label
+0
+"main()
+{
+  dpConnect(\"cambiar_estado\", $INST + \".Output.Yd_ALL\"); //Mediante la instacia de librería, obtenemos el estado de la alarma (\"Static.DATOS_ALARMA.Output.Yd_Alarma_CP_F1\")
+}
+
+//Cambia el color de fondo según el estado de la alarma
+void cambiar_estado(string dp, bool estado){
+  if(estado)  this.backCol(\"LIB_IRC_ROJO_12\");
+  else  this.backCol(\"LIB_IRC_GRIS_03\");
+}
+" 0
+29 102
+"ell_fallo_ext"
+"lblCircle"
+1 46.89396505870468 309.0431648935177 E E E 1 E 1 E N "_3DText" E N "_3DFace" E E
+ E E
+101 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+1
+"layoutAlignment" "AlignNone"
+6
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10011 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10018 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  46.89396505870468 309.0431648935177 66.89396505870468 329.0431648935177
+5 Label
+0
+"main()
+{
+  dpConnect(\"cambiar_estado\", $INST + \".Output.Yd_AH\"); //Mediante la instacia de librería, obtenemos el estado de la alarma (\"Static.DATOS_ALARMA.Output.Yd_Alarma_EXT\")
+}
+
+//Cambia el color de fondo según el estado de la alarma
+void cambiar_estado(string dp, bool estado){
+  if(estado)  this.backCol(\"LIB_IRC_AMARILLO_04\");
+  else  this.backCol(\"LIB_IRC_GRIS_03\");
+}
+" 0
+29 111
+"wv_graficas"
+""
+1 133.1643859687876 -48.99041719603446 E E E 1 E 1 E N "_3DText" E N "_3DFace" E E
+ E E
+110 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"contextMenuPolicy" "enum 1"
+"transparentForMouseInGedi" ""
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  -0.08561403121242961 -48.99041719603446 409.125924430326 238.9858304167865
+11 WebView.ewo
+1
+0 "loadFinished" "(bool ok)"
+"  btn_ocultar.visible = TRUE;"
+"main()
+{
+  btn_ocultar.visible = FALSE;
+  this.url(\"http://localhost:3000/d/Influx-1dp/influx-1dp?orgId=1&kiosk&var-tipo_dato=original_value_float&var-dp=System1:\" + $INST + \".Output.Yr_ValorEscalado&from=now-4h&to=now&var-leyenda=VALOR\");
+}" 0
+13 112
+"PUSH_BUTTON7"
+""
+1 405.5323132284116 -1.99041719603444 E E E 0 E 1 E N "_ButtonText" E N {245,245,245} E E
+ E E
+111 0 0 0 27 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 27 Tahoma,-1,11,5,50,0,0,0,0,0
+LANG:10010 27 Tahoma,-1,11,5,50,0,0,0,0,0
+0  403.5323132284116 -3.990417196034441 409.1350420447659 240.9958108597346
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON1
+LANG:10010 1 
+
+E E E E
+13 113
+"PUSH_BUTTON8"
+""
+1 383.913381233858 -95.70728366216687 E E E 0 E 1 E N "_ButtonText" E N {245,245,245} E E
+ E E
+112 0 0 0 72 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 27 Tahoma,-1,11,5,50,0,0,0,0,0
+LANG:10010 27 Tahoma,-1,11,5,50,0,0,0,0,0
+0  382.0000000000001 -3.990417196034457 387.703502400794 240.9958108597346
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON1
+LANG:10010 1 
+
+E E E E
+13 114
+"PUSH_BUTTON9"
+""
+1 381.3436911716434 -95.70728366216687 E E E 0 E 1 E N "_ButtonText" E N {245,245,245} E E
+ E E
+113 0 0 0 80 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 27 Tahoma,-1,11,5,50,0,0,0,0,0
+LANG:10010 27 Tahoma,-1,11,5,50,0,0,0,0,0
+0  383.703502400794 -3.990417196034457 389.4070048015879 240.9958108597346
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON1
+LANG:10010 1 
+
+E E E E
+13 115
+"PUSH_BUTTON10"
+""
+1 378.7740011094289 -95.70728366216687 E E E 0 E 1 E N "_ButtonText" E N {245,245,245} E E
+ E E
+114 0 0 0 83 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 27 Tahoma,-1,11,5,50,0,0,0,0,0
+LANG:10010 27 Tahoma,-1,11,5,50,0,0,0,0,0
+0  385.4070048015879 -3.990417196034457 391.1105072023818 240.9958108597346
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON1
+LANG:10010 1 
+
+E E E E
+13 116
+"PUSH_BUTTON11"
+""
+1 376.2043110472143 -95.70728366216687 E E E 0 E 1 E N "_ButtonText" E N {245,245,245} E E
+ E E
+115 0 0 0 27 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 27 Tahoma,-1,11,5,50,0,0,0,0,0
+LANG:10010 27 Tahoma,-1,11,5,50,0,0,0,0,0
+0  387.1105072023818 -3.990417196034457 392.8140096031757 240.9958108597346
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON1
+LANG:10010 1 
+
+E E E E
+13 117
+"PUSH_BUTTON12"
+""
+1 373.6346209849997 -95.70728366216687 E E E 0 E 1 E N "_ButtonText" E N {245,245,245} E E
+ E E
+116 0 0 0 69 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 27 Tahoma,-1,11,5,50,0,0,0,0,0
+LANG:10010 27 Tahoma,-1,11,5,50,0,0,0,0,0
+0  388.8140096031757 -3.990417196034457 394.5175120039697 240.9958108597346
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON1
+LANG:10010 1 
+
+E E E E
+13 118
+"PUSH_BUTTON13"
+""
+1 371.0649309227852 -95.70728366216687 E E E 0 E 1 E N "_ButtonText" E N {245,245,245} E E
+ E E
+117 0 0 0 86 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 27 Tahoma,-1,11,5,50,0,0,0,0,0
+LANG:10010 27 Tahoma,-1,11,5,50,0,0,0,0,0
+0  390.5175120039697 -3.990417196034457 396.2210144047636 240.9958108597346
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON1
+LANG:10010 1 
+
+E E E E
+13 119
+"PUSH_BUTTON14"
+""
+1 368.4952408605706 -95.70728366216687 E E E 0 E 1 E N "_ButtonText" E N {245,245,245} E E
+ E E
+118 0 0 0 68 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 27 Tahoma,-1,11,5,50,0,0,0,0,0
+LANG:10010 27 Tahoma,-1,11,5,50,0,0,0,0,0
+0  392.2210144047636 -3.990417196034457 397.9245168055575 240.9958108597346
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON1
+LANG:10010 1 
+
+E E E E
+13 120
+"PUSH_BUTTON15"
+""
+1 365.925550798356 -95.70728366216687 E E E 0 E 1 E N "_ButtonText" E N {245,245,245} E E
+ E E
+119 0 0 0 79 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 27 Tahoma,-1,11,5,50,0,0,0,0,0
+LANG:10010 27 Tahoma,-1,11,5,50,0,0,0,0,0
+0  393.9245168055575 -3.990417196034457 399.6280192063514 240.9958108597346
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON1
+LANG:10010 1 
+
+E E E E
+13 121
+"PUSH_BUTTON16"
+""
+1 363.3558607361414 -95.70728366216687 E E E 0 E 1 E N "_ButtonText" E N {245,245,245} E E
+ E E
+120 0 0 0 84 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 27 Tahoma,-1,11,5,50,0,0,0,0,0
+LANG:10010 27 Tahoma,-1,11,5,50,0,0,0,0,0
+0  395.6280192063514 -3.990417196034457 401.3315216071454 240.9958108597346
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON1
+LANG:10010 1 
+
+E E E E
+13 122
+"PUSH_BUTTON17"
+""
+1 360.7861706739269 -95.70728366216687 E E E 0 E 1 E N "_ButtonText" E N {245,245,245} E E
+ E E
+121 0 0 0 76 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 27 Tahoma,-1,11,5,50,0,0,0,0,0
+LANG:10010 27 Tahoma,-1,11,5,50,0,0,0,0,0
+0  397.3315216071454 -3.990417196034457 403.0350240079393 240.9958108597346
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON1
+LANG:10010 1 
+
+E E E E
+13 123
+"PUSH_BUTTON18"
+""
+1 379.5824429267548 -95.70728366216687 E E E 0 E 1 E N "_ButtonText" E N {245,245,245} E E
+ E E
+122 1 0 0 83 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 27 Tahoma,-1,11,5,50,0,0,0,0,0
+LANG:10010 27 Tahoma,-1,11,5,50,0,0,0,0,0
+0  399.0350240079393 -3.990417196034457 404.7385264087332 240.9958108597346
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON1
+LANG:10010 1 
+
+E E E E
+13 124
+"PUSH_BUTTON19"
+""
+1 381.2859453275487 -95.70728366216687 E E E 0 E 1 E N "_ButtonText" E N {245,245,245} E E
+ E E
+123 0 0 0 73 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 27 Tahoma,-1,11,5,50,0,0,0,0,0
+LANG:10010 27 Tahoma,-1,11,5,50,0,0,0,0,0
+0  400.7385264087332 -3.990417196034457 406.4420288095271 240.9958108597346
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON1
+LANG:10010 1 
+
+E E E E
+13 125
+"PUSH_BUTTON20"
+""
+1 382.9894477283426 -95.70728366216687 E E E 0 E 1 E N "_ButtonText" E N {245,245,245} E E
+ E E
+124 0 0 0 70 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 27 Tahoma,-1,11,5,50,0,0,0,0,0
+LANG:10010 27 Tahoma,-1,11,5,50,0,0,0,0,0
+0  402.4420288095271 -3.990417196034457 408.1455312103211 240.9958108597346
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON1
+LANG:10010 1 
+
+E E E E
+29 130
+"Label10"
+"MEDIANO_AZUL"
+1 71.94698252935234 274.3867172323595 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+129 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+4
+"text" "string Alarma alta (HH)"
+"alignment" "enum 128"
+"styleSheet" "string "
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 27 Tahoma,-1,16,5,50,0,0,0,0,0
+0  71.94698252935234 274.3867172323595 201.840947588057 305.3867172323595
+5 Label
+0
+E29 131
+"Label11"
+"MEDIANO_AZUL"
+1 71.94698252935234 303.3867172323595 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+130 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+4
+"text" "string Aviso alta (H)"
+"alignment" "enum 128"
+"styleSheet" "string "
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 27 Tahoma,-1,16,5,50,0,0,0,0,0
+0  71.94698252935234 303.3867172323595 201.840947588057 334.3867172323595
+5 Label
+0
+E29 132
+"Label12"
+"MEDIANO_AZUL"
+1 71.94698252935234 331.4541498395592 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+131 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+4
+"text" "string Aviso baja (L)"
+"alignment" "enum 128"
+"styleSheet" "string "
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 27 Tahoma,-1,16,5,50,0,0,0,0,0
+0  71.94698252935234 331.4541498395592 201.840947588057 362.4541498395592
+5 Label
+0
+E29 133
+"Label13"
+"MEDIANO_AZUL"
+1 71.94698252935234 358.5215824467589 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+132 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+4
+"text" "string Alarma baja (LL)"
+"alignment" "enum 128"
+"styleSheet" "string "
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 27 Tahoma,-1,16,5,50,0,0,0,0,0
+0  71.94698252935234 358.5215824467589 201.840947588057 389.5215824467589
+5 Label
+0
+E6 134
+"RECTANGLE126"
+""
+1 209 106.0000000000002 E E E 1 E 1 E N {0,0,0} E N "LIB_IRC_AZUL_18" E E
+ E E
+133 0 0 0 0 0
+E E E
+0
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+4
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E -1 1 3 2 1 E 1 0 0.7777777777777777 -7.570943189441962 183.6060570288782 1 E 209 106.0000000000002 214 115
+0
+LAYER, 1 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 2 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 3 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 4 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 5 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 6 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 7 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+1 0 "btn_ocultar" -1
+14 0 
+112 113 114 115 116 117 118 119 120 121 122 123 124 125 
+
+"layoutAlignment" "AlignNone"
+"" ""
+0

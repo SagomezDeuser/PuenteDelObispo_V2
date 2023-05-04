@@ -1,0 +1,66 @@
+# ascii dump of database
+
+# DpType
+TypeName
+010_LIB_PID.010_LIB_PID	1#1
+	Xr_SetPoint	22#85
+	Xr_ManualValue	22#86
+	Xr_Gain	22#87
+	Xr_Ti	22#88
+	Xr_Td	22#89
+	Xr_SetPoint_Maximo	22#90
+	Xr_SetPoint_Minimo	22#91
+	Xr_ValorProceso	22#92
+	Yr_Output	22#93
+	Static	1#94
+		archivado_bbdd	23#95
+	Xr_Output_Maximo	22#96
+	Xr_Output_Minimo	22#97
+	Xd_Habilitado_1	23#98
+	Xd_Habilitado_2	23#99
+
+# Datapoint/DpId
+DpName	TypeName	ID
+_mp_010_LIB_PID	010_LIB_PID	40408
+
+# DistributionInfo
+Manager/User	StampSec	StampMSec	ElementName	TypeName	_distrib.._type	_distrib.._driver
+ASC (1)/0	1652263260	907	_mp_010_LIB_PID.Xr_SetPoint	010_LIB_PID	56	\1
+ASC (1)/0	1652263260	908	_mp_010_LIB_PID.Xr_ManualValue	010_LIB_PID	56	\1
+ASC (1)/0	1652263260	908	_mp_010_LIB_PID.Xr_Gain	010_LIB_PID	56	\1
+ASC (1)/0	1652263260	921	_mp_010_LIB_PID.Xr_Ti	010_LIB_PID	56	\1
+ASC (1)/0	1652263260	922	_mp_010_LIB_PID.Xr_Td	010_LIB_PID	56	\1
+ASC (1)/0	1652263260	923	_mp_010_LIB_PID.Xr_SetPoint_Maximo	010_LIB_PID	56	\1
+ASC (1)/0	1652263260	925	_mp_010_LIB_PID.Xr_SetPoint_Minimo	010_LIB_PID	56	\1
+ASC (1)/0	1652263260	926	_mp_010_LIB_PID.Xr_ValorProceso	010_LIB_PID	56	\1
+ASC (1)/0	1652263260	936	_mp_010_LIB_PID.Yr_Output	010_LIB_PID	56	\1
+ASC (1)/0	1652263260	937	_mp_010_LIB_PID.Xr_Output_Maximo	010_LIB_PID	56	\1
+ASC (1)/0	1652263260	939	_mp_010_LIB_PID.Xr_Output_Minimo	010_LIB_PID	56	\1
+ASC (1)/0	1652263260	940	_mp_010_LIB_PID.Xd_Habilitado_1	010_LIB_PID	56	\1
+ASC (1)/0	1652263260	942	_mp_010_LIB_PID.Xd_Habilitado_2	010_LIB_PID	56	\1
+
+# PeriphAddrMain
+Manager/User	StampSec	StampMSec	ElementName	TypeName	_address.._type	_address.._reference	_address.._poll_group	_address.._connection	_address.._offset	_address.._subindex	_address.._direction	_address.._internal	_address.._lowlevel	_address.._active	_address.._start	_address.._interval	_address.._reply	_address.._datatype	_address.._drv_ident
+ASC (1)/0	1652263261	619	_mp_010_LIB_PID.Xr_SetPoint	010_LIB_PID	16	"DB_PIDs.*.Xr_SetPoint"	_010_LIB_PID	 	0	0	\7	0	1	0	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	1015	"S7PLUS"
+ASC (1)/0	1652263261	620	_mp_010_LIB_PID.Xr_ManualValue	010_LIB_PID	16	"DB_PIDs.*.Xr_ManualValue"	_010_LIB_PID	 	0	0	\7	0	1	0	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	1015	"S7PLUS"
+ASC (1)/0	1652263261	630	_mp_010_LIB_PID.Xr_Gain	010_LIB_PID	16	"DB_PIDs.*.Xr_Gain"	_010_LIB_PID	 	0	0	\7	0	1	0	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	1015	"S7PLUS"
+ASC (1)/0	1652263261	631	_mp_010_LIB_PID.Xr_Ti	010_LIB_PID	16	"DB_PIDs.*.Xr_Ti"	_010_LIB_PID	 	0	0	\7	0	1	0	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	1015	"S7PLUS"
+ASC (1)/0	1652263261	632	_mp_010_LIB_PID.Xr_Td	010_LIB_PID	16	"DB_PIDs.*.Xr_Td"	_010_LIB_PID	 	0	0	\7	0	1	0	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	1015	"S7PLUS"
+ASC (1)/0	1652263261	633	_mp_010_LIB_PID.Xr_SetPoint_Maximo	010_LIB_PID	16	"DB_PIDs.*.Xr_SetPoint_Maximo"	_010_LIB_PID	 	0	0	\7	0	1	0	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	1015	"S7PLUS"
+ASC (1)/0	1652263261	635	_mp_010_LIB_PID.Xr_SetPoint_Minimo	010_LIB_PID	16	"DB_PIDs.*.Xr_SetPoint_Minimo"	_010_LIB_PID	 	0	0	\7	0	1	0	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	1015	"S7PLUS"
+ASC (1)/0	1652263261	646	_mp_010_LIB_PID.Xr_ValorProceso	010_LIB_PID	16	"DB_PIDs.*.Xr_ValorProceso"	_010_LIB_PID	 	0	0	\7	0	1	0	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	1015	"S7PLUS"
+ASC (1)/0	1652263261	647	_mp_010_LIB_PID.Yr_Output	010_LIB_PID	16	"DB_PIDs.*.Yr_Output"	_010_LIB_PID	 	0	0	\7	0	1	0	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	1015	"S7PLUS"
+ASC (1)/0	1652263261	649	_mp_010_LIB_PID.Xr_Output_Maximo	010_LIB_PID	16	"DB_PIDs.*.Xr_Output_Maximo"	_010_LIB_PID	 	0	0	\7	0	1	0	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	1015	"S7PLUS"
+ASC (1)/0	1652263261	650	_mp_010_LIB_PID.Xr_Output_Minimo	010_LIB_PID	16	"DB_PIDs.*.Xr_Output_Minimo"	_010_LIB_PID	 	0	0	\7	0	1	0	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	1015	"S7PLUS"
+ASC (1)/0	1652263261	651	_mp_010_LIB_PID.Xd_Habilitado_1	010_LIB_PID	16	"DB_PIDs.*.Xd_Habilitado_1"	_010_LIB_PID	 	0	0	\7	0	1	0	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	1002	"S7PLUS"
+ASC (1)/0	1652263261	661	_mp_010_LIB_PID.Xd_Habilitado_2	010_LIB_PID	16	"DB_PIDs.*.Xd_Habilitado_2"	_010_LIB_PID	 	0	0	\7	0	1	0	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	01.01.1970 00:00:00.000	1002	"S7PLUS"
+# ascii dump of database
+
+# Datapoint/DpId
+DpName	TypeName	ID
+_dt_010_LIB_PID	_DynamicDatapoints	40409
+
+# DpValue
+Manager/User	ElementName	TypeName	_original.._value	_original.._status64	_original.._stime
+ASC (1)/0	_dt_010_LIB_PID.Leaf	_DynamicDatapoints	"_mp_010_LIB_PID.Xr_SetPoint:_address", "_mp_010_LIB_PID.Xr_ManualValue:_address", "_mp_010_LIB_PID.Xr_Gain:_address", "_mp_010_LIB_PID.Xr_Ti:_address", "_mp_010_LIB_PID.Xr_Td:_address", "_mp_010_LIB_PID.Xr_SetPoint_Maximo:_address", "_mp_010_LIB_PID.Xr_SetPoint_Minimo:_address", "_mp_010_LIB_PID.Xr_ValorProceso:_address", "_mp_010_LIB_PID.Yr_Output:_address", "_mp_010_LIB_PID.Xr_Output_Maximo:_address", "_mp_010_LIB_PID.Xr_Output_Minimo:_address", "_mp_010_LIB_PID.Xd_Habilitado_1:_address", "_mp_010_LIB_PID.Xd_Habilitado_2:_address"	0x8300000000000101	11.05.2022 10:01:02.018
+ASC (1)/0	_dt_010_LIB_PID.DynamicAttribute	_DynamicDatapoints	"_da_address", "_da_address", "_da_address", "_da_address", "_da_address", "_da_address", "_da_address", "_da_address", "_da_address", "_da_address", "_da_address", "_da_address", "_da_address"	0x8300000000000101	11.05.2022 10:01:02.019

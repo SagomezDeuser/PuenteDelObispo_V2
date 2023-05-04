@@ -1,0 +1,3646 @@
+V 14
+6
+LANG:10011 0 
+LANG:10001 0 
+LANG:10010 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+PANEL,-1 -1 971 381 N "_Transparent" 1
+"$DPE"
+"main()
+{
+  string texto;
+
+  switchToCase(CapsLock.toggleState);
+
+  if(dpExists($DPE)){
+    dpGet($DPE, texto);
+    setValue(\"txf_valor\", \"text\", texto);
+  }else{
+    setMultiValue(\"txf_valor\", \"color\", \"LIB_IRC_MORADO_01\",
+                  \"txf_valor\", \"foreCol\", \"LIB_IRC_MORADO_01\");
+  }
+
+  //titleBar(0, myModuleName());  //Quitamos el borde del Frame de la ventana de Login
+  setScaleStyle(SCALE_NONE, myModuleName());
+  setWindowTitle(myModuleName(), myPanelName(), \"Teclado Virtual Completo\");  //Eliminamos el title que aparece en el Frame del Panel
+  windowStyle(myModuleName(), myPanelName(), 0, 0);  //Eliminamos los botones para maximizar y minimizar el Panel
+}" 0
+ E E E E 1 -1 -1 0  9 10
+""0  1
+E "const int keyRepeatDelay = 150;
+
+keyPressed(string key){
+  if(!CapsLock.toggleState)  key = strtolower(key);
+
+  sendKeyClick(key);
+
+  txf_valor.text = txf_valor.text + key;
+}
+//------------------------------------------------------------
+
+showSymbols(){
+  Key_Sym.text = \"123\";
+  Key_0.text = \"@\";
+  Key_1.text = \"^\";
+  Key_2.text = \"\\\"\";
+  Key_3.text = \"§\";
+  Key_4.text = \"$\";
+  Key_5.text = \"%\";
+  Key_6.text = \"&&\";
+  Key_7.text = \"/\";
+  Key_8.text = \"[\";
+  Key_9.text = \"]\";
+  Key_Equal.text = \"\\\\\";
+  Key_ParenOpen.text = \"{\";
+  Key_ParenClosed.text = \"}\";
+  Key_Dot.text = \":\";
+  Key_Comma.text = \";\";
+  Key_Question.text = \"#\";
+  Key_X1.text = \":\";
+  Key_X2.text = \";\";
+  Key_X4.text = \"_\";
+  Key_Plus.text = \"<\";
+  Key_Minus.text = \">\";
+  Key_Exclam.text = \"'\";
+}
+
+//------------------------------------------------------------
+
+showNumbers(){
+  Key_Sym.text = \"@$%\";
+  Key_Sym.toggleState = FALSE;
+  Key_0.text = \"0\";
+  Key_1.text = \"1\";
+  Key_2.text = \"2\";
+  Key_3.text = \"3\";
+  Key_4.text = \"4\";
+  Key_5.text = \"5\";
+  Key_6.text = \"6\";
+  Key_7.text = \"7\";
+  Key_8.text = \"8\";
+  Key_9.text = \"9\";
+  Key_Equal.text = \"=\";
+  Key_ParenOpen.text = \"(\";
+  Key_ParenClosed.text = \")\";
+  Key_Dot.text = \".\";
+  Key_Comma.text = \",\";
+  Key_X1.text = \".\";
+  Key_X2.text = \",\";
+  Key_X4.text = \"*\";
+  Key_Plus.text = \"+\";
+  Key_Minus.text = \"-\";
+  Key_Exclam.text = \"!\";
+  Key_Question.text = \"?\";
+
+  switchToCase(CapsLock.toggleState);
+}
+//------------------------------------------------------------
+
+switchToCase(bool upper){
+  dyn_string shapes = getShapes(myModuleName(), myPanelName(), \"shapeType\", \"PUSH_BUTTON\");
+
+  for(int i = 1; i <= dynlen(shapes); i++){
+    string text;
+    getValue(shapes[i], \"text\", text);
+
+    if(text == \"ß\") continue;  // toupper would result in \"SS\"
+
+    if(upper)  text = strtoupper(text);
+    else text = strtolower(text);
+
+    setValue(shapes[i], \"text\", text);
+  }
+}
+//------------------------------------------------------------
+
+public init(){
+  showNumbers();
+
+  CapsLock.toggleState = FALSE;
+  switchToCase(FALSE);
+}" 0
+ 6
+"CBRef" "1"
+"EClose" "main(mapping event)
+{
+  if(dpExists($DPE))  dpSet($DPE, txf_valor.text);
+
+  PanelOff();
+}" 0
+
+"windowIcon" "iconos/ventanas/teclado.svg"
+"type" "panel_vis_util_tecl_virt_1"
+"dpi" "96"
+"pdpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+6
+LANG:10011 0 
+LANG:10001 0 
+LANG:10010 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+13 1
+"Key_1"
+"btn_formulario_1"
+1 10 55 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Button" E E
+ E E
+0 0 0 0 0 0
+E E E
+1
+9
+LANG:10011 0 
+LANG:10001 0 
+LANG:10010 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+8
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"minimumSize" "60 45"
+"maximumSize" "60 45"
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"showFocus" "0"
+9
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10005 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10000 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10027 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+0  7.999999999999996 52.99999999999999 70.99999999999997 101
+
+T 
+9
+LANG:10011 1 1
+LANG:10001 1 1
+LANG:10010 1 1
+LANG:10009 1 1
+LANG:10008 1 1
+LANG:10018 1 1
+LANG:10005 1 1
+LANG:10000 1 1
+LANG:10027 1 1
+"main()
+{
+  keyPressed(this.text);
+}
+" 0
+ E E E
+13 2
+"Key_2"
+"btn_formulario_1"
+1 78.25 55 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Button" E E
+ E E
+1 0 0 0 0 0
+E E E
+1
+9
+LANG:10011 0 
+LANG:10001 0 
+LANG:10010 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+8
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"minimumSize" "60 45"
+"maximumSize" "60 45"
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"showFocus" "0"
+9
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10005 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10000 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10027 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+0  76.49999999999997 52.99999999999999 139.5 101
+
+T 
+9
+LANG:10011 1 2
+LANG:10001 1 2
+LANG:10010 1 2
+LANG:10009 1 2
+LANG:10008 1 2
+LANG:10018 1 2
+LANG:10005 1 2
+LANG:10000 1 2
+LANG:10027 1 2
+"main()
+{
+  keyPressed(this.text);
+}
+" 0
+ E E E
+13 3
+"Key_0"
+"btn_formulario_1"
+1 627 55 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Button" E E
+ E E
+2 0 0 0 0 0
+E E E
+1
+9
+LANG:10011 0 
+LANG:10001 0 
+LANG:10010 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+8
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"minimumSize" "60 45"
+"maximumSize" "60 45"
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"showFocus" "0"
+9
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10005 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10000 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10027 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+0  624.9999999999999 52.99999999999999 688 101
+
+T 
+9
+LANG:10011 1 0
+LANG:10001 1 0
+LANG:10010 1 0
+LANG:10009 1 0
+LANG:10008 1 0
+LANG:10018 1 0
+LANG:10005 1 0
+LANG:10000 1 0
+LANG:10027 1 0
+"main()
+{
+  keyPressed(this.text);
+}
+" 0
+ E E E
+13 4
+"Backspace"
+"btn_formulario_1"
+1 829.5 107.5 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Button" E E
+ E E
+3 0 0 0 0 0
+E E E
+1
+9
+LANG:10011 0 
+LANG:10001 0 
+LANG:10010 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+6
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+9
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10005 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10000 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10027 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+0  827.4999999999998 105 958.5153846153844 168
+
+T 
+9
+LANG:10011 3 ⃪
+LANG:10001 3 ⃪
+LANG:10010 3 ⃪
+LANG:10009 3 ⃪
+LANG:10008 3 ⃪
+LANG:10018 3 ⃪
+LANG:10005 3 ⃪
+LANG:10000 3 ⃪
+LANG:10027 3 ⃪
+"main(mapping event)
+{
+    string DisplayString;
+
+    DisplayString = txf_valor.text;
+
+    DisplayString = substr(DisplayString, 0, strlen(DisplayString) - 1);
+
+    txf_valor.text = DisplayString;
+}
+" 0
+ "main(mapping event)
+{
+  while(this.armed){
+    sendKeyClick(\"\", \"Backspace\");
+    delay(0, keyRepeatDelay);
+  }
+}
+" 0
+ E E
+13 5
+"Key_Q"
+"btn_formulario_1"
+1 10 107.3487947406866 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Button" E E
+ E E
+4 0 0 0 81 0
+E E E
+1
+9
+LANG:10011 0 
+LANG:10001 0 
+LANG:10010 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+8
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"minimumSize" "60 60"
+"maximumSize" "60 60"
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"showFocus" "0"
+9
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10005 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10000 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10027 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+0  7.999999999999996 105 70.99999999999997 168
+
+T 
+9
+LANG:10011 1 Q
+LANG:10001 1 Q
+LANG:10010 1 Q
+LANG:10009 1 Q
+LANG:10008 1 Q
+LANG:10018 1 Q
+LANG:10005 1 Q
+LANG:10000 1 Q
+LANG:10027 2 й
+"main()
+{
+  keyPressed(this.text);
+}" 0
+ E E E
+13 6
+"Key_W"
+"btn_formulario_1"
+1 78.5 107.3487947406866 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Button" E E
+ E E
+5 0 0 0 0 0
+E E E
+1
+9
+LANG:10011 0 
+LANG:10001 0 
+LANG:10010 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+8
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"minimumSize" "60 60"
+"maximumSize" "60 60"
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"showFocus" "0"
+9
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10005 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10000 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10027 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+0  76.49999999999997 105 139.5 168
+
+T 
+9
+LANG:10011 1 W
+LANG:10001 1 W
+LANG:10010 1 W
+LANG:10009 1 W
+LANG:10008 1 W
+LANG:10018 1 W
+LANG:10005 1 W
+LANG:10000 1 W
+LANG:10027 2 ц
+"main()
+{
+  keyPressed(this.text);
+}" 0
+ E E E
+13 7
+"Key_E"
+"btn_formulario_1"
+1 147 107.3487947406866 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Button" E E
+ E E
+6 0 0 0 0 0
+E E E
+1
+9
+LANG:10011 0 
+LANG:10001 0 
+LANG:10010 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+8
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"minimumSize" "60 60"
+"maximumSize" "60 60"
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"showFocus" "0"
+9
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10005 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10000 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10027 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+0  145 105 208 168
+
+T 
+9
+LANG:10011 1 E
+LANG:10001 1 E
+LANG:10010 1 E
+LANG:10009 1 E
+LANG:10008 1 E
+LANG:10018 1 E
+LANG:10005 1 E
+LANG:10000 1 E
+LANG:10027 2 у
+"main()
+{
+  keyPressed(this.text);
+}" 0
+ E E E
+13 8
+"Key_R"
+"btn_formulario_1"
+1 216.5 107.3487947406866 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Button" E E
+ E E
+7 0 0 0 0 0
+E E E
+1
+9
+LANG:10011 0 
+LANG:10001 0 
+LANG:10010 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+8
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"minimumSize" "60 60"
+"maximumSize" "60 60"
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"showFocus" "0"
+9
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10005 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10000 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10027 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+0  214.5 105 277.4999999999998 168
+
+T 
+9
+LANG:10011 1 R
+LANG:10001 1 R
+LANG:10010 1 R
+LANG:10009 1 R
+LANG:10008 1 R
+LANG:10018 1 R
+LANG:10005 1 R
+LANG:10000 1 R
+LANG:10027 2 к
+"main()
+{
+  keyPressed(this.text);
+}" 0
+ E E E
+13 9
+"Key_T"
+"btn_formulario_1"
+1 286 107.3487947406866 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Button" E E
+ E E
+8 0 0 0 0 0
+E E E
+1
+9
+LANG:10011 0 
+LANG:10001 0 
+LANG:10010 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+8
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"minimumSize" "60 60"
+"maximumSize" "60 60"
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"showFocus" "0"
+9
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10005 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10000 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10027 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+0  283.9999999999998 105 346.9999999999999 168
+
+T 
+9
+LANG:10011 1 T
+LANG:10001 1 T
+LANG:10010 1 T
+LANG:10009 1 T
+LANG:10008 1 T
+LANG:10018 1 T
+LANG:10005 1 T
+LANG:10000 1 T
+LANG:10027 2 е
+"main()
+{
+  keyPressed(this.text);
+}" 0
+ E E E
+13 10
+"Key_Z"
+"btn_formulario_1"
+1 355.5 107.3487947406866 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Button" E E
+ E E
+9 0 0 0 0 0
+E E E
+1
+9
+LANG:10011 0 
+LANG:10001 0 
+LANG:10010 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+8
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"minimumSize" "60 60"
+"maximumSize" "60 60"
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"showFocus" "0"
+9
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10005 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10000 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10027 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+0  353.5 105 416.4999999999998 168
+
+T 
+9
+LANG:10011 1 Z
+LANG:10001 1 Y
+LANG:10010 1 Y
+LANG:10009 1 Y
+LANG:10008 1 Y
+LANG:10018 1 Y
+LANG:10005 1 Y
+LANG:10000 1 Z
+LANG:10027 2 н
+"main()
+{
+  keyPressed(this.text);
+}" 0
+ E E E
+13 11
+"Key_U"
+"btn_formulario_1"
+1 425 107.3487947406866 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Button" E E
+ E E
+10 0 0 0 0 0
+E E E
+1
+9
+LANG:10011 0 
+LANG:10001 0 
+LANG:10010 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+8
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"minimumSize" "60 60"
+"maximumSize" "60 60"
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"showFocus" "0"
+9
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10005 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10000 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10027 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+0  422.9999999999998 105 485.9999999999998 168
+
+T 
+9
+LANG:10011 1 U
+LANG:10001 1 U
+LANG:10010 1 U
+LANG:10009 1 U
+LANG:10008 1 U
+LANG:10018 1 U
+LANG:10005 1 U
+LANG:10000 1 U
+LANG:10027 2 г
+"main()
+{
+  keyPressed(this.text);
+}" 0
+ E E E
+13 12
+"Key_I"
+"btn_formulario_1"
+1 493 107.3487947406866 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Button" E E
+ E E
+11 0 0 0 0 0
+E E E
+1
+9
+LANG:10011 0 
+LANG:10001 0 
+LANG:10010 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+8
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"minimumSize" "60 60"
+"maximumSize" "60 60"
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"showFocus" "0"
+9
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10005 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10000 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10027 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+0  490.9999999999998 105 553.9999999999998 168
+
+T 
+9
+LANG:10011 1 I
+LANG:10001 1 I
+LANG:10010 1 I
+LANG:10009 1 I
+LANG:10008 1 I
+LANG:10018 1 I
+LANG:10005 1 I
+LANG:10000 1 I
+LANG:10027 2 ш
+"main()
+{
+  keyPressed(this.text);
+}" 0
+ E E E
+13 13
+"Key_O"
+"btn_formulario_1"
+1 560 107.3487947406866 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Button" E E
+ E E
+12 0 0 0 0 0
+E E E
+1
+9
+LANG:10011 0 
+LANG:10001 0 
+LANG:10010 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+8
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"minimumSize" "60 60"
+"maximumSize" "60 60"
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"showFocus" "0"
+9
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10005 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10000 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10027 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+0  557.9999999999999 105 621 168
+
+T 
+9
+LANG:10011 1 O
+LANG:10001 1 O
+LANG:10010 1 O
+LANG:10009 1 O
+LANG:10008 1 O
+LANG:10018 1 O
+LANG:10005 1 O
+LANG:10000 1 O
+LANG:10027 2 щ
+"main()
+{
+  keyPressed(this.text);
+}" 0
+ E E E
+13 14
+"Key_P"
+"btn_formulario_1"
+1 627 107.3487947406866 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Button" E E
+ E E
+13 0 0 0 0 0
+E E E
+1
+9
+LANG:10011 0 
+LANG:10001 0 
+LANG:10010 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+8
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"minimumSize" "60 60"
+"maximumSize" "60 60"
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"showFocus" "0"
+9
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10005 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10000 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10027 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+0  624.9999999999998 105 688 168
+
+T 
+9
+LANG:10011 1 P
+LANG:10001 1 P
+LANG:10010 1 P
+LANG:10009 1 P
+LANG:10008 1 P
+LANG:10018 1 P
+LANG:10005 1 P
+LANG:10000 1 P
+LANG:10027 2 з
+"main()
+{
+  keyPressed(this.text);
+}" 0
+ E E E
+13 15
+"Key_UE"
+"btn_formulario_1"
+1 694 107.3487947406866 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Button" E E
+ E E
+14 0 0 0 0 0
+E E E
+1
+9
+LANG:10011 0 
+LANG:10001 0 
+LANG:10010 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+8
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"minimumSize" "60 60"
+"maximumSize" "60 60"
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"showFocus" "0"
+9
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10005 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10000 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10027 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+0  691.9999999999998 105 754.9999999999999 168
+
+T 
+9
+LANG:10011 2 Ü
+LANG:10001 1 *
+LANG:10010 1 *
+LANG:10009 1 *
+LANG:10008 1 *
+LANG:10018 1 *
+LANG:10005 1 *
+LANG:10000 2 Ü
+LANG:10027 2 х
+"main()
+{
+  keyPressed(this.text);
+}" 0
+ E E E
+13 16
+"Key_A"
+"btn_formulario_1"
+1 10 175.3487947406866 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Button" E E
+ E E
+15 0 0 0 0 0
+E E E
+1
+9
+LANG:10011 0 
+LANG:10001 0 
+LANG:10010 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+8
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"minimumSize" "60 60"
+"maximumSize" "60 60"
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"showFocus" "0"
+9
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10005 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10000 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10027 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+0  7.999999999999996 173 70.99999999999997 236
+
+T 
+9
+LANG:10011 1 A
+LANG:10001 1 A
+LANG:10010 1 A
+LANG:10009 1 A
+LANG:10008 1 A
+LANG:10018 1 A
+LANG:10005 1 A
+LANG:10000 1 A
+LANG:10027 2 ф
+"main()
+{
+  keyPressed(this.text);
+}" 0
+ E E E
+13 17
+"Key_S"
+"btn_formulario_1"
+1 78.5 175.3487947406866 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Button" E E
+ E E
+16 0 0 0 0 0
+E E E
+1
+9
+LANG:10011 0 
+LANG:10001 0 
+LANG:10010 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+8
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"minimumSize" "60 60"
+"maximumSize" "60 60"
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"showFocus" "0"
+9
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10005 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10000 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10027 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+0  76.49999999999997 173 139.5 236
+
+T 
+9
+LANG:10011 1 S
+LANG:10001 1 S
+LANG:10010 1 S
+LANG:10009 1 S
+LANG:10008 1 S
+LANG:10018 1 S
+LANG:10005 1 S
+LANG:10000 1 S
+LANG:10027 2 ы
+"main()
+{
+  keyPressed(this.text);
+}" 0
+ E E E
+13 18
+"Key_D"
+"btn_formulario_1"
+1 147 175.3487947406866 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Button" E E
+ E E
+17 0 0 0 0 0
+E E E
+1
+9
+LANG:10011 0 
+LANG:10001 0 
+LANG:10010 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+8
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"minimumSize" "60 60"
+"maximumSize" "60 60"
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"showFocus" "0"
+9
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10005 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10000 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10027 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+0  145 173 208 236
+
+T 
+9
+LANG:10011 1 D
+LANG:10001 1 D
+LANG:10010 1 D
+LANG:10009 1 D
+LANG:10008 1 D
+LANG:10018 1 D
+LANG:10005 1 D
+LANG:10000 1 D
+LANG:10027 2 в
+"main()
+{
+  keyPressed(this.text);
+}" 0
+ E E E
+13 19
+"Key_F"
+"btn_formulario_1"
+1 216.5 175.3487947406866 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Button" E E
+ E E
+18 0 0 0 0 0
+E E E
+1
+9
+LANG:10011 0 
+LANG:10001 0 
+LANG:10010 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+8
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"minimumSize" "60 60"
+"maximumSize" "60 60"
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"showFocus" "0"
+9
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10005 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10000 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10027 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+0  214.5 173 277.4999999999998 236
+
+T 
+9
+LANG:10011 1 F
+LANG:10001 1 F
+LANG:10010 1 F
+LANG:10009 1 F
+LANG:10008 1 F
+LANG:10018 1 F
+LANG:10005 1 F
+LANG:10000 1 F
+LANG:10027 2 а
+"main()
+{
+  keyPressed(this.text);
+}" 0
+ E E E
+13 20
+"Key_G"
+"btn_formulario_1"
+1 286 175.3487947406866 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Button" E E
+ E E
+19 0 0 0 0 0
+E E E
+1
+9
+LANG:10011 0 
+LANG:10001 0 
+LANG:10010 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+8
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"minimumSize" "60 60"
+"maximumSize" "60 60"
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"showFocus" "0"
+9
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10005 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10000 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10027 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+0  283.9999999999998 173 346.9999999999999 236
+
+T 
+9
+LANG:10011 1 G
+LANG:10001 1 G
+LANG:10010 1 G
+LANG:10009 1 G
+LANG:10008 1 G
+LANG:10018 1 G
+LANG:10005 1 G
+LANG:10000 1 G
+LANG:10027 2 п
+"main()
+{
+  keyPressed(this.text);
+}" 0
+ E E E
+13 21
+"Key_H"
+"btn_formulario_1"
+1 355.5 175.3487947406866 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Button" E E
+ E E
+20 0 0 0 0 0
+E E E
+1
+9
+LANG:10011 0 
+LANG:10001 0 
+LANG:10010 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+8
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"minimumSize" "60 60"
+"maximumSize" "60 60"
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"showFocus" "0"
+9
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10005 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10000 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10027 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+0  353.5 173 416.4999999999998 236
+
+T 
+9
+LANG:10011 1 H
+LANG:10001 1 H
+LANG:10010 1 H
+LANG:10009 1 H
+LANG:10008 1 H
+LANG:10018 1 H
+LANG:10005 1 H
+LANG:10000 1 H
+LANG:10027 2 р
+"main()
+{
+  keyPressed(this.text);
+}" 0
+ E E E
+13 22
+"Key_J"
+"btn_formulario_1"
+1 425 175.3487947406866 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Button" E E
+ E E
+21 0 0 0 0 0
+E E E
+1
+9
+LANG:10011 0 
+LANG:10001 0 
+LANG:10010 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+8
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"minimumSize" "60 60"
+"maximumSize" "60 60"
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"showFocus" "0"
+9
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10005 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10000 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10027 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+0  422.9999999999998 173 485.9999999999998 236
+
+T 
+9
+LANG:10011 1 J
+LANG:10001 1 J
+LANG:10010 1 J
+LANG:10009 1 J
+LANG:10008 1 J
+LANG:10018 1 J
+LANG:10005 1 J
+LANG:10000 1 J
+LANG:10027 2 о
+"main()
+{
+  keyPressed(this.text);
+}" 0
+ E E E
+13 23
+"Key_K"
+"btn_formulario_1"
+1 493 175.3487947406866 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Button" E E
+ E E
+22 0 0 0 0 0
+E E E
+1
+9
+LANG:10011 0 
+LANG:10001 0 
+LANG:10010 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+8
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"minimumSize" "60 60"
+"maximumSize" "60 60"
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"showFocus" "0"
+9
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10005 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10000 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10027 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+0  490.9999999999998 173 553.9999999999998 236
+
+T 
+9
+LANG:10011 1 K
+LANG:10001 1 K
+LANG:10010 1 K
+LANG:10009 1 K
+LANG:10008 1 K
+LANG:10018 1 K
+LANG:10005 1 K
+LANG:10000 1 K
+LANG:10027 2 л
+"main()
+{
+  keyPressed(this.text);
+}" 0
+ E E E
+13 24
+"Key_L"
+"btn_formulario_1"
+1 560 175.3487947406866 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Button" E E
+ E E
+23 0 0 0 0 0
+E E E
+1
+9
+LANG:10011 0 
+LANG:10001 0 
+LANG:10010 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+8
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"minimumSize" "60 60"
+"maximumSize" "60 60"
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"showFocus" "0"
+9
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10005 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10000 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10027 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+0  557.9999999999999 173 621 236
+
+T 
+9
+LANG:10011 1 L
+LANG:10001 1 L
+LANG:10010 1 L
+LANG:10009 1 L
+LANG:10008 1 L
+LANG:10018 1 L
+LANG:10005 1 L
+LANG:10000 1 L
+LANG:10027 2 д
+"main()
+{
+  keyPressed(this.text);
+}" 0
+ E E E
+13 25
+"Key_OE"
+"btn_formulario_1"
+1 627 175.3487947406866 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Button" E E
+ E E
+24 0 0 0 0 0
+E E E
+1
+9
+LANG:10011 0 
+LANG:10001 0 
+LANG:10010 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+8
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"minimumSize" "60 60"
+"maximumSize" "60 60"
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"showFocus" "0"
+9
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10005 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10000 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10027 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+0  624.9999999999998 173 688 236
+
+T 
+9
+LANG:10011 2 Ö
+LANG:10001 1 ;
+LANG:10010 1 ;
+LANG:10009 1 ;
+LANG:10008 1 ;
+LANG:10018 1 ;
+LANG:10005 1 ;
+LANG:10000 2 Ö
+LANG:10027 2 ж
+"main()
+{
+  keyPressed(this.text);
+}" 0
+ E E E
+13 26
+"Key_AE"
+"btn_formulario_1"
+1 694 175.3487947406866 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Button" E E
+ E E
+25 0 0 0 0 0
+E E E
+1
+9
+LANG:10011 0 
+LANG:10001 0 
+LANG:10010 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+8
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"minimumSize" "60 60"
+"maximumSize" "60 60"
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"showFocus" "0"
+9
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10005 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10000 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10027 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+0  691.9999999999998 173 754.9999999999999 236
+
+T 
+9
+LANG:10011 2 Ä
+LANG:10001 1 :
+LANG:10010 1 :
+LANG:10009 1 :
+LANG:10008 1 :
+LANG:10018 1 :
+LANG:10005 1 :
+LANG:10000 2 Ä
+LANG:10027 2 э
+"main()
+{
+  keyPressed(this.text);
+}" 0
+ E E E
+13 27
+"Key_Y"
+"btn_formulario_1"
+1 147 241.3487947406866 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Button" E E
+ E E
+26 0 0 0 0 0
+E E E
+1
+9
+LANG:10011 0 
+LANG:10001 0 
+LANG:10010 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+8
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"minimumSize" "60 60"
+"maximumSize" "60 60"
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"showFocus" "0"
+9
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10005 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10000 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10027 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+0  145 239 208 301.9999999999998
+
+T 
+9
+LANG:10011 1 Y
+LANG:10001 1 Z
+LANG:10010 1 Z
+LANG:10009 1 Z
+LANG:10008 1 Z
+LANG:10018 1 Z
+LANG:10005 1 Z
+LANG:10000 1 Y
+LANG:10027 2 я
+"main()
+{
+  keyPressed(this.text);
+}" 0
+ E E E
+13 28
+"Key_X"
+"btn_formulario_1"
+1 216.5 241.3487947406866 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Button" E E
+ E E
+27 0 0 0 0 0
+E E E
+1
+9
+LANG:10011 0 
+LANG:10001 0 
+LANG:10010 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+8
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"minimumSize" "60 60"
+"maximumSize" "60 60"
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"showFocus" "0"
+9
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10005 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10000 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10027 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+0  214.5 239 277.4999999999998 301.9999999999998
+
+T 
+9
+LANG:10011 1 X
+LANG:10001 1 X
+LANG:10010 1 X
+LANG:10009 1 X
+LANG:10008 1 X
+LANG:10018 1 X
+LANG:10005 1 X
+LANG:10000 1 X
+LANG:10027 2 ч
+"main()
+{
+  keyPressed(this.text);
+}" 0
+ E E E
+13 29
+"Key_C"
+"btn_formulario_1"
+1 286 241.3487947406866 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Button" E E
+ E E
+28 0 0 0 0 0
+E E E
+1
+9
+LANG:10011 0 
+LANG:10001 0 
+LANG:10010 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+8
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"minimumSize" "60 60"
+"maximumSize" "60 60"
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"showFocus" "0"
+9
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10005 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10000 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10027 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+0  283.9999999999998 239 346.9999999999999 301.9999999999998
+
+T 
+9
+LANG:10011 1 C
+LANG:10001 1 C
+LANG:10010 1 C
+LANG:10009 1 C
+LANG:10008 1 C
+LANG:10018 1 C
+LANG:10005 1 C
+LANG:10000 1 C
+LANG:10027 2 с
+"main()
+{
+  keyPressed(this.text);
+}" 0
+ E E E
+13 30
+"Key_V"
+"btn_formulario_1"
+1 355.5 241.3487947406866 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Button" E E
+ E E
+29 0 0 0 0 0
+E E E
+1
+9
+LANG:10011 0 
+LANG:10001 0 
+LANG:10010 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+8
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"minimumSize" "60 60"
+"maximumSize" "60 60"
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"showFocus" "0"
+9
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10005 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10000 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10027 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+0  353.5 239 416.4999999999998 301.9999999999998
+
+T 
+9
+LANG:10011 1 V
+LANG:10001 1 V
+LANG:10010 1 V
+LANG:10009 1 V
+LANG:10008 1 V
+LANG:10018 1 V
+LANG:10005 1 V
+LANG:10000 1 V
+LANG:10027 2 м
+"main()
+{
+  keyPressed(this.text);
+}" 0
+ E E E
+13 31
+"Key_B"
+"btn_formulario_1"
+1 425 241.3487947406866 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Button" E E
+ E E
+30 0 0 0 0 0
+E E E
+1
+9
+LANG:10011 0 
+LANG:10001 0 
+LANG:10010 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+8
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"minimumSize" "60 60"
+"maximumSize" "60 60"
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"showFocus" "0"
+9
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10005 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10000 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10027 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+0  422.9999999999998 239 485.9999999999998 301.9999999999998
+
+T 
+9
+LANG:10011 1 B
+LANG:10001 1 B
+LANG:10010 1 B
+LANG:10009 1 B
+LANG:10008 1 B
+LANG:10018 1 B
+LANG:10005 1 B
+LANG:10000 1 B
+LANG:10027 2 и
+"main()
+{
+  keyPressed(this.text);
+}" 0
+ E E E
+13 32
+"Key_N"
+"btn_formulario_1"
+1 493 241.3487947406866 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Button" E E
+ E E
+31 0 0 0 0 0
+E E E
+1
+9
+LANG:10011 0 
+LANG:10001 0 
+LANG:10010 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+8
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"minimumSize" "60 60"
+"maximumSize" "60 60"
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"showFocus" "0"
+9
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10005 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10000 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10027 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+0  490.9999999999998 239 553.9999999999998 301.9999999999998
+
+T 
+9
+LANG:10011 1 N
+LANG:10001 1 N
+LANG:10010 1 N
+LANG:10009 1 N
+LANG:10008 1 N
+LANG:10018 1 N
+LANG:10005 1 N
+LANG:10000 1 N
+LANG:10027 2 т
+"main()
+{
+  keyPressed(this.text);
+}" 0
+ E E E
+13 33
+"Key_M"
+"btn_formulario_1"
+1 560 241.3487947406866 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Button" E E
+ E E
+32 0 0 0 0 0
+E E E
+1
+9
+LANG:10011 0 
+LANG:10001 0 
+LANG:10010 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+8
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"minimumSize" "60 60"
+"maximumSize" "60 60"
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"showFocus" "0"
+9
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10005 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10000 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10027 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+0  557.9999999999999 239 621 301.9999999999998
+
+T 
+9
+LANG:10011 1 M
+LANG:10001 1 M
+LANG:10010 1 M
+LANG:10009 1 M
+LANG:10008 1 M
+LANG:10018 1 M
+LANG:10005 1 M
+LANG:10000 1 M
+LANG:10027 2 ь
+"main()
+{
+  keyPressed(this.text);
+}" 0
+ E E E
+13 34
+"Space"
+"btn_formulario_1"
+1 186 338 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Button" E E
+ E E
+33 0 0 0 0 0
+E E E
+1
+9
+LANG:10011 0 
+LANG:10001 0 
+LANG:10010 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+8
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"minimumSize" "340 60"
+"maximumSize" "340 60"
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"showFocus" "0"
+9
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10005 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10000 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10027 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+0  144 305.9999999999998 486.9999999999998 368.9999999999998
+
+T 
+9
+LANG:10011 0 
+LANG:10001 0 
+LANG:10010 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+"main()
+{
+  keyPressed(\" \");
+}" 0
+ E E E
+13 35
+"CapsLock"
+"btn_formulario_1"
+1 9.5 241.5 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Button" E E
+ E E
+34 0 0 0 0 0
+E E E
+1
+9
+LANG:10011 0 
+LANG:10001 0 
+LANG:10010 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+9
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"minimumSize" "130 60"
+"maximumSize" "130 60"
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"showFocus" "0"
+"isToggle" ""
+9
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10005 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10000 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10027 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+0  6.999999999999998 239 140 301.9999999999998
+
+T 
+9
+LANG:10011 3 ⮸
+LANG:10001 3 ⮸
+LANG:10010 3 ⮸
+LANG:10009 3 ⮸
+LANG:10008 3 ⮸
+LANG:10018 3 ⮸
+LANG:10005 3 ⮸
+LANG:10000 3 ⮸
+LANG:10027 3 ⮸
+"main(mapping event)
+{
+  this.backCol = this.toggleState ? \"LIB_IRC_AZULTRANS_01\" : \"\";
+  switchToCase(this.toggleState);
+}" 0
+ E E E
+13 37
+"Key_Dot"
+"btn_formulario_1"
+1 694 241.3487947406866 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Button" E E
+ E E
+36 0 0 0 0 0
+E E E
+1
+9
+LANG:10011 0 
+LANG:10001 0 
+LANG:10010 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+8
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"minimumSize" "60 60"
+"maximumSize" "60 60"
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"showFocus" "0"
+9
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10005 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10000 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10027 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+0  691.9999999999998 239 754.9999999999999 301.9999999999998
+
+T 
+9
+LANG:10011 1 .
+LANG:10001 1 .
+LANG:10010 1 .
+LANG:10009 1 .
+LANG:10008 1 .
+LANG:10018 1 .
+LANG:10005 1 .
+LANG:10000 1 .
+LANG:10027 2 ю
+"main()
+{
+  keyPressed(this.text);
+}" 0
+ E E E
+13 38
+"Key_Comma"
+"btn_formulario_1"
+1 627 241.3487947406866 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Button" E E
+ E E
+37 0 0 0 0 0
+E E E
+1
+9
+LANG:10011 0 
+LANG:10001 0 
+LANG:10010 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+8
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"minimumSize" "60 60"
+"maximumSize" "60 60"
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"showFocus" "0"
+9
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10005 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10000 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10027 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+0  624.9999999999998 239 688 301.9999999999998
+
+T 
+9
+LANG:10011 1 ,
+LANG:10001 1 ,
+LANG:10010 1 ,
+LANG:10009 1 ,
+LANG:10008 1 ,
+LANG:10018 1 ,
+LANG:10005 1 ,
+LANG:10000 1 ,
+LANG:10027 2 б
+"main()
+{
+  keyPressed(this.text);
+}" 0
+ E E E
+13 39
+"CursorLeft"
+"btn_formulario_1"
+1 493 308.3487947406866 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Button" E E
+ E E
+38 0 0 0 0 0
+E E E
+1
+9
+LANG:10011 0 
+LANG:10001 0 
+LANG:10010 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+8
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"minimumSize" "60 60"
+"maximumSize" "60 60"
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"showFocus" "0"
+9
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10005 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10000 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10027 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+0  490.9999999999998 305.9999999999998 553.9999999999998 368.9999999999998
+
+T 
+9
+LANG:10011 3 ⇦
+LANG:10001 3 ⇦
+LANG:10010 3 ⇦
+LANG:10009 3 ⇦
+LANG:10008 3 ⇦
+LANG:10018 3 ⇦
+LANG:10005 3 ⇦
+LANG:10000 3 ⇦
+LANG:10027 3 ⇦
+"main()
+{
+  sendKeyClick(\"\", KEY_LEFT);
+}" 0
+ E E E
+13 40
+"CursorRight"
+"btn_formulario_1"
+1 560 308.3487947406866 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Button" E E
+ E E
+39 0 0 0 0 0
+E E E
+1
+9
+LANG:10011 0 
+LANG:10001 0 
+LANG:10010 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+8
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"minimumSize" "60 60"
+"maximumSize" "60 60"
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"showFocus" "0"
+9
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10005 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10000 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10027 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+0  557.9999999999999 305.9999999999998 621 368.9999999999998
+
+T 
+9
+LANG:10011 3 ⇨
+LANG:10001 3 ⇨
+LANG:10010 3 ⇨
+LANG:10009 3 ⇨
+LANG:10008 3 ⇨
+LANG:10018 3 ⇨
+LANG:10005 3 ⇨
+LANG:10000 3 ⇨
+LANG:10027 3 ⇨
+"main()
+{
+  sendKeyClick(\"\", KEY_RIGHT);
+}" 0
+ E E E
+13 41
+"Key_Sym"
+"btn_formulario_1"
+1 9 308.3487947406866 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Button" E E
+ E E
+40 0 0 0 0 0
+E E E
+1
+9
+LANG:10011 0 
+LANG:10001 0 
+LANG:10010 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+9
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"minimumSize" "130 60"
+"maximumSize" "130 60"
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"showFocus" "0"
+"isToggle" ""
+9
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10005 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10000 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10027 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+0  6.999999999999998 305.9999999999998 140 368.9999999999998
+
+T 
+9
+LANG:10011 3 @$%
+LANG:10001 3 @$%
+LANG:10010 3 @$%
+LANG:10009 3 @$%
+LANG:10008 3 @$%
+LANG:10018 3 @$%
+LANG:10005 3 @$%
+LANG:10000 3 @$%
+LANG:10027 3 @$%
+"main(mapping event)
+{
+  if(this.toggleState)  showSymbols();
+  else showNumbers();
+}" 0
+ E E E
+13 43
+"Key_Exclam"
+"btn_formulario_1"
+1 627 308.3487947406866 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Button" E E
+ E E
+42 0 0 0 0 0
+E E E
+1
+9
+LANG:10011 0 
+LANG:10001 0 
+LANG:10010 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+8
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"minimumSize" "60 60"
+"maximumSize" "60 60"
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"showFocus" "0"
+9
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10005 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10000 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10027 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+0  624.9999999999998 305.9999999999998 688 368.9999999999998
+
+T 
+9
+LANG:10011 1 !
+LANG:10001 1 !
+LANG:10010 1 !
+LANG:10009 1 !
+LANG:10008 1 !
+LANG:10018 1 !
+LANG:10005 1 !
+LANG:10000 1 !
+LANG:10027 1 !
+"main()
+{
+  keyPressed(this.text);
+}" 0
+ E E E
+13 44
+"Key_Question"
+"btn_formulario_1"
+1 694 308.3487947406866 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Button" E E
+ E E
+43 0 0 0 0 0
+E E E
+1
+9
+LANG:10011 0 
+LANG:10001 0 
+LANG:10010 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+8
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"minimumSize" "60 60"
+"maximumSize" "60 60"
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"showFocus" "0"
+9
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10005 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10000 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10027 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+0  691.9999999999998 305.9999999999998 754.9999999999999 368.9999999999998
+
+T 
+9
+LANG:10011 1 ?
+LANG:10001 1 ?
+LANG:10010 1 ?
+LANG:10009 1 ?
+LANG:10008 1 ?
+LANG:10018 1 ?
+LANG:10005 1 ?
+LANG:10000 1 ?
+LANG:10027 1 ?
+"main()
+{
+  keyPressed(this.text);
+}" 0
+ E E E
+13 45
+"Key_3"
+"btn_formulario_1"
+1 146.75 55 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Button" E E
+ E E
+44 0 0 0 0 0
+E E E
+1
+9
+LANG:10011 0 
+LANG:10001 0 
+LANG:10010 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+8
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"minimumSize" "60 45"
+"maximumSize" "60 45"
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"showFocus" "0"
+9
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10005 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10000 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10027 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+0  145 52.99999999999999 208 101
+
+T 
+9
+LANG:10011 1 3
+LANG:10001 1 3
+LANG:10010 1 3
+LANG:10009 1 3
+LANG:10008 1 3
+LANG:10018 1 3
+LANG:10005 1 3
+LANG:10000 1 3
+LANG:10027 1 3
+"main()
+{
+  keyPressed(this.text);
+}
+" 0
+ E E E
+13 46
+"Key_5"
+"btn_formulario_1"
+1 286 55 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Button" E E
+ E E
+45 0 0 0 0 0
+E E E
+1
+9
+LANG:10011 0 
+LANG:10001 0 
+LANG:10010 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+8
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"minimumSize" "60 45"
+"maximumSize" "60 45"
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"showFocus" "0"
+9
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10005 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10000 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10027 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+0  283.9999999999998 52.99999999999999 346.9999999999999 101
+
+T 
+9
+LANG:10011 1 5
+LANG:10001 1 5
+LANG:10010 1 5
+LANG:10009 1 5
+LANG:10008 1 5
+LANG:10018 1 5
+LANG:10005 1 5
+LANG:10000 1 5
+LANG:10027 1 5
+"main()
+{
+  keyPressed(this.text);
+}
+" 0
+ E E E
+13 47
+"Key_6"
+"btn_formulario_1"
+1 355.25 55 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Button" E E
+ E E
+46 0 0 0 0 0
+E E E
+1
+9
+LANG:10011 0 
+LANG:10001 0 
+LANG:10010 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+8
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"minimumSize" "60 45"
+"maximumSize" "60 45"
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"showFocus" "0"
+9
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10005 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10000 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10027 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+0  353.5 52.99999999999999 416.4999999999998 101
+
+T 
+9
+LANG:10011 1 6
+LANG:10001 1 6
+LANG:10010 1 6
+LANG:10009 1 6
+LANG:10008 1 6
+LANG:10018 1 6
+LANG:10005 1 6
+LANG:10000 1 6
+LANG:10027 1 6
+"main()
+{
+  if (this.text == \"&&\")  keyPressed(\"&\");
+  else keyPressed(this.text);
+}
+" 0
+ E E E
+13 48
+"Key_4"
+"btn_formulario_1"
+1 216.5 55 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Button" E E
+ E E
+47 0 0 0 0 0
+E E E
+1
+9
+LANG:10011 0 
+LANG:10001 0 
+LANG:10010 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+8
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"minimumSize" "60 45"
+"maximumSize" "60 45"
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"showFocus" "0"
+9
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10005 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10000 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10027 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+0  214.5 52.99999999999999 277.4999999999998 101
+
+T 
+9
+LANG:10011 1 4
+LANG:10001 1 4
+LANG:10010 1 4
+LANG:10009 1 4
+LANG:10008 1 4
+LANG:10018 1 4
+LANG:10005 1 4
+LANG:10000 1 4
+LANG:10027 1 4
+"main()
+{
+  keyPressed(this.text);
+}
+" 0
+ E E E
+13 49
+"Key_7"
+"btn_formulario_1"
+1 424.75 55 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Button" E E
+ E E
+48 0 0 0 0 0
+E E E
+1
+9
+LANG:10011 0 
+LANG:10001 0 
+LANG:10010 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+8
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"minimumSize" "60 45"
+"maximumSize" "60 45"
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"showFocus" "0"
+9
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10005 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10000 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10027 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+0  422.9999999999998 52.99999999999999 485.9999999999998 101
+
+T 
+9
+LANG:10011 1 7
+LANG:10001 1 7
+LANG:10010 1 7
+LANG:10009 1 7
+LANG:10008 1 7
+LANG:10018 1 7
+LANG:10005 1 7
+LANG:10000 1 7
+LANG:10027 1 7
+"main()
+{
+  keyPressed(this.text);
+}
+" 0
+ E E E
+13 50
+"Key_8"
+"btn_formulario_1"
+1 492.75 55 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Button" E E
+ E E
+49 0 0 0 0 0
+E E E
+1
+9
+LANG:10011 0 
+LANG:10001 0 
+LANG:10010 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+8
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"minimumSize" "60 45"
+"maximumSize" "60 45"
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"showFocus" "0"
+9
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10005 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10000 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10027 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+0  490.9999999999998 52.99999999999999 553.9999999999998 101
+
+T 
+9
+LANG:10011 1 8
+LANG:10001 1 8
+LANG:10010 1 8
+LANG:10009 1 8
+LANG:10008 1 8
+LANG:10018 1 8
+LANG:10005 1 8
+LANG:10000 1 8
+LANG:10027 1 8
+"main()
+{
+  keyPressed(this.text);
+}
+" 0
+ E E E
+13 51
+"Key_9"
+"btn_formulario_1"
+1 559.75 55 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Button" E E
+ E E
+50 0 0 0 0 0
+E E E
+1
+9
+LANG:10011 0 
+LANG:10001 0 
+LANG:10010 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+8
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"minimumSize" "60 45"
+"maximumSize" "60 45"
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"showFocus" "0"
+9
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10005 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10000 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10027 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+0  557.9999999999999 52.99999999999999 621 101
+
+T 
+9
+LANG:10011 1 9
+LANG:10001 1 9
+LANG:10010 1 9
+LANG:10009 1 9
+LANG:10008 1 9
+LANG:10018 1 9
+LANG:10005 1 9
+LANG:10000 1 9
+LANG:10027 1 9
+"main()
+{
+  keyPressed(this.text);
+}
+" 0
+ E E E
+13 52
+"Key_Equal"
+"btn_formulario_1"
+1 693.75 55 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Button" E E
+ E E
+51 0 0 0 0 0
+E E E
+1
+9
+LANG:10011 0 
+LANG:10001 0 
+LANG:10010 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+8
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"minimumSize" "60 45"
+"maximumSize" "60 45"
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"showFocus" "0"
+9
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10005 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10000 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10027 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+0  691.9999999999998 52.99999999999999 754.9999999999999 101
+
+T 
+9
+LANG:10011 1 =
+LANG:10001 1 _
+LANG:10010 1 _
+LANG:10009 1 _
+LANG:10008 1 _
+LANG:10018 1 _
+LANG:10005 1 _
+LANG:10000 1 =
+LANG:10027 1 =
+"main()
+{
+  keyPressed(this.text);
+}
+" 0
+ E E E
+13 53
+"Key_ParenOpen"
+"btn_formulario_1"
+1 828.75 55 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Button" E E
+ E E
+52 0 0 0 0 0
+E E E
+1
+9
+LANG:10011 0 
+LANG:10001 0 
+LANG:10010 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+8
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"minimumSize" "60 45"
+"maximumSize" "60 45"
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"showFocus" "0"
+9
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10005 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10000 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10027 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+0  826.9999999999998 52.99999999999999 890 101
+
+T 
+9
+LANG:10011 1 (
+LANG:10001 1 (
+LANG:10010 1 (
+LANG:10009 1 (
+LANG:10008 1 (
+LANG:10018 1 (
+LANG:10005 1 (
+LANG:10000 1 (
+LANG:10027 1 (
+"main()
+{
+  keyPressed(this.text);
+}
+" 0
+ E E E
+13 54
+"Key_ParenClosed"
+"btn_formulario_1"
+1 897.25 55 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Button" E E
+ E E
+53 0 0 0 0 0
+E E E
+1
+9
+LANG:10011 0 
+LANG:10001 0 
+LANG:10010 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+8
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"minimumSize" "60 45"
+"maximumSize" "60 45"
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"showFocus" "0"
+9
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10005 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10000 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10027 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+0  895.4999999999999 52.99999999999999 958.4999999999998 101
+
+T 
+9
+LANG:10011 1 )
+LANG:10001 1 )
+LANG:10010 1 )
+LANG:10009 1 )
+LANG:10008 1 )
+LANG:10018 1 )
+LANG:10005 1 )
+LANG:10000 1 )
+LANG:10027 1 )
+"main()
+{
+  keyPressed(this.text);
+}
+" 0
+ E E E
+13 55
+"Key_Plus"
+"btn_formulario_1"
+1 829 175.3487947406866 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Button" E E
+ E E
+54 0 0 0 0 0
+E E E
+1
+9
+LANG:10011 0 
+LANG:10001 0 
+LANG:10010 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+8
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"minimumSize" "60 60"
+"maximumSize" "60 60"
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"showFocus" "0"
+9
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10005 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10000 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10027 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+0  826.9999999999998 173 890 236
+
+T 
+9
+LANG:10011 1 +
+LANG:10001 1 +
+LANG:10010 1 +
+LANG:10009 1 +
+LANG:10008 1 +
+LANG:10018 1 +
+LANG:10005 1 +
+LANG:10000 1 +
+LANG:10027 1 +
+"main()
+{
+  keyPressed(this.text);
+}" 0
+ E E E
+13 56
+"Key_Minus"
+"btn_formulario_1"
+1 897.5 175.3487947406866 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Button" E E
+ E E
+55 0 0 0 0 0
+E E E
+1
+9
+LANG:10011 0 
+LANG:10001 0 
+LANG:10010 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+8
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"minimumSize" "60 60"
+"maximumSize" "60 60"
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"showFocus" "0"
+9
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10005 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10000 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10027 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+0  895.4999999999999 173 958.4999999999998 236
+
+T 
+9
+LANG:10011 1 -
+LANG:10001 1 -
+LANG:10010 1 -
+LANG:10009 1 -
+LANG:10008 1 -
+LANG:10018 1 -
+LANG:10005 1 -
+LANG:10000 1 -
+LANG:10027 1 -
+"main()
+{
+  keyPressed(this.text);
+}" 0
+ E E E
+13 57
+"Key_X3"
+"btn_formulario_1"
+1 761 107.3487947406866 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Button" E E
+ E E
+56 0 0 0 0 0
+E E E
+1
+9
+LANG:10011 0 
+LANG:10001 0 
+LANG:10010 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+8
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"minimumSize" "60 60"
+"maximumSize" "60 60"
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"showFocus" "0"
+9
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10005 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10000 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10027 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+0  759 105 821.9999999999999 168
+
+T 
+9
+LANG:10011 1 *
+LANG:10001 1 @
+LANG:10010 1 @
+LANG:10009 1 @
+LANG:10008 1 @
+LANG:10018 1 @
+LANG:10005 1 @
+LANG:10000 1 *
+LANG:10027 2 ъ
+"main()
+{
+  keyPressed(this.text);
+}" 0
+ E E E
+13 58
+"Key_X2"
+"btn_formulario_1"
+1 761 175.3487947406866 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Button" E E
+ E E
+57 0 0 0 0 0
+E E E
+1
+9
+LANG:10011 0 
+LANG:10001 0 
+LANG:10010 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+8
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"minimumSize" "60 60"
+"maximumSize" "60 60"
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"showFocus" "0"
+9
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10005 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10000 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10027 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+0  759 173 821.9999999999999 236
+
+T 
+9
+LANG:10011 1 #
+LANG:10001 1 #
+LANG:10010 1 #
+LANG:10009 1 #
+LANG:10008 1 #
+LANG:10018 1 #
+LANG:10005 1 #
+LANG:10000 1 #
+LANG:10027 1 ,
+"main()
+{
+  keyPressed(this.text);
+}" 0
+ E E E
+13 59
+"Key_X1"
+"btn_formulario_1"
+1 761 241.3487947406866 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Button" E E
+ E E
+58 0 0 0 0 0
+E E E
+1
+9
+LANG:10011 0 
+LANG:10001 0 
+LANG:10010 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+8
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"minimumSize" "60 60"
+"maximumSize" "60 60"
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"showFocus" "0"
+9
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10005 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10000 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10027 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+0  759 239 821.9999999999999 301.9999999999998
+
+T 
+9
+LANG:10011 1 _
+LANG:10001 1 /
+LANG:10010 1 /
+LANG:10009 1 /
+LANG:10008 1 /
+LANG:10018 1 /
+LANG:10005 1 /
+LANG:10000 1 _
+LANG:10027 1 .
+"main()
+{
+  keyPressed(this.text);
+}" 0
+ E E E
+13 60
+"Key_X4"
+"btn_formulario_1"
+1 760.75 55 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Button" E E
+ E E
+59 0 0 0 0 0
+E E E
+1
+9
+LANG:10011 0 
+LANG:10001 0 
+LANG:10010 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+8
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"minimumSize" "60 45"
+"maximumSize" "60 45"
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"showFocus" "0"
+9
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10005 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10000 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10027 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+0  759 52.99999999999999 821.9999999999999 101
+
+T 
+9
+LANG:10011 2 ß
+LANG:10001 1 =
+LANG:10010 1 =
+LANG:10009 1 =
+LANG:10008 1 =
+LANG:10018 1 =
+LANG:10005 1 =
+LANG:10000 2 ß
+LANG:10027 1 *
+"main()
+{
+  keyPressed(this.text);
+}
+" 0
+ E E E
+13 61
+"PUSH_BUTTON1"
+"btn_formulario_1"
+1 761.5307692307691 307.8632228312309 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Button" E E
+ E E
+60 0 0 0 0 0
+E E E
+1
+9
+LANG:10011 0 
+LANG:10001 0 
+LANG:10010 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+7
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"showFocus" "0"
+"isToggle" ""
+9
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10005 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10000 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10027 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+0  759.530769230769 305.5086182131569 821.9999999999999 369.4913817868426
+
+T 
+9
+LANG:10011 3 ⇳
+LANG:10001 3 ⇳
+LANG:10010 3 ⇳
+LANG:10009 3 ⇳
+LANG:10008 3 ⇳
+LANG:10018 3 ⇳
+LANG:10005 3 ⇳
+LANG:10000 3 ⇳
+LANG:10027 3 ⇳
+"main(mapping event)
+{
+  int wx, wy, ww, wh;
+  getValue(self, \"windowGeometry\", wx, wy, ww, wh);
+
+  if( this.toggleState )
+    self.windowGeometry(wx, 0, ww, wh);
+  else{
+    int screenNum = getScreenNumber(wx, wy);
+    int sx, sy, sw, sh;
+    getScreenSize(sw, sh, sx, sy, screenNum);
+
+    self.windowGeometry(wx, sh - wh, ww, wh);
+  }
+}
+" 0
+ E E E
+14 64
+"txf_valor"
+"txf_standard_1"
+1 10 11.875 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_BLANCO" E E
+ E E
+63 0 0 0 0 0
+E E E
+0
+6
+LANG:10011 0 
+LANG:10001 0 
+LANG:10010 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+6
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,80}"
+"shadowRadius" "18"
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10011 35 Tahoma,-1,21,5,75,0,0,0,0,0,Negrita
+LANG:10001 35 Tahoma,-1,21,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,21,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,21,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,21,5,75,0,0,0,0,0,Negrita
+LANG:10018 34 Tahoma,-1,21,5,50,0,0,0,0,0,Normal
+0  7.999999999999998 9.999999999999998 958.2499999999999 44
+2 "0s" 0 0 0 10 0 -1  E E E
+13 36
+"Enter"
+"btn_formulario_1"
+1 829 241.0086182131573 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Button" E E
+ E E
+35 0 0 0 0 0
+E E E
+1
+9
+LANG:10011 0 
+LANG:10001 0 
+LANG:10010 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+6
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+9
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10005 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10000 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10027 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+0  826.9999999999997 239.0086182131572 958.6403846153843 369.4913817868426
+
+T 
+9
+LANG:10011 3 ↵
+LANG:10001 3 ↵
+LANG:10010 3 ↵
+LANG:10009 3 ↵
+LANG:10008 3 ↵
+LANG:10018 3 ↵
+LANG:10005 3 ↵
+LANG:10000 3 ↵
+LANG:10027 3 ↵
+"main(mapping event)
+{
+  if(dpExists($DPE))  dpSet($DPE, txf_valor.text);
+}
+" 0
+ E E E
+0
+LAYER, 1 
+6
+LANG:10011 0 
+LANG:10001 0 
+LANG:10010 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+0
+LAYER, 2 
+6
+LANG:10011 0 
+LANG:10001 0 
+LANG:10010 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+0
+LAYER, 3 
+6
+LANG:10011 0 
+LANG:10001 0 
+LANG:10010 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+0
+LAYER, 4 
+6
+LANG:10011 0 
+LANG:10001 0 
+LANG:10010 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+0
+LAYER, 5 
+6
+LANG:10011 0 
+LANG:10001 0 
+LANG:10010 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+0
+LAYER, 6 
+6
+LANG:10011 0 
+LANG:10001 0 
+LANG:10010 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+0
+LAYER, 7 
+6
+LANG:10011 0 
+LANG:10001 0 
+LANG:10010 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+0
+0

@@ -1,0 +1,19 @@
+NOMBRE DPTYPE; NOMBRE VARIABLE/CARPETA
+014_DEPOSITO;
+;Si_Estado
+;Sr_Vol_Actual
+;Sr_Temp
+;Sd_Al_Nivel_HH
+;Sd_Av_Nivel_H
+;Sd_Av_Nivel_L
+;Sd_Al_Nivel_LL
+;r_SP_Nivel_HH
+;r_SP_Nivel_H
+;r_SP_Nivel_L
+;r_SP_Nivel_LL
+;r_Vol_Max
+;r_Factor_Conv_Nivel
+;d_Hab_Al_Nivel_HH
+;d_Hab_Av_Nivel_H
+;d_Hab_Av_Nivel_L
+;d_Hab_Al_Nivel_LL

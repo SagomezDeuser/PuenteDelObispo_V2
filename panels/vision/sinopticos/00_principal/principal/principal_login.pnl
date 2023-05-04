@@ -1,0 +1,104 @@
+V 14
+6
+LANG:10010 0 
+LANG:10001 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+PANEL,-1 -1 90 40 N "_Transparent" 0
+E E E E E 1 -1 -1 0  0.09693660813536553 0.3671171171170107
+""0  1
+E E 4
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+"pdpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10010 0 
+LANG:10001 0 
+13 1
+"btn_logout"
+""
+1 -40 0 E E E 1 E 1 E N "white" E N "LIB_IRC_AZUL_01" E E
+ E E
+0 0 0 0 0 0
+E E E
+1
+6
+LANG:10010 22 Cerrar sesión usuario
+LANG:10001 6 Cancel
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  -1.979721244825903 -1.632882882882989 71.0202787551741 41.36711711711699
+
+P 
+4294967295
+"pictures/iconos/botoneras/logout.svg"
+6
+LANG:10010 0 
+LANG:10001 4 Home
+LANG:10011 4 Home
+LANG:10009 0 
+LANG:10008 4 Home
+LANG:10018 4 Home
+"main(mapping event)
+{
+  LogoutDialog(FALSE, 1, \"logout\", \"\");
+}" 0
+ E E E
+0
+LAYER, 1 
+2
+LANG:10010 0 
+LANG:10001 0 
+0
+LAYER, 2 
+2
+LANG:10010 0 
+LANG:10001 0 
+0
+LAYER, 3 
+2
+LANG:10010 0 
+LANG:10001 0 
+0
+LAYER, 4 
+2
+LANG:10010 0 
+LANG:10001 0 
+0
+LAYER, 5 
+2
+LANG:10010 0 
+LANG:10001 0 
+0
+LAYER, 6 
+2
+LANG:10010 0 
+LANG:10001 0 
+0
+LAYER, 7 
+2
+LANG:10010 0 
+LANG:10001 0 
+0
+0

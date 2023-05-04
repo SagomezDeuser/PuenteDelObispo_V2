@@ -1,0 +1,826 @@
+V 14
+7
+LANG:10001 0 
+LANG:10010 27 COMPONENTE_SIMPLE_PRINCIPAL
+LANG:10011 0 
+LANG:10009 17 MOTOR_S_PRINCIPAL
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+PANEL,-1 -1 310 240 N "white" 2
+"$INST"
+"$TAG"
+E E E E E 1 -1 -1 0  0 0
+""0  1
+E "//--------------------------------------------------------------------------------
+//Clases importadas a utilizar por las funciones de la librería
+lib_componente_simple componente_simple = lib_componente_simple($INST, \"asdf\");
+" 0
+ 5
+"CBRef" "1"
+"EClose" E
+"type" "BG_COMPONENTE_SIMPLE"
+"dpi" "96"
+"pdpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10001 0 
+LANG:10010 0 
+29 29
+"Label124"
+"lblRect"
+1 13 186.2499999999999 E E E 1 E 1 E N "_3DText" E N "_3DFace" E E
+ E E
+28 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+6
+"indent" "int -1"
+"lineWidth" "int 1"
+"margin" "int 0"
+"styleSheet" "string "
+"layoutAlignment" "AlignNone"
+"focusPolicy" "NoFocus"
+6
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10011 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10018 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  13 186.2499999999999 299 228.2499999999999
+5 Label
+0
+E4 23
+"LINE1"
+""
+1 162.0560044538796 46 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N {255,255,255} E E
+ E E
+22 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+5
+"layoutAlignment" "AlignNone"
+"focusPolicy" "StrongFocus"
+"showFocus" "0"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 2 2 1 1 E  162.0560044538796 46 162.0560044538796 136
+29 25
+"label_modo"
+"PEQUENIO_AZUL"
+1 11.02758620689656 53 E E E 1 E 1 E N "_3DText" E N "_Transparent" E E
+ E E
+24 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+5
+"text" "string MODO FUNCIONAMIENTO"
+"styleSheet" "string "
+"alignment" "enum 132"
+"lineWidth" "int 0"
+"layoutAlignment" "AlignNone"
+6
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,12,5,75,0,0,0,0,0,Negrita
+LANG:10011 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10018 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  9.027586206896558 44 158.0275862068966 58
+5 Label
+0
+"main()
+{
+  this.text(getCatStr(\"objetos\", this.name)); //Traduce el texto mostrado en función del catálogo \"objetos\"
+}" 0
+29 31
+"Label125"
+"lblCircle"
+1 35.5 197.8563871780584 E E E 1 E 1 E N "_3DText" E N "_3DFace" E E
+ E E
+30 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+1
+"layoutAlignment" "AlignNone"
+6
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10011 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10018 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  35.5 197.8563871780584 55.5 217.8563871780584
+5 Label
+0
+"main()
+{
+  if(!dpExists(componente_simple.get_alm())){  //Comprobamos si no existe el DP y le añadimos atributos de color al componente
+    setMultiValue(\"\", \"color\", \"LIB_IRC_MORADO_01\", \"\", \"foreCol\", \"LIB_IRC_MORADO_01\");
+    return;
+  }
+
+  dpConnect(\"cambiar_estado\", componente_simple.get_alm());  //Mediante la instacia de librería, obtenemos el estado de la alarma (\"Output.Sd_ALM\")
+}
+
+//Cambia el color de fondo según el estado de la alarma
+void cambiar_estado(string dp, bool estado){
+  if(estado)  setValue(\"\", \"backCol\", \"LIB_IRC_ROJO_12\");
+  else  setValue(\"\", \"backCol\", \"LIB_IRC_GRIS_03\");
+}
+" 0
+29 32
+"txf_alarma"
+"MEDIANO_AZUL"
+1 -58.81568758282674 19.85638717805841 E E E 1 E 1 E N "_3DText" E N "_Transparent" E E
+ E E
+31 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+5
+"text" "string ALARMA"
+"styleSheet" "string "
+"alignment" "enum 1"
+"lineWidth" "int 1"
+"layoutAlignment" "AlignNone"
+6
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10011 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10018 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  66.18431241717326 197.8563871780584 277.1843124171733 215.8563871780584
+5 Label
+0
+"main()
+{
+  this.text(getCatStr(\"objetos\", this.name)); //Traduce el texto mostrado en función del catálogo \"objetos\"
+}" 0
+29 33
+"label_operativa"
+"PEQUENIO_AZUL"
+1 162.0551724137931 53 E E E 1 E 1 E N "_3DText" E N "_Transparent" E E
+ E E
+32 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+5
+"text" "string OPERATIVA MANUAL"
+"styleSheet" "string "
+"alignment" "enum 132"
+"lineWidth" "int 0"
+"layoutAlignment" "AlignNone"
+6
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,12,5,75,0,0,0,0,0,Negrita
+LANG:10011 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10018 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  160.0551724137931 44 309.0551724137931 58
+5 Label
+0
+"main()
+{
+  this.text(getCatStr(\"objetos\", this.name)); //Traduce el texto mostrado en función del catálogo \"objetos\"
+}" 0
+29 35
+"l_tag"
+""
+1 296.0000000000001 30.09090909090909 E E E 1 E 1 E N "_3DText" E N "_3DFace" E E
+ E E
+34 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+3
+"text" "string 0358x9"
+"alignment" "enum 132"
+"layoutAlignment" "AlignNone"
+6
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10011 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10018 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  100.0000000000001 10.09090909090909 217.0000000000001 32.09090909090909
+5 Label
+0
+"main()
+{
+  this.visible($TAG);
+  this.text(dpGetAlias($INST + \".\"));
+}" 0
+29 36
+"txf_enc_alarmas"
+"MEDIANO_AZUL"
+1 -110 36 E E E 1 E 1 E N "_3DText" E N "_Transparent" E E
+ E E
+35 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+5
+"text" "string ALARMAS"
+"styleSheet" "string "
+"alignment" "enum 132"
+"lineWidth" "int 0"
+"layoutAlignment" "AlignNone"
+6
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,12,5,75,0,0,0,0,0,Negrita
+LANG:10011 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10018 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  74 154 243 172
+5 Label
+0
+"main()
+{
+  this.text(getCatStr(\"objetos\", this.name)); //Traduce el texto mostrado en función del catálogo \"objetos\"
+}" 0
+0
+LAYER, 1 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 2 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 3 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 4 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 5 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 6 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 7 
+2
+LANG:10001 0 
+LANG:10010 0 
+6 2
+"RECTANGLE1"
+""
+1 90 200 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_AZUL_03" E E
+ E E
+1 0 0 0 0 0
+E E E
+0
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+5
+"layoutAlignment" "AlignNone"
+"focusPolicy" "StrongFocus"
+"showFocus" "0"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 2 3 2 1 E 1 0 1 -77 -50 1 E 90 200 376 226
+6 6
+"RECTANGLE126"
+""
+1 209 106.0000000000002 E E E 1 E 1 E N {0,0,0} E N "LIB_IRC_AZUL_18" E E
+ E E
+5 0 0 0 0 0
+E E E
+0
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+5
+"layoutAlignment" "AlignNone"
+"focusPolicy" "StrongFocus"
+"showFocus" "0"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E -1 1 3 2 1 E 1 0 1.140873015873031 -55.42857142857142 55.06746031745851 1 E 209 106.0000000000002 214 115
+13 15
+"btn_manual"
+""
+1 85.9812702796587 71 E E E 1 E 1 E N "_Transparent" E N "_Transparent" E E
+ E E
+14 0 0 0 0 0
+E E E
+1
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+4
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"focusPolicy" "StrongFocus"
+"showFocus" "0"
+7
+LANG:10001 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10010 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10011 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10009 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10008 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10018 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10005 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  83.9812702796587 69 150.9812702796587 136
+
+P 
+4294967295
+"pictures/iconos/faceplates/fp_manual/manual_off.svg"
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+"main(mapping event)
+{
+  int error;
+  string descripcion, motivo, valor_ini, valor_fin;
+
+  componente_simple.set_manual();  //Mediante la instacia de librería cambiamos de automático (Seteamos \"Input.Ed_AUTO\" a 0) a manual (Seteamos \"Input.Ed_MAN\" a 1)
+
+  valor_ini = \"Automático\";
+  valor_fin = \"Manual\";
+
+  descripcion = dpGetAlias($INST + \".\");
+  motivo = \"Cambio en el modo de funcionamiento a \" + valor_fin + \": \" + descripcion;
+
+  writeAuditEntry($INST + \".Input.Ed_MAN\", valor_ini, valor_fin, error, motivo);
+}" 0
+ E E "main()
+{
+   //Recogemos y analizamos la hoja de estilos utilizada, para cargar las imágenes correspondientes
+   string textoEstilo = getApplicationProperty(\"styleSheet\");
+   if(textoEstilo.contains(\"blackStyle{}\"))
+   {
+     this.fill(\"[pattern,[tile,any,C:/WinCC_OA_Proj_3_18/Scada_Libreria_DEUSER_3_18/pictures/iconos/faceplates/fp_manual/manual_blanco_off.svg]]\");
+   }
+
+  if(!dpExists(componente_simple.get_manual())){  //Comprobamos si no existe el DP y le añadimos atributos de color al componente
+    setMultiValue(\"\", \"color\", \"LIB_IRC_MORADO_01\", \"\", \"foreCol\", \"LIB_IRC_MORADO_01\");
+    return;
+  }
+
+  dpConnectUserData(\"cambiar_estado_btn_fp\", this.name(), componente_simple.get_manual()); //'componente_simple' es la instancia creada para leer librerías
+}
+
+//Cambia las características del objeto (botón) dependiendo del estado
+void cambiar_estado_btn_fp(string nom_obj, string dp1, bool estado){
+  shape shape_objeto;
+  string path_downpixmap, path_uppixmap;
+
+  shape_objeto = getShape(nom_obj);  //Recuperamos el shape del objeto que se va a cambiar su estado
+  path_downpixmap = shape_objeto.buttonDownPixmap();  //Recuperamos el buttonDownPixmap de relleno del objeto
+  path_uppixmap = shape_objeto.buttonUpPixmap();  //Recuperamos el buttonUpPixmap de relleno del objeto
+
+  if(path_downpixmap.isEmpty())  path_downpixmap = path_uppixmap;  //Si el path de la imagen del button DownPixmap está vacia se rellena con la del UpPixmap que debe estar rellena al colocar el button
+
+  if(estado){
+    strreplace(path_downpixmap, \"_off\", \"_on\");  //Remplazamos la ruta de la imagen del button DownPixmap de OFF A ON
+    strreplace(path_uppixmap, \"_off\", \"_on\");  //Remplazamos la ruta de la imagen del button UpPixmap de OFF A ON
+  }else{
+    strreplace(path_downpixmap, \"_on\", \"_off\");  //Remplazamos la ruta de la imagen del button DownPixmap de ON A OFF
+    strreplace(path_uppixmap, \"_on\", \"_off\");  //Remplazamos la ruta de la imagen del button UpPixmap de ON A OFF
+  }
+
+  setValue(nom_obj, \"buttonType\", BT_PIXMAP,
+                    \"buttonDownPixmap\", path_downpixmap,
+                    \"buttonUpPixmap\", path_uppixmap);
+}
+" 0
+
+13 16
+"btn_automatico"
+""
+1 24.05162482180231 69 E E E 1 E 1 E N "_Transparent" E N "_Transparent" E E
+ E E
+15 0 0 0 0 0
+E E E
+1
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+4
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"focusPolicy" "StrongFocus"
+"showFocus" "0"
+7
+LANG:10001 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10010 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10011 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10009 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10008 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10018 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10005 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  20.98127027965869 69 87.9812702796587 136
+
+P 
+4294967295
+"pictures/iconos/faceplates/fp_automatico/auto_off.svg"
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+"main(mapping event)
+{
+  int error;
+  string descripcion, motivo, valor_ini, valor_fin;
+
+  componente_simple.set_automatico();  //Mediante la instacia de librería cambiamos de manual (Seteamos \"Input.Ed_MAN\" a 0) a automático (Seteamos \"Input.Ed_AUTO\" a 1)
+
+  valor_ini = \"Manual\";
+  valor_fin = \"Automático\";
+
+  descripcion = dpGetAlias($INST + \".\");
+  motivo = \"Cambio en el modo de funcionamiento a \" + valor_fin + \": \" + descripcion;
+
+  writeAuditEntry($INST + \".Input.Ed_AUTO\", valor_ini, valor_fin, error, motivo);
+}" 0
+ E E "main()
+{
+   //Recogemos y analizamos la hoja de estilos utilizada, para cargar las imágenes correspondientes
+   string textoEstilo = getApplicationProperty(\"styleSheet\");
+   if(textoEstilo.contains(\"blackStyle{}\"))
+   {
+     this.fill(\"[pattern,[tile,any,C:/WinCC_OA_Proj_3_18/Scada_Libreria_DEUSER_3_18/pictures/iconos/faceplates/fp_automatico/auto_blanco_off.svg]]\");
+   }
+
+  if(!dpExists(componente_simple.get_automatico())){  //Comprobamos si no existe el DP y le añadimos atributos de color al componente
+    setMultiValue(\"\", \"color\", \"LIB_IRC_MORADO_01\", \"\", \"foreCol\", \"LIB_IRC_MORADO_01\");
+    return;
+  }
+
+  dpConnectUserData(\"cambiar_estado_btn_fp\", this.name(), componente_simple.get_automatico()); //'componente_simple' es la instancia creada para leer librerías
+}
+
+//Cambia las características del objeto (botón) dependiendo del estado
+void cambiar_estado_btn_fp(string nom_obj, string dp1, bool estado){
+  shape shape_objeto;
+  string path_downpixmap, path_uppixmap;
+
+  shape_objeto = getShape(nom_obj);  //Recuperamos el shape del objeto que se va a cambiar su estado
+  path_downpixmap = shape_objeto.buttonDownPixmap();  //Recuperamos el buttonDownPixmap de relleno del objeto
+  path_uppixmap = shape_objeto.buttonUpPixmap();  //Recuperamos el buttonUpPixmap de relleno del objeto
+
+  if(path_downpixmap.isEmpty())  path_downpixmap = path_uppixmap;  //Si el path de la imagen del button DownPixmap está vacia se rellena con la del UpPixmap que debe estar rellena al colocar el button
+  if(estado){
+    strreplace(path_downpixmap, \"_off\", \"_on\");  //Remplazamos la ruta de la imagen del button DownPixmap de OFF A ON
+    strreplace(path_uppixmap, \"_off\", \"_on\");  //Remplazamos la ruta de la imagen del button UpPixmap de OFF A ON
+  }else{
+    strreplace(path_downpixmap, \"_on\", \"_off\");  //Remplazamos la ruta de la imagen del button DownPixmap de ON A OFF
+    strreplace(path_uppixmap, \"_on\", \"_off\");  //Remplazamos la ruta de la imagen del button UpPixmap de ON A OFF
+  }
+
+  setValue(nom_obj, \"buttonType\", BT_PIXMAP,
+                    \"buttonDownPixmap\", path_downpixmap,
+                    \"buttonUpPixmap\", path_uppixmap);
+}
+" 0
+
+13 17
+"btn_manual_on"
+""
+1 170 71.41980052126581 E E E 1 E 1 E N "_Transparent" E N "_Transparent" E E
+ E E
+16 0 0 0 0 0
+E E E
+1
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+4
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"focusPolicy" "StrongFocus"
+"showFocus" "0"
+7
+LANG:10001 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10010 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10011 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10009 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10008 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10018 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10005 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  167.9999999999999 69 234.9999999999999 136
+
+P 
+4294967295
+"pictures/iconos/faceplates/fp_on/on_off.svg"
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+"main(mapping event)
+{
+  int error;
+  string descripcion, motivo, valor_ini, valor_fin;
+
+  componente_simple.arrancar_manual();   //Mediante la instacia de librería, arrancamos de forma manual (Seteamos \"InOut.Ed_M_OM\" a 1)
+
+  valor_ini = \"Paro Arranque Manual\";
+  valor_fin = \"Arranque Manual\";
+
+  descripcion = dpGetAlias($INST + \".\");
+  motivo = \"Cambio en el arranque a \" + valor_fin + \": \" + descripcion;
+
+  writeAuditEntry($INST + \".InOut.Ed_M_OM\", valor_ini, valor_fin, error, motivo);
+}" 0
+ E E "main()
+{
+  //Recogemos y analizamos la hoja de estilos utilizada, para cargar las imágenes correspondientes
+   string textoEstilo = getApplicationProperty(\"styleSheet\");
+   if(textoEstilo.contains(\"blackStyle{}\"))
+  {
+    this.fill(\"[pattern,[tile,any,C:/WinCC_OA_Proj_3_18/Scada_Libreria_DEUSER_3_18/pictures/iconos/faceplates/fp_on/on_blanco_off.svg]]\");
+  }
+
+  if(!dpExists(componente_simple.get_marcha()) && !dpExists(componente_simple.get_modo_manual())){  //Comprobamos si no existe el DP y le añadimos atributos de color al componente
+    setMultiValue(\"\", \"color\", \"LIB_IRC_MORADO_01\", \"\", \"foreCol\", \"LIB_IRC_MORADO_01\");
+    return;
+  }
+
+  dpConnectUserData(\"cambiar_estado_btn_fp\", this.name(), componente_simple.get_marcha(), componente_simple.get_modo_manual());
+}
+
+//Cambia las características del objeto (botón) y su estado, en función de si está habilitado o no.
+void cambiar_estado_btn_fp(string nom_obj, string dp1, bool estado, string dp2, bool habilitado){
+  shape shape_objeto;
+  string path_downpixmap, path_uppixmap;
+
+  shape_objeto = getShape(nom_obj);  //Recuperamos el shape del objeto que se va a cambiar su estado
+  path_downpixmap = shape_objeto.buttonDownPixmap();  //Recuperamos el buttonDownPixmap de relleno del objeto
+  path_uppixmap = shape_objeto.buttonUpPixmap();  //Recuperamos el buttonUpPixmap de relleno del objeto
+
+  if(path_downpixmap.isEmpty())  path_downpixmap = path_uppixmap;  //Si el path de la imagen del button DownPixmap está vacia se rellena con la del UpPixmap que debe estar rellena al colocar el button
+
+   if(habilitado == 0){
+     setValue(nom_obj, \"transparentForMouse\", 1);  //Establecemos el nuevo estado de botón
+     if(strpos(path_downpixmap,\"inha\") < 0) strreplace(path_downpixmap,\"on_\",\"on_inha_\");
+     if(strpos(path_uppixmap,\"inha\") < 0) strreplace(path_uppixmap,\"on_\",\"on_inha_\");
+     if(estado){
+       strreplace(path_downpixmap, \"_off.\", \"_on.\");  //Remplazamos la ruta de la imagen del button DownPixmap de OFF A ON
+       strreplace(path_uppixmap, \"_off.\", \"_on.\");  //Remplazamos la ruta de la imagen del button UpPixmap de OFF A ON
+     }else{
+       strreplace(path_downpixmap, \"_on.\", \"_off.\");  //Remplazamos la ruta de la imagen del button DownPixmap de ON A OFF
+       strreplace(path_uppixmap, \"_on.\", \"_off.\");  //Remplazamos la ruta de la imagen del button UpPixmap de ON A OFF
+     }
+   }else{
+     setValue(nom_obj, \"transparentForMouse\", 0);  //Establecemos el nuevo estado de botón
+     if(estado){
+       strreplace(path_downpixmap, \"_inha\", \"\");  //Remplazamos la ruta de la imagen del button DownPixmap INHA por el normal
+       strreplace(path_downpixmap, \"_off.\", \"_on.\");  //Remplazamos la ruta de la imagen del button DownPixmap de OFF A ON
+       strreplace(path_uppixmap, \"_inha\", \"\");  //Remplazamos la ruta de la imagen del button UpPixmap INHA por el normal
+       strreplace(path_uppixmap, \"_off.\", \"_on.\");  //Remplazamos la ruta de la imagen del button UpPixmap de OFF A ON
+     }else{
+       strreplace(path_downpixmap, \"_inha\", \"\");  //Remplazamos la ruta de la imagen del button DownPixmap INHA por el normal
+       strreplace(path_downpixmap, \"_on.\", \"_off.\");  //Remplazamos la ruta de la imagen del button DownPixmap de ON A OFF
+       strreplace(path_uppixmap, \"_inha\", \"\");  //Remplazamos la ruta de la imagen del button UpPixmap INHA por el normal
+       strreplace(path_uppixmap, \"_on.\", \"_off.\");  //Remplazamos la ruta de la imagen del button UpPixmap de ON A OFF
+     }
+   }
+
+   setValue(nom_obj, \"buttonType\", BT_PIXMAP,
+                    \"buttonDownPixmap\", path_downpixmap,
+                    \"buttonUpPixmap\", path_uppixmap);
+}
+" 0
+
+13 18
+"btn_manual_off"
+""
+1 236.4277332825042 71.41980052126581 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+17 0 0 0 0 0
+E E E
+1
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+4
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"focusPolicy" "StrongFocus"
+"showFocus" "0"
+7
+LANG:10001 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10010 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10011 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10009 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10008 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10018 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10005 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  233.9648227289281 69 300.9648227289281 136
+
+P 
+4294967295
+"pictures/iconos/faceplates/fp_off/off_off.svg"
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+"main(mapping event)
+{
+  int error;
+  string descripcion, motivo, valor_ini, valor_fin;
+
+  componente_simple.parar_manual();   //Mediante la instacia de librería, paramos de forma manual (Seteamos \"InOut.Ed_M_OM\" a 0)
+
+  valor_ini = \"Arranque Manual\";
+  valor_fin = \"Paro Arranque Manual\";
+
+  descripcion = dpGetAlias($INST + \".\");
+  motivo = \"Cambio en el arranque a \" + valor_fin + \": \" + descripcion;
+
+  writeAuditEntry($INST + \".InOut.Ed_M_OM\", valor_ini, valor_fin, error, motivo);
+}" 0
+ E E "main()
+{
+  //Recogemos y analizamos la hoja de estilos utilizada, para cargar las imágenes correspondientes
+   string textoEstilo = getApplicationProperty(\"styleSheet\");
+   if(textoEstilo.contains(\"blackStyle{}\"))
+  {
+    this.fill(\"[pattern,[tile,any,C:/WinCC_OA_Proj_3_18/Scada_Libreria_DEUSER_3_18/pictures/iconos/faceplates/fp_off/off_blanco_off.svg]]\");
+  }
+
+  if(!dpExists(componente_simple.get_marcha()) && !dpExists(componente_simple.get_modo_manual())){  //Comprobamos si no existe el DP y le añadimos atributos de color al componente
+    setMultiValue(\"\", \"color\", \"LIB_IRC_MORADO_01\", \"\", \"foreCol\", \"LIB_IRC_MORADO_01\");
+    return;
+  }
+
+  dpConnectUserData(\"cambiar_estado_btn_fp\", this.name(), componente_simple.get_marcha(), componente_simple.get_modo_manual());
+}
+
+//Cambia las características del objeto (botón) y su estado, en función de si está habilitado o no.
+void cambiar_estado_btn_fp(string nom_obj, string dp1, bool estado, string dp2, bool habilitado){
+  shape shape_objeto;
+  string path_downpixmap, path_uppixmap;
+
+  shape_objeto = getShape(nom_obj);  //Recuperamos el shape del objeto que se va a cambiar su estado
+  path_downpixmap = shape_objeto.buttonDownPixmap();  //Recuperamos el buttonDownPixmap de relleno del objeto
+  path_uppixmap = shape_objeto.buttonUpPixmap();  //Recuperamos el buttonUpPixmap de relleno del objeto
+
+  if(path_downpixmap.isEmpty())  path_downpixmap = path_uppixmap;  //Si el path de la imagen del button DownPixmap está vacia se rellena con la del UpPixmap que debe estar rellena al colocar el button
+
+  if(habilitado == 0){
+    setValue(nom_obj, \"transparentForMouse\", 1);  //Establecemos el nuevo estado de botón
+    if(strpos(path_downpixmap,\"inha\")<0) strreplace(path_downpixmap,\"off_\",\"off_inha_\");
+    if(strpos(path_uppixmap,\"inha\")<0) strreplace(path_uppixmap,\"off_\",\"off_inha_\");
+    if(!estado){
+      strreplace(path_downpixmap, \"_off.\", \"_on.\");  //Remplazamos la ruta de la imagen del button DownPixmap de OFF A ON
+      strreplace(path_uppixmap, \"_off.\", \"_on.\");  //Remplazamos la ruta de la imagen del button UpPixmap de OFF A ON
+    }else{
+      strreplace(path_downpixmap, \"_on.\", \"_off.\");  //Remplazamos la ruta de la imagen del button DownPixmap de ON A OFF
+      strreplace(path_uppixmap, \"_on.\", \"_off.\");  //Remplazamos la ruta de la imagen del button UpPixmap de ON A OFF
+    }
+  }else{
+    setValue(nom_obj, \"transparentForMouse\", 0);  //Establecemos el nuevo estado de botón
+    if(!estado){
+      strreplace(path_downpixmap, \"_inha\", \"\");  //Remplazamos la ruta de la imagen del button DownPixmap INHA por el normal
+      strreplace(path_downpixmap, \"_off.\", \"_on.\");  //Remplazamos la ruta de la imagen del button DownPixmap de OFF A ON
+      strreplace(path_uppixmap, \"_inha\", \"\");  //Remplazamos la ruta de la imagen del button UpPixmap INHA por el normal
+      strreplace(path_uppixmap, \"_off.\", \"_on.\");  //Remplazamos la ruta de la imagen del button UpPixmap de OFF A ON
+    }else{
+      strreplace(path_downpixmap, \"_inha\", \"\");  //Remplazamos la ruta de la imagen del button DownPixmap INHA por el normal
+      strreplace(path_downpixmap, \"_on.\", \"_off.\");  //Remplazamos la ruta de la imagen del button DownPixmap de ON A OFF
+      strreplace(path_uppixmap, \"_inha\", \"\");  //Remplazamos la ruta de la imagen del button UpPixmap INHA por el normal
+      strreplace(path_uppixmap, \"_on.\", \"_off.\");  //Remplazamos la ruta de la imagen del button UpPixmap de ON A OFF
+    }
+  }
+
+  setValue(nom_obj, \"buttonType\", BT_PIXMAP,
+                    \"buttonDownPixmap\", path_downpixmap,
+                    \"buttonUpPixmap\", path_uppixmap);
+}
+" 0
+
+0
+0

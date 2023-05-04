@@ -1,0 +1,295 @@
+V 14
+5
+LANG:10010 0 
+LANG:10005 0 
+LANG:10018 0 
+LANG:10008 0 
+LANG:10011 0 
+PANEL,-1 -1 850 800 N "white" 3
+"$ID_PLANTA"
+"$NUMBODEGA"
+"$NUMDEPOSITO"
+"main()
+{
+  setWindowTitle(myModuleName(), myPanelName(), \" \");  //Eliminamos el title que aparece en el Frame del Panel
+  windowStyle(myModuleName(),myPanelName(),0,0);  //Eliminamos los botones para maximizar y minimizar el Panel
+}" 0
+ E E E E 1 -1 -1 0  0 0
+""0  1
+E "/***************************************************************************************
+  @author dceballos
+  @date 04/07/2019.
+  @brief Realizamos el pintado en la tabla con los detalles de un depósito de la bodega.
+  @return No devuelve nada.
+****************************************************************************************/
+pintar_tabla_detalles_deposito(){
+  dbRecordset rs;
+  dbConnection conexion;
+  int rc, id_lenguaje_activo;
+  dyn_dyn_anytype resultado_consulta_1;
+  string OpenConn, select_sql_1, inst_bd;
+
+  dpGet(\"BD_CONEXION.OpenConn\", OpenConn);
+  rc = dbOpenConnection(OpenConn, conexion);
+
+  inst_bd = get_inst_bd();
+
+  if(!rc){  //Comprobamos si hemos establecido conexión con la base de datos correctamente
+    setValue(\"tabla_detalles_dep\", \"deleteAllLines\");
+
+    id_lenguaje_activo = getActiveLang();  //Recuperamos el id del lenguaje activo en el sistema
+    select_sql_1 = \"SELECT t1.id_ticket_fk, t2.concepto_\" + id_lenguaje_activo + \", t1.fecha_hora_registro, t1.kilos_total FROM \" + inst_bd +
+                   \"[P\" + $ID_PLANTA + \"_Movimientos] t1 INNER JOIN \" + inst_bd + \"[P\" + $ID_PLANTA + \"_Conceptos] t2 ON t1.id_concepto_fk = t2.id_concepto\" +
+                   \" WHERE t1.num_bodega = \" + $NUMBODEGA + \" AND t1.num_deposito = \" + $NUMDEPOSITO;
+    resultado_consulta_1 = select_bd(select_sql_1, rc, rs, conexion);
+
+    for (int i = 1; i <= dynlen(resultado_consulta_1); i++){
+      tabla_detalles_dep.appendLine(\"id_ticket\", resultado_consulta_1[i][1], \"concepto\", resultado_consulta_1[i][2], \"fecha\", resultado_consulta_1[i][3], \"kilos\", resultado_consulta_1[i][4]);
+    }
+
+    setValue(\"tabla_detalles_dep\", \"selectLineN\", 0);  //Seleccionamos la primera fila de la tabla
+
+    dbCloseConnection(conexion); //Cerramos la conexion
+  }else{  //Si no hemos establecido conexión con la base de datos mostramos un mensaje de error por pantalla
+    string msg_error = \"Error de conexión con la Base de Datos del sistema.\";
+    ChildPanelOnCentralModal(\"objects/10_Mensajes/mensaje_error.pnl\", \"Error\", \"$msg1:\" + msg_error);
+  }
+}
+/******* Fin de la función pintar_tabla_detalles_deposito() *********/
+" 0
+ 4
+"CBRef" "1"
+"EClose" E
+"windowIcon" "Iconos/Ventanas/grafica_icon.svg"
+"dpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+5
+LANG:10010 0 
+LANG:10005 0 
+LANG:10018 0 
+LANG:10008 0 
+LANG:10011 0 
+6 23
+"rect_linea_pesada_grafica"
+""
+1 37 7 E E E 1 E 1 E N "col_general_1" E N "col_general_2" E E
+ E E
+22 0 0 0 0 0
+E E E
+0
+5
+LANG:10010 0 
+LANG:10005 0 
+LANG:10018 0 
+LANG:10008 0 
+LANG:10011 0 
+
+6
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,131}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 2 1 0 1 E 4.057416267942584 0 1.008080808080807 -149.1244019138756 292.4827396049655 1 E 37 7 246 502
+29 24
+"wv_temp_bodega_grafica"
+""
+1 0 1 E E E 1 E 1 E N "_3DText" E N "_3DFace" E E
+ E E
+23 0 0 0 0 0
+E E E
+0
+5
+LANG:10010 0 
+LANG:10005 0 
+LANG:10018 0 
+LANG:10008 0 
+LANG:10011 0 
+
+2
+"ulcClientSideWidget" "bool TRUE"
+"layoutAlignment" "AlignNone"
+5
+LANG:10010 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10005 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10018 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10008 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10011 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  3 302 846 796
+11 WebView.ewo
+0
+"main()
+{
+  int num_sensores_temp;
+  dyn_dyn_anytype resultado_dpq_info_temp_bodega;
+  string url_grafica_temp, ruta_fichero_hc, consulta_temp_bodegas_dpt;
+
+  consulta_temp_bodegas_dpt = \"SELECT '_online.._value' FROM 'P1_BODEGA_\" + $NUMBODEGA + \"_SENSOR_*.temperatura' WHERE _DPT = \\\"TEMPERATURA_BODEGA\\\"\";
+  dpQuery(consulta_temp_bodegas_dpt, resultado_dpq_info_temp_bodega);
+
+  url_grafica_temp = funcion_get_ip_port_localhost_wamp();  //Recuperamos la ruta con la ip y el puerto del servidor WAMP local
+  ruta_fichero_hc = \"P\" + $ID_PLANTA + \"/bodega/temperatura.php?bodega=\" + $NUMBODEGA + \"&num_sensores=\" +  (dynlen(resultado_dpq_info_temp_bodega) - 1);
+  url_grafica_temp = url_grafica_temp + ruta_fichero_hc;  //Añadimos la ruta del fichero que nos permitirá graficar a la ruta anterior con la ip y el puerto del servidor WAMP local
+
+  setValue(\"wv_temp_bodega_grafica\", \"url\", url_grafica_temp);  //Establecemos la url a mostrar en el webview
+}
+" 0
+25 25
+"tabla_detalles_dep"
+"tb_standard_1"
+1 0 0 E E E 1 E 1 E N "col_general_1" E N "_Window" E E
+ E E
+24 0 0 0 0 0
+E E E
+0
+5
+LANG:10010 0 
+LANG:10005 0 
+LANG:10018 0 
+LANG:10008 0 
+LANG:10011 0 
+
+1
+"layoutAlignment" "AlignNone"
+5
+LANG:10010 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10005 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+0  -2 -2 851 301
+"main()
+{
+  funcion_formato_tabla(\"tabla_detalles_dep\", \"AlignVCenter | AlignHCenter\", \"col_fila_tabla_1\", \"col_fila_tabla_2\");  //Damos formato a la tabla con el listado de detalles del depósito
+  pintar_tabla_detalles_deposito();
+}
+
+" 0
+E 1 0 1 4 0 "id_ticket" 7 1 0 "[0s,,,AlignHCenter|AlignVCenter]" 5
+LANG:10010 6 Ticket
+LANG:10005 6 Ticket
+LANG:10018 6 Ticket
+LANG:10008 6 Ticket
+LANG:10011 6 Ticket
+E
+5
+LANG:10010 0 
+LANG:10005 0 
+LANG:10018 0 
+LANG:10008 0 
+LANG:10011 0 
+
+100 "concepto" 22 1 0 "[0s,,,AlignHCenter|AlignVCenter]" 5
+LANG:10010 8 Concepto
+LANG:10005 7 Concept
+LANG:10018 8 Conceito
+LANG:10008 8 Concetto
+LANG:10011 7 Konzept
+E
+5
+LANG:10010 0 
+LANG:10005 0 
+LANG:10018 0 
+LANG:10008 0 
+LANG:10011 0 
+
+300 "fecha" 22 1 0 "[%Y-%d-%d %H:%M:%St,False,,AlignHCenter|AlignVCenter]" 5
+LANG:10010 5 Fecha
+LANG:10005 4 Date
+LANG:10018 4 Data
+LANG:10008 4 Data
+LANG:10011 5 Datum
+E
+5
+LANG:10010 0 
+LANG:10005 0 
+LANG:10018 0 
+LANG:10008 0 
+LANG:10011 0 
+
+300 "kilos" 10 1 0 "[0.2f,False,False,AlignHCenter|AlignVCenter,False]" 5
+LANG:10010 2 Kg
+LANG:10005 2 Kg
+LANG:10018 2 Kg
+LANG:10008 2 Kg
+LANG:10011 2 Kg
+E
+5
+LANG:10010 0 
+LANG:10005 0 
+LANG:10018 0 
+LANG:10008 0 
+LANG:10011 0 
+
+147 
+35 35 10 0
+5
+LANG:10010 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10005 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+0 0 1 0 1 7
+1 0
+0
+LAYER, 1 
+5
+LANG:10010 0 
+LANG:10005 0 
+LANG:10018 0 
+LANG:10008 0 
+LANG:10011 0 
+0
+LAYER, 2 
+5
+LANG:10010 0 
+LANG:10005 0 
+LANG:10018 0 
+LANG:10008 0 
+LANG:10011 0 
+0
+LAYER, 3 
+5
+LANG:10010 0 
+LANG:10005 0 
+LANG:10018 0 
+LANG:10008 0 
+LANG:10011 0 
+0
+LAYER, 4 
+5
+LANG:10010 0 
+LANG:10005 0 
+LANG:10018 0 
+LANG:10008 0 
+LANG:10011 0 
+0
+LAYER, 5 
+5
+LANG:10010 0 
+LANG:10005 0 
+LANG:10018 0 
+LANG:10008 0 
+LANG:10011 0 
+0
+LAYER, 6 
+5
+LANG:10010 0 
+LANG:10005 0 
+LANG:10018 0 
+LANG:10008 0 
+LANG:10011 0 
+0
+LAYER, 7 
+5
+LANG:10010 0 
+LANG:10005 0 
+LANG:10018 0 
+LANG:10008 0 
+LANG:10011 0 
+0
+0

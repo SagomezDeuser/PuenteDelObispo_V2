@@ -1,0 +1,1949 @@
+V 14
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+PANEL,-1 -1 408 643 N "_Transparent" 0
+"main()
+{
+//   botonera_ext.visible = FALSE;
+//   botonera_sec.visible = FALSE;
+    fondo_btn_graf.visible = FALSE;
+    btn_graf1.visible = FALSE;
+    btn_graf2.visible = FALSE;
+    sep_btn_graf.visible = FALSE;
+}" 0
+ E E E E 1 -1 -1 0  0 0
+""0  1
+E "//--------------------------------------------------------------------------------
+// Listado de variables const a utilizar  en el ctl
+const mapping paneles_menu_scada = makeMapping(1, \"vision/sinopticos/00_sinoptico_general/sinoptico_general\",
+                                   2, \"vision/sinopticos/01_alarmas/alarmas\",
+                                   3, \"vision/sinopticos/02_historicos/historicos\",
+                                   6, \"vision/sinopticos/06_configuracion/configuracion\",
+                                   7, \"vision/sinopticos/04_incidencias/incidencias\",
+                                   8, \"vision/sinopticos/03_informes/informes\",
+                                   9, \"vision/sinopticos/08_audit_trail/audit_trail\",
+                                   10, \"vision/sinopticos/07_esquematica/esquematica\",
+                                   11, \"vision/sinopticos/09_manual/manual\",
+                                   12, \"vision/inicio\",
+                                   13, \"vision/sinopticos/05_graficas/graficas_influx\",
+                                   14, \"vision/sinopticos/05_graficas/multigraficas_influx\",
+                                   15, \"vision/sinopticos/10_registros/registros\",
+                                   16, \"vision/sinopticos/13_bodega/depositos\",
+                                   17, \"vision/sinopticos/12_granuladora/sinoptico\",
+                                   18, \"vision/sinopticos/14_extractora/sinoptico\",
+                                   19, \"vision/sinopticos/15_preparacion/inicio\",
+                                   20, \"vision/sinopticos/16_secadero/sinoptico\",
+                                   21, \"vision/sinopticos/17_repaso/sinoptico\",
+                                   22, \"vision/sinopticos/18_hueso/sinoptico\",
+                                   100, \"vision/sinopticos/06_configuracion/configuracion/config_dp_emergentes/configuracion_principal\");
+
+const mapping paneles_sec = makeMapping(1, \"vision/sinopticos/03_secaderos/secaderos_horno_1\",
+                                        2, \"vision/sinopticos/03_secaderos/secaderos_horno_2\");
+
+const mapping paneles_graf = makeMapping(1, \"vision/sinopticos/05_graficas/graficas/cabecera_graficas\",
+                             2, \"vision/sinopticos/05_graficas/graficas/cabecera_graficas_multi\");
+
+dyn_string nom_btn_panel = makeDynString(\"btn_principal\",
+                           \"btn_alarmas\",
+                           \"btn_historicos\",
+                           \"btn_config\",
+                           \"btn_incidencias\",
+                           \"btn_informes\",
+                           \"btn_audit_trail\",
+                           \"btn_esquematica\",
+                           \"btn_manual\",
+                           \"btn_graficas\",
+                           \"btn_deuser\");  //Agregamos al Array todos los botones a los cuales les cambiaremos su aspecto al ser pulsado uno de ellos
+
+dyn_string nom_btn_panel_sec = makeDynString(\"btn_sec_1\",
+                               \"btn_sec_2\",
+                               \"btn_sec_3\",
+                               \"btn_sec_4\",
+                               \"btn_sec_5\",
+                               \"btn_sec_6\");  //Agregamos al Array todos los botones a los cuales les cambiaremos su aspecto al ser pulsado uno de ellos
+
+dyn_string nom_btn_panel_ext = makeDynString(\"btn_ext_1\",
+                               \"btn_ext_2\",
+                               \"btn_ext_3\",
+                               \"btn_ext_4\",
+                               \"btn_ext_5\",
+                               \"btn_ext_6\");  //Agregamos al Array todos los botones a los cuales les cambiaremos su aspecto al ser pulsado uno de ellos
+
+dyn_string nom_btn_panel_graf = makeDynString(\"btn_graf_indi\",
+                                \"btn_graf_multi\");  //Agregamos al Array todos los botones a los cuales les cambiaremos su aspecto al ser pulsado uno de ellos
+
+/***************************************************************************************
+  @author jbudia
+  @date 14/11/2019
+  @brief Genera un diccionario con los nombres de los paneles usados en este faceplate.
+  @return paneles El diccionario con los nombres de paneles.
+****************************************************************************************/
+mapping get_mapa_nombres_paneles()
+{
+  return (paneles_menu_scada);
+}
+
+mapping get_mapa_nombres_paneles_sec()
+{
+  return (paneles_sec);
+}
+
+mapping get_mapa_nombres_paneles_graf()
+{
+  return (paneles_graf);
+}
+
+void cambiar_panel_activo(int clave)
+{
+  string nom;
+  mapping paneles;
+  int x, y, g;
+  int n_pantalla = numero_pantalla();
+
+  nom = paneles_menu_scada.value(clave);
+
+  getValue(\"botonera\", \"position\", x, y);
+  g = createAnimation();
+  animate(g, \"btn_desplegable\", \"positionAsDyn\", makeDynInt(50, y), makeDynInt(50, y), makeMapping(\"duration\", 300));
+  animate(g, \"btn_desplegable\", \"sizeAsDyn\", makeDynInt(50, 40), makeDynInt(50, 40), makeMapping(\"duration\", 300));
+
+  paneles = get_mapa_nombres_paneles();
+
+  if (myModuleName() == \"PANTALLA1\")
+  {
+    animate(\"botonera\", \"positionAsDyn\", makeDynInt(x, y), makeDynInt(x - 135, y), makeMapping(\"duration\", 200));
+    startAnimation(g, \"keep\", makeMapping(\"direction\", \"Backward\"));
+    RootPanelOnModule(nom + \".pnl\", nom, \"PRINCIPALPANTALLA1\", makeDynString(\"$MODULO:\" + myModuleName(), \"$N_PANTALLA:\" + n_pantalla));
+  }
+  else if (myModuleName() == \"PANTALLA2\")
+  {
+    animate(\"botonera\", \"positionAsDyn\", makeDynInt(x, y), makeDynInt(x - 135, y), makeMapping(\"duration\", 200));
+    startAnimation(g, \"keep\", makeMapping(\"direction\", \"Backward\"));
+    RootPanelOnModule(nom + \".pnl\", nom, \"PRINCIPALPANTALLA2\", makeDynString(\"$MODULO:\" + myModuleName(), \"$N_PANTALLA:\" + n_pantalla));
+  }
+  else if (myModuleName() == \"PANTALLA3\")
+  {
+    animate(\"botonera\", \"positionAsDyn\", makeDynInt(x, y), makeDynInt(x - 135, y), makeMapping(\"duration\", 200));
+    startAnimation(g, \"keep\", makeMapping(\"direction\", \"Backward\"));
+    RootPanelOnModule(nom + \".pnl\", nom, \"PRINCIPALPANTALLA3\", makeDynString(\"$MODULO:\" + myModuleName(), \"$N_PANTALLA:\" + n_pantalla));
+  }
+  else if (myModuleName() == \"PANTALLA4\")
+  {
+    animate(\"botonera\", \"positionAsDyn\", makeDynInt(x, y), makeDynInt(x - 135, y), makeMapping(\"duration\", 200));
+    startAnimation(g, \"keep\", makeMapping(\"direction\", \"Backward\"));
+    RootPanelOnModule(nom + \".pnl\", nom, \"PRINCIPALPANTALLA4\", makeDynString(\"$MODULO:\" + myModuleName(), \"$N_PANTALLA:\" + n_pantalla));
+  }
+  else if (myModuleName() == \"PANTALLA5\")
+  {
+    animate(\"botonera\", \"positionAsDyn\", makeDynInt(x, y), makeDynInt(x - 135, y), makeMapping(\"duration\", 200));
+    startAnimation(g, \"keep\", makeMapping(\"direction\", \"Backward\"));
+    RootPanelOnModule(nom + \".pnl\", nom, \"PRINCIPALPANTALLA5\", makeDynString(\"$MODULO:\" + myModuleName(), \"$N_PANTALLA:\" + n_pantalla));
+  }
+  else if (myModuleName() == \"PANTALLA6\")
+  {
+    animate(\"botonera\", \"positionAsDyn\", makeDynInt(x, y), makeDynInt(x - 135, y), makeMapping(\"duration\", 200));
+    startAnimation(g, \"keep\", makeMapping(\"direction\", \"Backward\"));
+    RootPanelOnModule(nom + \".pnl\", nom, \"PRINCIPALPANTALLA6\", makeDynString(\"$MODULO:\" + myModuleName(), \"$N_PANTALLA:\" + n_pantalla));
+  }
+}
+
+void cambiar_panel_activo_sec(int clave, int horno, int linea)
+{
+  string nom;
+  mapping paneles;
+  int x, y, g;
+  int n_pantalla = numero_pantalla();
+
+  nom = paneles_sec.value(clave);
+
+  getValue(\"botonera\", \"position\", x, y);
+  g = createAnimation();
+  animate(g, \"btn_desplegable\", \"positionAsDyn\", makeDynInt(50, y), makeDynInt(50, y), makeMapping(\"duration\", 300));
+  animate(g, \"btn_desplegable\", \"sizeAsDyn\", makeDynInt(50, 40), makeDynInt(50, 40), makeMapping(\"duration\", 300));
+
+  paneles = get_mapa_nombres_paneles_sec();
+
+  if (myModuleName() == \"PANTALLA1\")
+  {
+    animate(\"botonera\", \"positionAsDyn\", makeDynInt(x, y), makeDynInt(x - 135, y), makeMapping(\"duration\", 200));
+    startAnimation(g, \"keep\", makeMapping(\"direction\", \"Backward\"));
+    botonera_sec.visible = FALSE;
+    RootPanelOnModule(nom + \".pnl\", nom + horno + linea, \"pantalla_principal\", makeDynString(\"$HORNO:\" + horno, \"$LINEA:\" + linea, \"$MODULO:\" + myModuleName(), \"$N_PANTALLA:\" + n_pantalla));
+
+
+  }
+  else if (myModuleName() == \"PANTALLA2\")
+  {
+    animate(\"botonera\", \"positionAsDyn\", makeDynInt(x, y), makeDynInt(x - 135, y), makeMapping(\"duration\", 200));
+    startAnimation(g, \"keep\", makeMapping(\"direction\", \"Backward\"));
+    botonera_sec.visible = FALSE;
+    RootPanelOnModule(nom + \".pnl\", nom + horno + linea, \"pantalla_principal_2\", makeDynString(\"$HORNO:\" + horno, \"$LINEA:\" + linea, \"$MODULO:\" + myModuleName(), \"$N_PANTALLA:\" + n_pantalla));
+  }
+}
+
+void cambiar_panel_activo_ext(int grupo, int linea)
+{
+  string nom;
+  mapping paneles;
+  int x, y, g;
+  int n_pantalla = numero_pantalla();
+
+  nom = \"vision/sinopticos/05_centrifugacion/centrifugacion\";
+
+  getValue(\"botonera\", \"position\", x, y);
+  g = createAnimation();
+  animate(g, \"btn_desplegable\", \"positionAsDyn\", makeDynInt(50, y), makeDynInt(50, y), makeMapping(\"duration\", 300));
+  animate(g, \"btn_desplegable\", \"sizeAsDyn\", makeDynInt(50, 40), makeDynInt(50, 40), makeMapping(\"duration\", 300));
+
+  paneles = get_mapa_nombres_paneles_sec();
+
+  if (myModuleName() == \"PANTALLA1\")
+  {
+    animate(\"botonera\", \"positionAsDyn\", makeDynInt(x, y), makeDynInt(x - 135, y), makeMapping(\"duration\", 200));
+    startAnimation(g, \"keep\", makeMapping(\"direction\", \"Backward\"));
+    botonera_ext.visible = FALSE;
+    RootPanelOnModule(nom + \".pnl\", nom + grupo + linea, \"pantalla_principal\", makeDynString(\"$GRUPO:\" + grupo, \"$LINEA:\" + linea, \"$MODULO:\" + myModuleName(), \"$N_PANTALLA:\" + n_pantalla));
+    //RootPanelOnModule(nom + \".pnl\", nom + grupo + linea, \"pantalla_principal\", makeDynString(\"$DCT:\" + dct, \"$GRUPO:\" + grupo, \"$LINEA:\" + linea, \"$MODULO:\" + myModuleName(), \"$N_PANTALLA:\" + n_pantalla));
+
+
+  }
+  else if (myModuleName() == \"PANTALLA2\")
+  {
+    animate(\"botonera\", \"positionAsDyn\", makeDynInt(x, y), makeDynInt(x - 135, y), makeMapping(\"duration\", 200));
+    startAnimation(g, \"keep\", makeMapping(\"direction\", \"Backward\"));
+    botonera_ext.visible = FALSE;
+    RootPanelOnModule(nom + \".pnl\", nom + grupo + linea, \"pantalla_principal_2\", makeDynString(\"$GRUPO:\" + grupo, \"$LINEA:\" + linea, \"$MODULO:\" + myModuleName(), \"$N_PANTALLA:\" + n_pantalla));
+  }
+}
+
+void cambiar_panel_activo_graf(int clave)
+{
+  string nom;
+  mapping paneles;
+  int x, y, g;
+  int n_pantalla = numero_pantalla();
+
+  nom = paneles_graf.value(clave);
+
+  getValue(\"botonera\", \"position\", x, y);
+  g = createAnimation();
+  animate(g, \"btn_desplegable\", \"positionAsDyn\", makeDynInt(50, y), makeDynInt(50, y), makeMapping(\"duration\", 300));
+  animate(g, \"btn_desplegable\", \"sizeAsDyn\", makeDynInt(50, 40), makeDynInt(50, 40), makeMapping(\"duration\", 300));
+
+  paneles = get_mapa_nombres_paneles_graf();
+
+  botonera_graf.visible = FALSE;
+
+  if (myModuleName() == \"PANTALLA1\")
+  {
+    animate(\"botonera\", \"positionAsDyn\", makeDynInt(x, y), makeDynInt(x - 135, y), makeMapping(\"duration\", 200));
+    startAnimation(g, \"keep\", makeMapping(\"direction\", \"Backward\"));
+    RootPanelOnModule(nom + \".pnl\", nom, \"pantalla_principal\", makeDynString(\"$MODULO:\" + myModuleName(), \"$N_PANTALLA:\" + n_pantalla));
+
+
+  }
+  else if (myModuleName() == \"PANTALLA2\")
+  {
+    animate(\"botonera\", \"positionAsDyn\", makeDynInt(x, y), makeDynInt(x - 135, y), makeMapping(\"duration\", 200));
+    startAnimation(g, \"keep\", makeMapping(\"direction\", \"Backward\"));
+    RootPanelOnModule(nom + \".pnl\", nom, \"pantalla_principal_2\", makeDynString(\"$MODULO:\" + myModuleName(), \"$N_PANTALLA:\" + n_pantalla));
+  }
+}
+
+cambiar_estado_btn_botonera()
+{
+  string nombre = this.name, nombre_boton;
+
+  for (int i = 1; i <= dynlen(nom_btn_panel); i++)
+  {
+    nombre_boton = nom_btn_panel[i];
+
+    if (nombre_boton == nombre)  setValue(nombre_boton, \"backCol\", \"LIB_DEUSER_AZUL_06\");
+    else setValue(nombre_boton, \"backCol\", \"_Transparent\");
+  }
+}
+
+cambiar_estado_btn_botonera_sec()
+{
+  string nombre = this.name, nombre_boton;
+
+  for (int i = 1; i <= dynlen(nom_btn_panel_sec); i++)
+  {
+    nombre_boton = nom_btn_panel_sec[i];
+
+    if (nombre_boton == nombre)  setValue(nombre_boton, \"backCol\", \"LIB_DEUSER_AZUL_06\");
+    else setValue(nombre_boton, \"backCol\", \"_Transparent\");
+  }
+
+  string nombre = btn_secaderos.name, nombre_boton;
+
+  for (int i = 1; i <= dynlen(nom_btn_panel); i++)
+  {
+    nombre_boton = nom_btn_panel[i];
+
+    if (nombre_boton == nombre)  setValue(nombre_boton, \"backCol\", \"LIB_DEUSER_AZUL_06\");
+    else setValue(nombre_boton, \"backCol\", \"_Transparent\");
+  }
+
+}
+
+cambiar_estado_btn_botonera_ext()
+{
+  string nombre = this.name, nombre_boton;
+
+  for (int i = 1; i <= dynlen(nom_btn_panel_ext); i++)
+  {
+    nombre_boton = nom_btn_panel_ext[i];
+
+    if (nombre_boton == nombre)  setValue(nombre_boton, \"backCol\", \"LIB_DEUSER_AZUL_06\");
+    else setValue(nombre_boton, \"backCol\", \"_Transparent\");
+  }
+
+  string nombre = btn_centrifugacion.name, nombre_boton;
+
+  for (int i = 1; i <= dynlen(nom_btn_panel); i++)
+  {
+    nombre_boton = nom_btn_panel[i];
+
+    if (nombre_boton == nombre)  setValue(nombre_boton, \"backCol\", \"LIB_DEUSER_AZUL_06\");
+    else setValue(nombre_boton, \"backCol\", \"_Transparent\");
+  }
+
+}
+
+cambiar_estado_btn_botonera_graf()
+{
+  string nombre = this.name, nombre_boton;
+
+  for (int i = 1; i <= dynlen(nom_btn_panel_graf); i++)
+  {
+    nombre_boton = nom_btn_panel_graf[i];
+
+    if (nombre_boton == nombre)  setValue(nombre_boton, \"backCol\", \"LIB_DEUSER_AZUL_06\");
+    else setValue(nombre_boton, \"backCol\", \"_Transparent\");
+  }
+
+  string nombre = btn_graficas.name, nombre_boton;
+
+  for (int i = 1; i <= dynlen(nom_btn_panel); i++)
+  {
+    nombre_boton = nom_btn_panel[i];
+
+    if (nombre_boton == nombre)  setValue(nombre_boton, \"backCol\", \"LIB_DEUSER_AZUL_06\");
+    else setValue(nombre_boton, \"backCol\", \"_Transparent\");
+  }
+
+}
+
+
+" 0
+ 4
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+"pdpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10001 0 
+LANG:10010 0 
+13 182
+"fondo_btn_graf"
+""
+1 130 541 E E E 1 E 1 E N "_ButtonText" E N "LIB_IRC_AZUL_01" E E
+ E E
+181 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+5
+"shadowOffset" "[4,4]"
+"shadowColor" "{63,63,63,131}"
+"shadowRadius" "20"
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+0  128 538.9999970733228 262 641.9999970733228
+
+T 
+2
+LANG:10001 0 
+LANG:10010 0 
+E E E E
+13 185
+"btn_graf1"
+""
+1 130.3815990699183 542.2319903305445 E E E 1 E 1 E N "white" E N "_Transparent" E E
+ E E
+184 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 6 Zone 5
+LANG:10010 0 
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  128.3815990699183 540.2800083112865 262.3660951939494 593.2800083112866
+
+P 
+4294967295
+"pictures/iconos/botoneras/botonera_principal_pc/es_ES/graficas_on.svg"
+2
+LANG:10001 0 
+LANG:10010 0 
+"main(mapping event)
+{
+  cambiar_panel_activo(13);
+  cambiar_pantalla_actual(\"GRÁFICAS\");
+//   cambiar_estado_btn_botonera();
+  int n_ui = myUiNumber();
+  int n_pantalla = numero_pantalla();
+  dpSet(\"ui_\" + n_ui + \"_botonera_\" + n_pantalla + \".indice\", 22);
+  fondo_btn_graf.visible = FALSE;
+  btn_graf1.visible = FALSE;
+  btn_graf2.visible = FALSE;
+  sep_btn_graf.visible = FALSE;
+}
+" 0
+ E E "main()
+{
+  int n_ui = myUiNumber();
+  int n_pantalla = numero_pantalla();
+  dpConnect(\"cambiar_fondo\", \"ui_\" + n_ui + \"_botonera_\" + n_pantalla + \".indice\");
+}
+void cambiar_fondo(string dp, int valor)
+{
+  if (valor == 22) this.backCol(\"LIB_DEUSER_AZUL_06\");
+  else this.backCol(\"_Transparent\");
+}
+" 0
+
+13 186
+"btn_graf2"
+""
+1 131.3815990699183 591.7319917938831 E E E 1 E 1 E N "white" E N "_Transparent" E E
+ E E
+185 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 6 Zone 5
+LANG:10010 0 
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  129.3815990699183 589.7800097746251 262.3738471319339 642.7800097746252
+
+P 
+4294967295
+"pictures/iconos/botoneras/botonera_principal_pc/es_ES/multigraficas_on.svg"
+2
+LANG:10001 0 
+LANG:10010 0 
+"main(mapping event)
+{
+  cambiar_panel_activo(14);
+  cambiar_pantalla_actual(\"MULTIGRÁFICAS\");
+//   cambiar_estado_btn_botonera();
+  int n_ui = myUiNumber();
+  int n_pantalla = numero_pantalla();
+  dpSet(\"ui_\" + n_ui + \"_botonera_\" + n_pantalla + \".indice\", 23);
+  fondo_btn_graf.visible = FALSE;
+  btn_graf1.visible = FALSE;
+  btn_graf2.visible = FALSE;
+  sep_btn_graf.visible = FALSE;
+}
+" 0
+ E E "main()
+{
+  int n_ui = myUiNumber();
+  int n_pantalla = numero_pantalla();
+  dpConnect(\"cambiar_fondo\", \"ui_\" + n_ui + \"_botonera_\" + n_pantalla + \".indice\");
+}
+void cambiar_fondo(string dp, int valor)
+{
+  if (valor == 23) this.backCol(\"LIB_DEUSER_AZUL_06\");
+  else this.backCol(\"_Transparent\");
+}
+" 0
+
+0
+LAYER, 1 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 2 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 3 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 4 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 5 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 6 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 7 
+2
+LANG:10001 0 
+LANG:10010 0 
+13 35
+"fondo"
+""
+1 -0.992708002521105 40.00104958512403 E E E 1 E 1 E N "_ButtonText" E N "LIB_IRC_AZUL_01" E E
+ E E
+34 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+5
+"shadowOffset" "[4,4]"
+"shadowColor" "{63,63,63,131}"
+"shadowRadius" "20"
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+0  -2.992708002521105 38.00103184771644 131.0072919974789 642.0000000000001
+
+T 
+2
+LANG:10001 0 
+LANG:10010 0 
+E E E E
+13 14
+"btn_alarmas"
+""
+1 185.033493101876 74 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+13 0 0 0 0 0
+E E "main(bool enter)
+{
+  if (enter)
+  {
+//     botonera_sec.visible = FALSE;
+//     botonera_ext.visible = FALSE;
+    fondo_btn_graf.visible = FALSE;
+    btn_graf1.visible = FALSE;
+    btn_graf2.visible = FALSE;
+    sep_btn_graf.visible = FALSE;
+  }
+}" 0
+
+1
+6
+LANG:10001 14 Current Alarms
+LANG:10010 16 Alarmas Actuales
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  -1.241146986717514 88 131.751101075298 141
+
+P 
+4294967295
+"pictures/iconos/botoneras/botonera_principal_pc/es_ES/alarma_actual_on.svg"
+2
+LANG:10001 0 
+LANG:10010 0 
+"#uses \"deuser/componentes_graficos/funciones_componentes\"
+
+main(mapping event)
+{
+  cambiar_panel_activo(2); //Cambia el panel activo del faceplate
+  cambiar_pantalla_actual(\"ALARMAS\");
+  //cambiar_estado_btn_botonera();
+  int n_ui = myUiNumber();
+  int n_pantalla = numero_pantalla();
+  dpSet(\"ui_\" + n_ui + \"_botonera_\" + n_pantalla + \".indice\", 2);
+//   botonera_ext.visible = FALSE;
+//   botonera_sec.visible = FALSE;
+//   botonera_graf.visible = FALSE;
+}
+" 0
+ E E "#uses \"deuser/componentes_graficos/funciones_componentes\"
+
+main()
+{
+  int n_ui = myUiNumber();
+  int n_pantalla = numero_pantalla();
+  dpConnect(\"cambiar_fondo\", \"ui_\" + n_ui + \"_botonera_\" + n_pantalla + \".indice\");
+}
+void cambiar_fondo(string dp, int valor)
+{
+  if (valor == 2) this.backCol(\"LIB_DEUSER_AZUL_06\");
+  else this.backCol(\"_Transparent\");
+}
+" 0
+
+13 15
+"btn_historicos"
+""
+1 132.2422591556497 135.4149449822211 E E E 1 E 1 E N "white" E N "_Transparent" E E
+ E E
+14 0 0 0 0 0
+E E "main(bool enter)
+{
+  if (enter)
+  {
+//     botonera_sec.visible = FALSE;
+//     botonera_ext.visible = FALSE;
+    fondo_btn_graf.visible = FALSE;
+    btn_graf1.visible = FALSE;
+    btn_graf2.visible = FALSE;
+    sep_btn_graf.visible = FALSE;
+  }
+}" 0
+
+1
+6
+LANG:10001 17 Historical Alarms
+LANG:10010 19 Alarmas Históricos
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  -1.241146986717534 138 131.751101075298 191
+
+P 
+4294967295
+"pictures/iconos/botoneras/botonera_principal_pc/es_ES/alarma_historicos_on.svg"
+2
+LANG:10001 0 
+LANG:10010 0 
+"main(mapping event)
+{
+  cambiar_panel_activo(3);
+  cambiar_pantalla_actual(\"HISTÓRICO\\nALARMAS\");
+  //cambiar_estado_btn_botonera();
+  int n_ui = myUiNumber();
+  int n_pantalla = numero_pantalla();
+  dpSet(\"ui_\" + n_ui + \"_botonera_\" + n_pantalla + \".indice\", 3);
+//   botonera_ext.visible = FALSE;
+//   botonera_sec.visible = FALSE;
+//   botonera_graf.visible = FALSE;
+}
+" 0
+ E E "main()
+{
+  int n_ui = myUiNumber();
+  int n_pantalla = numero_pantalla();
+  dpConnect(\"cambiar_fondo\", \"ui_\" + n_ui + \"_botonera_\" + n_pantalla + \".indice\");
+}
+void cambiar_fondo(string dp, int valor)
+{
+  if (valor == 3) this.backCol(\"LIB_DEUSER_AZUL_06\");
+  else this.backCol(\"_Transparent\");
+}
+" 0
+
+13 25
+"btn_secaderos"
+""
+1 0 190 E E E 1 E 1 E N "white" E N "_Transparent" E E
+ E E
+24 0 0 0 0 0
+E E "main(bool enter)
+{
+  if (enter)
+  {
+//     botonera_sec.visible = TRUE;
+//     botonera_ext.visible = FALSE;
+    fondo_btn_graf.visible = FALSE;
+    btn_graf1.visible = FALSE;
+    btn_graf2.visible = FALSE;
+    sep_btn_graf.visible = FALSE;
+  }
+}" 0
+
+1
+6
+LANG:10001 6 Zone 2
+LANG:10010 9 Secaderos
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,11,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  -1.690850956609729 188.048017980742 131.3013971054056 241.048017980742
+
+B 
+4294967295
+"25.svg"
+2
+LANG:10001 0 
+LANG:10010 19 GRANULADORA
+PELLETS
+"main(mapping event)
+{
+  dyn_float resultF;
+  dyn_string resultS;
+
+  ChildPanelOnCentralModal(\"vision/emergentes/monitores.pnl\",\"Monitores\", makeDynString(\"$ZONA:Granuladora Pellets\", \"$IP:172.26.130.36\"));
+
+  cambiar_panel_activo(17);
+  cambiar_pantalla_actual(\"GRANULADORA\\nPELLETS\");
+  //cambiar_estado_btn_botonera();
+  int n_ui = myUiNumber();
+  int n_pantalla = numero_pantalla();
+  dpSet(\"ui_\" + n_ui + \"_botonera_\" + n_pantalla + \".indice\", 4);
+//   botonera_ext.visible = FALSE;
+//   botonera_sec.visible = FALSE;
+//   botonera_graf.visible = FALSE;
+}
+" 0
+ E E "main()
+{
+  int n_ui = myUiNumber();
+  int n_pantalla = numero_pantalla();
+  dpConnect(\"cambiar_fondo\", \"ui_\" + n_ui + \"_botonera_\" + n_pantalla + \".indice\");
+}
+void cambiar_fondo(string dp, int valor)
+{
+  if (valor == 4) this.backCol(\"LIB_DEUSER_AZUL_06\");
+  else this.backCol(\"_Transparent\");
+}
+" 0
+
+13 26
+"btn_centrifugacion"
+""
+1 1.026850493659835 289.9519261905003 E E E 1 E 1 E N "white" E N "_Transparent" E E
+ E E
+25 0 0 0 0 0
+E E "main(bool enter)
+{
+  if (enter)
+  {
+//     botonera_ext.visible = TRUE;
+//     botonera_sec.visible = FALSE;
+    fondo_btn_graf.visible = FALSE;
+    btn_graf1.visible = FALSE;
+    btn_graf2.visible = FALSE;
+    sep_btn_graf.visible = FALSE;
+  }
+}" 0
+
+1
+6
+LANG:10001 6 Zone 3
+LANG:10010 15 Centrifugación
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  -1.241146986717514 288 131.751101075298 341.0569705157745
+
+B 
+4294967295
+"26.svg"
+2
+LANG:10001 0 
+LANG:10010 10 EXTRACTORA
+"main(mapping event)
+{
+  ChildPanelOnCentralModal(\"vision/emergentes/monitores.pnl\",\"Monitores\", makeDynString(\"$ZONA:Extractora\", \"$IP:172.26.130.6\"));
+
+  cambiar_panel_activo(18);
+  cambiar_pantalla_actual(\"EXTRACTORA\");
+//   cambiar_estado_btn_botonera();
+  int n_ui = myUiNumber();
+  int n_pantalla = numero_pantalla();
+  dpSet(\"ui_\" + n_ui + \"_botonera_\" + n_pantalla + \".indice\", 6);
+//   botonera_ext.visible = FALSE;
+//   botonera_sec.visible = FALSE;
+//   botonera_graf.visible = FALSE;
+}
+" 0
+ E E "main()
+{
+  int n_ui = myUiNumber();
+  int n_pantalla = numero_pantalla();
+  dpConnect(\"cambiar_fondo\", \"ui_\" + n_ui + \"_botonera_\" + n_pantalla + \".indice\");
+}
+void cambiar_fondo(string dp, int valor)
+{
+  if (valor == 6) this.backCol(\"LIB_DEUSER_AZUL_06\");
+  else this.backCol(\"_Transparent\");
+}
+" 0
+
+13 27
+"btn_zona_4"
+""
+1 0.738277231776568 340.0100593698621 E E E 1 E 1 E N "white" E N "_Transparent" E E
+ E E
+26 0 0 0 0 0
+E E "main(bool enter)
+{
+  if (enter)
+  {
+//     botonera_sec.visible = FALSE;
+//     botonera_ext.visible = FALSE;
+    fondo_btn_graf.visible = FALSE;
+    btn_graf1.visible = FALSE;
+    btn_graf2.visible = FALSE;
+    sep_btn_graf.visible = FALSE;
+  }
+}" 0
+
+1
+6
+LANG:10001 6 Zone 4
+LANG:10010 0 
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,11,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  -1.241146986717545 338.0581331793618 131.751101075298 391.1151036951363
+
+B 
+4294967295
+"pictures/iconos/botoneras/botonera_principal_hmi/icono_preparacion.svg"
+2
+LANG:10001 0 
+LANG:10010 12 PREPARACIÓN
+"main(mapping event)
+{
+  cambiar_panel_activo(19);
+  cambiar_pantalla_actual(\"PREPARACIÓN\\nINICIO\");
+//   cambiar_estado_btn_botonera();
+  int n_ui = myUiNumber();
+  int n_pantalla = numero_pantalla();
+  dpSet(\"ui_\" + n_ui + \"_botonera_\" + n_pantalla + \".indice\", 7);
+//   botonera_ext.visible = FALSE;
+//   botonera_sec.visible = FALSE;
+//   botonera_graf.visible = FALSE;
+}
+" 0
+ E E "main()
+{
+  int n_ui = myUiNumber();
+  int n_pantalla = numero_pantalla();
+  dpConnect(\"cambiar_fondo\", \"ui_\" + n_ui + \"_botonera_\" + n_pantalla + \".indice\");
+}
+void cambiar_fondo(string dp, int valor)
+{
+  if (valor == 7) this.backCol(\"LIB_DEUSER_AZUL_06\");
+  else this.backCol(\"_Transparent\");
+}
+" 0
+
+13 34
+"btn_desplegable"
+""
+1 181 0 E E E 1 E 1 E N "_Transparent" E N "LIB_DEUSER_BLANCO" E E
+ E E
+33 0 0 0 0 0
+E E "main(bool enter)
+{
+  if (enter)
+  {
+//     botonera_sec.visible = FALSE;
+//     botonera_ext.visible = FALSE;
+    fondo_btn_graf.visible = FALSE;
+    btn_graf1.visible = FALSE;
+    btn_graf2.visible = FALSE;
+    sep_btn_graf.visible = FALSE;
+  }
+}" 0
+
+1
+2
+LANG:10001 0 
+LANG:10010 15 Menú Principal
+
+4
+"shadowOffset" "[4,4]"
+"shadowColor" "{63,63,63,131}"
+"shadowRadius" "20"
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  129 -2 182 41
+
+P 
+4294967295
+"pictures/iconos/botoneras/botonera_principal_pc/icono_menu.svg"
+2
+LANG:10001 12 PUSH_BUTTON1
+LANG:10010 0 
+"main(mapping event)
+{
+  int x, y, g;
+  getValue(\"botonera\", \"position\", x, y);
+  g = createAnimation();
+  animate(g, \"\", \"positionAsDyn\", makeDynInt(50, y), makeDynInt(131, y), makeMapping(\"duration\", 250));
+  animate(g, \"\", \"sizeAsDyn\", makeDynInt(50, 40), makeDynInt(131, 40), makeMapping(\"duration\", 250));
+
+  if (x < 0)
+  {
+    animate(\"botonera\", \"positionAsDyn\", makeDynInt(x, y), makeDynInt(0, y), makeMapping(\"duration\", 200));
+    startAnimation(g);
+  }
+  else
+  {
+    startAnimation(g, \"keep\", makeMapping(\"direction\", \"Backward\"));
+    animate(\"botonera\", \"positionAsDyn\", makeDynInt(x, y), makeDynInt(x - 135, y), makeMapping(\"duration\", 200));
+  }
+}" 0
+ E E E
+13 46
+"linea_1"
+""
+1 6.257914698159066 90 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+45 0 0 0 0 0
+E E "main(bool enter)
+{
+  botonera_sec.visible = FALSE;
+  botonera_ext.visible = FALSE;
+}" 0
+
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  4.257914698159066 88 125.2579146981591 92
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+13 47
+"linea_2"
+""
+1 6.257914698159073 140 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+46 0 0 0 0 0
+E E "main(bool enter)
+{
+  botonera_sec.visible = FALSE;
+  botonera_ext.visible = FALSE;
+}" 0
+
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  4.257914698159073 138 125.2579146981591 142
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+13 48
+"linea_3"
+""
+1 6.257914698159073 190 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+47 0 0 0 0 0
+E E "main(bool enter)
+{
+  botonera_sec.visible = FALSE;
+  botonera_ext.visible = FALSE;
+}" 0
+
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  4.257914698159073 188 125.2579146981591 192
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+13 49
+"linea_4"
+""
+1 6.257914698159073 240 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+48 0 0 0 0 0
+E E "main(bool enter)
+{
+  botonera_sec.visible = FALSE;
+  botonera_ext.visible = FALSE;
+}" 0
+
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  4.257914698159073 238 125.2579146981591 242
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+13 50
+"linea_5"
+""
+1 6.257914698159073 290 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+49 0 0 0 0 0
+E E "main(bool enter)
+{
+  botonera_sec.visible = FALSE;
+  botonera_ext.visible = FALSE;
+}" 0
+
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  4.257914698159073 288 125.2579146981591 292
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+13 51
+"linea_6"
+""
+1 6.257914698159073 340 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+50 0 0 0 0 0
+E E "main(bool enter)
+{
+  botonera_sec.visible = FALSE;
+  botonera_ext.visible = FALSE;
+}" 0
+
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  4.257914698159073 338 125.2579146981591 342
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+13 52
+"linea_7"
+""
+1 6.257914698159073 440.048017980742 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+51 0 0 0 0 0
+E E "main(bool enter)
+{
+  botonera_sec.visible = FALSE;
+  botonera_ext.visible = FALSE;
+}" 0
+
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  4.257914698159073 438.048017980742 125.2579146981591 442.048017980742
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+13 53
+"linea_8"
+""
+1 5.507291997478884 490.048017980742 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+52 0 0 0 0 0
+E E "main(bool enter)
+{
+  botonera_sec.visible = FALSE;
+  botonera_ext.visible = FALSE;
+}" 0
+
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  3.507291997478884 488.048017980742 124.5072919974789 492.048017980742
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+13 54
+"linea_9"
+""
+1 5.507291997478884 540.048017980742 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+53 0 0 0 0 0
+E E "main(bool enter)
+{
+  botonera_sec.visible = FALSE;
+  botonera_ext.visible = FALSE;
+}" 0
+
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  3.507291997478884 538.048017980742 124.5072919974789 542.048017980742
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+13 59
+"linea_0"
+""
+1 6.257914698159066 40 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+58 0 0 0 0 0
+E E "main(bool enter)
+{
+  botonera_sec.visible = FALSE;
+  botonera_ext.visible = FALSE;
+}" 0
+
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  4.257914698159066 38 125.2579146981591 42
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+13 2
+"btn_principal"
+""
+1 0.7588530132824562 40.00103184771644 E E E 1 E 1 E N "white" E N "_Transparent" E E
+ E E
+1 0 0 0 0 0
+E E "main(bool enter)
+{
+  if (enter)
+  {
+//     botonera_sec.visible = FALSE;
+//     botonera_ext.visible = FALSE;
+    fondo_btn_graf.visible = FALSE;
+    btn_graf1.visible = FALSE;
+    btn_graf2.visible = FALSE;
+    sep_btn_graf.visible = FALSE;
+  }
+}" 0
+
+1
+6
+LANG:10001 8 Synoptic
+LANG:10010 6 Inicio
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  -1.241146986717545 38.00103184771644 131.751101075298 91.00103184771643
+
+P 
+4294967295
+"pictures/iconos/botoneras/botonera_principal_pc/es_ES/home_on.svg"
+2
+LANG:10001 0 
+LANG:10010 0 
+"main(mapping event)
+{
+  cambiar_panel_activo(12);
+  cambiar_pantalla_actual(\"INICIO\");
+  //cambiar_estado_btn_botonera();
+  int n_ui = myUiNumber();
+  int n_pantalla = numero_pantalla();
+  dpSet(\"ui_\" + n_ui + \"_botonera_\" + n_pantalla + \".indice\", 1);
+//   botonera_ext.visible = FALSE;
+//   botonera_sec.visible = FALSE;
+//   botonera_graf.visible = FALSE;
+}
+" 0
+ E E "main()
+{
+  int n_ui = myUiNumber();
+  int n_pantalla = numero_pantalla();
+  dpConnect(\"cambiar_fondo\", \"ui_\" + n_ui + \"_botonera_\" + n_pantalla + \".indice\");
+}
+void cambiar_fondo(string dp, int valor)
+{
+  if (valor == 1) this.backCol(\"LIB_DEUSER_AZUL_06\");
+  else this.backCol(\"_Transparent\");
+}" 0
+
+13 101
+"PUSH_BUTTON42"
+""
+1 6.25791469815907 389.5 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+100 0 0 0 0 0
+E E "main(bool enter)
+{
+  botonera_sec.visible = FALSE;
+  botonera_ext.visible = FALSE;
+}" 0
+
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  4.25791469815907 387.5 125.2579146981591 391.5
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+13 24
+"btn_sinoptico"
+""
+1 -3.33066907387547e-16 240 E E E 1 E 1 E N "white" E N "_Transparent" E E
+ E E
+23 0 0 0 0 0
+E E "main(bool enter)
+{
+  if (enter)
+  {
+//     botonera_sec.visible = FALSE;
+//     botonera_ext.visible = FALSE;
+    fondo_btn_graf.visible = FALSE;
+    btn_graf1.visible = FALSE;
+    btn_graf2.visible = FALSE;
+    sep_btn_graf.visible = FALSE;
+  }
+}" 0
+
+1
+6
+LANG:10001 6 Zone 1
+LANG:10010 18 Sinóptico General
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  -1.979424218493809 238.0480179807419 131.0128238435217 291.0480179807419
+
+P 
+4294967295
+"pictures/iconos/botoneras/botonera_principal_hmi/btn_bodega.svg"
+2
+LANG:10001 0 
+LANG:10010 6 BODEGA
+"#uses \"deuser/componentes_graficos/funciones_componentes\"
+
+main(mapping event)
+{
+  cambiar_panel_activo(16);
+  cambiar_pantalla_actual(\"BODEGA\");
+  //cambiar_estado_btn_botonera();
+  int n_ui = myUiNumber();
+  int n_pantalla = numero_pantalla();
+  dpSet(\"ui_\" + n_ui + \"_botonera_\" + n_pantalla + \".indice\", 5);
+//   botonera_ext.visible = FALSE;
+//   botonera_sec.visible = FALSE;
+//   botonera_graf.visible = FALSE;
+}
+" 0
+ E E "main()
+{
+  int n_ui = myUiNumber();
+  int n_pantalla = numero_pantalla();
+  dpConnect(\"cambiar_fondo\", \"ui_\" + n_ui + \"_botonera_\" + n_pantalla + \".indice\");
+}
+void cambiar_fondo(string dp, int valor)
+{
+  if (valor == 5) this.backCol(\"LIB_DEUSER_AZUL_06\");
+  else this.backCol(\"_Transparent\");
+}
+" 0
+
+13 110
+"PUSH_BUTTON47"
+""
+1 0.7382772317765538 390.5807923333924 E E E 1 E 1 E N "white" E N "_Transparent" E E
+ E E
+109 0 0 0 0 0
+E E "main(bool enter)
+{
+  if (enter)
+  {
+//     botonera_sec.visible = FALSE;
+//     botonera_ext.visible = FALSE;
+    fondo_btn_graf.visible = FALSE;
+    btn_graf1.visible = FALSE;
+    btn_graf2.visible = FALSE;
+    sep_btn_graf.visible = FALSE;
+  }
+}" 0
+
+1
+6
+LANG:10001 6 Zone 4
+LANG:10010 0 
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  -1.241146986717559 388.6288661428921 131.751101075298 441.6858366586666
+
+P 
+4294967295
+"pictures/iconos/botoneras/botonera_principal_hmi/btn_secadero.svg"
+2
+LANG:10001 0 
+LANG:10010 8 SECADERO
+"main(mapping event)
+{
+  ChildPanelOnCentralModal(\"vision/emergentes/monitores.pnl\",\"Monitores\", makeDynString(\"$ZONA:Secadero Orujo\", \"$IP:172.26.130.27\"));
+
+  cambiar_panel_activo(20);
+  cambiar_pantalla_actual(\"SECADERO\");
+//   cambiar_estado_btn_botonera();
+  int n_ui = myUiNumber();
+  int n_pantalla = numero_pantalla();
+  dpSet(\"ui_\" + n_ui + \"_botonera_\" + n_pantalla + \".indice\", 8);
+//   botonera_ext.visible = FALSE;
+//   botonera_sec.visible = FALSE;
+//   botonera_graf.visible = FALSE;
+}
+" 0
+ E E "main()
+{
+  int n_ui = myUiNumber();
+  int n_pantalla = numero_pantalla();
+  dpConnect(\"cambiar_fondo\", \"ui_\" + n_ui + \"_botonera_\" + n_pantalla + \".indice\");
+}
+void cambiar_fondo(string dp, int valor)
+{
+  if (valor == 8) this.backCol(\"LIB_DEUSER_AZUL_06\");
+  else this.backCol(\"_Transparent\");
+}
+" 0
+
+13 111
+"PUSH_BUTTON48"
+""
+1 0.738277231776552 440.6629624175039 E E E 1 E 1 E N "white" E N "_Transparent" E E
+ E E
+110 0 0 0 0 0
+E E "main(bool enter)
+{
+  if (enter)
+  {
+//     botonera_sec.visible = FALSE;
+//     botonera_ext.visible = FALSE;
+    fondo_btn_graf.visible = FALSE;
+    btn_graf1.visible = FALSE;
+    btn_graf2.visible = FALSE;
+    sep_btn_graf.visible = FALSE;
+  }
+}" 0
+
+1
+6
+LANG:10001 6 Zone 4
+LANG:10010 0 
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  -1.241146986717561 438.7110362270037 131.751101075298 491.7680067427783
+
+P 
+4294967295
+"pictures/iconos/botoneras/botonera_principal_hmi/btn_repaso.svg"
+2
+LANG:10001 0 
+LANG:10010 6 REPASO
+"main(mapping event)
+{
+  ChildPanelOnCentralModal(\"vision/emergentes/monitores.pnl\",\"Monitores\", makeDynString(\"$ZONA:Repaso\", \"$IP:172.26.130.54\"));
+
+  cambiar_panel_activo(21);
+  cambiar_pantalla_actual(\"REPASO\");
+//   cambiar_estado_btn_botonera();
+  int n_ui = myUiNumber();
+  int n_pantalla = numero_pantalla();
+  dpSet(\"ui_\" + n_ui + \"_botonera_\" + n_pantalla + \".indice\", 9);
+//   botonera_ext.visible = FALSE;
+//   botonera_sec.visible = FALSE;
+//   botonera_graf.visible = FALSE;
+}
+" 0
+ E E "main()
+{
+  int n_ui = myUiNumber();
+  int n_pantalla = numero_pantalla();
+  dpConnect(\"cambiar_fondo\", \"ui_\" + n_ui + \"_botonera_\" + n_pantalla + \".indice\");
+}
+void cambiar_fondo(string dp, int valor)
+{
+  if (valor == 9) this.backCol(\"LIB_DEUSER_AZUL_06\");
+  else this.backCol(\"_Transparent\");
+}
+" 0
+
+13 112
+"PUSH_BUTTON49"
+""
+1 0.7344012627843191 489.4879955048145 E E E 1 E 1 E N "white" E N "_Transparent" E E
+ E E
+111 0 0 0 0 0
+E E "main(bool enter)
+{
+  if (enter)
+  {
+//     botonera_sec.visible = FALSE;
+//     botonera_ext.visible = FALSE;
+    fondo_btn_graf.visible = FALSE;
+    btn_graf1.visible = FALSE;
+    btn_graf2.visible = FALSE;
+    sep_btn_graf.visible = FALSE;
+  }
+}" 0
+
+1
+6
+LANG:10001 6 Zone 4
+LANG:10010 0 
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  -1.245022955709794 487.5360134855565 131.7472251063058 540.5360134855564
+
+P 
+4294967295
+"pictures/iconos/botoneras/botonera_principal_hmi/btn_secadero_hueso.svg"
+2
+LANG:10001 0 
+LANG:10010 5 HUESO
+"main(mapping event)
+{
+  ChildPanelOnCentralModal(\"vision/emergentes/monitores.pnl\",\"Monitores\", makeDynString(\"$ZONA:Secadero Hueso\", \"$IP:172.26.130.22\"));
+
+  cambiar_panel_activo(22);
+  cambiar_pantalla_actual(\"HUESO\");
+//   cambiar_estado_btn_botonera();
+  int n_ui = myUiNumber();
+  int n_pantalla = numero_pantalla();
+  dpSet(\"ui_\" + n_ui + \"_botonera_\" + n_pantalla + \".indice\", 10);
+//   botonera_ext.visible = FALSE;
+//   botonera_sec.visible = FALSE;
+//   botonera_graf.visible = FALSE;
+}
+" 0
+ E E "main()
+{
+  int n_ui = myUiNumber();
+  int n_pantalla = numero_pantalla();
+  dpConnect(\"cambiar_fondo\", \"ui_\" + n_ui + \"_botonera_\" + n_pantalla + \".indice\");
+}
+void cambiar_fondo(string dp, int valor)
+{
+  if (valor == 10) this.backCol(\"LIB_DEUSER_AZUL_06\");
+  else this.backCol(\"_Transparent\");
+}
+" 0
+
+13 144
+"btn_graficas"
+""
+1 -0.2445537981478196 541.5120044951855 E E E 1 E 1 E N "white" E N "_Transparent" E E
+ E E
+143 0 0 0 0 0
+E E "main(bool enter)
+{
+  if (enter)
+  {
+//     botonera_sec.visible = FALSE;
+//     botonera_ext.visible = FALSE;
+    fondo_btn_graf.visible = TRUE;
+    btn_graf1.visible = TRUE;
+    btn_graf2.visible = TRUE;
+    sep_btn_graf.visible = TRUE;
+  }
+}" 0
+
+1
+6
+LANG:10001 6 Zone 5
+LANG:10010 0 
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  -2.244553798147819 539.5600224759274 130.7476942638677 592.5600224759276
+
+P 
+4294967295
+"pictures/iconos/botoneras/botonera_principal_pc/es_ES/graficas_on.svg"
+2
+LANG:10001 0 
+LANG:10010 0 
+"// main(mapping event)
+// {
+//   cambiar_panel_activo(13);
+//   cambiar_pantalla_actual(\"GRÁFICAS\");
+  //cambiar_estado_btn_botonera();
+//   int n_ui = myUiNumber();
+//   int n_pantalla = numero_pantalla();
+//   dpSet(\"ui_\" + n_ui + \"_botonera_\" + n_pantalla + \".indice\", 21);
+//   delay(1);
+//   botonera_ext.visible = FALSE;
+//   botonera_sec.visible = FALSE;
+//   botonera_graf.visible = FALSE;
+// }
+//" 0
+ E E "main()
+{
+  int n_ui = myUiNumber();
+  int n_pantalla = numero_pantalla();
+  dpConnect(\"cambiar_fondo\", \"ui_\" + n_ui + \"_botonera_\" + n_pantalla + \".indice\");
+}
+void cambiar_fondo(string dp, int valor)
+{
+  if (valor >= 21  && valor <= 23) this.backCol(\"LIB_DEUSER_AZUL_06\");
+  else this.backCol(\"_Transparent\");
+}
+" 0
+
+13 188
+"PUSH_BUTTON52"
+""
+1 -0.2655987372156827 591 E E E 1 E 1 E N "white" E N "_Transparent" E E
+ E E
+187 0 0 0 0 0
+E E "main(bool enter)
+{
+  if (enter)
+  {
+//     botonera_sec.visible = FALSE;
+//     botonera_ext.visible = FALSE;
+    fondo_btn_graf.visible = FALSE;
+    btn_graf1.visible = FALSE;
+    btn_graf2.visible = FALSE;
+    sep_btn_graf.visible = FALSE;
+  }
+}" 0
+
+1
+6
+LANG:10001 6 Zone 4
+LANG:10010 0 
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  -2.245022955709796 589.0480179807421 130.7472251063058 642.0480179807419
+
+P 
+4294967295
+"pictures/iconos/botoneras/botonera_principal_pc/es_ES/manual_scada_on.svg"
+2
+LANG:10001 0 
+LANG:10010 5 HUESO
+"main(mapping event)
+{
+  cambiar_panel_activo(11);
+  cambiar_pantalla_actual(\"MANUAL\\nSCADA\");
+//   cambiar_estado_btn_botonera();
+  int n_ui = myUiNumber();
+  int n_pantalla = numero_pantalla();
+  dpSet(\"ui_\" + n_ui + \"_botonera_\" + n_pantalla + \".indice\", 24);
+//   botonera_ext.visible = FALSE;
+//   botonera_sec.visible = FALSE;
+//   botonera_graf.visible = FALSE;
+}
+" 0
+ E E "main()
+{
+  int n_ui = myUiNumber();
+  int n_pantalla = numero_pantalla();
+  dpConnect(\"cambiar_fondo\", \"ui_\" + n_ui + \"_botonera_\" + n_pantalla + \".indice\");
+}
+void cambiar_fondo(string dp, int valor)
+{
+  if (valor == 24) this.backCol(\"LIB_DEUSER_AZUL_06\");
+  else this.backCol(\"_Transparent\");
+}
+" 0
+
+13 145
+"PUSH_BUTTON50"
+""
+1 6.499999999999986 590.8900056189818 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+144 0 0 0 0 0
+E E "main(bool enter)
+{
+  botonera_sec.visible = FALSE;
+  botonera_ext.visible = FALSE;
+}" 0
+
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  4.499999999999986 588.8900056189818 125.5 592.8900056189818
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+13 184
+"sep_btn_graf"
+""
+1 136.5 591.4999970733228 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+183 0 0 0 0 0
+E E "main(bool enter)
+{
+  botonera_sec.visible = FALSE;
+  botonera_ext.visible = FALSE;
+}" 0
+
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  134.5 589.4999970733228 255.5 593.4999970733228
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+13 187
+"PUSH_BUTTON51"
+""
+1 5.873847131933843 590.7800112379638 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+186 0 0 0 0 0
+E E "main(bool enter)
+{
+  botonera_sec.visible = FALSE;
+  botonera_ext.visible = FALSE;
+}" 0
+
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  3.873847131933843 588.7800112379638 124.8738471319339 592.7800112379638
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+0
+0

@@ -1,0 +1,741 @@
+V 14
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+PANEL,-1 -1 1053 620 N "LIB_IRC_BLANCO" 0
+"main()
+{
+  setWindowTitle(myModuleName(), myPanelName(), \"Cambiar Poll Group MDP\"); //title que aparece en el Frame del Panel
+  windowStyle(myModuleName(), myPanelName(), 0, 0); //Eliminamos los botones para maximizar y minimizar el Panel
+}" 0
+ E E E E 1 -1 -1 0  0 0
+""0  1
+E "/***************************************************************************************
+  @author dceballos
+  @date 17/03/2020.
+  @brief Realizamos el cambio del Poll Group del Master Data Point seleccionado.
+  @return No devuelve nada.
+****************************************************************************************/
+void modificar_poll_group_mdp(string mdp_nom, string mdpt_nom, string poll_group_selec)
+{
+  string consulta, dpe_nom;
+  dyn_dyn_anytype resultado_consulta;
+
+  consulta = \"SELECT '_online.._value' FROM '\" + mdp_nom + \".**' WHERE _DPT LIKE \\\"\" + mdpt_nom + \"\\\"\";
+  dpQuery(consulta, resultado_consulta);
+  dynRemove(resultado_consulta, 1);
+
+  if(dynlen(resultado_consulta) > 1){  //Comprobamos que el tamaño del array de la consulta al PARA sea mayor a 1
+    setValue(\"ae_loading_ewo\", \"visible\", TRUE);  //Hacemos visible la animación del loading
+    ae_loading_ewo.start();  //Iniciamos la animación del loading
+
+    for(int s = 1; s <= dynlen(resultado_consulta); s++){
+      dpe_nom = resultado_consulta[s][1];
+      dpe_nom = dpSubStr(dpe_nom, DPSUB_DP_EL);
+
+      dpSetWait(dpe_nom + \":_address.._poll_group\", poll_group_selec);
+    }
+
+    ae_loading_ewo.stop();  //Detenemos la animación del loading
+    setValue(\"ae_loading_ewo\", \"visible\", FALSE);  //Ocultamos la animación del loading
+  }else{
+    mostrar_msg_emergente(3, \"Fallo en la consulta\");
+  }
+}
+/******* Fin de la función modificar_poll_group_mdp() *********/
+" 0
+ 5
+"CBRef" "1"
+"EClose" E
+"windowIcon" "iconos/ventanas/configuracion.svg"
+"dpi" "96"
+"pdpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10001 0 
+LANG:10010 0 
+6 1
+"rect_fondo_config"
+""
+1 20 10 E E E 1 E 1 E N "_Transparent" E N "LIB_IRC_AZUL_03" E E
+ E E
+0 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+4
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E -1 1 3 2 1 E 9.562654545454548 0 1.975 -191.253090909091 -19.75 4 "[linear,pad,0,0,-0.012,0.988,0.00671,LIB_IRC_AZUL_03,1,{255,255,255}]" E 20 10 130 50
+13 6
+"btn_aceptar"
+"GRANDE_BLANCO"
+1 204.8895968016237 476.6624828547297 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+5 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 6 Accept
+LANG:10010 7 Aceptar
+LANG:10011 6 Accept
+LANG:10009 8 Accepter
+LANG:10008 6 Accept
+LANG:10018 6 Accept
+
+5
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10011 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10018 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  417.5 422.6624828547297 480.5000000000001 485.6624828547297
+
+P 
+4294967295
+"pictures/iconos/botoneras/aceptar.svg"
+6
+LANG:10001 12 PUSH_BUTTON1
+LANG:10010 12 PUSH_BUTTON1
+LANG:10011 12 PUSH_BUTTON1
+LANG:10009 12 PUSH_BUTTON1
+LANG:10008 12 PUSH_BUTTON1
+LANG:10018 12 PUSH_BUTTON1
+"main(mapping event)
+{
+  dyn_string nombres_dp;
+  string mdpt_nom, mdp_nom, poll_group_selec, mdp_selec;
+
+  getValue(\"tabla_lista\", \"getColumnN\",0,nombres_dp);
+
+  dyn_float confirmar;
+  dyn_string confirmar_st;
+
+  ChildPanelOnCentralModalReturn(\"objects/libreria_irc/emergentes/poll_groups_mdp.pnl\", \"Modificar_Poll_Group\", makeDynString(\"\"), confirmar, confirmar_st);  //Mostramos la ventana de confirmación para modificar o no el Poll Group del MDP existente
+
+  if(dynlen(confirmar) != 0 && confirmar[1] == 1){  //Comprobamos que se desea modificar el MDP existente
+
+    for(int s = 1; s <= dynlen(nombres_dp); s++){
+      mdp_selec = nombres_dp[s];
+      if(dpExists(mdp_selec)){
+        mdp_nom = dpSubStr(mdp_selec, DPSUB_DP);
+        mdpt_nom = dpTypeName(mdp_nom);
+
+
+            getValue(\"cb_poll_group\", \"selectedText\", poll_group_selec);  //Recuperamos el nombre del poll group seleccionado
+            modificar_poll_group_mdp(mdp_nom, mdpt_nom, poll_group_selec);
+      }else{
+        mostrar_msg_emergente(3, \"El MDP seleccionado no existe\");
+      }
+    }
+  }
+}
+" 0
+ E E E
+13 7
+"btn_cancelar"
+"GRANDE_BLANCO"
+1 126.1249510081859 476.6624828547297 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+6 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 6 Cancel
+LANG:10010 8 Cancelar
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+5
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10011 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10018 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  338.7353542065624 422.6624828547297 401.7353542065624 485.6624828547297
+
+P 
+4294967295
+"pictures/iconos/botoneras/cancelar.svg"
+6
+LANG:10001 12 PUSH_BUTTON1
+LANG:10010 12 PUSH_BUTTON1
+LANG:10011 12 PUSH_BUTTON1
+LANG:10009 12 PUSH_BUTTON1
+LANG:10008 12 PUSH_BUTTON1
+LANG:10018 12 PUSH_BUTTON1
+"main(mapping event)
+{
+  PanelOff();
+}" 0
+ E E E
+29 8
+"selec_mdp"
+""
+1 10.31509921002451 11.5670937499999 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_BLANCO" E E
+ E E
+7 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+8
+"layoutDirection" "enum 0"
+"alternatingRowColors" "bool TRUE"
+"autoScrollMargin" "int 16"
+"dpFilterIgnoresCase" "bool FALSE"
+"frameShape" "enum 0"
+"selectionMode" "enum 0"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+0  22.50000000000017 80 478.5000000000001 393.9999999999999
+29 DatapointTree.DatapointTree.1
+1
+0 "OnSelChanged" "(string dp, int isType, int sysNum)"
+"    tabla_lista.appendLine(\"dp\",dp);"
+E6 10
+"RECTANGLE1"
+""
+1 20 10 E E E 1 E 1 E N "_Transparent" E N "LIB_IRC_AZUL_03" E E
+ E E
+9 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+4
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E -1 1 3 2 1 E -9.562654545454549 2.329360333311642e-15 -1.996611209698074e-15 -2.125 1245.253090909091 641.25 4 "[linear,pad,0,0,-0.012,0.988,0.00671,LIB_IRC_AZUL_03,1,{255,255,255}]" E 20 10 130 50
+29 15
+"ae_loading_ewo"
+""
+1 117.0000000000001 117.4999999999999 E E E 1 E 0 E N "_3DText" E N "_3DFace" E E
+ E E
+14 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+4
+"effectType" "enum 2"
+"color1" "color {1,72,152,225}"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10011 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10018 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  131.0000000000001 117.4999999999999 370.0000000000001 356.4999999999999
+19 AttentionEffect.ewo
+0
+E22 16
+"cb_poll_group"
+"MEDIANO_AZUL"
+1 1501.5 177 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_BLANCO" E E
+ E E
+15 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 13 Driver Number
+LANG:10010 10 Poll group
+LANG:10011 13 Driver Number
+LANG:10009 13 Driver Number
+LANG:10008 13 Driver Number
+LANG:10018 13 Driver Number
+
+5
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,80}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+0  132.5000000000001 24 480.5000000000001 59
+0
+
+"main()
+{
+  string poll_groups_st;
+  dyn_string poll_groups;
+
+  poll_groups = dpNames(\"*\", \"_PollGroup\");  //Recuperamos el nombre de todos los poll group registrados en el sistema
+
+  for(int d = 1; d <= dynlen(poll_groups); d++){
+    poll_groups_st = strltrim(poll_groups[d], \"System1:\");
+    setValue(\"\", \"appendItem\", poll_groups_st);
+  }
+}" 0
+
+E
+E
+ 0 0
+25 17
+"tabla_lista"
+"GRANDE_AZUL"
+1 184.3731685034813 -8.828057809466813 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_BLANCO" E E
+ E "main(int row, string column)
+{
+  dyn_int filas;
+
+  getValue(this, \"getSelectedLines\", filas);
+  this.deleteLineN(filas[1]);
+}" 0
+
+16 0 0 0 0 0
+E E E
+0
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+5
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,80}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+7
+LANG:10001 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10005 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+0  511.4846191553265 18.62289277129149 1008.466146277568 482.0577218311205
+"main()
+{
+  formatear_estilo_tabla(\"tabla_lista\", \"AlignVCenter | AlignHCenter\", \"LIB_IRC_BLANCO\", \"LIB_IRC_AZUL_03\");  //Damos formato a la tabla con el listado de DP's
+  delay(0,200);
+  setValue(\"tabla_lista\", \"deleteAllLines\");
+  this.selectByClick(TABLE_SELECT_LINE);
+}" 0
+E 1 0 1 1 0 "dp" 37 1 0 "[0s,,,AlignLeft|AlignVCenter]" 6
+LANG:10001 2 ID
+LANG:10010 2 DP
+LANG:10011 2 #1
+LANG:10009 2 #1
+LANG:10008 2 #1
+LANG:10018 2 #1
+E
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+490 
+27 27 10 0
+7
+LANG:10001 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10005 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+0 0 1 1 1 7
+1 0
+13 18
+"btn_borrar"
+"GRANDE_BLANCO"
+1 709.8270695503143 556.0000000000002 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+17 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 6 Accept
+LANG:10010 7 Aceptar
+LANG:10011 6 Accept
+LANG:10009 8 Accepter
+LANG:10008 6 Accept
+LANG:10018 6 Accept
+
+5
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10011 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10018 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  953.8270695503143 497.0000000000002 1006.827069550314 550.0000000000002
+
+P 
+4294967295
+"pictures/iconos/botoneras/borrar.svg"
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+"main(mapping event)
+{
+  setValue(\"tabla_lista\", \"deleteAllLines\");
+}" 0
+ E E E
+4 21
+"LINE1"
+""
+1 849.8270695503143 553.0000000000002 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N {255,255,255} E E
+ E E
+20 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 2 3 2 1 E  849.8270695503143 553.0000000000002 865.8270695503143 553.0000000000002
+4 22
+"LINE3"
+""
+1 865.8270695503143 501.0000000000002 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N {255,255,255} E E
+ E E
+21 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 2 3 2 1 E  865.8270695503143 501.0000000000002 865.8270695503143 552.0000000000002
+4 23
+"LINE4"
+""
+1 865.8270695503143 500.0000000000002 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N {255,255,255} E E
+ E E
+22 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 2 2 2 1 E  865.8270695503143 500.0000000000002 860.8270695503143 514.0000000000002
+4 24
+"LINE5"
+""
+1 865.8270695503143 500.0000000000002 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N {255,255,255} E E
+ E E
+23 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 2 2 2 1 E  865.8270695503143 500.0000000000002 870.8270695503143 514.0000000000002
+4 25
+"LINE6"
+""
+1 849.8270695503143 591.0000000000002 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N {255,255,255} E E
+ E E
+24 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 2 3 2 1 E  849.8270695503143 591.0000000000002 985.8270695503143 591.0000000000002
+4 26
+"LINE7"
+""
+1 985.8270695503143 559.0000000000002 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N {255,255,255} E E
+ E E
+25 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 2 3 2 1 E  985.8270695503143 559.0000000000002 985.8270695503143 591.0000000000002
+4 27
+"LINE8"
+""
+1 985.8270695503143 558.0000000000002 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N {255,255,255} E E
+ E E
+26 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 2 2 2 1 E  985.8270695503143 558.0000000000002 980.8270695503143 572.0000000000002
+4 28
+"LINE9"
+""
+1 985.8270695503143 558.0000000000002 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N {255,255,255} E E
+ E E
+27 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 2 2 2 1 E  985.8270695503143 558.0000000000002 990.8270695503143 572.0000000000002
+29 29
+"Label1"
+"GRANDE_AZUL"
+1 20.79584138884778 26.5 E E E 1 E 1 E N "_3DText" E N "_Transparent" E E
+ E E
+28 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"text" "string Poll Group"
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 27 Tahoma,-1,16,5,50,0,0,0,0,0
+0  20.79584138884778 26.5 180.7958413888477 56.5
+5 Label
+0
+E29 30
+"txf_borrar_fila"
+"MEDIANO_AZUL"
+1 539.6402302720874 536.3915177363492 E E E 1 E 1 E N "_3DText" E N "_Transparent" E E
+ E E
+29 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"text" "string Borrar fila concreta: Doble click en ella"
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 27 Tahoma,-1,16,5,50,0,0,0,0,0
+0  539.6402302720874 536.3915177363492 839.2423095776634 566.3915177363492
+5 Label
+0
+E29 31
+"txf_borrar_tabla"
+"MEDIANO_AZUL"
+1 668.9603454081309 571.2096511838065 E E E 1 E 1 E N "_3DText" E N "_Transparent" E E
+ E E
+30 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"text" "string Borrar tabla completa"
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 27 Tahoma,-1,16,5,50,0,0,0,0,0
+0  668.9603454081309 571.2096511838065 838.2423095776634 601.2096511838065
+5 Label
+0
+E0
+LAYER, 1 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 2 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 3 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 4 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 5 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 6 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 7 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+1 0 "SHAPE_GROUP7" -1
+4 0 
+21 22 23 24 
+
+"layoutAlignment" "AlignNone"
+"" ""
+1 1 "SHAPE_GROUP6" -1
+4 0 
+25 26 27 28 
+
+"layoutAlignment" "AlignNone"
+"" ""
+0

@@ -1,0 +1,219 @@
+V 14
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+PANEL,-1 -1 450 100 N "_Transparent" 1
+"$INST"
+E E E E E 1 -1 -1 0  16.5 1
+""0  1
+E "//Clases importadas a utilizar por las funciones de la librería
+lib_servo accionamiento_servo = lib_servo($INST, \"asdf\");
+" 0
+ 4
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+"pdpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10001 0 
+LANG:10010 0 
+6 10
+"RECTANGLE1"
+""
+1 5.232244589164764 4.354826373973452 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+9 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+4
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 2 3 2 1 E 1.002232142857143 0 1.010204081632653 -5.128658281847116 -4.22514189297638 1 E 5.232244589164764 4.354826373973452 454 103
+14 8
+"TEXT_FIELD1"
+"MEDIANO_AZUL"
+1 286.8512786631105 26.00000000000001 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+7 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+2
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 34 Consolas,-1,16,5,75,0,0,0,0,0,Bold
+LANG:10010 34 Consolas,-1,16,5,75,0,0,0,0,0,Bold
+LANG:10011 34 Consolas,-1,16,5,75,0,0,0,0,0,Bold
+LANG:10009 34 Consolas,-1,16,5,75,0,0,0,0,0,Bold
+LANG:10008 34 Consolas,-1,16,5,75,0,0,0,0,0,Bold
+LANG:10018 34 Consolas,-1,16,5,75,0,0,0,0,0,Bold
+0  284.8512786631105 33.00000000000001 398.8512786631104 67
+3 "10s" 10 0 0 2 0 -1  E "main()
+{
+  dpConnect(\"cambiar_override\", accionamiento_servo.get_ovr());  //Input.Er_Dato_3
+}
+
+void cambiar_override(string dp, float estado){
+  setValue(\"\", \"text\", estado);
+}" 0
+ "main()
+{
+  string descripcion, motivo;
+  float valor_ini, valor_fin, error;
+
+  dpGet($INST + \".Xr_OVR:_online.._value\", valor_ini);
+  getValue(\"\", \"text\", valor_fin);
+
+  if(valor_fin >= 0 && valor_fin <= 100){
+    accionamiento_servo.set_ovr(valor_fin);
+    setValue(\"\", \"text\", valor_fin);
+
+    descripcion = dpGetAlias($INST + \".\");
+    motivo = \"Cambio de valor de: \" + descripcion;
+
+    writeAuditEntry($INST + \".Xr_OVR\", valor_ini, valor_fin, error, motivo);
+  }else if (valor_fin <= 0){
+    valor_fin = 0;
+    setValue(\"\", \"text\", valor_fin);
+    descripcion = dpGetAlias($INST + \".\");
+    motivo = \"Cambio de valor de: \" + descripcion;
+
+    writeAuditEntry($INST + \".Xr_OVR\", valor_ini, valor_fin, error, motivo);
+  }else if (valor_fin >= 100){
+    valor_fin = 100;
+    setValue(\"\", \"text\", valor_fin);
+
+    descripcion = dpGetAlias($INST + \".\");
+    motivo = \"Cambio de valor de: \" + descripcion;
+
+    writeAuditEntry($INST + \".Xr_OVR\", valor_ini, valor_fin, error, motivo);
+  }
+}" 0
+
+29 12
+"txf_enc_alarmas"
+"MEDIANO_AZUL"
+1 19.85127866311046 -98.13764303977351 E E E 1 E 1 E N "_3DText" E N "_Transparent" E E
+ E E
+11 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+5
+"text" "string VELOCIDAD AUTO"
+"styleSheet" "string "
+"alignment" "enum 132"
+"lineWidth" "int 0"
+"layoutAlignment" "AlignNone"
+6
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,12,5,75,0,0,0,0,0,Negrita
+LANG:10011 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10018 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  17.85127866311046 38.8258785151869 185.8512786631105 56.8258785151869
+5 Label
+0
+E29 13
+"Label1"
+"MEDIANO_AZUL"
+1 322 153.0364784450396 E E E 1 E 1 E N "_3DText" E N "_Transparent" E E
+ E E
+12 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+5
+"text" "string Hz"
+"styleSheet" "string "
+"alignment" "enum 132"
+"lineWidth" "int 0"
+"layoutAlignment" "AlignNone"
+6
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,12,5,75,0,0,0,0,0,Negrita
+LANG:10011 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10018 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  404 39 436 61
+5 Label
+0
+E0
+LAYER, 1 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 2 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 3 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 4 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 5 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 6 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 7 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+0

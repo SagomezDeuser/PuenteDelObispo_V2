@@ -1,0 +1,26 @@
+<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg">
+ <!-- Created with Method Draw - http://github.com/duopixel/Method-Draw/ -->
+
+ <g>
+  <title>background</title>
+  <rect fill="none" id="canvas_background" height="102" width="102" y="-1" x="-1"/>
+  <g display="none" overflow="visible" y="0" x="0" height="100%" width="100%" id="canvasGrid">
+   <rect fill="url(#gridpattern)" stroke-width="0" y="0" x="0" height="100%" width="100%"/>
+  </g>
+ </g>
+ <g>
+  <title>Layer 1</title>
+  <!-- Created with Method Draw - http://github.com/duopixel/Method-Draw/ -->
+  <g transform="matrix(0.4444444709353981,0,0,0.4444444709353981,0,0) " id="svg_10">
+   <title transform="translate(-20,-7.499999523162842) translate(-530.9999389648438,-337.4999694824219) translate(552.5,0) translate(0,349.9999694824219) ">background</title>
+   <rect x="0.500061" y="4" width="202" height="202" id="svg_8" fill="none"/>
+   <g id="svg_7" display="none">
+    <rect id="svg_11" width="580" height="400" x="1.500061" y="5" stroke-width="0" fill="url(#gridpattern)"/>
+   </g>
+  </g>
+  <metadata transform="translate(-20,-7.499999523162842) translate(-530.9999389648438,-337.4999694824219) translate(552.5,0) translate(0,349.9999694824219) matrix(0.4444444709353981,0,0,0.4444444709353981,-0.8333672020154249,-2.7777779102325293) ">Etiquette IconshashactioncomputericonsAndy FitzsimonAndy FitzsimonAndy Fitzsimonimage/svg+xmlen</metadata>
+  <metadata transform="translate(-20,-7.499999523162842) translate(-530.9999389648438,-337.4999694824219) translate(552.5,0) translate(0,349.9999694824219) matrix(0.4444444709353981,0,0,0.4444444709353981,-0.8333672020154249,-2.7777779102325293) ">Svg Vector Icons : http://www.onlinewebfonts.com/icon</metadata>
+  <metadata transform="translate(-20,-7.499999523162842) translate(-530.9999389648438,-337.4999694824219) translate(552.5,0) translate(0,349.9999694824219) matrix(0.4444444709353981,0,0,0.4444444709353981,-0.8333672020154249,-2.7777779102325293) ">Svg Vector Icons : http://www.onlinewebfonts.com/icon</metadata>
+  <path d="m45.555621,6.599805c-21.399023,0 -38.720522,17.526405 -38.720522,39.1785c0,21.636099 17.321499,39.170478 38.720522,39.17846c21.383246,-0.007982 38.712647,-17.542361 38.720553,-39.17846c-0.007907,-21.652095 -17.337308,-39.1785 -38.720553,-39.1785zm0,69.138035c-16.349539,-0.031987 -29.585637,-13.424627 -29.617251,-29.959535c0.039511,-16.542912 13.267712,-29.935553 29.625162,-29.967526c16.34165,0.031973 29.577753,13.424614 29.609371,29.967526c-0.039511,16.534908 -13.27561,29.927548 -29.617282,29.959535z" fill="#014898" id="svg_6"/>
+ </g>
+</svg>

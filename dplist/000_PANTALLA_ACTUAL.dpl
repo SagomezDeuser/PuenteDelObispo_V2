@@ -1,0 +1,17 @@
+# ascii dump of database
+
+# DpType
+TypeName
+000_PANTALLA_ACTUAL.000_PANTALLA_ACTUAL	1#4
+	pantalla_actual	25#5
+# ascii dump of database
+
+# Datapoint/DpId
+DpName	TypeName	ID
+_ds_000_PANTALLA_ACTUAL	_DynamicDptSettings	40190
+
+# DpValue
+Manager/User	ElementName	TypeName	_original.._value	_original.._status64	_original.._stime
+ASC (1)/0	_ds_000_PANTALLA_ACTUAL.symbols	_DynamicDptSettings		0x8300000000000101	25.04.2022 09:22:03.410
+ASC (1)/0	_ds_000_PANTALLA_ACTUAL.symboldefault	_DynamicDptSettings	""	0x8300000000000101	25.04.2022 09:22:03.411
+ASC (1)/0	_ds_000_PANTALLA_ACTUAL.trendElements	_DynamicDptSettings		0x8300000000000101	25.04.2022 09:22:03.411

@@ -1,0 +1,200 @@
+V 14
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+PANEL,-1 -1 500 500 N "white" 1
+"$INST"
+E E E E E 1 -1 -1 0  44.14843184654396 29
+""0  1
+E "lib_siwarex_500 c = lib_siwarex_500($INST,\"\");
+
+const mapping paneles = makeMapping(0, \"CELULA_PESAJE_COMM\",
+                                    1, \"CELULA_PESAJE_PARAM_SERVICIO\",
+                                    2, \"CELULA_PESAJE_CALIB_SERVICIO\");
+
+mapping get_mapa_nom_paneles_config(){
+  return (paneles);
+}
+
+void cambiar_panel_activo_config(int clave)
+{
+  string ruta_compartida = \"vision/faceplates/999_LIB_SIWAREX_500/\";
+  mapping paneles_config = get_mapa_nom_paneles_config();
+  string nombre = paneles_config.value(clave, \"\");
+  string nombre_1 = myModuleName();
+  RootPanelOnModule(ruta_compartida + nombre + \".pnl\", nombre, nombre_1, makeDynString(\"$INST:\"+$INST));
+}
+" 0
+ 4
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+"pdpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10001 0 
+LANG:10010 0 
+13 5
+"btn_parametros_avanzados"
+"btn_formulario_1"
+1 106.0394714065412 238.5 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Button" E E
+ E E
+4 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+1
+"layoutAlignment" "AlignNone"
+6
+LANG:10001 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+0  104.0394714065412 182.5 395.0394714065412 305.5
+
+T 
+6
+LANG:10001 19 ADVANCED PARAMETERS
+LANG:10010 21 PARÁMETROS AVANZADOS
+LANG:10011 20 ERWEITERTE PARAMETER
+LANG:10009 20 PARAMÈTRES AVANCÉS
+LANG:10008 18 PARAMETRI AVANZATI
+LANG:10018 22 PARÁMETROS AVANÇADOS
+"main(mapping event)
+{
+  cambiar_panel_activo_config(1);
+}" 0
+ E E E
+13 6
+"btn_comunicaciones"
+"btn_formulario_1"
+1 106.0394714065412 92 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Button" E E
+ E E
+5 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+1
+"layoutAlignment" "AlignNone"
+6
+LANG:10001 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+0  104.0394714065412 36 395.0394714065412 159
+
+T 
+6
+LANG:10001 14 COMMUNICATIONS
+LANG:10010 14 COMUNICACIONES
+LANG:10011 14 KOMMUNIKATIONS
+LANG:10009 14 COMMUNICATIONS
+LANG:10008 13 COMUNICAZIONI
+LANG:10018 13 COMUNICAÇAOS
+"main(mapping event)
+{
+  cambiar_panel_activo_config(0);
+}" 0
+ E E E
+13 7
+"PUSH_BUTTON1"
+"btn_formulario_1"
+1 106.0394714065412 385 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Button" E E
+ E E
+6 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+1
+"layoutAlignment" "AlignNone"
+6
+LANG:10001 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+0  104.0394714065412 329 395.0394714065412 452
+
+T 
+6
+LANG:10001 11 CALIBRATION
+LANG:10010 12 CALIBRACIÓN
+LANG:10011 7 EICHUNG
+LANG:10009 10 ETALONNAGE
+LANG:10008 8 TARATURA
+LANG:10018 10 CALIBRAGEM
+"main(mapping event)
+{
+  cambiar_panel_activo_config(2);
+}" 0
+ E E E
+0
+LAYER, 1 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 2 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 3 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 4 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 5 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 6 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 7 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+0

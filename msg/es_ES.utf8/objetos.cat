@@ -1,0 +1,198 @@
+txf_borrar_fila,Borrar fila concreta: Doble click en ella
+txf_borrar_tabla,Borrar tabla completa
+txf_valor_act,Valor actual
+txf_referencia,SELECCIONA EL DATAPOINT DE REFERENCIA
+txf_copiado,SELECCIONA LOS DATAPOINTS A MAPEAR
+txf_tabla_copiado,DATAPOINTS QUE RECIBIRÁN LA CONFIGURACIÓN
+txf_config_alarmas,Configuracion Alarmas
+txf_hh,Muy alta (HH)
+txf_h,Alta (H)
+txf_l,Baja (L)
+txf_ll,Muy baja (LL)
+txf_conf_address,¿Esta seguro que desea activar/desactivar los address?
+txf_conf_pausa,¿Esta seguro que desea pausar?
+ptxf_interfaz,Interfaz
+ptxf_pantalla,Pantalla
+txf_conf_ll,¿Esta seguro que desea activar/desactivar el low level comparsion?
+txf_conf_map,¿Esta seguro que desea mapear todos los DP's del DPT seleccionado?
+txf_conf_mdp,¿Esta seguro que desea modificar el MDP seleccionado?
+txf_conf_modpg,¿Esta seguro que desea modificar el Poll Group del MDP seleccionado?
+txf_conf_pg,¿Esta seguro que desea crear el Poll Group con el nombre que aparece en el CSV? Si rechaza, conservara el del master datapoint correspondiente
+label_modo,MODO FUNCIONAMIENTO
+label_operativa,OPERATIVA MANUAL
+txf_enc_alarmas,ALARMAS
+txf_alarma,ALARMA 
+txf_ep,ESTADO PROTECCIONES
+txf_cm,CONFIRMACION MARCHA
+txf_cp,CONFIRMACION PARO
+txf_fe,FALLO EXTERNO
+label_cfm_marcha,CFM. MARCHA
+label_cfm_paro,CFM. PARO
+label_t_arranque,TIEMPO ARRANQUE
+label_t_paro,TIEMPO PARO
+txf_vf,FALLO VARIADOR
+label_csg_auto,CONSIGNA AUTO
+label_csg_manual,CONSIGNA MANUAL
+label_vel_actual,VELOCIDAD ACTUAL
+label_corriente,CORRIENTE
+label_frecuencia,FRECUENCIA
+label_cfm_marcha_f1,CFM. MARCHA AVANCE
+label_cfm_marcha_f2,CFM. MARCHA RETROCESO
+label_cfm_paro_f1,CFM. PARO AVANCE
+label_cfm_paro_f2,CFM. PARO RETROCESO
+label_t_apertura,TIEMPO APERTURA
+label_t_cierre,TIEMPO CIERRE
+txf_ca,CONFIRMACION APERTURA
+txf_cc,CONFIRMACION CIERRE
+txf_fp,FALLO POSICIONAMIENTO
+label_formula,Formula
+label_produccion,Produccion
+label_ton,Tn/h
+fecha_inicio,Fecha inicio
+acuse,Acuse
+fecha_acuse,Fecha acuse
+tag,Tag
+alias,Alias
+descripcion,Descripcion
+alarma,Alarma
+aviso,Aviso
+label_acuse_todo,ACUSAR TODAS
+label_rango,Rango
+label_dia,Día
+label_mes,Mes
+label_ano,Año
+label_cuadro,Cuadro
+label_variable,Variable
+label_graf_frec,Graficas Frecuentes
+label_intervalo,Intervalo
+label_min,Min
+zona,Zona
+detalle,Detalles
+valor,Valor
+unidad,Unidad
+label_descr_dp,Descripcion DP
+label_alias_dp,Alias DP
+label_dp,DP
+cb_address,Activar address
+cb_address_mdp,En funcion MDP
+label_vaciar,Vaciar
+para_completo,PARA Completo
+label_crear_en_funcion,Crear en funcion de
+txf_rb_vaciado_para,Vacia el PARA por completo
+txf_rb_vaciado_dpt_mdp,Vacia los Datapoint Types, incluyendo sus Master Datapoints
+txf_rb_vaciado_dpt,Vacia los Datapoint Types, conservando sus Master Datapoints
+txf_rb_vaciado_dpt_csv,Vacia los Datapoint Types que tengan instancias en el CSV, conservando sus Master Datapoints
+label_buscar,BUSCAR
+cb_var_interna,VARIABLES INTERNAS
+cb_selec_multiple,Seleccion multiple
+label_periferia,Periferia
+label_referencia,Referencia
+label_driver,Drivers
+label_conexion,Conexion
+label_transformacion,Tipo de transformacion
+label_direccion,Direccion
+cb_activo,Activo 
+label_origen_address,Origen address
+clase,Clase
+dp_alarma,DP Alarma
+label_alarma_came,Came
+label_alarma_went,Went
+label_clase_alarma,Clase Alarma
+label_config,Configuracion 
+label_config_1,Configuracion 
+label_config_2,Configuracion 
+label_config_3,Configuracion 
+label_config_4,Configuracion 
+label_escala,Escala
+label_escala_1,Escala
+label_escala_2,Escala
+label_escala_3,Escala
+label_escala_4,Escala
+label_estable,Estable
+label_estable_1,Estable
+label_estable_2,Estable
+label_estable_3,Estable
+label_estable_4,Estable
+label_division,Division
+label_division_1,Division
+label_division_2,Division
+label_division_3,Division
+label_division_4,Division
+label_cero,Cero
+label_cero_1,Cero
+label_cero_2,Cero
+label_cero_3,Cero
+label_cero_4,Cero
+label_const_peso,Constantes de Peso
+label_const_peso_1,Constantes de Peso
+label_const_peso_2,Constantes de Peso
+label_const_peso_3,Constantes de Peso
+label_const_peso_4,Constantes de Peso
+label_cero_5,Cero
+label_cero_6,Cero
+label_cero_7,Cero
+label_cero_8,Cero
+label_cero_9,Cero
+label_ganancia,Ganancia
+label_ganancia_1,Ganancia
+label_ganancia_2,Ganancia
+label_ganancia_3,Ganancia
+label_ganancia_4,Ganancia
+label_calibracion,Calibracion
+label_calibracion_1,Calibracion
+label_calibracion_2,Calibracion
+label_calibracion_3,Calibracion
+label_calibracion_4,Calibracion
+label_peso_ajuste,Peso ajuste
+label_peso_ajuste_1,Peso ajuste
+label_peso_ajuste_2,Peso ajuste
+label_peso_ajuste_3,Peso ajuste
+label_peso_ajuste_4,Peso ajuste
+label_punto_ajuste,Puntos ajuste
+label_punto_ajuste_1,Puntos ajuste
+label_punto_ajuste_2,Puntos ajuste
+label_punto_ajuste_3,Puntos ajuste
+label_punto_ajuste_4,Puntos ajuste
+label_vel,Velocidad %
+codigo,Codigo
+nombre,Nombre
+ult_mod,Ultima modificacion
+label_buscar_nom,Buscar por nombre
+label_mod_accion,MODO ACCIONAMIENTOS
+label_secuencia,SECUENCIA
+label_supervision,SUPERVISION
+txf_cm_f1,CONFIRMACION MARCHA AV
+txf_cm_f2,CONFIRMACION MARCHA RT
+txf_cp_f1,CONFIRMACION PARO AV
+txf_cp_f2,CONFIRMACION PARO RT
+txf_estados,ESTADOS
+txf_estable,ESTABLE
+txf_tara,TARA
+txf_ptara,PRESELECCIÓN TARA
+txf_error_wp,ERROR WP321
+txf_vacia,VACÍA
+label_t_apertura_1,TIEMPO APERTURA SENTIDO 1
+label_t_apertura_2,TIEMPO APERTURA SENTIDO 2
+label_t_cierre_1,TIEMPO CIERRE  SENTIDO 1
+label_t_cierre_2,TIEMPO CIERRE  SENTIDO 2
+txf_ca_1,CONFIRMACION APERTURA SENTIDO 1
+txf_ca_2,CONFIRMACION APERTURA SENTIDO 2
+txf_cc_1,CONFIRMACION ABAJO DESDE SENTIDO 1
+txf_cc_2,CONFIRMACION ABAJO DESDE SENTIDO 2
+txf_oc_activas,ACTIVAS
+txf_oc_desactivas,DESACTIVAS
+txf_oc_acusadas,ACUSADAS
+txf_oc_no_acusadas,NO ACUSADAS
+label_num,Nº Incidencia
+label_nombre,Nombre
+label_usuario,Usuario
+label_prioridad,Prioridad
+label_fecha_hora,Fecha / Hora
+label_hora,Hora
+label_lugar_incidencia,Lugar de la incidencia
+label_elemento,Elemento que la sufre
+label_descripcion_incidencia,Descripción de la incidencia
+label_causa_incidencia,Causa de la incidencia
+label_descripcion_reparacion,Descripción de la reparación realizada
+btn_modificar_fecha,Modificar fecha
+label_orden,Ordenar por:

@@ -1,0 +1,170 @@
+V 14
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10005 0 
+LANG:10018 0 
+LANG:10008 0 
+LANG:10011 0 
+PANEL,-1 -1 83 72 N "_3DFace" 5
+"$DP_AUTO"
+"$DP_AUTO_HMI"
+"$DP_MARCHA"
+"$DP_PAUSA"
+"$TIPO_BUTTON"
+"main()
+{
+  parametrosOK = parametrosRellenos(); //Comprobamos si todos los $ estan rellenos. Si no se usan, se usará NULL.
+}
+" 0
+ E E E E 1 -1 -1 0  10.99999999999756 9.579451345987717
+""0  1
+E "bool parametrosOK = FALSE;
+bool parametrosRellenos()//Comprobamos que todos los parametros del objeto esten rellenos, sino el objeto será de color morado.
+{
+  if ($TIPO_BUTTON != \"\" && $DP_MARCHA && $DP_AUTO && $DP_AUTO_HMI)
+  {
+    return TRUE;// Si todos los parametros están rellenos devolvemos TRUE.
+  }
+  else
+  {
+    btn_accionamiento.color(\"LIB_IRC_MORADO_01\");
+    return FALSE;
+  }
+
+}
+" 0
+ 4
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+"pdpi" "102.299"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10001 0 
+LANG:10010 0 
+13 1
+"btn_accionamiento"
+"btn_formulario_1"
+1 -0.1978417266169051 -8.960031958769056 E E E 1 E 1 E N "LIB_DEUSER_BLANCO" E N "LIB_DEUSER_BLANCO" E E
+ E E
+0 0 0 0 0 0
+E E E
+1
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10005 0 
+LANG:10018 0 
+LANG:10008 0 
+LANG:10011 0 
+LANG:10009 0 
+
+2
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+7
+LANG:10001 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10005 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+0  3.50000000000046 1.67540433925056 79.49999999999955 70.30712031558167
+
+P 
+4294967295
+"pictures/iconos/botoneras/botonera_secuencia/auto_off.svg"
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10005 0 
+LANG:10018 0 
+LANG:10008 0 
+LANG:10011 0 
+LANG:10009 0 
+"main(mapping event)
+{
+  string   _tipoButton = $TIPO_BUTTON; //Establece que tipo de boton es 0:RESET ; 1:SET ; 2:PULSO ; 3:INVIERTE_BIT
+
+
+  if (parametrosOK)
+  {
+    switch (_tipoButton)
+    {
+      case (\"RESET\"): //RESET
+      {
+        dpSetWait($DP_MARCHA, FALSE);
+
+        break;
+      }
+
+      case (\"SET\"): //SET
+      {
+        dpSetWait($DP_MARCHA, TRUE);
+
+        break;
+      }
+
+      case (\"PULSO\"): //PULSO
+      {
+        pulsoBit($DP_AUTO);
+
+        break;
+
+      }
+
+      case (\"INVERTIR\"): //INVIERTE BIT
+      {
+        invertirBit($DP_PAUSA);
+
+        break;
+      }
+    }
+  }
+}
+
+
+" 0
+ E E E
+0
+LAYER, 1 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 2 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 3 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 4 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 5 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 6 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 7 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+0

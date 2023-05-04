@@ -1,0 +1,1873 @@
+V 14
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+PANEL,-1 -1 447 402 N "White" 1
+"$NUMDEPOSITO"
+"main()
+{
+  titleBar(0);
+}" 0
+ E E E E 1 -1 -1 0  0 0
+""0  1
+E E 4
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+"pdpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10001 0 
+LANG:10010 0 
+6 80
+"RECTANGLE2"
+""
+1 20 10 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_AZUL_03" E E
+ E E
+79 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+5
+"transparentForMouseInGedi" ""
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 2 3 2 1 E 1.389095106458176 0 2.9021484375 218.2567153035229 175.7550201976875 1 E 20 10 140 50
+6 81
+"RECTANGLE3"
+""
+1 20 10 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_AZUL_03" E E
+ E E
+80 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+5
+"transparentForMouseInGedi" ""
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 2 3 2 1 E 1.389095106458176 0 2.9021484375 8.218097870836473 175.7550201976875 1 E 20 10 140 50
+6 59
+"RECTANGLE1"
+""
+1 20 10 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_AZUL_03" E E
+ E E
+58 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+5
+"transparentForMouseInGedi" ""
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 2 3 2 1 E 1.389095106458176 0 2.9021484375 218.2567153035229 38.978515625 1 E 20 10 140 50
+6 40
+"fondo"
+""
+1 20 10 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_AZUL_03" E E
+ E E
+39 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+5
+"transparentForMouseInGedi" ""
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 2 3 2 1 E 1.389095106458176 0 2.9021484375 8.218097870836479 38.978515625 1 E 20 10 140 50
+14 19
+"TEXT_FIELD2"
+"txf_standard_5"
+1 110 140 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+18 0 0 0 0 0
+E E E
+1
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+6
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+"focusPolicy" "StrongFocus"
+"showFocus" "0"
+6
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,11,5,75,0,0,0,0,0,Negrita
+LANG:10011 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10018 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  107.7127897759335 132.5845892212674 182.9409253444221 155.1297856957757
+2 "8s" 8 0 0 9 0 -1  E "main()
+{
+  //bloqueo_usuario();//Funcion para inhabilitar si el usuario es el indicado.
+  dpConnect(\"cambiar_valor\", \"_14_DB_Deposito_\"+$NUMDEPOSITO+\".r_SP_Nivel_HH\");
+}
+
+//Cambia el valor que muestra elemento
+cambiar_valor(string dp, float valor)
+{
+  this.text = valor;
+}
+" 0
+ E
+14 24
+"TEXT_FIELD3"
+"txf_standard_5"
+1 109.7805036402103 179.6286476462044 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+23 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+5
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,11,5,75,0,0,0,0,0,Negrita
+LANG:10011 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10018 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  107.7127897759335 152.4307430674212 182.9409253444221 174.9759395419295
+3 "8s" 8 0 0 9 0 -1  "main(mapping event)
+{
+//   float maximo, minimo;
+//   bool permiso = permisos_usuario_operacion(12, FALSE);
+  teclado(\"_14_DB_Deposito_\"+$NUMDEPOSITO+\".r_SP_Nivel_HH\", \"keypad\", FALSE, 0, \"\", 100000, 0);
+//   if (permiso)
+//   {
+//     dpGet(pid.get_setpoint_maximo(), maximo,
+//           pid.get_setpoint_minimo(), minimo);
+//     teclado(pid.get_setpoint(), \"keypad\", FALSE, 0, \"\", maximo, 0);
+//   }
+}
+" 0
+ "main()
+{
+  //bloqueo_usuario();//Funcion para inhabilitar si el usuario es el indicado.
+  dpConnect(\"cambiar_valor\", \"_14_DB_Deposito_\"+$NUMDEPOSITO+\".r_SP_Nivel_HH\");
+}
+
+//Cambia el valor que muestra elemento
+cambiar_valor(string dp, float valor){
+  this.text = valor;
+}
+" 0
+ E
+13 29
+"btn_play"
+""
+1 41.78660626748247 104.5820811035966 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "LIB_IRC_AZUL_01" E E
+ E E
+28 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+2
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+6
+LANG:10001 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,11,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+0  40.09395920865894 102.3721234032931 120.0939592086589 127.3553013127695
+
+T 
+2
+LANG:10001 0 
+LANG:10010 9 Habilitar
+"main(mapping event)
+{
+//   bool permiso = permisos_usuario_operacion(11, FALSE);
+//   if(permiso) dpSet(\"_14_DB_Deposito_\"+$NUMDEPOSITO+\".d_Hab_Al_Nivel_HH\", TRUE);
+  dpSet(\"_14_DB_Deposito_\"+$NUMDEPOSITO+\".d_Hab_Al_Nivel_HH\", TRUE);
+}
+" 0
+ E E "main()
+{
+   dpConnect(\"cambiar_seleccion\", \"_14_DB_Deposito_\"+$NUMDEPOSITO+\".d_Hab_Al_Nivel_HH\");
+}
+void cambiar_seleccion(string dp1, bool valor){
+  if(valor){
+    this.backCol(\"LIB_IRC_VERDE_01\");
+    this.foreCol(\"LIB_IRC_AZUL_01\");
+    }
+  else{
+    this.backCol(\"LIB_IRC_AZUL_01\");
+    this.foreCol(\"LIB_IRC_BLANCO\");
+  }
+}" 0
+
+13 30
+"btn_stop"
+""
+1 118.727397700075 104.6071616945114 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "LIB_IRC_AZUL_01" E E
+ E E
+29 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+2
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+6
+LANG:10001 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,11,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+0  116.7273977000752 102.3972039942079 197.9409253444221 127.3803819036844
+
+T 
+2
+LANG:10001 0 
+LANG:10010 12 Deshabilitar
+"main(mapping event)
+{
+//   bool permiso = permisos_usuario_operacion(11, FALSE);
+
+//   if (permiso) dpSet(\"_14_DB_Deposito_\"+$NUMDEPOSITO+\".d_Hab_Al_Nivel_HH\", FALSE);
+  dpSet(\"_14_DB_Deposito_\"+$NUMDEPOSITO+\".d_Hab_Al_Nivel_HH\", FALSE);
+}
+" 0
+ E E "main()
+{
+   dpConnect(\"cambiar_seleccion\", + \"_14_DB_Deposito_\"+$NUMDEPOSITO+\".d_Hab_Al_Nivel_HH\");
+}
+void cambiar_seleccion(string dp1, bool valor){
+  if(!valor){
+    this.backCol(\"LIB_IRC_VERDE_01\");
+    this.foreCol(\"LIB_IRC_AZUL_01\");
+    }
+  else{
+    this.backCol(\"LIB_IRC_AZUL_01\");
+    this.foreCol(\"LIB_IRC_BLANCO\");
+  }
+}" 0
+
+13 35
+"PUSH_BUTTON1"
+""
+1 -22.44502242854297 115.300040295028 E E E 1 E 1 E N "LIB_IRC_AZUL_03" E N "LIB_IRC_AZUL_03" E E
+ E E
+34 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+2
+"hoverbclr" "N \"_Transparent\""
+"layoutAlignment" "AlignNone"
+6
+LANG:10001 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+0  117.8299775714571 103.482442339383 121.8299775714571 126.2951435585093
+
+T 
+2
+LANG:10001 0 
+LANG:10010 9 HABILITAR
+E E E E
+2 38
+"PRIMITIVE_TEXT2"
+""
+1 223 23 E E E 1 E 1 E N {1,72,152} E N "_Window" E E
+ E E
+37 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E 0.3411517025320255 0 0.4230769230769231 -32.46006525700899 123.1264182277523 0 E 223 23 435 75
+0 2 2 "0s" 0 0 0 72 0 0  223 23 1
+2
+LANG:10001 34 Tahoma,-1,16,5,50,0,0,0,0,0,Normal
+LANG:10010 35 Tahoma,-1,11,5,75,0,0,0,0,0,Negrita
+0 2
+LANG:10001 13 Temp. Entrada
+LANG:10010 11 Val. Actual
+2 39
+"PRIMITIVE_TEXT3"
+""
+1 223 23 E E E 1 E 1 E N {1,72,152} E N "_Window" E E
+ E E
+38 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E 0.2833483017694767 0 0.423076923076923 -20.34654991466616 142.9725720739061 0 E 223 23 435 75
+0 2 2 "0s" 0 0 0 72 0 0  223 23 1
+2
+LANG:10001 34 Tahoma,-1,16,5,50,0,0,0,0,0,Normal
+LANG:10010 35 Tahoma,-1,11,5,75,0,0,0,0,0,Negrita
+0 2
+LANG:10001 13 Temp. Entrada
+LANG:10010 8 Setpoint
+2 42
+"ptxf_unidad"
+""
+1 74 2 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_BLANCO" E E
+ E E
+41 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+6
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E 0.8496009923269883 0 0.85181346519164 124.7776340503391 136.1908662717968 0 E 74 2 92 16
+0 2 2 "0s" 0 0 0 72 0 0  74 2 1
+6
+LANG:10001 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,11,5,75,0,0,0,0,0,Negrita
+LANG:10011 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10009 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10008 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10018 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+0 6
+LANG:10001 2 _-
+LANG:10010 1 t
+LANG:10011 2 _-
+LANG:10009 2 _-
+LANG:10008 2 _-
+LANG:10018 2 _-
+2 45
+"PRIMITIVE_TEXT6"
+""
+1 74 2 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_BLANCO" E E
+ E E
+44 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+6
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E 0.8496009923269883 0 0.85181346519164 124.7776340503391 156.0370201179506 0 E 74 2 92 16
+0 2 2 "0s" 0 0 0 72 0 0  74 2 1
+6
+LANG:10001 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,11,5,75,0,0,0,0,0,Negrita
+LANG:10011 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10009 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10008 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10018 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+0 6
+LANG:10001 2 _-
+LANG:10010 1 t
+LANG:10011 2 _-
+LANG:10009 2 _-
+LANG:10008 2 _-
+LANG:10018 2 _-
+2 47
+"txf_zona"
+""
+1 178 46 E E E 1 E 1 E N "LIB_DEUSER_BLANCO" E N "LIB_IRC_AZUL_01" E E
+ E E
+46 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+5
+"maximumSize" "-1 23"
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 0 3 2 1 E 1.011679161051213 0 0.6926406926406926 -141.1379653226938 38.90174243533396 1 E 178 46 338 79
+0 2 2 "0s" 0 0 0 73 0 0  178 46 1
+2
+LANG:10001 34 Tahoma,-1,16,5,50,0,0,0,0,0,Normal
+LANG:10010 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+0 2
+LANG:10001 20 SINÓPTICO SECADEROS
+LANG:10010 21 Alarma nivel muy alto
+2 48
+"PRIMITIVE_TEXT7"
+""
+1 178 46 E E E 1 E 1 E N "LIB_DEUSER_BLANCO" E N "LIB_IRC_AZUL_01" E E
+ E E
+47 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+5
+"maximumSize" "-1 23"
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+  this.text(\"DEPÓSITO \" + $NUMDEPOSITO);
+}" 0
+ E 0 0 3 2 1 E 0.9157708877587806 0 0.6926406926406926 -11.53056006246777 -10.09825756466604 1 E 178 46 338 79
+0 2 2 "0s" 0 0 0 73 0 0  178 46 1
+2
+LANG:10001 34 Tahoma,-1,16,5,50,0,0,0,0,0,Normal
+LANG:10010 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+0 2
+LANG:10001 20 SINÓPTICO SECADEROS
+LANG:10010 10 DEPÓSITO 
+14 49
+"TEXT_FIELD4"
+"txf_standard_5"
+1 319.897080772949 139.3985716611631 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+48 0 0 0 0 0
+E E E
+1
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+6
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+"focusPolicy" "StrongFocus"
+"showFocus" "0"
+6
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,11,5,75,0,0,0,0,0,Negrita
+LANG:10011 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10018 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  317.6098705488824 131.9831608824305 392.8380061173711 154.5283573569388
+2 "8s" 8 0 0 9 0 -1  E "main()
+{
+  //bloqueo_usuario();//Funcion para inhabilitar si el usuario es el indicado.
+  dpConnect(\"cambiar_valor\", \"_14_DB_Deposito_\"+$NUMDEPOSITO+\".r_SP_Nivel_H\");
+}
+
+//Cambia el valor que muestra elemento
+cambiar_valor(string dp, float valor)
+{
+  this.text = valor;
+}
+" 0
+ E
+14 50
+"TEXT_FIELD5"
+"txf_standard_5"
+1 319.6775844131593 179.0272193073675 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+49 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+5
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,11,5,75,0,0,0,0,0,Negrita
+LANG:10011 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10018 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  317.6098705488824 151.8293147285843 392.8380061173711 174.3745112030926
+3 "8s" 8 0 0 9 0 -1  "main(mapping event)
+{
+  teclado(\"_14_DB_Deposito_\"+$NUMDEPOSITO+\".r_SP_Nivel_H\", \"keypad\", FALSE, 0, \"\", 100000, 0);
+//   float maximo, minimo;
+//   bool permiso = permisos_usuario_operacion(12, FALSE);
+//
+//   if (permiso)
+//   {
+//     dpGet(pid.get_setpoint_maximo(), maximo,
+//           pid.get_setpoint_minimo(), minimo);
+//     teclado(pid.get_setpoint(), \"keypad\", FALSE, 0, \"\", maximo, minimo);
+//   }
+}
+" 0
+ "main()
+{
+  //bloqueo_usuario();//Funcion para inhabilitar si el usuario es el indicado.
+  dpConnect(\"cambiar_valor\", \"_14_DB_Deposito_\"+$NUMDEPOSITO+\".r_SP_Nivel_H\");
+}
+
+//Cambia el valor que muestra elemento
+cambiar_valor(string dp, float valor){
+  this.text = valor;
+}
+" 0
+ E
+13 51
+"PUSH_BUTTON2"
+""
+1 251.6836870404314 103.9806527647597 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "LIB_IRC_AZUL_01" E E
+ E E
+50 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+2
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+6
+LANG:10001 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,11,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+0  249.9910399816079 101.7706950644562 329.9910399816079 126.7538729739326
+
+T 
+2
+LANG:10001 0 
+LANG:10010 9 Habilitar
+"main(mapping event)
+{
+//   bool permiso = permisos_usuario_operacion(11, FALSE);
+//   if(permiso) dpSet(\"_14_DB_Deposito_\"+$NUMDEPOSITO+\".d_Hab_Av_Nivel_H\", TRUE);
+  dpSet(\"_14_DB_Deposito_\"+$NUMDEPOSITO+\".d_Hab_Av_Nivel_H\", TRUE);
+}
+" 0
+ E E "main()
+{
+   dpConnect(\"cambiar_seleccion\", \"_14_DB_Deposito_\"+$NUMDEPOSITO+\".d_Hab_Av_Nivel_H\");
+}
+void cambiar_seleccion(string dp1, bool valor){
+  if(valor){
+    this.backCol(\"LIB_IRC_VERDE_01\");
+    this.foreCol(\"LIB_IRC_AZUL_01\");
+    }
+  else{
+    this.backCol(\"LIB_IRC_AZUL_01\");
+    this.foreCol(\"LIB_IRC_BLANCO\");
+  }
+}" 0
+
+13 52
+"PUSH_BUTTON3"
+""
+1 328.6244784730239 104.0057333556745 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "LIB_IRC_AZUL_01" E E
+ E E
+51 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+2
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+6
+LANG:10001 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,11,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+0  326.6244784730242 101.795775655371 407.8380061173711 126.7789535648475
+
+T 
+2
+LANG:10001 0 
+LANG:10010 12 Deshabilitar
+"main(mapping event)
+{
+//   bool permiso = permisos_usuario_operacion(11, FALSE);
+
+//   if (permiso) dpSet(\"_14_DB_Deposito_\"+$NUMDEPOSITO+\".d_Hab_Av_Nivel_H\", FALSE);
+  dpSet(\"_14_DB_Deposito_\"+$NUMDEPOSITO+\".d_Hab_Av_Nivel_H\", FALSE);
+}
+" 0
+ E E "main()
+{
+   dpConnect(\"cambiar_seleccion\", + \"_14_DB_Deposito_\"+$NUMDEPOSITO+\".d_Hab_Av_Nivel_H\");
+}
+void cambiar_seleccion(string dp1, bool valor){
+  if(!valor){
+    this.backCol(\"LIB_IRC_VERDE_01\");
+    this.foreCol(\"LIB_IRC_AZUL_01\");
+    }
+  else{
+    this.backCol(\"LIB_IRC_AZUL_01\");
+    this.foreCol(\"LIB_IRC_BLANCO\");
+  }
+}" 0
+
+13 53
+"PUSH_BUTTON4"
+""
+1 187.452058344406 114.6986119561911 E E E 1 E 1 E N "LIB_IRC_AZUL_03" E N "LIB_IRC_AZUL_03" E E
+ E E
+52 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+2
+"hoverbclr" "N \"_Transparent\""
+"layoutAlignment" "AlignNone"
+6
+LANG:10001 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+0  327.7270583444061 102.8810140005461 331.7270583444061 125.6937152196724
+
+T 
+2
+LANG:10001 0 
+LANG:10010 9 HABILITAR
+E E E E
+2 54
+"PRIMITIVE_TEXT8"
+""
+1 223 23 E E E 1 E 1 E N {1,72,152} E N "_Window" E E
+ E E
+53 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E 0.3411517025320255 0 0.4230769230769231 177.43701551594 122.5249898889154 0 E 223 23 435 75
+0 2 2 "0s" 0 0 0 72 0 0  223 23 1
+2
+LANG:10001 34 Tahoma,-1,16,5,50,0,0,0,0,0,Normal
+LANG:10010 35 Tahoma,-1,11,5,75,0,0,0,0,0,Negrita
+0 2
+LANG:10001 13 Temp. Entrada
+LANG:10010 11 Val. Actual
+2 55
+"PRIMITIVE_TEXT9"
+""
+1 223 23 E E E 1 E 1 E N {1,72,152} E N "_Window" E E
+ E E
+54 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E 0.2833483017694767 0 0.423076923076923 189.5505308582828 142.3711437350692 0 E 223 23 435 75
+0 2 2 "0s" 0 0 0 72 0 0  223 23 1
+2
+LANG:10001 34 Tahoma,-1,16,5,50,0,0,0,0,0,Normal
+LANG:10010 35 Tahoma,-1,11,5,75,0,0,0,0,0,Negrita
+0 2
+LANG:10001 13 Temp. Entrada
+LANG:10010 8 Setpoint
+2 56
+"PRIMITIVE_TEXT10"
+""
+1 74 2 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_BLANCO" E E
+ E E
+55 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+6
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E 0.8496009923269883 0 0.85181346519164 334.6747148232881 135.5894379329599 0 E 74 2 92 16
+0 2 2 "0s" 0 0 0 72 0 0  74 2 1
+6
+LANG:10001 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,11,5,75,0,0,0,0,0,Negrita
+LANG:10011 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10009 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10008 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10018 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+0 6
+LANG:10001 2 _-
+LANG:10010 1 t
+LANG:10011 2 _-
+LANG:10009 2 _-
+LANG:10008 2 _-
+LANG:10018 2 _-
+2 57
+"PRIMITIVE_TEXT11"
+""
+1 74 2 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_BLANCO" E E
+ E E
+56 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+6
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E 0.8496009923269883 0 0.85181346519164 334.6747148232881 155.4355917791137 0 E 74 2 92 16
+0 2 2 "0s" 0 0 0 72 0 0  74 2 1
+6
+LANG:10001 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,11,5,75,0,0,0,0,0,Negrita
+LANG:10011 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10009 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10008 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10018 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+0 6
+LANG:10001 2 _-
+LANG:10010 1 t
+LANG:10011 2 _-
+LANG:10009 2 _-
+LANG:10008 2 _-
+LANG:10018 2 _-
+2 58
+"PRIMITIVE_TEXT12"
+""
+1 178 46 E E E 1 E 1 E N "LIB_DEUSER_BLANCO" E N "LIB_IRC_AZUL_01" E E
+ E E
+57 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+5
+"maximumSize" "-1 23"
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 0 3 2 1 E 1.011679161051213 0 0.6926406926406926 68.75911545025519 38.30031409649708 1 E 178 46 338 79
+0 2 2 "0s" 0 0 0 73 0 0  178 46 1
+2
+LANG:10001 34 Tahoma,-1,16,5,50,0,0,0,0,0,Normal
+LANG:10010 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+0 2
+LANG:10001 20 SINÓPTICO SECADEROS
+LANG:10010 16 Aviso nivel alto
+14 60
+"TEXT_FIELD6"
+"txf_standard_5"
+1 110 276 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+59 0 0 0 0 0
+E E E
+1
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+6
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+"focusPolicy" "StrongFocus"
+"showFocus" "0"
+6
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,11,5,75,0,0,0,0,0,Negrita
+LANG:10011 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10018 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  107.7127897759335 268.5845892212674 182.9409253444221 291.1297856957757
+2 "8s" 8 0 0 9 0 -1  E "main()
+{
+  //bloqueo_usuario();//Funcion para inhabilitar si el usuario es el indicado.
+  dpConnect(\"cambiar_valor\", \"_14_DB_Deposito_\"+$NUMDEPOSITO+\".r_SP_Nivel_LL\");
+}
+
+//Cambia el valor que muestra elemento
+cambiar_valor(string dp, float valor)
+{
+  this.text = valor;
+}
+" 0
+ E
+14 61
+"TEXT_FIELD7"
+"txf_standard_5"
+1 109.7805036402103 315.6286476462044 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+60 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+5
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,11,5,75,0,0,0,0,0,Negrita
+LANG:10011 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10018 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  107.7127897759335 288.4307430674212 182.9409253444221 310.9759395419295
+3 "8s" 8 0 0 9 0 -1  "main(mapping event)
+{
+//   float maximo, minimo;
+//   bool permiso = permisos_usuario_operacion(12, FALSE);
+  teclado(\"_14_DB_Deposito_\"+$NUMDEPOSITO+\".r_SP_Nivel_LL\", \"keypad\", FALSE, 0, \"\", 100000, 0);
+//   if (permiso)
+//   {
+//     dpGet(pid.get_setpoint_maximo(), maximo,
+//           pid.get_setpoint_minimo(), minimo);
+//     teclado(pid.get_setpoint(), \"keypad\", FALSE, 0, \"\", maximo, 0);
+//   }
+}
+" 0
+ "main()
+{
+  //bloqueo_usuario();//Funcion para inhabilitar si el usuario es el indicado.
+  dpConnect(\"cambiar_valor\", \"_14_DB_Deposito_\"+$NUMDEPOSITO+\".r_SP_Nivel_LL\");
+}
+
+//Cambia el valor que muestra elemento
+cambiar_valor(string dp, float valor){
+  this.text = valor;
+}
+" 0
+ E
+13 62
+"PUSH_BUTTON5"
+""
+1 41.78660626748247 240.5820811035966 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "LIB_IRC_AZUL_01" E E
+ E E
+61 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+2
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+6
+LANG:10001 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,11,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+0  40.09395920865894 238.3721234032931 120.0939592086589 263.3553013127695
+
+T 
+2
+LANG:10001 0 
+LANG:10010 9 Habilitar
+"main(mapping event)
+{
+//   bool permiso = permisos_usuario_operacion(11, FALSE);
+//   if(permiso) dpSet(\"_14_DB_Deposito_\"+$NUMDEPOSITO+\".d_Hab_Al_Nivel_LL\", TRUE);
+  dpSet(\"_14_DB_Deposito_\"+$NUMDEPOSITO+\".d_Hab_Al_Nivel_LL\", TRUE);
+}
+" 0
+ E E "main()
+{
+   dpConnect(\"cambiar_seleccion\", \"_14_DB_Deposito_\"+$NUMDEPOSITO+\".d_Hab_Al_Nivel_LL\");
+}
+void cambiar_seleccion(string dp1, bool valor){
+  if(valor){
+    this.backCol(\"LIB_IRC_VERDE_01\");
+    this.foreCol(\"LIB_IRC_AZUL_01\");
+    }
+  else{
+    this.backCol(\"LIB_IRC_AZUL_01\");
+    this.foreCol(\"LIB_IRC_BLANCO\");
+  }
+}" 0
+
+13 63
+"PUSH_BUTTON6"
+""
+1 118.727397700075 240.6071616945114 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "LIB_IRC_AZUL_01" E E
+ E E
+62 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+2
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+6
+LANG:10001 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,11,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+0  116.7273977000752 238.3972039942079 197.9409253444221 263.3803819036844
+
+T 
+2
+LANG:10001 0 
+LANG:10010 12 Deshabilitar
+"main(mapping event)
+{
+//   bool permiso = permisos_usuario_operacion(11, FALSE);
+
+//   if (permiso) dpSet(\"_14_DB_Deposito_\"+$NUMDEPOSITO+\".d_Hab_Al_Nivel_LL\", FALSE);
+  dpSet(\"_14_DB_Deposito_\"+$NUMDEPOSITO+\".d_Hab_Al_Nivel_LL\", FALSE);
+}
+" 0
+ E E "main()
+{
+   dpConnect(\"cambiar_seleccion\", + \"_14_DB_Deposito_\"+$NUMDEPOSITO+\".d_Hab_Al_Nivel_LL\");
+}
+void cambiar_seleccion(string dp1, bool valor){
+  if(!valor){
+    this.backCol(\"LIB_IRC_VERDE_01\");
+    this.foreCol(\"LIB_IRC_AZUL_01\");
+    }
+  else{
+    this.backCol(\"LIB_IRC_AZUL_01\");
+    this.foreCol(\"LIB_IRC_BLANCO\");
+  }
+}" 0
+
+13 64
+"PUSH_BUTTON7"
+""
+1 -22.44502242854297 251.300040295028 E E E 1 E 1 E N "LIB_IRC_AZUL_03" E N "LIB_IRC_AZUL_03" E E
+ E E
+63 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+2
+"hoverbclr" "N \"_Transparent\""
+"layoutAlignment" "AlignNone"
+6
+LANG:10001 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+0  117.8299775714571 239.482442339383 121.8299775714571 262.2951435585093
+
+T 
+2
+LANG:10001 0 
+LANG:10010 9 HABILITAR
+E E E E
+2 65
+"PRIMITIVE_TEXT13"
+""
+1 223 23 E E E 1 E 1 E N {1,72,152} E N "_Window" E E
+ E E
+64 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E 0.3411517025320255 0 0.4230769230769231 -32.46006525700898 259.1264182277523 0 E 223 23 435 75
+0 2 2 "0s" 0 0 0 72 0 0  223 23 1
+2
+LANG:10001 34 Tahoma,-1,16,5,50,0,0,0,0,0,Normal
+LANG:10010 35 Tahoma,-1,11,5,75,0,0,0,0,0,Negrita
+0 2
+LANG:10001 13 Temp. Entrada
+LANG:10010 11 Val. Actual
+2 66
+"PRIMITIVE_TEXT14"
+""
+1 223 23 E E E 1 E 1 E N {1,72,152} E N "_Window" E E
+ E E
+65 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E 0.2833483017694767 0 0.423076923076923 -20.34654991466616 278.9725720739061 0 E 223 23 435 75
+0 2 2 "0s" 0 0 0 72 0 0  223 23 1
+2
+LANG:10001 34 Tahoma,-1,16,5,50,0,0,0,0,0,Normal
+LANG:10010 35 Tahoma,-1,11,5,75,0,0,0,0,0,Negrita
+0 2
+LANG:10001 13 Temp. Entrada
+LANG:10010 8 Setpoint
+2 67
+"PRIMITIVE_TEXT15"
+""
+1 74 2 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_BLANCO" E E
+ E E
+66 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+6
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E 0.8496009923269883 0 0.85181346519164 124.7776340503391 272.1908662717968 0 E 74 2 92 16
+0 2 2 "0s" 0 0 0 72 0 0  74 2 1
+6
+LANG:10001 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,11,5,75,0,0,0,0,0,Negrita
+LANG:10011 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10009 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10008 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10018 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+0 6
+LANG:10001 2 _-
+LANG:10010 1 t
+LANG:10011 2 _-
+LANG:10009 2 _-
+LANG:10008 2 _-
+LANG:10018 2 _-
+2 68
+"PRIMITIVE_TEXT16"
+""
+1 74 2 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_BLANCO" E E
+ E E
+67 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+6
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E 0.8496009923269883 0 0.85181346519164 124.7776340503391 292.0370201179505 0 E 74 2 92 16
+0 2 2 "0s" 0 0 0 72 0 0  74 2 1
+6
+LANG:10001 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,11,5,75,0,0,0,0,0,Negrita
+LANG:10011 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10009 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10008 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10018 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+0 6
+LANG:10001 2 _-
+LANG:10010 1 t
+LANG:10011 2 _-
+LANG:10009 2 _-
+LANG:10008 2 _-
+LANG:10018 2 _-
+2 69
+"PRIMITIVE_TEXT17"
+""
+1 178 46 E E E 1 E 1 E N "LIB_DEUSER_BLANCO" E N "LIB_IRC_AZUL_01" E E
+ E E
+68 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+5
+"maximumSize" "-1 23"
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 0 3 2 1 E 1.011679161051213 0 0.6926406926406926 -141.2795019824313 174.3003140964971 1 E 178 46 338 79
+0 2 2 "0s" 0 0 0 73 0 0  178 46 1
+2
+LANG:10001 34 Tahoma,-1,16,5,50,0,0,0,0,0,Normal
+LANG:10010 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+0 2
+LANG:10001 20 SINÓPTICO SECADEROS
+LANG:10010 21 Alarma nivel muy bajo
+14 70
+"TEXT_FIELD8"
+"txf_standard_5"
+1 319.897080772949 275.3985716611631 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+69 0 0 0 0 0
+E E E
+1
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+6
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+"focusPolicy" "StrongFocus"
+"showFocus" "0"
+6
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,11,5,75,0,0,0,0,0,Negrita
+LANG:10011 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10018 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  317.6098705488824 267.9831608824305 392.8380061173711 290.5283573569388
+2 "8s" 8 0 0 9 0 -1  E "main()
+{
+  //bloqueo_usuario();//Funcion para inhabilitar si el usuario es el indicado.
+  dpConnect(\"cambiar_valor\", \"_14_DB_Deposito_\"+$NUMDEPOSITO+\".r_SP_Nivel_L\");
+}
+
+//Cambia el valor que muestra elemento
+cambiar_valor(string dp, float valor)
+{
+  this.text = valor;
+}
+" 0
+ E
+14 71
+"TEXT_FIELD9"
+"txf_standard_5"
+1 319.6775844131593 315.0272193073675 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+70 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+5
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,11,5,75,0,0,0,0,0,Negrita
+LANG:10011 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10018 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  317.6098705488824 287.8293147285843 392.8380061173711 310.3745112030927
+3 "8s" 8 0 0 9 0 -1  "main(mapping event)
+{
+  teclado(\"_14_DB_Deposito_\"+$NUMDEPOSITO+\".r_SP_Nivel_L\", \"keypad\", FALSE, 0, \"\", 100000, 0);
+//   float maximo, minimo;
+//   bool permiso = permisos_usuario_operacion(12, FALSE);
+//
+//   if (permiso)
+//   {
+//     dpGet(pid.get_setpoint_maximo(), maximo,
+//           pid.get_setpoint_minimo(), minimo);
+//     teclado(pid.get_setpoint(), \"keypad\", FALSE, 0, \"\", maximo, minimo);
+//   }
+}
+" 0
+ "main()
+{
+  //bloqueo_usuario();//Funcion para inhabilitar si el usuario es el indicado.
+  dpConnect(\"cambiar_valor\", \"_14_DB_Deposito_\"+$NUMDEPOSITO+\".r_SP_Nivel_L\");
+}
+
+//Cambia el valor que muestra elemento
+cambiar_valor(string dp, float valor){
+  this.text = valor;
+}
+" 0
+ E
+13 72
+"PUSH_BUTTON8"
+""
+1 251.6836870404314 239.9806527647597 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "LIB_IRC_AZUL_01" E E
+ E E
+71 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+2
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+6
+LANG:10001 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,11,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+0  249.9910399816079 237.7706950644562 329.9910399816079 262.7538729739326
+
+T 
+2
+LANG:10001 0 
+LANG:10010 9 Habilitar
+"main(mapping event)
+{
+//   bool permiso = permisos_usuario_operacion(11, FALSE);
+//   if(permiso) dpSet(\"_14_DB_Deposito_\"+$NUMDEPOSITO+\".d_Hab_Av_Nivel_L\", TRUE);
+  dpSet(\"_14_DB_Deposito_\"+$NUMDEPOSITO+\".d_Hab_Av_Nivel_L\", TRUE);
+}
+" 0
+ E E "main()
+{
+   dpConnect(\"cambiar_seleccion\", \"_14_DB_Deposito_\"+$NUMDEPOSITO+\".d_Hab_Av_Nivel_L\");
+}
+void cambiar_seleccion(string dp1, bool valor){
+  if(valor){
+    this.backCol(\"LIB_IRC_VERDE_01\");
+    this.foreCol(\"LIB_IRC_AZUL_01\");
+    }
+  else{
+    this.backCol(\"LIB_IRC_AZUL_01\");
+    this.foreCol(\"LIB_IRC_BLANCO\");
+  }
+}" 0
+
+13 73
+"PUSH_BUTTON9"
+""
+1 328.6244784730239 240.0057333556745 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "LIB_IRC_AZUL_01" E E
+ E E
+72 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+2
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+6
+LANG:10001 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,11,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+0  326.6244784730242 237.795775655371 407.8380061173711 262.7789535648475
+
+T 
+2
+LANG:10001 0 
+LANG:10010 12 Deshabilitar
+"main(mapping event)
+{
+//   bool permiso = permisos_usuario_operacion(11, FALSE);
+
+//   if (permiso) dpSet(\"_14_DB_Deposito_\"+$NUMDEPOSITO+\".d_Hab_Av_Nivel_L\", FALSE);
+  dpSet(\"_14_DB_Deposito_\"+$NUMDEPOSITO+\".d_Hab_Av_Nivel_L\", FALSE);
+}
+" 0
+ E E "main()
+{
+   dpConnect(\"cambiar_seleccion\", + \"_14_DB_Deposito_\"+$NUMDEPOSITO+\".d_Hab_Av_Nivel_L\");
+}
+void cambiar_seleccion(string dp1, bool valor){
+  if(!valor){
+    this.backCol(\"LIB_IRC_VERDE_01\");
+    this.foreCol(\"LIB_IRC_AZUL_01\");
+    }
+  else{
+    this.backCol(\"LIB_IRC_AZUL_01\");
+    this.foreCol(\"LIB_IRC_BLANCO\");
+  }
+}" 0
+
+13 74
+"PUSH_BUTTON10"
+""
+1 187.452058344406 250.6986119561911 E E E 1 E 1 E N "LIB_IRC_AZUL_03" E N "LIB_IRC_AZUL_03" E E
+ E E
+73 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+2
+"hoverbclr" "N \"_Transparent\""
+"layoutAlignment" "AlignNone"
+6
+LANG:10001 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+0  327.7270583444061 238.8810140005461 331.7270583444061 261.6937152196724
+
+T 
+2
+LANG:10001 0 
+LANG:10010 9 HABILITAR
+E E E E
+2 75
+"PRIMITIVE_TEXT18"
+""
+1 223 23 E E E 1 E 1 E N {1,72,152} E N "_Window" E E
+ E E
+74 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E 0.3411517025320255 0 0.4230769230769231 177.43701551594 258.5249898889155 0 E 223 23 435 75
+0 2 2 "0s" 0 0 0 72 0 0  223 23 1
+2
+LANG:10001 34 Tahoma,-1,16,5,50,0,0,0,0,0,Normal
+LANG:10010 35 Tahoma,-1,11,5,75,0,0,0,0,0,Negrita
+0 2
+LANG:10001 13 Temp. Entrada
+LANG:10010 11 Val. Actual
+2 76
+"PRIMITIVE_TEXT19"
+""
+1 223 23 E E E 1 E 1 E N {1,72,152} E N "_Window" E E
+ E E
+75 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E 0.2833483017694767 0 0.423076923076923 189.5505308582828 278.3711437350692 0 E 223 23 435 75
+0 2 2 "0s" 0 0 0 72 0 0  223 23 1
+2
+LANG:10001 34 Tahoma,-1,16,5,50,0,0,0,0,0,Normal
+LANG:10010 35 Tahoma,-1,11,5,75,0,0,0,0,0,Negrita
+0 2
+LANG:10001 13 Temp. Entrada
+LANG:10010 8 Setpoint
+2 77
+"PRIMITIVE_TEXT20"
+""
+1 74 2 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_BLANCO" E E
+ E E
+76 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+6
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E 0.8496009923269883 0 0.85181346519164 334.674714823288 271.5894379329599 0 E 74 2 92 16
+0 2 2 "0s" 0 0 0 72 0 0  74 2 1
+6
+LANG:10001 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,11,5,75,0,0,0,0,0,Negrita
+LANG:10011 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10009 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10008 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10018 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+0 6
+LANG:10001 2 _-
+LANG:10010 1 t
+LANG:10011 2 _-
+LANG:10009 2 _-
+LANG:10008 2 _-
+LANG:10018 2 _-
+2 78
+"PRIMITIVE_TEXT21"
+""
+1 74 2 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_BLANCO" E E
+ E E
+77 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+6
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E 0.8496009923269883 0 0.85181346519164 334.674714823288 291.4355917791137 0 E 74 2 92 16
+0 2 2 "0s" 0 0 0 72 0 0  74 2 1
+6
+LANG:10001 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,11,5,75,0,0,0,0,0,Negrita
+LANG:10011 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10009 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10008 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10018 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+0 6
+LANG:10001 2 _-
+LANG:10010 1 t
+LANG:10011 2 _-
+LANG:10009 2 _-
+LANG:10008 2 _-
+LANG:10018 2 _-
+2 79
+"PRIMITIVE_TEXT22"
+""
+1 178 46 E E E 1 E 1 E N "LIB_DEUSER_BLANCO" E N "LIB_IRC_AZUL_01" E E
+ E E
+78 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+5
+"maximumSize" "-1 23"
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 0 3 2 1 E 1.011679161051213 0 0.6926406926406926 68.75911545025519 174.3003140964971 1 E 178 46 338 79
+0 2 2 "0s" 0 0 0 73 0 0  178 46 1
+2
+LANG:10001 34 Tahoma,-1,16,5,50,0,0,0,0,0,Normal
+LANG:10010 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+0 2
+LANG:10001 20 SINÓPTICO SECADEROS
+LANG:10010 16 Aviso nivel bajo
+13 82
+"PUSH_BUTTON11"
+"MEDIANO_BLANCO"
+1 620 510 E E E 1 E 1 E N "_ButtonText" E N "_Transparent" E E
+ E E
+81 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 6 Accept
+LANG:10010 7 Aceptar
+LANG:10011 6 Accept
+LANG:10009 8 Accepter
+LANG:10008 6 Accept
+LANG:10018 6 Accept
+
+6
+"hoverbclr" "N \"AZUL_01\""
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10011 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10018 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  371.6098535286297 342.484549642264 435.7523302263659 395.4105003769407
+
+P 
+4294967295
+"pictures/iconos/botoneras/aceptar.svg"
+6
+LANG:10001 12 PUSH_BUTTON1
+LANG:10010 12 PUSH_BUTTON1
+LANG:10011 12 PUSH_BUTTON1
+LANG:10009 12 PUSH_BUTTON1
+LANG:10008 12 PUSH_BUTTON1
+LANG:10018 12 PUSH_BUTTON1
+"main(mapping event)
+{
+  PanelOff();  //Cerramos el Panel
+}" 0
+ E E E
+6 83
+"RECTANGLE4"
+""
+1 20 10 E E E 1 E 1 E N "AZUL_01" E N {1,72,152} E E
+ E E
+82 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 0.5112155338203689 0 1.22314876836692 363.547216176679 332.2530619585948 1 E 20 10 140 50
+6 84
+"RECTANGLE9"
+""
+1 63 18 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "LIB_IRC_AZUL_03" E E
+ E E
+83 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E -1 1 3 2 1 E 0.001563313802083333 0 -4.068514138826777 8.901511230468749 475.544091427336 1 E 63 18 1982 117
+6 85
+"RECTANGLE10"
+""
+1 63 18 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N {1,72,152} E E
+ E E
+84 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E -1 1 3 2 1 E 0.004689941406249997 0 -4.081608574973889 -0.2954638671874967 474.8635640936519 1 E 63 18 1982 117
+6 86
+"RECTANGLE11"
+""
+1 282 34 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+85 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+4
+"transparentForMouseInGedi" ""
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 5.011808487797897 0 5.896661069387561 -1413.3299911176 -200.1711155374701 1 E 282 34 371 102
+0
+LAYER, 1 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 2 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 3 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 4 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 5 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 6 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 7 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+0

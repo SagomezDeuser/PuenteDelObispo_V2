@@ -1,0 +1,434 @@
+V 14
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+PANEL,-1 -1 198 90 N "_Transparent" 7
+"$DP_PARC"
+"$DP_RESET"
+"$DP_TOTAL"
+"$INST_RESET"
+"$NOMBRE_ZONA"
+"$UNIDAD"
+"$UNIDAD_T"
+"main()
+{
+  parametrosOK = parametrosRellenos();
+}" 0
+ E E E E 1 -1 -1 0  0 0
+""0  1
+E "
+bool parametrosOK = FALSE;
+
+bool parametrosRellenos()//Comprobamos que todos los parametros del objeto esten rellenos, sino el objeto será de color morado.
+{
+  if ($UNIDAD_T != \"\" && $DP_RESET != \"\" && $NOMBRE_ZONA != \"\" && $DP_PARC != \"\" && $UNIDAD != \"\" && $DP_TOTAL)
+  {
+    return TRUE;// Si todos los parametros están rellenos devolvemos TRUE.
+  }
+  else
+  {
+    txf_valor.color(\"LIB_IRC_MORADO_01\");
+    TEXT_FIELD1.color(\"LIB_IRC_MORADO_01\");
+    txf_zona.foreCol(\"LIB_IRC_MORADO_01\");
+    return FALSE;
+  }
+}
+" 0
+ 4
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+"pdpi" "96"
+0 1 0 0 0 0 1 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10001 0 
+LANG:10010 0 
+6 5
+"fondo"
+""
+1 20 10 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_AZUL_03" E E
+ E E
+4 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+4
+"sizePolicy" "Ignored Ignored"
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 2 3 2 1 E 1.625 0 2.175 -32.5 -21.75 1 E 20 10 140 50
+2 17
+"PRIMITIVE_TEXT3"
+""
+1 74 2 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_BLANCO" E E
+ E E
+16 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+6
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+  if (parametrosOK)
+  {
+    if ($UNIDAD_T != \"\")
+    {
+      //  setValue(\"\", \"text\", $UNIDAD_T);
+      this.text($UNIDAD_T);
+
+    }
+  }
+}
+" 0
+ E 0 1 3 2 1 E 2.111111111111114 0 1.148831925372183 -4.750000000000226 58.59466608512965 0 E 74 2 92 16
+0 2 2 "0s" 0 0 0 72 0 0  74 2 1
+2
+LANG:10001 34 Tahoma,-1,16,5,50,0,0,0,0,0,Normal
+LANG:10010 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+0 6
+LANG:10001 2 _-
+LANG:10010 1 -
+LANG:10011 2 _-
+LANG:10009 2 _-
+LANG:10008 2 _-
+LANG:10018 2 _-
+13 18
+"btn_principal"
+"btn_formulario_1"
+1 4.972222222222129 31.523130285365 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_BLANCO" E E
+ E E
+17 0 0 0 0 0
+E E E
+1
+7
+LANG:10001 9 Principal
+LANG:10010 11 Reset total
+LANG:10011 9 Principal
+LANG:10009 9 Principal
+LANG:10008 9 Principal
+LANG:10018 9 Principal
+LANG:10005 0 
+
+6
+"maximumSize" "40 21"
+"sizePolicy" "Expanding Expanding"
+"layoutAlignment" "AlignNone"
+"focusPolicy" "StrongFocus"
+"showFocus" "0"
+"isDefault" ""
+7
+LANG:10001 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10010 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10011 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10009 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10008 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10018 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10005 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  2.972222222222129 30.88676664900134 45.97222222222213 54.88676664900134
+
+P 
+4294967295
+"pictures/iconos/botoneras/reset_icono_off.svg"
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+"main(mapping event)
+{
+  /*Permisos de usuario - Operación. Devuelve un bool.
+  Parametros obligatorios de la función:
+    - Número de permiso que se comprobará. Desde 10 a 32. De 0 a 9 se usan para Wincc OA.
+    - Comprobar permiso de forma individual (TRUE) o el número de permiso y los superiores (FALSE).
+  Parametros opcionales de la función:
+    - Mostrar mensaje - El usuario no tiene permisos. Por defecto (TRUE).
+  */
+  if (parametrosOK)
+  {
+    int n_permiso = 11;
+    bool permiso = permisos_usuario_operacion(n_permiso, FALSE);
+
+    if (permiso)
+    {
+      dpSetWait($DP_RESET, TRUE);  //\"Activa\" el reset de los contadores.
+//       setValue(\"\", \"buttonType\", BT_PIXMAP,
+//                \"buttonDownPixmap\", \"iconos/botoneras/reset_icono_on.svg\",
+//                \"buttonUpPixmap\", \"iconos/botoneras/reset_icono_on.svg\");//Cambia la imagen mostrada por el elemento por \"reset_on\".
+      this.buttonType = BT_PIXMAP;
+      this.buttonDownPixmap(\"iconos/botoneras/reset_icono_on.svg\");
+      this.buttonUpPixmap(\"iconos/botoneras/reset_icono_on.svg\");//Cambia la imagen mostrada por el elemento por \"reset_on\".
+      delay(2, 00);
+      dpSetWait($INST_RESET, FALSE); //\"Desactiva\" el reset de los contadores de total.
+//       setValue(\"\", \"buttonType\", BT_PIXMAP,
+//                \"buttonDownPixmap\", \"iconos/botoneras/reset_icono_off.svg\",
+//                \"buttonUpPixmap\", \"iconos/botoneras/reset_icono_off.svg\");//Cambia la imagen mostrada por el elemento por \"reset_off\".
+      this.buttonType = BT_PIXMAP;
+      this.buttonDownPixmap(\"iconos/botoneras/reset_icono_off.svg\");
+      this.buttonUpPixmap(\"iconos/botoneras/reset_icono_off.svg\");//Cambia la imagen mostrada por el elemento por \"reset_off\".
+
+    }
+  }
+}
+" 0
+ E E E
+6 20
+"RECTANGLE1"
+""
+1 5.499999999999929 57.99108741234333 E E E 1 E 1 E N {0,0,0} E N "WF_EwoWaitBackground" E E
+ E E
+19 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+5
+"minimumSize" "40 21"
+"maximumSize" "40 21"
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E -1 1 3 2 1 E 1 0 1 -0.5277777777777999 0.6083533714824654 1 E 5.499999999999929 57.99108741234333 44.49999999999993 77.99108741234333
+6 22
+"RECTANGLE2"
+""
+1 20 10 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_AZUL_01" E E
+ E E
+21 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+4
+"sizePolicy" "Ignored Ignored"
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 2 3 2 1 E 1.625 0 0.6875 -32.44379192398952 -6.691536234680754 1 E 20 10 140 50
+0
+LAYER, 1 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 2 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 3 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 4 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 5 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 6 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 7 
+2
+LANG:10001 0 
+LANG:10010 0 
+2 8
+"txf_zona"
+""
+1 178 46 E E E 1 E 1 E N "LIB_DEUSER_BLANCO" E N {1,72,152} E E
+ E E
+7 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+6
+"maximumSize" "-1 23"
+"sizePolicy" "Ignored Ignored"
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+  if (parametrosOK)
+  {
+    this.text($NOMBRE_ZONA);
+  }
+}
+" 0
+ E 0 0 3 2 1 E 1.192692020321961 0 0.6666666666666667 -210.4354584243783 -27.05831329518421 1 E 178 46 338 79
+0 2 2 "0s" 0 0 0 73 0 0  178 46 1
+2
+LANG:10001 34 Tahoma,-1,16,5,50,0,0,0,0,0,Normal
+LANG:10010 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+0 2
+LANG:10001 20 SINÓPTICO SECADEROS
+LANG:10010 3 ---
+2 13
+"ptxf_unidad"
+""
+1 74 2 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_BLANCO" E E
+ E E
+12 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+6
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+  if (parametrosOK)
+  {
+    if ($UNIDAD != \"\")
+    {
+      //setValue(\"\", \"text\", $UNIDAD);
+      this.text($UNIDAD);
+    }
+  }
+}
+" 0
+ E 0 1 3 2 1 E 2.111111111111114 0 1.148831925372183 -4.750000000000226 31.65563269213416 0 E 74 2 92 16
+0 2 2 "0s" 0 0 0 72 0 0  74 2 1
+2
+LANG:10001 34 Tahoma,-1,16,5,50,0,0,0,0,0,Normal
+LANG:10010 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+0 6
+LANG:10001 2 _-
+LANG:10010 1 -
+LANG:10011 2 _-
+LANG:10009 2 _-
+LANG:10008 2 _-
+LANG:10018 2 _-
+14 12
+"txf_valor"
+"txf_standard_5"
+1 41.82738095238091 28.11323335099864 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_BLANCO" E E
+ E E
+11 0 0 0 0 0
+E E E
+1
+9
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+8
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"minimumSize" "-1 23"
+"maximumSize" "-1 46"
+"sizePolicy" "Expanding MinimumExpanding"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+2
+LANG:10001 34 Tahoma,-1,16,5,50,0,0,0,0,0,Normal
+LANG:10010 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+0  45.75000000000001 30.88676664900134 149.25 56.11323335099865
+2 "0d" 0 0 0 9 0 -1  E "main()
+{
+  if (parametrosOK)
+  {
+    cambiarValor($DP_TOTAL, \"\", \"\");
+  }
+}
+" 0
+ E
+14 9
+"TEXT_FIELD1"
+"txf_standard_5"
+1 47.84459084449938 83.53050398371744 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+8 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+8
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"minimumSize" "-1 23"
+"maximumSize" "-1 69"
+"sizePolicy" "Expanding MinimumExpanding"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+2
+LANG:10001 34 Tahoma,-1,16,5,50,0,0,0,0,0,Normal
+LANG:10010 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+0  45.75000000000003 55.92524082582265 149.25 81.27364074182894
+2 "6d" 6 0 0 9 0 -1  E "main()
+{
+  if (parametrosOK)
+  {
+    cambiarValor($DP_TOTAL, \"\", \"\");
+  }
+}
+" 0
+ E
+0
+0

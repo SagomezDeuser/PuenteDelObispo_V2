@@ -1,0 +1,933 @@
+V 14
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+PANEL,-1 -1 960 940 N "LIB_IRC_BLANCO" 1
+"$DP"
+E E E E E 1 -1 -1 0  14.00000000000006 14
+""0  1
+E E 4
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+"pdpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10001 0 
+LANG:10010 0 
+6 1
+"rect_fondo_config"
+""
+1 20 10 E E E 1 E 1 E N "_Transparent" E N "LIB_IRC_AZUL_03" E E
+ E E
+0 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+4
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E -1 1 3 2 1 E 8.717286795713793 0 0.7250000000000001 -174.3457359142759 -7.25 4 "[linear,pad,0,0,-0.012,0.988,0.00671,LIB_IRC_AZUL_03,1,{255,255,255}]" E 20 10 130 50
+6 2
+"RECTANGLE1"
+""
+1 20 10 E E E 1 E 1 E N "_Transparent" E N "LIB_IRC_AZUL_03" E E
+ E E
+1 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+4
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E -1 1 3 2 1 E 8.717286795713793 0 0.7250000000000001 -174.3457359142759 902.75 4 "[linear,pad,0.988,1,0.976,0.0241,0,LIB_IRC_AZUL_03,1,{255,255,255}]" E 20 10 130 50
+2 14
+"PRIMITIVE_TEXT9"
+""
+1 561.584759972651 58 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Window" E E
+ E E
+13 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+5
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E 1.007301911238731 0 1.172350135187827 -93.10367411616659 -9.861738131913654 0 E 231 58 893 82
+0 2 2 "0s" 0 0 0 193 0 0  561.584759972651 58 1
+6
+LANG:10001 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,21,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+0 6
+LANG:10001 46 Mapeo por completo un DP en función de su MDP
+LANG:10010 63 Configuración del Alert Handling de uno o varios DPEs de un DP
+LANG:10011 46 Mapeo por completo un DP en función de su MDP
+LANG:10009 46 Mapeo por completo un DP en función de su MDP
+LANG:10008 46 Mapeo por completo un DP en función de su MDP
+LANG:10018 46 Mapeo por completo un DP en función de su MDP
+2 43
+"PRIMITIVE_TEXT10"
+""
+1 561.584759972651 58 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Window" E E
+ E E
+42 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+5
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E 1.007301911238731 0 1.172350135187827 -93.1036741161667 35.13826186808629 0 E 459 58 665 76
+0 2 2 "0s" 0 0 0 193 0 0  561.584759972651 58 1
+6
+LANG:10001 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+0 6
+LANG:10001 46 Mapeo por completo un DP en función de su MDP
+LANG:10010 24 Datapoints seleccionados
+LANG:10011 46 Mapeo por completo un DP en función de su MDP
+LANG:10009 46 Mapeo por completo un DP en función de su MDP
+LANG:10008 46 Mapeo por completo un DP en función de su MDP
+LANG:10018 46 Mapeo por completo un DP en función de su MDP
+13 48
+"PUSH_BUTTON2"
+"GRANDE_AZUL"
+1 -198.0254425831927 919.9618140761334 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_BLANCO" E E
+ E E
+47 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 6 Accept
+LANG:10010 7 Aceptar
+LANG:10011 6 Accept
+LANG:10009 8 Accepter
+LANG:10008 6 Accept
+LANG:10018 6 Accept
+
+5
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10011 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10018 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  122.9757736081758 887.7091850123036 215.7742263918242 926.0342833731875
+
+P 
+4294967295
+"pictures/iconos/botoneras/flecha_izq_off.svg"
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+"main(mapping event)
+{
+  RootPanelOnModule(\"vision/sinopticos/06_configuracion/configuracion/config_dp_emergentes/configuracion_alert_hdl.pnl\",\"alert_hdl\",\"modulo_config\",makeDynString());
+}" 0
+ E E E
+25 56
+"tabla_lista"
+"GRANDE_AZUL"
+1 258.1231685034813 9.739964054245078 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_BLANCO" E E
+ E E
+55 0 0 0 0 0
+E E E
+0
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+5
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,80}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+7
+LANG:10001 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10005 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+0  122.7500000000001 136.1038751060364 825.75 405.9999999999999
+"main()
+{
+  formatear_estilo_tabla(\"tabla_lista\", \"AlignVCenter | AlignHCenter\", \"LIB_IRC_BLANCO\", \"LIB_IRC_AZUL_03\");  //Damos formato a la tabla con el listado de DP's
+  delay(0,200);
+  setValue(\"tabla_lista\", \"deleteAllLines\");
+  this.selectByClick(TABLE_SELECT_LINE);
+  this.tableMode(0);
+  this.deleteAllLines();
+  dyn_string dp = strsplit($DP,\" | \");
+
+  for(int i = 1; i<= dynlen(dp); i++)
+  {
+    if(dp[i] != \"\") this.appendLine(\"dp\",dp[i]);
+  }
+
+}
+" 0
+E 1 0 1 1 0 "dp" 52 1 0 "[0s,,,AlignLeft|AlignVCenter]" 6
+LANG:10001 2 ID
+LANG:10010 2 DP
+LANG:10011 2 #1
+LANG:10009 2 #1
+LANG:10008 2 #1
+LANG:10018 2 #1
+E
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+696 
+27 27 10 0
+7
+LANG:10001 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10005 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+0 0 1 1 1 7
+1 0
+13 58
+"PUSH_BUTTON3"
+"GRANDE_AZUL"
+1 412.0874442208952 919.9446723895396 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_BLANCO" E E
+ E E
+57 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 6 Accept
+LANG:10010 7 Aceptar
+LANG:10011 6 Accept
+LANG:10009 8 Accepter
+LANG:10008 6 Accept
+LANG:10018 6 Accept
+
+5
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10011 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10018 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  733.0886604122637 887.6920433257098 825.8871131959121 926.0171416865937
+
+P 
+4294967295
+"pictures/iconos/botoneras/flecha_der_off.svg"
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+"main(mapping event)
+{
+  RootPanelOnModule(\"vision/sinopticos/06_configuracion/configuracion/config_dp_emergentes/configuracion_ini.pnl\",\"ini\",\"modulo_config\",makeDynString());
+}" 0
+ E E E
+13 60
+"btn_aceptar"
+"GRANDE_BLANCO"
+1 269.5746640013531 689.4552845528456 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+59 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 6 Accept
+LANG:10010 7 Aceptar
+LANG:10011 6 Accept
+LANG:10009 8 Accepter
+LANG:10008 6 Accept
+LANG:10018 6 Accept
+
+5
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10011 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10018 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  446.4166666666666 644.3333333333334 499.5833333333334 697.2601626016261
+
+P 
+4294967295
+"pictures/iconos/botoneras/aceptar.svg"
+6
+LANG:10001 12 PUSH_BUTTON1
+LANG:10010 12 PUSH_BUTTON1
+LANG:10011 12 PUSH_BUTTON1
+LANG:10009 12 PUSH_BUTTON1
+LANG:10008 12 PUSH_BUTTON1
+LANG:10018 12 PUSH_BUTTON1
+"main(mapping event)
+{
+  int rb_okey;
+  bool alarma_activa, range_ok;
+  dyn_string dp;
+  string dpe_nom, dp_selec, alert_class, consulta, texto_1, texto_0;
+  dyn_dyn_anytype resultado_consulta;
+
+  this.transparentForMouse = TRUE;
+  getValue(\"tabla_lista\",\"getColumnN\",0,dp);  //Recuperamos el estado del checkbox del low level comparison
+
+  getMultiValue(\"txf_on\", \"text\", texto_1,
+                \"txf_off\", \"text\", texto_0,
+                \"cb_activa\", \"state\", 0, alarma_activa,
+                \"cbb_clases_alarmas\",\"selectedText\",alert_class,
+                \"rb_ok\",\"number\",rb_okey);
+
+  for(int i = 1; i <= dynlen(dp); i++)
+  {
+    dp_selec = dp[i];
+    if(dpExists(dp_selec)){  //Comprobamos que el elemento exista
+
+      setValue(\"ae_loading_ewo\", \"visible\", TRUE);  //Hacemos visible la animación del loading
+      ae_loading_ewo.start();  //Iniciamos la animación del loading
+
+      if(rb_okey == 1) range_ok = FALSE;
+      else range_ok = TRUE;
+      dpSetWait(dp_selec + \":_alert_hdl.._type\", 12);
+
+      delay(0,500);
+
+      dpSetWait(dp_selec + \":_alert_hdl.._text0\", texto_0);
+      dpSetWait(dp_selec + \":_alert_hdl.1._text0\", texto_0);
+      dpSetWait(dp_selec+ \":_alert_hdl.2._text0\", texto_0);
+      dpSetWait(dp_selec + \":_alert_hdl.._text1\", texto_1);
+      dpSetWait(dp_selec + \":_alert_hdl.1._text1\", texto_1);
+      dpSetWait(dp_selec+ \":_alert_hdl.2._text1\", texto_1);
+      dpSetWait(dp_selec + \":_alert_hdl.._text\", texto_1);
+      dpSetWait(dp_selec + \":_alert_hdl.1._text\", texto_1);
+      dpSetWait(dp_selec+ \":_alert_hdl.2._text\", texto_1);
+      dpSetWait(dp_selec + \":_alert_hdl.._class\", alert_class + \".\");
+      dpSetWait(dp_selec + \":_alert_hdl.._ok_range\", range_ok);
+      delay(0,400);
+      dpSetWait(dp_selec + \":_alert_hdl.._active\", alarma_activa);  //Recuperamos si la alarma está activa o no
+
+
+      ae_loading_ewo.stop();  //Detenemos la animación del loading
+      setValue(\"ae_loading_ewo\", \"visible\", FALSE);  //Ocultamos la animación del loading
+
+    }else{
+      mostrar_msg_emergente(3, \"fallo_consulta\");
+    }
+  }
+  this.transparentForMouse = FALSE;
+}
+" 0
+ E E E
+14 62
+"txf_on"
+"MEDIANO_AZUL"
+1 135.3878021276851 592.1839781846552 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_BLANCO" E E
+ E E
+61 0 0 0 0 0
+E E E
+1
+9
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+5
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,80}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+9
+LANG:10001 30 Noto Sans,-1,13,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,13,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10005 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10000 30 Noto Sans,-1,13,5,50,0,0,0,0,0
+LANG:10027 30 Noto Sans,-1,13,5,50,0,0,0,0,0
+0  375.5 450.9052703262166 638.5 483.9052703262166
+3 "0s" 0 0 0 8 0 -1  E E E
+22 64
+"cbb_clases_alarmas"
+"MEDIANO_AZUL"
+1 -1152.100674289923 308.4052703262171 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_BLANCO" E E
+ E E
+63 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 13 Driver Number
+LANG:10010 11 Conexiones 
+LANG:10011 13 Driver Number
+LANG:10009 13 Driver Number
+LANG:10008 13 Driver Number
+LANG:10018 13 Driver Number
+
+5
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,80}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+0  370.0012151583708 551.4052703262172 656.9999999999998 586.405270326217
+0
+
+"main()
+{
+  dyn_string clases_alarmas;
+
+  clases_alarmas = dpNames(\"*\", \"_AlertClass\");  //Recuperamos las clases de alarmas creadas en el Sistema
+
+  for(int r = 1; r <= dynlen(clases_alarmas); r++){
+    clases_alarmas[r] = strltrim(clases_alarmas[r], \"System1:\");
+    setValue(\"\", \"appendItem\", clases_alarmas[r]);
+  }
+}" 0
+
+E
+E
+ 0 0
+2 65
+"label_clase_alarma"
+"GRANDE_AZUL"
+1 -2192.448697895544 -3180.997761046945 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_BLANCO" E E
+ E E
+64 0 0 0 0 0
+E E E
+0
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+5
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+    this.text(getCatStr(\"objetos\",this.name)+\":\");
+}" 0
+ E 0 1 3 2 1 E 0.4998170867676103 0 0.09622476609823721 175.439234820819 554.6158925606289 0 E 40 36 376 261
+0 2 2 "0s" 0 0 0 72 0 0  40 36 1
+7
+LANG:10001 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10005 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+0 7
+LANG:10001 8 Drivers:
+LANG:10010 13 Clase Alarma:
+LANG:10011 11 Startkarte:
+LANG:10009 8 Drivers:
+LANG:10008 19 Biglietto d'inizio:
+LANG:10018 17 Comece o bilhete:
+LANG:10005 13 Start ticket:
+20 66
+"cb_activa"
+"PEQUENIO_AZUL"
+1 -5276.51081429843 278.5519375530183 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+65 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+5
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,80}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+0  158.2808855043174 602.8490609399773 585.0025981211875 650.8490609399773
+1
+T 
+6
+LANG:10001 21 Low level comparasion
+LANG:10010 6 Activo
+LANG:10011 21 Low level comparasion
+LANG:10009 21 Low level comparasion
+LANG:10008 21 Low level comparasion
+LANG:10018 21 Low level comparasion
+
+0 
+2
+LANG:10001 0 
+LANG:10010 0 
+E E
+0 0 0 0 0
+0
+EE2 69
+"PRIMITIVE_TEXT138"
+""
+1 -6537.898838110385 -767.3257795570099 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_BLANCO" E E
+ E E
+68 0 0 0 0 0
+E E E
+0
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+5
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+
+}" 0
+ E 0 1 3 2 1 E 0.1949132038444205 0 0.09622476609823721 276.810695750897 452.7410139852374 0 E 40 36 376 261
+0 2 2 "0s" 0 0 0 72 0 0  40 36 1
+7
+LANG:10001 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10005 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+0 7
+LANG:10001 7 On(1): 
+LANG:10010 7 On(1): 
+LANG:10011 7 On(1): 
+LANG:10009 7 On(1): 
+LANG:10008 7 On(1): 
+LANG:10018 7 On(1): 
+LANG:10005 13 Start ticket:
+14 70
+"txf_off"
+"MEDIANO_AZUL"
+1 135.3878021276851 635.0411210417981 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_BLANCO" E E
+ E E
+69 0 0 0 0 0
+E E E
+1
+9
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+5
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,80}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+9
+LANG:10001 30 Noto Sans,-1,13,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,13,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10005 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10000 30 Noto Sans,-1,13,5,50,0,0,0,0,0
+LANG:10027 30 Noto Sans,-1,13,5,50,0,0,0,0,0
+0  375.5 492.9052703262166 638.5 525.9052703262166
+3 "0s" 0 0 0 8 0 -1  E E E
+2 72
+"PRIMITIVE_TEXT139"
+""
+1 -4430.490378385166 -807.4105000873253 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_BLANCO" E E
+ E E
+71 0 0 0 0 0
+E E E
+0
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+5
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+
+}" 0
+ E 0 1 3 2 1 E 0.1904979664988536 0 0.09622476609823721 277.987305244719 495.5981568423801 0 E 40 36 376 261
+0 2 2 "0s" 0 0 0 72 0 0  40 36 1
+7
+LANG:10001 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10005 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+0 7
+LANG:10001 8 Off(0): 
+LANG:10010 8 Off(0): 
+LANG:10011 8 Off(0): 
+LANG:10009 8 Off(0): 
+LANG:10008 8 Off(0): 
+LANG:10018 8 Off(0): 
+LANG:10005 13 Start ticket:
+2 73
+"PRIMITIVE_TEXT140"
+""
+1 561.584759972651 58 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Window" E E
+ E E
+72 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+5
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E 1.007301911238731 0 1.172350135187827 -336.6036741161668 355.003692159106 0 E 522 58 602 76
+0 2 2 "0s" 0 0 0 193 0 0  561.584759972651 58 1
+6
+LANG:10001 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+0 6
+LANG:10001 46 Mapeo por completo un DP en función de su MDP
+LANG:10010 8 Rango OK
+LANG:10011 46 Mapeo por completo un DP en función de su MDP
+LANG:10009 46 Mapeo por completo un DP en función de su MDP
+LANG:10008 46 Mapeo por completo un DP en función de su MDP
+LANG:10018 46 Mapeo por completo un DP en función de su MDP
+19 74
+"rb_ok"
+"PEQUENIO_AZUL"
+1 213 429.0000000000003 E E E 1 E 1 E N "_3DText" E N "_3DFace" E E
+ E E
+73 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+2
+"layoutAlignment" "AlignNone"
+"showBackground" "0"
+6
+LANG:10001 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10010 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10011 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10009 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10008 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10018 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  211 427.0000000000003 244 550.3028375733861
+2
+T 
+6
+LANG:10001 3 ???
+LANG:10010 0 
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0 
+2
+LANG:10001 0 
+LANG:10010 0 
+E E
+0 0 0 0 0
+T 
+6
+LANG:10001 3 ???
+LANG:10010 0 
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+1 
+2
+LANG:10001 0 
+LANG:10010 0 
+E E
+0 0 0 0 0
+1
+E "main(int button)
+{
+  if(this.number == 0){
+    rec_on.backCol = \"LIB_IRC_VERDE_01\";
+    rec_off.backCol = \"LIB_IRC_ROJO_04\";
+  }
+  else{
+    rec_off.backCol = \"LIB_IRC_VERDE_01\";
+    rec_on.backCol = \"LIB_IRC_ROJO_04\";
+  }
+}" 0
+
+6 75
+"rec_on"
+""
+1 110 475 E E E 1 E 1 E N "LIB_IRC_AZUL_03" E N "LIB_IRC_ROJO_04" E E
+ E E
+74 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 1 0 0.8999999999999999 73 60.60000000000032 1 E 110 475 123 426
+6 76
+"rec_off"
+""
+1 110 475 E E E 1 E 1 E N "LIB_IRC_AZUL_03" E N "LIB_IRC_VERDE_01" E E
+ E E
+75 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 1 0 0.8999999999999999 73 105.8028375733862 1 E 110 475 123 426
+0
+LAYER, 1 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 2 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 3 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 4 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 5 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 6 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 7 
+2
+LANG:10001 0 
+LANG:10010 0 
+29 61
+"ae_loading_ewo"
+""
+1 73.9142259414225 45 E E E 1 E 0 E N "_3DText" E N "_3DFace" E E
+ E E
+60 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+4
+"effectType" "enum 2"
+"color1" "color {1,72,152,225}"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10011 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10018 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  116.4999999999999 45 843.5 850
+19 AttentionEffect.ewo
+0
+E0
+0

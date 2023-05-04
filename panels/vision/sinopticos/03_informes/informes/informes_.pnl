@@ -1,0 +1,326 @@
+V 14
+6
+LANG:10001 0 
+LANG:10010 8 informes
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+PANEL,-1 -1 1920 980 N "LIB_IRC_BLANCO" 0
+E E E E E 1 -1 -1 0  0 0
+""0  1
+E E 4
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+"pdpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10001 0 
+LANG:10010 0 
+13 31
+"informe_incidencias"
+"GRANDE_BLANCO"
+1 859.8878403691914 56.04775234054981 E E E 1 E 1 E N "LIB_DEUSER_BLANCO" E N "_Button" E E
+ E E
+9 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 6 Accept
+LANG:10010 22 Informe de incidencias
+LANG:10011 6 Accept
+LANG:10009 8 Accepter
+LANG:10008 6 Accept
+LANG:10018 6 Accept
+
+5
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10011 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10018 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  858.0020080321285 54.01020408163271 1110.997991967871 106.9897959183673
+
+T 
+6
+LANG:10001 0 
+LANG:10010 11 INCIDENCIAS
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+"main(mapping event)
+{
+  string url_informe;
+
+  dpGet(\"ConfiguracionSCADA.configuracion_bd.direccion_servidor_informes\",url_informe);
+  //Seteamos la web que queremos mostrar
+  ChildPanelOn(\"vision/sinopticos/03_informes/informes/informes_emergentes.pnl\",\"Ventana de Informe\",makeDynString(\"$INST:\" + url_informe + this.name),61,37);
+}
+" 0
+ E E E
+13 32
+"informe_alarmas"
+"GRANDE_BLANCO"
+1 110 56 E E E 1 E 1 E N "LIB_DEUSER_BLANCO" E N "_Button" E E
+ E E
+10 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 6 Accept
+LANG:10010 18 Informe de alarmas
+LANG:10011 6 Accept
+LANG:10009 8 Accepter
+LANG:10008 6 Accept
+LANG:10018 6 Accept
+
+5
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10011 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10018 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  108 54 361 107
+
+T 
+6
+LANG:10001 0 
+LANG:10010 7 ALARMAS
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+"main(mapping event)
+{
+  string url_informe;
+
+  dpGet(\"ConfiguracionSCADA.configuracion_bd.direccion_servidor_informes\",url_informe);
+  //Seteamos la web que queremos mostrar
+  ChildPanelOn(\"vision/sinopticos/03_informes/informes/informes_emergentes.pnl\",\"Ventana de Informe\",makeDynString(\"$INST:\" + url_informe + this.name),61,37);
+}
+" 0
+ E E E
+13 33
+"informe_analogicas"
+"GRANDE_BLANCO"
+1 1235 56 E E E 1 E 1 E N "LIB_DEUSER_BLANCO" E N "_Button" E E
+ E E
+11 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 6 Accept
+LANG:10010 18 Informe de alarmas
+LANG:10011 6 Accept
+LANG:10009 8 Accepter
+LANG:10008 6 Accept
+LANG:10018 6 Accept
+
+5
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10011 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10018 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  1233 54 1486 107
+
+T 
+6
+LANG:10001 0 
+LANG:10010 11 ANALÓGICAS
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+"main(mapping event)
+{
+  string url_informe;
+
+  dpGet(\"ConfiguracionSCADA.configuracion_bd.direccion_servidor_informes\",url_informe);
+  //Seteamos la web que queremos mostrar
+  ChildPanelOn(\"vision/sinopticos/03_informes/informes/informes_emergentes.pnl\",\"Ventana de Informe\",makeDynString(\"$INST:\" + url_informe + this.name),61,37);
+}
+" 0
+ E E E
+13 34
+"informe_motor"
+"GRANDE_BLANCO"
+1 1610 56 E E E 1 E 1 E N "LIB_DEUSER_BLANCO" E N "_Button" E E
+ E E
+12 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 6 Accept
+LANG:10010 18 Informe de alarmas
+LANG:10011 6 Accept
+LANG:10009 8 Accepter
+LANG:10008 6 Accept
+LANG:10018 6 Accept
+
+5
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10011 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10018 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  1608 54 1861 107
+
+T 
+6
+LANG:10001 0 
+LANG:10010 7 MOTORES
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+"main(mapping event)
+{
+  string url_informe;
+
+  dpGet(\"ConfiguracionSCADA.configuracion_bd.direccion_servidor_informes\",url_informe);
+  //Seteamos la web que queremos mostrar
+  ChildPanelOn(\"vision/sinopticos/03_informes/informes/informes_emergentes.pnl\",\"Ventana de Informe\",makeDynString(\"$INST:\" + url_informe + this.name),61,37);
+}
+" 0
+ E E E
+13 35
+"informe_historico_alarmas"
+"GRANDE_BLANCO"
+1 485 56 E E E 1 E 1 E N "LIB_DEUSER_BLANCO" E N "_Button" E E
+ E E
+13 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 6 Accept
+LANG:10010 18 Informe de alarmas
+LANG:10011 6 Accept
+LANG:10009 8 Accepter
+LANG:10008 6 Accept
+LANG:10018 6 Accept
+
+5
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10011 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10018 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  483 54 736 107
+
+T 
+6
+LANG:10001 0 
+LANG:10010 18 HISTÓRICO ALARMAS
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+"main(mapping event)
+{
+  string url_informe;
+
+  dpGet(\"ConfiguracionSCADA.configuracion_bd.direccion_servidor_informes\",url_informe);
+  //Seteamos la web que queremos mostrar
+  ChildPanelOn(\"vision/sinopticos/03_informes/informes/informes_emergentes.pnl\",\"Ventana de Informe\",makeDynString(\"$INST:\" + url_informe + this.name),61,37);
+}
+" 0
+ E E E
+29 36
+"Label1"
+"GRANDE_AZUL"
+1 795.3749999999995 1.005102040816354 E E E 1 E 1 E N "_3DText" E N "WF_EwoWaitBackground" E E
+ E E
+14 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"text" "string SELECCIONE INFORME A VISUALIZAR"
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 27 Tahoma,-1,16,5,50,0,0,0,0,0
+0  795.3749999999995 1.005102040816354 1180 41.00510204081635
+5 Label
+0
+E0
+LAYER, 1 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 2 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 3 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 4 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 5 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 6 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 7 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+0

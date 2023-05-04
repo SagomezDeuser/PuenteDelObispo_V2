@@ -1,0 +1,566 @@
+V 14
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+PANEL,-1 -1 960 940 N "LIB_IRC_BLANCO" 1
+"$DPEs"
+"main()
+{
+  formatear_estilo_tabla(\"tabla_dp\", \"AlignVCenter | AlignHCenter\", \"LIB_IRC_BLANCO\", \"LIB_IRC_AZUL_03\");  //Damos formato a la tabla con el listado de DP's
+  delay(0, 200);
+  setValue(\"tabla_dp\", \"deleteAllLines\");
+  tabla_dp.columnEditable(1, TRUE);
+  tabla_dp.columnEditable(2, TRUE);
+  tabla_dp.selectByClick(TABLE_SELECT_LINE);
+
+  formatear_estilo_tabla(\"tabla_ref\", \"AlignVCenter | AlignHCenter\", \"LIB_IRC_BLANCO\", \"LIB_IRC_AZUL_03\");  //Damos formato a la tabla con el listado de DP's
+  setValue(\"tabla_ref\", \"deleteAllLines\");
+  tabla_ref.columnEditable(1, TRUE);
+  tabla_ref.selectByClick(TABLE_SELECT_LINE);
+  dyn_string dpes, dpes_ini = strsplit($DPEs,\" | \");
+
+  for(int i = 1; i<= dynlen(dpes_ini); i++)
+  {
+    if(dpes_ini[i] != \"\") dynAppend(dpes,dpes_ini[i]);
+  }
+
+  string referencia;
+
+  for (int i = 1; i <= dynlen(dpes); i++)
+  {
+    referencia = dpes[i];
+    strreplace(referencia, \"System1:\", \"\");
+    tabla_dp.appendLine(\"num\", i, \"dp\", dpes[i], \"active\", TRUE);
+    tabla_ref.appendLine(\"num\", i, \"referencia\", referencia);
+  }
+}
+" 0
+ E E E E 1 -1 -1 0  14.00000000000006 14
+""0  1
+E E 4
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+"pdpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10001 0 
+LANG:10010 0 
+6 49
+"rect_fondo_config"
+""
+1 20 10 E E E 1 E 1 E N "_Transparent" E N "LIB_IRC_AZUL_03" E E
+ E E
+48 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+4
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E -1 1 3 2 1 E 8.717286795713793 0 0.7250000000000001 -174.3457359142761 -7.25 4 "[linear,pad,0,0,-0.012,0.988,0.00671,LIB_IRC_AZUL_03,1,{255,255,255}]" E 20 10 130 50
+6 50
+"RECTANGLE1"
+""
+1 20 10 E E E 1 E 1 E N "_Transparent" E N "LIB_IRC_AZUL_03" E E
+ E E
+49 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+4
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E -1 1 3 2 1 E 8.717286795713793 0 0.7250000000000001 -174.3457359142761 902.75 4 "[linear,pad,0.988,1,0.976,0.0241,0,LIB_IRC_AZUL_03,1,{255,255,255}]" E 20 10 130 50
+2 51
+"PRIMITIVE_TEXT9"
+""
+1 561.584759972651 58 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Window" E E
+ E E
+50 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+5
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E 1.007301911238731 0 1.172350135187827 -86.10367411616679 -21.86173813191363 0 E 254 58 870 82
+0 2 2 "0s" 0 0 0 193 0 0  561.584759972651 58 1
+6
+LANG:10001 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,21,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+0 6
+LANG:10001 46 Mapeo por completo un DP en función de su MDP
+LANG:10010 58 Mapeo de una/varias variables en función de otra concreta
+LANG:10011 46 Mapeo por completo un DP en función de su MDP
+LANG:10009 46 Mapeo por completo un DP en función de su MDP
+LANG:10008 46 Mapeo por completo un DP en función de su MDP
+LANG:10018 46 Mapeo por completo un DP en función de su MDP
+13 54
+"PUSH_BUTTON2"
+"GRANDE_AZUL"
+1 456.81722660539 920.5 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_BLANCO" E E
+ E E
+53 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 6 Accept
+LANG:10010 7 Aceptar
+LANG:10011 6 Accept
+LANG:10009 8 Accepter
+LANG:10008 6 Accept
+LANG:10018 6 Accept
+
+5
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10011 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10018 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  777.8184427967585 888.2473709361702 870.6168955804069 926.5724692970541
+
+P 
+4294967295
+"pictures/iconos/botoneras/flecha_der_off.svg"
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+"main(mapping event)
+{
+    RootPanelOnModule(\"vision/sinopticos/06_configuracion/configuracion/config_dp_emergentes/configuracion_ini.pnl\",\"ini\",\"modulo_config\",\"\");
+}" 0
+ E E E
+25 56
+"tabla_ref"
+"PEQUENIO_AZUL"
+1 -507.2228208947122 425.9014507945628 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_BLANCO" E E
+ E E
+55 0 0 0 0 0
+E E E
+0
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+5
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,80}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+7
+LANG:10001 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10005 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+0  22 463 935 789
+EE 1 0 1 2 0 "num" 6 1 0 "[0s,,,AlignLeft|AlignVCenter]" 6
+LANG:10001 2 #1
+LANG:10010 3 Nº
+LANG:10011 2 #1
+LANG:10009 2 #1
+LANG:10008 2 #1
+LANG:10018 2 #1
+E
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+30 "referencia" 6 1 0 "[0s,,,AlignLeft|AlignVCenter]" 6
+LANG:10001 2 #1
+LANG:10010 10 Referencia
+LANG:10011 2 #1
+LANG:10009 2 #1
+LANG:10008 2 #1
+LANG:10018 2 #1
+E
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+880 
+27 27 10 0
+7
+LANG:10001 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10005 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+0 0 1 1 1 7
+1 0
+2 58
+"txf_tabla_copiado"
+""
+1 561.584759972651 58 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Window" E E
+ E E
+57 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+5
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E 1 0 1.260482559190313 -82 6.028649909206308 0 E 452 58 672 76
+0 2 2 "0s" 0 0 0 193 0 0  561.584759972651 58 1
+6
+LANG:10001 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+0 6
+LANG:10001 28 DP_EJEMPLO PARA COPIAR CONFI
+LANG:10010 26 Reference y address active
+LANG:10011 28 DP_EJEMPLO PARA COPIAR CONFI
+LANG:10009 28 DP_EJEMPLO PARA COPIAR CONFI
+LANG:10008 28 DP_EJEMPLO PARA COPIAR CONFI
+LANG:10018 28 DP_EJEMPLO PARA COPIAR CONFI
+25 64
+"tabla_dp"
+"PEQUENIO_AZUL"
+1 -581.3389753317211 91.69747343300449 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_BLANCO" E E
+ E E
+63 0 0 0 0 0
+E E E
+0
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+5
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,80}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+7
+LANG:10001 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10005 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+0  23.50165380374864 110.3333537177142 936.4983461962514 436.2530861591858
+EE 1 0 1 3 0 "num" 6 1 0 "[0s,,,AlignLeft|AlignVCenter]" 6
+LANG:10001 2 #1
+LANG:10010 3 Nº
+LANG:10011 2 #1
+LANG:10009 2 #1
+LANG:10008 2 #1
+LANG:10018 2 #1
+E
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+30 "dp" 37 1 0 "[0s,,,AlignLeft|AlignVCenter]" 6
+LANG:10001 2 ID
+LANG:10010 2 DP
+LANG:10011 2 #1
+LANG:10009 2 #1
+LANG:10008 2 #1
+LANG:10018 2 #1
+E
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+819 "active" 6 1 0 "[0d,False,False,AlignLeft|AlignVCenter,False]" 6
+LANG:10001 2 #1
+LANG:10010 7 Address
+LANG:10011 2 #1
+LANG:10009 2 #1
+LANG:10008 2 #1
+LANG:10018 2 #1
+E
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+60 
+27 27 10 0
+7
+LANG:10001 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10005 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+0 0 1 1 1 7
+1 0
+13 65
+"PUSH_BUTTON3"
+"GRANDE_AZUL"
+1 -231.6181117717754 920.3717341927455 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_BLANCO" E E
+ E E
+64 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 6 Accept
+LANG:10010 7 Aceptar
+LANG:10011 6 Accept
+LANG:10009 8 Accepter
+LANG:10008 6 Accept
+LANG:10018 6 Accept
+
+5
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10011 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10018 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  89.38310441959317 888.1191051289157 182.1815572032416 926.4442034897996
+
+P 
+4294967295
+"pictures/iconos/botoneras/flecha_izq_off.svg"
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+"main(mapping event)
+{
+    RootPanelOnModule(\"vision/sinopticos/06_configuracion/configuracion/config_dp_emergentes/configuracion_mapeo_dpe_dpe_2.pnl\",\"mapeo_dpe_dpe_2\",\"modulo_config\",\"\");
+}" 0
+ E E E
+13 66
+"btn_aceptar"
+"GRANDE_BLANCO"
+1 235.8895968016237 859.7816543093577 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Button" E E
+ E E
+65 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 6 Accept
+LANG:10010 31 Mapeo del address sin reference
+LANG:10011 6 Accept
+LANG:10009 8 Accepter
+LANG:10008 6 Accept
+LANG:10018 6 Accept
+
+5
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10011 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10018 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  448.5 805.7816543093577 511.5000000000001 868.7816543093577
+
+P 
+4294967295
+"pictures/iconos/botoneras/aceptar.svg"
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+"main(mapping event)
+{
+  setValue(\"ae_loading_ewo\", \"visible\", TRUE);  //Hacemos visible la animación del loading
+  ae_loading_ewo.start();  //Iniciamos la animación del loading
+  dyn_string dpes, dpes_ini = strsplit($DPEs,\" | \");
+
+  for(int i = 1; i<= dynlen(dpes_ini); i++)
+  {
+    if(dpes_ini[i] != \"\") dynAppend(dpes,dpes_ini[i]);
+  }
+
+  for (int i = 1; i <= dynlen(dpes); i++)
+  {
+    dpSetWait(dpes[i] + \":_address.._reference\", tabla_ref.cellValueRC(i - 1, \"referencia\"));
+    dpSetWait(dpes[i] + \":_address.._active\", tabla_dp.cellValueRC(i - 1, \"active\"));
+  }
+
+  setValue(\"ae_loading_ewo\", \"visible\", FALSE);  //Hacemos visible la animación del loading
+  ae_loading_ewo.stop();  //Iniciamos la animación del loading
+}
+" 0
+ E E E
+0
+LAYER, 1 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 2 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 3 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 4 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 5 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 6 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 7 
+2
+LANG:10001 0 
+LANG:10010 0 
+29 67
+"ae_loading_ewo"
+""
+1 -206.3407021195572 210.1936052662516 E E E 1 E 0 E N "_3DText" E N "_3DFace" E E
+ E E
+66 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+4
+"effectType" "enum 2"
+"color1" "color {1,72,152,225}"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10011 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10018 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  10.00000000000013 39.00000000000001 950.0000000000001 933.011049723757
+19 AttentionEffect.ewo
+0
+E0
+0

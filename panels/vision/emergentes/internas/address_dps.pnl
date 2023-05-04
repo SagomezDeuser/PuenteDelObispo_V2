@@ -1,0 +1,307 @@
+V 14
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+PANEL,-1 -1 550 170 N "white" 0
+"main()
+{
+  setWindowTitle(myModuleName(), myPanelName(), \" \");  //Eliminamos el title que aparece en el Frame del Panel
+  windowStyle(myModuleName(),myPanelName(),0,0);  //Eliminamos los botones para maximizar y minimizar el Panel
+}" 0
+ E E E E 1 -1 -1 0  0 0
+""0  1
+E E 5
+"CBRef" "1"
+"EClose" E
+"windowIcon" "iconos/ventanas/gestion.svg"
+"dpi" "96"
+"pdpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10001 0 
+LANG:10010 0 
+29 27
+"txf_conf_address"
+"MEDIANO_AZUL"
+1 23 70 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+26 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"text" "string ¿Está seguro que desea activar/desactivar los address?"
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+0  23 70 538 89
+5 Label
+0
+"main()
+{
+  this.text(getCatStr(\"objetos\",this.name));
+}" 0
+14 30
+"TEXT_FIELD1"
+""
+1 23 6.234693877550967 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+29 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,30,5,75,0,0,0,0,0,Negrita
+0  21 8.234693877550967 238 45.23469387755097
+2 "0s" 0 0 0 0 0 -1  E "main()
+{
+  this.text(\"Address DP's\");
+}" 0
+ E
+13 31
+"PUSH_BUTTON1"
+"MEDIANO_BLANCO"
+1 690.1304926764301 305.808082131295 E E E 1 E 1 E N "_ButtonText" E N "_Transparent" E E
+ E E
+30 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 6 Accept
+LANG:10010 7 Aceptar
+LANG:10011 6 Accept
+LANG:10009 8 Accepter
+LANG:10008 6 Accept
+LANG:10018 6 Accept
+
+6
+"hoverbclr" "N \"AZUL_01\""
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10011 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10018 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  402 104.5139684352455 475.8428761651129 167.4248070749583
+
+P 
+4294967295
+"pictures/iconos/botoneras/aceptar.svg"
+6
+LANG:10001 12 PUSH_BUTTON1
+LANG:10010 12 PUSH_BUTTON1
+LANG:10011 12 PUSH_BUTTON1
+LANG:10009 12 PUSH_BUTTON1
+LANG:10008 12 PUSH_BUTTON1
+LANG:10018 12 PUSH_BUTTON1
+"main(mapping event)
+{
+  string aux_st = \"ok\";
+  float confirmar = 1;
+
+  dpSet(\"_Ui_\" + myManNum() + \".ReturnValue.Float:_original.._value\", confirmar);  //Devolvemos al Panel Principal el resultado
+  dpSet(\"_Ui_\" + myManNum() + \".ReturnValue.Text:_original.._value\", aux_st);  //Devolvemos al Panel Principal el resultado
+
+  PanelOff();  //Cerramos el Panel
+}" 0
+ E E E
+13 32
+"PUSH_BUTTON2"
+"MEDIANO_BLANCO"
+1 761.6102546377158 305.808082131295 E E E 1 E 1 E N "_ButtonText" E N "_Transparent" E E
+ E E
+31 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 6 Cancel
+LANG:10010 8 Cancelar
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+6
+"hoverbclr" "N \"AZUL_01\""
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10011 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10018 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  473.0632490013311 104.5139684352455 546.906125166444 167.4248070749583
+
+P 
+4294967295
+"pictures/iconos/botoneras/cancelar.svg"
+6
+LANG:10001 12 PUSH_BUTTON1
+LANG:10010 12 PUSH_BUTTON1
+LANG:10011 12 PUSH_BUTTON1
+LANG:10009 12 PUSH_BUTTON1
+LANG:10008 12 PUSH_BUTTON1
+LANG:10018 12 PUSH_BUTTON1
+"main(mapping event)
+{
+  string aux_st = \"\";
+  float confirmar = 0;
+
+  dpSet(\"_Ui_\" + myManNum() + \".ReturnValue.Float:_original.._value\", confirmar);  //Devolvemos al Panel Principal el resultado
+  dpSet(\"_Ui_\" + myManNum() + \".ReturnValue.Text:_original.._value\", aux_st);  //Devolvemos al Panel Principal el resultado
+
+  PanelOff();  //Cerramos el Panel
+}" 0
+ E E E
+6 33
+"fondo"
+""
+1 20 10 E E E 1 E 1 E N "AZUL_01" E N {1,72,152} E E
+ E E
+32 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 1.173435419440742 0 1.472770965992822 380.7190412782961 91.78625877531725 1 E 20 10 140 50
+4 34
+"LINE2"
+""
+1 475.2601101112495 111.9959655024409 E E E 1 E 1 E N "AZUL_01" E N {255,255,255} E E
+ E E
+33 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 3 2 1 E  475.7203728362182 111.5064123877635 475.7203728362182 160.4323631224403
+6 35
+"RECTANGLE2"
+""
+1 63 18 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "LIB_IRC_AZUL_03" E E
+ E E
+34 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E -1 1 3 2 1 E 0.001563313802083333 0 -1.852732148342413 7.901512044270835 217.0594200131129 1 E 63 18 1982 117
+6 36
+"RECTANGLE4"
+""
+1 63 18 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N {1,72,152} E E
+ E E
+35 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E -1 1 3 2 1 E 0.004689941406249998 0 -1.85996563562755 -1.18464111300248 215.842084208387 1 E 63 18 1982 117
+6 37
+"RECTANGLE5"
+""
+1 114 117 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+36 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+4
+"transparentForMouseInGedi" ""
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 4.066666666666666 0 4.121951219512195 -463.6 -482.2682926829269 1 E 114 117 249 158
+0
+LAYER, 1 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 2 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 3 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 4 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 5 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 6 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 7 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+0

@@ -1,0 +1,171 @@
+V 14
+6
+LANG:10010 0 
+LANG:10001 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+PANEL,-1 -1 1920 980 N "LIB_IRC_BLANCO" 0
+E E E E E 1 -1 -1 0  0 0
+""0  1
+E E 4
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+"pdpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10010 0 
+LANG:10001 0 
+28 2
+"tab_config_tolvas"
+"tab_widget_standard_1"
+1 0 -3.375077994860476e-14 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+1 0 0 0 0 0
+E E E
+0
+6
+LANG:10010 0 
+LANG:10001 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+1
+"layoutAlignment" "AlignNone"
+6
+LANG:10010 35 Tahoma,-1,14,5,75,0,0,0,0,0,Negrita
+LANG:10001 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10011 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10009 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10008 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10018 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  -2 -2 1921 980
+E7 "historicos_alarmas" 6
+LANG:10010 18 Historicos Alarmas
+LANG:10001 2 #1
+LANG:10011 2 #1
+LANG:10009 2 #1
+LANG:10008 2 #1
+LANG:10018 2 #1
+1 "vision/sinopticos/10_registros/registros/historicos_alarmas.pnl" 2
+LANG:10010 0 
+LANG:10001 0 
+0
+
+"produccion" 6
+LANG:10010 11 Producción
+LANG:10001 2 #1
+LANG:10011 2 #1
+LANG:10009 2 #1
+LANG:10008 2 #1
+LANG:10018 2 #1
+1 "vision/sinopticos/10_registros/registros/produccion.pnl" 2
+LANG:10010 0 
+LANG:10001 0 
+0
+
+"estado_accionamiento" 6
+LANG:10010 21 Estado Accionamientos
+LANG:10001 2 #1
+LANG:10011 2 #1
+LANG:10009 2 #1
+LANG:10008 2 #1
+LANG:10018 2 #1
+1 "vision/sinopticos/10_registros/registros/estado_accionamiento.pnl" 2
+LANG:10010 0 
+LANG:10001 0 
+0
+
+"analogica_accionamiento" 6
+LANG:10010 26 Analógicas Accionamientos
+LANG:10001 2 #1
+LANG:10011 2 #1
+LANG:10009 2 #1
+LANG:10008 2 #1
+LANG:10018 2 #1
+1 "vision/sinopticos/10_registros/registros/analogicas_accionamiento.pnl" 2
+LANG:10010 0 
+LANG:10001 0 
+0
+
+"analogica_valores" 6
+LANG:10010 19 Valores Analógicas
+LANG:10001 2 #1
+LANG:10011 2 #1
+LANG:10009 2 #1
+LANG:10008 2 #1
+LANG:10018 2 #1
+1 "vision/sinopticos/10_registros/registros/escalado_analogicas.pnl" 2
+LANG:10010 0 
+LANG:10001 0 
+0
+
+"analizadores_redes" 6
+LANG:10010 18 Analizadores Redes
+LANG:10001 2 #1
+LANG:10011 2 #1
+LANG:10009 2 #1
+LANG:10008 2 #1
+LANG:10018 2 #1
+1 "vision/sinopticos/10_registros/registros/analizadores_redes.pnl" 2
+LANG:10010 0 
+LANG:10001 0 
+0
+
+"incidencias" 6
+LANG:10010 11 Incidencias
+LANG:10001 2 #1
+LANG:10011 2 #1
+LANG:10009 2 #1
+LANG:10008 2 #1
+LANG:10018 2 #1
+1 "vision/sinopticos/10_registros/registros/incidencias.pnl" 2
+LANG:10010 0 
+LANG:10001 0 
+0
+
+
+0
+LAYER, 1 
+2
+LANG:10010 0 
+LANG:10001 0 
+0
+LAYER, 2 
+2
+LANG:10010 0 
+LANG:10001 0 
+0
+LAYER, 3 
+2
+LANG:10010 0 
+LANG:10001 0 
+0
+LAYER, 4 
+2
+LANG:10010 0 
+LANG:10001 0 
+0
+LAYER, 5 
+2
+LANG:10010 0 
+LANG:10001 0 
+0
+LAYER, 6 
+2
+LANG:10010 0 
+LANG:10001 0 
+0
+LAYER, 7 
+2
+LANG:10010 0 
+LANG:10001 0 
+0
+0

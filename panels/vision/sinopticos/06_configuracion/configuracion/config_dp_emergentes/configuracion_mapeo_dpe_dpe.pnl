@@ -1,0 +1,265 @@
+V 14
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+PANEL,-1 -1 960 940 N "LIB_IRC_BLANCO" 0
+E E E E E 1 -1 -1 0  14.00000000000006 14
+""0  1
+E E 4
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+"pdpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10001 0 
+LANG:10010 0 
+6 1
+"rect_fondo_config"
+""
+1 20 10 E E E 1 E 1 E N "_Transparent" E N "LIB_IRC_AZUL_03" E E
+ E E
+0 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+4
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E -1 1 3 2 1 E 8.717286795713793 0 0.7250000000000001 -174.3457359142759 -7.25 4 "[linear,pad,0,0,-0.012,0.988,0.00671,LIB_IRC_AZUL_03,1,{255,255,255}]" E 20 10 130 50
+6 2
+"RECTANGLE1"
+""
+1 20 10 E E E 1 E 1 E N "_Transparent" E N "LIB_IRC_AZUL_03" E E
+ E E
+1 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+4
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E -1 1 3 2 1 E 8.717286795713793 0 0.7250000000000001 -174.3457359142759 902.75 4 "[linear,pad,0.988,1,0.976,0.0241,0,LIB_IRC_AZUL_03,1,{255,255,255}]" E 20 10 130 50
+13 48
+"PUSH_BUTTON2"
+"GRANDE_AZUL"
+1 518.5995574168073 914.81617863719 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_BLANCO" E E
+ E E
+47 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 6 Accept
+LANG:10010 7 Aceptar
+LANG:10011 6 Accept
+LANG:10009 8 Accepter
+LANG:10008 6 Accept
+LANG:10018 6 Accept
+
+5
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10011 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10018 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  839.6007736081758 882.5635495733602 932.3992263918242 920.8886479342441
+
+P 
+4294967295
+"pictures/iconos/botoneras/flecha_der_off.svg"
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+"main(mapping event)
+{
+  if(dpExists(seleccion_ejemplo.selectedItem + \":_address.._reference\") && dpElementType(seleccion_ejemplo.selectedItem) != 1 && seleccion_ejemplo.selectedItem != \"\")
+  {
+    RootPanelOnModule(\"vision/sinopticos/06_configuracion/configuracion/config_dp_emergentes/configuracion_mapeo_dpe_dpe_2.pnl\",\"mapeo_dpe_dpe_2\",\"modulo_config\",makeDynString(\"$DPE:\" + seleccion_ejemplo.selectedItem));
+  }
+  else
+  {
+    seleccion_ejemplo.backCol = \"LIB_IRC_ROJOTRANS_01\";
+    txf_error.visible = TRUE;
+    delay(2,0);
+    seleccion_ejemplo.backCol = \"LIB_IRC_BLANCO\";
+    txf_error.visible = FALSE;
+  }
+}" 0
+ E E E
+29 49
+"seleccion_ejemplo"
+""
+1 119.0400272271393 59.20277133123423 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_BLANCO" E E
+ E E
+48 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+14
+"layoutDirection" "enum 0"
+"alternatingRowColors" "bool TRUE"
+"autoScrollMargin" "int 16"
+"dpFilterIgnoresCase" "bool FALSE"
+"indentation" "int 20"
+"showMasterDps" "bool TRUE"
+"showDropIndicator" "bool FALSE"
+"selectionBehavior" "enum 1"
+"itemsExpandable" "bool TRUE"
+"headerHidden" "bool TRUE"
+"frameShape" "enum 0"
+"frameShadow" "enum 48"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+0  138.0638273440042 185.660546008953 821.9361726559958 858.2993758509858
+29 DatapointTree.DatapointTree.1
+0
+E29 52
+"Label1"
+"GRANDE_AZUL"
+1 179.3744210868487 39.22559492868335 E E E 1 E 1 E N "_3DText" E N "WF_EwoWaitBackground" E E
+ E E
+51 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"text" "string Mapeo de una/varias variables en función de otra concreta"
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 27 Tahoma,-1,16,5,50,0,0,0,0,0
+0  179.3744210868487 39.22559492868335 780.6255789131516 79.17994773378511
+5 Label
+0
+E29 53
+"txf_referencia"
+"MEDIANO_AZUL"
+1 254.4641508841559 127.0000963247218 E E E 1 E 1 E N "_3DText" E N "WF_EwoWaitBackground" E E
+ E E
+52 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"text" "string SELECCIONA LA VARIABLE DE REFERENCIA A SER COPIADA"
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 27 Tahoma,-1,16,5,50,0,0,0,0,0
+0  254.4641508841559 127.0000963247218 705.535849115844 166.9544491298236
+5 Label
+0
+E29 56
+"txf_error"
+"GRANDE_AZUL"
+1 59.00000000000027 854.9999999999977 E E E 1 E 0 E N "LIB_IRC_ROJO_01" E N "_3DFace" E E
+ E E
+55 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"text" "string La opción seleccionada no es una variable"
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 27 Tahoma,-1,16,5,50,0,0,0,0,0
+0  59.00000000000027 854.9999999999977 480.9680863279981 925.0000000000005
+5 Label
+0
+E0
+LAYER, 1 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 2 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 3 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 4 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 5 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 6 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 7 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+0

@@ -1,0 +1,355 @@
+V 14
+7
+LANG:10011 0 
+LANG:10001 0 
+LANG:10010 20 MOTOR_D_VF_AN_CONFIG
+LANG:10009 17 MOTOR_D_VF_CONFIG
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+PANEL,-1 -1 475 560 N "white" 1
+"$INST"
+E E E E E 1 -1 -1 0  0 0
+""0  1
+E "//--------------------------------------------------------------------------------
+//Clases importadas a utilizar por las funciones de la librería
+lib_servo servo_lib = lib_servo($INST, \"asdf\");
+
+//---------------Variables auxiliares---------------------
+//Seleccionado cuando el foco actual está en este campo
+bool mov_vel_seleccionado = FALSE;
+
+//Confirmado cuando se pulsa intro estando en este campo
+bool mov_acc_seleccionado = FALSE;
+
+//Seleccionado cuando el foco actual está en este campo
+bool mol_decc_seleccionado = FALSE;
+
+//Seleccionado cuando el foco actual está en este campo
+bool mol_jerk_seleccionado = FALSE;
+
+//Seleccionado cuando el foco actual está en este campo
+bool vel_om_av_seleccionado = FALSE;
+
+//Seleccionado cuando el foco actual está en este campo
+bool vel_om_rt_seleccionado= FALSE;
+
+//Seleccionado cuando el foco actual está en este campo
+bool vel_acc_seleccionado = FALSE;
+
+//Seleccionado cuando el foco actual está en este campo
+bool vel_dec_seleccionado = FALSE;
+
+//Seleccionado cuando el foco actual está en este campo
+bool vel_jerk_seleccionado = FALSE;
+
+//Confirmado cuando se pulsa intro estando en este campo
+bool tp_confirmado = FALSE;
+" 0
+ 4
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+"pdpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+6
+LANG:10011 0 
+LANG:10001 0 
+LANG:10010 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+6 61
+"RECTANGLE3"
+""
+1 2.080870106436669 1.110223024625157e-16 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+60 0 0 0 0 0
+E E E
+0
+7
+LANG:10011 0 
+LANG:10001 0 
+LANG:10010 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+4
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E -1 1 3 2 1 E 0.2470635476149616 0 1.502811938879687 -0.4941270952298384 410 4 "[linear,pad,-0.012,1.51,0,-0.012,0.0101,LIB_IRC_AZULTRANS_01,0.997,_Transparent]" E 2 0 1921 99
+25 177
+"tabla_listado_alarmas"
+"tb_standard_1"
+1 10.00000000000003 10.00000000000002 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+176 0 0 0 0 0
+E E E
+0
+6
+LANG:10011 0 
+LANG:10001 0 
+LANG:10010 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+2
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10011 34 Tahoma,-1,11,5,50,0,0,0,0,0,Normal
+LANG:10001 34 Tahoma,-1,11,5,50,0,0,0,0,0,Normal
+LANG:10010 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10009 34 Tahoma,-1,11,5,50,0,0,0,0,0,Normal
+LANG:10008 34 Tahoma,-1,11,5,50,0,0,0,0,0,Normal
+LANG:10018 34 Tahoma,-1,11,5,50,0,0,0,0,0,Normal
+0  8 8 468 551
+"main()
+{
+  formatear_estilo_tabla(\"tabla_listado_alarmas\", \"AlignVCenter | AlignHCenter\", \"LIB_IRC_BLANCO\", \"LIB_IRC_AZUL_03\");  //Damos formato a la tabla con el listado de variables
+
+  setMultiValue(\"\", \"deleteAllLines\",  //Borra las líneas existentes
+                \"\", \"tableMode\", 0,
+                \"\", \"selectByClick\", 1);
+
+  //Genera el string para la consulta que se encarga de añadir alarmas o cambiar el estado a acusado
+  string consulta = \"SELECT ALERT '_alert_hdl.._value','_alert_hdl.._came_time','_alert_hdl.._ack_time','_alert_hdl.._gone_time','_alert_hdl.._text' \" +
+                    \"FROM '\" + $INST + \"' \" +
+                    \"SORT BY 2 DESC \";
+
+  //Realiza la conexión entre los resutlados de las variables incluidas en la consulta con la función para actualizar la tabla, ya sean nuevas o existentes que han cambiado de estado
+  dpQueryConnectSingle(\"cambio_alarmas\", TRUE, consulta, consulta);
+}
+
+//Es llamada por cualquier variables que no sea interna y tenga atributo alert_hdl
+cambio_alarmas(string consulta, dyn_dyn_anytype resultado_consulta){
+  int estado_alarma, fila, columna, tamano_consulta;
+  time fecha_inicio, fecha_fin,  fecha_acuse;
+  string nombre_dpe, nombre_dp, texto_alarma, descripcion, tag_electrico, color_fondo_alarma, color_fuente_alarma;
+
+  tamano_consulta = dynlen(resultado_consulta);
+
+  if(tamano_consulta < 2)  tamano_consulta = 3;
+
+  for(int i = 2; i <= tamano_consulta; i++){
+    //Obtención de datos sobre la variable de alarma, nombre del dpe, dp, descripcion del elemento y texto de alarma
+    nombre_dpe = dpSubStr(resultado_consulta[i][1], DPSUB_DP_EL);
+    nombre_dp = dpSubStr(resultado_consulta[i][1], DPSUB_DP);
+    descripcion = dpGetDescription(nombre_dp + \".\", 0);
+    tag_electrico = dpGetAlias(nombre_dp + \".\");
+
+    //Texto de la alarma
+    texto_alarma = resultado_consulta[i][7];
+
+    dpGet(nombre_dpe + \":_alert_hdl.._act_state\", estado_alarma,  //Obtención del estado de la alarma
+          nombre_dpe + \":_alert_hdl.._act_state_color\", color_fondo_alarma,  //Obtención de los colores de alarma
+          nombre_dpe + \":_alert_hdl.._act_state_fore_color\", color_fuente_alarma);  //Obtención de los colores de alarma
+
+    //Obtención de tiempos de alarma
+    fecha_inicio = resultado_consulta[i][4];
+    fecha_acuse = resultado_consulta[i][5];
+    fecha_fin = resultado_consulta[i][6];
+
+    switch(estado_alarma){
+      //Alarma en estado 0, ha pasado a no estar activa y ya está acusada por lo que debe borrarse
+      case(0):{
+        this.deleteLine(1, \"nombre_dpe\", nombre_dpe);
+        break;
+      }
+      //Alarma activa y sin acusar, debe pintarse una nueva línea
+      case(1):{
+        this.deleteLine(1, \"nombre_dpe\", nombre_dpe);
+        this.appendLine(\"fecha_inicio\", fecha_inicio, \"descripcion\", texto_alarma, \"nombre_dpe\", nombre_dpe);
+        break;
+      }
+      //Alarma activa y acusada, la línea ya existente de la alarma debe cambiar su color de estado y actualizar la columna de fecha de acuse
+      case(2):{
+        this.updateLine(1, \"nombre_dpe\", nombre_dpe, \"fecha_inicio\", fecha_inicio, \"fecha_acuse\",fecha_acuse, \"descripcion\", texto_alarma, \"nombre_dpe\", nombre_dpe);
+        break;
+      }
+      //Alarma desactiva pero sin acusar, debe cambiar su color de estado y actualizar la columna de fecha fin
+      case(3):{
+        this.updateLine(1, \"nombre_dpe\", nombre_dpe, \"fecha_inicio\", fecha_inicio, \"descripcion\", texto_alarma, \"nombre_dpe\", nombre_dpe);
+        break;
+      }
+    }
+
+    //Si la alarma sigue activa, ya sea CAME/UNACK, CAME/ACK o WENT/UNACK, rellena el fondo y la fuente con los colores de la alarma
+    if(estado_alarma != 0)
+      this.setCurrentLine(1, \"nombre_dpe\", nombre_dpe);
+      getValue(\"\", \"currentCell\", fila, columna);
+      setValue(\"\", \"cellBackColRC\", fila, \"fecha_inicio\", color_fondo_alarma,  \"cellForeColRC\", fila, \"fecha_inicio\", color_fuente_alarma,
+                   \"cellBackColRC\", fila, \"fecha_acuse\", color_fondo_alarma,   \"cellForeColRC\", fila, \"fecha_acuse\", color_fuente_alarma,
+                   \"cellBackColRC\", fila, \"descripcion\", color_fondo_alarma,   \"cellForeColRC\", fila, \"descripcion\", color_fuente_alarma);
+  }
+
+  setMultiValue(\"\", \"tableMode\", 1,
+                \"\", \"selectLineN\", 0,
+                \"\", \"tableMode\", 0,
+                \"\", \"sort\", FALSE, \"fecha_inicio\");
+}
+" 0
+E 1 0 1 5 0 "fecha_inicio" 11 1 0 "[0s,,,AlignHCenter|AlignVCenter]" 6
+LANG:10011 2 #1
+LANG:10001 2 #1
+LANG:10010 12 Fecha Inicio
+LANG:10009 2 #1
+LANG:10008 2 #1
+LANG:10018 2 #1
+E
+6
+LANG:10011 0 
+LANG:10001 0 
+LANG:10010 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+100 "fecha_acuse" 11 1 0 "[0s,,,AlignHCenter|AlignVCenter]" 6
+LANG:10011 2 #1
+LANG:10001 2 #1
+LANG:10010 11 Fecha Acuse
+LANG:10009 2 #1
+LANG:10008 2 #1
+LANG:10018 2 #1
+E
+6
+LANG:10011 0 
+LANG:10001 0 
+LANG:10010 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+100 "descripcion" 30 1 0 "[0s,,,AlignHCenter|AlignVCenter]" 6
+LANG:10011 2 #2
+LANG:10001 2 #2
+LANG:10010 12 Descripción
+LANG:10009 2 #2
+LANG:10008 2 #2
+LANG:10018 2 #2
+E
+6
+LANG:10011 0 
+LANG:10001 0 
+LANG:10010 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+253 "nombre_dpe" -1 1 0 "s" 6
+LANG:10011 2 #1
+LANG:10001 2 #1
+LANG:10010 10 nombre_dpe
+LANG:10009 2 #1
+LANG:10008 2 #1
+LANG:10018 2 #1
+E
+6
+LANG:10011 0 
+LANG:10001 0 
+LANG:10010 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+0 "alarma" -1 1 0 "s" 6
+LANG:10011 2 #1
+LANG:10001 2 #1
+LANG:10010 6 alarma
+LANG:10009 2 #1
+LANG:10008 2 #1
+LANG:10018 2 #1
+E
+6
+LANG:10011 0 
+LANG:10001 0 
+LANG:10010 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+0 
+50 50 10 0
+6
+LANG:10011 34 Tahoma,-1,11,5,50,0,0,0,0,0,Normal
+LANG:10001 34 Tahoma,-1,11,5,50,0,0,0,0,0,Normal
+LANG:10010 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10009 34 Tahoma,-1,11,5,50,0,0,0,0,0,Normal
+LANG:10008 34 Tahoma,-1,11,5,50,0,0,0,0,0,Normal
+LANG:10018 34 Tahoma,-1,11,5,50,0,0,0,0,0,Normal
+0 0 1 1 1 7
+1 0
+0
+LAYER, 1 
+6
+LANG:10011 0 
+LANG:10001 0 
+LANG:10010 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+0
+LAYER, 2 
+6
+LANG:10011 0 
+LANG:10001 0 
+LANG:10010 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+0
+LAYER, 3 
+6
+LANG:10011 0 
+LANG:10001 0 
+LANG:10010 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+0
+LAYER, 4 
+6
+LANG:10011 0 
+LANG:10001 0 
+LANG:10010 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+0
+LAYER, 5 
+6
+LANG:10011 0 
+LANG:10001 0 
+LANG:10010 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+0
+LAYER, 6 
+6
+LANG:10011 0 
+LANG:10001 0 
+LANG:10010 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+0
+LAYER, 7 
+6
+LANG:10011 0 
+LANG:10001 0 
+LANG:10010 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+0
+0

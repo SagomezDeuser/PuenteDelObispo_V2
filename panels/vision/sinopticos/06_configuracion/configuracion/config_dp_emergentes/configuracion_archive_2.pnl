@@ -1,0 +1,764 @@
+V 14
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+PANEL,-1 -1 960 940 N "LIB_IRC_BLANCO" 1
+"$DP"
+E E E E E 1 -1 -1 0  14.00000000000006 14
+""0  1
+E E 4
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+"pdpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10001 0 
+LANG:10010 0 
+6 1
+"rect_fondo_config"
+""
+1 20 10 E E E 1 E 1 E N "_Transparent" E N "LIB_IRC_AZUL_03" E E
+ E E
+0 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+4
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E -1 1 3 2 1 E 8.717286795713793 0 0.7250000000000001 -174.3457359142759 -7.25 4 "[linear,pad,0,0,-0.012,0.988,0.00671,LIB_IRC_AZUL_03,1,{255,255,255}]" E 20 10 130 50
+6 2
+"RECTANGLE1"
+""
+1 20 10 E E E 1 E 1 E N "_Transparent" E N "LIB_IRC_AZUL_03" E E
+ E E
+1 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+4
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E -1 1 3 2 1 E 8.717286795713793 0 0.7250000000000001 -174.3457359142759 902.75 4 "[linear,pad,0.988,1,0.976,0.0241,0,LIB_IRC_AZUL_03,1,{255,255,255}]" E 20 10 130 50
+2 14
+"PRIMITIVE_TEXT9"
+""
+1 561.584759972651 58 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Window" E E
+ E E
+13 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+5
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E 1.007301911238731 0 1.14375721612374 -86.10367411616659 -6.603871077290663 0 E 353 58 771 82
+0 2 2 "0s" 0 0 0 193 0 0  561.584759972651 58 1
+6
+LANG:10001 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,21,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+0 6
+LANG:10001 46 Mapeo por completo un DP en función de su MDP
+LANG:10010 39 Configurar archive de uno o varios DPEs
+LANG:10011 46 Mapeo por completo un DP en función de su MDP
+LANG:10009 46 Mapeo por completo un DP en función de su MDP
+LANG:10008 46 Mapeo por completo un DP en función de su MDP
+LANG:10018 46 Mapeo por completo un DP en función de su MDP
+2 43
+"PRIMITIVE_TEXT10"
+""
+1 561.584759972651 58 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Window" E E
+ E E
+42 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+5
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E 1.007301911238731 0 1.172350135187827 -86.1036741161667 35.13826186808629 0 E 483 58 641 76
+0 2 2 "0s" 0 0 0 193 0 0  561.584759972651 58 1
+6
+LANG:10001 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+0 6
+LANG:10001 46 Mapeo por completo un DP en función de su MDP
+LANG:10010 18 DPEs seleccionados
+LANG:10011 46 Mapeo por completo un DP en función de su MDP
+LANG:10009 46 Mapeo por completo un DP en función de su MDP
+LANG:10008 46 Mapeo por completo un DP en función de su MDP
+LANG:10018 46 Mapeo por completo un DP en función de su MDP
+13 48
+"PUSH_BUTTON2"
+"btn_formulario_1"
+1 -191.0254425831927 919.9618140761334 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_BLANCO" E E
+ E E
+47 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 6 Accept
+LANG:10010 7 Aceptar
+LANG:10011 6 Accept
+LANG:10009 8 Accepter
+LANG:10008 6 Accept
+LANG:10018 6 Accept
+
+5
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10011 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10018 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  129.9757736081758 887.7091850123036 222.7742263918242 926.0342833731875
+
+P 
+4294967295
+"pictures/iconos/botoneras/flecha_izq_off.svg"
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+"main(mapping event)
+{
+    RootPanelOnModule(\"vision/sinopticos/06_configuracion/configuracion/config_dp_emergentes/configuracion_archive.pnl\",\"archive\",\"modulo_config\",makeDynString());
+}" 0
+ E E E
+25 56
+"tabla_lista"
+"tb_standard_1"
+1 265.1231685034813 -69 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_BLANCO" E E
+ E E
+55 0 0 0 0 0
+E E E
+0
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+5
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,80}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+7
+LANG:10001 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10005 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+0  129.7500000000001 136.1038751060364 832.75 569.1038751060364
+"main()
+{
+  formatear_estilo_tabla(\"tabla_lista\", \"AlignVCenter | AlignHCenter\", \"LIB_IRC_BLANCO\", \"LIB_IRC_AZUL_03\");  //Damos formato a la tabla con el listado de DP's
+  delay(0,200);
+  setValue(\"tabla_lista\", \"deleteAllLines\");
+  this.selectByClick(TABLE_SELECT_LINE);
+  this.tableMode(0);
+  this.deleteAllLines();
+  dyn_string dp = strsplit($DP,\" | \");
+
+  for(int i = 1; i<= dynlen(dp); i++)
+  {
+    if(dp[i] != \"\") this.appendLine(\"dp\",dp[i]);
+  }
+
+}
+" 0
+E 1 0 1 1 0 "dp" 52 1 0 "[0s,,,AlignLeft|AlignVCenter]" 6
+LANG:10001 2 ID
+LANG:10010 2 DP
+LANG:10011 2 #1
+LANG:10009 2 #1
+LANG:10008 2 #1
+LANG:10018 2 #1
+E
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+696 
+27 27 10 0
+7
+LANG:10001 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10005 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+0 0 1 1 1 7
+1 0
+13 58
+"PUSH_BUTTON3"
+"btn_formulario_1"
+1 419.0874442208952 919.9446723895396 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_BLANCO" E E
+ E E
+57 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 6 Accept
+LANG:10010 7 Aceptar
+LANG:10011 6 Accept
+LANG:10009 8 Accepter
+LANG:10008 6 Accept
+LANG:10018 6 Accept
+
+5
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10011 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10018 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  740.0886604122637 887.6920433257098 832.8871131959121 926.0171416865937
+
+P 
+4294967295
+"pictures/iconos/botoneras/flecha_der_off.svg"
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+"main(mapping event)
+{
+  RootPanelOnModule(\"vision/sinopticos/06_configuracion/configuracion/config_dp_emergentes/configuracion_ini.pnl\",\"ini\",\"modulo_config\",makeDynString());
+}" 0
+ E E E
+13 60
+"btn_aceptar"
+"btn_formulario_1"
+1 150 910 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+59 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 6 Accept
+LANG:10010 7 Aceptar
+LANG:10011 6 Accept
+LANG:10009 8 Accepter
+LANG:10008 6 Accept
+LANG:10018 6 Accept
+
+5
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10011 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10018 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  438.2631272835297 855.1186440677968 522.0613302341028 919.1186440677968
+
+P 
+4294967295
+"pictures/iconos/botoneras/aceptar.svg"
+6
+LANG:10001 12 PUSH_BUTTON1
+LANG:10010 12 PUSH_BUTTON1
+LANG:10011 12 PUSH_BUTTON1
+LANG:10009 12 PUSH_BUTTON1
+LANG:10008 12 PUSH_BUTTON1
+LANG:10018 12 PUSH_BUTTON1
+"main(mapping event)
+{
+  int tolerancia_int = tolerancia.text(), tiempo_int = tiempo.text() ;
+  dyn_float confirmar;
+  dyn_string confirmar_st, dp;
+  string dpe_nom, dp_selec, consulta, grupo = grupo_archive.selectedText();
+  dyn_dyn_anytype resultado_consulta;
+
+  getValue(\"tabla_lista\", \"getColumnN\", 0, dp);
+
+  for (int i = 1; i <= dynlen(dp); i++)
+  {
+    dp_selec = dp[i];
+
+    if (dpExists(dp_selec))  //Comprobamos que el elemento exista
+    {
+
+      setValue(\"ae_loading_ewo\", \"visible\", TRUE);  //Hacemos visible la animación del loading
+      ae_loading_ewo.start();  //Iniciamos la animación del loading
+      dpSetWait(dp_selec + \":_archive.._archive\", FALSE);
+      delay(0, 2);
+      dpSetWait(dp_selec + \":_archive.._type\", DPCONFIG_DB_ARCHIVEINFO);
+      delay(0, 2);
+      dpSetWait(dp_selec + \":_archive.1._type\", DPATTR_ARCH_PROC_SIMPLESM);
+      delay(0, 2);
+      dpSetWait(dp_selec + \":_archive.1._std_type\", 9);
+      delay(0, 2);
+      dpSetWait(dp_selec + \":_archive.1._std_tol\", tolerancia_int);
+      delay(0, 2);
+      dpSetWait(dp_selec + \":_archive.1._std_time\", tiempo_int);
+      delay(0, 2);
+      dpSetWait(dp_selec + \":_archive.1._class\", grupo);
+      delay(0, 2);
+
+
+      if (!dp_selec.contains(\"_mp_\"))
+      {
+        dpSetWait(dp_selec + \":_archive.._archive\", TRUE);
+      }
+
+
+      ae_loading_ewo.stop();  //Detenemos la animación del loading
+      setValue(\"ae_loading_ewo\", \"visible\", FALSE);  //Ocultamos la animación del loading
+    }
+    else
+    {
+      mostrar_msg_emergente(3, \"fallo_consulta\");
+    }
+  }
+}
+" 0
+ E E E
+22 64
+"grupo_archive"
+"cbb_standard_1"
+1 299.548272889279 612.2533356642583 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+63 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+1
+"layoutAlignment" "AlignNone"
+6
+LANG:10001 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10009 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10008 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10018 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  287.3842772796918 646.4178190307555 673.0987790619686 678.6261160566233
+0
+
+"main()
+{
+  string consulta, dpe, nombreDP;
+  dyn_dyn_anytype resultado_consulta;
+  dyn_string dp;
+
+
+  //Rellenamos el combobox con los DP del DPT seleccionado
+
+  //Hacemos la consulta que nos devolverá todas las variables de los MDPs
+
+  consulta = \"SELECT '_original.._value' FROM '*' WHERE _DP LIKE \\\"_NGA_G_*\\\" AND _EL LIKE \\\"*groupName\\\" \";
+  dpQuery(consulta, resultado_consulta);
+  dynRemove(resultado_consulta, 1);
+  this.deleteAllItems;
+  for (int s = 1; s <= dynlen(resultado_consulta); s++)
+  {
+    dpe = resultado_consulta[s][1];
+    dp = strsplit(dpe,\".\");
+    nombreDP = dp[1];
+
+    if (!nombreDP.contains(\"_2\"))
+    {
+      this.appendItem(nombreDP);
+    }
+  }
+}
+" 0
+
+E
+E
+ 1 0
+2 65
+"PRIMITIVE_TEXT11"
+""
+1 561.584759972651 58 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Window" E E
+ E E
+64 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+5
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E 1.007301911238731 0 1.172350135187827 -85.86214594533658 547.4219978588882 0 E 489 58 635 76
+0 2 2 "0s" 0 0 0 193 0 0  561.584759972651 58 1
+6
+LANG:10001 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+0 6
+LANG:10001 46 Mapeo por completo un DP en función de su MDP
+LANG:10010 17 Grupos de archive
+LANG:10011 46 Mapeo por completo un DP en función de su MDP
+LANG:10009 46 Mapeo por completo un DP en función de su MDP
+LANG:10008 46 Mapeo por completo un DP en función de su MDP
+LANG:10018 46 Mapeo por completo un DP en función de su MDP
+2 66
+"PRIMITIVE_TEXT12"
+""
+1 561.584759972651 58 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Window" E E
+ E E
+65 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+5
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E 1.007301911238731 0 1.172350135187827 -85.86214594533658 626.4219978588882 0 E 478 58 646 76
+0 2 2 "0s" 0 0 0 193 0 0  561.584759972651 58 1
+6
+LANG:10001 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+0 6
+LANG:10001 46 Mapeo por completo un DP en función de su MDP
+LANG:10010 18 Tiempo de muestreo
+LANG:10011 46 Mapeo por completo un DP en función de su MDP
+LANG:10009 46 Mapeo por completo un DP en función de su MDP
+LANG:10008 46 Mapeo por completo un DP en función de su MDP
+LANG:10018 46 Mapeo por completo un DP en función de su MDP
+2 67
+"PRIMITIVE_TEXT13"
+""
+1 561.584759972651 58 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Window" E E
+ E E
+66 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+5
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E 1.007301911238731 0 1.172350135187827 -85.86214594533658 699.4219978588882 0 E 519 58 605 76
+0 2 2 "0s" 0 0 0 193 0 0  561.584759972651 58 1
+6
+LANG:10001 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+0 6
+LANG:10001 46 Mapeo por completo un DP en función de su MDP
+LANG:10010 10 Tolerancia
+LANG:10011 46 Mapeo por completo un DP en función de su MDP
+LANG:10009 46 Mapeo por completo un DP en función de su MDP
+LANG:10008 46 Mapeo por completo un DP en función de su MDP
+LANG:10018 46 Mapeo por completo un DP en función de su MDP
+14 68
+"tiempo"
+""
+1 290.2415281708302 721.8662314433152 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Window" E E
+ E E
+67 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"layoutAlignment" "AlignNone"
+"clearButtonEnabled" "1"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+0  288.2415281708302 713.4183056997822 672.2415281708302 741.4183056997821
+3 "0s" 0 0 0 9 0 -1  E E E
+2 69
+"PRIMITIVE_TEXT14"
+""
+1 561.584759972651 58 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Window" E E
+ E E
+68 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+5
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E 1.007301911238731 0 1.172350135187827 125.431114338482 649.7666981292639 0 E 545 58 579 76
+0 2 2 "0s" 0 0 0 193 0 0  561.584759972651 58 1
+6
+LANG:10001 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+0 6
+LANG:10001 46 Mapeo por completo un DP en función de su MDP
+LANG:10010 4 seg.
+LANG:10011 46 Mapeo por completo un DP en función de su MDP
+LANG:10009 46 Mapeo por completo un DP en función de su MDP
+LANG:10008 46 Mapeo por completo un DP en función de su MDP
+LANG:10018 46 Mapeo por completo un DP en función de su MDP
+14 71
+"tolerancia"
+""
+1 290.2415281708302 797.3132341470716 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Window" E E
+ E E
+70 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"layoutAlignment" "AlignNone"
+"clearButtonEnabled" "1"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+0  288.2415281708302 788.8653084035386 672.2415281708302 816.8653084035385
+3 "0s" 0 0 0 9 0 -1  E E E
+2 72
+"PRIMITIVE_TEXT15"
+""
+1 561.584759972651 58 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Window" E E
+ E E
+71 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+5
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E 1.007301911238731 0 1.172350135187827 125.431114338482 723.4219978588879 0 E 552 58 572 76
+0 2 2 "0s" 0 0 0 193 0 0  561.584759972651 58 1
+6
+LANG:10001 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+0 6
+LANG:10001 46 Mapeo por completo un DP en función de su MDP
+LANG:10010 1 %
+LANG:10011 46 Mapeo por completo un DP en función de su MDP
+LANG:10009 46 Mapeo por completo un DP en función de su MDP
+LANG:10008 46 Mapeo por completo un DP en función de su MDP
+LANG:10018 46 Mapeo por completo un DP en función de su MDP
+0
+LAYER, 1 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 2 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 3 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 4 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 5 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 6 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 7 
+2
+LANG:10001 0 
+LANG:10010 0 
+29 61
+"ae_loading_ewo"
+""
+1 73.9142259414225 36.00000000000007 E E E 1 E 0 E N "_3DText" E N "_3DFace" E E
+ E E
+60 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+4
+"effectType" "enum 2"
+"color1" "color {1,72,152,225}"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10011 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10018 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  116.4999999999999 36.00000000000007 843.5 924.5
+19 AttentionEffect.ewo
+0
+E0
+0

@@ -1,0 +1,869 @@
+V 14
+6
+LANG:10001 0 
+LANG:10010 14 VALVULA_CONFIG
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+PANEL,-1 -1 520 430 N "LIB_IRC_BLANCO" 4
+"$ELEM"
+"$INST"
+"$TAG"
+"$TIPO_INST"
+E E E E E 1 -1 -1 0  0 0
+""0  1
+E "//--------------------------------------------------------------------------------
+//Clases importadas a utilizar por las funciones de la librería
+lib_accionamiento_valvula accionamiento_valvula = lib_accionamiento_valvula($INST, \"\");
+
+//---------------Variables auxiliares---------------------
+//Seleccionado cuando el foco actual está en este campo
+bool ta_seleccionado = FALSE;
+
+//Confirmado cuando se pulsa intro estando en este campo
+bool ta_confirmado = FALSE;
+
+//Seleccionado cuando el foco actual está en este campo
+bool tc_seleccionado = FALSE;
+
+//Confirmado cuando se pulsa intro estando en este campo
+bool tc_confirmado = FALSE;
+" 0
+ 5
+"CBRef" "1"
+"EClose" E
+"type" "BG_ACCIONAMIENTO_VALVULA"
+"dpi" "96"
+"pdpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10001 0 
+LANG:10010 0 
+29 45
+"Label124"
+"lblRect"
+1 12.07709251101319 286.4941332669487 E E E 1 E 1 E N "_3DText" E N "_3DFace" E E
+ E E
+44 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+6
+"indent" "int -1"
+"lineWidth" "int 1"
+"margin" "int 0"
+"styleSheet" "string "
+"layoutAlignment" "AlignNone"
+"focusPolicy" "NoFocus"
+6
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10011 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10018 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  11 287 510 419
+5 Label
+0
+E6 2
+"RECTANGLE1"
+""
+1 30 60 E E E 1 E 1 E N {0,0,0} E N "LIB_IRC_BLANCO" E E
+ E E
+1 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+7
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,80}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+  mapping estados_valvulas;
+
+  if ($ELEM == \"rasera\")
+  {
+    setMultiValue(this, \"fill\", \"[pattern,[fit,any,iconos/faceplates/02_005_rasera/rasera_gris.svg]]\",
+                  this, \"shadowOffset\", 5, 5);
+  }
+  else if ($ELEM == \"piston\")
+  {
+    setMultiValue(this, \"fill\", \"[pattern,[fit,any,iconos/faceplates/02_006_piston/piston_gris.svg]]\",
+                  this, \"shadowOffset\", 5, 5);
+  }
+
+
+  estados_valvulas = cambiar_estado_clase_gif($INST, $TIPO_INST, this.name());//Función para obtener el mapa con los estados de las válvulas
+
+  if (dpExists(estados_valvulas.value($TIPO_INST, \"\")))  dpConnectUserData(\"cambiar_estado_valvula_gif\", this.name(), estados_valvulas.value($TIPO_INST, \"\")); //Modifica el patternfill de la valvula según su estado(obtenido del mapa de estados) (faceplates con gif)
+  else color_sombra_maquina_error(this.name()); //Setea el color (Rojo) de la sombra del objeto (válvula)
+}
+" 0
+ E -1 1 3 2 1 E 1.29 0 1.066666666666667 -28.7 -29.00000000000003 2  1 0  "pictures/iconos/faceplates/02_002_valvula_derecha/valvula_derecha_gris.svg" 4294967295 E 30 60 130 210
+14 17
+"txf_tiemp_ap"
+"MEDIANO_AZUL"
+1 251 104 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+16 0 0 0 0 0
+E E E
+0
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+5
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+7
+LANG:10001 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10005 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  249 76 422 103
+3 "6s" 6 0 0 10 0 -1  "main(mapping event)
+{
+  teclado($INST + \".Static.DATOS_ALARMA.Input.Xt_TiempoVigilancia_CM_F1\",\"keypad\");
+}" 0
+ "main()
+{
+  dpConnect(\"cambiar_tiempo\", accionamiento_valvula.get_tiempovigilancia_cm_f1()); //Devuelve \"Static.DATOS_ALARMA.Input.Xt_TiempoVigilanciacm_f1 VIGILANCIA APERTURA\"
+}
+
+//Comprueba si el foco está sobre el campo seleccionado y le setea el estado como valor
+void cambiar_tiempo(string dp, int estado){
+  if(!ta_seleccionado)  setValue(\"\", \"text\", estado);  //Variable para saber si el campo está seleccionado (ScopeLib del panel)
+}
+" 0
+ E
+14 18
+"txf_tiemp_cierre"
+"MEDIANO_AZUL"
+1 251.0466908768668 159 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+17 0 0 0 0 0
+E E E
+0
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+5
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+7
+LANG:10001 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10005 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  248.8859205895485 131.3947368421053 422 158
+3 "6s" 6 0 0 10 0 -1  "main(mapping event)
+{
+  teclado($INST + \".Static.DATOS_ALARMA.Input.Xt_TiempoVigilancia_CP_F1\",\"keypad\");
+}" 0
+ "main()
+{
+  dpConnect(\"cambiar_tiempo\", accionamiento_valvula.get_tiempovigilancia_cp_f1()); //Static.DATOS_ALARMA.Input.Xt_TiempoVigilancia_CP_F1 VIGILANCIA CIERRE\"
+}
+
+//Comprueba si el foco está sobre el campo seleccionado y le setea el estado como valor
+void cambiar_tiempo(string dp, int estado){
+  if(!tc_seleccionado)  setValue(\"\", \"text\", estado);  //Variable para saber si el campo está seleccionado (ScopeLib del panel)
+}
+" 0
+ E
+6 24
+"RECTANGLE2"
+""
+1 90 200 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_AZUL_03" E E
+ E E
+23 0 0 0 0 0
+E E E
+0
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+4
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 2 3 2 1 E 1.744755244755245 0 1 -146.0279720279721 51 1 E 90 200 376 226
+6 26
+"RECTANGLE126"
+""
+1 209 106.0000000000002 E E E 1 E 1 E N {0,0,0} E N {59,124,174} E E
+ E E
+25 0 0 0 0 0
+E E E
+0
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+4
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E -1 1 3 2 1 E 1 0 0.9814814814814941 48.50000000000009 173.9629629629614 1 E 209 106.0000000000002 214 115
+29 40
+"label_t_apertura"
+"MEDIANO_AZUL"
+1 262.9429602947743 59.00000000000004 E E E 1 E 1 E N "_3DText" E N "_Transparent" E E
+ E E
+39 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+5
+"text" "string TIEMPO APERTURA"
+"styleSheet" "string "
+"alignment" "enum 132"
+"lineWidth" "int 0"
+"layoutAlignment" "AlignNone"
+6
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,12,5,75,0,0,0,0,0,Negrita
+LANG:10011 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10018 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  260.9429602947743 50.00000000000004 409.9429602947743 64.00000000000004
+5 Label
+0
+"main()
+{
+  this.text(getCatStr(\"objetos\", this.name)); //Traduce el texto mostrado en función del catálogo \"objetos\"
+}" 0
+29 41
+"label_t_cierre"
+"MEDIANO_AZUL"
+1 262.9429602947743 119.1276063795947 E E E 1 E 1 E N "_3DText" E N "_Transparent" E E
+ E E
+40 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+5
+"text" "string TIEMPO CIERRE"
+"styleSheet" "string "
+"alignment" "enum 132"
+"lineWidth" "int 0"
+"layoutAlignment" "AlignNone"
+6
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,12,5,75,0,0,0,0,0,Negrita
+LANG:10011 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10018 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  260.9429602947743 110.1276063795947 409.9429602947743 124.1276063795947
+5 Label
+0
+"main()
+{
+  this.text(getCatStr(\"objetos\", this.name));  //Traduce el texto mostrado en función del catálogo \"objetos\"
+}" 0
+29 42
+"l_tag"
+""
+1 203.7012615697157 18.75478356493984 E E E 1 E 1 E N "_3DText" E N "_3DFace" E E
+ E E
+41 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+4
+"text" "string 0358x9"
+"alignment" "enum 132"
+"styleSheet" "string "
+"layoutAlignment" "AlignNone"
+6
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10011 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10018 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  9.01694915254237 5.258950231606551 126.0169491525423 27.25895023160655
+5 Label
+0
+"main()
+{
+  this.visible($TAG);
+  this.text(dpGetAlias($INST + \".\"));
+}" 0
+29 43
+"Label125"
+"MEDIANO_AZUL"
+1 437.6798190247455 92.78571428571429 E E E 1 E 1 E N "_3DText" E N "_Transparent" E E
+ E E
+42 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+5
+"text" "string seg"
+"styleSheet" "string "
+"alignment" "enum 132"
+"lineWidth" "int 0"
+"layoutAlignment" "AlignNone"
+6
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10011 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10018 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  437.2771344609871 78.00000000000001 467.2771344609871 101
+5 Label
+0
+E29 44
+"Label126"
+"MEDIANO_AZUL"
+1 437.6798190247455 147.9830827067669 E E E 1 E 1 E N "_3DText" E N "_Transparent" E E
+ E E
+43 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+5
+"text" "string seg"
+"styleSheet" "string "
+"alignment" "enum 132"
+"lineWidth" "int 0"
+"layoutAlignment" "AlignNone"
+6
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10011 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10018 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  437.2771344609871 133.1973684210527 467.2771344609871 156.1973684210527
+5 Label
+0
+E29 46
+"ell_estado_prot"
+"lblCircle"
+1 105 298.9999999999998 E E E 1 E 1 E N "_3DText" E N "_3DFace" E E
+ E E
+45 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+1
+"layoutAlignment" "AlignNone"
+6
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10011 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10018 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  105 298.9999999999998 125 318.9999999999998
+5 Label
+0
+"main()
+{
+  dpConnect(\"cambiar_estado\", accionamiento_valvula.get_alm_ep()); //Mediante la instacia de librería, obtenemos el estado de la alarma (\"Static.DATOS_ALARMA.Output.Yd_Alarma_EP\")
+}
+
+//Cambia el color de fondo según el estado de la alarma
+void cambiar_estado(string dp, bool estado){
+  if(estado)  setValue(\"\", \"backCol\", \"LIB_IRC_ROJO_12\");
+  else  setValue(\"\", \"backCol\", \"LIB_IRC_GRIS_03\");
+}" 0
+29 47
+"ell_alama_ca"
+"lblCircle"
+1 105 328.9999999999998 E E E 1 E 1 E N "_3DText" E N "_3DFace" E E
+ E E
+46 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+1
+"layoutAlignment" "AlignNone"
+6
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10011 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10018 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  105 328.9999999999998 125 348.9999999999998
+5 Label
+0
+"main()
+{
+  dpConnect(\"cambiar_estado\", accionamiento_valvula.get_alm_cm_f1()); //Mediante la instacia de librería, obtenemos el estado de la alarma (\"Static.DATOS_ALARMA.Output.Yd_Alarma_CM_F1_APERTURA\")
+}
+
+//Cambia el color de fondo según el estado de la alarma
+void cambiar_estado(string dp, bool estado){
+  if(estado)  setValue(\"\", \"backCol\", \"LIB_IRC_ROJO_12\");
+  else  setValue(\"\", \"backCol\", \"LIB_IRC_GRIS_03\");
+}" 0
+29 48
+"ell_alama_cc"
+"lblCircle"
+1 105 358.9999999999998 E E E 1 E 1 E N "_3DText" E N "_3DFace" E E
+ E E
+47 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+1
+"layoutAlignment" "AlignNone"
+6
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10011 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10018 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  105 358.9999999999998 125 378.9999999999998
+5 Label
+0
+"main()
+{
+  dpConnect(\"cambiar_estado\", accionamiento_valvula.get_alm_cp_f1()); //Mediante la instacia de librería, obtenemos el estado de la alarma (\"Static.DATOS_ALARMA.Output.Yd_Alarma_CM_F2 CIERRE\")
+}
+
+//Cambia el color de fondo según el estado de la alarma
+void cambiar_estado(string dp, bool estado){
+  if(estado)  setValue(\"\", \"backCol\", \"LIB_IRC_ROJO_12\");
+  else  setValue(\"\", \"backCol\", \"LIB_IRC_GRIS_03\");
+}" 0
+29 49
+"ell_fallo_ext"
+"lblCircle"
+1 105 390 E E E 1 E 1 E N "_3DText" E N "_3DFace" E E
+ E E
+48 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+1
+"layoutAlignment" "AlignNone"
+6
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10011 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10018 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  105 390 125 410
+5 Label
+0
+"main()
+{
+  dpConnect(\"cambiar_estado\", accionamiento_valvula.get_alm_ext()); //Mediante la instacia de librería, obtenemos el estado de la alarma (\"Static.DATOS_ALARMA.Output.Yd_Alarma_EXT\")
+}
+
+//Cambia el color de fondo según el estado de la alarma
+void cambiar_estado(string dp, bool estado){
+  if(estado)  setValue(\"\", \"backCol\", \"LIB_IRC_ROJO_12\");
+  else  setValue(\"\", \"backCol\", \"LIB_IRC_GRIS_03\");
+}" 0
+29 50
+"txf_fe"
+"MEDIANO_AZUL"
+1 10.32482911508308 212.9999999999999 E E E 1 E 1 E N "_3DText" E N "_Transparent" E E
+ E E
+49 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+5
+"text" "string FALLO EXTERNO"
+"styleSheet" "string "
+"alignment" "enum 1"
+"lineWidth" "int 1"
+"layoutAlignment" "AlignNone"
+6
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10011 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10018 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  141.1564146333533 391 362.0001309881936 409
+5 Label
+0
+"main()
+{
+  this.text(getCatStr(\"objetos\", this.name)); //Traduce el texto mostrado en función del catálogo \"objetos\"
+}" 0
+29 51
+"txf_ep"
+"MEDIANO_AZUL"
+1 16.15641463335336 121.9999999999997 E E E 1 E 1 E N "_3DText" E N "_Transparent" E E
+ E E
+50 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+5
+"text" "string ESTADO PROTECCIONES"
+"styleSheet" "string "
+"alignment" "enum 1"
+"lineWidth" "int 1"
+"layoutAlignment" "AlignNone"
+6
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10011 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10018 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  141.1564146333534 299.9999999999998 352.1564146333533 317.9999999999998
+5 Label
+0
+"main()
+{
+  this.text(getCatStr(\"objetos\", this.name)); //Traduce el texto mostrado en función del catálogo \"objetos\"
+}" 0
+29 52
+"txf_ca"
+"MEDIANO_AZUL"
+1 16.15641463335336 151.9999999999997 E E E 1 E 1 E N "_3DText" E N "_Transparent" E E
+ E E
+51 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+5
+"text" "string CONFIRMACIÓN APERTURA"
+"styleSheet" "string "
+"alignment" "enum 1"
+"lineWidth" "int 1"
+"layoutAlignment" "AlignNone"
+6
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10011 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10018 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  141.1564146333534 329.9999999999998 352.1564146333533 347.9999999999998
+5 Label
+0
+"main()
+{
+  this.text(getCatStr(\"objetos\", this.name)); //Traduce el texto mostrado en función del catálogo \"objetos\"
+}" 0
+29 53
+"txf_cc"
+"MEDIANO_AZUL"
+1 16.15641463335336 181.9999999999997 E E E 1 E 1 E N "_3DText" E N "_Transparent" E E
+ E E
+52 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+5
+"text" "string CONFIRMACIÓN CIERRE"
+"styleSheet" "string "
+"alignment" "enum 1"
+"lineWidth" "int 1"
+"layoutAlignment" "AlignNone"
+6
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10011 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10018 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  141.1564146333534 359.9999999999998 352.1564146333533 377.9999999999998
+5 Label
+0
+"main()
+{
+  this.text(getCatStr(\"objetos\", this.name)); //Traduce el texto mostrado en función del catálogo \"objetos\"
+}" 0
+20 54
+"CHECK_BOX4"
+"PEQUENIO_AZUL"
+1 12.83843179879701 212.9999999999999 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+53 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+2
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,12,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10009 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10008 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10018 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  10.83843179879701 210.9999999999999 199.161568201203 243.9999999999999
+1
+T 
+6
+LANG:10001 3 ???
+LANG:10010 17 REGISTRAR VALVULA
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0 
+2
+LANG:10001 0 
+LANG:10010 0 
+E E
+0 0 0 0 0
+0
+"main()
+{
+  this.text(0,\"REGISTRAR VALVULA\\nEN BASE DE DATOS\");
+  bool estado_alarma;
+
+  dpGet($INST + \".Static.archivado_bbdd\", bbdd);
+
+  if(bbdd){
+    this.state(0) = 1;
+  }else{
+    this.state(0) = 0;
+  }
+}
+" 0
+"main(int button, int state)
+{
+  dpSetWait($INST + \".Static.archivado_bbdd\", this.state(0));
+}
+" 0
+29 55
+"txf_enc_alarmas"
+"MEDIANO_AZUL"
+1 145.4429602947743 176.6276063795947 E E E 1 E 1 E N "_3DText" E N "_Transparent" E E
+ E E
+54 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+5
+"text" "string ALARMAS"
+"styleSheet" "string "
+"alignment" "enum 132"
+"lineWidth" "int 0"
+"layoutAlignment" "AlignNone"
+6
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,12,5,75,0,0,0,0,0,Negrita
+LANG:10011 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10018 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  185.5 256.5 334.5 270.5
+5 Label
+0
+"main()
+{
+  this.text(getCatStr(\"objetos\", this.name));  //Traduce el texto mostrado en función del catálogo \"objetos\"
+}" 0
+0
+LAYER, 1 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 2 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 3 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 4 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 5 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 6 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 7 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+0

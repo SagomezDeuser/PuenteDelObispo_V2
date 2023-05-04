@@ -1,0 +1,1245 @@
+V 14
+6
+LANG:10001 0 
+LANG:10010 16 ANALOGICA_CONFIG
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+PANEL,-1 -1 410 400 N "LIB_IRC_BLANCO" 2
+"$INST"
+"$TAG"
+E E E E E 1 -1 -1 0  0 0
+""0  1
+E "//--------------------------------------------------------------------------------
+//Clases importadas a utilizar por las funciones de la librería
+lib_tratamiento_analogica tratamiento = lib_tratamiento_analogica($INST, \"asdf\");
+
+//---------------Variables auxiliares-------------------
+" 0
+ 5
+"CBRef" "1"
+"EClose" E
+"type" "BG_ACCIONAMIENTO_MOTOR_S"
+"dpi" "96"
+"pdpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10001 0 
+LANG:10010 0 
+29 50
+"l_tag"
+""
+1 201.2124122108363 24.64591378015858 E E E 1 E 1 E N "_3DText" E N "_3DFace" E E
+ E E
+49 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+4
+"text" "string 0358x9"
+"alignment" "enum 132"
+"styleSheet" "string "
+"layoutAlignment" "AlignNone"
+6
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10011 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10018 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  5.21241221083632 4.645913780158583 122.2124122108363 26.64591378015859
+5 Label
+0
+"main()
+{
+  this.visible($TAG);
+  this.text(dpGetAlias($INST + \".\"));
+}" 0
+14 85
+"txf_sp_hh"
+"MEDIANO_AZUL"
+1 101.5850827948967 17.78907651967847 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_BLANCO" E E
+ E E
+84 0 0 0 0 0
+E E E
+1
+9
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+2
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+9
+LANG:10001 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10005 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10000 30 Noto Sans,-1,13,5,50,0,0,0,0,0
+LANG:10027 30 Noto Sans,-1,13,5,50,0,0,0,0,0
+0  268.293128094239 39.44031380937788 361.2931280942389 66.34928681732569
+3 "0.2f" 3 0 0 9 0 -1  "main(mapping event)
+{
+  teclado($INST + \".Input.Xr_SP_AHH\",\"keypad\");
+}" 0
+ "main()
+{
+  dpConnect(\"cambiar_valor\", $INST + \".Input.Xr_SP_AHH\");
+}
+void cambiar_valor(string dp1, float valor)
+{
+  this.text(valor);
+}
+" 0
+ E
+14 86
+"txf_sp_h"
+"MEDIANO_AZUL"
+1 83.58508279489649 8.359280536774278 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_BLANCO" E E
+ E E
+85 0 0 0 0 0
+E E E
+1
+9
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+2
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+9
+LANG:10001 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10005 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10000 30 Noto Sans,-1,13,5,50,0,0,0,0,0
+LANG:10027 30 Noto Sans,-1,13,5,50,0,0,0,0,0
+0  268.293128094239 78.10154481852597 361.2931280942389 104.9750463899775
+3 "0.2f" 3 0 0 9 0 -1  "main(mapping event)
+{
+  teclado($INST + \".Input.Xr_SP_AH\",\"keypad\");
+}" 0
+ "main()
+{
+  dpConnect(\"cambiar_valor\", $INST + \".Input.Xr_SP_AH\");
+}
+void cambiar_valor(string dp1, float valor)
+{
+  this.text(valor);
+}
+" 0
+ E
+14 87
+"txf_sp_l"
+"MEDIANO_AZUL"
+1 83.58508279489649 -0.9794884540777389 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_BLANCO" E E
+ E E
+86 0 0 0 0 0
+E E E
+1
+9
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+2
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+9
+LANG:10001 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10005 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10000 30 Noto Sans,-1,13,5,50,0,0,0,0,0
+LANG:10027 30 Noto Sans,-1,13,5,50,0,0,0,0,0
+0  268.293128094239 116.7627758276742 361.2931280942389 143.6008059626293
+3 "0.2f" 3 0 0 9 0 -1  "main(mapping event)
+{
+  teclado($INST + \".Input.Xr_SP_AL\",\"keypad\");
+}" 0
+ "main()
+{
+  dpConnect(\"cambiar_valor\", $INST + \".Input.Xr_SP_AL\");
+}
+void cambiar_valor(string dp1, float valor)
+{
+  this.text(valor);
+}
+" 0
+ E
+14 88
+"txf_sp_ll"
+"MEDIANO_AZUL"
+1 83.58508279489649 -10.31825744492946 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_BLANCO" E E
+ E E
+87 0 0 0 0 0
+E E E
+1
+9
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+2
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+9
+LANG:10001 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10005 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10000 30 Noto Sans,-1,13,5,50,0,0,0,0,0
+LANG:10027 30 Noto Sans,-1,13,5,50,0,0,0,0,0
+0  268.293128094239 155.4240068368223 361.2931280942389 182.2265655352811
+3 "0.2f" 3 0 0 9 0 -1  "main(mapping event)
+{
+  teclado($INST + \".Input.Xr_SP_ALL\",\"keypad\");
+}" 0
+ "main()
+{
+  dpConnect(\"cambiar_valor\", $INST + \".Input.Xr_SP_ALL\");
+}
+void cambiar_valor(string dp1, float valor)
+{
+  this.text(valor);
+}" 0
+ E
+2 89
+"PRIMITIVE_TEXT128"
+"MEDIANO_AZUL"
+1 -3847.850135839573 -173.9982346302482 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_BLANCO" E E
+ E E
+88 0 0 0 0 0
+E E E
+0
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+5
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E 0.07704811783466954 0 0.09622476609823721 367.6986329498551 38.60542254776356 0 E 40 36 376 261
+0 2 2 "0s" 0 0 0 73 0 0  40 36 1
+7
+LANG:10001 39 Siemens Sans Black,-1,13,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10009 39 Siemens Sans Black,-1,13,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10005 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+0 7
+LANG:10001 12 VCC PANELES:
+LANG:10010 2 HH
+LANG:10011 11 Startkarte:
+LANG:10009 12 VCC PANELES:
+LANG:10008 19 Biglietto d'inizio:
+LANG:10018 17 Comece o bilhete:
+LANG:10005 13 Start ticket:
+2 90
+"PRIMITIVE_TEXT129"
+"MEDIANO_AZUL"
+1 -3847.850135839573 -173.9982346302482 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_BLANCO" E E
+ E E
+89 0 0 0 0 0
+E E E
+0
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+5
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E 0.07704811783466954 0 0.09622476609823721 367.6986329498551 77.66793290614112 0 E 40 36 376 261
+0 2 2 "0s" 0 0 0 73 0 0  40 36 1
+7
+LANG:10001 39 Siemens Sans Black,-1,13,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10009 39 Siemens Sans Black,-1,13,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10005 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+0 7
+LANG:10001 12 VCC PANELES:
+LANG:10010 1 H
+LANG:10011 11 Startkarte:
+LANG:10009 12 VCC PANELES:
+LANG:10008 19 Biglietto d'inizio:
+LANG:10018 17 Comece o bilhete:
+LANG:10005 13 Start ticket:
+2 91
+"PRIMITIVE_TEXT130"
+""
+1 -3847.850135839573 -173.9982346302482 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_BLANCO" E E
+ E E
+90 0 0 0 0 0
+E E E
+0
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+5
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E 0.07704811783466954 0 0.09622476609823721 367.6986329498551 115.8924131295635 0 E 40 36 376 261
+0 2 2 "0s" 0 0 0 73 0 0  40 36 1
+7
+LANG:10001 39 Siemens Sans Black,-1,13,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10009 39 Siemens Sans Black,-1,13,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10005 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+0 7
+LANG:10001 12 VCC PANELES:
+LANG:10010 1 L
+LANG:10011 11 Startkarte:
+LANG:10009 12 VCC PANELES:
+LANG:10008 19 Biglietto d'inizio:
+LANG:10018 17 Comece o bilhete:
+LANG:10005 13 Start ticket:
+2 92
+"PRIMITIVE_TEXT131"
+"MEDIANO_AZUL"
+1 -3847.850135839573 -173.9982346302482 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_BLANCO" E E
+ E E
+91 0 0 0 0 0
+E E E
+0
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+5
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E 0.07704811783466954 0 0.09622476609823721 367.6986329498551 154.5359084204635 0 E 40 36 376 261
+0 2 2 "0s" 0 0 0 73 0 0  40 36 1
+7
+LANG:10001 39 Siemens Sans Black,-1,13,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10009 39 Siemens Sans Black,-1,13,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10005 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+0 7
+LANG:10001 12 VCC PANELES:
+LANG:10010 2 LL
+LANG:10011 11 Startkarte:
+LANG:10009 12 VCC PANELES:
+LANG:10008 19 Biglietto d'inizio:
+LANG:10018 17 Comece o bilhete:
+LANG:10005 13 Start ticket:
+20 94
+"CHECK_BOX4"
+"AZUL"
+1 11.1215664054405 179.8430219042999 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+93 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+2
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,12,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10009 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10008 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10018 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  9.121566405440507 177.8430219042999 242.2987449140803 232.8430219042998
+1
+T 
+6
+LANG:10001 3 ???
+LANG:10010 32 Registrar valor en base de datos
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0 
+2
+LANG:10001 0 
+LANG:10010 0 
+E E
+0 0 0 0 0
+0
+"main()
+{
+  bool bbdd;
+
+  dpGet($INST + \".Static.archivado_bbdd\", bbdd);
+
+  if(bbdd){
+    this.state(0) = 1;
+  }else{
+    this.state(0) = 0;
+  }
+}
+" 0
+"main(int button, int state)
+{
+  dpSetWait($INST + \".Static.archivado_bbdd\", this.state(0));
+}
+" 0
+6 95
+"RECTANGLE127"
+""
+1 104 298 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_BLANCO" E E
+ E E
+94 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 2 3 2 1 E 1 0 1.083333333333333 -95.00000000000003 -47.8333333333333 1 E 104 298 497 406
+6 96
+"RECTANGLE1"
+""
+1 90 200 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_AZUL_03" E E
+ E E
+95 0 0 0 0 0
+E E E
+0
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+4
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 2 3 2 1 E 1.374125874125874 0 1 -114.6713286713287 41 1 E 90 200 376 226
+6 98
+"RECTANGLE126"
+""
+1 209 106.0000000000002 E E E 1 E 1 E N {0,0,0} E N "LIB_IRC_AZUL_18" E E
+ E E
+97 0 0 0 0 0
+E E E
+0
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+4
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E -1 1 3 2 1 E 1 0 0.7777777777777777 -7.570943189441905 183.5555555555554 1 E 209 106.0000000000002 214 115
+29 99
+"ell_alarma_vf"
+"lblCircle"
+1 46.8939650587047 281.0431648935177 E E E 1 E 1 E N "_3DText" E N "_3DFace" E E
+ E E
+98 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+1
+"layoutAlignment" "AlignNone"
+6
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10011 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10018 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  46.8939650587047 281.0431648935177 66.89396505870469 301.0431648935177
+5 Label
+0
+"main()
+{
+  dpConnect(\"cambiar_estado\", $INST + \".Output.Yd_AHH\"); //Mediante la instacia de librería, obtenemos el estado de la alarma (\"Static.DATOS_ALARMA.Output.Yd_Alarma_VF\")
+}
+
+//Cambia el color de fondo según el estado de la alarma
+void cambiar_estado(string dp, bool estado){
+  if(estado)  this.backCol(\"LIB_IRC_ROJO_12\");
+  else  this.backCol(\"LIB_IRC_GRIS_03\");
+}
+" 0
+29 100
+"ell_alarma_cm"
+"lblCircle"
+1 46.89396505870474 337.0431648935177 E E E 1 E 1 E N "_3DText" E N "_3DFace" E E
+ E E
+99 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+1
+"layoutAlignment" "AlignNone"
+6
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10011 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10018 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  46.89396505870474 337.0431648935177 66.89396505870471 357.0431648935177
+5 Label
+0
+"main()
+{
+  dpConnect(\"cambiar_estado\", $INST + \".Output.Yd_AL\"); //Mediante la instacia de librería, obtenemos el estado de la alarma (\"Static.DATOS_ALARMA.Output.Yd_Alarma_CM_F1\")
+}
+
+//Cambia el color de fondo según el estado de la alarma
+void cambiar_estado(string dp, bool estado){
+  if(estado)  this.backCol(\"LIB_IRC_AMARILLO_04\");
+  else  this.backCol(\"LIB_IRC_GRIS_03\");
+}
+" 0
+29 101
+"ell_alama_cp"
+"lblCircle"
+1 46.89396505870468 365.0431648935177 E E E 1 E 1 E N "_3DText" E N "_3DFace" E E
+ E E
+100 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+1
+"layoutAlignment" "AlignNone"
+6
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10011 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10018 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  46.89396505870468 365.0431648935177 66.89396505870468 385.0431648935177
+5 Label
+0
+"main()
+{
+  dpConnect(\"cambiar_estado\", $INST + \".Output.Yd_ALL\"); //Mediante la instacia de librería, obtenemos el estado de la alarma (\"Static.DATOS_ALARMA.Output.Yd_Alarma_CP_F1\")
+}
+
+//Cambia el color de fondo según el estado de la alarma
+void cambiar_estado(string dp, bool estado){
+  if(estado)  this.backCol(\"LIB_IRC_ROJO_12\");
+  else  this.backCol(\"LIB_IRC_GRIS_03\");
+}
+" 0
+29 102
+"ell_fallo_ext"
+"lblCircle"
+1 46.89396505870468 309.0431648935177 E E E 1 E 1 E N "_3DText" E N "_3DFace" E E
+ E E
+101 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+1
+"layoutAlignment" "AlignNone"
+6
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10011 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10018 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  46.89396505870468 309.0431648935177 66.89396505870468 329.0431648935177
+5 Label
+0
+"main()
+{
+  dpConnect(\"cambiar_estado\", $INST + \".Output.Yd_AH\"); //Mediante la instacia de librería, obtenemos el estado de la alarma (\"Static.DATOS_ALARMA.Output.Yd_Alarma_EXT\")
+}
+
+//Cambia el color de fondo según el estado de la alarma
+void cambiar_estado(string dp, bool estado){
+  if(estado)  this.backCol(\"LIB_IRC_AMARILLO_04\");
+  else  this.backCol(\"LIB_IRC_GRIS_03\");
+}
+" 0
+13 107
+"PUSH_BUTTON1"
+""
+1 186.9290568105581 38.39480031335177 E E E 1 E 1 E N "_Transparent" E N "_Transparent" E E
+ E E
+106 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  184.9290568105581 36.39480031335177 217.9290568105581 69.39480031335177
+
+P 
+4294967295
+"pictures/iconos/otros/checkbox/cb_unchecked_verde.svg"
+2
+LANG:10001 12 PUSH_BUTTON1
+LANG:10010 0 
+"main(mapping event)
+{
+  bool valor;
+  dpGet($INST + \".Input.Xd_Habilitar_AHH\",valor);
+  dpSetWait($INST + \".Input.Xd_Habilitar_AHH\", !valor);
+}
+" 0
+ E E "main()
+{
+  dpConnect(\"cambiar_valor\", $INST + \".Input.Xd_Habilitar_AHH\");
+}
+void cambiar_valor(string dp, bool valor)
+{
+  string path_downpixmap, path_uppixmap;
+  txf_sp_hh.enabled(valor);
+
+  if (valor)
+  {
+    path_downpixmap = \"iconos/otros/checkbox/cb_checked_1_verde.svg\";
+    path_uppixmap = \"iconos/otros/checkbox/cb_checked_1_verde.svg\";
+  }
+  else
+  {
+    path_downpixmap = \"iconos/otros/checkbox/cb_unchecked.svg\";
+    path_uppixmap = \"iconos/otros/checkbox/cb_unchecked.svg\";
+  }
+
+  setValue(\"\", \"buttonType\", BT_PIXMAP,
+           \"buttonDownPixmap\", path_downpixmap,
+           \"buttonUpPixmap\", path_uppixmap);
+}
+" 0
+
+13 108
+"PUSH_BUTTON2"
+""
+1 186.9645284052791 77.03829560425174 E E E 1 E 1 E N "_Transparent" E N "_Transparent" E E
+ E E
+107 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  184.9645284052791 75.03829560425174 217.9645284052791 108.0382956042517
+
+P 
+4294967295
+"pictures/iconos/otros/checkbox/cb_unchecked_verde.svg"
+2
+LANG:10001 12 PUSH_BUTTON1
+LANG:10010 0 
+"main(mapping event)
+{
+  bool valor;
+  dpGet($INST + \".Input.Xd_Habilitar_AH\",valor);
+  dpSetWait($INST + \".Input.Xd_Habilitar_AH\", !valor);
+}
+" 0
+ E E "main()
+{
+  dpConnect(\"cambiar_valor\", $INST + \".Input.Xd_Habilitar_AH\");
+}
+void cambiar_valor(string dp, bool valor)
+{
+  string path_downpixmap, path_uppixmap;
+  txf_sp_h.enabled(valor);
+
+  if (valor)
+  {
+    path_downpixmap = \"iconos/otros/checkbox/cb_checked_1_verde.svg\";
+    path_uppixmap = \"iconos/otros/checkbox/cb_checked_1_verde.svg\";
+  }
+  else
+  {
+    path_downpixmap = \"iconos/otros/checkbox/cb_unchecked.svg\";
+    path_uppixmap = \"iconos/otros/checkbox/cb_unchecked.svg\";
+  }
+
+  setValue(\"\", \"buttonType\", BT_PIXMAP,
+           \"buttonDownPixmap\", path_downpixmap,
+           \"buttonUpPixmap\", path_uppixmap);
+}
+" 0
+
+13 109
+"PUSH_BUTTON3"
+""
+1 186.9645284052791 115.6817908951517 E E E 1 E 1 E N "_Transparent" E N "_Transparent" E E
+ E E
+108 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  184.9645284052791 113.6817908951517 217.9645284052791 146.6817908951517
+
+P 
+4294967295
+"pictures/iconos/otros/checkbox/cb_unchecked_verde.svg"
+2
+LANG:10001 12 PUSH_BUTTON1
+LANG:10010 0 
+"main(mapping event)
+{
+  bool valor;
+  dpGet($INST + \".Input.Xd_Habilitar_AL\",valor);
+  dpSetWait($INST + \".Input.Xd_Habilitar_AL\", !valor);
+}
+" 0
+ E E "main()
+{
+  dpConnect(\"cambiar_valor\", $INST + \".Input.Xd_Habilitar_AL\");
+}
+void cambiar_valor(string dp, bool valor)
+{
+  string path_downpixmap, path_uppixmap;
+  txf_sp_l.enabled(valor);
+
+  if (valor)
+  {
+    path_downpixmap = \"iconos/otros/checkbox/cb_checked_1_verde.svg\";
+    path_uppixmap = \"iconos/otros/checkbox/cb_checked_1_verde.svg\";
+  }
+  else
+  {
+    path_downpixmap = \"iconos/otros/checkbox/cb_unchecked.svg\";
+    path_uppixmap = \"iconos/otros/checkbox/cb_unchecked.svg\";
+  }
+
+  setValue(\"\", \"buttonType\", BT_PIXMAP,
+           \"buttonDownPixmap\", path_downpixmap,
+           \"buttonUpPixmap\", path_uppixmap);
+}
+" 0
+
+13 110
+"PUSH_BUTTON4"
+""
+1 186.9645284052791 154.3252861860517 E E E 1 E 1 E N "_Transparent" E N "_Transparent" E E
+ E E
+109 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  184.9645284052791 152.3252861860517 217.9645284052791 185.3252861860517
+
+P 
+4294967295
+"pictures/iconos/otros/checkbox/cb_unchecked_verde.svg"
+2
+LANG:10001 12 PUSH_BUTTON1
+LANG:10010 0 
+"main(mapping event)
+{
+  bool valor;
+  dpGet($INST + \".Input.Xd_Habilitar_ALL\",valor);
+  dpSetWait($INST + \".Input.Xd_Habilitar_ALL\", !valor);
+}
+" 0
+ E E "main()
+{
+  dpConnect(\"cambiar_valor\", $INST + \".Input.Xd_Habilitar_ALL\");
+}
+void cambiar_valor(string dp, bool valor)
+{
+  string path_downpixmap, path_uppixmap;
+  txf_sp_ll.enabled(valor);
+
+  if (valor)
+  {
+    path_downpixmap = \"iconos/otros/checkbox/cb_checked_1_verde.svg\";
+    path_uppixmap = \"iconos/otros/checkbox/cb_checked_1_verde.svg\";
+  }
+  else
+  {
+    path_downpixmap = \"iconos/otros/checkbox/cb_unchecked.svg\";
+    path_uppixmap = \"iconos/otros/checkbox/cb_unchecked.svg\";
+  }
+
+  setValue(\"\", \"buttonType\", BT_PIXMAP,
+           \"buttonDownPixmap\", path_downpixmap,
+           \"buttonUpPixmap\", path_uppixmap);
+}
+" 0
+
+29 111
+"Label1"
+"MEDIANO_AZUL"
+1 145.9645284052791 8.197400156675883 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+110 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"text" "string HABILITAR"
+"alignment" "enum 132"
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 27 Tahoma,-1,16,5,50,0,0,0,0,0
+0  145.9645284052791 8.197400156675883 256.9645284052791 39.19740015667588
+5 Label
+0
+E29 112
+"Label2"
+"MEDIANO_AZUL"
+1 275.7576564995181 10.22015690468896 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+111 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+4
+"text" "string SP"
+"alignment" "enum 132"
+"styleSheet" "string "
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 27 Tahoma,-1,16,5,50,0,0,0,0,0
+0  275.7576564995181 10.22015690468896 353.6465640471195 41.22015690468896
+5 Label
+0
+E29 113
+"Label3"
+"MEDIANO_AZUL"
+1 148.4999999999999 238 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+112 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"text" "string ALARMAS"
+"alignment" "enum 132"
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 27 Tahoma,-1,16,5,50,0,0,0,0,0
+0  148.4999999999999 238 259.4999999999999 269
+5 Label
+0
+E29 120
+"Label10"
+"MEDIANO_AZUL"
+1 72 273.8651347856007 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+119 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"text" "string Alarma alta (HH)"
+"alignment" "enum 128"
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 27 Tahoma,-1,16,5,50,0,0,0,0,0
+0  72 273.8651347856007 201.8939650587047 304.8651347856007
+5 Label
+0
+E29 122
+"Label11"
+"MEDIANO_AZUL"
+1 72 302.8651347856007 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+121 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+4
+"text" "string Aviso alta (H)"
+"alignment" "enum 128"
+"styleSheet" "string QWidget{font-family: \"Tahoma\"; font-size: 15px; font-style: normal; font-weight: 700; }QWidget:enabled {background: #00000000; color: #ff014898; }"
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 27 Tahoma,-1,16,5,50,0,0,0,0,0
+0  72 302.8651347856007 201.8939650587047 333.8651347856007
+5 Label
+0
+E29 123
+"Label12"
+"MEDIANO_AZUL"
+1 72 330.9325673928004 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+122 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"text" "string Aviso baja (L)"
+"alignment" "enum 128"
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 27 Tahoma,-1,16,5,50,0,0,0,0,0
+0  72 330.9325673928004 201.8939650587047 361.9325673928004
+5 Label
+0
+E29 124
+"Label13"
+"MEDIANO_AZUL"
+1 72 359.0000000000001 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+123 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"text" "string Alarma baja (LL)"
+"alignment" "enum 128"
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 27 Tahoma,-1,16,5,50,0,0,0,0,0
+0  72 359.0000000000001 201.8939650587047 390.0000000000001
+5 Label
+0
+E29 125
+"txf_hh"
+"MEDIANO_AZUL"
+1 28.31627183830938 32.69740015667588 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+124 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+4
+"text" "string Alarma alta (HH):"
+"alignment" "enum 128"
+"styleSheet" "string "
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 27 Tahoma,-1,16,5,50,0,0,0,0,0
+0  28.31627183830938 32.69740015667588 158.2102368970142 63.69740015667588
+5 Label
+0
+"main()
+{
+  this.text(getCatStr(\"objetos\", this.name));
+}
+" 0
+29 126
+"txf_h"
+"MEDIANO_AZUL"
+1 28.31627183830938 73 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+125 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+4
+"text" "string Aviso alta (H):"
+"alignment" "enum 128"
+"styleSheet" "string "
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 27 Tahoma,-1,16,5,50,0,0,0,0,0
+0  28.31627183830938 73 158.2102368970142 104
+5 Label
+0
+"main()
+{
+  this.text(getCatStr(\"objetos\", this.name));
+}
+" 0
+29 127
+"txf_l"
+"MEDIANO_AZUL"
+1 28.31627183830938 112.7648327638756 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+126 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+4
+"text" "string Aviso baja (L):"
+"alignment" "enum 128"
+"styleSheet" "string "
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 27 Tahoma,-1,16,5,50,0,0,0,0,0
+0  28.31627183830938 112.7648327638756 158.2102368970142 143.7648327638756
+5 Label
+0
+"main()
+{
+  this.text(getCatStr(\"objetos\", this.name));
+}
+" 0
+29 128
+"txf_ll"
+"MEDIANO_AZUL"
+1 28.31627183830938 151.7985490674754 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+127 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+4
+"text" "string Alarma baja (LL):"
+"alignment" "enum 128"
+"styleSheet" "string "
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 27 Tahoma,-1,16,5,50,0,0,0,0,0
+0  28.31627183830938 151.7985490674754 158.2102368970142 182.7985490674754
+5 Label
+0
+"main()
+{
+  this.text(getCatStr(\"objetos\", this.name));
+}
+" 0
+0
+LAYER, 1 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 2 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 3 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 4 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 5 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 6 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 7 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+0

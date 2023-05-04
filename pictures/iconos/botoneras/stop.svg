@@ -1,0 +1,14 @@
+<svg width="1200" height="1200" xmlns="http://www.w3.org/2000/svg">
+ <metadata>Svg Vector Icons : http://www.onlinewebfonts.com/icon</metadata>
+
+ <g>
+  <title>background</title>
+  <rect fill="none" id="canvas_background" height="1202" width="1202" y="-1" x="-1"/>
+ </g>
+ <g>
+  <title>Layer 1</title>
+  <g id="svg_1">
+   <path id="svg_2" d="m985,110l-770,0c-58,0 -105,47 -105,105l0,770c0,58 47,105 105,105l770,0c58,0 105,-47 105,-105l0,-770c0,-58 -47,-105 -105,-105z" fill="#ffffff"/>
+  </g>
+ </g>
+</svg>

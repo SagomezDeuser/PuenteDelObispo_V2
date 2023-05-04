@@ -1,0 +1,22 @@
+<svg width="156" height="51.99999999999999" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+ <!-- Created with Method Draw - http://github.com/duopixel/Method-Draw/ -->
+ <defs>
+  <linearGradient id="svg_30">
+   <stop stop-color="#ffffff" id="svg_39" offset="0"/>
+   <stop stop-color="#ffffff" stop-opacity="0" id="svg_38" offset="1"/>
+  </linearGradient>
+  <linearGradient y2="1.083333" x2="0.5" y1="-0.083333" x1="0.5" id="svg_29" xlink:href="#svg_30"/>
+ </defs>
+ <g>
+  <rect fill="none" id="canvas_background" height="54" width="158" y="-1" x="-1"/>
+ </g>
+ <g>
+  <defs>
+   <filter id="svg_43">
+    <feGaussianBlur id="svg_48" stdDeviation="0.108208"/>
+   </filter>
+  </defs>
+  <path fill="#014798" stroke-width="0" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="4" d="m27.131006,2.581791l100.464514,0c13.07016,0 23.592331,10.443245 23.592331,23.415365c0,12.97212 -10.522171,23.415384 -23.592331,23.415384l-100.464514,0c-13.07014,0 -23.592334,-10.443264 -23.592334,-23.415384c0,-12.97212 10.522194,-23.415365 23.592334,-23.415365z" id="svg_44"/>
+  <path opacity="0.8" fill="url(#svg_29)" stroke-width="0" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="4" filter="url(#svg_43)" d="m27.127937,4.954411c-12.462662,0 -23.589265,10.807092 -16.206807,21.614185l132.884259,0c7.382462,-10.807093 -3.744125,-21.614185 -16.20681,-21.614185l-100.470642,0z" id="svg_42"/>
+ </g>
+</svg>

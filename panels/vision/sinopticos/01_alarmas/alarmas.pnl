@@ -1,0 +1,1293 @@
+V 14
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+PANEL,-1 -1 1920 980 N "white" 0
+E E E E E 1 0 0 0  65 108
+""0  1
+E "dyn_string g_alarmasActivas2;
+dyn_string g_cuadros;
+bool filtro_alarmas = TRUE;
+bool filtro_avisos = TRUE;
+bool filtro_activas = TRUE;
+bool filtro_desactivas = TRUE;
+bool filtro_acusadas = TRUE;
+bool filtro_no_acusadas = TRUE;
+/***************************************************************************************
+  @author dceballos
+  @date 04/09/2019.
+  @brief Realizamos el pintado de las alarmas activas en la tabla correspondiente.
+  @return No devuelve nada.
+****************************************************************************************/
+void pintar_tabla_alarmas(string consulta, dyn_dyn_anytype resultado)
+{
+  bool estadoAcuse;
+  int fila, columna, alarmaState;
+  dyn_string patronActual, cuadro;
+  dyn_dyn_string auxVariable;
+  string cuadro_st, elemento, nombreDPE, variable, fechaEntrada, fechaAcuse, fechaSalida, descripcion, activa, color_alarma_fondo, color_alarma_fuente;
+
+  controles_inactivos();  //Ponemos el simbolo de cargando, e inhabilitamos controles hasta acabar el rellenado de la tabla
+  setValue(\"loading_gif_ewo\", \"visible\", TRUE);
+
+  for (int i = 2; i <= dynlen(resultado); i++)  //Para cada alarma traida del Query, separamos las partes de su DP y rellenamos las columnas de la tabla
+  {
+    nombreDPE = resultado[i][1];
+    variable = nombreDPE;
+    variable = strltrim(variable, \"System1:\");
+    variable = strltrim(variable, \"_\");
+    auxVariable = strsplit(variable, \".\");
+    cuadro = strsplit(auxVariable[1][1], \"_\");
+    cuadro_st = cuadro[2] + \" \" + cuadro[3];
+    elemento = auxVariable[3][1];
+
+    fechaEntrada = resultado[i][4];
+    fechaAcuse = resultado[i][5];
+    descripcion = resultado[i][6];
+    estadoAcuse = fechaAcuse != (\"1970.01.01 01:00:00.000\");
+    fechaSalida = resultado[i][8];
+
+    dpGet(nombreDPE + \":_alert_hdl.._act_state\", alarmaState);
+
+    //Codigo de colores de las alarmas, nos servirán para el filtrado en una columna invisible
+    if (alarmaState == 1)
+    {
+      activa = \"rojo\";
+    }
+    else if (alarmaState == 2)
+    {
+      activa = \"amarillo\";
+    }
+    else if (alarmaState == 3)
+    {
+      activa = \"azul\";
+    }
+
+    dpGet(nombreDPE + \":_alert_hdl.._act_state_color\", color_alarma_fondo, nombreDPE + \":_alert_hdl.._act_state_fore_color\", color_alarma_fuente);
+
+    patronActual = dynPatternMatch(nombreDPE, g_alarmasActivas2);
+
+    if (dynlen(patronActual) == 0)
+    {
+      dynAppend(g_alarmasActivas2, nombreDPE);
+
+      if (!estadoAcuse)  //Alarmas en rojo, sin acusar y activas, añadimos filas e \"introducimos\" en la BD si es la primera vez
+      {
+        setValue(\"tabla_alarmas_actual\", \"appendLine\", \"fechaEntrada\", fechaEntrada, \"acuse\", estadoAcuse, \"fechaAcuse\", \"\", \"cuadro\", cuadro_st, \"elemento\", elemento, \"descripcion\", descripcion, \"nombreDPE\", nombreDPE, \"activa\", activa);
+        setValue(\"tabla_alarmas_actual\", \"setCurrentLine\", 2, \"fechaEntrada\", fechaEntrada,  \"nombreDPE\", nombreDPE);
+        getValue(\"tabla_alarmas_actual\", \"currentCell\", fila, columna);
+        setValue(\"tabla_alarmas_actual\", \"cellBackColRC\", fila, \"fechaEntrada\", color_alarma_fondo, \"cellForeColRC\", fila, \"fechaEntrada\", color_alarma_fuente,  //COLOREAMOS LA FILA SEGUN SU CODIGO DE COLOR DE ALARMA
+                 \"cellBackColRC\", fila, \"acuse\",        color_alarma_fondo, \"cellForeColRC\", fila, \"acuse\",        \"green\",
+                 \"cellBackColRC\", fila, \"fechaAcuse\",   color_alarma_fondo, \"cellForeColRC\", fila, \"fechaAcuse\",   color_alarma_fuente,
+                 \"cellBackColRC\", fila, \"cuadro\",        color_alarma_fondo, \"cellForeColRC\", fila, \"cuadro\",        color_alarma_fuente,
+                 \"cellBackColRC\", fila, \"elemento\",     color_alarma_fondo, \"cellForeColRC\", fila, \"elemento\",     color_alarma_fuente,
+                 \"cellBackColRC\", fila, \"descripcion\",  color_alarma_fondo, \"cellForeColRC\", fila, \"descripcion\",  color_alarma_fuente);
+      }
+    }
+
+    //UPDATE DE LAS ALARMAS ACUSADAS O NO ACTIVAS
+    if ((color_alarma_fondo != \"\") && estadoAcuse)
+    {
+      setValue(\"tabla_alarmas_actual\", \"updateLine\", 2, \"fechaEntrada\", fechaEntrada, \"nombreDPE\", nombreDPE, \"acuse\", estadoAcuse, \"fechaAcuse\", fechaAcuse, \"cuadro\", cuadro_st, \"elemento\", elemento, \"descripcion\", descripcion, \"activa\", activa);
+      setValue(\"tabla_alarmas_actual\", \"setCurrentLine\", 2, \"fechaEntrada\", fechaEntrada, \"nombreDPE\", nombreDPE);
+      getValue(\"tabla_alarmas_actual\", \"currentCell\", fila, columna);
+      setValue(\"tabla_alarmas_actual\", \"cellBackColRC\", fila, \"fechaEntrada\", color_alarma_fondo, \"cellForeColRC\", fila, \"fechaEntrada\", color_alarma_fuente,
+               \"cellBackColRC\", fila, \"acuse\",        color_alarma_fondo, \"cellForeColRC\", fila, \"acuse\",        \"green\",
+               \"cellBackColRC\", fila, \"fechaAcuse\",   color_alarma_fondo, \"cellForeColRC\", fila, \"fechaAcuse\",   color_alarma_fuente,
+               \"cellBackColRC\", fila, \"cuadro\",       color_alarma_fondo, \"cellForeColRC\", fila, \"cuadro\",       color_alarma_fuente,
+               \"cellBackColRC\", fila, \"elemento\",     color_alarma_fondo, \"cellForeColRC\", fila, \"elemento\",     color_alarma_fuente,
+               \"cellBackColRC\", fila, \"descripcion\",  color_alarma_fondo, \"cellForeColRC\", fila, \"descripcion\",  color_alarma_fuente);
+    }
+  }
+
+  setValue(\"tabla_alarmas_actual\", \"sort\", TRUE, \"fechaEntrada\");
+
+  controles_activos();  //Rehabilitamos los mandos de control de la tabla, y quitamos el símbolo de cargando
+  setValue(\"loading_gif_ewo\", \"visible\", FALSE);
+}
+/******* Fin de la función pintar_tabla_alarmas() *********/
+
+/***************************************************************************************
+  @author dceballos
+  @date 04/09/2019.
+  @brief Realizamos el borrado de las alarmas desactivas de la tabla correspondiente.
+  @return No devuelve nada.
+****************************************************************************************/
+void borrar_tabla_alarmas(string consulta, dyn_dyn_anytype resultado)
+{
+  dyn_dyn_string auxVariable;
+  string nombreDPE, variable, fechaEntrada, descripcion;
+
+  for (int i = 2; i <= dynlen(resultado); i++)
+  {
+    nombreDPE = resultado[i][1];
+    variable = nombreDPE;
+    variable = strltrim(variable, \"System1:\");
+    variable = strltrim(variable, \"_\");
+    auxVariable = strsplit(variable, \".\");
+    fechaEntrada = resultado[i][4];
+    descripcion = resultado[i][7];
+
+    setValue(\"tabla_alarmas_actual\", \"deleteLine\", 3, \"fechaEntrada\", fechaEntrada, \"nombreDPE\", nombreDPE, \"descripcion\", descripcion);
+  }
+
+  dynClear(g_alarmasActivas2);
+  getValue(\"tabla_alarmas_actual\", \"getColumnN\", 5, g_alarmasActivas2);
+}
+/******* Fin de la función borrar_tabla_alarmas() *********/
+
+/***************************************************************************************
+  @author dceballos
+  @date 04/09/2019.
+  @brief Realizamos el filtrado de las alarmas activas de la tabla correspondiente.
+  @return No devuelve nada.
+****************************************************************************************/
+void filtrado_tabla()
+{
+  bool rojo, blanco, azul, negro, alarma, aviso;
+  string numero_cuadro, cuadro, elemento;
+
+  rojo = filtro_activas;
+  blanco = filtro_desactivas;
+  azul = filtro_acusadas;
+  negro = filtro_no_acusadas;
+  alarma = filtro_alarmas;
+  aviso = filtro_avisos;
+
+  //Filtrado con alarmas y avisos activos
+
+  if (rojo == TRUE && blanco == TRUE && azul == TRUE && negro == TRUE && alarma == TRUE && aviso == TRUE)
+  {
+    setValue(\"tabla_alarmas_actual\", \"filterRows\", makeDynString(), makeDynString(), TRUE); //TODO
+  }
+  else if (rojo == TRUE && blanco == TRUE && azul == TRUE && negro == FALSE && alarma == TRUE && aviso == TRUE)
+  {
+    setValue(\"tabla_alarmas_actual\", \"filterRows\", makeDynString(\"acuse\", \"activa\", \"tipo\"), makeDynString(\"TRUE\", \"*\", \"*\"), TRUE);//ACTIVAS, DESACTIVAS Y ACUSADAS
+  }
+  else if (rojo == TRUE && blanco == TRUE && azul == FALSE && negro == TRUE && alarma == TRUE && aviso == TRUE)
+  {
+    setValue(\"tabla_alarmas_actual\", \"filterRows\", makeDynString(\"acuse\", \"activa\", \"tipo\"), makeDynString(\"FALSE\", \"*\", \"*\"), TRUE);//ACTIVAS DESACTIVAS Y NO ACUSADAS
+  }
+  else if (azul == FALSE && negro == FALSE)
+  {
+    setValue(\"tabla_alarmas_actual\", \"filterRows\", makeDynString(\"acuse\", \"activa\", \"tipo\"), makeDynString(\"\", \"*\", \"*\"), TRUE);//NINGUNA, AL OCULTAR ACUSADAS Y NO ACUSADAS
+  }
+  else if (rojo == TRUE && blanco == FALSE && azul == TRUE && negro == TRUE && alarma == TRUE && aviso == TRUE)
+  {
+    setValue(\"tabla_alarmas_actual\", \"filterRows\", makeDynString(\"acuse\", \"activa\", \"tipo\"), makeDynString(\"*\", \"TRUE\", \"*\"), TRUE);// ACTIVAS, ACUSADAS Y NO ACUSADAS
+  }
+  else if (rojo == TRUE && blanco == FALSE && azul == TRUE && negro == FALSE && alarma == TRUE && aviso == TRUE)
+  {
+    setValue(\"tabla_alarmas_actual\", \"filterRows\", makeDynString(\"acuse\", \"activa\", \"tipo\"), makeDynString(\"TRUE\", \"TRUE\", \"*\"), TRUE);// ACTIVAS Y ACUSADAS
+  }
+  else if (rojo == TRUE && blanco == FALSE && azul == FALSE && negro == TRUE && alarma == TRUE && aviso == TRUE)
+  {
+    setValue(\"tabla_alarmas_actual\", \"filterRows\", makeDynString(\"acuse\", \"activa\", \"tipo\"), makeDynString(\"FALSE\", \"TRUE\", \"*\"), TRUE);//ACTIVAS Y NO ACUSADAS
+  }
+  else if (rojo == FALSE && blanco == TRUE && azul == TRUE && negro == TRUE && alarma == TRUE && aviso == TRUE)
+  {
+    setValue(\"tabla_alarmas_actual\", \"filterRows\", makeDynString(\"acuse\", \"activa\", \"tipo\"), makeDynString(\"*\", \"FALSE\", \"*\"), TRUE);// DESACTIVAS ACUSADAS Y NO ACUSADAS
+  }
+  else if (rojo == FALSE && blanco == TRUE && azul == TRUE && negro == FALSE && alarma == TRUE && aviso == TRUE)
+  {
+    setValue(\"tabla_alarmas_actual\", \"filterRows\", makeDynString(\"acuse\", \"activa\", \"tipo\"), makeDynString(\"TRUE\", \"FALSE\", \"*\"), TRUE);// DESACTIVAS ACUSADAS
+  }
+  else if (rojo == FALSE && blanco == TRUE && azul == FALSE && negro == TRUE && alarma == TRUE && aviso == TRUE)
+  {
+    setValue(\"tabla_alarmas_actual\", \"filterRows\", makeDynString(\"acuse\", \"activa\", \"tipo\"), makeDynString(\"FALSE\", \"FALSE\", \"*\"), TRUE);//DESACTIVAS NO ACUSADAS
+  }
+  else if (rojo == FALSE && blanco == FALSE)
+  {
+    setValue(\"tabla_alarmas_actual\", \"filterRows\", makeDynString(\"acuse\", \"activa\", \"tipo\"), makeDynString(\"*\", \"\", \"*\"), TRUE);// NINGUNA, AL OCULTAR ACTIVAS Y DESACTIVAS
+  }
+  else if (rojo == FALSE && blanco == FALSE && azul == FALSE && negro == FALSE && alarma == TRUE && aviso == TRUE)
+  {
+    setValue(\"tabla_alarmas_actual\", \"filterRows\", makeDynString(\"acuse\", \"activa\", \"tipo\"), makeDynString(\"\", \"\", \"*\"), TRUE);// NINGUNA
+  }
+
+  //Filtrado con alarmas y sin avisos
+
+  if (rojo == TRUE && blanco == TRUE && azul == TRUE && negro == TRUE && alarma == TRUE && aviso == FALSE)
+  {
+    setValue(\"tabla_alarmas_actual\", \"filterRows\", makeDynString(\"acuse\", \"activa\", \"tipo\"), makeDynString(\"*\", \"*\", \"*Alarma*\"), TRUE); //TODO
+  }
+  else if (rojo == TRUE && blanco == TRUE && azul == TRUE && negro == FALSE && alarma == TRUE && aviso == FALSE)
+  {
+    setValue(\"tabla_alarmas_actual\", \"filterRows\", makeDynString(\"acuse\", \"activa\", \"tipo\"), makeDynString(\"TRUE\", \"*\", \"*Alarma*\"), TRUE);//ACTIVAS, DESACTIVAS Y ACUSADAS
+  }
+  else if (rojo == TRUE && blanco == TRUE && azul == FALSE && negro == TRUE && alarma == TRUE && aviso == FALSE)
+  {
+    setValue(\"tabla_alarmas_actual\", \"filterRows\", makeDynString(\"acuse\", \"activa\", \"tipo\"), makeDynString(\"FALSE\", \"*\", \"*Alarma*\"), TRUE);//ACTIVAS DESACTIVAS Y NO ACUSADAS
+  }
+  else if (azul == FALSE && negro == FALSE)
+  {
+    setValue(\"tabla_alarmas_actual\", \"filterRows\", makeDynString(\"acuse\", \"activa\", \"tipo\"), makeDynString(\"\", \"*\", \"*Alarma*\"), TRUE);//NINGUNA, AL OCULTAR ACUSADAS Y NO ACUSADAS
+  }
+  else if (rojo == TRUE && blanco == FALSE && azul == TRUE && negro == TRUE && alarma == TRUE && aviso == FALSE)
+  {
+    setValue(\"tabla_alarmas_actual\", \"filterRows\", makeDynString(\"acuse\", \"activa\", \"tipo\"), makeDynString(\"*\", \"TRUE\", \"*Alarma*\"), TRUE);// ACTIVAS, ACUSADAS Y NO ACUSADAS
+  }
+  else if (rojo == TRUE && blanco == FALSE && azul == TRUE && negro == FALSE && alarma == TRUE && aviso == FALSE)
+  {
+    setValue(\"tabla_alarmas_actual\", \"filterRows\", makeDynString(\"acuse\", \"activa\", \"tipo\"), makeDynString(\"TRUE\", \"TRUE\", \"*Alarma*\"), TRUE);// ACTIVAS Y ACUSADAS
+  }
+  else if (rojo == TRUE && blanco == FALSE && azul == FALSE && negro == TRUE && alarma == TRUE && aviso == FALSE)
+  {
+    setValue(\"tabla_alarmas_actual\", \"filterRows\", makeDynString(\"acuse\", \"activa\", \"tipo\"), makeDynString(\"FALSE\", \"TRUE\", \"*Alarma*\"), TRUE);//ACTIVAS Y NO ACUSADAS
+  }
+  else if (rojo == FALSE && blanco == TRUE && azul == TRUE && negro == TRUE && alarma == TRUE && aviso == FALSE)
+  {
+    setValue(\"tabla_alarmas_actual\", \"filterRows\", makeDynString(\"acuse\", \"activa\", \"tipo\"), makeDynString(\"*\", \"FALSE\", \"*Alarma*\"), TRUE);// DESACTIVAS ACUSADAS Y NO ACUSADAS
+  }
+  else if (rojo == FALSE && blanco == TRUE && azul == TRUE && negro == FALSE && alarma == TRUE && aviso == FALSE)
+  {
+    setValue(\"tabla_alarmas_actual\", \"filterRows\", makeDynString(\"acuse\", \"activa\", \"tipo\"), makeDynString(\"TRUE\", \"FALSE\", \"*Alarma*\"), TRUE);// DESACTIVAS ACUSADAS
+  }
+  else if (rojo == FALSE && blanco == TRUE && azul == FALSE && negro == TRUE && alarma == TRUE && aviso == FALSE)
+  {
+    setValue(\"tabla_alarmas_actual\", \"filterRows\", makeDynString(\"acuse\", \"activa\", \"tipo\"), makeDynString(\"FALSE\", \"FALSE\", \"*Alarma*\"), TRUE);//DESACTIVAS NO ACUSADAS
+  }
+  else if (rojo == FALSE && blanco == FALSE)
+  {
+    setValue(\"tabla_alarmas_actual\", \"filterRows\", makeDynString(\"acuse\", \"activa\", \"tipo\"), makeDynString(\"*\", \"\", \"*Alarma*\"), TRUE);// NINGUNA, AL OCULTAR ACTIVAS Y DESACTIVAS
+  }
+  else if (rojo == FALSE && blanco == FALSE && azul == FALSE && negro == FALSE && alarma == TRUE && aviso == FALSE)
+  {
+    setValue(\"tabla_alarmas_actual\", \"filterRows\", makeDynString(\"acuse\", \"activa\", \"tipo\"), makeDynString(\"\", \"\", \"*Alarma*\"), TRUE);// NINGUNA
+  }
+
+
+  //Filtrado con avisos y sin alarmas
+
+  if (rojo == TRUE && blanco == TRUE && azul == TRUE && negro == TRUE && alarma == FALSE && aviso == TRUE)
+  {
+    setValue(\"tabla_alarmas_actual\", \"filterRows\", makeDynString(\"acuse\", \"activa\", \"tipo\"), makeDynString(\"*\", \"*\", \"*Aviso*\"), TRUE); //TODO
+  }
+  else if (rojo == TRUE && blanco == TRUE && azul == TRUE && negro == FALSE && alarma == FALSE && aviso == TRUE)
+  {
+    setValue(\"tabla_alarmas_actual\", \"filterRows\", makeDynString(\"acuse\", \"activa\", \"tipo\"), makeDynString(\"TRUE\", \"*\", \"*Aviso*\"), TRUE);//ACTIVAS, DESACTIVAS Y ACUSADAS
+  }
+  else if (rojo == TRUE && blanco == TRUE && azul == FALSE && negro == TRUE && alarma == FALSE && aviso == TRUE)
+  {
+    setValue(\"tabla_alarmas_actual\", \"filterRows\", makeDynString(\"acuse\", \"activa\", \"tipo\"), makeDynString(\"FALSE\", \"*\", \"*Aviso*\"), TRUE);//ACTIVAS DESACTIVAS Y NO ACUSADAS
+  }
+  else if (azul == FALSE && negro == FALSE)
+  {
+    setValue(\"tabla_alarmas_actual\", \"filterRows\", makeDynString(\"acuse\", \"activa\", \"tipo\"), makeDynString(\"\", \"*\", \"*Aviso*\"), TRUE);//NINGUNA, AL OCULTAR ACUSADAS Y NO ACUSADAS
+  }
+  else if (rojo == TRUE && blanco == FALSE && azul == TRUE && negro == TRUE && alarma == FALSE && aviso == TRUE)
+  {
+    setValue(\"tabla_alarmas_actual\", \"filterRows\", makeDynString(\"acuse\", \"activa\", \"tipo\"), makeDynString(\"*\", \"TRUE\", \"*Aviso*\"), TRUE);// ACTIVAS, ACUSADAS Y NO ACUSADAS
+  }
+  else if (rojo == TRUE && blanco == FALSE && azul == TRUE && negro == FALSE && alarma == FALSE && aviso == TRUE)
+  {
+    setValue(\"tabla_alarmas_actual\", \"filterRows\", makeDynString(\"acuse\", \"activa\", \"tipo\"), makeDynString(\"TRUE\", \"TRUE\", \"*Aviso*\"), TRUE);// ACTIVAS Y ACUSADAS
+  }
+  else if (rojo == TRUE && blanco == FALSE && azul == FALSE && negro == TRUE && alarma == FALSE && aviso == TRUE)
+  {
+    setValue(\"tabla_alarmas_actual\", \"filterRows\", makeDynString(\"acuse\", \"activa\", \"tipo\"), makeDynString(\"FALSE\", \"TRUE\", \"*Aviso*\"), TRUE);//ACTIVAS Y NO ACUSADAS
+  }
+  else if (rojo == FALSE && blanco == TRUE && azul == TRUE && negro == TRUE && alarma == FALSE && aviso == TRUE)
+  {
+    setValue(\"tabla_alarmas_actual\", \"filterRows\", makeDynString(\"acuse\", \"activa\", \"tipo\"), makeDynString(\"*\", \"FALSE\", \"*Aviso*\"), TRUE);// DESACTIVAS ACUSADAS Y NO ACUSADAS
+  }
+  else if (rojo == FALSE && blanco == TRUE && azul == TRUE && negro == FALSE && alarma == FALSE && aviso == TRUE)
+  {
+    setValue(\"tabla_alarmas_actual\", \"filterRows\", makeDynString(\"acuse\", \"activa\", \"tipo\"), makeDynString(\"TRUE\", \"FALSE\", \"*Aviso*\"), TRUE);// DESACTIVAS ACUSADAS
+  }
+  else if (rojo == FALSE && blanco == TRUE && azul == FALSE && negro == TRUE && alarma == FALSE && aviso == TRUE)
+  {
+    setValue(\"tabla_alarmas_actual\", \"filterRows\", makeDynString(\"acuse\", \"activa\", \"tipo\"), makeDynString(\"FALSE\", \"FALSE\", \"*Aviso*\"), TRUE);//DESACTIVAS NO ACUSADAS
+  }
+  else if (rojo == FALSE && blanco == FALSE)
+  {
+    setValue(\"tabla_alarmas_actual\", \"filterRows\", makeDynString(\"acuse\", \"activa\", \"tipo\"), makeDynString(\"*\", \"\", \"*Aviso*\"), TRUE);// NINGUNA, AL OCULTAR ACTIVAS Y DESACTIVAS
+  }
+  else if (rojo == FALSE && blanco == FALSE && azul == FALSE && negro == FALSE && alarma == FALSE && aviso == TRUE)
+  {
+    setValue(\"tabla_alarmas_actual\", \"filterRows\", makeDynString(\"acuse\", \"activa\", \"tipo\"), makeDynString(\"\", \"\", \"*Aviso*\"), TRUE);// NINGUNA
+  }
+
+  //Sin avisos ni alarmas (vacío)
+
+  if (alarma == FALSE && aviso == FALSE)
+  {
+    setValue(\"tabla_alarmas_actual\", \"filterRows\", makeDynString(), makeDynString(), FALSE);// NINGUNA
+  }
+}
+/******* Fin de la función filtrado_tabla() *********/
+
+/***************************************************************************************
+  @author dceballos
+  @date 04/09/2019.
+  @brief Hacemos visibles todos los controles que se encuentran inactivos.
+  @return No devuelve nada.
+****************************************************************************************/
+void controles_inactivos()
+{
+  setMultiValue(\"tabla_alarmas_actual\", \"transparentForMouse\", TRUE,
+                \"btn_eye_rojo\", \"transparentForMouse\", TRUE,
+                \"btn_eye_amarillo\", \"transparentForMouse\", TRUE,
+                \"btn_eye_azul\", \"transparentForMouse\", TRUE,
+                \"btn_filtro\", \"transparentForMouse\", TRUE,
+                \"btn_checkall\", \"transparentForMouse\", TRUE,
+                \"cbb_cuadro\", \"transparentForMouse\", TRUE);
+}
+/******* Fin de la función controles_inactivos() *********/
+
+/***************************************************************************************
+  @author dceballos
+  @date 04/09/2019.
+  @brief Hacemos no visibles todos los controles que se encuentran activos.
+  @return No devuelve nada.
+****************************************************************************************/
+void controles_activos()
+{
+  setMultiValue(\"tabla_alarmas_actual\", \"transparentForMouse\", FALSE,
+                \"btn_eye_rojo\", \"transparentForMouse\", FALSE,
+                \"btn_eye_amarillo\", \"transparentForMouse\", FALSE,
+                \"btn_eye_azul\", \"transparentForMouse\", FALSE,
+                \"btn_filtro\", \"transparentForMouse\", FALSE,
+                \"btn_checkall\", \"transparentForMouse\", FALSE,
+                \"cbb_cuadro\", \"transparentForMouse\", FALSE);
+}
+/******* Fin de la función controles_activos() *********/
+" 0
+ 4
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+"pdpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10001 0 
+LANG:10010 0 
+6 26
+"RECTANGLE69"
+""
+1 1250 12 E E E 1 E 1 E N {179,200,224} E N {255,255,255} E E
+ E E
+25 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+7
+"shadowOffset" "[4,4]"
+"shadowColor" "{63,63,63,63}"
+"shadowRadius" "8"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 2 3 2 1 E 0.4570957095709568 0 0.5 1042.630363036304 265.9999999999999 1 E 1250 12 1856 592
+6 25
+"RECTANGLE68"
+""
+1 1250 12 E E E 1 E 1 E N {179,200,224} E N {255,255,255} E E
+ E E
+24 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+7
+"shadowOffset" "[4,4]"
+"shadowColor" "{63,63,63,63}"
+"shadowRadius" "8"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 2 3 2 1 E 0.4570957095709568 0 0.2706896551724138 1042.630363036304 91.75172413793102 1 E 1250 12 1856 592
+6 23
+"RECTANGLE66"
+""
+1 1250 12 E E E 1 E 1 E N {179,200,224} E N {255,255,255} E E
+ E E
+22 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+7
+"shadowOffset" "[4,4]"
+"shadowColor" "{63,63,63,63}"
+"shadowRadius" "8"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 2 3 2 1 E 0.4554455445544552 0 0.1137931034482759 1044.693069306931 7.63448275862067 1 E 1250 12 1856 592
+25 2
+"tabla_alarmas_actual"
+"PEQUENIO_AZUL"
+1 0 2.136122613521782 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_BLANCO" E E
+ E E
+1 0 0 0 0 0
+E E E
+0
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+5
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+7
+LANG:10001 26 Arial,-1,12,5,75,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10011 26 Arial,-1,12,5,75,0,0,0,0,0
+LANG:10009 26 Arial,-1,12,5,75,0,0,0,0,0
+LANG:10008 26 Arial,-1,12,5,75,0,0,0,0,0
+LANG:10018 26 Arial,-1,12,5,75,0,0,0,0,0
+LANG:10005 26 Arial,-1,12,5,75,0,0,0,0,0
+0  13 5.99999999999998 1586 964
+"main()
+{
+  formatear_estilo_tabla(\"tabla_alarmas_actual\", \"AlignHCenter|AlignVCenter\", \"LIB_IRC_BLANCO\", \"{240,250,255}\");  //Damos formato a la tabla con el listado de variables
+
+  setMultiValue(\"\", \"deleteAllLines\",  //Borra las líneas existentes
+                \"\", \"tableMode\", 0,
+                \"\", \"selectByClick\", 1);
+
+  //Genera el string para la consulta que se encarga de añadir alarmas o cambiar el estado a acusado
+  string consulta = \"SELECT ALERT '_alert_hdl.._value','_alert_hdl.._came_time','_alert_hdl.._ack_time','_alert_hdl.._gone_time','_alert_hdl.._text' \" +
+                    \"FROM '*' \" +
+                    \"WHERE _DPT NOT LIKE \\\"_*\\\"\" +
+                    \"SORT BY 2 DESC \";
+
+  //Realiza la conexión entre los resutlados de las variables incluidas en la consulta con la función para actualizar la tabla, ya sean nuevas o existentes que han cambiado de estado
+  dpQueryConnectSingle(\"cambio_alarmas\", TRUE, consulta, consulta);
+}
+
+//Es llamada por cualquier variables que no sea interna y tenga atributo alert_hdl
+cambio_alarmas(string consulta, dyn_dyn_anytype resultado_consulta)
+{
+//Declaración de variables
+  string nombre_dpe, nombre_dp, texto_alarma, descripcion, tag, color_fondo_alarma, color_fuente_alarma, tipo;
+  int estado_alarma, fila, columna, descripcion_ok, n_prioridad;
+  time fecha_inicio, fecha_fin, fecha_acuse;
+
+  for (int i = 2; i <= dynlen(resultado_consulta); i++)
+  {
+    //Obtención de datos sobre la variable de alarma, nombre del dpe, dp, descripcion del elemento y texto de alarma
+    nombre_dpe = dpSubStr(resultado_consulta[i][1], DPSUB_DP_EL);
+    nombre_dp = dpSubStr(resultado_consulta[i][1], DPSUB_DP);
+    tag = dpGetAlias(nombre_dpe);
+    descripcion = dpGetDescription(nombre_dpe);
+    if (nombre_dp.contains(\"Alarma\") || nombre_dp.contains(\"Aviso\") || nombre_dp.contains(\"MARCAS\"))
+    {
+      descripcion = dpGetDescription(nombre_dpe);
+      DebugN(\"IIIIF\");
+    }
+
+    //Obtención de la clase de la alarma (Aviso o Alarma)
+    dpGet(nombre_dpe + \":_alert_hdl.._class\", tipo);
+    dpGet(tipo + \":_alert_class.._prior\",n_prioridad);
+
+    //Texto de la alarma
+    texto_alarma = getCatStr(\"alarmas\", resultado_consulta[i][7]); //Texto de la alarma
+
+//Obtención del estado de la alarma
+    dpGet(nombre_dpe + \":_alert_hdl.._act_state\", estado_alarma);
+
+//Obtención de los colores de alarma
+    dpGet(nombre_dpe + \":_alert_hdl.._act_state_color\", color_fondo_alarma);
+    dpGet(nombre_dpe + \":_alert_hdl.._act_state_fore_color\", color_fuente_alarma);
+//Obtención de tiempos de alarma
+    fecha_inicio = resultado_consulta[i][4];
+    fecha_acuse = resultado_consulta[i][5];
+    fecha_fin = resultado_consulta[i][6];
+
+    switch (estado_alarma)
+    {
+      //Alarma en estado 0, ha pasado a no estar activa y ya está acusada por lo que debe borrarse
+      case (0):
+      {
+        this.deleteLine(1, \"nombre_dpe\", nombre_dpe);
+        break;
+      }
+
+      //Alarma activa y sin acusar, debe pintarse una nueva línea
+      case (1):
+      {
+        this.deleteLine(1, \"nombre_dpe\", nombre_dpe);
+        this.appendLine(\"fecha_inicio\", fecha_inicio,
+                        \"acuse\", FALSE,
+                        \"tag\", tag,
+                        \"elemento\", nombre_dpe,
+                        \"descripcion\", descripcion,
+                        \"nombre_dpe\", nombre_dpe,
+                        \"activa\", TRUE,
+                        \"tipo\", tipo,
+                        \"prioridad\", n_prioridad);
+        break;
+      }
+
+      //Alarma activa y acusada, la línea ya existente de la alarma debe cambiar su color de estado y actualizar la columna de fecha de acuse
+      case (2):
+      {
+        this.updateLine(1, \"nombre_dpe\", nombre_dpe,
+                        \"fecha_inicio\", fecha_inicio,
+                        \"acuse\", TRUE,
+                        \"fecha_acuse\", fecha_acuse,
+                        \"tag\", tag,
+                        \"elemento\", nombre_dpe,
+                        \"descripcion\", descripcion,
+                        \"nombre_dpe\", nombre_dpe,
+                        \"activa\", TRUE,
+                        \"tipo\", tipo,
+                        \"prioridad\", n_prioridad);
+        break;
+      }
+
+      //Alarma desactiva pero sin acusar, debe cambiar su color de estado y actualizar la columna de fecha fin
+      case (3):
+      {
+        this.updateLine(1, \"nombre_dpe\", nombre_dpe,
+                        \"fecha_inicio\", fecha_inicio,
+                        \"acuse\", FALSE,
+                        \"fecha_fin\", fecha_fin,
+                        \"tag\", tag,
+                        \"elemento\", nombre_dpe,
+                        \"descripcion\", descripcion,
+                        \"nombre_dpe\", nombre_dpe,
+                        \"activa\", FALSE,
+                        \"tipo\", tipo,
+                        \"prioridad\", n_prioridad);
+        break;
+      }
+    }
+
+    //Si la alarma sigue activa, ya sea CAME/UNACK, CAME/ACK o WENT/UNACK, rellena el fondo y la fuente con los colores de la alarma
+    if (estado_alarma != 0)
+    {
+      this.setCurrentLine(1, \"nombre_dpe\", nombre_dpe);
+      getValue(\"\", \"currentCell\", fila, columna);
+      setValue(\"\", \"cellBackColRC\", fila, \"fecha_inicio\", color_fondo_alarma,  \"cellForeColRC\", fila, \"fecha_inicio\", color_fuente_alarma,
+               \"cellBackColRC\", fila, \"acuse\", color_fondo_alarma,         \"cellForeColRC\", fila, \"acuse\", color_fuente_alarma,
+               \"cellBackColRC\", fila, \"fecha_acuse\", color_fondo_alarma,   \"cellForeColRC\", fila, \"fecha_acuse\", color_fuente_alarma,
+               \"cellBackColRC\", fila, \"fecha_fin\", color_fondo_alarma,     \"cellForeColRC\", fila, \"fecha_fin\", color_fuente_alarma,
+               \"cellBackColRC\", fila, \"tag\", color_fondo_alarma,           \"cellForeColRC\", fila, \"tag\", color_fuente_alarma,
+               \"cellBackColRC\", fila, \"elemento\", color_fondo_alarma,      \"cellForeColRC\", fila, \"elemento\", color_fuente_alarma,
+               \"cellBackColRC\", fila, \"descripcion\", color_fondo_alarma,   \"cellForeColRC\", fila, \"descripcion\", color_fuente_alarma);
+    }
+  }
+
+  dyn_string filtro = makeDynString(\"prioridad\", \"fecha_inicio\");
+  setMultiValue(\"\", \"tableMode\", 1,
+                \"\", \"selectLineN\", 0,
+                \"\", \"tableMode\", 0,
+                \"\", \"sortDyn\",FALSE, filtro);
+  label_acuse_todo.transparentForMouse(FALSE);
+  eye_alarma.transparentForMouse(FALSE);
+  eye_aviso.transparentForMouse(FALSE);
+  eye_azul.transparentForMouse(FALSE);
+  eye_blanco.transparentForMouse(FALSE);
+  eye_negro.transparentForMouse(FALSE);
+  eye_rojo.transparentForMouse(FALSE);
+}" 0
+"main(int fila, string columna, string valor)
+{
+  if(columna == \"acuse\"){  //Comprobamos si la columna seleccionada es la correspondiente al acuse de la alarma
+    string nombre_dpe;
+    getValue(\"\", \"cellValueRC\", fila, \"nombre_dpe\", nombre_dpe);
+    dpSet(nombre_dpe + \":_alert_hdl.._ack\", 2);
+  }
+}" 0
+ 1 0 1 11 0 "fecha_inicio" 13 1 0 "[%Y-%m-%d %H:%M:%St,False,,AlignHCenter|AlignVCenter]" 7
+LANG:10001 10 Start date
+LANG:10010 12 Fecha inicio
+LANG:10011 14 Eintrittsdatum
+LANG:10009 10 Start date
+LANG:10008 15 Data di entrata
+LANG:10018 15 Data de entrada
+LANG:10005 10 Entry date
+E
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+160 "acuse" 4 1 0 "[0s,,,AlignHCenter|AlignVCenter]" 7
+LANG:10001 4 Ack.
+LANG:10010 5 Acuse
+LANG:10011 10 Bestätig.
+LANG:10009 4 Ack.
+LANG:10008 9 Riconosc.
+LANG:10018 8 Confirm.
+LANG:10005 7 Acknow.
+E
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+55 "fecha_acuse" 13 1 0 "[%Y-%m-%d %H:%M:%St,False,,AlignHCenter|AlignVCenter]" 7
+LANG:10001 9 Ack. date
+LANG:10010 11 Fecha acuse
+LANG:10011 18 Bestätigungsdatum
+LANG:10009 9 Ack. date
+LANG:10008 16 Data di conferma
+LANG:10018 21 Data de confirmação
+LANG:10005 19 Acknowledgment date
+E
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+160 "fecha_fin" 13 1 0 "[%Y-%m-%d %H:%M:%St,False,,AlignHCenter|AlignVCenter]" 7
+LANG:10001 2 #1
+LANG:10010 9 Fecha fin
+LANG:10011 2 #1
+LANG:10009 2 #1
+LANG:10008 2 #1
+LANG:10018 2 #1
+LANG:10005 19 Acknowledgment date
+E
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+160 "tag" 8 1 0 "[0s,,,AlignHCenter|AlignVCenter]" 7
+LANG:10001 11 Fecha acuse
+LANG:10010 3 Tag
+LANG:10011 6 Gruppe
+LANG:10009 11 Fecha acuse
+LANG:10008 6 Gruppo
+LANG:10018 5 Grupo
+LANG:10005 5 Group
+E
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+150 "elemento" 39 1 0 "[0s,,,AlignLeft|AlignVCenter]" 7
+LANG:10001 7 Element
+LANG:10010 8 Elemento
+LANG:10011 7 Element
+LANG:10009 7 Element
+LANG:10008 8 Elemento
+LANG:10018 8 Elemento
+LANG:10005 7 Element
+E
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+395 "descripcion" 43 1 0 "[0s,,,AlignLeft|AlignVCenter]" 7
+LANG:10001 11 Description
+LANG:10010 12 Descripción
+LANG:10011 12 Beschreibung
+LANG:10009 11 Description
+LANG:10008 11 Descrizione
+LANG:10018 11 Descrição
+LANG:10005 11 Description
+E
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+490 "nombre_dpe" 0 0 0 "s" 7
+LANG:10001 10 nombre_dpe
+LANG:10010 10 nombre_dpe
+LANG:10011 9 nombreDPE
+LANG:10009 10 nombre_dpe
+LANG:10008 9 nombreDPE
+LANG:10018 9 nombreDPE
+LANG:10005 9 nombreDPE
+E
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+0 "activa" 0 0 0 "s" 7
+LANG:10001 9 nombreDPE
+LANG:10010 6 activa
+LANG:10011 2 #1
+LANG:10009 9 nombreDPE
+LANG:10008 2 #1
+LANG:10018 2 #1
+LANG:10005 2 #1
+E
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+0 "tipo" 0 0 0 "s" 7
+LANG:10001 2 #1
+LANG:10010 4 Tipo
+LANG:10011 2 #1
+LANG:10009 2 #1
+LANG:10008 2 #1
+LANG:10018 2 #1
+LANG:10005 2 #1
+E
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+100 "prioridad" 6 0 0 "[2d,False,False,AlignHCenter|AlignVCenter,False]" 7
+LANG:10001 2 #1
+LANG:10010 9 prioridad
+LANG:10011 2 #1
+LANG:10009 2 #1
+LANG:10008 2 #1
+LANG:10018 2 #1
+LANG:10005 2 #1
+E
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+0 
+30 30 10 0
+7
+LANG:10001 26 Arial,-1,12,5,75,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10011 26 Arial,-1,12,5,75,0,0,0,0,0
+LANG:10009 26 Arial,-1,12,5,75,0,0,0,0,0
+LANG:10008 26 Arial,-1,12,5,75,0,0,0,0,0
+LANG:10018 26 Arial,-1,12,5,75,0,0,0,0,0
+LANG:10005 26 Arial,-1,12,5,75,0,0,0,0,0
+0 0 1 0 1 7
+1 0
+13 9
+"eye_rojo"
+""
+1 1669.142857142857 311.6153846153846 E E E 1 E 1 E N "LIB_DEUSER_BLANCO" E N "LIB_IRC_ROJO_12" E E
+ E E
+8 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+7
+"hoverbclr" "N \"AZUL_01\""
+"shadowOffset" "[4,4]"
+"shadowColor" "{63,63,63,131}"
+"shadowRadius" "20"
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10009 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10008 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10018 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  1633 295 1876 337
+
+B 
+4294967295
+"pictures/iconos/botoneras/eye_visibility_blanco.svg"
+2
+LANG:10001 0 
+LANG:10010 16  ACTIVAS        
+"main(mapping event)
+{
+  if (!filtro_activas)
+  {
+    setValue(\"\", \"buttonDownPixmap\", \"iconos/botoneras/eye_visibility_blanco.svg\",
+             \"buttonUpPixmap\", \"iconos/botoneras/eye_visibility_blanco.svg\");
+    filtro_activas = TRUE;
+    filtrado_tabla();
+  }
+  else
+  {
+    setValue(\"\", \"buttonDownPixmap\", \"iconos/botoneras/eye_no_visibility_blanco.svg\",
+             \"buttonUpPixmap\", \"iconos/botoneras/eye_no_visibility_blanco.svg\");
+    filtro_activas = FALSE;
+    filtrado_tabla();
+  }
+}
+" 0
+ E E E
+13 19
+"eye_alarma"
+""
+1 1669.142857142857 137.3133890116957 E E E 1 E 1 E N "LIB_DEUSER_BLANCO" E N "LIB_IRC_ROJO_12" E E
+ E E
+18 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+7
+"hoverbclr" "N \"AZUL_01\""
+"shadowOffset" "[4,4]"
+"shadowColor" "{63,63,63,131}"
+"shadowRadius" "20"
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10009 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10008 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10018 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  1633 120.6980043963111 1876 162.6980043963111
+
+B 
+4294967295
+"pictures/iconos/botoneras/eye_visibility_blanco.svg"
+2
+LANG:10001 0 
+LANG:10010 15  ALARMAS       
+"main(mapping event)
+{
+  if (!filtro_alarmas)
+  {
+    setValue(\"\", \"buttonDownPixmap\", \"iconos/botoneras/eye_visibility_blanco.svg\",
+             \"buttonUpPixmap\", \"iconos/botoneras/eye_visibility_blanco.svg\");
+    filtro_alarmas = TRUE;
+    filtrado_tabla();
+  }
+  else
+  {
+    setValue(\"\", \"buttonDownPixmap\", \"iconos/botoneras/eye_no_visibility_blanco.svg\",
+             \"buttonUpPixmap\", \"iconos/botoneras/eye_no_visibility_blanco.svg\");
+    filtro_alarmas = FALSE;
+    filtrado_tabla();
+  }
+}
+" 0
+ E E E
+13 21
+"eye_aviso"
+""
+1 1639.877551020408 93.51282051282118 E E E 1 E 1 E N "LIB_IRC_NEGRO" E N "LIB_IRC_AMARILLO_01" E E
+ E E
+20 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+7
+"hoverbclr" "N \"AZUL_01\""
+"shadowOffset" "[4,4]"
+"shadowColor" "{63,63,63,131}"
+"shadowRadius" "20"
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10009 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10008 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10018 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  1633 187 1876 229
+
+B 
+4294967295
+"pictures/iconos/botoneras/eye_visibility.svg"
+2
+LANG:10001 0 
+LANG:10010 18  AVISOS           
+"main(mapping event)
+{
+  if (!filtro_avisos)
+  {
+    setValue(\"\", \"buttonDownPixmap\", \"iconos/botoneras/eye_visibility.svg\",
+             \"buttonUpPixmap\", \"iconos/botoneras/eye_visibility.svg\");
+    filtro_avisos = TRUE;
+    filtrado_tabla();
+  }
+  else
+  {
+    setValue(\"\", \"buttonDownPixmap\", \"iconos/botoneras/eye_no_visibility.svg\",
+             \"buttonUpPixmap\", \"iconos/botoneras/eye_no_visibility.svg\");
+    filtro_avisos = FALSE;
+    filtrado_tabla();
+  }
+}
+" 0
+ E E E
+13 22
+"label_acuse_todo"
+""
+1 1635 27.27777777777778 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "LIB_IRC_AZUL_01" E E
+ E E
+21 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+5
+"hoverbclr" "N \"AZUL_01\""
+"transparentForMouse" ""
+"sizePolicy" "Preferred Preferred"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10010 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10011 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10009 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10008 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10018 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  1633 20 1876 61.99999999999999
+
+P 
+4294967295
+"pictures/iconos/botoneras/Iconos/acusar_todas.svg"
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+"main(mapping event)
+{
+  dyn_dyn_anytype resultado_consulta;
+  string nombre_dpe;
+
+ //Genera el string para la consulta que se encarga de añadir alarmas o cambiar el estado a acusado
+   string consulta = \"SELECT ALERT '_alert_hdl.._value','_alert_hdl.._came_time','_alert_hdl.._ack_time','_alert_hdl.._gone_time','_alert_hdl.._text' \" +
+                    \"FROM '*' \" +
+                    \"WHERE _DPT NOT LIKE \\\"_*\\\"\" +
+                    \"SORT BY 2 DESC \";
+
+//Realiza la conexión entre los resutlados de las variables incluidas en la consulta con la función para actualizar la tabla, ya sean nuevas o existentes que han cambiado de estado
+  dpQuery(consulta, resultado_consulta);
+
+  for(int i = 2; i <= dynlen(resultado_consulta); i++)
+  {
+    nombre_dpe = dpSubStr(resultado_consulta[i][1], DPSUB_DP_EL);
+    dpSet(nombre_dpe + \":_alert_hdl.._ack\", 2);
+  }
+}" 0
+ E E "main()
+{
+  this.text(getCatStr(\"objetos\",this.name));
+}" 0
+
+13 13
+"eye_blanco"
+""
+1 1639.877551020408 269.1448234436946 E E E 1 E 1 E N "LIB_IRC_ROJO_12" E N "LIB_IRC_GRIS_03" E E
+ E E
+12 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+7
+"hoverbclr" "N \"AZUL_01\""
+"shadowOffset" "[4,4]"
+"shadowColor" "{63,63,63,131}"
+"shadowRadius" "20"
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10009 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10008 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10018 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  1633 362.632002930874 1876 404.632002930874
+
+B 
+4294967295
+"pictures/iconos/botoneras/eye_visibility_rojo.svg"
+2
+LANG:10001 0 
+LANG:10010 13  DESACTIVAS  
+"main(mapping event)
+{
+  if (!filtro_desactivas)
+  {
+    setValue(\"\", \"buttonDownPixmap\", \"iconos/botoneras/eye_visibility_rojo.svg\",
+             \"buttonUpPixmap\", \"iconos/botoneras/eye_visibility_rojo.svg\");
+    filtro_desactivas = TRUE;
+    filtrado_tabla();
+  }
+  else
+  {
+    setValue(\"\", \"buttonDownPixmap\", \"iconos/botoneras/eye_no_visibility_rojo.svg\",
+             \"buttonUpPixmap\", \"iconos/botoneras/eye_no_visibility_rojo.svg\");
+    filtro_desactivas = FALSE;
+    filtrado_tabla();
+  }
+}
+" 0
+ E E E
+13 11
+"eye_azul"
+""
+1 1644.755102040816 389.6429245423601 E E E 1 E 1 E N "LIB_DEUSER_BLANCO" E N "LIB_IRC_AZUL_16" E E
+ E E
+10 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+7
+"hoverbclr" "N \"AZUL_01\""
+"shadowOffset" "[4,4]"
+"shadowColor" "{63,63,63,131}"
+"shadowRadius" "20"
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10009 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10008 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10018 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  1633 428.566001465437 1876 470.566001465437
+
+B 
+4294967295
+"pictures/iconos/botoneras/eye_visibility_blanco.svg"
+2
+LANG:10001 0 
+LANG:10010 14  ACUSADAS     
+"main(mapping event)
+{
+  if (!filtro_acusadas)
+  {
+    setValue(\"\", \"buttonDownPixmap\", \"iconos/botoneras/eye_visibility_blanco.svg\",
+             \"buttonUpPixmap\", \"iconos/botoneras/eye_visibility_blanco.svg\");
+    filtro_acusadas = TRUE;
+    filtrado_tabla();
+  }
+  else
+  {
+    setValue(\"\", \"buttonDownPixmap\", \"iconos/botoneras/eye_no_visibility_blanco.svg\",
+             \"buttonUpPixmap\", \"iconos/botoneras/eye_no_visibility_blanco.svg\");
+    filtro_acusadas = FALSE;
+    filtrado_tabla();
+  }
+}
+" 0
+ E E E
+13 15
+"eye_negro"
+""
+1 1644.755102040816 458.5769230769231 E E E 1 E 1 E N "LIB_IRC_NEGRO" E N "LIB_IRC_BLANCO" E E
+ E E
+14 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+7
+"hoverbclr" "N \"AZUL_01\""
+"shadowOffset" "[4,4]"
+"shadowColor" "{63,63,63,131}"
+"shadowRadius" "20"
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10009 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10008 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10018 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  1633 497.5 1876 539.5
+
+B 
+4294967295
+"pictures/iconos/botoneras/eye_visibility.svg"
+2
+LANG:10001 0 
+LANG:10010 12  NO ACUSADAS
+"main(mapping event)
+{
+  if (!filtro_no_acusadas)
+  {
+    setValue(\"\", \"buttonDownPixmap\", \"iconos/botoneras/eye_visibility.svg\",
+             \"buttonUpPixmap\", \"iconos/botoneras/eye_visibility.svg\");
+    filtro_no_acusadas = TRUE;
+    filtrado_tabla();
+  }
+  else
+  {
+    setValue(\"\", \"buttonDownPixmap\", \"iconos/botoneras/eye_no_visibility.svg\",
+             \"buttonUpPixmap\", \"iconos/botoneras/eye_no_visibility.svg\");
+    filtro_no_acusadas = FALSE;
+    filtrado_tabla();
+  }
+}
+" 0
+ E E E
+0
+LAYER, 1 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 2 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 3 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 4 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 5 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 6 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 7 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+0

@@ -1,0 +1,506 @@
+V 14
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+PANEL,-1 -1 500 500 N "white" 1
+"$INST"
+E E E E E 1 -1 -1 0  38 108
+""0  1
+E "lib_siwarex_500 c = lib_siwarex_500($INST,\"\");
+
+const mapping paneles = makeMapping(0, \"CELULA_PESAJE_CALIBRACION_1\");
+
+
+mapping get_mapa_nom_paneles_calib(){
+  return (paneles);
+}
+
+cambiar_panel_activo_calib(int clave)
+{
+  string ruta_compartida = \"vision/faceplates/999_LIB_SIWAREX_500/\";
+  mapping paneles_calib = get_mapa_nom_paneles_calib();
+  string nombre = paneles_calib.value(clave, \"\");
+  string nombre_1 = myModuleName();
+  RootPanelOnModule(ruta_compartida + nombre + \".pnl\", nombre, nombre_1, makeDynString(\"$INST:\"+$INST));
+}
+" 0
+ 4
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+"pdpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10001 0 
+LANG:10010 0 
+13 5
+"PUSH_BUTTON1"
+"btn_formulario_1"
+1 67 155 E E E 1 E 1 E N "_Transparent" E N "_Button" E E
+ E E
+4 0 0 0 0 0
+E E E
+1
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+3
+"layoutAlignment" "AlignNone"
+"focusPolicy" "NoFocus"
+"showFocus" "0"
+7
+LANG:10001 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10010 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10011 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10009 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10008 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10018 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10005 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  13.32408943207031 443.1436128219416 91.32408943207031 486.1436128219416
+
+P 
+4294967295
+"pictures/iconos/botoneras/Iconos/ant_icon.svg"
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+"main(mapping event)
+{
+  cambiar_panel_activo_calib(0);
+
+}
+" 0
+ E E E
+13 10
+"btn_calibra_2"
+"btn_formulario_1"
+1 149.5417789109705 40 E E E 1 E 1 E N "white" E N "_Button" E E
+ E E
+9 0 0 0 0 0
+E E E
+1
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+3
+"layoutAlignment" "AlignNone"
+"focusPolicy" "NoFocus"
+"showFocus" "0"
+7
+LANG:10001 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,21,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10009 35 Tahoma,-1,21,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10018 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10005 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  31.53947140654128 269.5034121568957 465.5394714065411 326.0508577272831
+
+T 
+6
+LANG:10001 25 AJUSTE PESO CALIBRACION 2
+LANG:10010 25 AJUSTE PESO CALIBRACION 2
+LANG:10011 25 AJUSTE PESO CALIBRACION 2
+LANG:10009 25 AJUSTE PESO CALIBRACION 2
+LANG:10008 25 AJUSTE PESO CALIBRACION 2
+LANG:10018 25 AJUSTE PESO CALIBRACION 2
+"main(mapping event)
+{
+  c.set_comandos(62, 1);
+}
+" 0
+ E E E
+2 13
+"PRIMITIVE_TEXT3"
+""
+1 10 0 E E E 1 E 1 E N {1,72,152} E N "_Transparent" E E
+ E E
+12 0 0 0 0 0
+E E E
+0
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 2 1 1 E 0.4115248259984831 0 0.5846399334795702 35.36790719028062 211.4608019956129 1 E 10 0 360 60
+0 2 2 "0s" 0 0 0 72 0 0  10 0 2
+7
+LANG:10001 35 MS Shell Dlg 2,-1,15,5,75,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 MS Shell Dlg 2,-1,15,5,75,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10005 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+0 7
+LANG:10001 10 PARAMETROS
+LANG:10010 19 PESO CALIBRACIÓN 2
+LANG:10011 6 ALARME
+LANG:10009 10 PARAMETROS
+LANG:10008 7 ALLARMI
+LANG:10018 7 ALARMES
+LANG:10005 6 ALARMS
+7
+LANG:10001 35 MS Shell Dlg 2,-1,15,5,75,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 MS Shell Dlg 2,-1,15,5,75,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10005 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+0 6
+LANG:10001 0 
+LANG:10010 10 (OPCIONAL)
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+14 14
+"TEXT_FIELD2"
+"txf_standard_1"
+1 191.1074268588413 242.9589923012412 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_BLANCO" E E
+ E E
+13 0 0 0 0 0
+"main()
+{
+  this.text(\"\");
+}" 0
+ E E
+0
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+2
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+7
+LANG:10001 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10009 43 MS Shell Dlg 2,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10018 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10005 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  189 215 412 243
+3 "15s" 15 0 0 2 0 -1  E "main()
+{
+     dpConnect(\"mostrar_estado\", c.get_peso_calib_2(),c.get_unidad());
+}
+
+void mostrar_estado(string dpSource, float estado, string dpSource2, float estado2)
+{
+  if (estado2 == 0)this.text(estado + \" mg\");
+  else if(estado2 == 1)this.text(estado + \" g\");
+  else if(estado2 == 2)this.text(estado + \" kg\");
+  else if(estado2 == 3)this.text(estado + \" t\");
+  else if(estado2 == 4)this.text(estado + \" oz\");
+  else if(estado2 == 5)this.text(estado + \" lb\");
+}" 0
+ "main()
+{
+    c.set_peso_calib_2(this.text);
+}" 0
+
+6 15
+"RECTANGLE1"
+""
+1 345.6222952029131 9.409574188129438 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_AMARILLO_01" E E
+ E E
+14 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+
+  dpConnect(\"modo_servicio\", c.get_service());
+
+ }
+
+/**
+  * Cambia el color de fondo del círculo dependiendo de si la alarma está activa o no.
+  * dpSource el nombre del datapoint
+  * valor el valor del datapoint
+  **/
+void modo_servicio(string dpSource, bool valor)
+{
+  if(valor == TRUE){
+   setValue(\"\", \"visible\", TRUE);
+  }else{
+   setValue(\"\", \"visible\", FALSE);
+  }
+}" 0
+ E 0 2 3 2 1 E 2.242628214745351 0 1.619087084950354 -635.0628394605585 -5.673745770759425 1 E 345.6222952029131 9.409574188129438 443.7214801473872 28.30320016798743
+2 16
+"PRIMITIVE_TEXT8"
+""
+1 10 0 E E E 1 E 1 E N {1,72,152} E N "_Transparent" E E
+ E E
+15 0 0 0 0 0
+E E E
+0
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+
+  dpConnect(\"modo_servicio\", c.get_service());
+
+ }
+
+/**
+  * Cambia el color de fondo del círculo dependiendo de si la alarma está activa o no.
+  * dpSource el nombre del datapoint
+  * valor el valor del datapoint
+  **/
+void modo_servicio(string dpSource, bool valor)
+{
+  if(valor == TRUE){
+   setValue(\"\", \"visible\", TRUE);
+  }else{
+   setValue(\"\", \"visible\", FALSE);
+  }
+}" 0
+ E 0 1 2 1 1 E 0.4320733859978687 0 0.2952129059352812 169.6058949969355 16 1 E 10 0 360 60
+0 2 2 "0s" 0 0 0 72 0 0  10 0 1
+7
+LANG:10001 35 MS Shell Dlg 2,-1,15,5,75,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,11,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 MS Shell Dlg 2,-1,15,5,75,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10005 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+0 7
+LANG:10001 10 PARAMETROS
+LANG:10010 22 MODO SERVICIO ACTIVADO
+LANG:10011 6 ALARME
+LANG:10009 10 PARAMETROS
+LANG:10008 7 ALLARMI
+LANG:10018 7 ALARMES
+LANG:10005 6 ALARMS
+13 18
+"PUSH_BUTTON2"
+"btn_formulario_1"
+1 480 -78 E E E 1 E 1 E N "_Transparent" E N "_Button" E E
+ E E
+17 0 0 0 0 0
+E E E
+1
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+3
+"layoutAlignment" "AlignNone"
+"focusPolicy" "NoFocus"
+"showFocus" "0"
+7
+LANG:10001 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10010 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10011 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10009 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10008 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10018 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10005 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  426.9341429020639 210.1436128219416 464.9341429020639 248.1436128219416
+
+P 
+4294967295
+"pictures/iconos/otros/tab/tab_formulas_2.svg"
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+"main(mapping event)
+{
+  c.set_comandos(4003, 1);
+}" 0
+ E E E
+14 19
+"es_cf"
+"txf_standard_1"
+1 33.45110794592034 64974.32939674857 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_BLANCO" E E
+ E E
+18 0 0 0 0 0
+E E E
+0
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+1
+"layoutAlignment" "AlignNone"
+7
+LANG:10001 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,37,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10009 35 Tahoma,-1,37,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10018 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10005 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  31 112 468 178
+2 "15s" 15 0 0 9 0 -1  E "main()
+{
+
+     dpConnect(\"mostrar_estado\", c.get_valor());
+}
+
+void mostrar_estado(string dpSource, string estado)
+{
+  this.text(estado);
+}
+" 0
+ E
+2 20
+"PRIMITIVE_TEXT9"
+""
+1 10 0 E E E 1 E 1 E N {1,72,152} E N "_Transparent" E E
+ E E
+19 0 0 0 0 0
+E E E
+0
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 2 1 1 E 0.3884280977465039 0 0.4482655085952124 177.680273323438 75 1 E 10 0 360 60
+0 2 2 "0s" 0 0 0 72 0 0  10 0 1
+7
+LANG:10001 35 MS Shell Dlg 2,-1,15,5,75,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 MS Shell Dlg 2,-1,15,5,75,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10005 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+0 7
+LANG:10001 10 PARAMETROS
+LANG:10010 11 PESO ACTUAL
+LANG:10011 6 ALARME
+LANG:10009 10 PARAMETROS
+LANG:10008 7 ALLARMI
+LANG:10018 7 ALARMES
+LANG:10005 6 ALARMS
+0
+LAYER, 1 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 2 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 3 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 4 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 5 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 6 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 7 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+0

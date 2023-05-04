@@ -1,0 +1,577 @@
+V 14
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+PANEL,-1 -1 1162 691 N "white" 0
+"main()
+{
+  titleBar(0);
+}" 0
+ E E E E 1 -1 -1 0  0 0
+""0  1
+E E 5
+"CBRef" "1"
+"EClose" E
+"windowIcon" "iconos/ventanas/gestion.svg"
+"dpi" "96"
+"pdpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10001 0 
+LANG:10010 0 
+6 31
+"RECTANGLE3"
+""
+1 282 34 E E E 1 E 1 E N {1,72,152} E N "_Transparent" E E
+ E E
+30 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+4
+"transparentForMouseInGedi" ""
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 13.03370786516854 0 10.14705882352941 -3675.50561797753 -344.9999999999999 1 E 282 34 371 102
+13 25
+"btn_aceptar"
+""
+1 762.9999999999998 674 E E E 1 E 1 E N "_ButtonText" E N "_Transparent" E E
+ E E
+24 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 6 Accept
+LANG:10010 7 Aceptar
+LANG:10011 6 Accept
+LANG:10009 8 Accepter
+LANG:10008 6 Accept
+LANG:10018 6 Accept
+
+6
+"hoverbclr" "N \"AZUL_01\""
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10011 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10018 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  975.9999999999999 610.0000000000001 1054 673
+
+P 
+4294967295
+"pictures/iconos/botoneras/aceptar.svg"
+6
+LANG:10001 12 PUSH_BUTTON1
+LANG:10010 12 PUSH_BUTTON1
+LANG:10011 12 PUSH_BUTTON1
+LANG:10009 12 PUSH_BUTTON1
+LANG:10008 12 PUSH_BUTTON1
+LANG:10018 12 PUSH_BUTTON1
+"main(mapping event)
+{
+  dyn_string direcciones_emails;
+  string cadena_direcciones = txf_direccion.text, asunto = txf_asunto.text, cuerpo = txf_cuerpo.text, adjunto = txf_adjunto.text;
+
+  if (cadena_direcciones == \"\" || asunto == \"\" || cuerpo == \"\")
+  {
+    txf_direccion.backCol(\"LIB_IRC_AMARILLO_04\");
+    txf_asunto.backCol(\"LIB_IRC_AMARILLO_04\");
+    txf_cuerpo.backCol(\"LIB_IRC_AMARILLO_04\");
+    delay(2,000);
+    txf_direccion.backCol(\"_Transparent\");
+    txf_asunto.backCol(\"_Transparent\");
+    txf_cuerpo.backCol(\"_Transparent\");
+  }
+  else
+  {
+    ae_loading_ewo.visible(TRUE);
+    ae_loading_ewo.start();  //Iniciamos la animación del loading
+    direcciones_emails = strsplit(cadena_direcciones, \";\");
+    enviar_email(direcciones_emails, asunto, cuerpo, adjunto);
+    delay(3,000);
+    ae_loading_ewo.stop();  //Iniciamos la animación del loading
+    ae_loading_ewo.visible(FALSE);
+    //PanelOff();  //Cerramos el Panel
+  }
+}
+" 0
+ E E E
+13 26
+"btn_cancelar"
+""
+1 839.0436896920933 674 E E E 1 E 1 E N "_ButtonText" E N "_Transparent" E E
+ E E
+25 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 6 Cancel
+LANG:10010 8 Cancelar
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+6
+"hoverbclr" "N \"AZUL_01\""
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10011 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10018 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  1052 610.0000000000001 1130 673
+
+P 
+4294967295
+"pictures/iconos/botoneras/cancelar.svg"
+6
+LANG:10001 12 PUSH_BUTTON1
+LANG:10010 12 PUSH_BUTTON1
+LANG:10011 12 PUSH_BUTTON1
+LANG:10009 12 PUSH_BUTTON1
+LANG:10008 12 PUSH_BUTTON1
+LANG:10018 12 PUSH_BUTTON1
+"main(mapping event)
+{
+  PanelOff();  //Cerramos el Panel
+}
+" 0
+ E E E
+6 27
+"RECTANGLE2"
+""
+1 63 18 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "LIB_IRC_AZUL_03" E E
+ E E
+26 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E -1 1 3 2 1 E 0.001563313802083333 0 -6.986590650636789 8.101988921769564 815.7586317114622 1 E 63 18 1982 117
+6 28
+"RECTANGLE1"
+""
+1 63 18 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N {1,72,152} E E
+ E E
+27 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E -1 1 3 2 1 E 0.004689941406249998 0 -6.98659065063679 -0.9841642355037562 815.7586317114623 1 E 63 18 1982 117
+6 29
+"fondo"
+""
+1 20 10 E E E 1 E 1 E N "AZUL_01" E N {1,72,152} E E
+ E E
+28 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 1.25 0 1.475 952.9999999999999 597.2500000000001 1 E 20 10 140 50
+4 30
+"LINE2"
+""
+1 1052.509705948296 617.4902940517045 E E E 1 E 1 E N "AZUL_01" E N {255,255,255} E E
+ E E
+29 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 3 2 1 E  1053 617.0000000000001 1053 666
+14 35
+"txf_direccion"
+"MEDIANO_AZUL"
+1 157.7535714285713 68.3369565217391 E E E 1 E 1 E N "LIB_DEUSER_AZUL_08" E N "_Transparent" E E
+ E E
+34 0 0 0 0 0
+E E E
+0
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+1
+"layoutAlignment" "AlignVCenter"
+4
+LANG:10001 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  159.0000000000001 68.16304347826085 1072 93.6630434782608
+3 "255s" 255 0 0 0 0 -1  E E E
+14 36
+"txf_asunto"
+"MEDIANO_AZUL"
+1 157.7535714285713 103.4019493104467 E E E 1 E 1 E N "LIB_DEUSER_AZUL_08" E N "_Transparent" E E
+ E E
+35 0 0 0 0 0
+E E E
+0
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+1
+"layoutAlignment" "AlignVCenter"
+4
+LANG:10001 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  159.0000000000001 103.2280362669685 1072 128.7280362669685
+3 "255s" 255 0 0 0 0 -1  E E E
+14 39
+"txf_adjunto"
+"MEDIANO_AZUL"
+1 157.7535714285713 138.4669420991545 E E E 1 E 1 E N "LIB_DEUSER_AZUL_08" E N "_Transparent" E E
+ E E
+38 0 0 0 0 0
+E E E
+0
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+1
+"layoutAlignment" "AlignVCenter"
+4
+LANG:10001 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0  159.0000000000001 138.2930290556762 1072 163.7930290556762
+3 "255s" 255 0 0 0 0 -1  E E E
+13 40
+"btn_direcciones_guardadas"
+""
+1 952.8849525200869 97.43846720707438 E E E 1 E 1 E N "LIB_DEUSER_BLANCO" E N "LIB_IRC_AZUL_01" E E
+ E E
+39 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 6 Accept
+LANG:10010 7 Aceptar
+LANG:10011 6 Accept
+LANG:10009 8 Accepter
+LANG:10008 6 Accept
+LANG:10018 6 Accept
+
+6
+"hoverbclr" "N \"AZUL_01\""
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,22,5,75,0,0,0,0,0,Negrita
+LANG:10011 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10018 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  1081 63.91304347826082 1129.783783783784 97.91304347826082
+
+T 
+2
+LANG:10001 0 
+LANG:10010 1 @
+"main(mapping event)
+{
+ dyn_string direcciones_emails;
+ string cadena_direcciones = \"\";
+ dpGet(\"configuracion_email.direcciones_emails\",direcciones_emails);
+ for(int i = 1; i<=dynlen(direcciones_emails);i++){
+   if( cadena_direcciones == \"\")   cadena_direcciones = direcciones_emails[i]+\";\";
+   else cadena_direcciones = cadena_direcciones + direcciones_emails[i]+\";\";
+ }
+ txf_direccion.text = cadena_direcciones;
+}
+" 0
+ E E E
+13 41
+"btn_adjunto"
+""
+1 952.5708546384213 167.5684527844898 E E E 1 E 1 E N "_ButtonText" E N "LIB_IRC_AZUL_01" E E
+ E E
+40 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 6 Accept
+LANG:10010 7 Aceptar
+LANG:10011 6 Accept
+LANG:10009 8 Accepter
+LANG:10008 6 Accept
+LANG:10018 6 Accept
+
+6
+"hoverbclr" "N \"AZUL_01\""
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10011 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10018 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  1081 134.0430290556762 1129.891891891892 168.0430290556762
+
+P 
+4294967295
+"pictures/iconos/botoneras/adjunto.svg"
+2
+LANG:10001 0 
+LANG:10010 0 
+"main(mapping event)
+{
+  string path_csv;
+
+  fileSelector(path_csv,\"C:/ficheros_csv/\", TRUE, \"*.csv\", TRUE, \"MyId\");
+
+  txf_adjunto.text = path_csv;
+}" 0
+ E E E
+29 43
+"txf_cuerpo"
+"MEDIANO_AZUL"
+1 59.8918918918921 166.043029055676 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+42 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,14,5,75,0,0,0,0,0,Negrita
+0  59.8918918918921 166.043029055676 1127.837837837838 586.043029055676
+15 PVSS.TextEdit.1
+0
+E29 45
+"Label2"
+"MEDIANO_AZUL"
+1 43 61.41304347826082 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+44 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"text" "string Para:"
+"styleSheet" "string "
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,12,-1,5,50,0,0,0,0,0
+LANG:10010 27 Tahoma,-1,16,5,50,0,0,0,0,0
+0  43 61.41304347826082 173 100.4130434782608
+5 Label
+0
+E29 46
+"Label3"
+"MEDIANO_AZUL"
+1 43 96.4780362669685 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+45 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"text" "string Asunto:"
+"styleSheet" "string "
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,12,-1,5,50,0,0,0,0,0
+LANG:10010 27 Tahoma,-1,16,5,50,0,0,0,0,0
+0  43 96.4780362669685 173 135.4780362669685
+5 Label
+0
+E29 47
+"Label4"
+"MEDIANO_AZUL"
+1 43 131.5430290556762 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+46 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"text" "string Adjunto:"
+"styleSheet" "string "
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,12,-1,5,50,0,0,0,0,0
+LANG:10010 27 Tahoma,-1,16,5,50,0,0,0,0,0
+0  43 131.5430290556762 173 170.5430290556762
+5 Label
+0
+E14 48
+"TEXT_FIELD1"
+""
+1 43 31.17391304347826 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+47 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,12,-1,5,50,0,0,0,0,0
+LANG:10010 35 Noto Sans,-1,30,5,75,0,0,0,0,0,Bold
+0  41 7.000000000000002 342 62
+2 "0s" 0 0 0 0 0 -1  E "main()
+{
+  this.text(\"Enviar nuevo email\");
+
+}" 0
+ E
+0
+LAYER, 1 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 2 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 3 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 4 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 5 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 6 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 7 
+2
+LANG:10001 0 
+LANG:10010 0 
+29 42
+"ae_loading_ewo"
+""
+1 80.51748774255029 81.11285266457676 E E E 1 E 0 E N "_3DText" E N "_3DFace" E E
+ E E
+41 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+4
+"effectType" "enum 2"
+"color1" "color {1,72,152,225}"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10011 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10018 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  8.311299631683884 1.554312234475219e-15 1159.999999999998 689.9999999999999
+19 AttentionEffect.ewo
+0
+E0
+0

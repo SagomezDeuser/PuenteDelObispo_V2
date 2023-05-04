@@ -1,0 +1,1001 @@
+V 14
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+PANEL,-1 -1 960 940 N "LIB_IRC_BLANCO" 0
+"main()
+{
+  setWindowTitle(myModuleName(), myPanelName(), \"Creación ALARMAS y AVISOS - CSV\"); //title que aparece en el Frame del Panel
+}" 0
+ E E E E 1 -1 -1 0  70 29
+""0  1
+E "
+string conexion = \"\"; //En esta variable guardaremos el nombre de la conexión s7plus
+
+/***************************************************************************************
+  @brief Borramos todos los DataPoints (DP) de los DataPointType (DPT) encontrados en el CSV. No se borrará el MasterDataPoint (MDP) de cada DPT.
+****************************************************************************************/
+void vaciarDPT(dyn_dyn_anytype filasCSV)
+{
+  int errorDP, posicion;
+  dyn_string dpsLista;
+  dyn_anytype filaCSV;
+  dyn_string dptypesLista, name, options;
+  string nomLibreria, nomLibreriaCSV, dp, subscription;
+
+  dptypesLista = makeDynString(\"002_LIB_ALARMA\", \"003_LIB_AVISO\"); //Recuperamos los DPTypes que usaremos.
+  dpGet(\"_S7PlusConfig.Subscriptions.Names\", name,
+        \"_S7PlusConfig.Subscriptions.Options\", options);
+
+  for (int s = 2; s <= dynlen(filasCSV); s++)// Siempre empieza en dos para saltarnos la cabecera del csv.
+  {
+
+    filaCSV = filasCSV[s];  //Recuperamos la fila s del Array con la información del CSV
+    nomLibreriaCSV = filaCSV[1];  //Recuperamos de la columna 1 el nombre del DTP
+    subscription = filaCSV[6]; // Recuperamos de la columna 6 la subcription
+    nomLibreria = dynPatternMatch(nomLibreriaCSV, dptypesLista);
+    dpsLista = dpNames(\"*\", nomLibreria);
+
+    for (int i = 1; i <= dynlen(dpsLista); i++)
+    {
+      dp = dpsLista[i];
+
+      if (dpExists(dp) && !dp.contains(\"_mp_\"))//Comprobamos que el DP no exista ni que contenga _mp_ para no borrar los MastersDataPoins
+      {
+        errorDP = dpDelete(dp); //Borramos el DP
+        delay(0, 050);
+      }
+
+      if (dpExists(subscription))// Borramos las subcripciones asociadas a los DP.
+      {
+        errorDP = dpDelete(subscription);
+        delay(0, 050);
+        posicion = dynContains(name, subscription);
+
+        if (posicion > 0)// Borramos las configuraciones de subcriptions de la conexión.
+        {
+          dynRemove(name, posicion);
+          dynRemove(options, posicion);
+        }
+      }
+    }
+  }
+
+  //Guardamos la nueva coniguración de subcriptions en la conexión s7plus.
+  dpSet(\"_S7PlusConfig.Subscriptions.Names\", name,
+        \"_S7PlusConfig.Subscriptions.Pollgroups\", name,
+        \"_S7PlusConfig.Subscriptions.Options\", options);
+  DebugN(\"Se han borrado correctamente los datapoints de los datapoinstypes encontrados en el CSV. Tambien se han borrado sus correspondientes subcriptions\");
+  crearDPSegunMDP(filasCSV);
+}
+/******* Fin de la función vaciarDPT() *********/
+/***************************************************************************************
+  @brief Creamos todos los DPs copiando la config del MDP.
+****************************************************************************************/
+void crearDPSegunMDP(dyn_dyn_anytype filasCSV)
+{
+  int errorDPCopy, tipoDato, tipoAlert;
+  dyn_string mdpts, dptypesLista, name, options;
+  dyn_anytype filaCSV;
+  string dpt, nomLibreriaMDP, nomLibreriaDPT, nombreDP, descripcion, alias, address, subscription;
+
+  mdpts = makeDynString(\"_mp_002_LIB_ALARMA\", \"_mp_003_LIB_AVISO\"); //Recuperamos los MDP que usaremos.
+  dptypesLista = makeDynString(\"002_LIB_ALARMA\", \"003_LIB_AVISO\"); //Recuperamos los DPTypes que usaremos.
+
+  for (int s = 2; s <= dynlen(filasCSV); s++)// Siempre empieza en dos para saltarnos la cabecera del csv.
+  {
+    dpGet(\"_S7PlusConfig.Subscriptions.Names\", name,
+          \"_S7PlusConfig.Subscriptions.Options\", options);
+
+    filaCSV = filasCSV[s];  //Recuperamos la fila s del Array con la información del CSV
+    dpt = filaCSV[1];  //Recuperamos de la columna 1 el nombre de la librería
+    nombreDP = filaCSV[2];  //Recuperamos de la columna 2 el nombre de la instacia de PLC
+    descripcion = filaCSV[3];  //Recuperamos de la columna 3 la descripción de la instancia de PLC
+    alias = filaCSV[4];  //Recuperamos de la columna 4 el tag eléctrico de PLC
+    address = filaCSV[5];  //Recuperamos de la columna 5 la address de la varaible.
+    subscription = filaCSV[6];  //Recuperamos de la columna 6 el nombre de la subscription
+
+    if (!dpExists(nombreDP))//Creamos el datapoint y le copiamos la configuración del MasterDataPoint. Despues configuramos el datapoint según los datos del CSV.
+    {
+      nomLibreriaMDP = dynPatternMatch(\"_mp_\" + dpt, mdpts);  //Encontramos la ocurrencia de la librería a copiar dentro de los DPT's
+      nomLibreriaDPT = dynPatternMatch(dpt, dptypesLista);  //Encontramos la ocurrencia de la librería a copiar dentro de los DPT's
+      dpCopy(nomLibreriaMDP, nombreDP, errorDPCopy);  //Copiamos el nuevo DP con el nombre de la instancia nueva con la configuración del MDP correspondiente. dpCopy crea el DP directamente.
+      //DebugN(nomLibreriaMDP, nombreDP, errorDPCopy);
+      delay(0, 050);
+
+      //Creamos una subscripción para cada DP que creemos, a no ser que ya exista
+      if (!dpExists(subscription))//Si no existe la subscrition se crea y se configura.
+      {
+        dpCreate(subscription, \"_PollGroup\");
+        delay(0, 050);
+        dpSetWait(subscription + \".PollInterval\", 500,
+                  subscription + \".Active\", TRUE);
+        dynAppend(name, subscription);
+        dynAppend(options, \"1\");
+      }
+
+      dpSetDescription(nombreDP + \".\", descripcion);  //Establecemos la descripción del DP nuevo
+      dpSetAlias(nombreDP + \".\", alias);  //Establecemos el Alias del DP nuevo
+      dpSet(nombreDP + \".:_address.._reference\", address,  //Actualiza el valor actual del address, ya modificado
+            nombreDP + \".:_address.._poll_group\", subscription,  //Setea el valor de la subscripcion/poll group
+            nombreDP + \".:_address.._active\", TRUE, //Activa el address
+            nombreDP + \".:_alert_hdl.._active\", TRUE,//Activa el alert
+            \"_S7PlusConfig.Subscriptions.Names\", name,//Se añade la subcription creada en la configuración de la conexión s7plus
+            \"_S7PlusConfig.Subscriptions.Pollgroups\", name,//Se añade la subcription creada en la configuración de la conexión s7plus
+            \"_S7PlusConfig.Subscriptions.Options\", options);//Se añade la subcription creada en la configuración de la conexión s7plus
+    }
+  }
+
+  DebugN(\"Configuración completada. Se han creado los Datapoints y sus subcriptions\");
+}
+/******* Fin de la función crearDPSegunMDP() *********/
+
+/***************************************************************************************
+  @brief Creamos y mapeamos o solo mapeamos los dps contenidos en el CSV.
+****************************************************************************************/
+void crearRemapearDPSegunMDP(dyn_dyn_anytype filasCSV)
+{
+  int errorDPCopy, tipoDato, tipoAlert;
+  dyn_string mdpts, dptypesLista, name, options;
+  dyn_anytype filaCSV;
+  string dpt, nomLibreriaMDP, nomLibreriaDPT, nombreDP, descripcion, alias, address, subscription;
+
+  mdpts = makeDynString(\"_mp_002_LIB_ALARMA\", \"_mp_003_LIB_AVISO\"); //Recuperamos los MDP que usaremos.
+  dptypesLista = makeDynString(\"002_LIB_ALARMA\", \"003_LIB_AVISO\"); //Recuperamos los DPTypes que usaremos.
+
+  for (int s = 2; s <= dynlen(filasCSV); s++)// Siempre empieza en dos para saltarnos la cabecera del csv.
+  {
+    dpGet(\"_S7PlusConfig.Subscriptions.Names\", name,
+          \"_S7PlusConfig.Subscriptions.Options\", options);
+
+    filaCSV = filasCSV[s];  //Recuperamos la fila s del Array con la información del CSV
+    dpt = filaCSV[1];  //Recuperamos de la columna 1 el nombre de la librería
+    nombreDP = filaCSV[2];  //Recuperamos de la columna 2 el nombre de la instacia de PLC
+    descripcion = filaCSV[3];  //Recuperamos de la columna 3 la descripción de la instancia de PLC
+    alias = filaCSV[4];  //Recuperamos de la columna 4 el tag eléctrico de PLC
+    address = filaCSV[5];  //Recuperamos de la columna 5 la address de la varaible.
+    subscription = filaCSV[6];  //Recuperamos de la columna 6 el nombre de la subscription
+
+    if (!dpExists(nombreDP))//Creamos el datapoint y le copiamos la configuración del MasterDataPoint. Despues configuramos el datapoint según los datos del CSV.
+    {
+      nomLibreriaMDP = dynPatternMatch(\"_mp_\" + dpt, mdpts);  //Encontramos la ocurrencia de la librería a copiar dentro de los DPT's
+      nomLibreriaDPT = dynPatternMatch(dpt, dptypesLista);  //Encontramos la ocurrencia de la librería a copiar dentro de los DPT's
+      dpCopy(nomLibreriaMDP, nombreDP, errorDPCopy);  //Copiamos el nuevo DP con el nombre de la instancia nueva con la configuración del MDP correspondiente
+      delay(0, 050);
+
+      //Creamos una subscripción para cada DP que creemos, a no ser que ya exista
+      if (!dpExists(subscription))//Si no existe la subscrition se crea y se configura.
+      {
+        dpCreate(subscription, \"_PollGroup\");
+        delay(0, 050);
+        dpSetWait(subscription + \".PollInterval\", 500,
+                  subscription + \".Active\", TRUE);
+        dynAppend(name, subscription);
+        dynAppend(options, \"1\");
+      }
+
+      dpSetDescription(nombreDP + \".\", descripcion);  //Establecemos la descripción del DP nuevo
+      dpSetAlias(nombreDP + \".\", alias);  //Establecemos el Alias del DP nuevo
+      dpSet(nombreDP + \".:_address.._reference\", address,  //Actualiza el valor actual del address, ya modificado
+            nombreDP + \".:_address.._poll_group\", subscription,  //Setea el valor de la subscripcion/poll group
+            nombreDP + \".:_address.._active\", TRUE, //Activa el address
+            nombreDP + \".:_alert_hdl.._active\", TRUE,//Activa el alert
+            \"_S7PlusConfig.Subscriptions.Names\", name,//Se añade la subcription creada en la configuración de la conexión s7plus
+            \"_S7PlusConfig.Subscriptions.Pollgroups\", name,//Se añade la subcription creada en la configuración de la conexión s7plus
+            \"_S7PlusConfig.Subscriptions.Options\", options);//Se añade la subcription creada en la configuración de la conexión s7plus
+    }
+    else
+    {
+      if (!dpExists(subscription))//Si no existe la subscrition se crea y se configura.
+      {
+        dpCreate(subscription, \"_PollGroup\");
+        delay(0, 050);
+        dpSetWait(subscription + \".PollInterval\", 500,
+                  subscription + \".Active\", TRUE);
+        dynAppend(name, subscription);
+        dynAppend(options, \"1\");
+      }
+
+      dpSetDescription(nombreDP + \".\", descripcion);  //Establecemos la descripción del DP nuevo
+      dpSetAlias(nombreDP + \".\", alias);  //Establecemos el Alias del DP nuevo
+      dpSet(nombreDP + \".:_address.._reference\", address,  //Actualiza el valor actual del address, ya modificado
+            nombreDP + \".:_address.._poll_group\", subscription,  //Setea el valor de la subscripcion/poll group
+            nombreDP + \".:_address.._active\", TRUE, //Activa el address
+            nombreDP + \".:_alert_hdl.._active\", TRUE,//Activa el alert
+            \"_S7PlusConfig.Subscriptions.Names\", name,//Se añade la subcription creada en la configuración de la conexión s7plus
+            \"_S7PlusConfig.Subscriptions.Pollgroups\", name,//Se añade la subcription creada en la configuración de la conexión s7plus
+            \"_S7PlusConfig.Subscriptions.Options\", options);//Se añade la subcription creada en la configuración de la conexión s7plus
+    }
+  }
+
+  DebugN(\"Configuración completada. Se han creado los Datapoints y sus subcriptions\");
+}
+/******* Fin de la función crearRemapearDPSegunMDP() *********/
+
+/***************************************************************************************
+  @brief Comprobamos si el CSV está correcto para poder continuar con el proceso o
+  detenerlo en este punto para no corromper el PARA.
+****************************************************************************************/
+bool comprobacionCSV(dyn_dyn_anytype contenidoCSV)
+{
+  dyn_anytype filaCSV;
+  dyn_string dptypesLista;
+  string dpt, nombreDP, descripcion, alias, address, subscription;
+
+  dptypesLista = dpTypes(\"*_LIB_*\");   //Recuperamos todo el listado de MDP del PARA que forman parte de la librería de IRC
+
+  for (int s = 2; s <= dynlen(contenidoCSV); s++)
+  {
+    filaCSV = contenidoCSV[s]; //Recuperamos las filas, una a una, para analizarlas
+
+    dpt = filaCSV[1];   //Recuperamos de la columna 2 el nombre de la librería de PLC
+    nombreDP = filaCSV[2];  //Recuperamos de la columna 3 el nombre de la instacia de PLC
+    descripcion = filaCSV[3];  //Recuperamos de la columna 4 la descripción de la instancia de PLC
+    alias = filaCSV[4];  //Recuperamos de la columna 5 el tag eléctrico de PLC
+    address = filaCSV[5];  //Recuperamos de la columna 5 el tag eléctrico de PLC
+    subscription = filaCSV[6];  //Recuperamos de la columna 9 el nombre de la subscription
+
+    if (dpt.isEmpty())  return FALSE; //Comprobamos que el DPT esta relleno
+    else if (nombreDP.isEmpty())  return FALSE; //Comprobamos que la instancia tiene nombre asignado
+    else if (descripcion.isEmpty())  return FALSE; //Comprobamos que la descripcion tiene nombre asignado
+    else if (alias.isEmpty())  return FALSE; //Comprobamos que el alias esté relleno
+    else if (address.isEmpty())  return FALSE; //Comprobamos que la address esta rellena
+    else if (subscription.isEmpty())  return FALSE; //Comprobamos que la subscription esté rellena
+
+    //DebugN(s);
+  }
+
+  DebugN(\"----------------------------------------- CSV correcto ------------------------------------------------\");
+  return TRUE;
+}
+/******* Fin de la función comprobacionCSV() *********/
+
+
+/***************************************************************************************
+  @brief Funcion para crear un DB de PLC según los datos de un CSV. Se creará el DPT y su estructura correspondiente. Tambien se creara un DP con su subcription.
+****************************************************************************************/
+
+void crearDBCSV(dyn_dyn_anytype contenidoCSVEstructura, dyn_dyn_anytype contenidoCSVTipoDatos)
+{
+  dynRemove(contenidoCSVEstructura, 1);
+  dynRemove(contenidoCSVTipoDatos, 1);
+  int error = dpTypeCreate(contenidoCSVEstructura, contenidoCSVTipoDatos);
+  if(error == 0){
+    DebugN(\"------------------ Se ha creado el DPType -------------------\");
+  }
+  else{
+    DebugN(\"------------------ ERROR. No Se ha creado el DPType -------------------\");
+  }
+}
+/******* Fin de la función crearDBCSV() *********/
+" 0
+ 5
+"CBRef" "1"
+"EClose" E
+"windowIcon" "iconos/ventanas/configuracion.svg"
+"dpi" "96"
+"pdpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10001 0 
+LANG:10010 0 
+6 17
+"rect_fondo_config"
+""
+1 20 10 E E E 1 E 1 E N "_Transparent" E N "LIB_IRC_AZUL_03" E E
+ E E
+12 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+4
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E -1 1 3 2 1 E 8.71818181818182 0 0.7250000000000001 -174.3636363636364 -7.25 4 "[linear,pad,0,0,-0.012,0.988,0.00671,LIB_IRC_AZUL_03,0.987,_Transparent]" E 20 10 130 50
+6 18
+"RECTANGLE1"
+""
+1 20.00000000000006 9.914552621450525 E E E 1 E 1 E N "_Transparent" E N "LIB_IRC_AZUL_03" E E
+ E E
+13 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+4
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E -1 1 3 2 1 E -8.71818181818182 7.947229372475014e-16 -1.820291579459158e-15 -0.7250000000000001 1134.363636363637 947.1880506505515 4 "[linear,pad,0,0,-0.012,0.988,0.00671,LIB_IRC_AZUL_03,0.987,_Transparent]" E 20 10 130 50
+14 9
+"txf_path_csv_2"
+"MEDIANO_AZUL"
+1 241.8040431266845 403.4306091853525 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_BLANCO" E E
+ E E
+4 0 0 0 0 0
+E E E
+1
+9
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+5
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+9
+LANG:10001 34 Tahoma,-1,13,5,50,0,0,0,0,0,Normal
+LANG:10010 34 Tahoma,-1,13,5,50,0,0,0,0,0,Normal
+LANG:10011 34 Tahoma,-1,13,5,50,0,0,0,0,0,Normal
+LANG:10009 34 Tahoma,-1,15,5,50,0,0,0,0,0,Normal
+LANG:10008 34 Tahoma,-1,13,5,50,0,0,0,0,0,Normal
+LANG:10018 34 Tahoma,-1,13,5,50,0,0,0,0,0,Normal
+LANG:10005 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10000 30 Noto Sans,-1,13,5,50,0,0,0,0,0
+LANG:10027 30 Noto Sans,-1,13,5,50,0,0,0,0,0
+0  148.4714285714286 361.6648197847745 811.5285714285715 386.6648197847745
+2 "0s" 0 0 0 8 0 -1  "main(mapping event)
+{
+  string path_csv;
+  fileSelector(path_csv, PROJ_PATH + \"/config\", FALSE, \"*.csv\", TRUE, \"MyId\");
+  this.text(path_csv);
+}
+" 0
+ E E
+13 21
+"PUSH_BUTTON2"
+"GRANDE_AZUL"
+1 445.131510972653 919.9854068446648 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_BLANCO" E E
+ E E
+16 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 6 Accept
+LANG:10010 7 Aceptar
+LANG:10011 6 Accept
+LANG:10009 8 Accepter
+LANG:10008 6 Accept
+LANG:10018 6 Accept
+
+5
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10011 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10018 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  766.1327271640216 887.732777780835 858.93117994767 926.0578761417189
+
+P 
+4294967295
+"pictures/iconos/botoneras/flecha_der_off.svg"
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+"main(mapping event)
+{
+  RootPanelOnModule(\"vision/sinopticos/06_configuracion/configuracion/config_dp_emergentes/configuracion_ini.pnl\", \"ini\", \"modulo_config\", makeDynString());
+}
+" 0
+ E E E
+2 22
+"PRIMITIVE_TEXT9"
+""
+1 561.584759972651 58 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Window" E E
+ E E
+17 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+5
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E 1.007301911238731 0 1.172350135187827 -86.10367411616679 12.00369215910604 0 E 226 58 898 82
+0 2 2 "0s" 0 0 0 193 0 0  561.584759972651 58 1
+6
+LANG:10001 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,21,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+0 6
+LANG:10001 46 Mapeo por completo un DP en función de su MDP
+LANG:10010 57 Mapeo en función de CSV ESTRUCTURA DB y TIPO DE DATOS DB
+LANG:10011 46 Mapeo por completo un DP en función de su MDP
+LANG:10009 46 Mapeo por completo un DP en función de su MDP
+LANG:10008 46 Mapeo por completo un DP en función de su MDP
+LANG:10018 46 Mapeo por completo un DP en función de su MDP
+2 25
+"PRIMITIVE_TEXT11"
+""
+1 -2192.448697895544 -3180.997761046945 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_BLANCO" E E
+ E E
+20 0 0 0 0 0
+E E E
+0
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+5
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E 1.577380952380952 0 0.09622476609823721 166.9047619047619 304.5508660984006 0 E 40 36 376 261
+0 2 2 "0s" 0 0 0 72 0 0  40 36 1
+7
+LANG:10001 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10005 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+0 7
+LANG:10001 8 Drivers:
+LANG:10010 63 2. Seleccionar CSV para realizar el mapeo de los tipos de datos
+LANG:10011 11 Startkarte:
+LANG:10009 8 Drivers:
+LANG:10008 19 Biglietto d'inizio:
+LANG:10018 17 Comece o bilhete:
+LANG:10005 13 Start ticket:
+13 26
+"PUSH_BUTTON3"
+"GRANDE_BLANCO"
+1 580.6476652465331 710.7273994173581 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+21 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 6 Accept
+LANG:10010 12 Hacer mágia
+LANG:10011 6 Accept
+LANG:10009 6 Accept
+LANG:10008 6 Accept
+LANG:10018 6 Accept
+
+5
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10011 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10018 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  446.9827949869176 697.8358552997111 513.0172050130825 751.2108552997111
+
+P 
+4294967295
+"pictures/iconos/botoneras/magia.svg"
+6
+LANG:10001 12 PUSH_BUTTON1
+LANG:10010 12 PUSH_BUTTON1
+LANG:10011 12 PUSH_BUTTON1
+LANG:10009 12 PUSH_BUTTON1
+LANG:10008 12 PUSH_BUTTON1
+LANG:10018 12 PUSH_BUTTON1
+"main(mapping event)
+{
+  bool csvExiste, csvCorrecto, csvExiste2, csvCorrecto2;
+  string pathCSV, pathCSV2, extensionCSV, extensionCSV2,  contenidoCSVEstructuraST, contenidoCSVEstructuraST2, nombreDB = txf_nombre_db.text, consulta, subcription;
+  dyn_string lineas, lineas2, name, options;
+  dyn_dyn_string contenidoCSVEstructura;
+  dyn_dyn_int contenidoCSVTipoDatos;
+  dyn_dyn_anytype resultadoConsulta;
+  int error, i, n, tipoDato, driver;
+  ae_loading_ewo.visible(TRUE);  //Hacemos visible la animación del loading
+  ae_loading_ewo.start();  //Iniciamos la animación del loading
+
+  pathCSV = txf_path_csv_1.text;
+  csvExiste = isfile(pathCSV);
+  extensionCSV = getExt(pathCSV);
+
+  pathCSV2 = txf_path_csv_2.text;
+  csvExiste2 = isfile(pathCSV2);
+  extensionCSV2 = getExt(pathCSV2);
+
+  if (csvExiste && extensionCSV == \"csv\" && csvExiste2 && extensionCSV2 == \"csv\")  //Comprobamos que el fichero exista y que el fichero introducido tenga la extensión CSV
+  {
+    fileToString(pathCSV, contenidoCSVEstructuraST, \"ISO88591\");  //Carga un fichero ASCCII y vuelca su contenido dentro de una variable string
+    lineas = strsplit(contenidoCSVEstructuraST, \"\\n\");
+    n = dynlen(lineas);
+
+    for (i = 1; i <= n ; i++)
+    {
+      contenidoCSVEstructura[i] = strsplit(lineas[i], \";\");  //Volcamos el contenido de una línea dentro de Array
+    }
+
+    fileToString(pathCSV2, contenidoCSVEstructuraST2, \"ISO88591\");  //Carga un fichero ASCCII y vuelca su contenido dentro de una variable string
+    lineas2 = strsplit(contenidoCSVEstructuraST2, \"\\n\");
+
+    n = dynlen(lineas2);
+
+    for (i = 1; i <= n ; i++)
+    {
+      contenidoCSVTipoDatos[i] = strsplit(lineas2[i], \";\");  //Volcamos el contenido de una línea dentro de Array
+    }
+
+    dynRemove(contenidoCSVEstructura, 1);
+    dynRemove(contenidoCSVTipoDatos, 1);
+
+    if (!dpTypeExists(contenidoCSVEstructura[1][1]))//Comprobamos si el nombre del dptype existe, si no existe se crea, si existe se modifica.
+    {
+
+      error = dpTypeCreate(contenidoCSVEstructura, contenidoCSVTipoDatos);
+
+      if (error != 0)
+      {
+        DebugN(\"------------------ ERROR. No Se ha creado el DPType -------------------\");
+      }
+    }
+    else
+    {
+      error = dpTypeChange(contenidoCSVEstructura, contenidoCSVTipoDatos);
+
+      if (error != 0)
+      {
+        DebugN(\"------------------ ERROR. No Se ha modificado el DPType -------------------\");
+      }
+    }
+
+  }
+
+  delay(0, 05);
+
+  if (!dpExists(nombreDB))
+  {
+    dpCreate(nombreDB, contenidoCSVEstructura[1][1]);//Creamos el dp según el nombre escrito
+    delay(0, 05);
+
+    //Creamos una subscripción para cada DP que creemos, a no ser que ya exista
+    subcription = \"_SUB_\" + nombreDB;
+
+    if (!dpExists(subcription))//Si no existe la subscrition se crea y se configura.
+    {
+      dpGet(\"_S7PlusConfig.Subscriptions.Names\", name,
+            \"_S7PlusConfig.Subscriptions.Options\", options);
+
+      dpCreate(subcription, \"_PollGroup\");
+      delay(0, 050);
+      dpSetWait(subcription + \".PollInterval\", 500,
+                subcription + \".Active\", TRUE);
+      dynAppend(name, subcription);
+      dynAppend(options, \"1\");
+      dpSet(\"_S7PlusConfig.Subscriptions.Names\", name,//Se añade la subcription creada en la configuración de la conexión s7plus
+            \"_S7PlusConfig.Subscriptions.Pollgroups\", name,//Se añade la subcription creada en la configuración de la conexión s7plus
+            \"_S7PlusConfig.Subscriptions.Options\", options);//Se añade la subcription creada en la configuración de la conexión s7plus
+    }
+  }
+
+  delay(0, 05);
+
+  dpGet(conexion + \".Config.DrvNumber\", driver);
+  consulta = \"SELECT '_online.._value' FROM '\" + nombreDB + \".**' WHERE _DPT LIKE \\\"\" + contenidoCSVEstructura[1][1] + \"\\\"\";
+  dpQuery(consulta, resultadoConsulta);
+  n = dynlen(resultadoConsulta);
+
+  for (i = 2; i <= n ; i++)
+  {
+    nombreDB = resultadoConsulta[i][1];
+    strreplace(nombreDB, \"System1:\", \"\");
+
+    tipoDato = tipoTransformacionDato(nombreDB);
+
+    dpSetWait(nombreDB + \":_distrib.._type\", 56,
+              nombreDB + \":_distrib.._driver\", driver);
+    delay(0, 05);
+    dpSet(nombreDB + \":_address.._active\", FALSE);
+    dpSetWait(nombreDB + \":_address.._type\", 16);
+    delay(0, 05);
+    dpSetWait(nombreDB + \":_address.._drv_ident\", \"S7PLUS\");
+    delay(0, 05);
+    dpSetWait(nombreDB + \":_address.._reference\", nombreDB,
+              nombreDB + \":_address.._connection\", conexion,
+              nombreDB + \":_address.._lowlevel\", TRUE,
+              nombreDB + \":_address.._datatype\", tipoDato,
+              nombreDB + \":_address.._direction\", 7);
+    delay(0, 05);
+    dpSetWait(nombreDB + \":_address.._poll_group\", subcription);
+
+    dpSet(nombreDB + \":_address.._active\", TRUE);
+  }
+
+  ae_loading_ewo.visible(FALSE);  //Hacemos invisible la animación del loading
+  ae_loading_ewo.stop();  //paramos la animación del loading
+  DebugN(\"------------------ Configuración completada -------------------\");
+}" 0
+ E E E
+14 27
+"txf_path_csv_1"
+"MEDIANO_AZUL"
+1 241.8040431266845 300.789144700289 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_BLANCO" E E
+ E E
+22 0 0 0 0 0
+E E E
+1
+9
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+5
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+9
+LANG:10001 34 Tahoma,-1,13,5,50,0,0,0,0,0,Normal
+LANG:10010 34 Tahoma,-1,13,5,50,0,0,0,0,0,Normal
+LANG:10011 34 Tahoma,-1,13,5,50,0,0,0,0,0,Normal
+LANG:10009 34 Tahoma,-1,15,5,50,0,0,0,0,0,Normal
+LANG:10008 34 Tahoma,-1,13,5,50,0,0,0,0,0,Normal
+LANG:10018 34 Tahoma,-1,13,5,50,0,0,0,0,0,Normal
+LANG:10005 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10000 30 Noto Sans,-1,13,5,50,0,0,0,0,0
+LANG:10027 30 Noto Sans,-1,13,5,50,0,0,0,0,0
+0  148.4714285714286 259.023355299711 811.5285714285715 284.023355299711
+2 "0s" 0 0 0 8 0 -1  "main(mapping event)
+{
+  string path_csv;
+  fileSelector(path_csv, PROJ_PATH + \"/config\", FALSE, \"*.csv\", TRUE, \"MyId\");
+  this.text(path_csv);
+}
+" 0
+ E E
+2 28
+"PRIMITIVE_TEXT12"
+""
+1 -2192.448697895544 -3180.997761046945 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_BLANCO" E E
+ E E
+23 0 0 0 0 0
+E E E
+0
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+5
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E 1.428526090346002 0 0.09622476609823721 192.8741900299031 197.5508660984006 0 E 40 36 376 261
+0 2 2 "0s" 0 0 0 72 0 0  40 36 1
+7
+LANG:10001 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10005 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+0 7
+LANG:10001 8 Drivers:
+LANG:10010 58 1. Seleccionar CSV para realizar el mapeo de la estructura
+LANG:10011 11 Startkarte:
+LANG:10009 8 Drivers:
+LANG:10008 19 Biglietto d'inizio:
+LANG:10018 17 Comece o bilhete:
+LANG:10005 13 Start ticket:
+14 29
+"txf_nombre_db"
+"MEDIANO_AZUL"
+1 241.7848313434521 488.7774670504335 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_BLANCO" E E
+ E E
+24 0 0 0 0 0
+E E E
+1
+9
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+5
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+9
+LANG:10001 34 Tahoma,-1,13,5,50,0,0,0,0,0,Normal
+LANG:10010 34 Tahoma,-1,13,5,50,0,0,0,0,0,Normal
+LANG:10011 34 Tahoma,-1,13,5,50,0,0,0,0,0,Normal
+LANG:10009 34 Tahoma,-1,15,5,50,0,0,0,0,0,Normal
+LANG:10008 34 Tahoma,-1,13,5,50,0,0,0,0,0,Normal
+LANG:10018 34 Tahoma,-1,13,5,50,0,0,0,0,0,Normal
+LANG:10005 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10000 30 Noto Sans,-1,13,5,50,0,0,0,0,0
+LANG:10027 30 Noto Sans,-1,13,5,50,0,0,0,0,0
+0  148.4448503223001 447.0116776498555 811.5551496777 472.0116776498555
+3 "0s" 0 0 0 8 0 -1  E E E
+2 30
+"PRIMITIVE_TEXT13"
+""
+1 -2192.448697895544 -3180.997761046945 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_BLANCO" E E
+ E E
+25 0 0 0 0 0
+E E E
+0
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+5
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E 0.5670683808345003 0 0.09622476609823721 362.0497767864239 400.1589671380125 0 E 40 36 376 261
+0 2 2 "0s" 0 0 0 72 0 0  40 36 1
+7
+LANG:10001 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10005 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+0 7
+LANG:10001 8 Drivers:
+LANG:10010 23 3. Nombre del DB en PLC
+LANG:10011 11 Startkarte:
+LANG:10009 8 Drivers:
+LANG:10008 19 Biglietto d'inizio:
+LANG:10018 17 Comece o bilhete:
+LANG:10005 13 Start ticket:
+22 31
+"cbb_zonas"
+"MEDIANO_AZUL"
+1 -850.3026029223759 385.0266433369135 E E E 1 E 0 E N {1,72,152} E N "_Window" E E
+ E E
+26 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+1
+"layoutAlignment" "AlignCenter"
+6
+LANG:10001 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+0  443.1135468395865 545.1049118546192 770.0833800271361 583.805766555474
+0
+
+"main()
+{
+  dyn_string conexiones = dpNames(\"*\",\"_S7PlusConnection\");
+  this.items(conexiones);
+  if (dynlen(conexiones) > 1)
+  {
+    this.visible(TRUE);
+    txf_conexion.visible(TRUE);
+  }
+  else{
+    conexion = conexiones[1];
+  }
+}" 0
+
+"main()
+{
+  conexion = this.selectedText;
+}" 0
+
+E
+ 0 0
+2 32
+"txf_conexion"
+""
+1 -2192.448697895544 -3180.997761046945 E E E 1 E 0 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_BLANCO" E E
+ E E
+27 0 0 0 0 0
+E E E
+0
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+5
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E 0.6124427890022626 0 0.09622476609823721 169.4189084127734 550.1659614394583 0 E 40 36 376 261
+0 2 2 "0s" 0 0 0 72 0 0  40 36 1
+7
+LANG:10001 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10005 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+0 7
+LANG:10001 8 Drivers:
+LANG:10010 24 4. Seleccionar Conexión
+LANG:10011 11 Startkarte:
+LANG:10009 8 Drivers:
+LANG:10008 19 Biglietto d'inizio:
+LANG:10018 17 Comece o bilhete:
+LANG:10005 13 Start ticket:
+0
+LAYER, 1 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 2 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 3 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 4 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 5 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 6 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 7 
+2
+LANG:10001 0 
+LANG:10010 0 
+29 11
+"ae_loading_ewo"
+""
+1 59.56112852664609 109.6786833855799 E E E 1 E 0 E N "_3DText" E N "_3DFace" E E
+ E E
+6 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+4
+"effectType" "enum 2"
+"color1" "color {1,72,152,225}"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10011 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10018 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  5.684341886080801e-14 -2.842170943040401e-14 950.0000000000001 933
+19 AttentionEffect.ewo
+0
+E0
+1 0 "SHAPE_GROUP1" -1
+2 0 
+32 31 
+
+"layoutAlignment" "AlignNone"
+"" ""
+0

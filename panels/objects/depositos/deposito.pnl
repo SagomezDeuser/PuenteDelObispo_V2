@@ -1,0 +1,869 @@
+V 14
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10005 0 
+LANG:10018 0 
+LANG:10008 0 
+LANG:10011 0 
+PANEL,-1 -1 365 330 N "white" 9
+"$COLOR_ACTIVO_MAX"
+"$COLOR_ACTIVO_MIN"
+"$COLOR_INACTIVO_MAX"
+"$COLOR_INACTIVO_MIN"
+"$NUMDEPOSITO"
+"$POSICION_MAX"
+"$POSICION_MIN"
+"$TEXTO_MAX"
+"$TEXTO_MIN"
+"main()
+{
+parametrosOK = parametrosRellenos();
+parametrosOK_min = parametrosRellenos_min();
+}
+" 0
+ E E E E 1 -1 -1 0  0 0
+""0  1
+E "//INST = Nombre de la instancia
+//COLOR_ACTIVO = Color de activo de la señal, ejemplo: rojo, verde, gris
+//COLOR_INACTIVO = Color de inactivo de la señal, ejemplo: rojo, verde, gris
+string colorActivo = $COLOR_ACTIVO_MAX, colorInactivo = $COLOR_INACTIVO_MAX, colorActivo_min = $COLOR_ACTIVO_MIN, colorInactivo_min = $COLOR_INACTIVO_MIN;
+bool parametrosOK = FALSE, parametrosOK_min = FALSE;
+
+bool parametrosRellenos()
+{
+  if ($COLOR_ACTIVO_MAX != \"\" && $COLOR_INACTIVO_MAX != \"\" && $TEXTO_MAX != \"\" && $POSICION_MAX != \"\")   //Comprobamos que hemos rellenado los $
+  {
+    return TRUE;
+  }
+  else//ES OBLIGARORIO RELLENAR LOS PARAMETROS SINO EL OBJETO SERÁ MORADO.
+  {
+    btn_indicador.backCol(\"LIB_IRC_MORADO_01\");
+    return FALSE;
+  }
+}
+
+bool parametrosRellenos_min()
+{
+  if ($COLOR_ACTIVO_MIN != \"\" && $COLOR_INACTIVO_MIN != \"\" && $TEXTO_MIN != \"\" && $POSICION_MIN != \"\")   //Comprobamos que hemos rellenado los $
+  {
+    return TRUE;
+  }
+  else//ES OBLIGARORIO RELLENAR LOS PARAMETROS SINO EL OBJETO SERÁ MORADO.
+  {
+    btn_indicador.backCol(\"LIB_IRC_MORADO_01\");
+    return FALSE;
+  }
+}" 0
+ 4
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+"pdpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10001 0 
+LANG:10010 0 
+6 24
+"rect_fondo_nom_tolva"
+""
+1 1738 18 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "LIB_IRC_AZUL_01" E E
+ E E
+23 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10005 0 
+LANG:10018 0 
+LANG:10008 0 
+LANG:10011 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E -1 2 1 0 1 E 1.834721826642953 0 0.3030454010363449 -3015.383995543104 -3.454817218654209 1 E 1738 18 1837 117
+6 6
+"RECTANGLE52"
+""
+1 1738 18 E E E 1 E 1 E N {0,0,0} E N "LIB_IRC_AZUL_03" E E
+ E E
+5 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10005 0 
+LANG:10018 0 
+LANG:10008 0 
+LANG:10011 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E -1 1 3 2 1 E 2.212217853776511 0 0.2897891633531794 -3702.072905993472 76.37351750902248 1 E 1738 18 1837 117
+6 9
+"RECTANGLE53"
+""
+1 1738 18 E E E 1 E 1 E N {0,0,0} E N "LIB_IRC_AZUL_03" E E
+ E E
+8 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10005 0 
+LANG:10018 0 
+LANG:10008 0 
+LANG:10011 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E -1 1 3 2 1 E 2.212217853776507 0 0.2897891633531792 -3702.072905993465 37.92480071613728 1 E 1738 18 1837 117
+2 7
+"PRIMITIVE_TEXT122"
+""
+1 40 36 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "white" E E
+ E E
+6 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10005 0 
+LANG:10018 0 
+LANG:10008 0 
+LANG:10011 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E 0.2744258060450958 0 0.08181523504053752 159.5363508321471 83.78472363184227 0 E 40 36 376 261
+0 2 2 "0s" 0 0 0 72 0 0  40 36 1
+6
+LANG:10001 39 Siemens Sans Black,-1,13,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10005 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+0 6
+LANG:10001 12 VCC PANELES:
+LANG:10010 10 Tn actual:
+LANG:10005 11 Current Kg:
+LANG:10018 10 Kg atuais:
+LANG:10008 12 Kg correnti:
+LANG:10011 12 Aktuelle Kg:
+14 8
+"txf_cantidad_actual_dep"
+""
+1 -524.536578286834 433.3167998425828 E E E 1 E 1 E N "Black" E N "white" E E
+ E E
+7 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10005 0 
+LANG:10018 0 
+LANG:10008 0 
+LANG:10011 0 
+
+5
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+6
+LANG:10001 39 Siemens Sans Black,-1,13,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10005 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+0  250.2665076320418 84.68428603536208 355.9999999999998 107.3637832071149
+2 "0.1f" 2 0 0 9 0 -1  E "main()
+{
+  dpConnect(\"cambiar_cant_act_deposito\", \"_14_DB_Deposito_\"+$NUMDEPOSITO+\".Sr_Vol_Actual:_online.._value\");
+}
+
+void cambiar_cant_act_deposito(string dp, float can_act_dep)
+{
+  this.text = can_act_dep;
+}" 0
+ E
+2 10
+"PRIMITIVE_TEXT123"
+""
+1 40 36 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "white" E E
+ E E
+9 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10005 0 
+LANG:10018 0 
+LANG:10008 0 
+LANG:10011 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E 0.2226388972846582 0 0.08181523504053752 161.5560048511429 45.33600683895705 0 E 40 36 376 261
+0 2 2 "0s" 0 0 0 72 0 0  40 36 1
+6
+LANG:10001 39 Siemens Sans Black,-1,13,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10005 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+0 6
+LANG:10001 12 VCC PANELES:
+LANG:10010 8 Tn max.:
+LANG:10005 8 Kg max.:
+LANG:10018 8 Kg max.:
+LANG:10008 8 Kg max.:
+LANG:10011 8 Kg max.:
+14 11
+"txf_cantidad_max_dep"
+""
+1 -373.6754126916714 404.024119043698 E E E 1 E 1 E N "Black" E N "white" E E
+ E E
+10 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10005 0 
+LANG:10018 0 
+LANG:10008 0 
+LANG:10011 0 
+
+6
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"transparentForMouse" ""
+"sizePolicy" "Ignored Fixed"
+"layoutAlignment" "AlignNone"
+6
+LANG:10001 39 Siemens Sans Black,-1,13,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10005 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+0  246 46.00000000000001 355.9999999999998 68
+2 "0.1f" 2 0 0 9 0 -1  E "main()
+{
+  dpConnect(\"cambiar_cant_max_deposito\", \"_14_DB_Deposito_\"+$NUMDEPOSITO+\".r_Vol_Max:_online.._value\");
+}
+
+void cambiar_cant_max_deposito(string dp, float can_max_dep)
+{
+  this.text = can_max_dep;
+}" 0
+ E
+29 12
+"pg_kg_dep"
+"PEQUENIO_AZUL"
+1 128.2341191543707 89.47498733471282 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N {243,242,242} E E
+ E E
+11 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10005 0 
+LANG:10018 0 
+LANG:10008 0 
+LANG:10011 0 
+
+10
+"value" "int 53"
+"progress" "int 53"
+"tabletTracking" "bool TRUE"
+"layoutDirection" "enum 0"
+"alignment" "enum 4"
+"orientation" "enum 1"
+"invertedAppearance" "bool FALSE"
+"percentageVisible" "bool FALSE"
+"styleSheet" "string QWidget {font-family: Tahoma; font-size: 26px; font-style: normal; font-weight: 700; }QWidget:enabled {background: #fff3f2f2; color: #ff014898; }"
+"layoutAlignment" "AlignNone"
+6
+LANG:10001 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10005 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10018 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10008 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10011 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  83.99999999999997 64 103 277.9999999999998
+11 ProgressBar
+0
+"main()
+{
+  dpConnect(\"cambiar_nivel_max_deposito\", \"_14_DB_Deposito_\"+$NUMDEPOSITO+\".r_Vol_Max:_online.._value\");
+  dpConnect(\"cambiar_nivel_deposito\", \"_14_DB_Deposito_\"+$NUMDEPOSITO+\".Sr_Vol_Actual:_online.._value\");
+}
+
+void cambiar_nivel_deposito(string dp1, float litros)
+{
+  this.progress(litros);
+}
+
+void cambiar_nivel_max_deposito(string dp1, float litros_max)
+{
+  this.maximum(litros_max);
+}" 0
+2 14
+"PRIMITIVE_TEXT124"
+""
+1 69.25 11 E E E 1 E 1 E N "white" E N "_Window" E E
+ E E
+13 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10005 0 
+LANG:10018 0 
+LANG:10008 0 
+LANG:10011 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E 0.8317290826083983 0 0.9354444257041663 116.6366906275851 -7.627367288629029 0 E 69.25 11 229.25 41
+0 2 2 "0s" 0 0 0 73 0 0  69.25 11 1
+6
+LANG:10001 35 Tahoma,-1,23,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,23,5,75,0,0,0,0,0,Negrita
+LANG:10005 35 Tahoma,-1,23,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,23,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,23,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,23,5,75,0,0,0,0,0,Negrita
+0 6
+LANG:10001 4 Tank
+LANG:10010 9 Depósito
+LANG:10005 4 Tank
+LANG:10018 9 Deposito 
+LANG:10008 9 Deposito 
+LANG:10011 11 Einzahlung 
+2 15
+"pt_num_dep"
+""
+1 138 0 E E E 1 E 1 E N "white" E N "_Transparent" E E
+ E E
+14 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10005 0 
+LANG:10018 0 
+LANG:10008 0 
+LANG:10011 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+  this.text = $NUMDEPOSITO;  //Establecemos el número de depósito
+}
+" 0
+ E 0 1 3 2 1 E 0.3054465266709191 0 1.087168095197058 269.1915719644376 3.104586589716072 1 E 138 0 253 25
+0 2 2 "0s" 0 0 0 73 0 0  138 0 1
+6
+LANG:10001 35 Tahoma,-1,23,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,23,5,75,0,0,0,0,0,Negrita
+LANG:10005 35 Tahoma,-1,23,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,23,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,23,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,23,5,75,0,0,0,0,0,Negrita
+0 6
+LANG:10001 1 1
+LANG:10010 1 1
+LANG:10005 1 1
+LANG:10018 1 1
+LANG:10008 1 1
+LANG:10011 1 1
+6 2
+"deposito"
+""
+1 75 39 E E E 1 E 1 E N {0,0,0} E N "_Transparent" E E
+ E E
+1 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10005 0 
+LANG:10018 0 
+LANG:10008 0 
+LANG:10011 0 
+
+6
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  dpConnect(\"estado_deposito\", \"_14_DB_Deposito_\"+$NUMDEPOSITO+\".Si_Estado:_online.._value\");
+}
+
+void estado_deposito(string dp,int valor)
+{
+  if(valor == 0){  //Comprobamos que el estado del depósito es de vacio
+   setValue(\"\",\"fill\", \"[pattern,[fit,any,iconos/deposito/deposito_gris.svg]]\");
+  }else if(valor == 1){  //Comprobamos que el estado del depósito es de alarma
+   setValue(\"\",\"fill\", \"[pattern,[fit,any,iconos/deposito/deposito_rojo.svg]]\");
+  }else if(valor == 2){  //Comprobamos que el estado del depósito es de normal
+   setValue(\"\",\"fill\", \"[pattern,[fit,any,iconos/deposito/deposito_verde.svg]]\");
+  }else{  //Comprobamos que el estado del depósito es de reposo
+   setValue(\"\",\"fill\", \"[pattern,[fit,any,iconos/deposito/deposito_normal.svg]]\");
+  }
+}
+" 0
+ E -1 1 3 2 1 E 0.699604743083004 0 1.245210727969349 -51.47035573122531 -46.56321839080459 2  1 0  "pictures/iconos/deposito/deposito_normal.svg" 4294967295 E 75 39 328 300
+10 23
+"poly_btn_dep"
+""
+1 94 2 E E E 1 E 1 E N "_Transparent" E N "_Transparent" E E
+ E E
+22 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10005 0 
+LANG:10018 0 
+LANG:10008 0 
+LANG:10011 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E "main(mapping event)
+{
+  ChildPanelOnCentralModal(\"vision/sinopticos/13_bodega/detalles_deposito.pnl\", \"Detalles_Deposito\", makeDynString(\"$NUMDEPOSITO:\"+$NUMDEPOSITO));
+}" 0
+ -1 1 3 2 1 E U  1 E 45 94 2
+38 25
+23 34
+22 35
+18 33
+12 36
+13 252
+4 257
+1 266
+1 272
+4 279
+10 288
+10 299
+13 303
+17 304
+18 313
+19 314
+24 315
+26 313
+27 311
+26 308
+50 314
+75 316
+93 316
+93 327
+98 327
+102 327
+102 316
+119 316
+140 314
+157 310
+162 308
+162 314
+167 315
+171 314
+171 304
+175 302
+179 298
+179 279
+174 274
+164 270
+164 34
+153 26
+122 13
+102 5
+ 1
+7 27
+"btn_indicador"
+""
+1 50 25 E E E 1 E 1 E N "LIB_IRC_GRIS_04" E N "LIB_IRC_GRIS_03" E E
+ E E
+25 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+6
+"shadowOffset" "[1,1]"
+"shadowColor" "{63,63,63,131}"
+"shadowRadius" "15"
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"#uses \"deuser/componentes_graficos/funciones_componentes\"
+
+main()
+{
+
+  if (parametrosOK)
+  {
+    if ($COLOR_INACTIVO_MAX != \"NULL\")  //Comprobamos que los parametros se van a usar. Sino se usaran los colores standars.
+    {
+      colorInactivo = \"LIB_IRC_GRIS_03\";
+    }
+
+    else if ($COLOR_ACTIVO_MAX != \"NULL\")  //Comprobamos que los parametros se van a usar. Sino se usaran los colores standars.
+    {
+      colorActivo = \"LIB_IRC_VERDE_01\";
+    }
+
+    cambiarEstadoIndicadorSenial(\"_14_DB_Deposito_\"+$NUMDEPOSITO+\".Sd_Al_Nivel_HH\", colorActivo, colorInactivo);
+  }
+  else
+  {
+    this.backCol = \"LIB_IRC_MORADO_01\";
+  }
+}
+
+
+" 0
+ E 0 2 3 2 1 E 1 0 1 17.92857142857142 49.32563025210084 1 E 49.57142857142858 25.17436974789917 7.5 7.5
+2 28
+"txf_indicador"
+"txf_standard_5"
+1 2.999999999999998 9.575318388306727 E E E 1 E 0 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+26 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+7
+"minimumSize" "78 46"
+"maximumSize" "78 46"
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+  dyn_int posicion;
+  dyn_int tamanio_in;
+  dyn_int tamanio_text;
+  //TEXTO = texto que queremos visualizar.
+  //POSICION = posición donde queremos el texto. Ejemplo: ARRIBA, ABAJO, IZQUIERDA, DERECHA
+if (parametrosOK)
+  {
+    if ($TEXTO_MAX != \"NULL\") //Comprobamos si el texto es diferente de NULL para realizar el script.
+    {
+      this.text($TEXTO_MAX); //Asignamos el texto.
+      tamanio_in = btn_indicador.sizeAsDyn;
+      tamanio_text = txf_indicador.sizeAsDyn;
+      posicion = btn_indicador.positionAsDyn; //Obtenemos la posición de referencia.
+      int pos_x;
+      int pos_y;
+
+
+      switch ($POSICION_MAX)// Dependiendo del parametro se pondrá el texto en una posición concreta.
+      {
+        case (\"ABAJO\"):
+        {
+          pos_x = posicion[1] - tamanio_text[1] / 2;
+          pos_y = posicion[2] + tamanio_in[2] - tamanio_text[2] / 1.5 + 2;
+          this.position(pos_x, pos_y);
+          break;
+        }
+
+        case (\"ARRIBA\"):
+        {
+          pos_x = posicion[1] - tamanio_text[1] / 2;
+          pos_y = posicion[2] - tamanio_text[2] / 4 - tamanio_in[2] - 2;
+          this.position(pos_x, pos_y);
+          break;
+        }
+
+        case (\"DERECHA\"):
+        {
+          this.format(\"[0s,,,AlignLeft|AlignVCenter]\");//Cambiamos alineación de texto a la izquierda.
+          pos_x = posicion[1] + tamanio_in[1] / 1.5;
+          pos_y = posicion[2] - tamanio_text[2] / 2;
+          this.position(pos_x, pos_y);
+          break;
+        }
+
+        case (\"IZQUIERDA\"):
+        {
+          this.format(\"[0s,,,AlignRight|AlignVCenter]\");//Cambiamos alineación de texto a la derecha.
+          pos_x = posicion[1] - tamanio_text[1] - tamanio_in[1] / 1.75;
+          pos_y = posicion[2] - tamanio_text[2] / 2;
+          this.position(pos_x, pos_y);
+          break;
+        }
+      }
+      this.visible(TRUE); //Cuando el texto esta formateado será visible. SOLO ES VISIBLE SI EL TEXTO ES DIFERENTE DE NULL.
+    }
+    else
+    {
+      this.visible(FALSE);
+    }
+  }
+}
+" 0
+ E 0 0 3 2 1 E 0.7897762178592619 0 0.5894500029099089 26.82652478024801 78.68145880025014 1 E 3 10 100 38
+0 2 2 "0s" 0 0 0 73 0 0  3 10 1
+6
+LANG:10001 35 Tahoma,-1,11,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,11,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,11,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,11,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,11,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,11,5,75,0,0,0,0,0,Negrita
+0 6
+LANG:10001 0 
+LANG:10010 5 Texto
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+7 29
+"btn_indicador_1"
+""
+1 50 25 E E E 1 E 1 E N "LIB_IRC_GRIS_04" E N "LIB_IRC_GRIS_03" E E
+ E E
+27 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+6
+"shadowOffset" "[1,1]"
+"shadowColor" "{63,63,63,131}"
+"shadowRadius" "15"
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"#uses \"deuser/componentes_graficos/funciones_componentes\"
+
+main()
+{
+
+  if (parametrosOK_min)
+  {
+    if ($COLOR_INACTIVO_MIN != \"NULL\")  //Comprobamos que los parametros se van a usar. Sino se usaran los colores standars.
+    {
+      colorInactivo_min = \"LIB_IRC_GRIS_03\";
+    }
+
+    else if ($COLOR_ACTIVO_MIN != \"NULL\")  //Comprobamos que los parametros se van a usar. Sino se usaran los colores standars.
+    {
+      colorActivo_min = \"LIB_IRC_VERDE_01\";
+    }
+
+    cambiarEstadoIndicadorSenial(\"_14_DB_Deposito_\"+$NUMDEPOSITO+\".Sd_Al_Nivel_LL\", colorActivo, colorInactivo);
+  }
+  else
+  {
+    this.backCol = \"LIB_IRC_MORADO_01\";
+  }
+}
+
+
+" 0
+ E 0 2 3 2 1 E 1 0 1 17.92857142857142 243.9285714285712 1 E 49.57142857142858 25.17436974789917 7.5 7.5
+2 30
+"PRIMITIVE_TEXT127"
+"txf_standard_5"
+1 2.999999999999998 9.575318388306727 E E E 1 E 0 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+28 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+7
+"minimumSize" "78 46"
+"maximumSize" "78 46"
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+  dyn_int posicion;
+  dyn_int tamanio_in;
+  dyn_int tamanio_text;
+  //TEXTO = texto que queremos visualizar.
+  //POSICION = posición donde queremos el texto. Ejemplo: ARRIBA, ABAJO, IZQUIERDA, DERECHA
+if (parametrosOK_min)
+  {
+    if ($TEXTO_MIN != \"NULL\") //Comprobamos si el texto es diferente de NULL para realizar el script.
+    {
+      this.text($TEXTO_MIN); //Asignamos el texto.
+      tamanio_in = btn_indicador_1.sizeAsDyn;
+      tamanio_text = txf_indicador.sizeAsDyn;
+      posicion = btn_indicador_1.positionAsDyn; //Obtenemos la posición de referencia.
+      int pos_x;
+      int pos_y;
+
+
+      switch ($POSICION_MIN)// Dependiendo del parametro se pondrá el texto en una posición concreta.
+      {
+        case (\"ABAJO\"):
+        {
+          pos_x = posicion[1] - tamanio_text[1] / 2;
+          pos_y = posicion[2] + tamanio_in[2] - tamanio_text[2] / 1.5 + 2;
+          this.position(pos_x, pos_y);
+          break;
+        }
+
+        case (\"ARRIBA\"):
+        {
+          pos_x = posicion[1] - tamanio_text[1] / 2;
+          pos_y = posicion[2] - tamanio_text[2] / 4 - tamanio_in[2] - 2;
+          this.position(pos_x, pos_y);
+          break;
+        }
+
+        case (\"DERECHA\"):
+        {
+          this.format(\"[0s,,,AlignLeft|AlignVCenter]\");//Cambiamos alineación de texto a la izquierda.
+          pos_x = posicion[1] + tamanio_in[1] / 1.5;
+          pos_y = posicion[2] - tamanio_text[2] / 2;
+          this.position(pos_x, pos_y);
+          break;
+        }
+
+        case (\"IZQUIERDA\"):
+        {
+          this.format(\"[0s,,,AlignRight|AlignVCenter]\");//Cambiamos alineación de texto a la derecha.
+          pos_x = posicion[1] - tamanio_text[1] - tamanio_in[1] / 1.75;
+          pos_y = posicion[2] - tamanio_text[2] / 2;
+          this.position(pos_x, pos_y);
+          break;
+        }
+      }
+      this.visible(TRUE); //Cuando el texto esta formateado será visible. SOLO ES VISIBLE SI EL TEXTO ES DIFERENTE DE NULL.
+    }
+    else
+    {
+      this.visible(FALSE);
+    }
+  }
+}
+" 0
+ E 0 0 3 2 1 E 0.7897762178592619 0 0.5894500029099089 26.82652478024801 273.2843999767205 1 E 3 10 100 38
+0 2 2 "0s" 0 0 0 73 0 0  3 10 1
+6
+LANG:10001 35 Tahoma,-1,11,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,11,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,11,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,11,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,11,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,11,5,75,0,0,0,0,0,Negrita
+0 6
+LANG:10001 0 
+LANG:10010 5 Texto
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+0
+LAYER, 1 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 2 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 3 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 4 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 5 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 6 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 7 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+0

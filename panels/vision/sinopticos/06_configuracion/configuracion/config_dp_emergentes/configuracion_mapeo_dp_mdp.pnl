@@ -1,0 +1,321 @@
+V 14
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+PANEL,-1 -1 960 940 N "LIB_IRC_BLANCO" 0
+E E E E E 1 -1 -1 0  14.00000000000006 14
+""0  1
+E E 4
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+"pdpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10001 0 
+LANG:10010 0 
+6 1
+"rect_fondo_config"
+""
+1 20 10 E E E 1 E 1 E N "_Transparent" E N "LIB_IRC_AZUL_03" E E
+ E E
+0 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+4
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E -1 1 3 2 1 E 8.717286795713793 0 0.7250000000000001 -174.3457359142759 -7.25 4 "[linear,pad,0,0,-0.012,0.988,0.00671,LIB_IRC_AZUL_03,1,{255,255,255}]" E 20 10 130 50
+6 2
+"RECTANGLE1"
+""
+1 20 10 E E E 1 E 1 E N "_Transparent" E N "LIB_IRC_AZUL_03" E E
+ E E
+1 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+4
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E -1 1 3 2 1 E 8.717286795713793 0 0.7250000000000001 -174.3457359142759 902.75 4 "[linear,pad,0.988,1,0.976,0.0241,0,LIB_IRC_AZUL_03,1,{255,255,255}]" E 20 10 130 50
+22 42
+"COMBO_BOX1"
+"MEDIANO_AZUL"
+1 83.50295857988159 198 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+41 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+1
+"layoutAlignment" "AlignNone"
+6
+LANG:10001 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10009 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10008 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10018 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  59.19999999999992 246 900.8000000000002 289
+0
+
+"main()
+{
+  string consulta, dp, dp_antes;
+  dyn_dyn_anytype resultado_consulta;
+
+  //Rellenamos el combobox con los MDP que tenemos, salvo los de DPs internos
+
+  //Hacemos la consulta que nos devolverá todas las variables de los MDPs
+  consulta = \"SELECT '_original.._value' FROM '*' WHERE _DP NOT LIKE \\\"_mp__*\\\" AND  _DP LIKE \\\"_mp*\\\"\";
+  dpQuery(consulta, resultado_consulta);
+  dynRemove(resultado_consulta, 1);
+
+  //Variable que usaremos para comprobar que ya hemos añadido al combobox el MDP correspondiente
+  dp_antes = \"\";
+
+  for(int s = 1; s <= dynlen(resultado_consulta); s++){
+
+    dp = dpSubStr(resultado_consulta[s][1],DPSUB_DP);
+
+    if(dp != dp_antes)
+    {
+      this.appendItem(dp);
+    }
+    dp_antes = dp;
+  }
+}" 0
+
+"main()
+{
+  txf_mdp_selec.text = this.selectedText;
+}" 0
+
+E
+ 1 0
+14 47
+"txf_mdp_selec"
+"MEDIANO_AZUL"
+1 139.6415094339622 125.765789400578 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_BLANCO" E E
+ E E
+46 0 0 0 0 0
+E E E
+1
+9
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+5
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+9
+LANG:10001 34 Tahoma,-1,13,5,50,0,0,0,0,0,Normal
+LANG:10010 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10011 34 Tahoma,-1,13,5,50,0,0,0,0,0,Normal
+LANG:10009 34 Tahoma,-1,15,5,50,0,0,0,0,0,Normal
+LANG:10008 34 Tahoma,-1,13,5,50,0,0,0,0,0,Normal
+LANG:10018 34 Tahoma,-1,13,5,50,0,0,0,0,0,Normal
+LANG:10005 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10000 30 Noto Sans,-1,13,5,50,0,0,0,0,0
+LANG:10027 30 Noto Sans,-1,13,5,50,0,0,0,0,0
+0  58.59999999999993 450 901.4000000000001 493
+2 "0s" 0 0 0 9 0 -1  E E E
+13 48
+"PUSH_BUTTON2"
+"GRANDE_AZUL"
+1 487.6003310249832 919.9960974493208 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_BLANCO" E E
+ E E
+47 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 6 Accept
+LANG:10010 7 Aceptar
+LANG:10011 6 Accept
+LANG:10009 8 Accepter
+LANG:10008 6 Accept
+LANG:10018 6 Accept
+
+5
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10011 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10018 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  808.6015472163517 887.743468385491 901.4000000000001 926.0685667463749
+
+P 
+4294967295
+"pictures/iconos/botoneras/flecha_der_off.svg"
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+"main(mapping event)
+{
+  if(txf_mdp_selec.text != \"\")
+  {
+    RootPanelOnModule(\"vision/sinopticos/06_configuracion/configuracion/config_dp_emergentes/configuracion_mapeo_dp_mdp_2.pnl\",\"mapeo_dp_mdp_2\",\"modulo_config\",makeDynString(\"$MDP:\" + txf_mdp_selec.text));
+  }
+  else
+  {
+    txf_mdp_selec.backCol = \"LIB_IRC_ROJOTRANS_01\";
+    delay(1,0);
+    txf_mdp_selec.backCol = \"LIB_IRC_BLANCO\";
+  }
+}" 0
+ E E E
+29 49
+"Label1"
+"GRANDE_AZUL"
+1 232.0899875950714 67.22559492868334 E E E 1 E 1 E N "_3DText" E N "WF_EwoWaitBackground" E E
+ E E
+48 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"text" "string Mapeo por completo un DP en función de su MDP"
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 27 Tahoma,-1,16,5,50,0,0,0,0,0
+0  232.0899875950714 67.22559492868334 727.9100124049287 107.1799477337851
+5 Label
+0
+E29 50
+"Label2"
+"MEDIANO_AZUL"
+1 322.6288819744439 209.7085445231198 E E E 1 E 1 E N "_3DText" E N "WF_EwoWaitBackground" E E
+ E E
+49 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"text" "string Selecciona un Master Datapoint de la lista"
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 27 Tahoma,-1,16,5,50,0,0,0,0,0
+0  322.6288819744439 209.7085445231198 650 249.6628973282216
+5 Label
+0
+E29 51
+"Label3"
+"MEDIANO_AZUL"
+1 362.3707633552673 395.022823597449 E E E 1 E 1 E N "_3DText" E N "WF_EwoWaitBackground" E E
+ E E
+50 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"text" "string Master Datapoint seleccionado"
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 27 Tahoma,-1,16,5,50,0,0,0,0,0
+0  362.3707633552673 395.022823597449 598 434.9771764025509
+5 Label
+0
+E0
+LAYER, 1 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 2 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 3 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 4 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 5 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 6 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 7 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+0

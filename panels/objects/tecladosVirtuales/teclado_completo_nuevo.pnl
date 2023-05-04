@@ -1,0 +1,5477 @@
+V 14
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+PANEL,-1 -1 849 340 N "_Transparent" 2
+"$TXT"
+"$oculto"
+"main()
+{
+  string so_ui;
+
+  setWindowTitle(myModuleName(), myPanelName(), \"Teclado Virtual\");  //Eliminamos el title que aparece en el Frame del Panel
+
+  dpGet(\"System1:_Ui_\" + myUiNumber() + \".DisplayName\",so_ui);
+  if(!patternMatch(\"*Linux*\",so_ui))
+  {
+    titleBar(0,myModuleName(),myPanelName());
+  }
+
+  string texto;
+
+  switchToCase(CapsLock.toggleState);
+}" 0
+ E E E E 1 -1 -1 0  9 10
+""0  1
+E "const int keyRepeatDelay = 150;
+
+string valor_teclado;
+
+keyPressed(string key){
+  if(!CapsLock.toggleState)  key = strtolower(key);
+
+  sendKeyClick(key);
+
+  txf_valor.text = txf_valor.text + key;
+}
+//------------------------------------------------------------
+
+showSymbols(){
+  Key_Sym.text = \"123\";
+  Key_0.text = \"@\";
+  Key_1.text = \"^\";
+  Key_2.text = \"\\\"\";
+  Key_3.text = \"§\";
+  Key_4.text = \"$\";
+  Key_5.text = \"%\";
+  Key_6.text = \"&&\";
+  Key_7.text = \"/\";
+  Key_8.text = \"[\";
+  Key_9.text = \"]\";
+  Key_Equal.text = \"\\\\\";
+  Key_ParenOpen.text = \"{\";
+  Key_ParenClosed.text = \"}\";
+  Key_Dot.text = \":\";
+  Key_Comma.text = \";\";
+  Key_Question.text = \"#\";
+  Key_X1.text = \":\";
+  Key_X2.text = \";\";
+  Key_X4.text = \"_\";
+  Key_Plus.text = \"<\";
+  Key_Minus.text = \">\";
+  Key_Exclam.text = \"'\";
+}
+
+//------------------------------------------------------------
+
+showNumbers(){
+  Key_Sym.text = \"@$%\";
+  Key_Sym.toggleState = FALSE;
+  Key_0.text = \"0\";
+  Key_1.text = \"1\";
+  Key_2.text = \"2\";
+  Key_3.text = \"3\";
+  Key_4.text = \"4\";
+  Key_5.text = \"5\";
+  Key_6.text = \"6\";
+  Key_7.text = \"7\";
+  Key_8.text = \"8\";
+  Key_9.text = \"9\";
+  Key_Equal.text = \"=\";
+  Key_ParenOpen.text = \"(\";
+  Key_ParenClosed.text = \")\";
+  Key_Dot.text = \".\";
+  Key_Comma.text = \",\";
+  Key_X1.text = \".\";
+  Key_X2.text = \",\";
+  Key_X4.text = \"*\";
+  Key_Plus.text = \"+\";
+  Key_Minus.text = \"-\";
+  Key_Exclam.text = \"!\";
+  Key_Question.text = \"?\";
+
+  switchToCase(CapsLock.toggleState);
+}
+//------------------------------------------------------------
+
+switchToCase(bool upper){
+  dyn_string shapes = getShapes(myModuleName(), myPanelName(), \"shapeType\", \"PUSH_BUTTON\");
+
+  for(int i = 1; i <= dynlen(shapes); i++){
+    string text;
+    getValue(shapes[i], \"text\", text);
+
+    if(text == \"ß\") continue;  // toupper would result in \"SS\"
+    if(text == \"ESC\") continue;  // toupper would result in \"SS\"
+
+    if(upper)  text = strtoupper(text);
+    else text = strtolower(text);
+
+    setValue(shapes[i], \"text\", text);
+  }
+}
+//------------------------------------------------------------
+
+public init(){
+  showNumbers();
+
+  CapsLock.toggleState = FALSE;
+  switchToCase(FALSE);
+}" 0
+ 5
+"CBRef" "1"
+"EClose" E
+"windowIcon" "iconos/ventanas/teclado.svg"
+"dpi" "96"
+"pdpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10001 0 
+LANG:10010 0 
+6 67
+"RECTANGLE1"
+""
+1 219.5061728395062 42.26804123711338 E E E 1 E 1 E N {240,240,240} E N "LIB_IRC_GRIS_03" E E
+ E E
+66 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+4
+"transparentForMouseInGedi" ""
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 3 2 1 E 6.062567165500517 0 3.081818181818181 -1334.764776410114 -123.2727272727272 1 E 220 40 360 150
+13 1
+"Key_1"
+""
+1 12.06249999999932 55 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Transparent" E E
+ E E
+0 0 0 0 0 0
+E E E
+1
+9
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+8
+"hoverfclr" "N \"LIB_IRC_BLANCO\""
+"hoverbclr" "N \"AZUL_01\""
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"showFocus" "0"
+9
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,32,5,75,0,0,0,0,0,Negrita
+LANG:10011 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10009 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10008 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10018 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10005 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10000 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10027 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+0  10.06249999999931 52.99999999999999 73.06249999999929 101
+
+T 
+9
+LANG:10001 1 1
+LANG:10010 1 1
+LANG:10011 1 1
+LANG:10009 1 1
+LANG:10008 1 1
+LANG:10018 1 1
+LANG:10005 1 1
+LANG:10000 1 1
+LANG:10027 1 1
+"main()
+{
+  keyPressed(this.text);
+}
+" 0
+ E E E
+13 2
+"Key_2"
+""
+1 70.87499999999955 55 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Transparent" E E
+ E E
+1 0 0 0 0 0
+E E E
+1
+9
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+8
+"hoverfclr" "N \"LIB_IRC_BLANCO\""
+"hoverbclr" "N \"AZUL_01\""
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"showFocus" "0"
+9
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,32,5,75,0,0,0,0,0,Negrita
+LANG:10011 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10009 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10008 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10018 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10005 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10000 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10027 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+0  69.12499999999952 52.99999999999999 132.1249999999995 101
+
+T 
+9
+LANG:10001 1 2
+LANG:10010 1 2
+LANG:10011 1 2
+LANG:10009 1 2
+LANG:10008 1 2
+LANG:10018 1 2
+LANG:10005 1 2
+LANG:10000 1 2
+LANG:10027 1 2
+"main()
+{
+  keyPressed(this.text);
+}
+" 0
+ E E E
+13 3
+"Key_0"
+""
+1 544.744018554687 54.99999999999989 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Transparent" E E
+ E E
+2 0 0 0 0 0
+E E E
+1
+9
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+8
+"hoverfclr" "N \"LIB_IRC_BLANCO\""
+"hoverbclr" "N \"AZUL_01\""
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"showFocus" "0"
+9
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,32,5,75,0,0,0,0,0,Negrita
+LANG:10011 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10009 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10008 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10018 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10005 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10000 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10027 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+0  542.7440185546869 52.99999999999988 605.744018554687 100.9999999999999
+
+T 
+9
+LANG:10001 1 0
+LANG:10010 1 0
+LANG:10011 1 0
+LANG:10009 1 0
+LANG:10008 1 0
+LANG:10018 1 0
+LANG:10005 1 0
+LANG:10000 1 0
+LANG:10027 1 0
+"main()
+{
+  keyPressed(this.text);
+}
+" 0
+ E E E
+13 4
+"Backspace"
+""
+1 721.7440185546872 99.99999999999989 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Transparent" E E
+ E E
+3 0 0 0 16777219 0
+E E E
+1
+9
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+8
+"hoverfclr" "N \"LIB_IRC_BLANCO\""
+"hoverbclr" "N \"AZUL_01\""
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+9
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10011 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10009 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10008 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10018 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10005 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10000 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10027 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+0  719.7440185546869 97.49999999999989 850.7594031700716 160.4999999999999
+
+P 
+4294967295
+"pictures/iconos/botoneras/Iconos/borrar.svg"
+9
+LANG:10001 3 DEL
+LANG:10010 3 DEL
+LANG:10011 3 DEL
+LANG:10009 3 ⃪
+LANG:10008 3 ⃪
+LANG:10018 3 ⃪
+LANG:10005 3 ⃪
+LANG:10000 3 ⃪
+LANG:10027 3 ⃪
+"main(mapping event)
+{
+    string DisplayString;
+
+    DisplayString = txf_valor.text;
+
+    DisplayString = substr(DisplayString, 0, strlen(DisplayString) - 1);
+
+    txf_valor.text = DisplayString;
+}
+" 0
+ "main(mapping event)
+{
+  while(this.armed){
+    sendKeyClick(\"\", \"Backspace\");
+    delay(0, keyRepeatDelay);
+  }
+}
+" 0
+ E E
+13 5
+"Key_Q"
+""
+1 12.06249999999932 99.8487947406866 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Transparent" E E
+ E E
+4 0 0 0 0 0
+E E E
+1
+9
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+8
+"hoverfclr" "N \"LIB_IRC_BLANCO\""
+"hoverbclr" "N \"AZUL_01\""
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"showFocus" "0"
+9
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,32,5,75,0,0,0,0,0,Negrita
+LANG:10011 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10009 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10008 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10018 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10005 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10000 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10027 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+0  10.06249999999931 97.5 73.06249999999929 160.5
+
+T 
+9
+LANG:10001 1 Q
+LANG:10010 1 Q
+LANG:10011 1 Q
+LANG:10009 1 Q
+LANG:10008 1 Q
+LANG:10018 1 Q
+LANG:10005 1 Q
+LANG:10000 1 Q
+LANG:10027 2 й
+"main()
+{
+  keyPressed(this.text);
+}" 0
+ E E E
+13 6
+"Key_W"
+""
+1 71.12499999999955 99.8487947406866 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Transparent" E E
+ E E
+5 0 0 0 0 0
+E E E
+1
+9
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+8
+"hoverfclr" "N \"LIB_IRC_BLANCO\""
+"hoverbclr" "N \"AZUL_01\""
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"showFocus" "0"
+9
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,32,5,75,0,0,0,0,0,Negrita
+LANG:10011 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10009 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10008 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10018 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10005 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10000 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10027 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+0  69.12499999999952 97.5 132.1249999999995 160.5
+
+T 
+9
+LANG:10001 1 W
+LANG:10010 1 W
+LANG:10011 1 W
+LANG:10009 1 W
+LANG:10008 1 W
+LANG:10018 1 W
+LANG:10005 1 W
+LANG:10000 1 W
+LANG:10027 2 ц
+"main()
+{
+  keyPressed(this.text);
+}" 0
+ E E E
+13 7
+"Key_E"
+""
+1 129.7536621093744 99.8487947406866 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Transparent" E E
+ E E
+6 0 0 0 0 0
+E E E
+1
+9
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+8
+"hoverfclr" "N \"LIB_IRC_BLANCO\""
+"hoverbclr" "N \"AZUL_01\""
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"showFocus" "0"
+9
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,32,5,75,0,0,0,0,0,Negrita
+LANG:10011 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10009 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10008 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10018 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10005 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10000 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10027 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+0  127.7536621093744 97.5 190.7536621093744 160.5
+
+T 
+9
+LANG:10001 1 E
+LANG:10010 1 E
+LANG:10011 1 E
+LANG:10009 1 E
+LANG:10008 1 E
+LANG:10018 1 E
+LANG:10005 1 E
+LANG:10000 1 E
+LANG:10027 2 у
+"main()
+{
+  keyPressed(this.text);
+}" 0
+ E E E
+13 8
+"Key_R"
+""
+1 188.5036621093747 99.8487947406866 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Transparent" E E
+ E E
+7 0 0 0 0 0
+E E E
+1
+9
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+8
+"hoverfclr" "N \"LIB_IRC_BLANCO\""
+"hoverbclr" "N \"AZUL_01\""
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"showFocus" "0"
+9
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,32,5,75,0,0,0,0,0,Negrita
+LANG:10011 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10009 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10008 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10018 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10005 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10000 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10027 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+0  186.5036621093747 97.5 249.5036621093744 160.5
+
+T 
+9
+LANG:10001 1 R
+LANG:10010 1 R
+LANG:10011 1 R
+LANG:10009 1 R
+LANG:10008 1 R
+LANG:10018 1 R
+LANG:10005 1 R
+LANG:10000 1 R
+LANG:10027 2 к
+"main()
+{
+  keyPressed(this.text);
+}" 0
+ E E E
+13 9
+"Key_T"
+""
+1 247.6286621093748 99.8487947406866 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Transparent" E E
+ E E
+8 0 0 0 0 0
+E E E
+1
+9
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+8
+"hoverfclr" "N \"LIB_IRC_BLANCO\""
+"hoverbclr" "N \"AZUL_01\""
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"showFocus" "0"
+9
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,32,5,75,0,0,0,0,0,Negrita
+LANG:10011 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10009 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10008 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10018 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10005 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10000 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10027 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+0  245.6286621093745 97.5 308.6286621093747 160.5
+
+T 
+9
+LANG:10001 1 T
+LANG:10010 1 T
+LANG:10011 1 T
+LANG:10009 1 T
+LANG:10008 1 T
+LANG:10018 1 T
+LANG:10005 1 T
+LANG:10000 1 T
+LANG:10027 2 е
+"main()
+{
+  keyPressed(this.text);
+}" 0
+ E E E
+13 10
+"Key_Z"
+""
+1 306.4411621093748 99.8487947406866 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Transparent" E E
+ E E
+9 0 0 0 0 0
+E E E
+1
+9
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+8
+"hoverfclr" "N \"LIB_IRC_BLANCO\""
+"hoverbclr" "N \"AZUL_01\""
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"showFocus" "0"
+9
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,32,5,75,0,0,0,0,0,Negrita
+LANG:10011 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10009 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10008 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10018 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10005 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10000 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10027 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+0  304.4411621093748 97.5 367.4411621093745 160.5
+
+T 
+9
+LANG:10001 1 Y
+LANG:10010 1 Y
+LANG:10011 1 Z
+LANG:10009 1 Y
+LANG:10008 1 Y
+LANG:10018 1 Y
+LANG:10005 1 Y
+LANG:10000 1 Z
+LANG:10027 2 н
+"main()
+{
+  keyPressed(this.text);
+}" 0
+ E E E
+13 11
+"Key_U"
+""
+1 365.5974121093748 99.8487947406866 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Transparent" E E
+ E E
+10 0 0 0 0 0
+E E E
+1
+9
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+8
+"hoverfclr" "N \"LIB_IRC_BLANCO\""
+"hoverbclr" "N \"AZUL_01\""
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"showFocus" "0"
+9
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,32,5,75,0,0,0,0,0,Negrita
+LANG:10011 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10009 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10008 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10018 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10005 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10000 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10027 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+0  363.5974121093746 97.5 426.5974121093746 160.5
+
+T 
+9
+LANG:10001 1 U
+LANG:10010 1 U
+LANG:10011 1 U
+LANG:10009 1 U
+LANG:10008 1 U
+LANG:10018 1 U
+LANG:10005 1 U
+LANG:10000 1 U
+LANG:10027 2 г
+"main()
+{
+  keyPressed(this.text);
+}" 0
+ E E E
+13 12
+"Key_I"
+""
+1 426.419555664062 99.84879474068649 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Transparent" E E
+ E E
+11 0 0 0 0 0
+E E E
+1
+9
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+8
+"hoverfclr" "N \"LIB_IRC_BLANCO\""
+"hoverbclr" "N \"AZUL_01\""
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"showFocus" "0"
+9
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,32,5,75,0,0,0,0,0,Negrita
+LANG:10011 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10009 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10008 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10018 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10005 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10000 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10027 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+0  424.4195556640618 97.49999999999989 487.4195556640618 160.4999999999999
+
+T 
+9
+LANG:10001 1 I
+LANG:10010 1 I
+LANG:10011 1 I
+LANG:10009 1 I
+LANG:10008 1 I
+LANG:10018 1 I
+LANG:10005 1 I
+LANG:10000 1 I
+LANG:10027 2 ш
+"main()
+{
+  keyPressed(this.text);
+}" 0
+ E E E
+13 13
+"Key_O"
+""
+1 485.458618164062 99.84879474068649 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Transparent" E E
+ E E
+12 0 0 0 0 0
+E E E
+1
+9
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+8
+"hoverfclr" "N \"LIB_IRC_BLANCO\""
+"hoverbclr" "N \"AZUL_01\""
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"showFocus" "0"
+9
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,32,5,75,0,0,0,0,0,Negrita
+LANG:10011 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10009 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10008 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10018 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10005 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10000 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10027 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+0  483.4586181640619 97.49999999999989 546.458618164062 160.4999999999999
+
+T 
+9
+LANG:10001 1 O
+LANG:10010 1 O
+LANG:10011 1 O
+LANG:10009 1 O
+LANG:10008 1 O
+LANG:10018 1 O
+LANG:10005 1 O
+LANG:10000 1 O
+LANG:10027 2 щ
+"main()
+{
+  keyPressed(this.text);
+}" 0
+ E E E
+13 14
+"Key_P"
+""
+1 544.744018554687 99.84879474068649 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Transparent" E E
+ E E
+13 0 0 0 0 0
+E E E
+1
+9
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+8
+"hoverfclr" "N \"LIB_IRC_BLANCO\""
+"hoverbclr" "N \"AZUL_01\""
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"showFocus" "0"
+9
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,32,5,75,0,0,0,0,0,Negrita
+LANG:10011 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10009 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10008 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10018 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10005 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10000 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10027 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+0  542.7440185546868 97.49999999999989 605.744018554687 160.4999999999999
+
+T 
+9
+LANG:10001 1 P
+LANG:10010 1 P
+LANG:10011 1 P
+LANG:10009 1 P
+LANG:10008 1 P
+LANG:10018 1 P
+LANG:10005 1 P
+LANG:10000 1 P
+LANG:10027 2 з
+"main()
+{
+  keyPressed(this.text);
+}" 0
+ E E E
+13 15
+"Key_UE"
+""
+1 603.4879150390622 99.84879474068649 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Transparent" E E
+ E E
+14 0 0 0 0 0
+E E E
+1
+9
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+8
+"hoverfclr" "N \"LIB_IRC_BLANCO\""
+"hoverbclr" "N \"AZUL_01\""
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"showFocus" "0"
+9
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,32,5,75,0,0,0,0,0,Negrita
+LANG:10011 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10009 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10008 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10018 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10005 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10000 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10027 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+0  601.4879150390619 97.49999999999989 664.487915039062 160.4999999999999
+
+T 
+9
+LANG:10001 1 *
+LANG:10010 1 *
+LANG:10011 2 Ü
+LANG:10009 1 *
+LANG:10008 1 *
+LANG:10018 1 *
+LANG:10005 1 *
+LANG:10000 2 Ü
+LANG:10027 2 х
+"main()
+{
+  keyPressed(this.text);
+}" 0
+ E E E
+13 16
+"Key_A"
+""
+1 12.06249999999932 160 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Transparent" E E
+ E E
+15 0 0 0 0 0
+E E E
+1
+9
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+8
+"hoverfclr" "N \"LIB_IRC_BLANCO\""
+"hoverbclr" "N \"AZUL_01\""
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"showFocus" "0"
+9
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,32,5,75,0,0,0,0,0,Negrita
+LANG:10011 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10009 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10008 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10018 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10005 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10000 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10027 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+0  10.06249999999931 157.6512052593134 73.06249999999929 220.6512052593134
+
+T 
+9
+LANG:10001 1 A
+LANG:10010 1 A
+LANG:10011 1 A
+LANG:10009 1 A
+LANG:10008 1 A
+LANG:10018 1 A
+LANG:10005 1 A
+LANG:10000 1 A
+LANG:10027 2 ф
+"main()
+{
+  keyPressed(this.text);
+}" 0
+ E E E
+13 17
+"Key_S"
+""
+1 71.12499999999955 160 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Transparent" E E
+ E E
+16 0 0 0 0 0
+E E E
+1
+9
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+8
+"hoverfclr" "N \"LIB_IRC_BLANCO\""
+"hoverbclr" "N \"AZUL_01\""
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"showFocus" "0"
+9
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,32,5,75,0,0,0,0,0,Negrita
+LANG:10011 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10009 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10008 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10018 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10005 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10000 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10027 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+0  69.12499999999952 157.6512052593134 132.1249999999995 220.6512052593134
+
+T 
+9
+LANG:10001 1 S
+LANG:10010 1 S
+LANG:10011 1 S
+LANG:10009 1 S
+LANG:10008 1 S
+LANG:10018 1 S
+LANG:10005 1 S
+LANG:10000 1 S
+LANG:10027 2 ы
+"main()
+{
+  keyPressed(this.text);
+}" 0
+ E E E
+13 18
+"Key_D"
+""
+1 129.7536621093744 160 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Transparent" E E
+ E E
+17 0 0 0 0 0
+E E E
+1
+9
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+8
+"hoverfclr" "N \"LIB_IRC_BLANCO\""
+"hoverbclr" "N \"AZUL_01\""
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"showFocus" "0"
+9
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,32,5,75,0,0,0,0,0,Negrita
+LANG:10011 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10009 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10008 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10018 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10005 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10000 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10027 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+0  127.7536621093744 157.6512052593134 190.7536621093744 220.6512052593134
+
+P 
+4294967295
+"pictures/logotipos/deuser_blanca.svg"
+9
+LANG:10001 1 D
+LANG:10010 1 D
+LANG:10011 1 D
+LANG:10009 1 D
+LANG:10008 1 D
+LANG:10018 1 D
+LANG:10005 1 D
+LANG:10000 1 D
+LANG:10027 2 в
+"main()
+{
+  keyPressed(this.text);
+}" 0
+ E E E
+13 19
+"Key_F"
+""
+1 188.5036621093747 160 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Transparent" E E
+ E E
+18 0 0 0 0 0
+E E E
+1
+9
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+8
+"hoverfclr" "N \"LIB_IRC_BLANCO\""
+"hoverbclr" "N \"AZUL_01\""
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"showFocus" "0"
+9
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,32,5,75,0,0,0,0,0,Negrita
+LANG:10011 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10009 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10008 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10018 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10005 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10000 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10027 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+0  186.5036621093747 157.6512052593134 249.5036621093744 220.6512052593134
+
+T 
+9
+LANG:10001 1 F
+LANG:10010 1 F
+LANG:10011 1 F
+LANG:10009 1 F
+LANG:10008 1 F
+LANG:10018 1 F
+LANG:10005 1 F
+LANG:10000 1 F
+LANG:10027 2 а
+"main()
+{
+  keyPressed(this.text);
+}" 0
+ E E E
+13 20
+"Key_G"
+""
+1 247.6286621093748 160 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Transparent" E E
+ E E
+19 0 0 0 0 0
+E E E
+1
+9
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+8
+"hoverfclr" "N \"LIB_IRC_BLANCO\""
+"hoverbclr" "N \"AZUL_01\""
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"showFocus" "0"
+9
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,32,5,75,0,0,0,0,0,Negrita
+LANG:10011 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10009 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10008 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10018 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10005 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10000 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10027 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+0  245.6286621093745 157.6512052593134 308.6286621093747 220.6512052593134
+
+T 
+9
+LANG:10001 1 G
+LANG:10010 1 G
+LANG:10011 1 G
+LANG:10009 1 G
+LANG:10008 1 G
+LANG:10018 1 G
+LANG:10005 1 G
+LANG:10000 1 G
+LANG:10027 2 п
+"main()
+{
+  keyPressed(this.text);
+}" 0
+ E E E
+13 21
+"Key_H"
+""
+1 306.4411621093748 160 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Transparent" E E
+ E E
+20 0 0 0 0 0
+E E E
+1
+9
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+8
+"hoverfclr" "N \"LIB_IRC_BLANCO\""
+"hoverbclr" "N \"AZUL_01\""
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"showFocus" "0"
+9
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,32,5,75,0,0,0,0,0,Negrita
+LANG:10011 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10009 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10008 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10018 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10005 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10000 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10027 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+0  304.4411621093748 157.6512052593134 367.4411621093745 220.6512052593134
+
+T 
+9
+LANG:10001 1 H
+LANG:10010 1 H
+LANG:10011 1 H
+LANG:10009 1 H
+LANG:10008 1 H
+LANG:10018 1 H
+LANG:10005 1 H
+LANG:10000 1 H
+LANG:10027 2 р
+"main()
+{
+  keyPressed(this.text);
+}" 0
+ E E E
+13 22
+"Key_J"
+""
+1 365.5974121093748 160 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Transparent" E E
+ E E
+21 0 0 0 0 0
+E E E
+1
+9
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+8
+"hoverfclr" "N \"LIB_IRC_BLANCO\""
+"hoverbclr" "N \"AZUL_01\""
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"showFocus" "0"
+9
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,32,5,75,0,0,0,0,0,Negrita
+LANG:10011 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10009 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10008 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10018 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10005 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10000 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10027 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+0  363.5974121093746 157.6512052593134 426.5974121093746 220.6512052593134
+
+T 
+9
+LANG:10001 1 J
+LANG:10010 1 J
+LANG:10011 1 J
+LANG:10009 1 J
+LANG:10008 1 J
+LANG:10018 1 J
+LANG:10005 1 J
+LANG:10000 1 J
+LANG:10027 2 о
+"main()
+{
+  keyPressed(this.text);
+}" 0
+ E E E
+13 23
+"Key_K"
+""
+1 426.419555664062 159.9999999999999 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Transparent" E E
+ E E
+22 0 0 0 0 0
+E E E
+1
+9
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+8
+"hoverfclr" "N \"LIB_IRC_BLANCO\""
+"hoverbclr" "N \"AZUL_01\""
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"showFocus" "0"
+9
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,32,5,75,0,0,0,0,0,Negrita
+LANG:10011 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10009 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10008 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10018 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10005 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10000 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10027 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+0  424.4195556640618 157.6512052593133 487.4195556640618 220.6512052593133
+
+T 
+9
+LANG:10001 1 K
+LANG:10010 1 K
+LANG:10011 1 K
+LANG:10009 1 K
+LANG:10008 1 K
+LANG:10018 1 K
+LANG:10005 1 K
+LANG:10000 1 K
+LANG:10027 2 л
+"main()
+{
+  keyPressed(this.text);
+}" 0
+ E E E
+13 24
+"Key_L"
+""
+1 485.458618164062 159.9999999999999 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Transparent" E E
+ E E
+23 0 0 0 0 0
+E E E
+1
+9
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+8
+"hoverfclr" "N \"LIB_IRC_BLANCO\""
+"hoverbclr" "N \"AZUL_01\""
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"showFocus" "0"
+9
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,32,5,75,0,0,0,0,0,Negrita
+LANG:10011 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10009 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10008 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10018 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10005 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10000 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10027 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+0  483.4586181640619 157.6512052593133 546.458618164062 220.6512052593133
+
+T 
+9
+LANG:10001 1 L
+LANG:10010 1 L
+LANG:10011 1 L
+LANG:10009 1 L
+LANG:10008 1 L
+LANG:10018 1 L
+LANG:10005 1 L
+LANG:10000 1 L
+LANG:10027 2 д
+"main()
+{
+  keyPressed(this.text);
+}" 0
+ E E E
+13 25
+"Key_OE"
+""
+1 544.744018554687 159.9999999999999 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Transparent" E E
+ E E
+24 0 0 0 0 0
+E E E
+1
+9
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+8
+"hoverfclr" "N \"LIB_IRC_BLANCO\""
+"hoverbclr" "N \"AZUL_01\""
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"showFocus" "0"
+9
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,32,5,75,0,0,0,0,0,Negrita
+LANG:10011 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10009 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10008 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10018 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10005 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10000 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10027 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+0  542.7440185546868 157.6512052593133 605.744018554687 220.6512052593133
+
+T 
+9
+LANG:10001 1 ;
+LANG:10010 1 ;
+LANG:10011 2 Ö
+LANG:10009 1 ;
+LANG:10008 1 ;
+LANG:10018 1 ;
+LANG:10005 1 ;
+LANG:10000 2 Ö
+LANG:10027 2 ж
+"main()
+{
+  keyPressed(this.text);
+}" 0
+ E E E
+13 26
+"Key_AE"
+""
+1 603.487915039062 159.9999999999999 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Transparent" E E
+ E E
+25 0 0 0 0 0
+E E E
+1
+9
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+8
+"hoverfclr" "N \"LIB_IRC_BLANCO\""
+"hoverbclr" "N \"AZUL_01\""
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"showFocus" "0"
+9
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,32,5,75,0,0,0,0,0,Negrita
+LANG:10011 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10009 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10008 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10018 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10005 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10000 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10027 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+0  601.4879150390618 157.6512052593133 664.4879150390619 220.6512052593133
+
+T 
+9
+LANG:10001 1 :
+LANG:10010 1 :
+LANG:10011 2 Ä
+LANG:10009 1 :
+LANG:10008 1 :
+LANG:10018 1 :
+LANG:10005 1 :
+LANG:10000 2 Ä
+LANG:10027 2 э
+"main()
+{
+  keyPressed(this.text);
+}" 0
+ E E E
+13 27
+"Key_Y"
+""
+1 129.7536621093744 220 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Transparent" E E
+ E E
+26 0 0 0 0 0
+E E E
+1
+9
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+8
+"hoverfclr" "N \"LIB_IRC_BLANCO\""
+"hoverbclr" "N \"AZUL_01\""
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"showFocus" "0"
+9
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,32,5,75,0,0,0,0,0,Negrita
+LANG:10011 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10009 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10008 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10018 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10005 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10000 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10027 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+0  127.7536621093744 217.6512052593134 190.7536621093744 280.6512052593132
+
+T 
+9
+LANG:10001 1 Z
+LANG:10010 1 Z
+LANG:10011 1 Y
+LANG:10009 1 Z
+LANG:10008 1 Z
+LANG:10018 1 Z
+LANG:10005 1 Z
+LANG:10000 1 Y
+LANG:10027 2 я
+"main()
+{
+  keyPressed(this.text);
+}" 0
+ E E E
+13 28
+"Key_X"
+""
+1 188.5036621093747 220 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Transparent" E E
+ E E
+27 0 0 0 0 0
+E E E
+1
+9
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+8
+"hoverfclr" "N \"LIB_IRC_BLANCO\""
+"hoverbclr" "N \"AZUL_01\""
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"showFocus" "0"
+9
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,32,5,75,0,0,0,0,0,Negrita
+LANG:10011 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10009 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10008 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10018 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10005 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10000 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10027 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+0  186.5036621093747 217.6512052593134 249.5036621093744 280.6512052593132
+
+T 
+9
+LANG:10001 1 X
+LANG:10010 1 X
+LANG:10011 1 X
+LANG:10009 1 X
+LANG:10008 1 X
+LANG:10018 1 X
+LANG:10005 1 X
+LANG:10000 1 X
+LANG:10027 2 ч
+"main()
+{
+  keyPressed(this.text);
+}" 0
+ E E E
+13 29
+"Key_C"
+""
+1 247.6286621093748 220.0000000000001 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Transparent" E E
+ E E
+28 0 0 0 0 0
+E E E
+1
+9
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+8
+"hoverfclr" "N \"LIB_IRC_BLANCO\""
+"hoverbclr" "N \"AZUL_01\""
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"showFocus" "0"
+9
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,32,5,75,0,0,0,0,0,Negrita
+LANG:10011 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10009 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10008 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10018 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10005 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10000 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10027 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+0  245.6286621093745 217.6512052593135 308.6286621093747 280.6512052593132
+
+T 
+9
+LANG:10001 1 C
+LANG:10010 1 C
+LANG:10011 1 C
+LANG:10009 1 C
+LANG:10008 1 C
+LANG:10018 1 C
+LANG:10005 1 C
+LANG:10000 1 C
+LANG:10027 2 с
+"main()
+{
+  keyPressed(this.text);
+}" 0
+ E E E
+13 30
+"Key_V"
+""
+1 306.4411621093748 220.0000000000001 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Transparent" E E
+ E E
+29 0 0 0 0 0
+E E E
+1
+9
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+8
+"hoverfclr" "N \"LIB_IRC_BLANCO\""
+"hoverbclr" "N \"AZUL_01\""
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"showFocus" "0"
+9
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,32,5,75,0,0,0,0,0,Negrita
+LANG:10011 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10009 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10008 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10018 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10005 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10000 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10027 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+0  304.4411621093748 217.6512052593135 367.4411621093745 280.6512052593132
+
+T 
+9
+LANG:10001 1 V
+LANG:10010 1 V
+LANG:10011 1 V
+LANG:10009 1 V
+LANG:10008 1 V
+LANG:10018 1 V
+LANG:10005 1 V
+LANG:10000 1 V
+LANG:10027 2 м
+"main()
+{
+  keyPressed(this.text);
+}" 0
+ E E E
+13 31
+"Key_B"
+""
+1 365.5974121093748 220.0000000000001 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Transparent" E E
+ E E
+30 0 0 0 0 0
+E E E
+1
+9
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+8
+"hoverfclr" "N \"LIB_IRC_BLANCO\""
+"hoverbclr" "N \"AZUL_01\""
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"showFocus" "0"
+9
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,32,5,75,0,0,0,0,0,Negrita
+LANG:10011 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10009 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10008 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10018 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10005 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10000 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10027 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+0  363.5974121093746 217.6512052593135 426.5974121093746 280.6512052593132
+
+T 
+9
+LANG:10001 1 B
+LANG:10010 1 B
+LANG:10011 1 B
+LANG:10009 1 B
+LANG:10008 1 B
+LANG:10018 1 B
+LANG:10005 1 B
+LANG:10000 1 B
+LANG:10027 2 и
+"main()
+{
+  keyPressed(this.text);
+}" 0
+ E E E
+13 32
+"Key_N"
+""
+1 426.419555664062 219.9999999999999 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Transparent" E E
+ E E
+31 0 0 0 0 0
+E E E
+1
+9
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+8
+"hoverfclr" "N \"LIB_IRC_BLANCO\""
+"hoverbclr" "N \"AZUL_01\""
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"showFocus" "0"
+9
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,32,5,75,0,0,0,0,0,Negrita
+LANG:10011 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10009 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10008 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10018 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10005 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10000 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10027 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+0  424.4195556640618 217.6512052593133 487.4195556640618 280.6512052593131
+
+T 
+9
+LANG:10001 1 N
+LANG:10010 1 N
+LANG:10011 1 N
+LANG:10009 1 N
+LANG:10008 1 N
+LANG:10018 1 N
+LANG:10005 1 N
+LANG:10000 1 N
+LANG:10027 2 т
+"main()
+{
+  keyPressed(this.text);
+}" 0
+ E E E
+13 33
+"Key_M"
+""
+1 485.458618164062 219.9999999999999 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Transparent" E E
+ E E
+32 0 0 0 0 0
+E E E
+1
+9
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+8
+"hoverfclr" "N \"LIB_IRC_BLANCO\""
+"hoverbclr" "N \"AZUL_01\""
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"showFocus" "0"
+9
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,32,5,75,0,0,0,0,0,Negrita
+LANG:10011 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10009 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10008 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10018 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10005 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10000 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10027 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+0  483.4586181640619 217.6512052593133 546.458618164062 280.6512052593131
+
+T 
+9
+LANG:10001 1 M
+LANG:10010 1 M
+LANG:10011 1 M
+LANG:10009 1 M
+LANG:10008 1 M
+LANG:10018 1 M
+LANG:10005 1 M
+LANG:10000 1 M
+LANG:10027 2 ь
+"main()
+{
+  keyPressed(this.text);
+}" 0
+ E E E
+13 34
+"Space"
+""
+1 164.9041297935104 309.9999999999999 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Transparent" E E
+ E E
+33 0 0 0 0 0
+E E E
+1
+9
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+8
+"hoverfclr" "N \"LIB_IRC_BLANCO\""
+"hoverbclr" "N \"AZUL_01\""
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"showFocus" "0"
+9
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10011 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10009 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10008 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10018 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10005 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10000 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10027 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+0  128.0958702064896 277.9999999999997 427.0958702064901 340.9999999999997
+
+P 
+4294967295
+"pictures/iconos/botoneras/Iconos/espacio.svg"
+9
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+"main()
+{
+  keyPressed(\" \");
+}" 0
+ E E E
+13 35
+"CapsLock"
+""
+1 0.499999999999547 220.1512052593135 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Transparent" E E
+ E E
+34 0 0 0 16777252 0
+E E E
+1
+9
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+9
+"hoverfclr" "N \"LIB_IRC_BLANCO\""
+"hoverbclr" "N \"AZUL_01\""
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"showFocus" "0"
+"isToggle" ""
+9
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,32,5,75,0,0,0,0,0,Negrita
+LANG:10011 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10009 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10008 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10018 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10005 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10000 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10027 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+0  -2.000000000000455 217.6512052593135 130.9999999999995 280.6512052593132
+
+T 
+9
+LANG:10001 5 SHIFT
+LANG:10010 5 MAYUS
+LANG:10011 3 ⮸
+LANG:10009 3 ⮸
+LANG:10008 3 ⮸
+LANG:10018 3 ⮸
+LANG:10005 3 ⮸
+LANG:10000 3 ⮸
+LANG:10027 3 ⮸
+"main(mapping event)
+{
+  this.backCol = this.toggleState ? \"LIB_IRC_AZULTRANS_01\" : \"\";
+  switchToCase(this.toggleState);
+}" 0
+ E E E
+13 37
+"Key_Dot"
+""
+1 603.487915039062 219.9999999999999 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Transparent" E E
+ E E
+36 0 0 0 0 0
+E E E
+1
+9
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+8
+"hoverfclr" "N \"LIB_IRC_BLANCO\""
+"hoverbclr" "N \"AZUL_01\""
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"showFocus" "0"
+9
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,32,5,75,0,0,0,0,0,Negrita
+LANG:10011 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10009 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10008 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10018 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10005 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10000 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10027 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+0  601.4879150390618 217.6512052593133 664.4879150390619 280.6512052593131
+
+T 
+9
+LANG:10001 1 .
+LANG:10010 1 .
+LANG:10011 1 .
+LANG:10009 1 .
+LANG:10008 1 .
+LANG:10018 1 .
+LANG:10005 1 .
+LANG:10000 1 .
+LANG:10027 2 ю
+"main()
+{
+  keyPressed(this.text);
+}" 0
+ E E E
+13 38
+"Key_Comma"
+""
+1 544.744018554687 219.9999999999999 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Transparent" E E
+ E E
+37 0 0 0 0 0
+E E E
+1
+9
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+8
+"hoverfclr" "N \"LIB_IRC_BLANCO\""
+"hoverbclr" "N \"AZUL_01\""
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"showFocus" "0"
+9
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,32,5,75,0,0,0,0,0,Negrita
+LANG:10011 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10009 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10008 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10018 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10005 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10000 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10027 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+0  542.7440185546868 217.6512052593133 605.744018554687 280.6512052593131
+
+T 
+9
+LANG:10001 1 ,
+LANG:10010 1 ,
+LANG:10011 1 ,
+LANG:10009 1 ,
+LANG:10008 1 ,
+LANG:10018 1 ,
+LANG:10005 1 ,
+LANG:10000 1 ,
+LANG:10027 2 б
+"main()
+{
+  keyPressed(this.text);
+}" 0
+ E E E
+13 39
+"CursorLeft"
+""
+1 426.419555664062 280.3487947406866 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Transparent" E E
+ E E
+38 0 0 0 0 0
+E E E
+1
+9
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+8
+"hoverfclr" "N \"LIB_IRC_BLANCO\""
+"hoverbclr" "N \"AZUL_01\""
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"showFocus" "0"
+9
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,32,5,75,0,0,0,0,0,Negrita
+LANG:10011 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10009 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10008 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10018 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10005 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10000 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10027 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+0  424.4195556640618 277.9999999999997 487.4195556640618 340.9999999999997
+
+T 
+9
+LANG:10001 3 ←
+LANG:10010 3 ←
+LANG:10011 3 ←
+LANG:10009 3 ⇦
+LANG:10008 3 ⇦
+LANG:10018 3 ⇦
+LANG:10005 3 ⇦
+LANG:10000 3 ⇦
+LANG:10027 3 ⇦
+"main()
+{
+  sendKeyClick(\"\", KEY_LEFT);
+}" 0
+ E E E
+13 40
+"CursorRight"
+""
+1 485.4586181640619 280.3487947406866 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Transparent" E E
+ E E
+39 0 0 0 0 0
+E E E
+1
+9
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+8
+"hoverfclr" "N \"LIB_IRC_BLANCO\""
+"hoverbclr" "N \"AZUL_01\""
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"showFocus" "0"
+9
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,32,5,75,0,0,0,0,0,Negrita
+LANG:10011 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10009 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10008 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10018 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10005 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10000 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10027 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+0  483.4586181640618 277.9999999999997 546.4586181640619 340.9999999999997
+
+T 
+9
+LANG:10001 3 →
+LANG:10010 3 →
+LANG:10011 3 →
+LANG:10009 3 ⇨
+LANG:10008 3 ⇨
+LANG:10018 3 ⇨
+LANG:10005 3 ⇨
+LANG:10000 3 ⇨
+LANG:10027 3 ⇨
+"main()
+{
+  sendKeyClick(\"\", KEY_RIGHT);
+}" 0
+ E E E
+13 41
+"Key_Sym"
+""
+1 13 308.3487947406864 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Transparent" E E
+ E E
+40 0 0 0 0 0
+E E E
+1
+9
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+9
+"hoverfclr" "N \"LIB_IRC_BLANCO\""
+"hoverbclr" "N \"AZUL_01\""
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"showFocus" "0"
+"isToggle" ""
+9
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,32,5,75,0,0,0,0,0,Negrita
+LANG:10011 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10009 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10008 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10018 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10005 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10000 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10027 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+0  -2 277.9999999999998 131 340.9999999999998
+
+T 
+9
+LANG:10001 3 @$%
+LANG:10010 3 @$%
+LANG:10011 3 @$%
+LANG:10009 3 @$%
+LANG:10008 3 @$%
+LANG:10018 3 @$%
+LANG:10005 3 @$%
+LANG:10000 3 @$%
+LANG:10027 3 @$%
+"main(mapping event)
+{
+  if(this.toggleState)  showSymbols();
+  else showNumbers();
+}" 0
+ E E E
+13 43
+"Key_Exclam"
+""
+1 544.744018554687 280.3487947406866 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Transparent" E E
+ E E
+42 0 0 0 0 0
+E E E
+1
+9
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+8
+"hoverfclr" "N \"LIB_IRC_BLANCO\""
+"hoverbclr" "N \"AZUL_01\""
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"showFocus" "0"
+9
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,32,5,75,0,0,0,0,0,Negrita
+LANG:10011 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10009 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10008 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10018 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10005 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10000 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10027 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+0  542.7440185546868 277.9999999999997 605.744018554687 340.9999999999997
+
+T 
+9
+LANG:10001 1 !
+LANG:10010 1 !
+LANG:10011 1 !
+LANG:10009 1 !
+LANG:10008 1 !
+LANG:10018 1 !
+LANG:10005 1 !
+LANG:10000 1 !
+LANG:10027 1 !
+"main()
+{
+  keyPressed(this.text);
+}" 0
+ E E E
+13 44
+"Key_Question"
+""
+1 603.487915039062 280.3487947406866 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Transparent" E E
+ E E
+43 0 0 0 0 0
+E E E
+1
+9
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+8
+"hoverfclr" "N \"LIB_IRC_BLANCO\""
+"hoverbclr" "N \"AZUL_01\""
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"showFocus" "0"
+9
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,32,5,75,0,0,0,0,0,Negrita
+LANG:10011 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10009 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10008 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10018 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10005 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10000 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10027 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+0  601.4879150390618 277.9999999999997 664.4879150390619 340.9999999999997
+
+T 
+9
+LANG:10001 1 ?
+LANG:10010 1 ?
+LANG:10011 1 ?
+LANG:10009 1 ?
+LANG:10008 1 ?
+LANG:10018 1 ?
+LANG:10005 1 ?
+LANG:10000 1 ?
+LANG:10027 1 ?
+"main()
+{
+  keyPressed(this.text);
+}" 0
+ E E E
+13 45
+"Key_3"
+""
+1 129.5036621093744 55 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Transparent" E E
+ E E
+44 0 0 0 0 0
+E E E
+1
+9
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+8
+"hoverfclr" "N \"LIB_IRC_BLANCO\""
+"hoverbclr" "N \"AZUL_01\""
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"showFocus" "0"
+9
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,32,5,75,0,0,0,0,0,Negrita
+LANG:10011 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10009 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10008 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10018 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10005 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10000 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10027 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+0  127.7536621093744 52.99999999999999 190.7536621093744 101
+
+T 
+9
+LANG:10001 1 3
+LANG:10010 1 3
+LANG:10011 1 3
+LANG:10009 1 3
+LANG:10008 1 3
+LANG:10018 1 3
+LANG:10005 1 3
+LANG:10000 1 3
+LANG:10027 1 3
+"main()
+{
+  keyPressed(this.text);
+}
+" 0
+ E E E
+13 46
+"Key_5"
+""
+1 247.6286621093748 55 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Transparent" E E
+ E E
+45 0 0 0 0 0
+E E E
+1
+9
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+8
+"hoverfclr" "N \"LIB_IRC_BLANCO\""
+"hoverbclr" "N \"AZUL_01\""
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"showFocus" "0"
+9
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,32,5,75,0,0,0,0,0,Negrita
+LANG:10011 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10009 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10008 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10018 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10005 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10000 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10027 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+0  245.6286621093745 52.99999999999999 308.6286621093747 101
+
+T 
+9
+LANG:10001 1 5
+LANG:10010 1 5
+LANG:10011 1 5
+LANG:10009 1 5
+LANG:10008 1 5
+LANG:10018 1 5
+LANG:10005 1 5
+LANG:10000 1 5
+LANG:10027 1 5
+"main()
+{
+  keyPressed(this.text);
+}
+" 0
+ E E E
+13 47
+"Key_6"
+""
+1 306.1911621093748 55 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Transparent" E E
+ E E
+46 0 0 0 0 0
+E E E
+1
+9
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+8
+"hoverfclr" "N \"LIB_IRC_BLANCO\""
+"hoverbclr" "N \"AZUL_01\""
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"showFocus" "0"
+9
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,32,5,75,0,0,0,0,0,Negrita
+LANG:10011 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10009 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10008 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10018 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10005 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10000 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10027 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+0  304.4411621093748 52.99999999999999 367.4411621093745 101
+
+T 
+9
+LANG:10001 1 6
+LANG:10010 1 6
+LANG:10011 1 6
+LANG:10009 1 6
+LANG:10008 1 6
+LANG:10018 1 6
+LANG:10005 1 6
+LANG:10000 1 6
+LANG:10027 1 6
+"main()
+{
+  if (this.text == \"&&\")  keyPressed(\"&\");
+  else keyPressed(this.text);
+}
+" 0
+ E E E
+13 48
+"Key_4"
+""
+1 188.5036621093747 55 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Transparent" E E
+ E E
+47 0 0 0 0 0
+E E E
+1
+9
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+8
+"hoverfclr" "N \"LIB_IRC_BLANCO\""
+"hoverbclr" "N \"AZUL_01\""
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"showFocus" "0"
+9
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,32,5,75,0,0,0,0,0,Negrita
+LANG:10011 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10009 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10008 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10018 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10005 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10000 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10027 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+0  186.5036621093747 52.99999999999999 249.5036621093744 101
+
+T 
+9
+LANG:10001 1 4
+LANG:10010 1 4
+LANG:10011 1 4
+LANG:10009 1 4
+LANG:10008 1 4
+LANG:10018 1 4
+LANG:10005 1 4
+LANG:10000 1 4
+LANG:10027 1 4
+"main()
+{
+  keyPressed(this.text);
+}
+" 0
+ E E E
+13 49
+"Key_7"
+""
+1 365.3474121093748 55 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Transparent" E E
+ E E
+48 0 0 0 0 0
+E E E
+1
+9
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+8
+"hoverfclr" "N \"LIB_IRC_BLANCO\""
+"hoverbclr" "N \"AZUL_01\""
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"showFocus" "0"
+9
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,32,5,75,0,0,0,0,0,Negrita
+LANG:10011 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10009 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10008 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10018 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10005 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10000 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10027 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+0  363.5974121093746 52.99999999999999 426.5974121093746 101
+
+T 
+9
+LANG:10001 1 7
+LANG:10010 1 7
+LANG:10011 1 7
+LANG:10009 1 7
+LANG:10008 1 7
+LANG:10018 1 7
+LANG:10005 1 7
+LANG:10000 1 7
+LANG:10027 1 7
+"main()
+{
+  keyPressed(this.text);
+}
+" 0
+ E E E
+13 50
+"Key_8"
+""
+1 426.169555664062 54.99999999999989 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Transparent" E E
+ E E
+49 0 0 0 0 0
+E E E
+1
+9
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+8
+"hoverfclr" "N \"LIB_IRC_BLANCO\""
+"hoverbclr" "N \"AZUL_01\""
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"showFocus" "0"
+9
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,32,5,75,0,0,0,0,0,Negrita
+LANG:10011 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10009 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10008 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10018 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10005 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10000 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10027 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+0  424.4195556640618 52.99999999999988 487.4195556640618 100.9999999999999
+
+T 
+9
+LANG:10001 1 8
+LANG:10010 1 8
+LANG:10011 1 8
+LANG:10009 1 8
+LANG:10008 1 8
+LANG:10018 1 8
+LANG:10005 1 8
+LANG:10000 1 8
+LANG:10027 1 8
+"main()
+{
+  keyPressed(this.text);
+}
+" 0
+ E E E
+13 51
+"Key_9"
+""
+1 485.208618164062 54.99999999999989 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Transparent" E E
+ E E
+50 0 0 0 0 0
+E E E
+1
+9
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+8
+"hoverfclr" "N \"LIB_IRC_BLANCO\""
+"hoverbclr" "N \"AZUL_01\""
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"showFocus" "0"
+9
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,32,5,75,0,0,0,0,0,Negrita
+LANG:10011 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10009 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10008 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10018 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10005 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10000 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10027 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+0  483.4586181640619 52.99999999999988 546.458618164062 100.9999999999999
+
+T 
+9
+LANG:10001 1 9
+LANG:10010 1 9
+LANG:10011 1 9
+LANG:10009 1 9
+LANG:10008 1 9
+LANG:10018 1 9
+LANG:10005 1 9
+LANG:10000 1 9
+LANG:10027 1 9
+"main()
+{
+  keyPressed(this.text);
+}
+" 0
+ E E E
+13 52
+"Key_Equal"
+""
+1 603.237915039062 54.99999999999988 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Transparent" E E
+ E E
+51 0 0 0 0 0
+E E E
+1
+9
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+8
+"hoverfclr" "N \"LIB_IRC_BLANCO\""
+"hoverbclr" "N \"AZUL_01\""
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"showFocus" "0"
+9
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,32,5,75,0,0,0,0,0,Negrita
+LANG:10011 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10009 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10008 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10018 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10005 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10000 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10027 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+0  601.4879150390618 52.99999999999988 664.4879150390619 100.9999999999999
+
+T 
+9
+LANG:10001 1 _
+LANG:10010 1 _
+LANG:10011 1 =
+LANG:10009 1 _
+LANG:10008 1 _
+LANG:10018 1 _
+LANG:10005 1 _
+LANG:10000 1 =
+LANG:10027 1 =
+"main()
+{
+  keyPressed(this.text);
+}
+" 0
+ E E E
+13 53
+"Key_ParenOpen"
+""
+1 721.4903564453123 54.99999999999989 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Transparent" E E
+ E E
+52 0 0 0 0 0
+E E E
+1
+9
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+8
+"hoverfclr" "N \"LIB_IRC_BLANCO\""
+"hoverbclr" "N \"AZUL_01\""
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"showFocus" "0"
+9
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,32,5,75,0,0,0,0,0,Negrita
+LANG:10011 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10009 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10008 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10018 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10005 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10000 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10027 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+0  719.740356445312 52.99999999999988 782.7403564453123 100.9999999999999
+
+T 
+9
+LANG:10001 1 (
+LANG:10010 1 (
+LANG:10011 1 (
+LANG:10009 1 (
+LANG:10008 1 (
+LANG:10018 1 (
+LANG:10005 1 (
+LANG:10000 1 (
+LANG:10027 1 (
+"main()
+{
+  keyPressed(this.text);
+}
+" 0
+ E E E
+13 54
+"Key_ParenClosed"
+""
+1 780.7421874999997 54.99999999999989 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Transparent" E E
+ E E
+53 0 0 0 0 0
+E E E
+1
+9
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+8
+"hoverfclr" "N \"LIB_IRC_BLANCO\""
+"hoverbclr" "N \"AZUL_01\""
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"showFocus" "0"
+9
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,32,5,75,0,0,0,0,0,Negrita
+LANG:10011 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10009 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10008 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10018 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10005 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10000 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10027 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+0  778.9921874999995 52.99999999999988 841.9921874999994 100.9999999999999
+
+T 
+9
+LANG:10001 1 )
+LANG:10010 1 )
+LANG:10011 1 )
+LANG:10009 1 )
+LANG:10008 1 )
+LANG:10018 1 )
+LANG:10005 1 )
+LANG:10000 1 )
+LANG:10027 1 )
+"main()
+{
+  keyPressed(this.text);
+}
+" 0
+ E E E
+13 55
+"Key_Plus"
+""
+1 721.7403564453123 159.9999999999999 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Transparent" E E
+ E E
+54 0 0 0 0 0
+E E E
+1
+9
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+8
+"hoverfclr" "N \"LIB_IRC_BLANCO\""
+"hoverbclr" "N \"AZUL_01\""
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"showFocus" "0"
+9
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,32,5,75,0,0,0,0,0,Negrita
+LANG:10011 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10009 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10008 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10018 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10005 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10000 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10027 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+0  719.740356445312 157.6512052593133 782.7403564453123 220.6512052593133
+
+T 
+9
+LANG:10001 1 +
+LANG:10010 1 +
+LANG:10011 1 +
+LANG:10009 1 +
+LANG:10008 1 +
+LANG:10018 1 +
+LANG:10005 1 +
+LANG:10000 1 +
+LANG:10027 1 +
+"main()
+{
+  keyPressed(this.text);
+}" 0
+ E E E
+13 56
+"Key_Minus"
+""
+1 780.9921874999997 159.9999999999999 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Transparent" E E
+ E E
+55 0 0 0 0 0
+E E E
+1
+9
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+8
+"hoverfclr" "N \"LIB_IRC_BLANCO\""
+"hoverbclr" "N \"AZUL_01\""
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"showFocus" "0"
+9
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,32,5,75,0,0,0,0,0,Negrita
+LANG:10011 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10009 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10008 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10018 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10005 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10000 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10027 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+0  778.9921874999995 157.6512052593133 841.9921874999994 220.6512052593133
+
+T 
+9
+LANG:10001 1 -
+LANG:10010 1 -
+LANG:10011 1 -
+LANG:10009 1 -
+LANG:10008 1 -
+LANG:10018 1 -
+LANG:10005 1 -
+LANG:10000 1 -
+LANG:10027 1 -
+"main()
+{
+  keyPressed(this.text);
+}" 0
+ E E E
+13 57
+"Key_X3"
+""
+1 662.490356445312 99.84879474068649 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Transparent" E E
+ E E
+56 0 0 0 0 0
+E E E
+1
+9
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+8
+"hoverfclr" "N \"LIB_IRC_BLANCO\""
+"hoverbclr" "N \"AZUL_01\""
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"showFocus" "0"
+9
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,32,5,75,0,0,0,0,0,Negrita
+LANG:10011 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10009 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10008 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10018 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10005 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10000 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10027 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+0  660.490356445312 97.49999999999989 723.4903564453119 160.4999999999999
+
+T 
+9
+LANG:10001 1 @
+LANG:10010 1 @
+LANG:10011 1 *
+LANG:10009 1 @
+LANG:10008 1 @
+LANG:10018 1 @
+LANG:10005 1 @
+LANG:10000 1 *
+LANG:10027 2 ъ
+"main()
+{
+  keyPressed(this.text);
+}" 0
+ E E E
+13 58
+"Key_X2"
+""
+1 662.4903564453119 159.9999999999999 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Transparent" E E
+ E E
+57 0 0 0 0 0
+E E E
+1
+9
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+8
+"hoverfclr" "N \"LIB_IRC_BLANCO\""
+"hoverbclr" "N \"AZUL_01\""
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"showFocus" "0"
+9
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,32,5,75,0,0,0,0,0,Negrita
+LANG:10011 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10009 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10008 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10018 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10005 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10000 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10027 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+0  660.4903564453119 157.6512052593133 723.4903564453118 220.6512052593133
+
+T 
+9
+LANG:10001 1 #
+LANG:10010 1 #
+LANG:10011 1 #
+LANG:10009 1 #
+LANG:10008 1 #
+LANG:10018 1 #
+LANG:10005 1 #
+LANG:10000 1 #
+LANG:10027 1 ,
+"main()
+{
+  keyPressed(this.text);
+}" 0
+ E E E
+13 59
+"Key_X1"
+""
+1 662.4903564453119 219.9999999999999 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Transparent" E E
+ E E
+58 0 0 0 0 0
+E E E
+1
+9
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+8
+"hoverfclr" "N \"LIB_IRC_BLANCO\""
+"hoverbclr" "N \"AZUL_01\""
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"showFocus" "0"
+9
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,32,5,75,0,0,0,0,0,Negrita
+LANG:10011 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10009 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10008 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10018 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10005 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10000 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10027 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+0  660.4903564453119 217.6512052593133 723.4903564453118 280.6512052593131
+
+T 
+9
+LANG:10001 1 /
+LANG:10010 1 /
+LANG:10011 1 _
+LANG:10009 1 /
+LANG:10008 1 /
+LANG:10018 1 /
+LANG:10005 1 /
+LANG:10000 1 _
+LANG:10027 1 .
+"main()
+{
+  keyPressed(this.text);
+}" 0
+ E E E
+13 60
+"Key_X4"
+""
+1 662.240356445312 54.99999999999989 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Transparent" E E
+ E E
+59 0 0 0 0 0
+E E E
+1
+9
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+8
+"hoverfclr" "N \"LIB_IRC_BLANCO\""
+"hoverbclr" "N \"AZUL_01\""
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"showFocus" "0"
+9
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,32,5,75,0,0,0,0,0,Negrita
+LANG:10011 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10009 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10008 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10018 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10005 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10000 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10027 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+0  660.490356445312 52.99999999999988 723.4903564453119 100.9999999999999
+
+T 
+9
+LANG:10001 1 =
+LANG:10010 1 =
+LANG:10011 2 ß
+LANG:10009 1 =
+LANG:10008 1 =
+LANG:10018 1 =
+LANG:10005 1 =
+LANG:10000 2 ß
+LANG:10027 1 *
+"main()
+{
+  keyPressed(this.text);
+}
+" 0
+ E E E
+13 61
+"PUSH_BUTTON1"
+""
+1 768.0211256760811 307.8632228312306 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Transparent" E E
+ E E
+60 0 0 0 0 0
+E E E
+1
+9
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+9
+"hoverfclr" "N \"LIB_IRC_BLANCO\""
+"hoverbclr" "N \"AZUL_01\""
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"showFocus" "0"
+"isToggle" ""
+9
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,32,5,75,0,0,0,0,0,Negrita
+LANG:10011 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10009 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10008 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10018 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10005 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10000 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10027 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+0  660.4903564453119 277.9999999999997 723.4903564453119 340.9999999999997
+
+T 
+9
+LANG:10001 3 ↨
+LANG:10010 3 ↨
+LANG:10011 3 ↨
+LANG:10009 3 ⇳
+LANG:10008 3 ⇳
+LANG:10018 3 ⇳
+LANG:10005 3 ⇳
+LANG:10000 3 ⇳
+LANG:10027 3 ⇳
+"main(mapping event)
+{
+  int wx, wy, ww, wh;
+  getValue(self, \"windowGeometry\", wx, wy, ww, wh);
+
+  if ( this.toggleState )
+    self.windowGeometry(wx, 0, ww, wh);
+  else
+  {
+    int screenNum = getScreenNumber(wx, wy);
+    int sx, sy, sw, sh;
+    getScreenSize(sw, sh, sx, sy, screenNum);
+
+    self.windowGeometry(wx, sh - wh, ww, wh);
+  }
+}" 0
+ E E E
+14 64
+"txf_valor"
+"txf_standard_1"
+1 80.00000000000004 6.875000000000028 E E E 1 E 1 E N "LIB_IRC_NEGRO" E N "LIB_IRC_BLANCO" E E
+ E E
+63 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+4
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,80}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+6
+LANG:10001 34 Tahoma,-1,21,5,50,0,0,0,0,0,Normal
+LANG:10010 35 Tahoma,-1,21,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10009 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10008 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10018 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  78.00000000000004 5.000000000000028 721.996337890625 39.00000000000003
+3 "0S" 0 0 0 10 0 -1  E "main()
+{
+  this.text($TXT);
+   if ($oculto)
+   {
+     this.format(\"[0S,,,AlignRight|AlignVCenter\");
+   }
+   else
+   {
+     this.format(\"[0s,,,AlignRight|AlignVCenter\");
+   }
+}" 0
+ E
+13 36
+"Enter"
+""
+1 830.6036339393027 241.4999999999998 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Transparent" E E
+ E E
+35 0 0 0 16777220 0
+E E E
+1
+9
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+8
+"hoverfclr" "N \"LIB_IRC_BLANCO\""
+"hoverbclr" "N \"AZUL_01\""
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+9
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10011 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10009 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10008 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10018 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10005 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10000 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10027 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+0  719.7440185546872 217.9999999999999 851.7440185546872 340.9999999999999
+
+P 
+4294967295
+"pictures/iconos/botoneras/Iconos/intro.svg"
+9
+LANG:10001 5 INTRO
+LANG:10010 5 INTRO
+LANG:10011 5 INTRO
+LANG:10009 3 ↵
+LANG:10008 3 ↵
+LANG:10018 3 ↵
+LANG:10005 3 ↵
+LANG:10000 3 ↵
+LANG:10027 3 ↵
+"main(mapping event)
+{
+  getValue(\"txf_valor\",\"text\",valor_teclado);
+  dyn_float valor1;
+  dyn_string valor2;
+  valor2[1] = valor_teclado;
+  dpSet(\"_Ui_\"+myManNum()+\".ReturnValue.Float:_original.._value\",valor1);
+  dpSet(\"_Ui_\"+myManNum()+\".ReturnValue.Text:_original.._value\",valor2);
+  PanelOff();
+}
+" 0
+ E E E
+13 68
+"PUSH_BUTTON2"
+""
+1 761.9981689453123 49.00000000000003 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Transparent" E E
+ E E
+67 0 0 0 0 0
+E E E
+1
+9
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+9
+"hoverbclr" "N \"AZUL_01\""
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"minimumSize" "0 0"
+"maximumSize" "60 45"
+"sizePolicy" "Preferred Preferred"
+"layoutAlignment" "AlignCenter"
+"showFocus" "0"
+9
+LANG:10001 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10010 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10011 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10009 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10008 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10018 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10005 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10000 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10027 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+0  789.7481689453123 3.000000000000028 827.7481689453123 41.00000000000003
+
+P 
+4294967295
+"pictures/iconos/botoneras/borrar.svg"
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+"main()
+{
+  txf_valor.text(\"\");
+}
+" 0
+ E E E
+13 69
+"PUSH_BUTTON3"
+""
+1 734.7401976901469 16.50000000000003 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Transparent" E E
+ E E
+68 0 0 0 0 0
+E E E
+1
+3
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+
+4
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"isToggle" ""
+3
+LANG:10001 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10010 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10011 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  732.996337890625 5.500000000000028 765.996337890625 38.50000000000003
+
+P 
+4294967295
+"pictures/iconos/botoneras/eye_no_visibility_blanco.svg"
+3
+LANG:10001 12 PUSH_BUTTON1
+LANG:10010 12 PUSH_BUTTON1
+LANG:10011 12 PUSH_BUTTON1
+"main(mapping event)
+{
+   if(strpos(txf_valor.format,\"0S\") != 1)
+   {
+
+     string path = getPath(ICONS_REL_PATH, \"iconos/botoneras/eye_visibility_blanco.svg\");
+     this.buttonUpPixmap(path);
+     txf_valor.format(\"[0S,,,AlignRight|AlignVCenter\");
+   }
+   else
+   {
+     string path = getPath(ICONS_REL_PATH, \"iconos/botoneras/eye_no_visibility_blanco.svg\");
+     this.buttonUpPixmap(path);
+     txf_valor.format(\"[0s,,,AlignRight|AlignVCenter]\");
+   }
+
+}
+" 0
+ E E "main()
+{
+  if ($oculto)
+  {
+    string path = getPath(ICONS_REL_PATH, \"iconos/botoneras/eye_visibility_blanco.svg\");
+    this.buttonUpPixmap(path);
+  }
+  else
+  {
+    string path = getPath(ICONS_REL_PATH, \"iconos/botoneras/eye_no_visibility_blanco.svg\");
+    this.buttonUpPixmap(path);
+  }
+}" 0
+
+13 70
+"PUSH_BUTTON4"
+""
+1 12.06249999999932 2.842170943040401e-14 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Transparent" E E
+ E E
+69 0 0 0 27 0
+E E E
+1
+9
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+9
+"hoverbclr" "N \"AZUL_01\""
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"minimumSize" "60 45"
+"maximumSize" "60 45"
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"showFocus" "0"
+9
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10011 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10009 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10008 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10018 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10005 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10000 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10027 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+0  10.06249999999931 -1.999999999999972 73.06249999999932 46.00000000000003
+
+T 
+9
+LANG:10001 3 ESC
+LANG:10010 3 ESC
+LANG:10011 3 ESC
+LANG:10009 1 1
+LANG:10008 1 1
+LANG:10018 1 1
+LANG:10005 1 1
+LANG:10000 1 1
+LANG:10027 1 1
+"main()
+{
+  dyn_float valor1;
+  dyn_string valor2;
+  dpSet(\"_Ui_\"+myManNum()+\".ReturnValue.Float:_original.._value\",valor1);
+  dpSet(\"_Ui_\"+myManNum()+\".ReturnValue.Text:_original.._value\",\"ESC\");
+  PanelOff();
+}
+" 0
+ E E E
+0
+LAYER, 1 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 2 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 3 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 4 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 5 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 6 
+2
+LANG:10001 0 
+LANG:10010 0 
+13 72
+"PUSH_BUTTON5"
+""
+1 -87.3062848052931 234.5 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+71 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  12.06249999999932 97.5 843.0000000000001 101.5
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+13 86
+"PUSH_BUTTON19"
+""
+1 -87.30628480529312 226.6512052593134 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+85 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  12.06249999999932 157.6512052593134 843.0000000000001 161.6512052593134
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+13 100
+"PUSH_BUTTON33"
+""
+1 -87.18370143616875 220.8256026296568 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+99 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  12.06249999999929 217.8256026296568 842.0000000000001 221.8256026296568
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+13 119
+"PUSH_BUTTON52"
+""
+1 29.04932678405704 213.9999999999998 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+118 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  8.250102198158508 277.9999999999998 722 281.9999999999998
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+13 177
+"PUSH_BUTTON110"
+""
+1 -439.3507454992782 176 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+176 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  733 39 827.7481689453123 43
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+13 179
+"PUSH_BUTTON112"
+""
+1 -697.7108353018414 179 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+178 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  12.03124999999955 42 71.03124999999955 46
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+0
+LAYER, 7 
+2
+LANG:10001 0 
+LANG:10010 0 
+13 120
+"PUSH_BUTTON53"
+""
+1 -854.9069209138206 67 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+119 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  68.8351643880203 56 72.8351643880203 98
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+13 121
+"PUSH_BUTTON54"
+""
+1 -795.7420853018411 67 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+120 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  127.9999999999998 56 131.9999999999998 98
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+13 122
+"PUSH_BUTTON55"
+""
+1 -736.867085301841 67 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+121 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  186.8749999999999 56 190.8749999999999 98
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+13 123
+"PUSH_BUTTON56"
+""
+1 -677.8670853018411 67 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+122 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  245.8749999999998 56 249.8749999999998 98
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+13 124
+"PUSH_BUTTON57"
+""
+1 -618.8983353018409 67 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+123 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  304.84375 56 308.84375 98
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+13 125
+"PUSH_BUTTON58"
+""
+1 -559.9954625804866 67 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+124 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  363.7466227213544 56 367.7466227213544 98
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+13 126
+"PUSH_BUTTON59"
+""
+1 -499.1407669424663 67 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+125 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  424.6013183593747 56 428.6013183593747 98
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+13 127
+"PUSH_BUTTON60"
+""
+1 -440.0175979971539 66.99999999999989 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+126 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  483.724487304687 55.99999999999989 487.724487304687 97.99999999999989
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+13 128
+"PUSH_BUTTON61"
+""
+1 -381.0175979971538 66.99999999999989 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+127 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  542.7244873046872 55.99999999999989 546.7244873046872 97.99999999999989
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+13 129
+"PUSH_BUTTON62"
+""
+1 -322.0029495596538 66.99999999999989 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+128 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  601.7391357421872 55.99999999999989 605.7391357421872 97.99999999999989
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+13 130
+"PUSH_BUTTON63"
+""
+1 -263.0017288565288 66.99999999999989 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+129 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  660.7403564453122 55.99999999999989 664.7403564453122 97.99999999999989
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+13 131
+"PUSH_BUTTON64"
+""
+1 -203.7420853018409 66.99999999999989 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+130 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  720 55.99999999999989 724 97.99999999999989
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+13 132
+"PUSH_BUTTON65"
+""
+1 -144.8739822744975 66.99999999999989 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+131 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  778.8681030273434 55.99999999999989 782.8681030273434 97.99999999999989
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+13 133
+"PUSH_BUTTON66"
+""
+1 6.257914698159073 233.9999999999997 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+132 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  128 279.9999999999998 132 338.9999999999998
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+13 134
+"PUSH_BUTTON67"
+""
+1 8.001933252846232 233.9999999999996 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+133 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  483.7440185546872 279.9999999999997 487.7440185546872 338.9999999999997
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+13 135
+"PUSH_BUTTON68"
+""
+1 8.001933252846232 233.9999999999996 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+134 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  542.7440185546872 279.9999999999997 546.7440185546872 338.9999999999997
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+13 136
+"PUSH_BUTTON69"
+""
+1 8.001933252846232 233.9999999999996 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+135 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  601.7440185546872 279.9999999999997 605.7440185546872 338.9999999999997
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+13 137
+"PUSH_BUTTON70"
+""
+1 8.001933252846232 233.9999999999996 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+136 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  660.7440185546872 279.9999999999997 664.7440185546872 338.9999999999997
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+13 138
+"PUSH_BUTTON71"
+""
+1 6.257914698159073 233.6512052593133 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+137 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  128 219.6512052593133 132 278.6512052593133
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+13 139
+"PUSH_BUTTON72"
+""
+1 6.257914698159073 233.6512052593133 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+138 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  187 219.6512052593133 191 278.6512052593133
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+13 140
+"PUSH_BUTTON73"
+""
+1 6.257914698159073 233.6512052593133 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+139 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  246 219.6512052593133 250 278.6512052593133
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+13 141
+"PUSH_BUTTON74"
+""
+1 6.257914698159073 233.6512052593133 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+140 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  305 219.6512052593133 309 278.6512052593133
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+13 142
+"PUSH_BUTTON75"
+""
+1 -21.27671258048703 233.6512052593133 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+141 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  363.4653727213539 219.6512052593133 367.4653727213539 278.6512052593133
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+13 143
+"PUSH_BUTTON76"
+""
+1 7.859233057533695 233.6512052593133 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+142 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  424.6013183593746 219.6512052593133 428.6013183593746 278.6512052593133
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+13 144
+"PUSH_BUTTON77"
+""
+1 8.001933252846232 233.6512052593132 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+143 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  483.7440185546872 219.6512052593132 487.7440185546872 278.6512052593132
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+13 145
+"PUSH_BUTTON78"
+""
+1 8.001933252846232 233.6512052593132 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+144 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  542.7440185546872 219.6512052593132 546.7440185546872 278.6512052593132
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+13 146
+"PUSH_BUTTON79"
+""
+1 8.001933252846232 233.6512052593132 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+145 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  601.7440185546872 219.6512052593132 605.7440185546872 278.6512052593132
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+13 147
+"PUSH_BUTTON80"
+""
+1 8.001933252846232 233.6512052593132 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+146 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  660.7440185546872 219.6512052593132 664.7440185546872 278.6512052593132
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+13 148
+"PUSH_BUTTON81"
+""
+1 7.859233057533695 233.9999999999997 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+147 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  424.6013183593746 279.9999999999998 428.6013183593746 338.9999999999998
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+13 149
+"PUSH_BUTTON82"
+""
+1 4.030579086179603 233.5 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+148 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  68.77266438802053 99.50000000000001 72.77266438802053 158.5
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+13 150
+"PUSH_BUTTON83"
+""
+1 6.257914698159073 233.5 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+149 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  128 99.5 132 158.5
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+13 151
+"PUSH_BUTTON84"
+""
+1 6.257914698159073 233.5 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+150 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  187 99.5 191 158.5
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+13 152
+"PUSH_BUTTON85"
+""
+1 6.257914698159073 233.5 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+151 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  246 99.5 250 158.5
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+13 153
+"PUSH_BUTTON86"
+""
+1 6.257914698159073 233.5 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+152 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  305 99.5 309 158.5
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+13 154
+"PUSH_BUTTON87"
+""
+1 -21.27671258048703 233.5 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+153 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  363.4653727213539 99.50000000000001 367.4653727213539 158.5
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+13 155
+"PUSH_BUTTON88"
+""
+1 7.859233057533695 233.5 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+154 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  424.6013183593746 99.5 428.6013183593746 158.5
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+13 156
+"PUSH_BUTTON89"
+""
+1 8.001933252846232 233.4999999999999 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+155 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  483.7440185546872 99.49999999999989 487.7440185546872 158.4999999999999
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+13 157
+"PUSH_BUTTON90"
+""
+1 8.001933252846232 233.4999999999999 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+156 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  542.7440185546872 99.49999999999989 546.7440185546872 158.4999999999999
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+13 158
+"PUSH_BUTTON91"
+""
+1 8.001933252846232 233.4999999999999 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+157 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  601.7440185546872 99.49999999999989 605.7440185546872 158.4999999999999
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+13 159
+"PUSH_BUTTON92"
+""
+1 8.001933252846232 233.4999999999999 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+158 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  660.7440185546872 99.49999999999989 664.7440185546872 158.4999999999999
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+13 160
+"PUSH_BUTTON93"
+""
+1 8.257914698159073 233.4999999999999 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+159 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  720 99.49999999999989 724 158.4999999999999
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+13 161
+"PUSH_BUTTON94"
+""
+1 -146.6180008291846 12.00000000000003 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+160 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  777.1240844726564 1.000000000000028 781.1240844726564 43.00000000000003
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+13 162
+"PUSH_BUTTON95"
+""
+1 4.030579086179603 243.6512052593134 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+161 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  68.77266438802053 159.6512052593134 72.77266438802053 218.6512052593134
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+13 163
+"PUSH_BUTTON96"
+""
+1 6.257914698159073 243.6512052593134 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+162 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  128 159.6512052593134 132 218.6512052593134
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+13 164
+"PUSH_BUTTON97"
+""
+1 6.257914698159073 243.6512052593134 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+163 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  187 159.6512052593134 191 218.6512052593134
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+13 165
+"PUSH_BUTTON98"
+""
+1 6.257914698159073 243.6512052593134 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+164 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  246 159.6512052593134 250 218.6512052593134
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+13 166
+"PUSH_BUTTON99"
+""
+1 6.257914698159073 233.6512052593134 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+165 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  305 159.6512052593134 309 218.6512052593134
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+13 167
+"PUSH_BUTTON100"
+""
+1 -21.27671258048703 233.6512052593134 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+166 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  363.4653727213539 159.6512052593134 367.4653727213539 218.6512052593134
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+13 168
+"PUSH_BUTTON101"
+""
+1 7.859233057533695 278.6512052593133 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+167 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  424.6013183593746 219.6512052593133 428.6013183593746 278.6512052593133
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+13 169
+"PUSH_BUTTON102"
+""
+1 8.001933252846232 233.6512052593133 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+168 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  483.7440185546872 159.6512052593133 487.7440185546872 218.6512052593133
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+13 170
+"PUSH_BUTTON103"
+""
+1 8.001933252846232 233.6512052593133 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+169 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  542.7440185546872 159.6512052593133 546.7440185546872 218.6512052593133
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+13 171
+"PUSH_BUTTON104"
+""
+1 8.001933252846232 233.6512052593133 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+170 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  601.7440185546872 159.6512052593133 605.7440185546872 218.6512052593133
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+13 172
+"PUSH_BUTTON105"
+""
+1 8.001933252846232 233.6512052593133 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+171 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  660.7440185546872 159.6512052593133 664.7440185546872 218.6512052593133
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+13 173
+"PUSH_BUTTON106"
+""
+1 8.257914698159073 243.6512052593133 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+172 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  720 159.6512052593133 724 218.6512052593133
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+13 174
+"PUSH_BUTTON107"
+""
+1 8.001933252846232 233.6512052593133 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+173 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  778.7440185546872 159.6512052593133 782.7440185546872 218.6512052593133
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+13 175
+"PUSH_BUTTON108"
+""
+1 7.859233057533705 113.6512052593134 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+174 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  424.6013183593747 159.6512052593134 428.6013183593747 218.6512052593134
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+13 176
+"PUSH_BUTTON109"
+""
+1 7.257914698159073 214.9999999999999 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+175 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  720 219.9999999999999 724 338.9999999999999
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+0
+0

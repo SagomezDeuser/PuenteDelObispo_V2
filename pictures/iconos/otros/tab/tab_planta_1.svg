@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="500"
+   height="500"
+   preserveAspectRatio="xMidYMid meet"
+   version="1.1"
+   id="svg21"
+   sodipodi:docname="tab_planta_1.svg"
+   inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)">
+  <metadata
+     id="metadata25">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1920"
+     inkscape:window-height="1057"
+     id="namedview23"
+     showgrid="false"
+     inkscape:zoom="0.24928571"
+     inkscape:cx="700"
+     inkscape:cy="250"
+     inkscape:window-x="1592"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg21" />
+  <defs
+     id="defs3">
+    <path
+       id="bHuHftFjq"
+       d="M 255.43,300.41 243.55,132.04 h 17.64 V 99.87 H 103.31 v 32.17 h 19.56 l -28.12,378 H 82 v 36.82 H 565.6 V 510.04 H 543.77 V 300.41 Z"
+       inkscape:connector-curvature="0" />
+  </defs>
+  <g
+     id="g8">
+    <title
+       id="title5">background</title>
+    <rect
+       id="canvas_background"
+       height="502"
+       width="1402"
+       y="-1"
+       x="-1"
+       style="fill:none" />
+  </g>
+  <g
+     id="svg_1"
+     stroke="null"
+     style="fill:#014898;fill-opacity:1">
+    <g
+       id="svg_2"
+       stroke="null"
+       style="fill:#014898;fill-opacity:1">
+      <g
+         id="svg_3"
+         stroke="null"
+         style="fill:#014898;fill-opacity:1">
+        <use
+           height="100%"
+           width="100%"
+           style="fill:#014898;fill-opacity:1;stroke:#ffffff"
+           xlink:href="#bHuHftFjq"
+           id="svg_4"
+           transform="matrix(0.68982714,0,0,0.68982714,25.434174,30.976964)"
+           y="-5.8607769"
+           x="-2.4160581" />
+        <g
+           id="svg_5"
+           stroke="null"
+           style="fill:#014898;fill-opacity:1">
+          <use
+             height="100%"
+             width="100%"
+             style="fill:#014898;fill-opacity:1;stroke:#ffffff;stroke-opacity:0"
+             xlink:href="#bHuHftFjq"
+             id="svg_6"
+             transform="matrix(0.68982714,0,0,0.68982714,25.434174,30.976964)"
+             y="-5.8607769"
+             x="-2.4160581" />
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,139 @@
+V 14
+6
+LANG:10011 0 
+LANG:10001 0 
+LANG:10010 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+PANEL,-1 -1 116 16 N "_Transparent" 3
+"$EDITABLE"
+"$INST"
+"$VAR"
+E E E E E 1 -1 -1 0  0 0
+""0  1
+E E 4
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+"pdpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+6
+LANG:10011 0 
+LANG:10001 0 
+LANG:10010 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+14 7
+"TEXT_FIELD13"
+"txf_standard_1"
+1 1 1 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_BLANCO" E E
+ E E
+6 0 0 0 0 0
+E E E
+1
+9
+LANG:10011 0 
+LANG:10001 0 
+LANG:10010 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+1
+"layoutAlignment" "AlignNone"
+9
+LANG:10011 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10001 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10010 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10009 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10008 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10018 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10005 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10000 30 Noto Sans,-1,13,5,50,0,0,0,0,0
+LANG:10027 30 Noto Sans,-1,13,5,50,0,0,0,0,0
+0  -1 -1 59 17
+2 "0s" 0 0 0 9 0 -1  E "main()
+{
+  if($INST != \"\" && $VAR != \"\" && $EDITABLE != \"\"){  //Comprobamos que hemos rellenado los $
+    //INST = Nombre de la instancia
+    //VAR = Nombre de la variable, incluyendo el tipo (Ejemplo: 540_LIB_IRC_VALVULA)
+    //EDITABLE = Permite hacer click sobre el objeto para poder insertar una consigna (Ejemplo: TRUE o FALSE)
+    cambiar_estado_valvula_monoestable($INST, $VAR, $EDITABLE, this.name());
+  }else{
+    setMultiValue(\"\", \"color\", \"LIB_IRC_MORADO_01\", \"\", \"foreCol\", \"LIB_IRC_MORADO_01\");
+  }
+}" 0
+ E
+0
+LAYER, 1 
+6
+LANG:10011 0 
+LANG:10001 0 
+LANG:10010 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+0
+LAYER, 2 
+6
+LANG:10011 0 
+LANG:10001 0 
+LANG:10010 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+0
+LAYER, 3 
+6
+LANG:10011 0 
+LANG:10001 0 
+LANG:10010 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+0
+LAYER, 4 
+6
+LANG:10011 0 
+LANG:10001 0 
+LANG:10010 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+0
+LAYER, 5 
+6
+LANG:10011 0 
+LANG:10001 0 
+LANG:10010 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+0
+LAYER, 6 
+6
+LANG:10011 0 
+LANG:10001 0 
+LANG:10010 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+0
+LAYER, 7 
+6
+LANG:10011 0 
+LANG:10001 0 
+LANG:10010 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+0
+0

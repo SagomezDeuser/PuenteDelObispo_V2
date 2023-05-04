@@ -1,0 +1,13 @@
+TIPO	    NUMERO 		DESCRIPCION
+STRUCT	1		tipo carpeta
+CHAR		19		character
+UINT		20		unsigned integer
+INT		21		integer
+FLOAT		22		floating point system
+BOOL		23		bit
+BIT32		24		bit pattern
+STRING	25		text
+TIME		26		time (PARA TIPO TIME EN PLC USAR TIPO FLOAT, CONVERSIÓN a TIME)
+BIT64		50		bit pattern
+LONG		54		Integer value (64 bit)
+ULONG		58		Positive integer value (64 bit)

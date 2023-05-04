@@ -1,0 +1,673 @@
+V 14
+6
+LANG:10010 0 
+LANG:10001 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+PANEL,-1 -1 168 129 N "_Transparent" 3
+"$NOMBRE_PID"
+"$PID"
+"$UNIDAD"
+E E E E E 1 -1 -1 0  0 0
+""0  1
+E "//--------------------------------------------------------------------------------
+//Clases importadas a utilizar por las funciones de la librería
+lib_pid pid = lib_pid($PID, \"\");
+" 0
+ 4
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+"pdpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10010 0 
+LANG:10001 0 
+6 40
+"fondo"
+""
+1 20 10 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_AZUL_03" E E
+ E E
+39 0 0 0 0 0
+E E E
+0
+2
+LANG:10010 0 
+LANG:10001 0 
+
+5
+"transparentForMouseInGedi" ""
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 2 3 2 1 E 1.380826683205449 0 3.175 -26.61653366410899 -31.75 1 E 20 10 140 50
+14 18
+"txf_consigna_auto"
+"txf_standard_5"
+1 72.0590746555779 110.0017829914939 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+17 0 0 0 0 0
+E E E
+1
+7
+LANG:10010 0 
+LANG:10001 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+6
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+"focusPolicy" "StrongFocus"
+"showFocus" "0"
+6
+LANG:10010 35 Tahoma,-1,11,5,75,0,0,0,0,0,Negrita
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10011 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10018 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  69.77186443151143 102.3598364629231 145 124.9050329374313
+2 "8s" 8 0 0 9 0 -1  E "main()
+{
+  //bloqueo_usuario();//Funcion para inhabilitar si el usuario es el indicado.
+  dpConnect(\"cambiar_valor\",pid.get_output());
+}
+
+//Cambia el valor que muestra elemento
+cambiar_valor(string dp, float valor){
+  string valor_s =\"yxxxxx\";
+  sprintf(valor_s, \"%6.2f\", valor);//Formatea a string
+  this.text = valor_s;
+}
+" 0
+ E
+14 19
+"TEXT_FIELD2"
+"txf_standard_5"
+1 72.0590746555779 69.23678570319417 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+18 0 0 0 0 0
+E E E
+1
+7
+LANG:10010 0 
+LANG:10001 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+6
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+"focusPolicy" "StrongFocus"
+"showFocus" "0"
+6
+LANG:10010 35 Tahoma,-1,11,5,75,0,0,0,0,0,Negrita
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10011 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10018 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  69.77186443151143 61.82137492446156 145 84.36657139896984
+2 "8s" 8 0 0 9 0 -1  E "main()
+{
+  //bloqueo_usuario();//Funcion para inhabilitar si el usuario es el indicado.
+  dpConnect(\"cambiar_valor\",pid.get_valorproceso());
+}
+
+//Cambia el valor que muestra elemento
+cambiar_valor(string dp, float valor)
+{
+  string valor_s =\"yxxxxx\";
+  sprintf(valor_s, \"%6.2f\", valor);//Formatea a string
+  this.text = valor_s;
+}
+" 0
+ E
+14 24
+"TEXT_FIELD3"
+"txf_standard_5"
+1 71.83957829578821 108.8654333493986 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+23 0 0 0 0 0
+E E E
+0
+6
+LANG:10010 0 
+LANG:10001 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+5
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10010 35 Tahoma,-1,11,5,75,0,0,0,0,0,Negrita
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10011 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10018 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  69.77186443151143 81.66752877061542 145 104.2127252451237
+3 "8s" 8 0 0 9 0 -1  "main(mapping event)
+{
+  float maximo, minimo;
+  bool permiso = permisos_usuario_operacion(12, FALSE);
+
+  if (permiso)
+  {
+    dpGet(pid.get_setpoint_maximo(), maximo,
+          pid.get_setpoint_minimo(), minimo);
+    teclado(pid.get_setpoint(), \"keypad\", FALSE, 0, \"\", maximo, minimo);
+  }
+}
+" 0
+ "main()
+{
+  //bloqueo_usuario();//Funcion para inhabilitar si el usuario es el indicado.
+  dpConnect(\"cambiar_valor\",pid.get_setpoint());
+}
+
+//Cambia el valor que muestra elemento
+cambiar_valor(string dp, float valor){
+  this.text = valor;
+}
+" 0
+ E
+13 29
+"btn_play"
+""
+1 4.845680923060371 35.81886680679074 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "LIB_IRC_AZUL_01" E E
+ E E
+28 0 0 0 0 0
+E E E
+1
+6
+LANG:10010 0 
+LANG:10001 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+2
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+6
+LANG:10010 35 Tahoma,-1,11,5,75,0,0,0,0,0,Negrita
+LANG:10001 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+0  3.15303386423685 33.60890910648724 83.15303386423685 58.5920870159637
+
+T 
+2
+LANG:10010 9 Habilitar
+LANG:10001 0 
+"main(mapping event)
+{
+  bool permiso = permisos_usuario_operacion(11, FALSE);
+  if(permiso) dpSetWait($PID + \".Xd_Habilitado_1\", TRUE);
+}
+" 0
+ E E "main()
+{
+   dpConnect(\"cambiar_seleccion\",$PID + \".Xd_Habilitado_1\");
+}
+void cambiar_seleccion(string dp1, bool valor){
+  if(valor){
+    this.backCol(\"LIB_IRC_VERDE_01\");
+    this.foreCol(\"LIB_IRC_AZUL_01\");
+    }
+  else{
+    this.backCol(\"LIB_IRC_AZUL_01\");
+    this.foreCol(\"LIB_IRC_BLANCO\");
+  }
+}" 0
+
+13 30
+"btn_stop"
+""
+1 81.78647235565292 35.84394739770556 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "LIB_IRC_AZUL_01" E E
+ E E
+29 0 0 0 0 0
+E E E
+1
+6
+LANG:10010 0 
+LANG:10001 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+2
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+6
+LANG:10010 35 Tahoma,-1,11,5,75,0,0,0,0,0,Negrita
+LANG:10001 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+0  79.78647235565307 33.63398969740206 161 58.61716760687854
+
+T 
+2
+LANG:10010 12 Deshabilitar
+LANG:10001 0 
+"main(mapping event)
+{
+  bool permiso = permisos_usuario_operacion(11, FALSE);
+
+  if (permiso) dpSetWait($PID + \".Xd_Habilitado_1\", FALSE);
+}
+" 0
+ E E "main()
+{
+   dpConnect(\"cambiar_seleccion\",$PID + \".Xd_Habilitado_1\");
+}
+void cambiar_seleccion(string dp1, bool valor){
+  if(!valor){
+    this.backCol(\"LIB_IRC_VERDE_01\");
+    this.foreCol(\"LIB_IRC_AZUL_01\");
+    }
+  else{
+    this.backCol(\"LIB_IRC_AZUL_01\");
+    this.foreCol(\"LIB_IRC_BLANCO\");
+  }
+}" 0
+
+13 35
+"PUSH_BUTTON1"
+""
+1 -60.38594777296507 46.5368259982222 E E E 1 E 1 E N "LIB_IRC_AZUL_03" E N "LIB_IRC_AZUL_03" E E
+ E E
+34 0 0 0 0 0
+E E E
+1
+6
+LANG:10010 0 
+LANG:10001 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+2
+"hoverbclr" "N \"_Transparent\""
+"layoutAlignment" "AlignNone"
+6
+LANG:10010 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10001 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+0  79.88905222703497 34.71922804257714 83.88905222703499 57.53192926170344
+
+T 
+2
+LANG:10010 9 HABILITAR
+LANG:10001 0 
+E E E E
+13 36
+"btn_config"
+""
+1 133.2361711685453 0.4965781784118022 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "LIB_IRC_AZUL_01" E E
+ E E
+35 0 0 0 0 0
+E E E
+1
+7
+LANG:10010 14 Configuración
+LANG:10001 14 Configuración
+LANG:10011 14 Configuración
+LANG:10009 14 Configuración
+LANG:10008 14 Configuración
+LANG:10018 14 Configuración
+LANG:10005 0 
+
+4
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"focusPolicy" "StrongFocus"
+"showFocus" "0"
+7
+LANG:10010 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10001 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10011 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10009 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10008 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10018 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10005 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  130.8121425886674 -1.503421821588197 168.4987653454697 33.48973453523543
+
+P 
+4294967295
+"pictures/iconos/faceplates/fp_config/fp_config_on.svg"
+6
+LANG:10010 0 
+LANG:10001 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+"main(mapping event)
+{
+  dyn_int posicion = this.positionAsDyn;
+  bool permiso = permisos_usuario_operacion(11, FALSE);
+  if(permiso)  ChildPanelOn(\"vision/faceplates/010_LIB_PID/010_LIB_PID_CONFIG.pnl\", \"config_\" + $NOMBRE_PID, makeDynString(\"$NOMBRE_PID:\" + $NOMBRE_PID, \"$PID:\" + $PID), posicion[1], posicion[2]);
+}
+" 0
+ E E E
+2 37
+"PRIMITIVE_TEXT1"
+""
+1 223 23 E E E 1 E 1 E N {1,72,152} E N "_Window" E E
+ E E
+36 0 0 0 0 0
+E E E
+0
+2
+LANG:10010 0 
+LANG:10001 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E 0.2833483017694767 0 0.4230769230769231 -58.28747525908826 92.90166546940799 0 E 223 23 435 75
+0 2 2 "0s" 0 0 0 72 0 0  223 23 1
+2
+LANG:10010 35 Tahoma,-1,11,5,75,0,0,0,0,0,Negrita
+LANG:10001 34 Tahoma,-1,16,5,50,0,0,0,0,0,Normal
+0 2
+LANG:10010 10 Salida PID
+LANG:10001 13 Temp. Entrada
+2 38
+"PRIMITIVE_TEXT2"
+""
+1 223 23 E E E 1 E 1 E N {1,72,152} E N "_Window" E E
+ E E
+37 0 0 0 0 0
+E E E
+0
+2
+LANG:10010 0 
+LANG:10001 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E 0.3411517025320255 0 0.4230769230769231 -70.40099060143109 52.3632039309465 0 E 223 23 435 75
+0 2 2 "0s" 0 0 0 72 0 0  223 23 1
+2
+LANG:10010 35 Tahoma,-1,11,5,75,0,0,0,0,0,Negrita
+LANG:10001 34 Tahoma,-1,16,5,50,0,0,0,0,0,Normal
+0 2
+LANG:10010 11 Val. Actual
+LANG:10001 13 Temp. Entrada
+2 39
+"PRIMITIVE_TEXT3"
+""
+1 223 23 E E E 1 E 1 E N {1,72,152} E N "_Window" E E
+ E E
+38 0 0 0 0 0
+E E E
+0
+2
+LANG:10010 0 
+LANG:10001 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E 0.2833483017694767 0 0.423076923076923 -58.28747525908826 72.20935777710031 0 E 223 23 435 75
+0 2 2 "0s" 0 0 0 72 0 0  223 23 1
+2
+LANG:10010 35 Tahoma,-1,11,5,75,0,0,0,0,0,Negrita
+LANG:10001 34 Tahoma,-1,16,5,50,0,0,0,0,0,Normal
+0 2
+LANG:10010 8 Setpoint
+LANG:10001 13 Temp. Entrada
+2 42
+"ptxf_unidad"
+""
+1 74 2 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_BLANCO" E E
+ E E
+41 0 0 0 0 0
+E E E
+0
+6
+LANG:10010 0 
+LANG:10001 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+6
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+  if($UNIDAD != \"\")  setValue(\"\", \"text\", $UNIDAD);
+  else setMultiValue(\"\", \"color\", \"LIB_IRC_MORADO_01\", \"\", \"foreCol\", \"LIB_IRC_MORADO_01\");
+}" 0
+ E 0 1 3 2 1 E 0.8496009923269883 0 0.85181346519164 86.83670870591706 65.42765197499097 0 E 74 2 92 16
+0 2 2 "0s" 0 0 0 72 0 0  74 2 1
+6
+LANG:10010 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10001 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10011 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10009 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10008 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10018 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+0 6
+LANG:10010 1 -
+LANG:10001 2 _-
+LANG:10011 2 _-
+LANG:10009 2 _-
+LANG:10008 2 _-
+LANG:10018 2 _-
+2 44
+"PRIMITIVE_TEXT5"
+""
+1 74 2 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_BLANCO" E E
+ E E
+43 0 0 0 0 0
+E E E
+0
+6
+LANG:10010 0 
+LANG:10001 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+6
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"// main()
+// {
+//   if($UNIDAD != \"\")  setValue(\"\", \"text\", $UNIDAD);
+//   else setMultiValue(\"\", \"color\", \"LIB_IRC_MORADO_01\", \"\", \"foreCol\", \"LIB_IRC_MORADO_01\");
+// }" 0
+ E 0 1 3 2 1 E 0.8496009923269883 0 0.85181346519164 86.83670870591706 105.9661135134525 0 E 74 2 92 16
+0 2 2 "0s" 0 0 0 72 0 0  74 2 1
+6
+LANG:10010 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10001 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10011 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10009 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10008 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10018 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+0 6
+LANG:10010 1 %
+LANG:10001 2 _-
+LANG:10011 2 _-
+LANG:10009 2 _-
+LANG:10008 2 _-
+LANG:10018 2 _-
+2 45
+"PRIMITIVE_TEXT6"
+""
+1 74 2 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_BLANCO" E E
+ E E
+44 0 0 0 0 0
+E E E
+0
+6
+LANG:10010 0 
+LANG:10001 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+6
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+  if($UNIDAD != \"\")  setValue(\"\", \"text\", $UNIDAD);
+  else setMultiValue(\"\", \"color\", \"LIB_IRC_MORADO_01\", \"\", \"foreCol\", \"LIB_IRC_MORADO_01\");
+}" 0
+ E 0 1 3 2 1 E 0.8496009923269883 0 0.85181346519164 86.83670870591706 85.2738058211448 0 E 74 2 92 16
+0 2 2 "0s" 0 0 0 72 0 0  74 2 1
+6
+LANG:10010 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10001 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10011 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10009 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10008 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10018 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+0 6
+LANG:10010 1 -
+LANG:10001 2 _-
+LANG:10011 2 _-
+LANG:10009 2 _-
+LANG:10008 2 _-
+LANG:10018 2 _-
+29 46
+"TEXT_EDIT1"
+""
+1 1 0 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "LIB_IRC_AZUL_01" E E
+ E E
+45 0 0 0 0 0
+E E E
+0
+2
+LANG:10010 0 
+LANG:10001 0 
+
+16
+"alignment" "enum 132"
+"horizontalScrollBarPolicy" "enum 1"
+"bold" "bool TRUE"
+"contextMenuPolicy" "enum 0"
+"lineWidth" "int 1"
+"verticalScrollBarPolicy" "enum 1"
+"autoFormatting" "enum 0"
+"textFormat" "enum 0"
+"text" "string ---"
+"markdown" "string **---**
+
+"
+"frameShape" "enum 0"
+"frameShadow" "enum 16"
+"textInteractionFlags" "enum 0"
+"transparentForMouse" ""
+"layoutAlignment" "AlignCenter"
+"showFocus" "0"
+2
+LANG:10010 35 Tahoma,-1,12,5,75,0,0,0,0,0,Negrita
+LANG:10001 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  1 0 132.9060712943337 31.24486726761772
+15 PVSS.TextEdit.1
+0
+"main()
+{
+  this.text($NOMBRE_PID);
+  this.alignment(\"AlignCenter\");
+}" 0
+0
+LAYER, 1 
+2
+LANG:10010 0 
+LANG:10001 0 
+0
+LAYER, 2 
+2
+LANG:10010 0 
+LANG:10001 0 
+0
+LAYER, 3 
+2
+LANG:10010 0 
+LANG:10001 0 
+0
+LAYER, 4 
+2
+LANG:10010 0 
+LANG:10001 0 
+0
+LAYER, 5 
+2
+LANG:10010 0 
+LANG:10001 0 
+0
+LAYER, 6 
+2
+LANG:10010 0 
+LANG:10001 0 
+0
+LAYER, 7 
+2
+LANG:10010 0 
+LANG:10001 0 
+0
+0

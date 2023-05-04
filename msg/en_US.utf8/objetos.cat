@@ -1,0 +1,198 @@
+txf_borrar_fila,Delete a row: Double click in it
+txf_borrar_tabla,Delete full table
+txf_valor_act,Current Value
+txf_referencia,SELECT REFERENCE DATAPOINT WHICH IS GOING TO BE COPIED
+txf_copiado,SELECT DATAPOINTS WHICH ARE GOING TO BE MAPPED
+txf_tabla_copiado,DATAPOINTS WHICH WILL RECEIVE THE CONFIGURATION
+txf_config_alarmas,Alarm Settings
+txf_hh,Too High (HH)
+txf_h,High (H)
+txf_l,Low (L)
+txf_ll,Too Low (LL)
+txf_conf_address,Are you sure you want to activate/desactivate addresses?
+txf_conf_pausa,Are you sure you want to pause?
+ptxf_interfaz,Interface
+ptxf_pantalla,Display
+txf_conf_ll,Are you sure you want to activate/desactivate low level comparsion?
+txf_conf_map,Are you sure you want to map all selected DPT's DPs?
+txf_conf_mdp,Are you sure you want to modify the selected MDP?
+txf_conf_modpg,Are you sure you want to modify the selected MDP's Poll Group?
+txf_conf_pg,Are you sure you want to create the Poll Group with the name in CSV? I you reject, you will maintain the master datapoint related one
+label_modo,OPERATION MODE
+label_operativa,MANUAL OPERATIVE
+txf_enc_alarmas,ALARMS
+txf_alarma,ALARM
+txf_ep,PROTECTION STATE
+txf_cm,STARTING CONFIRMATION
+txf_cp,STOPPING CONFIRMATION
+txf_fe,EXTERNAL FAILURE
+label_cfm_marcha,STARTING CFM.
+label_cfm_paro,STOPPING CFM.
+label_t_arranque,STARTING TIME
+label_t_paro,STOPPING TIME
+txf_vf,FREQ. CONVERTER FAILURE
+label_csg_auto,AUTO SET POINT
+label_csg_manual,MANUAL SET POINT
+label_vel_actual,CURRENT SPEED
+label_corriente,INTENSITY
+label_frecuencia,FREQUENCY
+label_cfm_marcha_f1,FW STARTING CFM.
+label_cfm_marcha_f2,BW STARTING CFM.
+label_cfm_paro_f1,FW STOPPING CFM.
+label_cfm_paro_f2,BW STOPPING CFM.
+label_t_apertura,OPENING TIME
+label_t_cierre,CLOSING TIME
+txf_ca,OPENING CONFIRMATION
+txf_cc,CLOSING CONFIRMATION
+txf_fp,POSITIONING FAILURE
+label_formula,Recipe
+label_produccion,Production
+label_ton,Tn/h
+fecha_inicio,starting date
+acuse,Acknowledgement
+fecha_acuse,Acknowledgement date
+tag,Tag
+alias,Alias
+descripcion,Description
+alarma,Alarm
+aviso,Warning
+label_acuse_todo,ACKNOWLEDGE ALL
+label_rango,Range
+label_dia,Day
+label_mes,Month
+label_ano,Year
+label_cuadro,Panel
+label_variable,Variable
+label_graf_frec,Frequent Graphs
+label_intervalo,Interval
+label_min,Min
+zona,Zone
+detalle,Details
+valor,Value
+unidad,Unit
+label_descr_dp,DP Description
+label_alias_dp,DP Alias
+label_dp,DP
+cb_address,Activate address
+cb_address_mdp,According to MDP
+label_vaciar,Delete
+para_completo,Full PARA
+label_crear_en_funcion,Create according to
+txf_rb_vaciado_para,Delete full PARA
+txf_rb_vaciado_dpt_mdp,It deletes all Datapoint Types, including their Master datapoints
+txf_rb_vaciado_dpt,It deletes all Datapoint Types, by maintaining their Master datapoints
+txf_rb_vaciado_dpt_csv,It deletes Datapoint Types with DPs in CSV, by maintaining their Master Datapoints
+label_buscar,SEARCH
+cb_var_interna,INTERN VARIABLE
+cb_selec_multiple,Multiple Choice
+label_periferia,Periphery
+label_referencia,Reference
+label_driver,Drivers
+label_conexion,Conection
+label_transformacion,Type of transformation
+label_direccion,Direction
+cb_activo,Active
+label_origen_address,Address origin
+clase,Class
+dp_alarma,Alarm DP
+label_alarma_came,Came
+label_alarma_went,Went
+label_clase_alarma,Alarm Class
+label_config,Configuration
+label_config_1,Configuration
+label_config_2,Configuration
+label_config_3,Configuration
+label_config_4,Configuration
+label_escala,Scale
+label_escala_1,Scale
+label_escala_2,Scale
+label_escala_3,Scale
+label_escala_4,Scale
+label_estable,Stable
+label_estable_1,Stable
+label_estable_2,Stable
+label_estable_3,Stable
+label_estable_4,Stable
+label_division,Division
+label_division_1,Division
+label_division_2,Division
+label_division_3,Division
+label_division_4,Division
+label_cero,Zero
+label_cero_1,Zero
+label_cero_2,Zero
+label_cero_3,Zero
+label_cero_4,Zero
+label_const_peso,Weight Constant
+label_const_peso_1,Weight Constant
+label_const_peso_2,Weight Constant
+label_const_peso_3,Weight Constant
+label_const_peso_4,Constantes de Peso
+label_cero_5,Zero
+label_cero_6,Zero
+label_cero_7,Zero
+label_cero_8,Zero
+label_cero_9,Zero
+label_ganancia,Gain
+label_ganancia_1,Gain
+label_ganancia_2,Gain
+label_ganancia_3,Gain
+label_ganancia_4,Gain
+label_calibracion,Calibrate
+label_calibracion_1,Calibrate
+label_calibracion_2,Calibrate
+label_calibracion_3,Calibrate
+label_calibracion_4,Calibrate
+label_peso_ajuste,Fitting Weight
+label_peso_ajuste_1,Fitting Weight
+label_peso_ajuste_2,Fitting Weight
+label_peso_ajuste_3,Fitting Weight
+label_peso_ajuste_4,Fitting Weight
+label_punto_ajuste,Fitting Points
+label_punto_ajuste_1,Fitting Points
+label_punto_ajuste_2,Fitting Points
+label_punto_ajuste_3,Fitting Points
+label_punto_ajuste_4,Fitting Points
+label_vel,% Speed
+codigo,Code
+nombre,Name
+ult_mod,Last modification
+label_buscar_nom,Search by name
+label_mod_accion,FUNCTIONING MODE
+label_secuencia,SEQUENCE
+label_supervision,SUPERVISION
+txf_cm_f1,FW STARTING CONFIRMATION
+txf_cm_f2,BW STARTING CONFIRMATION
+txf_cp_f1,FW STOPPING CONFIRMATION
+txf_cp_f2,BW STOPPING CONFIRMATION
+txf_estados,STATES
+txf_estable,STANDSTILL
+txf_tara,TARE
+txf_ptara,TARE PRESET
+txf_error_wp,WP321 ERROR
+txf_vacia,EMPTY
+label_t_apertura_1,WAY 1 OPENING TIME
+label_t_apertura_2,WAY 2 OPENING TIME
+label_t_cierre_1,WAY 1 CLOSING TIME
+label_t_cierre_2,WAY 2 CLOSING TIME
+txf_ca_1,WAY 1 OPENING CONFIRMATION
+txf_ca_2,WAY 2 OPENING CONFIRMATION
+txf_cc_1,FROM WAY 1 DOWN CONFIRMATION
+txf_cc_2,FROM WAY 2 DOWN CONFIRMATION
+txf_oc_activas,ACTIVES
+txf_oc_desactivas,UNACTIVES
+txf_oc_acusadas,ACKNOWLEDGE
+txf_oc_no_acusadas,UNACKNOWLEDGE
+label_num,Event Nº
+label_nombre,Name
+label_usuario,User
+label_prioridad,Priority
+label_fecha_hora,Date / Time
+label_hora,Hour
+label_lugar_incidencia,Event Place
+label_elemento,Element that suffers the event
+label_descripcion_incidencia,Event description
+label_causa_incidencia,Event Cause
+label_descripcion_reparacion,Reparation made description
+btn_modificar_fecha,Modify date
+label_orden,Order by:

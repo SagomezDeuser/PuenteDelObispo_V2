@@ -1,0 +1,39 @@
+# ascii dump of database
+
+# DpType
+TypeName
+000_CONFIGURACION.000_CONFIGURACION	1#1
+	configuracion_bd	1#110
+		conexion_1	25#111
+		conexion_2	25#584
+		direccion_servidor_informes	25#586
+		nombre_bd	25#587
+		nombre_bd_mysql	25#588
+	configuracion_graficas	1#589
+		conexion_externa_grafana_ulc	23#594
+		indiceGraficaAnalizadorRed	21#599
+	ip_servidor	25#597
+	n_permisos_usados	21#598
+	nombreConexionPLC	25#600
+
+# Datapoint/DpId
+DpName	TypeName	ID
+ConfiguracionSCADA	000_CONFIGURACION	97439
+
+# DpValue
+Manager/User	ElementName	TypeName	_original.._value	_original.._status64	_original.._stime
+UI (1)/0	ConfiguracionSCADA.configuracion_bd.conexion_1	000_CONFIGURACION	"DSN=DATABASE;UID=sa;PWD=A1b2c3d4!;"	0x8300000000000101	12.05.2022 16:58:27.794
+UI (1)/0	ConfiguracionSCADA.configuracion_graficas.conexion_externa_grafana_ulc	000_CONFIGURACION	1	0x8300000000000101	12.05.2022 16:58:41.861
+UI (1)/0	ConfiguracionSCADA.n_permisos_usados	000_CONFIGURACION	30	0x8300000000000101	12.05.2022 16:58:51.892
+UI (1)/0	ConfiguracionSCADA.nombreConexionPLC	000_CONFIGURACION	"s7_prueba"	0x8300000000000101	13.05.2022 08:56:33.288
+# ascii dump of database
+
+# Datapoint/DpId
+DpName	TypeName	ID
+_ds_000_CONFIGURACION	_DynamicDptSettings	22893
+
+# DpValue
+Manager/User	ElementName	TypeName	_original.._value	_original.._status64	_original.._stime
+ASC (1)/0	_ds_000_CONFIGURACION.symbols	_DynamicDptSettings		0x8300000000000101	25.04.2022 09:21:55.843
+ASC (1)/0	_ds_000_CONFIGURACION.symboldefault	_DynamicDptSettings	""	0x8300000000000101	25.04.2022 09:21:55.843
+ASC (1)/0	_ds_000_CONFIGURACION.trendElements	_DynamicDptSettings		0x8300000000000101	25.04.2022 09:21:55.844

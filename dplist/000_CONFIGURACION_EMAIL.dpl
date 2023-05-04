@@ -1,0 +1,34 @@
+# ascii dump of database
+
+# DpType
+TypeName
+000_CONFIGURACION_EMAIL.000_CONFIGURACION_EMAIL	1#1
+	smtp	1#4
+		host	25#5
+		user	25#6
+		pass	25#7
+		TLS	23#14
+	direcciones_emails	9#11
+
+# Datapoint/DpId
+DpName	TypeName	ID
+configuracion_email	000_CONFIGURACION_EMAIL	40722
+
+# DpValue
+Manager/User	ElementName	TypeName	_original.._value	_original.._status64	_original.._stime
+ASC (1)/0	configuracion_email.smtp.host	000_CONFIGURACION_EMAIL	""	0x8300000000000101	25.04.2022 09:21:30.222
+ASC (1)/0	configuracion_email.smtp.user	000_CONFIGURACION_EMAIL	""	0x8300000000000101	25.04.2022 09:21:30.223
+ASC (1)/0	configuracion_email.smtp.pass	000_CONFIGURACION_EMAIL	""	0x8300000000000101	25.04.2022 09:21:30.224
+ASC (1)/0	configuracion_email.direcciones_emails	000_CONFIGURACION_EMAIL		0x8300000000000101	25.04.2022 09:21:30.232
+ASC (1)/0	configuracion_email.smtp.TLS	000_CONFIGURACION_EMAIL	1	0x8300000000000101	25.04.2022 09:21:30.233
+# ascii dump of database
+
+# Datapoint/DpId
+DpName	TypeName	ID
+_ds_000_CONFIGURACION_EMAIL	_DynamicDptSettings	40723
+
+# DpValue
+Manager/User	ElementName	TypeName	_original.._value	_original.._status64	_original.._stime
+ASC (1)/0	_ds_000_CONFIGURACION_EMAIL.symbols	_DynamicDptSettings		0x8300000000000101	25.04.2022 09:21:30.234
+ASC (1)/0	_ds_000_CONFIGURACION_EMAIL.symboldefault	_DynamicDptSettings	""	0x8300000000000101	25.04.2022 09:21:30.246
+ASC (1)/0	_ds_000_CONFIGURACION_EMAIL.trendElements	_DynamicDptSettings		0x8300000000000101	25.04.2022 09:21:30.247

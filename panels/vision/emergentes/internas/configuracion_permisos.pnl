@@ -1,0 +1,2996 @@
+V 14
+4
+LANG:10001 18 Area authorization
+LANG:10010 18 Area authorization
+LANG:10000 21 Bereichberechtigungen
+LANG:10027 42 Полномочия для участка
+PANEL,-1 -1 561 381 N "LIB_DEUSER_BLANCO" 1
+"$1"
+"main()
+{
+  titleBar(0);
+  int            j, k;
+  bit32          b32;
+  string         sBit, sCol;
+  dyn_langString desliste;
+
+  m_um = UserManagement::getInstance();
+
+  bits_permisos_vivibles(true);
+
+  //txtUser.text = ($2==\"user\")?getCatStr(\"general\",\"username\"):getCatStr(\"general\",\"usergroup\");//IM 116328
+
+  gpermissions.tableMode (TABLE_SELECT_BROWSE);
+  gpermissions.selectByClick (TABLE_SELECT_LINE_COLUMN);
+  gpermissions.sortOnClick(false);
+  gpermissions.selectColors (\"_ButtonShadow\", \"_Window\");
+  gpermissions.deleteAllLines();
+  tb_permisos_10_16.deleteAllLines();
+
+  m_group = nullptr;
+  m_group = m_um.getGroupByName($1);
+
+  if (m_group == nullptr)
+  {
+    errClass error = makeError(0, PRIO_INFO, ERR_PARAM, 0, \"\", 0, 0, __FILE__ + \": m_group not set\");
+    throwError(error);
+    return;
+  }
+
+  user.text = m_group.getName();
+  b32 = m_group.getPermissionSet();
+  desliste = m_um.getAllPermissionDescriptions();
+
+  gpermissions.appendLine(\"#1\", \"\");
+  tb_permisos_10_16.appendLine(\"#1\", \"\");
+
+  for ( j = 0; j < 32; j++ )
+  {
+    k = j + 2; sCol = \"#\" + k;
+    sBit = (getBit(b32, j))?1:0;
+    setValue(\"gpermissions\", \"cellValueRC\", 0, sCol, sBit);
+    setValue(\"tb_permisos_10_16\", \"cellValueRC\", 0, sCol, sBit);
+    if (dynlen(desliste) > j)
+      setValue (\"gpermissions\", \"columnToolTipText\", k-1, desliste[j+1] + \"(\"+(j+1)+\")\");
+      setValue(\"tb_permisos_10_16\", \"columnToolTipText\", k - 1, desliste[j + 1] + \"(\" + (j + 1) + \")\");
+  }
+}
+" 0
+ E E E E 1 -1 -1 0  100 70
+"refFileName"0  1
+E "
+#uses \"classes/userManagement/UserManagement\"
+
+shared_ptr<UserManagement> m_um;
+shared_ptr<UserManagementGroup> m_group;
+
+//---------------------------------------------------------------
+void closePanel()
+{
+  PanelOffReturn(makeDynFloat(0), makeDynString());
+}
+
+bits_permisos_vivibles(bool visible)
+{
+  bool permiso = permisos_usuario_operacion(13,TRUE,FALSE);
+
+  if (permiso)
+  {
+    setMultiValue(\"txtBit1\", \"visible\", visible,
+                  \"txtBit2\", \"visible\", visible,
+                  \"txtBit3\", \"visible\", visible,
+                  \"txtBit4\", \"visible\", visible,
+                  \"txtBit5\", \"visible\", visible,
+                  \"txtBit6\", \"visible\", visible,
+                  \"txtBit7\", \"visible\", visible,
+                  \"txtBit8\", \"visible\", visible,
+                  \"txtBit9\", \"visible\", visible,
+                  \"txtBit10_1\", \"visible\", visible,
+                  \"txtBit10_0\", \"visible\", visible,
+                  \"txtBit11\", \"visible\", visible,
+                  \"txtBit12\", \"visible\", visible,
+                  \"txtBit13\", \"visible\", visible,
+                  \"txtBit14\", \"visible\", visible,
+                  \"txtBit15\", \"visible\", visible,
+                  \"txtBit16_1\", \"visible\", visible,
+                  \"txtBit16_6\", \"visible\", visible,
+                  \"txtBit17_1\", \"visible\", !visible,
+                  \"txtBit17_7\", \"visible\", !visible,
+                  \"txtBit18\", \"visible\", !visible,
+                  \"txtBit19\", \"visible\", !visible,
+                  \"txtBit20_2\", \"visible\", !visible,
+                  \"txtBit20_0\", \"visible\", !visible,
+                  \"txtBit21\", \"visible\", !visible,
+                  \"txtBit22\", \"visible\", !visible,
+                  \"txtBit23\", \"visible\", !visible,
+                  \"txtBit24\", \"visible\", !visible,
+                  \"txtBit25\", \"visible\", !visible,
+                  \"txtBit26\", \"visible\", !visible,
+                  \"txtBit27\", \"visible\", !visible,
+                  \"txtBit28\", \"visible\", !visible,
+                  \"txtBit29\", \"visible\", !visible,
+                  \"txtBit30_3\", \"visible\", !visible,
+                  \"txtBit30_0\", \"visible\", !visible,
+                  \"txtBit31\", \"visible\", !visible,
+                  \"txtBit32_3\", \"visible\", !visible,
+                  \"frame_completo\", \"visible\", TRUE,
+                  \"gpermissions\", \"visible\", TRUE,
+                  \"left\", \"visible\", !visible,
+                  \"right\", \"visible\", visible,
+                  \"frame_recortado\", \"visible\", FALSE,
+                  \"tb_permisos_10_16\", \"visible\", FALSE,
+                  \"text10\", \"visible\", FALSE,
+                  \"text11\", \"visible\", FALSE,
+                  \"text12\", \"visible\", FALSE,
+                  \"text13\", \"visible\", FALSE,
+                  \"text14\", \"visible\", FALSE,
+                  \"text15\", \"visible\", FALSE,
+                  \"text16\", \"visible\", FALSE);
+  }
+  else
+  {
+    setMultiValue(\"txtBit1\", \"visible\", !visible,
+                  \"txtBit2\", \"visible\", !visible,
+                  \"txtBit3\", \"visible\", !visible,
+                  \"txtBit4\", \"visible\", !visible,
+                  \"txtBit5\", \"visible\", !visible,
+                  \"txtBit6\", \"visible\", !visible,
+                  \"txtBit7\", \"visible\", !visible,
+                  \"txtBit8\", \"visible\", !visible,
+                  \"txtBit9\", \"visible\", !visible,
+                  \"txtBit10_1\", \"visible\", !visible,
+                  \"txtBit10_0\", \"visible\", !visible,
+                  \"txtBit11\", \"visible\", !visible,
+                  \"txtBit12\", \"visible\", !visible,
+                  \"txtBit13\", \"visible\", !visible,
+                  \"txtBit14\", \"visible\", !visible,
+                  \"txtBit15\", \"visible\", !visible,
+                  \"txtBit16_1\", \"visible\", !visible,
+                  \"txtBit16_6\", \"visible\", !visible,
+                  \"txtBit17_1\", \"visible\", !visible,
+                  \"txtBit17_7\", \"visible\", !visible,
+                  \"txtBit18\", \"visible\", !visible,
+                  \"txtBit19\", \"visible\", !visible,
+                  \"txtBit20_2\", \"visible\", !visible,
+                  \"txtBit20_0\", \"visible\", !visible,
+                  \"txtBit21\", \"visible\", !visible,
+                  \"txtBit22\", \"visible\", !visible,
+                  \"txtBit23\", \"visible\", !visible,
+                  \"txtBit24\", \"visible\", !visible,
+                  \"txtBit25\", \"visible\", !visible,
+                  \"txtBit26\", \"visible\", !visible,
+                  \"txtBit27\", \"visible\", !visible,
+                  \"txtBit28\", \"visible\", !visible,
+                  \"txtBit29\", \"visible\", !visible,
+                  \"txtBit30_3\", \"visible\", !visible,
+                  \"txtBit30_0\", \"visible\", !visible,
+                  \"txtBit31\", \"visible\", !visible,
+                  \"txtBit32_3\", \"visible\", !visible,
+                  \"frame_completo\", \"visible\", FALSE,
+                  \"gpermissions\", \"visible\", FALSE,
+                  \"left\", \"visible\", FALSE,
+                  \"right\", \"visible\", FALSE,
+                  \"frame_recortado\", \"visible\", TRUE,
+                  \"tb_permisos_10_16\", \"visible\", TRUE,
+                  \"text10\", \"visible\", TRUE,
+                  \"text11\", \"visible\", TRUE,
+                  \"text12\", \"visible\", TRUE,
+                  \"text13\", \"visible\", TRUE,
+                  \"text14\", \"visible\", TRUE,
+                  \"text15\", \"visible\", TRUE,
+                  \"text16\", \"visible\", TRUE);
+  }
+}
+" 0
+ 4
+"CBRef" "0"
+"EClose" "main()
+{
+  //closePanel();
+  PanelOff();
+}
+" 0
+
+"dpi" "96"
+"pdpi" "96"
+0 0 0
+""
+NC
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10001 6 Layer1
+LANG:10010 6 Layer1
+14 25
+"user"
+"txf_standard_1"
+1 115.436692506458 75.5 E E E 1 E 1 E N "_WindowText" E N "LIB_DEUSER_BLANCO" E E
+ E E
+8 0 0 0 0 0
+E E E
+0
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+1
+"layoutAlignment" "AlignCenter"
+4
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10010 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10000 26 arial,-1,12,5,40,0,0,0,0,0
+LANG:10027 26 arial,-1,12,5,40,0,0,0,0,0
+0  113.436692506458 75.5 506.0000000000001 101.5
+2 "0s" 0 0 0 0 0 -1  E E E
+6 158
+"RECTANGLE3"
+""
+1 282 34 E E E 1 E 1 E N {1,72,152} E N "_Transparent" E E
+ E E
+182 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+4
+"transparentForMouseInGedi" ""
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 6.292134831460669 0 5.588235294117647 -1774.382022471908 -189.9999999999999 1 E 282 34 371 102
+6 159
+"RECTANGLE2"
+""
+1 63 18 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "LIB_IRC_AZUL_03" E E
+ E E
+183 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E -1 1 3 2 1 E 0.001563313802083333 0 -3.827389541675257 5.095574813177905 448.3487940630796 1 E 63 18 1982 117
+6 160
+"RECTANGLE1"
+""
+1 63 18 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N {1,72,152} E E
+ E E
+184 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E -1 1 3 2 1 E 0.004689941406249998 0 -3.838383838383837 -4.795465087890534 449.0909090909091 1 E 63 18 1982 117
+13 162
+"btn_aceptar"
+"MEDIANO_BLANCO"
+1 230 360 E E E 1 E 1 E N "_ButtonText" E N "_Transparent" E E
+ E E
+186 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 6 Accept
+LANG:10010 7 Aceptar
+LANG:10011 6 Accept
+LANG:10009 8 Accepter
+LANG:10008 6 Accept
+LANG:10018 6 Accept
+
+6
+"hoverbclr" "N \"AZUL_01\""
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10011 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10018 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  407.166666666667 308.6101694915254 472.8333333333338 359.6101694915254
+
+P 
+4294967295
+"pictures/iconos/botoneras/aceptar.svg"
+6
+LANG:10001 12 PUSH_BUTTON1
+LANG:10010 12 PUSH_BUTTON1
+LANG:10011 12 PUSH_BUTTON1
+LANG:10009 12 PUSH_BUTTON1
+LANG:10008 12 PUSH_BUTTON1
+LANG:10018 12 PUSH_BUTTON1
+"main()
+{
+  int        j, k;
+  bit32      b32;
+  dyn_string ds;
+
+  getValue(\"gpermissions\", \"getLineN\", 0, ds);
+  for ( j = 2; j <= dynlen(ds); j++ )
+  {
+    k = ds[j];
+    setBit (b32, j-2, k);
+  }
+
+  m_group.setGroupPermission(b32);
+
+  dyn_string errorList;
+
+  if (!m_um.saveChangesError(errorList))
+  {
+    ChildPanelOnCentralModal(
+        \"vision/MessageWarning\",
+        getCatStr(\"para\", \"warning\"),
+        makeDynString(getCatStr(\"userMan\", \"cannotmodify\") + \"\\n\" + strjoin(errorList, \"\\n\")));
+    return;
+  }
+
+  PanelOffReturn(makeDynFloat(1), makeDynString(\"ok\"));
+}
+" 0
+ E E E
+13 163
+"btn_cancelar"
+"MEDIANO_BLANCO"
+1 293.2864080767444 359.8177966101694 E E E 1 E 1 E N "_ButtonText" E N "_Transparent" E E
+ E E
+187 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 6 Cancel
+LANG:10010 8 Cancelar
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+6
+"hoverbclr" "N \"AZUL_01\""
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10011 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10018 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  470.4166666666668 308.4279661016947 536.0833333333335 359.4279661016947
+
+P 
+4294967295
+"pictures/iconos/botoneras/cancelar.svg"
+6
+LANG:10001 12 PUSH_BUTTON1
+LANG:10010 12 PUSH_BUTTON1
+LANG:10011 12 PUSH_BUTTON1
+LANG:10009 12 PUSH_BUTTON1
+LANG:10008 12 PUSH_BUTTON1
+LANG:10018 12 PUSH_BUTTON1
+"main()
+{
+  //closePanel();
+  PanelOff();
+}" 0
+ E E E
+6 164
+"fondo"
+""
+1 20 10 E E E 1 E 1 E N "AZUL_01" E N {1,72,152} E E
+ E E
+188 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 1.041666666666668 0 1.175000000000003 388.3333333333338 298.8686440677965 1 E 20 10 140 50
+4 165
+"LINE2"
+""
+1 472.2580882902466 314.992268142883 E E E 1 E 1 E N "AZUL_01" E N {255,255,255} E E
+ E E
+189 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 3 2 1 E  472.6666666666667 314.6016949152541 472.6666666666667 353.6355932203389
+25 166
+"gpermissions"
+""
+1 68.43669250645803 170 E E E 1 E 0 E N "LIB_IRC_AZUL_01" E N "LIB_DEUSER_BLANCO" E E
+ E E
+190 0 0 0 0 0
+E E E
+0
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+1
+"layoutAlignment" "AlignCenter"
+4
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10000 26 Arial,-1,12,5,40,0,0,0,0,0
+LANG:10027 26 arial,-1,12,5,40,0,0,0,0,0
+0  87.28746770025714 183.4367816091954 475.5374677002571 213.7701149425287
+E"main(int row, string column, string value)
+{
+  if ( column == \"#1\" ) return;
+  getValue(\"gpermissions\", \"cellValueRC\", row, column, value);
+  if ( value == \"0\" )
+    value = \"1\";
+  else
+    value = \"0\";
+  setValue(\"gpermissions\", \"cellValueRC\", row, column, value);
+
+}" 0
+ 0 0 1 33 1 "#1" 11 0 0 "s" 4
+LANG:10001 2 #1
+LANG:10010 2 #1
+LANG:10000 2 #1
+LANG:10027 2 #1
+E
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+112 "#2" 1 1 0 "s" 4
+LANG:10001 2 #2
+LANG:10010 2 #2
+LANG:10000 2 #2
+LANG:10027 2 #2
+E
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+24 "#3" 1 1 0 "s" 4
+LANG:10001 2 #3
+LANG:10010 2 #3
+LANG:10000 2 #3
+LANG:10027 2 #3
+E
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+24 "#4" 1 1 0 "s" 4
+LANG:10001 2 #4
+LANG:10010 2 #4
+LANG:10000 2 #4
+LANG:10027 2 #4
+E
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+24 "#5" 1 1 0 "s" 4
+LANG:10001 2 #5
+LANG:10010 2 #5
+LANG:10000 2 #5
+LANG:10027 2 #5
+E
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+24 "#6" 1 1 0 "s" 4
+LANG:10001 2 #6
+LANG:10010 2 #6
+LANG:10000 2 #6
+LANG:10027 2 #6
+E
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+24 "#7" 1 1 0 "s" 4
+LANG:10001 2 #7
+LANG:10010 2 #7
+LANG:10000 2 #7
+LANG:10027 2 #7
+E
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+24 "#8" 1 1 0 "s" 4
+LANG:10001 2 #8
+LANG:10010 2 #8
+LANG:10000 2 #8
+LANG:10027 2 #8
+E
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+24 "#9" 1 1 0 "s" 4
+LANG:10001 2 #9
+LANG:10010 2 #9
+LANG:10000 2 #9
+LANG:10027 2 #9
+E
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+24 "#10" 1 1 0 "s" 4
+LANG:10001 3 #10
+LANG:10010 3 #10
+LANG:10000 3 #10
+LANG:10027 3 #10
+E
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+24 "#11" 1 1 0 "s" 4
+LANG:10001 3 #11
+LANG:10010 3 #11
+LANG:10000 3 #11
+LANG:10027 3 #11
+E
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+24 "#12" 1 1 0 "s" 4
+LANG:10001 3 #12
+LANG:10010 3 #12
+LANG:10000 3 #12
+LANG:10027 3 #12
+E
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+24 "#13" 1 1 0 "s" 4
+LANG:10001 3 #13
+LANG:10010 3 #13
+LANG:10000 3 #13
+LANG:10027 3 #13
+E
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+24 "#14" 1 1 0 "s" 4
+LANG:10001 3 #14
+LANG:10010 3 #14
+LANG:10000 3 #14
+LANG:10027 3 #14
+E
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+24 "#15" 1 1 0 "s" 4
+LANG:10001 3 #15
+LANG:10010 3 #15
+LANG:10000 3 #15
+LANG:10027 3 #15
+E
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+24 "#16" 1 1 0 "s" 4
+LANG:10001 3 #16
+LANG:10010 3 #16
+LANG:10000 3 #16
+LANG:10027 3 #16
+E
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+24 "#17" 1 1 0 "s" 4
+LANG:10001 3 #17
+LANG:10010 3 #17
+LANG:10000 3 #17
+LANG:10027 3 #17
+E
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+24 "#18" 1 0 0 "s" 4
+LANG:10001 3 #18
+LANG:10010 3 #18
+LANG:10000 3 #18
+LANG:10027 3 #18
+E
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+24 "#19" 1 0 0 "s" 4
+LANG:10001 3 #19
+LANG:10010 3 #19
+LANG:10000 3 #19
+LANG:10027 3 #19
+E
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+24 "#20" 1 0 0 "s" 4
+LANG:10001 3 #20
+LANG:10010 3 #20
+LANG:10000 3 #20
+LANG:10027 3 #20
+E
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+24 "#21" 1 0 0 "s" 4
+LANG:10001 3 #21
+LANG:10010 3 #21
+LANG:10000 3 #21
+LANG:10027 3 #21
+E
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+24 "#22" 1 0 0 "s" 4
+LANG:10001 3 #22
+LANG:10010 3 #22
+LANG:10000 3 #22
+LANG:10027 3 #22
+E
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+24 "#23" 1 0 0 "s" 4
+LANG:10001 3 #23
+LANG:10010 3 #23
+LANG:10000 3 #23
+LANG:10027 3 #23
+E
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+24 "#24" 1 0 0 "s" 4
+LANG:10001 3 #24
+LANG:10010 3 #24
+LANG:10000 3 #24
+LANG:10027 3 #24
+E
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+24 "#25" 1 0 0 "s" 4
+LANG:10001 3 #25
+LANG:10010 3 #25
+LANG:10000 3 #25
+LANG:10027 3 #25
+E
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+24 "#26" 1 0 0 "s" 4
+LANG:10001 3 #26
+LANG:10010 3 #26
+LANG:10000 3 #26
+LANG:10027 3 #26
+E
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+24 "#27" 1 0 0 "s" 4
+LANG:10001 3 #27
+LANG:10010 3 #27
+LANG:10000 3 #27
+LANG:10027 3 #27
+E
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+24 "#28" 1 0 0 "s" 4
+LANG:10001 3 #28
+LANG:10010 3 #28
+LANG:10000 3 #28
+LANG:10027 3 #28
+E
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+24 "#29" 1 0 0 "s" 4
+LANG:10001 3 #29
+LANG:10010 3 #29
+LANG:10000 3 #29
+LANG:10027 3 #29
+E
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+24 "#30" 1 0 0 "s" 4
+LANG:10001 3 #30
+LANG:10010 3 #30
+LANG:10000 3 #30
+LANG:10027 3 #30
+E
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+24 "#31" 1 0 0 "s" 4
+LANG:10001 3 #31
+LANG:10010 3 #31
+LANG:10000 3 #31
+LANG:10027 3 #31
+E
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+24 "#32" 1 0 0 "s" 4
+LANG:10001 3 #32
+LANG:10010 3 #32
+LANG:10000 3 #32
+LANG:10027 3 #32
+E
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+24 "#33" 1 0 0 "s" 4
+LANG:10001 3 #33
+LANG:10010 3 #33
+LANG:10000 3 #33
+LANG:10027 3 #33
+E
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+24 
+26 26 "" 1 4
+LANG:10001 2 #1
+LANG:10010 2 #1
+LANG:10000 2 #1
+LANG:10027 2 #1
+8 72
+4
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10000 26 Arial,-1,12,5,40,0,0,0,0,0
+LANG:10027 26 arial,-1,12,5,40,0,0,0,0,0
+0 0 0 0 1 7
+1 0
+30 167
+"frame_completo"
+""
+1 10 190 E E E 1 E 0 E N "LIB_DEUSER_AZUL_08" E N "_Transparent" E E
+ E E
+191 0 0 0 0 0
+E E E
+0
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 2 1 0 1 E 1.0880195599022 0 1.393878604073206 47.32393876790206 22.1986126574044 0 E 10 70 420 190
+4
+LANG:10001 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10000 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,75,0,0,0,0,0
+0 4
+LANG:10001 18 Authorization Bits
+LANG:10010 21 Bits de Autorización
+LANG:10000 17 Berechtigungsbits
+LANG:10027 29 Биты полномочий
+13 168
+"left"
+""
+1 88.9541343669232 236.543688877366 E E E 1 E 0 E N "_Transparent" E N "LIB_IRC_AZUL_01" E E
+ E E
+192 0 0 0 0 0
+E E E
+1
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+2
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignCenter"
+4
+LANG:10001 26 Arial,-1,12,5,40,0,0,0,0,0
+LANG:10010 26 Arial,-1,12,5,40,0,0,0,0,0
+LANG:10000 26 Arial,-1,12,5,40,0,0,0,0,0
+LANG:10027 26 arial,-1,12,5,40,0,0,0,0,0
+0  86.9541343669232 234.543688877366 117.0666038045761 270.3910272232305
+
+P 
+12632256
+"pictures/StandardIcons/arrow_left_20.png"
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+"main()
+{
+  int   i;
+
+  for (i = 1; i < 17; i++)
+  {
+    gpermissions.columnVisibility(i + 16, false);
+    gpermissions.columnVisibility(i, true);
+  }
+
+  bits_permisos_vivibles(true);
+
+  left.visible = false;
+  right.visible = true;
+}
+" 0
+ E E E
+13 169
+"right"
+""
+1 449.8416649292701 236.543688877366 E E E 1 E 0 E N "_Transparent" E N "LIB_IRC_AZUL_01" E E
+ E E
+193 0 0 0 0 0
+E E E
+1
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+2
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignCenter"
+4
+LANG:10001 26 Arial,-1,12,5,40,0,0,0,0,0
+LANG:10010 26 Arial,-1,12,5,40,0,0,0,0,0
+LANG:10000 26 Arial,-1,12,5,40,0,0,0,0,0
+LANG:10027 26 arial,-1,12,5,40,0,0,0,0,0
+0  447.8416649292701 234.543688877366 477.9541343669233 270.3910272232305
+
+P 
+12632256
+"pictures/StandardIcons/arrow_right_20.png"
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+"main()
+{
+  int   i;
+
+  for (i = 1; i < 17; i++)
+  {
+    gpermissions.columnVisibility(i, false);
+    gpermissions.columnVisibility(i + 16, true);
+  }
+
+  bits_permisos_vivibles(false);
+
+  right.visible = false;
+  left.visible = true;
+}
+" 0
+ E E E
+2 170
+"txtBit1"
+"txf_standard_1"
+1 98.70413436692411 169.7701149425288 E E E 1 E 0 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+194 0 0 0 0 0
+E E E
+0
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E U  1 E 98.70413436692411 169.7701149425288 108 185
+0 2 2 "0s" 0 0 0 192 0 0  98.70413436692411 169.7701149425288 1
+4
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10000 30 Helvetica,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 4
+LANG:10001 1 1
+LANG:10010 1 1
+LANG:10000 1 1
+LANG:10027 1 1
+2 171
+"txtBit2"
+"txf_standard_1"
+1 123.7041343669241 169.7701149425288 E E E 1 E 0 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+195 0 0 0 0 0
+E E E
+0
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E U  1 E 123.7041343669241 169.7701149425288 133 185
+0 2 2 "0s" 0 0 0 192 0 0  123.7041343669241 169.7701149425288 1
+4
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10000 30 Helvetica,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 4
+LANG:10001 1 2
+LANG:10010 1 2
+LANG:10000 1 2
+LANG:10027 1 2
+2 172
+"txtBit3"
+"txf_standard_1"
+1 147.7041343669241 169.7701149425288 E E E 1 E 0 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+196 0 0 0 0 0
+E E E
+0
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E U  1 E 147.7041343669241 169.7701149425288 157 185
+0 2 2 "0s" 0 0 0 192 0 0  147.7041343669241 169.7701149425288 1
+4
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10000 30 Helvetica,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 4
+LANG:10001 1 3
+LANG:10010 1 3
+LANG:10000 1 3
+LANG:10027 1 3
+2 173
+"txtBit4"
+"txf_standard_1"
+1 171.7041343669241 169.7701149425288 E E E 1 E 0 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+197 0 0 0 0 0
+E E E
+0
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E U  1 E 171.7041343669241 169.7701149425288 181 185
+0 2 2 "0s" 0 0 0 192 0 0  171.7041343669241 169.7701149425288 1
+4
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10000 30 Helvetica,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 4
+LANG:10001 1 4
+LANG:10010 1 4
+LANG:10000 1 4
+LANG:10027 1 4
+2 174
+"txtBit5"
+"txf_standard_1"
+1 195.7041343669241 169.7701149425288 E E E 1 E 0 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+198 0 0 0 0 0
+E E E
+0
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E U  1 E 195.7041343669241 169.7701149425288 205 185
+0 2 2 "0s" 0 0 0 192 0 0  195.7041343669241 169.7701149425288 1
+4
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10000 30 Helvetica,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 4
+LANG:10001 1 5
+LANG:10010 1 5
+LANG:10000 1 5
+LANG:10027 1 5
+2 175
+"txtBit6"
+"txf_standard_1"
+1 219.7041343669241 169.7701149425288 E E E 1 E 0 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+199 0 0 0 0 0
+E E E
+0
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E U  1 E 219.7041343669241 169.7701149425288 229 185
+0 2 2 "0s" 0 0 0 192 0 0  219.7041343669241 169.7701149425288 1
+4
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10000 30 Helvetica,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 4
+LANG:10001 1 6
+LANG:10010 1 6
+LANG:10000 1 6
+LANG:10027 1 6
+2 176
+"txtBit7"
+"txf_standard_1"
+1 243.7041343669241 169.7701149425288 E E E 1 E 0 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+200 0 0 0 0 0
+E E E
+0
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E U  1 E 243.7041343669241 169.7701149425288 253 185
+0 2 2 "0s" 0 0 0 192 0 0  243.7041343669241 169.7701149425288 1
+4
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10000 30 Helvetica,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 4
+LANG:10001 1 7
+LANG:10010 1 7
+LANG:10000 1 7
+LANG:10027 1 7
+2 177
+"txtBit8"
+"txf_standard_1"
+1 267.7041343669242 169.7701149425288 E E E 1 E 0 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+201 0 0 0 0 0
+E E E
+0
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E U  1 E 267.7041343669242 169.7701149425288 277 185
+0 2 2 "0s" 0 0 0 192 0 0  267.7041343669242 169.7701149425288 1
+4
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10000 30 Helvetica,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 4
+LANG:10001 1 8
+LANG:10010 1 8
+LANG:10000 1 8
+LANG:10027 1 8
+2 178
+"txtBit9"
+"txf_standard_1"
+1 291.7041343669242 169.7701149425288 E E E 1 E 0 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+202 0 0 0 0 0
+E E E
+0
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E U  1 E 291.7041343669242 169.7701149425288 301 185
+0 2 2 "0s" 0 0 0 192 0 0  291.7041343669242 169.7701149425288 1
+4
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10000 30 Helvetica,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 4
+LANG:10001 1 9
+LANG:10010 1 9
+LANG:10000 1 9
+LANG:10027 1 9
+2 179
+"txtBit10_1"
+"txf_standard_1"
+1 315.7041343669242 155.7701149425288 E E E 1 E 0 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+203 0 0 0 0 0
+E E E
+0
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E U  1 E 315.7041343669242 155.7701149425288 325 171
+0 2 2 "0s" 0 0 0 192 0 0  315.7041343669242 155.7701149425288 1
+4
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10000 30 Helvetica,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 4
+LANG:10001 1 1
+LANG:10010 1 1
+LANG:10000 1 1
+LANG:10027 1 1
+2 180
+"txtBit10_0"
+"txf_standard_1"
+1 315.7041343669242 169.7701149425288 E E E 1 E 0 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+204 0 0 0 0 0
+E E E
+0
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E U  1 E 315.7041343669242 169.7701149425288 325 185
+0 2 2 "0s" 0 0 0 192 0 0  315.7041343669242 169.7701149425288 1
+4
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10000 30 Helvetica,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 4
+LANG:10001 1 0
+LANG:10010 1 0
+LANG:10000 1 0
+LANG:10027 1 0
+2 181
+"txtBit11"
+"txf_standard_1"
+1 339.7041343669242 169.7701149425288 E E E 1 E 0 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+205 0 0 0 0 0
+E E E
+0
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E U  1 E 339.7041343669242 169.7701149425288 349 185
+0 2 2 "0s" 0 0 0 192 0 0  339.7041343669242 169.7701149425288 1
+4
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10000 30 Helvetica,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 4
+LANG:10001 1 1
+LANG:10010 1 1
+LANG:10000 1 1
+LANG:10027 1 1
+2 182
+"txtBit12"
+"txf_standard_1"
+1 363.7041343669242 169.7701149425288 E E E 1 E 0 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+206 0 0 0 0 0
+E E E
+0
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E U  1 E 363.7041343669242 169.7701149425288 373 185
+0 2 2 "0s" 0 0 0 192 0 0  363.7041343669242 169.7701149425288 1
+4
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10000 30 Helvetica,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 4
+LANG:10001 1 2
+LANG:10010 1 2
+LANG:10000 1 2
+LANG:10027 1 2
+2 183
+"txtBit13"
+"txf_standard_1"
+1 388.7041343669242 169.7701149425288 E E E 1 E 0 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+207 0 0 0 0 0
+E E E
+0
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E U  1 E 388.7041343669242 169.7701149425288 398 185
+0 2 2 "0s" 0 0 0 192 0 0  388.7041343669242 169.7701149425288 1
+4
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10000 30 Helvetica,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 4
+LANG:10001 1 3
+LANG:10010 1 3
+LANG:10000 1 3
+LANG:10027 1 3
+2 184
+"txtBit14"
+"txf_standard_1"
+1 411.7041343669242 169.7701149425288 E E E 1 E 0 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+208 0 0 0 0 0
+E E E
+0
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E U  1 E 411.7041343669242 169.7701149425288 421 185
+0 2 2 "0s" 0 0 0 192 0 0  411.7041343669242 169.7701149425288 1
+4
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10000 30 Helvetica,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 4
+LANG:10001 1 4
+LANG:10010 1 4
+LANG:10000 1 4
+LANG:10027 1 4
+2 185
+"txtBit15"
+"txf_standard_1"
+1 435.7041343669242 169.7701149425288 E E E 1 E 0 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+209 0 0 0 0 0
+E E E
+0
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E U  1 E 435.7041343669242 169.7701149425288 445 185
+0 2 2 "0s" 0 0 0 192 0 0  435.7041343669242 169.7701149425288 1
+4
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10000 30 Helvetica,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 4
+LANG:10001 1 5
+LANG:10010 1 5
+LANG:10000 1 5
+LANG:10027 1 5
+2 186
+"txtBit16_6"
+"txf_standard_1"
+1 459.7041343669242 169.7701149425288 E E E 1 E 0 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+210 0 0 0 0 0
+E E E
+0
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E U  1 E 459.7041343669242 169.7701149425288 469 185
+0 2 2 "0s" 0 0 0 192 0 0  459.7041343669242 169.7701149425288 1
+4
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10000 30 Helvetica,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 4
+LANG:10001 1 6
+LANG:10010 1 6
+LANG:10000 1 6
+LANG:10027 1 6
+2 187
+"txtBit16_1"
+"txf_standard_1"
+1 459.7041343669242 155.7701149425288 E E E 1 E 0 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+211 0 0 0 0 0
+E E E
+0
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E U  1 E 459.7041343669242 155.7701149425288 469 171
+0 2 2 "0s" 0 0 0 192 0 0  459.7041343669242 155.7701149425288 1
+4
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10000 30 Helvetica,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 4
+LANG:10001 1 1
+LANG:10010 1 1
+LANG:10000 1 1
+LANG:10027 1 1
+2 188
+"txtBit17_7"
+"txf_standard_1"
+1 98.70413436692411 169.7701149425288 E E E 1 E 0 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+212 0 0 0 0 0
+E E E
+0
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E U  1 E 98.70413436692411 169.7701149425288 108 185
+0 2 2 "0s" 0 0 0 192 0 0  98.70413436692411 169.7701149425288 1
+4
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10000 30 Helvetica,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 4
+LANG:10001 1 7
+LANG:10010 1 7
+LANG:10000 1 7
+LANG:10027 1 7
+2 189
+"txtBit18"
+"txf_standard_1"
+1 122.7041343669241 169.7701149425288 E E E 1 E 0 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+213 0 0 0 0 0
+E E E
+0
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E U  1 E 122.7041343669241 169.7701149425288 132 185
+0 2 2 "0s" 0 0 0 192 0 0  122.7041343669241 169.7701149425288 1
+4
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10000 30 Helvetica,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 4
+LANG:10001 1 8
+LANG:10010 1 8
+LANG:10000 1 8
+LANG:10027 1 8
+2 190
+"txtBit19"
+"txf_standard_1"
+1 146.7041343669241 169.7701149425288 E E E 1 E 0 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+214 0 0 0 0 0
+E E E
+0
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E U  1 E 146.7041343669241 169.7701149425288 156 185
+0 2 2 "0s" 0 0 0 192 0 0  146.7041343669241 169.7701149425288 1
+4
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10000 30 Helvetica,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 4
+LANG:10001 1 9
+LANG:10010 1 9
+LANG:10000 1 9
+LANG:10027 1 9
+2 191
+"txtBit20_0"
+"txf_standard_1"
+1 170.7041343669241 169.7701149425288 E E E 1 E 0 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+215 0 0 0 0 0
+E E E
+0
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E U  1 E 170.7041343669241 169.7701149425288 180 185
+0 2 2 "0s" 0 0 0 192 0 0  170.7041343669241 169.7701149425288 1
+4
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10000 30 Helvetica,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 4
+LANG:10001 1 0
+LANG:10010 1 0
+LANG:10000 1 0
+LANG:10027 1 0
+2 192
+"txtBit21"
+"txf_standard_1"
+1 194.7041343669241 169.7701149425288 E E E 1 E 0 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+216 0 0 0 0 0
+E E E
+0
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E U  1 E 194.7041343669241 169.7701149425288 204 185
+0 2 2 "0s" 0 0 0 192 0 0  194.7041343669241 169.7701149425288 1
+4
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10000 30 Helvetica,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 4
+LANG:10001 1 1
+LANG:10010 1 1
+LANG:10000 1 1
+LANG:10027 1 1
+2 193
+"txtBit22"
+"txf_standard_1"
+1 218.7041343669241 169.7701149425288 E E E 1 E 0 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+217 0 0 0 0 0
+E E E
+0
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E U  1 E 218.7041343669241 169.7701149425288 228 185
+0 2 2 "0s" 0 0 0 192 0 0  218.7041343669241 169.7701149425288 1
+4
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10000 30 Helvetica,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 4
+LANG:10001 1 2
+LANG:10010 1 2
+LANG:10000 1 2
+LANG:10027 1 2
+2 194
+"txtBit23"
+"txf_standard_1"
+1 242.7041343669241 169.7701149425288 E E E 1 E 0 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+218 0 0 0 0 0
+E E E
+0
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E U  1 E 242.7041343669241 169.7701149425288 252 185
+0 2 2 "0s" 0 0 0 192 0 0  242.7041343669241 169.7701149425288 1
+4
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10000 30 Helvetica,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 4
+LANG:10001 1 3
+LANG:10010 1 3
+LANG:10000 1 3
+LANG:10027 1 3
+2 195
+"txtBit28"
+"txf_standard_1"
+1 362.7041343669242 169.7701149425288 E E E 1 E 0 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+219 0 0 0 0 0
+E E E
+0
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E U  1 E 362.7041343669242 169.7701149425288 372 185
+0 2 2 "0s" 0 0 0 192 0 0  362.7041343669242 169.7701149425288 1
+4
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10000 30 Helvetica,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 4
+LANG:10001 1 8
+LANG:10010 1 8
+LANG:10000 1 8
+LANG:10027 1 8
+2 196
+"txtBit29"
+"txf_standard_1"
+1 386.7041343669242 169.7701149425288 E E E 1 E 0 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+220 0 0 0 0 0
+E E E
+0
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E U  1 E 386.7041343669242 169.7701149425288 396 185
+0 2 2 "0s" 0 0 0 192 0 0  386.7041343669242 169.7701149425288 1
+4
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10000 30 Helvetica,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 4
+LANG:10001 1 9
+LANG:10010 1 9
+LANG:10000 1 9
+LANG:10027 1 9
+2 197
+"txtBit30_3"
+"txf_standard_1"
+1 410.7041343669242 155.7701149425288 E E E 1 E 0 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+221 0 0 0 0 0
+E E E
+0
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E U  1 E 410.7041343669242 155.7701149425288 420 171
+0 2 2 "0s" 0 0 0 192 0 0  410.7041343669242 155.7701149425288 1
+4
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10000 30 Helvetica,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 4
+LANG:10001 1 3
+LANG:10010 1 3
+LANG:10000 1 3
+LANG:10027 1 3
+2 198
+"txtBit30_0"
+"txf_standard_1"
+1 410.7041343669242 169.7701149425288 E E E 1 E 0 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+222 0 0 0 0 0
+E E E
+0
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E U  1 E 410.7041343669242 169.7701149425288 420 185
+0 2 2 "0s" 0 0 0 192 0 0  410.7041343669242 169.7701149425288 1
+4
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10000 30 Helvetica,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 4
+LANG:10001 1 0
+LANG:10010 1 0
+LANG:10000 1 0
+LANG:10027 1 0
+2 199
+"txtBit31"
+"txf_standard_1"
+1 434.7041343669242 169.7701149425288 E E E 1 E 0 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+223 0 0 0 0 0
+E E E
+0
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E U  1 E 434.7041343669242 169.7701149425288 444 185
+0 2 2 "0s" 0 0 0 192 0 0  434.7041343669242 169.7701149425288 1
+4
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10000 30 Helvetica,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 4
+LANG:10001 1 1
+LANG:10010 1 1
+LANG:10000 1 1
+LANG:10027 1 1
+2 200
+"txtBit32_2"
+"txf_standard_1"
+1 458.7041343669242 169.7701149425288 E E E 1 E 0 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+224 0 0 0 0 0
+E E E
+0
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E U  1 E 458.7041343669242 169.7701149425288 468 185
+0 2 2 "0s" 0 0 0 192 0 0  458.7041343669242 169.7701149425288 1
+4
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10000 30 Helvetica,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 4
+LANG:10001 1 2
+LANG:10010 1 2
+LANG:10000 1 2
+LANG:10027 1 2
+2 201
+"txtBit24"
+"txf_standard_1"
+1 266.7041343669242 169.7701149425288 E E E 1 E 0 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+225 0 0 0 0 0
+E E E
+0
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E U  1 E 266.7041343669242 169.7701149425288 276 185
+0 2 2 "0s" 0 0 0 192 0 0  266.7041343669242 169.7701149425288 1
+4
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10000 30 Helvetica,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 4
+LANG:10001 1 4
+LANG:10010 1 4
+LANG:10000 1 4
+LANG:10027 1 4
+2 202
+"txtBit25"
+"txf_standard_1"
+1 290.7041343669242 169.7701149425288 E E E 1 E 0 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+226 0 0 0 0 0
+E E E
+0
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E U  1 E 290.7041343669242 169.7701149425288 300 185
+0 2 2 "0s" 0 0 0 192 0 0  290.7041343669242 169.7701149425288 1
+4
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10000 30 Helvetica,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 4
+LANG:10001 1 5
+LANG:10010 1 5
+LANG:10000 1 5
+LANG:10027 1 5
+2 203
+"txtBit26"
+"txf_standard_1"
+1 314.7041343669242 169.7701149425288 E E E 1 E 0 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+227 0 0 0 0 0
+E E E
+0
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E U  1 E 314.7041343669242 169.7701149425288 324 185
+0 2 2 "0s" 0 0 0 192 0 0  314.7041343669242 169.7701149425288 1
+4
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10000 30 Helvetica,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 4
+LANG:10001 1 6
+LANG:10010 1 6
+LANG:10000 1 6
+LANG:10027 1 6
+2 204
+"txtBit32_3"
+"txf_standard_1"
+1 458.7041343669242 155.7701149425288 E E E 1 E 0 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+228 0 0 0 0 0
+E E E
+0
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E U  1 E 458.7041343669242 155.7701149425288 468 171
+0 2 2 "0s" 0 0 0 192 0 0  458.7041343669242 155.7701149425288 1
+4
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10000 30 Helvetica,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 4
+LANG:10001 1 3
+LANG:10010 1 3
+LANG:10000 1 3
+LANG:10027 1 3
+2 205
+"txtBit27"
+"txf_standard_1"
+1 338.7041343669242 169.7701149425288 E E E 1 E 0 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+229 0 0 0 0 0
+E E E
+0
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E U  1 E 338.7041343669242 169.7701149425288 348 185
+0 2 2 "0s" 0 0 0 192 0 0  338.7041343669242 169.7701149425288 1
+4
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10000 30 Helvetica,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 4
+LANG:10001 1 7
+LANG:10010 1 7
+LANG:10000 1 7
+LANG:10027 1 7
+2 206
+"txtBit17_1"
+"txf_standard_1"
+1 98.70413436692411 155.7701149425288 E E E 1 E 0 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+230 0 0 0 0 0
+E E E
+0
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E U  1 E 98.70413436692411 155.7701149425288 108 171
+0 2 2 "0s" 0 0 0 192 0 0  98.70413436692411 155.7701149425288 1
+4
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10000 30 Helvetica,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 4
+LANG:10001 1 1
+LANG:10010 1 1
+LANG:10000 1 1
+LANG:10027 1 1
+2 207
+"txtBit20_2"
+"txf_standard_1"
+1 170.7041343669241 155.7701149425288 E E E 1 E 0 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+231 0 0 0 0 0
+E E E
+0
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E U  1 E 170.7041343669241 155.7701149425288 180 171
+0 2 2 "0s" 0 0 0 192 0 0  170.7041343669241 155.7701149425288 1
+4
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10000 30 Helvetica,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 4
+LANG:10001 1 2
+LANG:10010 1 2
+LANG:10000 1 2
+LANG:10027 1 2
+6 208
+"RECTANGLE5"
+""
+1 1447 457 E E E 1 E 0 E N "LIB_IRC_AZUL_01" E N {255,255,255} E E
+ E E
+232 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 2 3 2 1 E 1.011849901250826 0 0.9753086419753089 -1374.692672743023 -260.1126011068542 1 E 1447 457 1826.749999999999 484
+25 209
+"tb_permisos_10_16"
+""
+1 69.20413436692411 168.7701149425288 E E E 1 E 0 E N "LIB_IRC_AZUL_01" E N "LIB_DEUSER_BLANCO" E E
+ E E
+233 0 0 0 0 0
+E E E
+0
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+1
+"layoutAlignment" "AlignCenter"
+4
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10000 26 Arial,-1,12,5,40,0,0,0,0,0
+LANG:10027 26 arial,-1,12,5,40,0,0,0,0,0
+0  88.04586563307521 182.2068965517242 476.1291989664091 212.5402298850575
+E"main(int row, string column, string value)
+{
+  if ( column == \"#1\" ) return;
+  getValue(\"gpermissions\", \"cellValueRC\", row, column, value);
+  if ( value == \"0\" )
+    value = \"1\";
+  else
+    value = \"0\";
+  setValue(\"gpermissions\", \"cellValueRC\", row, column, value);
+
+}" 0
+ 0 0 1 33 1 "#1" 11 0 0 "s" 4
+LANG:10001 2 #1
+LANG:10010 2 #1
+LANG:10000 2 #1
+LANG:10027 2 #1
+E
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+112 "#2" 1 0 0 "s" 4
+LANG:10001 2 #2
+LANG:10010 2 #2
+LANG:10000 2 #2
+LANG:10027 2 #2
+E
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+24 "#3" 1 0 0 "s" 4
+LANG:10001 2 #3
+LANG:10010 2 #3
+LANG:10000 2 #3
+LANG:10027 2 #3
+E
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+24 "#4" 1 0 0 "s" 4
+LANG:10001 2 #4
+LANG:10010 2 #4
+LANG:10000 2 #4
+LANG:10027 2 #4
+E
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+24 "#5" 1 0 0 "s" 4
+LANG:10001 2 #5
+LANG:10010 2 #5
+LANG:10000 2 #5
+LANG:10027 2 #5
+E
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+24 "#6" 1 0 0 "s" 4
+LANG:10001 2 #6
+LANG:10010 2 #6
+LANG:10000 2 #6
+LANG:10027 2 #6
+E
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+24 "#7" 1 0 0 "s" 4
+LANG:10001 2 #7
+LANG:10010 2 #7
+LANG:10000 2 #7
+LANG:10027 2 #7
+E
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+24 "#8" 1 0 0 "s" 4
+LANG:10001 2 #8
+LANG:10010 2 #8
+LANG:10000 2 #8
+LANG:10027 2 #8
+E
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+24 "#9" 1 0 0 "s" 4
+LANG:10001 2 #9
+LANG:10010 2 #9
+LANG:10000 2 #9
+LANG:10027 2 #9
+E
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+24 "#10" 1 0 0 "s" 4
+LANG:10001 3 #10
+LANG:10010 3 #10
+LANG:10000 3 #10
+LANG:10027 3 #10
+E
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+24 "#11" 1 1 0 "s" 4
+LANG:10001 3 #11
+LANG:10010 3 #11
+LANG:10000 3 #11
+LANG:10027 3 #11
+E
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+55 "#12" 1 1 0 "s" 4
+LANG:10001 3 #12
+LANG:10010 3 #12
+LANG:10000 3 #12
+LANG:10027 3 #12
+E
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+55 "#13" 1 1 0 "s" 4
+LANG:10001 3 #13
+LANG:10010 3 #13
+LANG:10000 3 #13
+LANG:10027 3 #13
+E
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+55 "#14" 1 1 0 "s" 4
+LANG:10001 3 #14
+LANG:10010 3 #14
+LANG:10000 3 #14
+LANG:10027 3 #14
+E
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+55 "#15" 1 1 0 "s" 4
+LANG:10001 3 #15
+LANG:10010 3 #15
+LANG:10000 3 #15
+LANG:10027 3 #15
+E
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+55 "#16" 1 1 0 "s" 4
+LANG:10001 3 #16
+LANG:10010 3 #16
+LANG:10000 3 #16
+LANG:10027 3 #16
+E
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+55 "#17" 1 1 0 "s" 4
+LANG:10001 3 #17
+LANG:10010 3 #17
+LANG:10000 3 #17
+LANG:10027 3 #17
+E
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+55 "#18" 1 0 0 "s" 4
+LANG:10001 3 #18
+LANG:10010 3 #18
+LANG:10000 3 #18
+LANG:10027 3 #18
+E
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+24 "#19" 1 0 0 "s" 4
+LANG:10001 3 #19
+LANG:10010 3 #19
+LANG:10000 3 #19
+LANG:10027 3 #19
+E
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+0 "#20" 1 0 0 "s" 4
+LANG:10001 3 #20
+LANG:10010 3 #20
+LANG:10000 3 #20
+LANG:10027 3 #20
+E
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+24 "#21" 1 0 0 "s" 4
+LANG:10001 3 #21
+LANG:10010 3 #21
+LANG:10000 3 #21
+LANG:10027 3 #21
+E
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+24 "#22" 1 0 0 "s" 4
+LANG:10001 3 #22
+LANG:10010 3 #22
+LANG:10000 3 #22
+LANG:10027 3 #22
+E
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+24 "#23" 1 0 0 "s" 4
+LANG:10001 3 #23
+LANG:10010 3 #23
+LANG:10000 3 #23
+LANG:10027 3 #23
+E
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+24 "#24" 1 0 0 "s" 4
+LANG:10001 3 #24
+LANG:10010 3 #24
+LANG:10000 3 #24
+LANG:10027 3 #24
+E
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+24 "#25" 1 0 0 "s" 4
+LANG:10001 3 #25
+LANG:10010 3 #25
+LANG:10000 3 #25
+LANG:10027 3 #25
+E
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+24 "#26" 1 0 0 "s" 4
+LANG:10001 3 #26
+LANG:10010 3 #26
+LANG:10000 3 #26
+LANG:10027 3 #26
+E
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+24 "#27" 1 0 0 "s" 4
+LANG:10001 3 #27
+LANG:10010 3 #27
+LANG:10000 3 #27
+LANG:10027 3 #27
+E
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+24 "#28" 1 0 0 "s" 4
+LANG:10001 3 #28
+LANG:10010 3 #28
+LANG:10000 3 #28
+LANG:10027 3 #28
+E
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+24 "#29" 1 0 0 "s" 4
+LANG:10001 3 #29
+LANG:10010 3 #29
+LANG:10000 3 #29
+LANG:10027 3 #29
+E
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+24 "#30" 1 0 0 "s" 4
+LANG:10001 3 #30
+LANG:10010 3 #30
+LANG:10000 3 #30
+LANG:10027 3 #30
+E
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+24 "#31" 1 0 0 "s" 4
+LANG:10001 3 #31
+LANG:10010 3 #31
+LANG:10000 3 #31
+LANG:10027 3 #31
+E
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+24 "#32" 1 0 0 "s" 4
+LANG:10001 3 #32
+LANG:10010 3 #32
+LANG:10000 3 #32
+LANG:10027 3 #32
+E
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+24 "#33" 1 0 0 "s" 4
+LANG:10001 3 #33
+LANG:10010 3 #33
+LANG:10000 3 #33
+LANG:10027 3 #33
+E
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+24 
+26 26 "" 1 4
+LANG:10001 2 #1
+LANG:10010 2 #1
+LANG:10000 2 #1
+LANG:10027 2 #1
+8 72
+4
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10000 26 Arial,-1,12,5,40,0,0,0,0,0
+LANG:10027 26 arial,-1,12,5,40,0,0,0,0,0
+0 0 0 0 1 7
+1 0
+2 210
+"text10"
+"txf_standard_1"
+1 108.7958656330761 161.2747973962729 E E E 1 E 0 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+234 0 0 0 0 0
+E E E
+0
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E U  1 E 108.7958656330761 161.2747973962729 126 176
+0 2 2 "0s" 0 0 0 192 0 0  108.7958656330761 161.2747973962729 1
+4
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10000 30 Helvetica,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 4
+LANG:10001 1 0
+LANG:10010 2 10
+LANG:10000 1 0
+LANG:10027 1 0
+2 211
+"text11"
+"txf_standard_1"
+1 163.7958656330761 161.2747973962729 E E E 1 E 0 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+235 0 0 0 0 0
+E E E
+0
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E U  1 E 163.7958656330761 161.2747973962729 181 176
+0 2 2 "0s" 0 0 0 192 0 0  163.7958656330761 161.2747973962729 1
+4
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10000 30 Helvetica,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 4
+LANG:10001 1 1
+LANG:10010 2 11
+LANG:10000 1 1
+LANG:10027 1 1
+2 212
+"text12"
+"txf_standard_1"
+1 218.7958656330761 161.2747973962729 E E E 1 E 0 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+236 0 0 0 0 0
+E E E
+0
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E U  1 E 218.7958656330761 161.2747973962729 236 176
+0 2 2 "0s" 0 0 0 192 0 0  218.7958656330761 161.2747973962729 1
+4
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10000 30 Helvetica,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 4
+LANG:10001 1 2
+LANG:10010 2 12
+LANG:10000 1 2
+LANG:10027 1 2
+2 213
+"text13"
+"txf_standard_1"
+1 273.4208656330752 161.2747973962729 E E E 1 E 0 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+237 0 0 0 0 0
+E E E
+0
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E U  1 E 273.4208656330752 161.2747973962729 291 176
+0 2 2 "0s" 0 0 0 192 0 0  273.4208656330752 161.2747973962729 1
+4
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10000 30 Helvetica,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 4
+LANG:10001 1 3
+LANG:10010 2 13
+LANG:10000 1 3
+LANG:10027 1 3
+2 214
+"text14"
+"txf_standard_1"
+1 328.7958656330761 161.2747973962729 E E E 1 E 0 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+238 0 0 0 0 0
+E E E
+0
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E U  1 E 328.7958656330761 161.2747973962729 346 176
+0 2 2 "0s" 0 0 0 192 0 0  328.7958656330761 161.2747973962729 1
+4
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10000 30 Helvetica,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 4
+LANG:10001 1 4
+LANG:10010 2 14
+LANG:10000 1 4
+LANG:10027 1 4
+2 215
+"text15"
+"txf_standard_1"
+1 383.7958656330761 161.2747973962729 E E E 1 E 0 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+239 0 0 0 0 0
+E E E
+0
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E U  1 E 383.7958656330761 161.2747973962729 401 176
+0 2 2 "0s" 0 0 0 192 0 0  383.7958656330761 161.2747973962729 1
+4
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10000 30 Helvetica,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 4
+LANG:10001 1 5
+LANG:10010 2 15
+LANG:10000 1 5
+LANG:10027 1 5
+2 216
+"text16"
+"txf_standard_1"
+1 438.7958656330761 161.2747973962729 E E E 1 E 0 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+240 0 0 0 0 0
+E E E
+0
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 2 1 E U  1 E 438.7958656330761 161.2747973962729 456 176
+0 2 2 "0s" 0 0 0 192 0 0  438.7958656330761 161.2747973962729 1
+4
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10000 30 Helvetica,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 4
+LANG:10001 1 6
+LANG:10010 2 16
+LANG:10000 1 6
+LANG:10027 1 6
+6 217
+"RECTANGLE6"
+""
+1 1447 457 E E E 1 E 0 E N "LIB_IRC_AZUL_01" E N {255,255,255} E E
+ E E
+241 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 2 3 2 1 E 1.011849901250826 0 0.9753086419753089 -1374.10094147687 -261.3424861643254 1 E 1447 457 1826.749999999999 484
+30 218
+"frame_recortado"
+""
+1 10 190 E E E 1 E 0 E N "LIB_DEUSER_AZUL_08" E N "_Transparent" E E
+ E E
+242 0 0 0 0 0
+E E E
+0
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 2 1 0 1 E 1.0880195599022 0 1.043096185842759 47.91567003405407 47.00117215670286 0 E 10 70 420 190
+4
+LANG:10001 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10000 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,75,0,0,0,0,0
+0 4
+LANG:10001 18 Authorization Bits
+LANG:10010 21 Bits de Autorización
+LANG:10000 17 Berechtigungsbits
+LANG:10027 29 Биты полномочий
+14 220
+"TEXT_FIELD1"
+""
+1 111 27 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+244 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Noto Sans,-1,30,5,75,0,0,0,0,0,Bold
+0  109 18 453 54
+3 "0s" 0 0 0 0 0 -1  E "main()
+{
+  this.text(\"PERMISOS DE GRUPO\");
+}" 0
+ E
+29 221
+"Label2"
+"PEQUENIO_AZUL"
+1 64.04586563307521 71 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+245 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"text" "string Grupo"
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 27 Tahoma,-1,16,5,50,0,0,0,0,0
+0  64.04586563307521 71 158.0458656330752 106
+5 Label
+0
+E0
+LAYER, 1 
+2
+LANG:10001 6 Layer2
+LANG:10010 6 Layer2
+0
+LAYER, 2 
+2
+LANG:10001 6 Layer3
+LANG:10010 6 Layer3
+0
+LAYER, 3 
+2
+LANG:10001 6 Layer4
+LANG:10010 6 Layer4
+0
+LAYER, 4 
+2
+LANG:10001 6 Layer5
+LANG:10010 6 Layer5
+0
+LAYER, 5 
+2
+LANG:10001 6 Layer6
+LANG:10010 6 Layer6
+0
+LAYER, 6 
+2
+LANG:10001 6 Layer7
+LANG:10010 6 Layer7
+0
+LAYER, 7 
+2
+LANG:10001 6 Layer8
+LANG:10010 6 Layer8
+0
+1 0 "SHAPE_GROUP2" -1
+43 0 
+166 167 168 169 170 171 172 173 174 175 176 177 178 179 180 181 182 183 184 185 186 187 188 189 190 191 192 193 194 195 196 197 198 199 200 201 202 203 204 205 206 207 208 
+
+"layoutAlignment" "AlignNone"
+"" ""
+1 1 "SHAPE_GROUP1" -1
+10 0 
+209 210 211 212 213 214 215 216 217 218 
+
+"layoutAlignment" "AlignNone"
+"" ""
+0

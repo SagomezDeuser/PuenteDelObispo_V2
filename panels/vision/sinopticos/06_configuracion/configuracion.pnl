@@ -1,0 +1,182 @@
+V 14
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+PANEL,-1 -1 1920 980 N "white" 0
+E E E E E 1 -1 -1 0  65 108
+""0  1
+E E 4
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+"pdpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10001 0 
+LANG:10010 0 
+28 24
+"tab_config"
+"tab_widget_standard_1"
+1 0 -84.5 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_BLANCO" E E
+ E E
+47 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+1
+"layoutAlignment" "AlignNone"
+6
+LANG:10001 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10009 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10008 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10018 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  -2 -1.5 1922 981.5
+"main()
+{
+  string usuario_logueado;
+  usuario_logueado = getUserName();
+
+  if(usuario_logueado == \"root\"){ //Habilitamos la pestaña de configuración IRC si la persona logueada es Root
+    setValue(this, \"namedRegisterEnabled\", \"config_deuser\", 1);
+    setValue(this, \"namedRegisterVisible\", \"config_deuser\", 1);
+  }
+  else{
+    setValue(this, \"namedRegisterEnabled\", \"config_deuser\", 0);
+    setValue(this, \"namedRegisterVisible\", \"config_deuser\", 0);
+  }
+
+  setMultiValue(\"\", \"activeRegister\", 0,  //Seleccionamos la pestaña 0 de Básculas al inicializar el Tab
+                \"\", \"registerIcon\", 0, \"iconos/otros/tab/tab_config_1.svg\",
+                \"\", \"registerIcon\", 1, \"iconos/otros/tab/tab_config_1.svg\",
+                \"\", \"registerIcon\", 2, \"iconos/otros/tab/tab_config_1.svg\",
+                \"\", \"registerIcon\", 3, \"iconos/otros/tab/tab_config_1.svg\",
+                \"\", \"registerIcon\", 4, \"iconos/otros/tab/tab_config_1.svg\",
+                \"\", \"registerIcon\", 5, \"iconos/otros/tab/tab_config_1.svg\");
+}" 0
+6 "consignas" 6
+LANG:10001 2 #1
+LANG:10010 6 Planta
+LANG:10011 2 #2
+LANG:10009 2 #2
+LANG:10008 2 #2
+LANG:10018 2 #2
+1 "vision/sinopticos/06_configuracion_proyecto/configuracion_planta.pnl" 2
+LANG:10001 0 
+LANG:10010 0 
+0
+
+"usuarios" 6
+LANG:10001 2 #1
+LANG:10010 8 Usuarios
+LANG:10011 2 #2
+LANG:10009 2 #2
+LANG:10008 2 #2
+LANG:10018 2 #2
+1 "vision/sinopticos/06_configuracion/configuracion/config_tabs/configuracion_usuarios.pnl" 2
+LANG:10001 0 
+LANG:10010 0 
+0
+
+"scada" 6
+LANG:10001 2 #1
+LANG:10010 5 SCADA
+LANG:10011 2 #2
+LANG:10009 2 #2
+LANG:10008 2 #2
+LANG:10018 2 #2
+1 "vision/sinopticos/06_configuracion_proyecto/configuracion_proyecto.pnl" 2
+LANG:10001 0 
+LANG:10010 0 
+0
+
+"motores" 6
+LANG:10001 2 #2
+LANG:10010 9 Elementos
+LANG:10011 2 #2
+LANG:10009 2 #2
+LANG:10008 2 #2
+LANG:10018 2 #2
+1 "vision/sinopticos/06_configuracion/configuracion/config_tabs/archivado_motores.pnl" 2
+LANG:10001 0 
+LANG:10010 0 
+0
+
+"analogicas" 6
+LANG:10001 2 #1
+LANG:10010 11 Analógicas
+LANG:10011 2 #1
+LANG:10009 2 #1
+LANG:10008 2 #1
+LANG:10018 2 #1
+1 "vision/sinopticos/06_configuracion/configuracion/config_tabs/archivado_motores.pnl" 2
+LANG:10001 0 
+LANG:10010 0 
+0
+
+"analizadores_redes" 6
+LANG:10001 2 #1
+LANG:10010 18 Analizadores Redes
+LANG:10011 2 #1
+LANG:10009 2 #1
+LANG:10008 2 #1
+LANG:10018 2 #1
+1 "vision/sinopticos/06_configuracion/configuracion/config_tabs/archivado_analizadores.pnl" 2
+LANG:10001 0 
+LANG:10010 0 
+0
+
+
+0
+LAYER, 1 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 2 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 3 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 4 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 5 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 6 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 7 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+0

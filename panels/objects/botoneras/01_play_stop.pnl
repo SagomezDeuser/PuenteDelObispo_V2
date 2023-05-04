@@ -1,0 +1,266 @@
+V 14
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+PANEL,-1 -1 240 93 N "_Transparent" 2
+"$DP_MARCHA"
+"$NOMBRE_ZONA"
+"main()
+{
+  parametrosOK = parametrosRellenos();
+}" 0
+ E E E E 1 -1 -1 0  0 0
+""0  1
+E "/***********************VARIABLES COMUNES PARA EL OBJETO***************************
+$DP_MARCHA Le pasaremos el DataPoint
+$NOMBRE_ZONA pondremos el nombre de la zona en la que se encuentra
+  ******************/
+
+bool parametrosOK = FALSE;
+
+bool parametrosRellenos()//Comprobamos que todos los parametros del objeto esten rellenos, sino el objeto será de color morado.
+{
+  if ($DP_MARCHA != \"\" && $NOMBRE_ZONA != \"\")
+  {
+    return TRUE;// Si todos los parametros están rellenos devolvemos TRUE.
+  }
+  else
+  {
+    btn_play.backCol(\"LIB_IRC_MORADO_01\");
+    btn_stop.backCol(\"LIB_IRC_MORADO_01\");
+    txf_zona.foreCol(\"LIB_IRC_MORADO_01\");
+    return FALSE;
+  }
+}
+" 0
+ 4
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+"pdpi" "96"
+0 1 0 0 0 0 1 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 1 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 2 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 3 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 4 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 5 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 6 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 7 
+2
+LANG:10001 0 
+LANG:10010 0 
+6 5
+"fondo"
+""
+1 20 10 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_DEUSER_BLANCO" E E
+ E E
+4 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+4
+"sizePolicy" "Ignored Ignored"
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 2 3 2 1 E 1.974273897058824 0 2.275000000000003 -37.48547794117647 -21.75000000000005 1 E 20 10 140 50
+13 2
+"btn_play"
+""
+1 0.8636292016806518 34.5883528620453 E E E 1 E 1 E N "_Transparent" E N "_Transparent" E E
+ E E
+1 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+2
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+6
+LANG:10001 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+0  -0.657142857142857 32.00000000000001 122.3428571428571 94.8
+
+P 
+4294967295
+"pictures/iconos/botoneras/botonera_secuencia/play_off.svg"
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+"main(mapping event)
+{
+  dpSet($DP_MARCHA, TRUE);
+}
+" 0
+ E E "main()
+{
+  if (parametrosOK)  //Comprobamos que hemos rellenado los $
+  {
+    //INST_MARCHA = Nombre de la instancia de marcha, incluyendo el tipo (Ejemplo de Aceitunas: d_GO_MarchaSecuencia_HMI)
+    cambiarEstadoBoton($DP_MARCHA);
+  }
+}
+" 0
+
+13 3
+"btn_stop"
+""
+1 120.642857142857 39.74484231757651 E E E 1 E 1 E N "_Transparent" E N "_Transparent" E E
+ E E
+2 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+2
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+6
+LANG:10001 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+0  118.1428571428572 32.00000000000001 241.1428571428572 94.80000000000001
+
+P 
+4294967295
+"pictures/iconos/botoneras/botonera_secuencia/stop_off.svg"
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+"main(mapping event)
+{
+  if (parametrosOK)
+  {
+    dpSet($DP_MARCHA, FALSE);
+  }
+}
+" 0
+ E E "main()
+{
+  if (parametrosOK)  //Comprobamos que hemos rellenado los $
+  {
+    //INST_MARCHA = Nombre de la instancia de marcha, incluyendo el tipo (Ejemplo de Aceitunas: d_GO_MarchaSecuencia_HMI)
+    cambiarEstadoBoton($DP_MARCHA);
+  }
+}
+" 0
+
+4 4
+"LINE1"
+""
+1 120.5 40.73987925972507 E E E 1 E 1 E N {1,72,152} E N {255,255,255} E E
+ E E
+3 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 3 2 1 E  120.5 41 120.5 88
+2 8
+"txf_zona"
+""
+1 178 46 E E E 1 E 1 E N "LIB_DEUSER_BLANCO" E N {1,72,152} E E
+ E E
+7 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+5
+"sizePolicy" "Ignored Ignored"
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+  if (parametrosOK)
+  {
+    this.text($NOMBRE_ZONA);
+  }
+}
+" 0
+ E 0 0 3 2 1 E 1.45625 0 0.8939393939393941 -255.2125000000001 -38.62121212121214 1 E 178 46 338 79
+0 2 2 "0s" 0 0 0 73 0 0  178 46 1
+2
+LANG:10001 34 Tahoma,-1,16,5,50,0,0,0,0,0,Normal
+LANG:10010 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+0 2
+LANG:10001 20 SINÓPTICO SECADEROS
+LANG:10010 3 ---
+0
+0

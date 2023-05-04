@@ -1,0 +1,375 @@
+V 14
+2
+LANG:10001 0 
+LANG:10010 0 
+PANEL,-1 -1 588 400 N "_3DFace" 0
+E E E E E 1 -1 -1 0  70.42735042735058 30.00000000000001
+""0  1
+E E 4
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+"pdpi" "141.951"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10001 0 
+LANG:10010 0 
+13 2
+"PUSH_BUTTON11"
+""
+1 9.999999999999773 70 E E E 1 E 1 E N "white" E N "LIB_IRC_VERDE_01" E E
+ E E
+2 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 8 Synoptic
+LANG:10010 6 Inicio
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,21,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  7.999999999999773 68 571.9999999999998 122.4942303824556
+
+T 
+2
+LANG:10001 0 
+LANG:10010 39 ANULAR DETECTOR SF DISTRIBUIDOR G1 Y G2
+"main(mapping event)
+{
+  bool valor;
+
+  dpGet(\"015_PREPARACION.cio25100\", valor);
+  dpSet(\"015_PREPARACION.cio25100\", !valor);
+}" 0
+ E E "main()
+{
+  dpConnect(\"cambiar_fondo\", \"015_PREPARACION.cio25100\");
+}
+
+void cambiar_fondo(string dp, bool valor)
+{
+  if(!valor)
+  {
+    this.backCol(\"LIB_IRC_GRIS_01\");
+  }
+  else
+  {
+    this.backCol(\"LIB_IRC_VERDE_01\");
+  }
+}" 0
+
+13 4
+"PUSH_BUTTON12"
+""
+1 10 134 E E E 1 E 1 E N "white" E N "LIB_IRC_VERDE_01" E E
+ E E
+4 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 8 Synoptic
+LANG:10010 6 Inicio
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,21,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  8 132 572 186.4942303824556
+
+T 
+2
+LANG:10001 0 
+LANG:10010 39 ANULAR DETECTOR SF RECOGIDA GRANULADORA
+"main(mapping event)
+{
+  bool valor;
+
+  dpGet(\"015_PREPARACION.cio25101\", valor);
+  dpSet(\"015_PREPARACION.cio25101\", !valor);
+}" 0
+ E E "main()
+{
+  dpConnect(\"cambiar_fondo\", \"015_PREPARACION.cio25101\");
+}
+
+void cambiar_fondo(string dp, bool valor)
+{
+  if(!valor)
+  {
+    this.backCol(\"LIB_IRC_GRIS_01\");
+  }
+  else
+  {
+    this.backCol(\"LIB_IRC_VERDE_01\");
+  }
+}" 0
+
+13 5
+"PUSH_BUTTON13"
+""
+1 10 200 E E E 1 E 1 E N "white" E N "LIB_IRC_VERDE_01" E E
+ E E
+5 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 8 Synoptic
+LANG:10010 6 Inicio
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,21,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  8 198 572 252.4942303824556
+
+T 
+2
+LANG:10001 0 
+LANG:10010 32 ANULAR DETECTOR SF TOLVA G1 Y G2
+"main(mapping event)
+{
+  bool valor;
+
+  dpGet(\"015_PREPARACION.cio25102\", valor);
+  dpSet(\"015_PREPARACION.cio25102\", !valor);
+}" 0
+ E E "main()
+{
+  dpConnect(\"cambiar_fondo\", \"015_PREPARACION.cio25102\");
+}
+
+void cambiar_fondo(string dp, bool valor)
+{
+  if(!valor)
+  {
+    this.backCol(\"LIB_IRC_GRIS_01\");
+  }
+  else
+  {
+    this.backCol(\"LIB_IRC_VERDE_01\");
+  }
+}" 0
+
+13 6
+"PUSH_BUTTON14"
+""
+1 10 263 E E E 1 E 1 E N "white" E N "LIB_IRC_VERDE_01" E E
+ E E
+6 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 8 Synoptic
+LANG:10010 6 Inicio
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,21,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  8 261 572 315.4942303824556
+
+T 
+2
+LANG:10001 0 
+LANG:10010 35 ANULAR DETECTOR SF ENTRADA ORUJO G1
+"main(mapping event)
+{
+  bool valor;
+
+  dpGet(\"015_PREPARACION.cio25103\", valor);
+  dpSet(\"015_PREPARACION.cio25103\", !valor);
+}" 0
+ E E "main()
+{
+  dpConnect(\"cambiar_fondo\", \"015_PREPARACION.cio25103\");
+}
+
+void cambiar_fondo(string dp, bool valor)
+{
+  if(!valor)
+  {
+    this.backCol(\"LIB_IRC_GRIS_01\");
+  }
+  else
+  {
+    this.backCol(\"LIB_IRC_VERDE_01\");
+  }
+}" 0
+
+13 7
+"PUSH_BUTTON15"
+""
+1 10 329 E E E 1 E 1 E N "white" E N "LIB_IRC_VERDE_01" E E
+ E E
+7 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 8 Synoptic
+LANG:10010 6 Inicio
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,21,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  8 327 572 381.4942303824556
+
+T 
+2
+LANG:10001 0 
+LANG:10010 34 ANULAR DETECTOR SF ENTRADA ORUJO 2
+"main(mapping event)
+{
+  bool valor;
+
+  dpGet(\"015_PREPARACION.cio25104\", valor);
+  dpSet(\"015_PREPARACION.cio25104\", !valor);
+}" 0
+ E E "main()
+{
+  dpConnect(\"cambiar_fondo\", \"015_PREPARACION.cio25104\");
+}
+
+void cambiar_fondo(string dp, bool valor)
+{
+  if(!valor)
+  {
+    this.backCol(\"LIB_IRC_GRIS_01\");
+  }
+  else
+  {
+    this.backCol(\"LIB_IRC_VERDE_01\");
+  }
+}" 0
+
+13 8
+"btn_alimentacion"
+""
+1 10.01392743854069 10 E E E 1 E 1 E N "white" E N "LIB_IRC_AZUL_01" E E
+ E E
+8 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 8 Synoptic
+LANG:10010 6 Inicio
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,21,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  8.013927438540691 8.000000000000004 571.9999999999999 52
+
+T 
+2
+LANG:10001 0 
+LANG:10010 15 ANULAR SENSORES
+E E E E
+0
+LAYER, 1 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 2 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 3 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 4 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 5 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 6 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 7 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+0

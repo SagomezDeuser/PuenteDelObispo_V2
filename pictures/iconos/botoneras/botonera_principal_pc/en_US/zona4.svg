@@ -1,0 +1,23 @@
+<svg width="1450" height="640" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid meet">
+ <defs>
+  <path id="bynvVu3By" d="m541.65,180.89l-110.52,127.54l0,-211.85l-110.34,159.42l0,-75.11l-110.52,127.54l0,-211.85l-116.65,168.39l0,233.35l-16.11,0l0,45.11l484.98,0l0,-45.11l-20.84,0l0,-317.43z"/>
+ </defs>
+ <g>
+  <title>background</title>
+  <rect fill="none" id="canvas_background" height="642" width="1452" y="-1" x="-1"/>
+ </g>
+ <g>
+  <title>Layer 1</title>
+  <g stroke="null" id="svg_1">
+   <g stroke="null" id="svg_2">
+    <g stroke="null" id="svg_3">
+     <use stroke="null" transform="matrix(1.0562350975788846,0,0,1.2286893129348755,-2.5305793910498053,-10.291019082069397) " x="-32.510002" y="-51.580002" id="svg_4" fill="#ffffff" xlink:href="#bynvVu3By"/>
+     <g stroke="null" id="svg_5">
+      <use stroke="#000000" transform="matrix(1.0562350975788846,0,0,1.2286893129348755,-2.5305793910498053,-10.291019082069397) " x="-32.510002" y="-51.580002" id="svg_6" stroke-opacity="0" fill-opacity="0" xlink:href="#bynvVu3By"/>
+     </g>
+    </g>
+   </g>
+  </g>
+  <text font-weight="bold" xml:space="preserve" text-anchor="start" font-family="'Trebuchet MS', Gadget, sans-serif" font-size="180" id="svg_7" y="384" x="730" fill="#ffffff">ZONE 4</text>
+ </g>
+</svg>

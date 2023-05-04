@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="350"
+   height="350"
+   version="1.1"
+   id="svg4"
+   sodipodi:docname="guardar_verde.svg"
+   inkscape:version="1.1.2 (b8e25be833, 2022-02-05)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs8" />
+  <sodipodi:namedview
+     id="namedview6"
+     pagecolor="#505050"
+     bordercolor="#ffffff"
+     borderopacity="1"
+     inkscape:pageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="1"
+     showgrid="false"
+     inkscape:zoom="2.3514286"
+     inkscape:cx="175.21264"
+     inkscape:cy="171.38518"
+     inkscape:window-width="1920"
+     inkscape:window-height="1009"
+     inkscape:window-x="1912"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg4" />
+  <g
+     id="svg_1"
+     style="fill:#00ff00">
+    <path
+       d="m286.80661,47.963791l-223.612015,0c-4.543442,0 -8.230835,3.90242 -8.230835,8.710815l0,236.651321c0,4.806946 3.687393,8.710785 8.230835,8.710785l223.612045,0c4.541412,0 8.230133,-3.904541 8.230133,-8.710785l0,-236.651321c0,-4.808395 -3.689423,-8.710815 -8.230164,-8.710815zm-185.885513,13.0709l148.15834,0l0,73.316185l-148.15834,0l0,-73.316185zm155.364487,222.491646l-162.562454,0l0,-108.525711l162.562454,0l0,108.525711zm-49.044327,-211.603302l20.581497,0l0,52.27063l-20.581497,0l0,-52.27063zm34.121399,129.937576l-132.72477,0l0,-8.710815l132.72477,0l0,8.710815zm0,30.48819l-132.72477,0l0,-8.7108l132.72477,0l0,8.7108zm0,29.400162l-132.72477,0l0,-8.710785l132.72477,0l0,8.710785z"
+       fill="rgb(255, 255, 255)"
+       id="svg_2"
+       style="fill:#00ff00" />
+  </g>
+</svg>

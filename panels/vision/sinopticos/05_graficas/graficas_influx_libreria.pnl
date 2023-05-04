@@ -1,0 +1,2970 @@
+V 14
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+PANEL,-1 -1 1920 980 N "LIB_IRC_BLANCO" 0
+"main()
+{
+  dia_ini.text(day(getCurrentTime()));
+  mes_ini.text(month(getCurrentTime()));
+  anio_ini.text(year(getCurrentTime()));
+  hour_ini.text(hour(getCurrentTime()));
+  min_ini.text(minute(getCurrentTime()));
+  dia_fin.text(day(getCurrentTime()));
+  mes_fin.text(month(getCurrentTime()));
+  anio_fin.text(year(getCurrentTime()));
+  hour_fin.text(hour(getCurrentTime()));
+  min_fin.text(minute(getCurrentTime()));
+}" 0
+ E E E E 1 -1 -1 0  0 0
+""0  1
+E "
+string modulo = myModuleName();
+
+
+
+void rellenarTabla()
+{
+  int tipo_dato;
+  string consulta, dp, dpe, tipo_dato_st, descripcion, grupo_archive, archive, unidad, dpt;
+  dyn_dyn_anytype resultadoConsulta, arrayUnion, tabla;
+
+  consulta = \"SELECT '_original.._value' FROM '*' WHERE _DPT LIKE \\\"531_LIB_ACCIONAMIENTO_*\\\" AND _DP NOT LIKE \\\"_mp*\\\" AND (_EL LIKE \\\"*Xr_Dato_*\\\" OR _EL LIKE \\\"*Yb_EST\\\")\";
+
+  dpQuery(consulta, resultadoConsulta);
+  dynRemove(resultadoConsulta, 1);
+  dynAppend(arrayUnion, resultadoConsulta);
+
+  consulta = \"SELECT '_original.._value' FROM '*' WHERE _DPT LIKE \\\"504_LIB_TRATAMIENTO_ANALOGICA\\\" AND _DP NOT LIKE \\\"_mp_*\\\" AND _EL LIKE \\\"*ValorEscalado\\\"\";
+
+  dpQuery(consulta, resultadoConsulta);
+  dynRemove(resultadoConsulta, 1);
+  dynAppend(arrayUnion, resultadoConsulta);
+
+  consulta = \"SELECT '_original.._value' FROM '*'WHERE _DPT LIKE \\\"*ENERGY_METER\\\" AND _DP NOT LIKE \\\"_mp_*\\\" AND (_EL LIKE \\\"ST_Datos_DS_142.Tension_*\\\" OR _EL LIKE \\\"ST_Datos_DS_142.Intensidad_*\\\"\" +
+             \" OR _EL LIKE \\\"ST_Datos_DS_142.Potencia_Activa*\\\" OR _EL LIKE \\\"ST_Datos_DS_142.Energia_Activa*\\\")\";
+
+  dpQuery(consulta, resultadoConsulta);
+  dynRemove(resultadoConsulta, 1);
+  dynAppend(arrayUnion, resultadoConsulta);
+
+  consulta = \"SELECT '_original.._value' FROM '*'WHERE _DPT LIKE \\\"*_DB_COM_*\\\" AND _DP NOT LIKE \\\"_mp_*\\\" AND (_EL LIKE \\\"MB_*\\\")\";
+  dpQuery(consulta, resultadoConsulta);
+  dynRemove(resultadoConsulta, 1);
+  dynAppend(arrayUnion, resultadoConsulta);
+
+  consulta = \"SELECT '_original.._value' FROM '*'WHERE _DPT LIKE \\\"*_DB_TOTALIZADORES_*\\\" AND _DP NOT LIKE \\\"_mp_*\\\" AND (_EL LIKE \\\"GC*\\\")\";
+  dpQuery(consulta, resultadoConsulta);
+  dynRemove(resultadoConsulta, 1);
+  dynAppend(arrayUnion, resultadoConsulta);
+
+  for (int i = 1; i <= dynlen(arrayUnion); i++)
+  {
+
+    dpe = arrayUnion[i][1];
+    tipo_dato = dpElementType(dpe);
+
+    if (tipo_dato != 23)
+    {
+
+      dp = dpSubStr(dpe, DPSUB_DP);
+
+      descripcion = dpGetDescription(dpe, -1);
+      descripcion = getCatStr(\"dps\", dp) + \" - \" + descripcion;
+      unidad = dpGetUnit(dpe);
+
+      if (tipo_dato == 22)
+      {
+        tipo_dato_st = \"original_value_float\";
+      }
+      else
+      {
+        tipo_dato_st = \"original_value_int\";
+      }
+
+      if (dpExists(dpe + \":_archive.1._class\"))
+      {
+        dpGet(dpe + \":_archive.1._class\", archive);
+      }
+
+      if (dpExists(archive + \".displayName\"))
+      {
+        dpGet(archive + \".displayName\", grupo_archive);
+      }
+
+      dpt = dpTypeName(dp);
+
+      tabla_datos.appendLine(\"descripcion\", descripcion, \"unidad\", unidad, \"dp\", dpe, \"dato\", tipo_dato_st, \"grupo\", grupo_archive, \"dptipo\", dpt);
+    }
+  }
+}
+
+void filtroTabla()
+{
+  int posicion, zona;
+  string texto, filtroDpt;
+
+
+  posicion = cbb_filtro.selectedPos();
+  zona = cbb_filtro_zona.selectedPos();
+
+  switch (posicion)
+  {
+    case (1):
+    {
+      filtroDpt = \"*\";
+      break;
+    }
+
+    case (2):
+    {
+      filtroDpt = \"090_LIB_ENERGY_METER*\";
+      break;
+    }
+
+    case (3):
+    {
+      filtroDpt = \"504_LIB_TRATAMIENTO_ANALOGICA*\";
+      break;
+    }
+
+    case (4):
+    {
+      filtroDpt = \"*_DB_COM_*\";
+      break;
+    }
+
+    case (5):
+    {
+      filtroDpt = \"531_LIB_ACCIONAMIENTO_MOTOR_S\";
+      break;
+    }
+
+    case (6):
+    {
+      filtroDpt = \"*_VARIADOR\";
+      break;
+    }
+
+    case (7):
+    {
+      filtroDpt = \"531_LIB_ACCIONAMIENTO_VALVULA*\";
+      break;
+    }
+
+    case (8):
+    {
+      filtroDpt = \"*_DB_TOTALIZADORES_*\";
+      break;
+    }
+  }
+
+  switch (zona)
+  {
+    case (1):
+    {
+      txf_filtro.text = \"\";
+      break;
+    }
+
+    case (2):
+    {
+      txf_filtro.text = \"S1\";
+      break;
+    }
+
+    case (3):
+    {
+      txf_filtro.text = \"S2\";
+      break;
+    }
+
+    case (4):
+    {
+      txf_filtro.text = \"S4\";
+      break;
+    }
+
+    case (5):
+    {
+      txf_filtro.text = \"S5\";
+      break;
+    }
+
+    case (6):
+    {
+      txf_filtro.text = \"S6\";
+      break;
+    }
+
+    case (7):
+    {
+      txf_filtro.text = \"GC1\";
+      break;
+    }
+
+    case (8):
+    {
+      txf_filtro.text = \"GC2\";
+      break;
+    }
+
+    case (9):
+    {
+      txf_filtro.text = \"HORNO 1\";
+      break;
+    }
+
+    case (10):
+    {
+      txf_filtro.text = \"HORNO 2\";
+      break;
+    }
+
+    case (11):
+    {
+      txf_filtro.text = \"CALDERAS\";
+      break;
+    }
+
+    case (12):
+    {
+      txf_filtro.text = \"GRANULACION\";
+      break;
+    }
+
+    case (13):
+    {
+      txf_filtro.text = \"REFRIGERACION\";
+      break;
+    }
+
+    case (14):
+    {
+      txf_filtro.text = \"CHIMENEA 1\";
+      break;
+    }
+
+    case (15):
+    {
+      txf_filtro.text = \"CHIMENEA 2\";
+      break;
+    }
+
+    case (16):
+    {
+      txf_filtro.text = \"TRANSPORTE\";
+      break;
+    }
+
+    case (17):
+    {
+      txf_filtro.text = \"ALIMENTACION\";
+      break;
+    }
+  }
+
+  texto = txf_filtro.text();
+
+  if (texto == \"\")
+  {
+    texto = \"*\";
+  }
+  else
+  {
+    texto = \"*\" + texto + \"*\";
+  }
+
+  tabla_datos.filterRowsIgnoreCase(makeDynString(\"dptipo\", \"descripcion\"), makeDynString(filtroDpt, texto), TRUE);
+}
+
+
+
+void buscarTabla()
+{
+  int posicion, zona;
+  string texto, filtroDpt;
+
+
+  posicion = cbb_filtro.selectedPos();
+  zona = cbb_filtro_zona.selectedPos();
+
+  switch (posicion)
+  {
+    case (1):
+    {
+      filtroDpt = \"*\";
+      break;
+    }
+
+    case (2):
+    {
+      filtroDpt = \"090_LIB_ENERGY_METER*\";
+      break;
+    }
+
+    case (3):
+    {
+      filtroDpt = \"504_LIB_TRATAMIENTO_ANALOGICA*\";
+      break;
+    }
+
+    case (4):
+    {
+      filtroDpt = \"*_DB_COM_*\";
+      break;
+    }
+
+    case (5):
+    {
+      filtroDpt = \"531_LIB_ACCIONAMIENTO_MOTOR_S\";
+      break;
+    }
+
+    case (6):
+    {
+      filtroDpt = \"*_VARIADOR\";
+      break;
+    }
+
+    case (7):
+    {
+      filtroDpt = \"531_LIB_ACCIONAMIENTO_VALVULA*\";
+      break;
+    }
+
+    case (8):
+    {
+      filtroDpt = \"*_DB_TOTALIZADORES_*\";
+      break;
+    }
+  }
+
+  texto = txf_filtro.text();
+
+  if (texto == \"\")
+  {
+    texto = \"*\";
+  }
+  else
+  {
+    texto = \"*\" + texto + \"*\";
+  }
+
+  tabla_datos.filterRowsIgnoreCase(makeDynString(\"dptipo\", \"descripcion\"), makeDynString(filtroDpt, texto), TRUE);
+}
+
+" 0
+ 4
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+"pdpi" "92.6073"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10001 0 
+LANG:10010 0 
+6 96
+"RECTANGLE9"
+""
+1 110 180 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+95 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 2 3 2 1 E 0.9448986746250921 0 0.726027397260274 93.77225738380378 23.0825560301515 1 E 110 180 297.846793343228 216.5
+14 13
+"txf_intervalo"
+"txf_standard_1"
+1 199.0135388174194 116.2104883334114 E E E 0 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+12 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+1
+"layoutAlignment" "AlignNone"
+6
+LANG:10001 27 Tahoma,-1,11,5,50,0,0,0,0,0
+LANG:10010 27 Tahoma,-1,11,5,50,0,0,0,0,0
+LANG:10011 27 Tahoma,-1,11,5,50,0,0,0,0,0
+LANG:10009 27 Tahoma,-1,11,5,50,0,0,0,0,0
+LANG:10008 27 Tahoma,-1,11,5,50,0,0,0,0,0
+LANG:10018 27 Tahoma,-1,11,5,50,0,0,0,0,0
+0  197.0135388174194 108.2104883334114 352.5257443508015 141.2104883334115
+2 "0d" 0 0 0 0 0 -1  "main(mapping event)
+{
+  teclado(this.name, \"keypad\");
+}
+" 0
+ "main()
+{
+  this.text = 8;
+}" 0
+ E
+2 14
+"txf_h"
+""
+1 -3847.850135839573 -173.9982346302482 E E E 0 E 1 E N {5,75,154} E N "LIB_IRC_BLANCO" E E
+ E E
+13 0 0 0 0 0
+E E E
+0
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E 0.0537246687547672 0 0.09622476609823721 355.3252688990087 110.4211105678235 0 E 40 36 376 261
+0 2 2 "0s" 0 0 0 72 0 0  40 36 1
+7
+LANG:10001 39 Siemens Sans Black,-1,13,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10009 39 Siemens Sans Black,-1,13,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10005 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+0 7
+LANG:10001 12 VCC PANELES:
+LANG:10010 1 h
+LANG:10011 11 Startkarte:
+LANG:10009 12 VCC PANELES:
+LANG:10008 19 Biglietto d'inizio:
+LANG:10018 17 Comece o bilhete:
+LANG:10005 13 Start ticket:
+19 15
+"rb_tiempo"
+"rb_standard_1"
+1 2.195009144888104 94.8032018227152 E E E 1 E 1 E N {1,72,152} E N "LIB_IRC_BLANCO" E E
+ E E
+14 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+2
+"layoutAlignment" "AlignNone"
+"showBackground" "0"
+7
+LANG:10001 39 Siemens Sans Black,-1,13,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10009 39 Siemens Sans Black,-1,13,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10005 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+0  0.1950091448881039 92.8032018227152 148.3506072806383 197
+2
+T 
+6
+LANG:10001 3 ???
+LANG:10010 11 Tiempo Real
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+1 
+2
+LANG:10001 0 
+LANG:10010 0 
+E E
+0 0 0 0 0
+T 
+6
+LANG:10001 3 ???
+LANG:10010 10 Histórico
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0 
+2
+LANG:10001 0 
+LANG:10010 0 
+E E
+0 0 0 0 0
+1
+"main()
+{
+  this.number = 0;
+  txf_fin.enabled = FALSE;
+  txf_ini.enabled = FALSE;
+  date_fecha_fin.enabled = FALSE;
+  date_fecha_ini.enabled = FALSE;
+
+  txf_intervalo.enabled = TRUE;
+  txf_h.enabled = TRUE;
+}
+" 0
+ "main(int button)
+{
+  int selec = this.number;
+
+  if (selec == 1)
+  {
+    txf_fin.enabled = TRUE;
+    txf_ini.enabled = TRUE;
+    date_fecha_fin.enabled = TRUE;
+    date_fecha_ini.enabled = TRUE;
+
+    txf_intervalo.enabled = FALSE;
+    txf_h.enabled = FALSE;
+  }
+  else
+  {
+    txf_fin.enabled = FALSE;
+    txf_ini.enabled = FALSE;
+    date_fecha_fin.enabled = FALSE;
+    date_fecha_ini.enabled = FALSE;
+
+    txf_intervalo.enabled = TRUE;
+    txf_h.enabled = TRUE;
+  }
+}
+" 0
+
+2 16
+"PRIMITIVE_TEXT4"
+""
+1 -3847.850135839573 -173.9982346302482 E E E 1 E 1 E N {5,75,154} E N "LIB_IRC_BLANCO" E E
+ E E
+15 0 0 0 0 0
+E E E
+0
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E 0.374419615640214 0 0.09622476609823721 -10.78177548072045 80.7681936155185 0 E 40 36 376 261
+0 2 2 "0s" 0 0 0 73 0 0  40 36 1
+7
+LANG:10001 39 Siemens Sans Black,-1,13,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,15,5,75,0,1,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10009 39 Siemens Sans Black,-1,13,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10005 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+0 7
+LANG:10001 12 VCC PANELES:
+LANG:10010 15 Rango de tiempo
+LANG:10011 11 Startkarte:
+LANG:10009 12 VCC PANELES:
+LANG:10008 19 Biglietto d'inizio:
+LANG:10018 17 Comece o bilhete:
+LANG:10005 13 Start ticket:
+2 20
+"txf_ini"
+""
+1 -3847.850135839573 -173.9982346302482 E E E 1 E 1 E N {5,75,154} E N "LIB_IRC_BLANCO" E E
+ E E
+19 0 0 0 0 0
+E E E
+0
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E 0.123904328279514 0 0.09622476609823721 140.9785865852394 150.7281097714126 0 E 40 36 376 261
+0 2 2 "0s" 0 0 0 73 0 0  40 36 1
+7
+LANG:10001 39 Siemens Sans Black,-1,13,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10009 39 Siemens Sans Black,-1,13,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10005 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+0 7
+LANG:10001 12 VCC PANELES:
+LANG:10010 6 Inicio
+LANG:10011 11 Startkarte:
+LANG:10009 12 VCC PANELES:
+LANG:10008 19 Biglietto d'inizio:
+LANG:10018 17 Comece o bilhete:
+LANG:10005 13 Start ticket:
+2 21
+"txf_fin"
+""
+1 -3847.850135839573 -173.9982346302482 E E E 1 E 1 E N {5,75,154} E N "LIB_IRC_BLANCO" E E
+ E E
+20 0 0 0 0 0
+E E E
+0
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E 0.07915863541751647 0 0.09622476609823721 389.3891474047423 150.7281097714126 0 E 40 36 376 261
+0 2 2 "0s" 0 0 0 73 0 0  40 36 1
+7
+LANG:10001 39 Siemens Sans Black,-1,13,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10009 39 Siemens Sans Black,-1,13,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10005 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+0 7
+LANG:10001 12 VCC PANELES:
+LANG:10010 4 Fín
+LANG:10011 11 Startkarte:
+LANG:10009 12 VCC PANELES:
+LANG:10008 19 Biglietto d'inizio:
+LANG:10018 17 Comece o bilhete:
+LANG:10005 13 Start ticket:
+25 24
+"tabla_datos"
+"tb_standard_1"
+1 112.784653143307 319.8250986405017 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_BLANCO" E E
+ E E
+23 0 0 0 0 0
+E E E
+0
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+2
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+0  6.390018289775981 321.7259997628754 609.0470054494128 629.0448148001772
+"main()
+{
+  this.tableMode(TABLE_SELECT_BROWSE);
+  this.selectByClick(TABLE_SELECT_LINE);
+  this.deleteAllLines;
+  rellenarTabla();
+}" 0
+"main(int row, string column, string value)
+{
+  dyn_anytype resultado;
+  resultado = this.getLineN(this.selectLineN);
+
+  DebugN(resultado);
+}" 0
+ 1 0 1 6 0 "descripcion" 6 1 0 "[0s,,,AlignHCenter|AlignVCenter]" 6
+LANG:10001 2 #1
+LANG:10010 32 DESCRIPCIÓN - DATOS GRAFICABLES
+LANG:10011 2 #1
+LANG:10009 2 #1
+LANG:10008 2 #1
+LANG:10018 2 #1
+E
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+600 "unidad" 6 1 0 "[0s,,,AlignHCenter|AlignVCenter]" 6
+LANG:10001 2 #1
+LANG:10010 6 unidad
+LANG:10011 2 #1
+LANG:10009 2 #1
+LANG:10008 2 #1
+LANG:10018 2 #1
+E
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+600 "dp" 6 0 0 "[0s,,,AlignHCenter|AlignVCenter]" 6
+LANG:10001 2 #1
+LANG:10010 2 dp
+LANG:10011 2 #1
+LANG:10009 2 #1
+LANG:10008 2 #1
+LANG:10018 2 #1
+E
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+0 "dato" 6 0 0 "[0s,,,AlignHCenter|AlignVCenter]" 6
+LANG:10001 2 #1
+LANG:10010 4 Dato
+LANG:10011 2 #1
+LANG:10009 2 #1
+LANG:10008 2 #1
+LANG:10018 2 #1
+E
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+0 "grupo" 6 0 0 "[0s,,,AlignHCenter|AlignVCenter]" 6
+LANG:10001 2 #1
+LANG:10010 5 grupo
+LANG:10011 2 #1
+LANG:10009 2 #1
+LANG:10008 2 #1
+LANG:10018 2 #1
+E
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+0 "dptipo" 6 0 0 "[0s,,,AlignHCenter|AlignVCenter]" 6
+LANG:10001 2 #1
+LANG:10010 6 dptipo
+LANG:10011 2 #1
+LANG:10009 2 #1
+LANG:10008 2 #1
+LANG:10018 2 #1
+E
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+0 
+20 20 10 0
+6
+LANG:10001 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+0 0 1 0 1 7
+1 0
+2 25
+"txf_graf_frecuentes"
+""
+1 39.68279621704514 38.55099953231843 E E E 1 E 1 E N {5,75,154} E N "LIB_IRC_BLANCO" E E
+ E E
+24 0 0 0 0 0
+E E E
+0
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E 0.4729967067956925 0 0.1002693199422244 -14.72485912693959 0.9120940257331549 0 E 40 36 376 261
+0 2 2 "0s" 0 0 0 73 0 0  40 36 1
+7
+LANG:10001 39 Siemens Sans Black,-1,13,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,15,5,75,0,1,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10009 39 Siemens Sans Black,-1,13,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10005 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+0 7
+LANG:10001 12 VCC PANELES:
+LANG:10010 21 Gráficas frecuentes:
+LANG:10011 11 Startkarte:
+LANG:10009 12 VCC PANELES:
+LANG:10008 19 Biglietto d'inizio:
+LANG:10018 17 Comece o bilhete:
+LANG:10005 13 Start ticket:
+19 26
+"rb_graficas_frecuentes"
+"rb_standard_1"
+1 8.220184110397057 28.30517759998536 E E E 1 E 1 E N {1,72,152} E N "LIB_IRC_BLANCO" E E
+ E E
+25 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+3
+"layoutAlignment" "AlignNone"
+"horizontal" ""
+"showBackground" "0"
+7
+LANG:10001 39 Siemens Sans Black,-1,13,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10009 39 Siemens Sans Black,-1,13,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10005 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+0  6.220184110397055 26.30517759998536 606.9999999999999 60.30571699792791
+10
+T 
+6
+LANG:10001 3 ???
+LANG:10010 2 G1
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+1 
+2
+LANG:10001 0 
+LANG:10010 0 
+E E
+0 0 0 0 0
+T 
+6
+LANG:10001 3 ???
+LANG:10010 2 G2
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0 
+2
+LANG:10001 0 
+LANG:10010 0 
+E E
+0 0 0 0 0
+T 
+6
+LANG:10001 3 ???
+LANG:10010 2 G3
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0 
+2
+LANG:10001 0 
+LANG:10010 0 
+E E
+0 0 0 0 0
+T 
+6
+LANG:10001 3 ???
+LANG:10010 2 G4
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0 
+2
+LANG:10001 0 
+LANG:10010 0 
+E E
+0 0 0 0 0
+T 
+6
+LANG:10001 3 ???
+LANG:10010 2 G5
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0 
+2
+LANG:10001 0 
+LANG:10010 0 
+E E
+0 0 0 0 0
+T 
+2
+LANG:10001 3 ???
+LANG:10010 2 G6
+
+0 
+2
+LANG:10001 0 
+LANG:10010 0 
+E E
+0 0 0 0 0
+T 
+2
+LANG:10001 3 ???
+LANG:10010 2 G7
+
+0 
+2
+LANG:10001 0 
+LANG:10010 0 
+E E
+0 0 0 0 0
+T 
+2
+LANG:10001 3 ???
+LANG:10010 2 G8
+
+0 
+2
+LANG:10001 0 
+LANG:10010 0 
+E E
+0 0 0 0 0
+T 
+2
+LANG:10001 3 ???
+LANG:10010 2 G9
+
+0 
+2
+LANG:10001 0 
+LANG:10010 0 
+E E
+0 0 0 0 0
+T 
+2
+LANG:10001 3 ???
+LANG:10010 3 G10
+
+0 
+2
+LANG:10001 0 
+LANG:10010 0 
+E E
+0 0 0 0 0
+1
+"main()
+{
+  this.number = 0;
+}" 0
+ E
+13 33
+"PUSH_BUTTON2"
+""
+1 1514.872958822903 352.8119910371049 E E E 1 E 1 E N "_ButtonText" E N "LIB_IRC_AZUL_01" E E
+ E E
+32 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 0 
+LANG:10010 12 Vaciar tabla
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+2
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+6
+LANG:10001 27 Tahoma,-1,11,5,50,0,0,0,0,0
+LANG:10010 27 Tahoma,-1,11,5,50,0,0,0,0,0
+LANG:10011 27 Tahoma,-1,11,5,50,0,0,0,0,0
+LANG:10009 27 Tahoma,-1,11,5,50,0,0,0,0,0
+LANG:10008 27 Tahoma,-1,11,5,50,0,0,0,0,0
+LANG:10018 27 Tahoma,-1,11,5,50,0,0,0,0,0
+0  330.8729588229031 922 383.8729588229031 975
+
+P 
+4294967295
+"pictures/iconos/botoneras/botonera_formularios/borrar.svg"
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+"main(mapping event)
+{
+
+  string titulo_em, texto_em;
+  dyn_string confirmar_st;
+  dyn_float confirmar;
+
+  titulo_em = \"Borrar tabla\";
+  texto_em = \"¿Desea borrar la tabla completa?\";
+  ChildPanelOnCentralModalReturn(\"vision/emergentes/internas/confirmacion_personalizada.pnl\", \"Borrar tabla\",
+                                 makeDynString(\"$TITULO:\" + titulo_em, \"$TEXTO:\" + texto_em), confirmar, confirmar_st); //Mostramos la ventana de confirmación para modificar o no
+
+  if (dynlen(confirmar) != 0 && confirmar[1] == 1)
+  {
+    dyn_anytype datos;
+
+    for (int i = 1; i <= tabla_grafica.lineCount(); i++)
+    {
+      datos = tabla_grafica.getLineN(i - 1);
+
+      tabla_datos.appendLine(\"descripcion\", datos[1], \"unidad\", datos[2], \"dp\", datos[3], \"dato\", datos[4], \"grupo\", datos[5], \"dptipo\", datos[6]);
+    }
+
+    tabla_grafica.deleteAllLines();
+
+  }
+}
+" 0
+ E E E
+13 35
+"PUSH_BUTTON4"
+""
+1 1365.564064916286 366.8119910371049 E E E 1 E 1 E N "_ButtonText" E N "LIB_IRC_AZUL_01" E E
+ E E
+34 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 0 
+LANG:10010 29 Dibujar gráfica seleccionada
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+2
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+6
+LANG:10001 27 Tahoma,-1,11,5,50,0,0,0,0,0
+LANG:10010 27 Tahoma,-1,11,5,50,0,0,0,0,0
+LANG:10011 27 Tahoma,-1,11,5,50,0,0,0,0,0
+LANG:10009 27 Tahoma,-1,11,5,50,0,0,0,0,0
+LANG:10008 27 Tahoma,-1,11,5,50,0,0,0,0,0
+LANG:10018 27 Tahoma,-1,11,5,50,0,0,0,0,0
+0  231.5640649162857 922 284.5640649162857 975
+
+P 
+4294967295
+"pictures/iconos/botoneras/Iconos/grafica_icon.svg"
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+"main(mapping event)
+{
+  if (isPanelOpen(\"graficas_\" + modulo))
+  {
+    PanelOffPanel(\"graficas_\" + modulo);
+  }
+
+  dyn_string dp, grupo, dato, leyenda;
+  dyn_anytype datos;
+  string bbdd, hora_ini, hora_fin, rango_min_str, rango_max_str, url, ip;
+  int limite_sup, limite_inf, x, y;
+  float desfase;
+  double rango_min, rango_max;
+  time time_ini, time_fin;
+
+
+  if (rb_tiempo.number == 1)
+  {
+    time_ini = makeTime(anio_ini.text, mes_ini.text, dia_ini.text, hour_ini.text, min_ini.text);
+    time_fin = makeTime(anio_fin.text, mes_fin.text, dia_fin.text, hour_fin.text, min_fin.text);
+    rango_min = time_ini;
+    rango_max = time_fin;
+    rango_min = rango_min * 1000;
+    rango_max = rango_max * 1000;
+    rango_min_str = rango_min;
+    rango_max_str = rango_max;
+  }
+  else
+  {
+
+    desfase = txf_intervalo.text;
+    time_ini = getCurrentTime() - (3600.0 * desfase);
+    time_fin = getCurrentTime();
+    hora_ini = \"DATEADD(HH,-\" + desfase + \",GETDATE())\";
+    hora_fin = \"GETDATE()\";
+    rango_min_str = \"now-\" + desfase + \"h\";
+    rango_max_str = \"now\";
+  }
+
+
+
+
+  for (int i = 1; i <= tabla_grafica.lineCount(); i++)
+  {
+    getValue(\"tabla_grafica\", \"getLineN\", i - 1, datos);
+    leyenda[i] = datos[1] + \" (\" + datos[2] + \")\";
+    dp[i] = datos[3];
+    dato[i] = datos[4];
+    grupo[i] = datos[5];
+  }
+
+  dpGet(\"CONFIGURACION_PLANTA.ip_servidor\", ip);
+
+
+  switch (tabla_grafica.lineCount())
+  {
+    case (0):
+      url = \"http://\" + ip + \":3000/d/influx-0dp/influx-0dp?orgId=1&kiosk&from=\" + rango_min_str + \"&to=\" + rango_max_str + \"&viewPanel=2&refresh=3s\";
+      break;
+
+    case (1):
+      url = \"http://\" + ip + \":3000/d/influx-1dp/influx-1dp?orgId=1&kiosk&from=\" + rango_min_str + \"&to=\" + rango_max_str +
+            \"&var-dp=\" + dp[1] + \"&var-leyenda=\" + leyenda[1] + \"&var-tipo_dato=\" + dato[1] + \"&var-grupo=\" + grupo[1] +
+            \"&viewPanel=2&refresh=3s\";
+      break;
+
+    case (2):
+      url = \"http://\" + ip + \":3000/d/influx-2dp/influx-2dp?orgId=1&kiosk&from=\" + rango_min_str + \"&to=\" + rango_max_str +
+            \"&var-dp=\" + dp[1] + \"&var-leyenda=\" + leyenda[1] + \"&var-tipo_dato=\" + dato[1] + \"&var-grupo=\" + grupo[1] +
+            \"&var-dp2=\" + dp[2] + \"&var-leyenda2=\" + leyenda[2] + \"&var-tipo_dato2=\" + dato[2] + \"&var-grupo2=\" + grupo[2] +
+            \"&viewPanel=2&refresh=3s\";
+      break;
+
+    case (3):
+      url = \"http://\" + ip + \":3000/d/influx-3dp/influx-3dp?orgId=1&kiosk&from=\" + rango_min_str + \"&to=\" + rango_max_str +
+            \"&var-dp=\" + dp[1] + \"&var-leyenda=\" + leyenda[1] + \"&var-tipo_dato=\" + dato[1] + \"&var-grupo=\" + grupo[1] +
+            \"&var-dp2=\" + dp[2] + \"&var-leyenda2=\" + leyenda[2] + \"&var-tipo_dato2=\" + dato[2] + \"&var-grupo2=\" + grupo[2] +
+            \"&var-dp3=\" + dp[3] + \"&var-leyenda3=\" + leyenda[3] + \"&var-tipo_dato3=\" + dato[3] + \"&var-grupo3=\" + grupo[3] +
+            \"&viewPanel=2&refresh=3s\";
+      break;
+
+    case (4):
+      url = \"http://\" + ip + \":3000/d/influx-4dp/influx-4dp?orgId=1&kiosk&from=\" + rango_min_str + \"&to=\" + rango_max_str +
+            \"&var-dp=\" + dp[1] + \"&var-leyenda=\" + leyenda[1] + \"&var-tipo_dato=\" + dato[1] + \"&var-grupo=\" + grupo[1] +
+            \"&var-dp2=\" + dp[2] + \"&var-leyenda2=\" + leyenda[2] + \"&var-tipo_dato2=\" + dato[2] + \"&var-grupo2=\" + grupo[2] +
+            \"&var-dp3=\" + dp[3] + \"&var-leyenda3=\" + leyenda[3] + \"&var-tipo_dato3=\" + dato[3] + \"&var-grupo3=\" + grupo[3] +
+            \"&var-dp4=\" + dp[4] + \"&var-leyenda4=\" + leyenda[4] + \"&var-tipo_dato4=\" + dato[4] + \"&var-grupo4=\" + grupo[4] +
+            \"&viewPanel=2&refresh=3s\";
+      break;
+
+    case (5):
+      url = \"http://\" + ip + \":3000/d/influx-5dp/influx-5dp?orgId=1&kiosk&from=\" + rango_min_str + \"&to=\" + rango_max_str +
+            \"&var-dp=\" + dp[1] + \"&var-leyenda=\" + leyenda[1] + \"&var-tipo_dato=\" + dato[1] + \"&var-grupo=\" + grupo[1] +
+            \"&var-dp2=\" + dp[2] + \"&var-leyenda2=\" + leyenda[2] + \"&var-tipo_dato2=\" + dato[2] + \"&var-grupo2=\" + grupo[2] +
+            \"&var-dp3=\" + dp[3] + \"&var-leyenda3=\" + leyenda[3] + \"&var-tipo_dato3=\" + dato[3] + \"&var-grupo3=\" + grupo[3] +
+            \"&var-dp4=\" + dp[4] + \"&var-leyenda4=\" + leyenda[4] + \"&var-tipo_dato4=\" + dato[4] + \"&var-grupo4=\" + grupo[4] +
+            \"&var-dp5=\" + dp[5] + \"&var-leyenda5=\" + leyenda[5] + \"&var-tipo_dato5=\" + dato[5] + \"&var-grupo5=\" + grupo[5] +
+            \"&viewPanel=2&refresh=3s\";
+      break;
+
+    case (6):
+      url = \"http://\" + ip + \":3000/d/influx-6dp/influx-6dp?orgId=1&kiosk&from=\" + rango_min_str + \"&to=\" + rango_max_str +
+            \"&var-dp=\" + dp[1] + \"&var-leyenda=\" + leyenda[1] + \"&var-tipo_dato=\" + dato[1] + \"&var-grupo=\" + grupo[1] +
+            \"&var-dp2=\" + dp[2] + \"&var-leyenda2=\" + leyenda[2] + \"&var-tipo_dato2=\" + dato[2] + \"&var-grupo2=\" + grupo[2] +
+            \"&var-dp3=\" + dp[3] + \"&var-leyenda3=\" + leyenda[3] + \"&var-tipo_dato3=\" + dato[3] + \"&var-grupo3=\" + grupo[3] +
+            \"&var-dp4=\" + dp[4] + \"&var-leyenda4=\" + leyenda[4] + \"&var-tipo_dato4=\" + dato[4] + \"&var-grupo4=\" + grupo[4] +
+            \"&var-dp5=\" + dp[5] + \"&var-leyenda5=\" + leyenda[5] + \"&var-tipo_dato5=\" + dato[5] + \"&var-grupo5=\" + grupo[5] +
+            \"&var-dp6=\" + dp[6] + \"&var-leyenda6=\" + leyenda[6] + \"&var-tipo_dato6=\" + dato[6] + \"&var-grupo6=\" + grupo[6] +
+            \"&viewPanel=2&refresh=3s\";
+      break;
+
+    case (7):
+      url = \"http://\" + ip + \":3000/d/influx-7dp/influx-7dp?orgId=1&kiosk&from=\" + rango_min_str + \"&to=\" + rango_max_str +
+            \"&var-dp=\" + dp[1] + \"&var-leyenda=\" + leyenda[1] + \"&var-tipo_dato=\" + dato[1] + \"&var-grupo=\" + grupo[1] +
+            \"&var-dp2=\" + dp[2] + \"&var-leyenda2=\" + leyenda[2] + \"&var-tipo_dato2=\" + dato[2] + \"&var-grupo2=\" + grupo[2] +
+            \"&var-dp3=\" + dp[3] + \"&var-leyenda3=\" + leyenda[3] + \"&var-tipo_dato3=\" + dato[3] + \"&var-grupo3=\" + grupo[3] +
+            \"&var-dp4=\" + dp[4] + \"&var-leyenda4=\" + leyenda[4] + \"&var-tipo_dato4=\" + dato[4] + \"&var-grupo4=\" + grupo[4] +
+            \"&var-dp5=\" + dp[5] + \"&var-leyenda5=\" + leyenda[5] + \"&var-tipo_dato5=\" + dato[5] + \"&var-grupo5=\" + grupo[5] +
+            \"&var-dp6=\" + dp[6] + \"&var-leyenda6=\" + leyenda[6] + \"&var-tipo_dato6=\" + dato[6] + \"&var-grupo6=\" + grupo[6] +
+            \"&var-dp7=\" + dp[7] + \"&var-leyenda7=\" + leyenda[7] + \"&var-tipo_dato7=\" + dato[7] + \"&var-grupo7=\" + grupo[7] +
+            \"&viewPanel=2&refresh=3s\";
+      break;
+
+    case (8):
+      url = \"http://\" + ip + \":3000/d/influx-8dp/influx-8dp?orgId=1&kiosk&from=\" + rango_min_str + \"&to=\" + rango_max_str +
+            \"&var-dp=\" + dp[1] + \"&var-leyenda=\" + leyenda[1] + \"&var-tipo_dato=\" + dato[1] + \"&var-grupo=\" + grupo[1] +
+            \"&var-dp2=\" + dp[2] + \"&var-leyenda2=\" + leyenda[2] + \"&var-tipo_dato2=\" + dato[2] + \"&var-grupo2=\" + grupo[2] +
+            \"&var-dp3=\" + dp[3] + \"&var-leyenda3=\" + leyenda[3] + \"&var-tipo_dato3=\" + dato[3] + \"&var-grupo3=\" + grupo[3] +
+            \"&var-dp4=\" + dp[4] + \"&var-leyenda4=\" + leyenda[4] + \"&var-tipo_dato4=\" + dato[4] + \"&var-grupo4=\" + grupo[4] +
+            \"&var-dp5=\" + dp[5] + \"&var-leyenda5=\" + leyenda[5] + \"&var-tipo_dato5=\" + dato[5] + \"&var-grupo5=\" + grupo[5] +
+            \"&var-dp6=\" + dp[6] + \"&var-leyenda6=\" + leyenda[6] + \"&var-tipo_dato6=\" + dato[6] + \"&var-grupo6=\" + grupo[6] +
+            \"&var-dp7=\" + dp[7] + \"&var-leyenda7=\" + leyenda[7] + \"&var-tipo_dato7=\" + dato[7] + \"&var-grupo7=\" + grupo[7] +
+            \"&var-dp8=\" + dp[8] + \"&var-leyenda8=\" + leyenda[8] + \"&var-tipo_dato8=\" + dato[8] + \"&var-grupo8=\" + grupo[8] +
+            \"&viewPanel=2&refresh=3s\";
+      break;
+
+    case (9):
+      url = \"http://\" + ip + \":3000/d/influx-9dp/influx-9dp?orgId=1&kiosk&from=\" + rango_min_str + \"&to=\" + rango_max_str +
+            \"&var-dp=\" + dp[1] + \"&var-leyenda=\" + leyenda[1] + \"&var-tipo_dato=\" + dato[1] + \"&var-grupo=\" + grupo[1] +
+            \"&var-dp2=\" + dp[2] + \"&var-leyenda2=\" + leyenda[2] + \"&var-tipo_dato2=\" + dato[2] + \"&var-grupo2=\" + grupo[2] +
+            \"&var-dp3=\" + dp[3] + \"&var-leyenda3=\" + leyenda[3] + \"&var-tipo_dato3=\" + dato[3] + \"&var-grupo3=\" + grupo[3] +
+            \"&var-dp4=\" + dp[4] + \"&var-leyenda4=\" + leyenda[4] + \"&var-tipo_dato4=\" + dato[4] + \"&var-grupo4=\" + grupo[4] +
+            \"&var-dp5=\" + dp[5] + \"&var-leyenda5=\" + leyenda[5] + \"&var-tipo_dato5=\" + dato[5] + \"&var-grupo5=\" + grupo[5] +
+            \"&var-dp6=\" + dp[6] + \"&var-leyenda6=\" + leyenda[6] + \"&var-tipo_dato6=\" + dato[6] + \"&var-grupo6=\" + grupo[6] +
+            \"&var-dp7=\" + dp[7] + \"&var-leyenda7=\" + leyenda[7] + \"&var-tipo_dato7=\" + dato[7] + \"&var-grupo7=\" + grupo[7] +
+            \"&var-dp8=\" + dp[8] + \"&var-leyenda8=\" + leyenda[8] + \"&var-tipo_dato8=\" + dato[8] + \"&var-grupo8=\" + grupo[8] +
+            \"&var-dp9=\" + dp[9] + \"&var-leyenda9=\" + leyenda[9] + \"&var-tipo_dato9=\" + dato[9] + \"&var-grupo9=\" + grupo[9] +
+            \"&viewPanel=2&refresh=3s\";
+      break;
+
+    case (10):
+      url = \"http://\" + ip + \":3000/d/influx-10dp/influx-10dp?orgId=1&kiosk&from=\" + rango_min_str + \"&to=\" + rango_max_str +
+            \"&var-dp=\" + dp[1] + \"&var-leyenda=\" + leyenda[1] + \"&var-tipo_dato=\" + dato[1] + \"&var-grupo=\" + grupo[1] +
+            \"&var-dp2=\" + dp[2] + \"&var-leyenda2=\" + leyenda[2] + \"&var-tipo_dato2=\" + dato[2] + \"&var-grupo2=\" + grupo[2] +
+            \"&var-dp3=\" + dp[3] + \"&var-leyenda3=\" + leyenda[3] + \"&var-tipo_dato3=\" + dato[3] + \"&var-grupo3=\" + grupo[3] +
+            \"&var-dp4=\" + dp[4] + \"&var-leyenda4=\" + leyenda[4] + \"&var-tipo_dato4=\" + dato[4] + \"&var-grupo4=\" + grupo[4] +
+            \"&var-dp5=\" + dp[5] + \"&var-leyenda5=\" + leyenda[5] + \"&var-tipo_dato5=\" + dato[5] + \"&var-grupo5=\" + grupo[5] +
+            \"&var-dp6=\" + dp[6] + \"&var-leyenda6=\" + leyenda[6] + \"&var-tipo_dato6=\" + dato[6] + \"&var-grupo6=\" + grupo[6] +
+            \"&var-dp7=\" + dp[7] + \"&var-leyenda7=\" + leyenda[7] + \"&var-tipo_dato7=\" + dato[7] + \"&var-grupo7=\" + grupo[7] +
+            \"&var-dp8=\" + dp[8] + \"&var-leyenda8=\" + leyenda[8] + \"&var-tipo_dato8=\" + dato[8] + \"&var-grupo8=\" + grupo[8] +
+            \"&var-dp9=\" + dp[9] + \"&var-leyenda9=\" + leyenda[9] + \"&var-tipo_dato9=\" + dato[9] + \"&var-grupo9=\" + grupo[9] +
+            \"&var-dp0=\" + dp[10] + \"&var-leyenda0=\" + leyenda[10] + \"&var-tipo_dato0=\" + dato[10] + \"&var-grupo0=\" + grupo[10] +
+            \"&viewPanel=2&refresh=3s\";
+      break;
+  }
+
+  if (time_ini < time_fin)
+  {
+
+    string ui, display;
+    bool activo, ulc;
+
+    ui = myUiDpName();
+
+    dpGet(\"CONFIGURACION_PLANTA.configuracion_graficas.conexion_externa_grafana_ulc\", activo);
+    dpGet(ui + \".DisplayName\", display);
+
+    ulc = patternMatch(\"*ulc*\", display);
+
+    if (ulc && activo)
+    {
+      openUrl(url);
+    }
+    else
+    {
+      //getValue(\"RECTANGLE5\", \"position\", x, y);
+      dyn_anytype da = makeDynAnytype(myModuleName(), \"objects/graficas/grafica_grafana/influxdb/grafica.pnl\", myPanelName(), \"graficas_\" + modulo, 632, 2, 1.0,
+                                      true, makeDynString(\"$URL:\" + url), false, makeMapping(\"makeVisible\", FALSE));
+      childPanel(da);
+    }
+  }
+  else{
+    aviso_tiempos.visible(TRUE);
+    delay(3);
+    aviso_tiempos.visible(FALSE);
+  }
+}
+" 0
+ E E E
+13 40
+"btn_guardar"
+""
+1 1639.909667672125 51.19424217832804 E E E 1 E 1 E N "_ButtonText" E N "_Transparent" E E
+ E E
+39 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 0 
+LANG:10010 30 Guardar gráfica en frecuentes
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+2
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+6
+LANG:10001 27 Tahoma,-1,11,5,50,0,0,0,0,0
+LANG:10010 27 Tahoma,-1,11,5,50,0,0,0,0,0
+LANG:10011 27 Tahoma,-1,11,5,50,0,0,0,0,0
+LANG:10009 27 Tahoma,-1,11,5,50,0,0,0,0,0
+LANG:10008 27 Tahoma,-1,11,5,50,0,0,0,0,0
+LANG:10018 27 Tahoma,-1,11,5,50,0,0,0,0,0
+0  454.9096676721249 64.34467621833475 507.9096676721249 112.4446762183348
+
+P 
+4294967295
+"pictures/iconos/botoneras/botonera_formularios/guardar.svg"
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+"main(mapping event)
+{
+  int seleccion = rb_graficas_frecuentes.number() + 1, filas;
+  dyn_string cont_fila;
+  string titulo_em, texto_em, usuario = getUserName() ;
+  dyn_string confirmar_st;
+  dyn_float confirmar;
+
+  titulo_em = \"Guardar gráfica\";
+  texto_em = \"¿Está seguro de que desea guardar esta configuración de gráfica?\\nSobreescribirá la guardada anteriormente\";
+  ChildPanelOnCentralModalReturn(\"vision/emergentes/internas/confirmacion_personalizada.pnl\", \"Guardar gráfica\",
+                                 makeDynString(\"$TITULO:\" + titulo_em, \"$TEXTO:\" + texto_em), confirmar, confirmar_st); //Mostramos la ventana de confirmación para modificar o no
+
+  if (dynlen(confirmar) != 0 && confirmar[1] == 1)
+  {
+    for (int i = 1; i <= 10; i++)
+    {
+      filas = tabla_grafica.lineCount;
+
+      if (i <= filas)
+      {
+        cont_fila = tabla_grafica.getLineN(i - 1);
+        dpSet(\"graficas_\" + usuario + \".Grafica\"  + seleccion + \"[\" + i + \"]\", cont_fila);
+      }
+      else
+      {
+        dpSet(\"graficas_\" + usuario + \".Grafica\" + seleccion + \"[\" + i + \"]\", \"\");
+      }
+    }
+  }
+}" 0
+ E E E
+13 41
+"btn_cargar"
+""
+1 1740.047005449412 51.95242445895727 E E E 1 E 1 E N "_ButtonText" E N "_Transparent" E E
+ E E
+40 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 0 
+LANG:10010 29 Cargar gráfica en frecuentes
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+2
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+6
+LANG:10001 27 Tahoma,-1,11,5,50,0,0,0,0,0
+LANG:10010 27 Tahoma,-1,11,5,50,0,0,0,0,0
+LANG:10011 27 Tahoma,-1,11,5,50,0,0,0,0,0
+LANG:10009 27 Tahoma,-1,11,5,50,0,0,0,0,0
+LANG:10008 27 Tahoma,-1,11,5,50,0,0,0,0,0
+LANG:10018 27 Tahoma,-1,11,5,50,0,0,0,0,0
+0  555.0470054494128 65.102858498964 608.0470054494128 113.2028584989639
+
+P 
+4294967295
+"pictures/iconos/botoneras/cargar.svg"
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+"main(mapping event)
+{
+  int seleccion = rb_graficas_frecuentes.number() + 1, filas;
+  dyn_string cont_fila = makeDynString(\"\");
+  string titulo_em, texto_em, usuario = getUserName();
+  dyn_string confirmar_st;
+  dyn_float confirmar;
+
+  titulo_em = \"Cargar datos\";
+  texto_em = \"¿Desea cargar los datos guardados de esta gráfica?\\nBorrará el contenido de la tabla actual\";
+  ChildPanelOnCentralModalReturn(\"vision/emergentes/internas/confirmacion_personalizada.pnl\", \"Cargar gráfica\",
+                                 makeDynString(\"$TITULO:\" + titulo_em, \"$TEXTO:\" + texto_em), confirmar, confirmar_st); //Mostramos la ventana de confirmación para modificar o no
+
+  if (dynlen(confirmar) != 0 && confirmar[1] == 1)
+  {
+    tabla_grafica.deleteAllLines;
+
+    for (int i = 1; i <= 10; i++)
+    {
+      dpGet(\"graficas_\" + usuario + \".Grafica\"  + seleccion + \"[\" + i + \"]\", cont_fila);
+
+      if (dynlen(cont_fila) == 6)
+      {
+        tabla_grafica.appendLine(\"descripcion\", cont_fila[1], \"unidad\", cont_fila[2], \"dp\", cont_fila[3], \"dato\", cont_fila[4], \"grupo\", cont_fila[5], \"dptipo\", cont_fila[6]);
+      }
+    }
+  }
+}" 0
+ E E E
+6 49
+"RECTANGLE4"
+""
+1 1816 9 E E E 1 E 1 E N {1,72,152} E N {1,72,152} E E
+ E E
+48 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 0.5047009333772245 0 0.3625017788524862 -359.4678848324223 63.77773397928992 1 E 1816 9 1913 131
+6 50
+"RECTANGLE5"
+""
+1 63 18 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N {1,72,152} E E
+ E E
+49 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E -1 1 3 2 1 E 0.004632040895061727 0 9.889940929801773 621.5659562755795 -178.4725554928029 1 E 63 18 1982 117
+6 51
+"RECTANGLE6"
+""
+1 63 18 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "LIB_IRC_AZUL_03" E E
+ E E
+50 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E -1 1 3 2 1 E 0.001868560989574363 0 9.884114311813793 617.3265137032479 -177.9140576126483 1 E 63 18 1982 117
+25 54
+"tabla_grafica"
+"tb_standard_1"
+1 1263.681972870188 248.0872656126075 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_BLANCO" E E
+ E E
+53 0 0 0 0 0
+E E E
+0
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+2
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+0  6.508453687866904 692 609.5084536878669 916.2013540409762
+"main()
+{
+  this.tableMode(TABLE_SELECT_BROWSE);
+  this.selectByClick(TABLE_SELECT_LINE);
+  this.deleteAllLines;
+}" 0
+E 1 0 1 6 0 "descripcion" 6 1 0 "[0s,,,AlignHCenter|AlignVCenter]" 6
+LANG:10001 2 #1
+LANG:10010 31 DESCRIPCIÓN - DATOS A GRAFICAR
+LANG:10011 2 #1
+LANG:10009 2 #1
+LANG:10008 2 #1
+LANG:10018 2 #1
+E
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+600 "unidad" 6 1 0 "[0s,,,AlignHCenter|AlignVCenter]" 6
+LANG:10001 2 #1
+LANG:10010 6 unidad
+LANG:10011 2 #1
+LANG:10009 2 #1
+LANG:10008 2 #1
+LANG:10018 2 #1
+E
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+600 "dp" 6 0 0 "[0s,,,AlignHCenter|AlignVCenter]" 6
+LANG:10001 2 #1
+LANG:10010 2 dp
+LANG:10011 2 #1
+LANG:10009 2 #1
+LANG:10008 2 #1
+LANG:10018 2 #1
+E
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+0 "dato" 6 0 0 "[0s,,,AlignHCenter|AlignVCenter]" 6
+LANG:10001 2 #1
+LANG:10010 4 Dato
+LANG:10011 2 #1
+LANG:10009 2 #1
+LANG:10008 2 #1
+LANG:10018 2 #1
+E
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+0 "grupo" 6 0 0 "[0s,,,AlignHCenter|AlignVCenter]" 6
+LANG:10001 2 #1
+LANG:10010 5 grupo
+LANG:10011 2 #1
+LANG:10009 2 #1
+LANG:10008 2 #1
+LANG:10018 2 #1
+E
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+0 "dptipo" 6 0 0 "[0s,,,AlignHCenter|AlignVCenter]" 6
+LANG:10001 2 #1
+LANG:10010 6 dptipo
+LANG:10011 2 #1
+LANG:10009 2 #1
+LANG:10008 2 #1
+LANG:10018 2 #1
+E
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+0 
+20 20 10 0
+6
+LANG:10001 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+0 0 1 0 1 7
+1 0
+4 56
+"LINE9"
+""
+1 7.195009144888104 324.3854072815263 E E E 1 E 1 E N "LIB_IRC_AZUL_03" E N "LIB_IRC_BLANCO" E E
+ E E
+55 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 2 3 2 1 E  7.195009144888104 324.3854072815263 7.195009144888104 626.3854072815263
+4 57
+"LINE10"
+""
+1 8.220184110397099 629.0448148001772 E E E 1 E 1 E N "LIB_IRC_AZUL_03" E N "LIB_IRC_BLANCO" E E
+ E E
+56 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 2 3 2 1 E  8.220184110397099 629.0448148001772 607.2168396287917 629.0448148001772
+13 61
+"PUSH_BUTTON5"
+""
+1 1837.872958822903 159.8306005727718 E E E 1 E 1 E N "_ButtonText" E N "LIB_IRC_AZUL_01" E E
+ E E
+60 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 0 
+LANG:10010 28 Borrar elemento seleccionado
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+2
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+6
+LANG:10001 27 Tahoma,-1,11,5,50,0,0,0,0,0
+LANG:10010 27 Tahoma,-1,11,5,50,0,0,0,0,0
+LANG:10011 27 Tahoma,-1,11,5,50,0,0,0,0,0
+LANG:10009 27 Tahoma,-1,11,5,50,0,0,0,0,0
+LANG:10008 27 Tahoma,-1,11,5,50,0,0,0,0,0
+LANG:10018 27 Tahoma,-1,11,5,50,0,0,0,0,0
+0  330.8729588229031 635.0186095356669 383.8729588229031 688.0186095356669
+
+P 
+4294967295
+"pictures/iconos/botoneras/arriba.svg"
+2
+LANG:10001 0 
+LANG:10010 0 
+"main(mapping event)
+{
+  dyn_int filas;
+  dyn_anytype datos;
+
+  filas = tabla_grafica.getSelectedLines();
+  datos = tabla_grafica.getLineN(filas[1]);
+
+  tabla_datos.appendLine(\"descripcion\", datos[1], \"unidad\", datos[2], \"dp\", datos[3], \"dato\", datos[4], \"grupo\", datos[5], \"dptipo\", datos[6]);
+  tabla_grafica.deleteLineN(filas[1]);
+}" 0
+ E E E
+13 63
+"PUSH_BUTTON7"
+""
+1 1787.564064916286 99.8306005727718 E E E 1 E 1 E N "_ButtonText" E N "LIB_IRC_AZUL_01" E E
+ E E
+62 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 0 
+LANG:10010 29 Dibujar gráfica seleccionada
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+2
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+6
+LANG:10001 27 Tahoma,-1,11,5,50,0,0,0,0,0
+LANG:10010 27 Tahoma,-1,11,5,50,0,0,0,0,0
+LANG:10011 27 Tahoma,-1,11,5,50,0,0,0,0,0
+LANG:10009 27 Tahoma,-1,11,5,50,0,0,0,0,0
+LANG:10008 27 Tahoma,-1,11,5,50,0,0,0,0,0
+LANG:10018 27 Tahoma,-1,11,5,50,0,0,0,0,0
+0  231.5640649162857 635.0186095356669 284.5640649162857 688.0186095356669
+
+P 
+4294967295
+"pictures/iconos/botoneras/abajo.svg"
+2
+LANG:10001 0 
+LANG:10010 0 
+"main(mapping event)
+{
+  dyn_int filas;
+  dyn_anytype datos;
+
+  filas = tabla_datos.getSelectedLines();
+  DebugN(filas);
+  datos = tabla_datos.getLineN(filas[1]);
+
+  if (tabla_grafica.lineCount() < 10)
+  {
+    tabla_grafica.appendLine(\"descripcion\", datos[1], \"unidad\", datos[2], \"dp\", datos[3], \"dato\", datos[4], \"grupo\", datos[5], \"dptipo\", datos[6]);
+    tabla_datos.deleteLineN(filas[1]);
+  }
+  else
+  {
+    ChildPanelOnCentralModal(\"vision/emergentes/internas/mensaje_exceso_graficas.pnl\", \"Graficas\", \"\");
+  }
+}
+" 0
+ E E E
+14 66
+"txf_filtro"
+"txf_standard_1"
+1 351 239.1052441667057 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+65 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+1
+"layoutAlignment" "AlignNone"
+6
+LANG:10001 27 Tahoma,-1,11,5,50,0,0,0,0,0
+LANG:10010 27 Tahoma,-1,11,5,50,0,0,0,0,0
+LANG:10011 27 Tahoma,-1,11,5,50,0,0,0,0,0
+LANG:10009 27 Tahoma,-1,11,5,50,0,0,0,0,0
+LANG:10008 27 Tahoma,-1,11,5,50,0,0,0,0,0
+LANG:10018 27 Tahoma,-1,11,5,50,0,0,0,0,0
+0  349 231.1052441667057 555 264.1052441667058
+2 "0s" 0 0 0 0 0 -1  "main(mapping event)
+{
+
+  teclado(this.name, \"completo\");
+}
+" 0
+ "main()
+{
+  this.text = \"\";
+}" 0
+ E
+2 67
+"PRIMITIVE_TEXT5"
+""
+1 -3847.850135839573 -173.9982346302482 E E E 1 E 1 E N {5,75,154} E N "LIB_IRC_BLANCO" E E
+ E E
+66 0 0 0 0 0
+E E E
+0
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E 0.1943654108285612 0 0.09622476609823721 -3.579607288254345 200.3158664011175 0 E 40 36 376 261
+0 2 2 "0s" 0 0 0 73 0 0  40 36 1
+7
+LANG:10001 39 Siemens Sans Black,-1,13,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,16,5,75,0,1,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10009 39 Siemens Sans Black,-1,13,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10005 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+0 7
+LANG:10001 12 VCC PANELES:
+LANG:10010 8 Filtrar:
+LANG:10011 11 Startkarte:
+LANG:10009 12 VCC PANELES:
+LANG:10008 19 Biglietto d'inizio:
+LANG:10018 17 Comece o bilhete:
+LANG:10005 13 Start ticket:
+13 68
+"PUSH_BUTTON8"
+""
+1 1510.557209531047 80.60117876730476 E E E 1 E 1 E N "_ButtonText" E N "LIB_IRC_AZUL_01" E E
+ E E
+67 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 0 
+LANG:10010 29 Dibujar gráfica seleccionada
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+2
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+6
+LANG:10001 27 Tahoma,-1,11,5,50,0,0,0,0,0
+LANG:10010 27 Tahoma,-1,11,5,50,0,0,0,0,0
+LANG:10011 27 Tahoma,-1,11,5,50,0,0,0,0,0
+LANG:10009 27 Tahoma,-1,11,5,50,0,0,0,0,0
+LANG:10008 27 Tahoma,-1,11,5,50,0,0,0,0,0
+LANG:10018 27 Tahoma,-1,11,5,50,0,0,0,0,0
+0  557.0470054494127 231.6052441667057 608.0470054494128 263.6052441667057
+
+P 
+4294967295
+"pictures/iconos/botoneras/Iconos/buscar_icon_2.svg"
+2
+LANG:10001 0 
+LANG:10010 0 
+"main(mapping event)
+{
+  buscarTabla();
+}" 0
+ E E E
+22 69
+"cbb_filtro"
+"cbb_standard_1"
+1 -2448.33253238857 113.4602949767288 E E E 1 E 1 E N {1,72,152} E N "_Window" E E
+ E E
+68 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+1
+"layoutAlignment" "AlignCenter"
+6
+LANG:10001 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+0  3.195009144888104 231.1052441667057 317.1950091448881 264.1052441667058
+8
+2
+LANG:10001 3 ???
+LANG:10010 14 NINGÚN FILTRO
+
+0
+2
+LANG:10001 3 ???
+LANG:10010 19 ANALIZADORES DE RED
+
+0
+2
+LANG:10001 3 ???
+LANG:10010 11 ANALÓGICAS
+
+0
+2
+LANG:10001 3 ???
+LANG:10010 6 MODBUS
+
+0
+2
+LANG:10001 3 ???
+LANG:10010 16 MOTORES - BOMBAS
+
+0
+2
+LANG:10001 3 ???
+LANG:10010 25 MOTORES - BOMBAS VARIADOR
+
+0
+2
+LANG:10001 3 ???
+LANG:10010 9 VÁLVULAS
+
+0
+2
+LANG:10001 3 ???
+LANG:10010 13 TOTALIZADORES
+
+0
+
+"main()
+{
+  this.selectedPos(1);
+}" 0
+
+"main()
+{
+  filtroTabla();
+}" 0
+
+E
+ 0 0
+4 70
+"LINE11"
+""
+1 608.0235027247064 324.3854072815263 E E E 1 E 1 E N "LIB_IRC_AZUL_03" E N "LIB_IRC_BLANCO" E E
+ E E
+69 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 2 3 2 1 E  608.0235027247064 324.3854072815263 608.0235027247064 626.3854072815263
+4 71
+"LINE12"
+""
+1 7.679960108048476 694 E E E 1 E 1 E N "LIB_IRC_AZUL_03" E N "LIB_IRC_BLANCO" E E
+ E E
+70 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 2 3 2 1 E  7.679960108048476 694 7.679960108048476 914.0419465223254
+4 72
+"LINE13"
+""
+1 8.679960108048363 916.0419465223252 E E E 1 E 1 E N "LIB_IRC_AZUL_03" E N "LIB_IRC_BLANCO" E E
+ E E
+71 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 2 3 2 1 E  8.679960108048363 916.0419465223252 607.676615626443 916.0419465223252
+4 73
+"LINE14"
+""
+1 608.5084536878669 694 E E E 1 E 1 E N "LIB_IRC_AZUL_03" E N "LIB_IRC_BLANCO" E E
+ E E
+72 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 2 3 2 1 E  608.5084536878669 694 608.5084536878669 914.2013540409762
+2 74
+"PRIMITIVE_TEXT6"
+""
+1 -3847.850135839573 -173.9982346302482 E E E 1 E 1 E N {5,75,154} E N "LIB_IRC_BLANCO" E E
+ E E
+73 0 0 0 0 0
+E E E
+0
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E 0.1943654108285612 0 0.09622476609823721 341.4663541182555 200.3158664011175 0 E 40 36 376 261
+0 2 2 "0s" 0 0 0 73 0 0  40 36 1
+7
+LANG:10001 39 Siemens Sans Black,-1,13,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,16,5,75,0,1,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10009 39 Siemens Sans Black,-1,13,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10005 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+0 7
+LANG:10001 12 VCC PANELES:
+LANG:10010 7 Buscar:
+LANG:10011 11 Startkarte:
+LANG:10009 12 VCC PANELES:
+LANG:10008 19 Biglietto d'inizio:
+LANG:10018 17 Comece o bilhete:
+LANG:10005 13 Start ticket:
+6 75
+"RECTANGLE7"
+""
+1 621.0300015845843 -2.842170943040401e-14 E E E 1 E 1 E N {0,0,0} E N {240,240,240} E E
+ E E
+74 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E -1 1 3 2 1 E 0.9925197196572202 0 1 14.36213825813728 0 1 E 621.0300015845843 -2.842170943040401e-14 1920 980
+22 86
+"cbb_filtro_zona"
+"cbb_standard_1"
+1 -2448.33253238857 155.2854661044671 E E E 1 E 1 E N {1,72,152} E N "_Window" E E
+ E E
+85 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+1
+"layoutAlignment" "AlignCenter"
+6
+LANG:10001 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+0  3.195009144888104 272.930415294444 317.1950091448881 305.9304152944441
+17
+2
+LANG:10001 3 ???
+LANG:10010 14 NINGÚN FILTRO
+
+0
+2
+LANG:10001 3 ???
+LANG:10010 10 SECADERO 1
+
+0
+2
+LANG:10001 3 ???
+LANG:10010 10 SECADERO 2
+
+0
+2
+LANG:10001 3 ???
+LANG:10010 10 SECADERO 4
+
+0
+2
+LANG:10001 3 ???
+LANG:10010 10 SECADERO 5
+
+0
+2
+LANG:10001 3 ???
+LANG:10010 10 SECADERO 6
+
+0
+2
+LANG:10001 3 ???
+LANG:10010 20 G. CENTRIFUGACIÓN 1
+
+0
+2
+LANG:10001 3 ???
+LANG:10010 20 G. CENTRIFUGACIÓN 2
+
+0
+2
+LANG:10001 3 ???
+LANG:10010 7 HORNO 1
+
+0
+2
+LANG:10001 3 ???
+LANG:10010 7 HORNO 2
+
+0
+2
+LANG:10001 3 ???
+LANG:10010 8 CALDERAS
+
+0
+2
+LANG:10001 3 ???
+LANG:10010 11 GRANULACION
+
+0
+2
+LANG:10001 3 ???
+LANG:10010 13 REFRIGERACION
+
+0
+2
+LANG:10001 3 ???
+LANG:10010 10 CHIMENEA 1
+
+0
+2
+LANG:10001 3 ???
+LANG:10010 10 CHIMENEA 2
+
+0
+2
+LANG:10001 3 ???
+LANG:10010 9 TRASPORTE
+
+0
+2
+LANG:10001 3 ???
+LANG:10010 12 ALIMENTACION
+
+0
+
+"main()
+{
+  this.selectedPos(1);
+}" 0
+
+"main()
+{
+  filtroTabla();
+}" 0
+
+E
+ 0 0
+6 87
+"RECTANGLE8"
+""
+1 1816 9 E E E 1 E 1 E N {1,72,152} E N {1,72,152} E E
+ E E
+86 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 0.50880452477341 0 0.3625017788524862 -467.3882220554708 63.190438109346 1 E 1816 9 1913 131
+2 91
+"PRIMITIVE_TEXT10"
+""
+1 146.3506072806383 195 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+90 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E 0.4090909090909091 0 0.4827604166666661 163.4898013334827 62.72399795366762 0 E 146.3506072806383 195 168.3506072806383 235
+0 2 2 "0s" 0 0 0 73 0 0  146.3506072806383 195 1
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+0 2
+LANG:10001 2 01
+LANG:10010 1 -
+2 92
+"PRIMITIVE_TEXT11"
+""
+1 146.3506072806383 195 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+91 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E 0.4090909090909091 0 0.4827604166666661 196.5120754432931 62.72399795366761 0 E 146.3506072806383 195 168.3506072806383 235
+0 2 2 "0s" 0 0 0 73 0 0  146.3506072806383 195 1
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+0 2
+LANG:10001 2 01
+LANG:10010 1 -
+2 94
+"PRIMITIVE_TEXT13"
+""
+1 146.3506072806383 195 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+93 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E 0.4090909090909091 0 0.4827604166666661 279.6618431096991 62.72399795366762 0 E 146.3506072806383 195 168.3506072806383 235
+0 2 2 "0s" 0 0 0 73 0 0  146.3506072806383 195 1
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+0 2
+LANG:10001 2 01
+LANG:10010 1 :
+6 97
+"RECTANGLE10"
+""
+1 110 180 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+96 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 2 3 2 1 E 0.9448986746250921 0 0.726027397260274 320.2106721686533 22.28516019681815 1 E 110 180 297.846793343228 216.5
+2 106
+"PRIMITIVE_TEXT18"
+""
+1 146.3506072806383 195 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+105 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E 0.4090909090909091 0 0.4827604166666661 389.9282161183322 61.92660212033424 0 E 146.3506072806383 195 168.3506072806383 235
+0 2 2 "0s" 0 0 0 73 0 0  146.3506072806383 195 1
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+0 2
+LANG:10001 2 01
+LANG:10010 1 -
+2 107
+"PRIMITIVE_TEXT19"
+""
+1 146.3506072806383 195 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+106 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E 0.4090909090909091 0 0.4827604166666661 422.9504902281426 61.92660212033425 0 E 146.3506072806383 195 168.3506072806383 235
+0 2 2 "0s" 0 0 0 73 0 0  146.3506072806383 195 1
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+0 2
+LANG:10001 2 01
+LANG:10010 1 -
+2 109
+"PRIMITIVE_TEXT21"
+""
+1 146.3506072806383 195 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+108 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E 0.4090909090909091 0 0.4827604166666661 506.1002578945487 61.92660212033424 0 E 146.3506072806383 195 168.3506072806383 235
+0 2 2 "0s" 0 0 0 73 0 0  146.3506072806383 195 1
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+0 2
+LANG:10001 2 01
+LANG:10010 1 :
+14 111
+"dia_ini"
+""
+1 199.3605043119256 158.4714805925564 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+110 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+0  197.3605043119256 154.8622792036675 223.3605043119256 178.1726958703342
+2 "0s" 0 0 0 0 0 -1  "main(mapping event)
+{
+  teclado(\"\", \"keypad\");
+  int i = this.text();
+
+  if (i == 0)
+  {
+    this.text = \"01\";
+  }
+  else if (i  > 31)
+  {
+    this.text = 31;
+  }
+  else if (i <= 9)
+  {
+    this.text = \"0\" + this.text;
+  }
+}
+" 0
+ "main()
+{
+  int i = this.text();
+  if (i <= 9)
+  {
+    this.text = \"0\" + this.text;
+  }
+}
+" 0
+ E
+14 112
+"mes_ini"
+""
+1 233.421166352384 158.4714805925564 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+111 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+0  231.421166352384 154.8622792036675 257.421166352384 178.1726958703342
+2 "0s" 0 0 0 0 0 -1  "main(mapping event)
+{
+  teclado(\"\", \"keypad\");
+  int i = this.text();
+
+  if (i == 0)
+  {
+    this.text = \"01\";
+  }
+  else if (i  > 12)
+  {
+    this.text = 12;
+  }
+  else if (i <= 9)
+  {
+    this.text = \"0\" + this.text;
+  }
+}
+" 0
+ "main()
+{
+  int i = this.text();
+  if (i <= 9)
+  {
+    this.text = \"0\" + this.text;
+  }
+}
+" 0
+ E
+14 113
+"anio_ini"
+""
+1 266.4180343006733 158.4714805925564 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+112 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+0  264.4180343006733 154.8622792036675 312.0000000000001 178.1726958703342
+2 "0s" 0 0 0 0 0 -1  "main(mapping event)
+{
+    teclado(\"\", \"keypad\");
+
+  if (this.text > year(getCurrentTime()))
+  {
+    this.text = year(getCurrentTime());
+  }
+}" 0
+ E E
+14 114
+"hour_ini"
+""
+1 316.5709340187901 158.4714805925564 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+113 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+0  314.5709340187901 154.8622792036675 340.5709340187901 178.1726958703342
+2 "0s" 0 0 0 0 0 -1  "main(mapping event)
+{
+  teclado(\"\", \"keypad\");
+  int i = this.text();
+
+  if (i  > 23)
+  {
+    this.text = 23;
+  }
+  else if (i <= 9)
+  {
+    this.text = \"0\" + this.text;
+  }
+}" 0
+ "main()
+{
+  int i = this.text();
+  if (i <= 9)
+  {
+    this.text = \"0\" + this.text;
+  }
+}
+" 0
+ E
+14 115
+"min_ini"
+""
+1 349.3605043119256 158.4714805925564 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+114 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+0  347.3605043119256 154.8622792036675 373.3605043119256 178.1726958703342
+2 "0s" 0 0 0 0 0 -1  "main(mapping event)
+{
+  teclado(\"\", \"keypad\");
+  int i = this.text();
+
+  if (i  > 59)
+  {
+    this.text = 59;
+  }
+  else if (i <= 9)
+  {
+    this.text = \"0\" + this.text;
+  }
+}" 0
+ "main()
+{
+  int i = this.text();
+  if (i <= 9)
+  {
+    this.text = \"0\" + this.text;
+  }
+}
+" 0
+ E
+14 116
+"dia_fin"
+""
+1 425.3605043119256 157.674084759223 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+115 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+0  423.3605043119256 154.0648833703341 449.3605043119256 177.3753000370008
+2 "0s" 0 0 0 0 0 -1  "main(mapping event)
+{
+  teclado(\"\", \"keypad\");
+  int i = this.text();
+
+  if (i == 0)
+  {
+    this.text = \"01\";
+  }
+  else if (i  > 31)
+  {
+    this.text = 31;
+  }
+  else if (i <= 9)
+  {
+    this.text = \"0\" + this.text;
+  }
+}
+" 0
+ "main()
+{
+  int i = this.text();
+  if (i <= 9)
+  {
+    this.text = \"0\" + this.text;
+  }
+}
+" 0
+ E
+14 117
+"mes_fin"
+""
+1 459.421166352384 157.674084759223 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+116 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+0  457.421166352384 154.0648833703341 483.421166352384 177.3753000370008
+2 "0s" 0 0 0 0 0 -1  "main(mapping event)
+{
+  teclado(\"\", \"keypad\");
+  int i = this.text();
+
+  if (i == 0)
+  {
+    this.text = \"01\";
+  }
+  else if (i  > 12)
+  {
+    this.text = 12;
+  }
+  else if (i <= 9)
+  {
+    this.text = \"0\" + this.text;
+  }
+}
+" 0
+ "main()
+{
+  int i = this.text();
+  if (i <= 9)
+  {
+    this.text = \"0\" + this.text;
+  }
+}
+" 0
+ E
+14 118
+"anio_fin"
+""
+1 492.4180343006733 157.674084759223 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+117 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+0  490.4180343006733 154.0648833703341 538 177.3753000370008
+2 "0s" 0 0 0 0 0 -1  "main(mapping event)
+{
+    teclado(\"\", \"keypad\");
+
+  if (this.text > year(getCurrentTime()))
+  {
+    this.text = year(getCurrentTime());
+  }
+}" 0
+ E E
+14 119
+"hour_fin"
+""
+1 542.57093401879 157.674084759223 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+118 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+0  540.57093401879 154.0648833703341 566.57093401879 177.3753000370008
+2 "0s" 0 0 0 0 0 -1  "main(mapping event)
+{
+  teclado(\"\", \"keypad\");
+  int i = this.text();
+
+  if (i  > 23)
+  {
+    this.text = 23;
+  }
+  else if (i <= 9)
+  {
+    this.text = \"0\" + this.text;
+  }
+}" 0
+ "main()
+{
+  int i = this.text();
+  if (i <= 9)
+  {
+    this.text = \"0\" + this.text;
+  }
+}
+" 0
+ E
+14 120
+"min_fin"
+""
+1 575.3605043119256 157.674084759223 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+119 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+0  573.3605043119256 154.0648833703341 599.3605043119256 177.3753000370008
+2 "0s" 0 0 0 0 0 -1  "main(mapping event)
+{
+  teclado(\"\", \"keypad\");
+  int i = this.text();
+
+  if (i  > 59)
+  {
+    this.text = 59;
+  }
+  else if (i <= 9)
+  {
+    this.text = \"0\" + this.text;
+  }
+}" 0
+ "main()
+{
+  int i = this.text();
+  if (i <= 9)
+  {
+    this.text = \"0\" + this.text;
+  }
+}
+" 0
+ E
+0
+LAYER, 1 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 2 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 3 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 4 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 5 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 6 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 7 
+2
+LANG:10001 0 
+LANG:10010 0 
+13 122
+"aviso_tiempos"
+""
+1 3 146.5094339622642 E E E 1 E 0 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_AMARILLO_04" E E
+ E E
+121 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 34 Tahoma,-1,19,5,50,0,0,0,0,0,Normal
+0  1 108 612 202
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON9
+LANG:10010 41 REVISE LOS RANGOS DE TIEMPO INTRODUCIDOS.
+E E E E
+0
+1 0 "SHAPE_GROUP3" -1
+2 0 
+63 61 
+
+"layoutAlignment" "AlignNone"
+"" ""
+1 1 "date_fecha_ini" -1
+9 0 
+96 91 92 94 111 112 113 114 115 
+
+"layoutAlignment" "AlignNone"
+"" ""
+1 2 "date_fecha_fin" -1
+9 0 
+97 106 107 109 116 117 118 119 120 
+
+"layoutAlignment" "AlignNone"
+"" ""
+0

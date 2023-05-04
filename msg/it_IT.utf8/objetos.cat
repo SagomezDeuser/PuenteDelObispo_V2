@@ -1,0 +1,168 @@
+txf_borrar_fila,Cancellare una riga: doppio clic in essa
+txf_borrar_tabla,Cancellare la tabella completa
+txf_valor_act,Valore corrente
+txf_referencia,SELEZIONARE IL DATAPOINT DI RIFERIMENTO CHE VERRA COPIATO
+txf_copiado,SELEZIONARE I DATAPOINT CHE SARANNO MAPPATI
+txf_tabla_copiado,I DATAPOINT CHE RICEVERANNO LA CONFIGURAZIONE
+txf_config_alarmas,Impostazioni allarmi
+txf_hh,Troppo alto (HH)
+txf_h,Alta (H)
+txf_l,Basso (L)
+txf_ll,Troppo basso (LL)
+txf_conf_address,Sei sicuro di voler attivare / disattivare gli indirizzi?
+txf_conf_pausa,Sei sicuro di voler mettere in pausa?
+ptxf_interfaz,Interfaccia
+ptxf_pantalla,Schermo
+txf_conf_ll,Sei sicuro di voler attivare / disattivare la comparazione di basso livello?
+txf_conf_map,Sei sicuro di voler mappare tutti i DP DPT selezionati?
+txf_conf_mdp,Sei sicuro di voler modificare l'MDP selezionato?
+txf_conf_modpg,Sei sicuro di voler modificare il gruppo di sondaggi del MDP selezionato?
+txf_conf_pg,Sei sicuro di voler creare il gruppo di sondaggi con il nome in CSV? Se rifiuti, manterrai quello relativo al punto dati principale
+label_modo,MODALITA DI FUNZIONAMENTO
+label_operativa,MANUALE OPERATIVO
+txf_enc_alarmas,ALLARMI
+txf_alarma,ALLARME
+txf_ep,STATO DI PROTEZIONE
+txf_cm,CONFERMA INIZIALE
+txf_cp,ARRESTO DELLA CONFERMA
+txf_fe,GUASTO ESTERNO
+label_cfm_marcha,AVVIO DI CFM.
+label_cfm_paro,ARRESTO DEL CFM.
+label_t_arranque,TEMPO DI PARTENZA
+label_t_paro,TEMPO DI ARRESTO
+txf_vf,FREQ. GUASTO DEL CONVERTITORE
+label_csg_auto,PUNTO DI IMPOSTAZIONE AUTO
+label_csg_manual,SET POINT MANUALE
+label_vel_actual,VELOCITA ATTUALE
+label_corriente,INTENSITA
+label_frecuencia,FREQUENZA
+label_cfm_marcha_f1,CFM AVANTI IN AVANTI
+label_cfm_marcha_f2,CFM AVVIO INDIETRO
+label_cfm_paro_f1,CFM AVANTI ARRESTO
+label_cfm_paro_f2,CFM INDIETRO ARRESTO
+label_t_apertura,ORARIO DI APERTURA
+label_t_cierre,ORARIO DI CHIUSURA
+txf_ca,CONFERMA DI APERTURA
+txf_cc,CONFERMA DI CHIUSURA
+txf_fp,GUASTO DI POSIZIONAMENTO
+label_formula,Ricetta
+label_produccion,Produzione
+label_ton,Tn / h
+fecha_inicio,Data di inizio
+acuse,Riconoscimento
+fecha_acuse,Data di conferma
+tag,Etichetta
+alias,Alias
+descripcion,Descrizione
+alarma,Allarme
+aviso,avvertimento
+label_acuse_todo,RICONOSCONO TUTTO
+label_rango,Gamma
+label_dia,Giorno
+label_mes,Mese
+label_ano,Anno
+label_cuadro,Pannello
+label_variable,Variabile
+label_graf_frec,Grafici frequenti
+label_intervalo,Intervallo
+label_min,Min
+zona,Zona
+detalle,Dettagli
+valor,Valore
+unidad,Unita
+label_descr_dp,Descrizione DP
+label_alias_dp,DP Alias
+label_dp,DP
+cb_address,Attiva indirizzo
+cb_address_mdp,Secondo MDP
+label_vaciar,Elimina
+para_completo,PARA completo
+label_crear_en_funcion,Creare secondo
+txf_rb_vaciado_para,Elimina PARA completo
+txf_rb_vaciado_dpt_mdp,Elimina tutti i tipi di punti dati, compresi i loro punti dati master
+txf_rb_vaciado_dpt,Elimina tutti i tipi di punti dati, mantenendo i loro punti dati master
+txf_rb_vaciado_dpt_csv,Elimina i tipi di punti dati con DP in CSV, mantenendo i loro punti dati master
+label_buscar,RICERCA
+cb_var_interna,INTERNO VARIABILE
+cb_selec_multiple,Scelta multipla
+label_periferia,Periferia
+label_referencia,Riferimento
+label_driver,Autisti
+label_conexion,conection
+label_transformacion,Tipo di trasformazione
+label_direccion,Direzione
+cb_activo,Attivo
+label_origen_address,Origine indirizzo
+clase,Classe
+dp_alarma,Allarme DP
+label_alarma_came,E venuto
+label_alarma_went,Andato
+label_clase_alarma,Classe di allarme
+label_config,Configurazione
+label_config_1,Configurazione
+label_config_2,Configurazione
+label_config_3,Configurazione
+label_config_4,Configurazione
+label_escala,Scala
+label_escala_1,Scala
+label_escala_2,Scala
+label_escala_3,Scala
+label_escala_4,Scala
+label_estable,Stabile
+label_estable_1,Stabile
+label_estable_2,Stabile
+label_estable_3,Stabile
+label_estable_4,Stabile
+label_division,Divisione
+label_division_1,Divisione
+label_division_2,Divisione
+label_division_3,Divisione
+label_division_4,Divisione
+label_cero,Zero
+label_cero_1,Zero
+label_cero_2,Zero
+label_cero_3,Zero
+label_cero_4,Zero
+label_const_peso,Costanti di peso
+label_const_peso_1,Costanti di peso
+label_const_peso_2,Costanti di peso
+label_const_peso_3,Costanti di peso
+label_const_peso_4,Costanti di peso
+label_cero_5,Zero
+label_cero_6,Zero
+label_cero_7,Zero
+label_cero_8,Zero
+label_cero_9,Zero
+label_ganancia,Guadagno
+label_ganancia_1,Guadagno
+label_ganancia_2,Guadagno
+label_ganancia_3,Guadagno
+label_ganancia_4,Guadagno
+label_calibracion,Calibrare
+label_calibracion_1,Calibrare
+label_calibracion_2,Calibrare
+label_calibracion_3,Calibrare
+label_calibracion_4,Calibrare
+label_peso_ajuste,Peso adatto
+label_peso_ajuste_1,Peso adatto
+label_peso_ajuste_2,Peso adatto
+label_peso_ajuste_3,Peso adatto
+label_peso_ajuste_4,Peso adatto
+label_punto_ajuste,Punti di adattamento
+label_punto_ajuste_1,Punti di adattamento
+label_punto_ajuste_2,Punti di adattamento
+label_punto_ajuste_3,Punti di adattamento
+label_punto_ajuste_4,Punti di adattamento
+label_vel,% Velocita
+codigo,Codice
+nombre,Nome
+ult_mod,Ultima modifica
+label_buscar_nom,Ricerca per nome
+label_mod_accion,MODALITA DI FUNZIONAMENTO
+label_secuencia,SEQUENZA
+label_supervision,SUPERVISIONE
+txf_cm_f1,CONFERMA DI PARTENZA IN AVANTI
+txf_cm_f2,CONFERMA DI PARTENZA ALL'INDIETRO
+txf_cp_f1,CONFERMA DELL'ARRESTO IN AVANTI
+txf_cp_f2,CONFERMA DELL'ARRESTO ALL'INDIETRO
+label_orden,

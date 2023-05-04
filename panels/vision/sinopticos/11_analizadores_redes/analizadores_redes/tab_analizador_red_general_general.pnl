@@ -1,0 +1,214 @@
+V 14
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10005 0 
+LANG:10018 0 
+LANG:10008 0 
+LANG:10011 0 
+PANEL,-1 -1 1920 950 N "white" 0
+E E E E E 1 -1 -1 0  0 0
+""0  1
+E E 5
+"CBRef" "1"
+"EClose" E
+"windowIcon" "Iconos/Ventana/gestion_icon.svg"
+"dpi" "96"
+"pdpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10001 0 
+LANG:10010 0 
+28 1500
+"tab_analizadores_redes"
+"tab_widget_standard_1"
+1 0 3.155443620884047e-30 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+818 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"layoutAlignment" "AlignNone"
+"selchangedcb" "main()
+{
+  int n_seleccionado;
+  n_seleccionado = this.activeRegister;
+  string modulo = myModuleName(), url;
+  if(isPanelOpen(\"graficas_analizador_\" + modulo)) PanelOffPanel(\"graficas_analizador_\" + modulo);
+  url = \"http://localhost:3000/d/winccoa-0dp/winccoa-0dp?orgId=1&kiosk&from=now-1h&to=now&viewPanel=2&refresh=3s\";
+  dpSetWait(\"ConfiguracionSCADA.configuracion_grafica_analizador_red.url_grafica\",url,
+            \"ConfiguracionSCADA.configuracion_graficas.indiceGraficaAnalizadorRed\",0);
+
+
+  if (n_seleccionado == 0)
+  {
+    activar_address_fp(\"_09_IG1_AR_BateriaCond_CT1\", \"090_LIB_ENERGY_METER\");
+    desactivar_address_fp(\"_09_IG2_AR_BateriaCond_CT2\", \"090_LIB_ENERGY_METER\");
+    desactivar_address_fp(\"_09_IG1_AR_Interruptor_Transfo_1\", \"090_LIB_ENERGY_METER\");
+    desactivar_address_fp(\"_09_IG1_AR_Interruptor_Transfo_2\", \"090_LIB_ENERGY_METER\");
+    desactivar_address_fp(\"_09_IG2_AR_Interruptor_Transfo_1\", \"090_LIB_ENERGY_METER\");
+    desactivar_address_fp(\"_09_IG2_AR_Interruptor_Transfo_2\", \"090_LIB_ENERGY_METER\");
+  }
+
+  else if (n_seleccionado == 1)
+  {
+    desactivar_address_fp(\"_09_IG1_AR_BateriaCond_CT1\", \"090_LIB_ENERGY_METER\");
+    activar_address_fp(\"_09_IG2_AR_BateriaCond_CT2\", \"090_LIB_ENERGY_METER\");
+    desactivar_address_fp(\"_09_IG1_AR_Interruptor_Transfo_1\", \"090_LIB_ENERGY_METER\");
+    desactivar_address_fp(\"_09_IG1_AR_Interruptor_Transfo_2\", \"090_LIB_ENERGY_METER\");
+    desactivar_address_fp(\"_09_IG2_AR_Interruptor_Transfo_1\", \"090_LIB_ENERGY_METER\");
+    desactivar_address_fp(\"_09_IG2_AR_Interruptor_Transfo_2\", \"090_LIB_ENERGY_METER\");
+  }
+
+  else if (n_seleccionado == 2)
+  {
+    desactivar_address_fp(\"_09_IG1_AR_BateriaCond_CT1\", \"090_LIB_ENERGY_METER\");
+    desactivar_address_fp(\"_09_IG2_AR_BateriaCond_CT2\", \"090_LIB_ENERGY_METER\");
+    activar_address_fp(\"_09_IG1_AR_Interruptor_Transfo_1\", \"090_LIB_ENERGY_METER\");
+    desactivar_address_fp(\"_09_IG1_AR_Interruptor_Transfo_2\", \"090_LIB_ENERGY_METER\");
+    desactivar_address_fp(\"_09_IG2_AR_Interruptor_Transfo_1\", \"090_LIB_ENERGY_METER\");
+    desactivar_address_fp(\"_09_IG2_AR_Interruptor_Transfo_2\", \"090_LIB_ENERGY_METER\");
+  }
+
+  else if (n_seleccionado == 3)
+  {
+    desactivar_address_fp(\"_09_IG1_AR_BateriaCond_CT1\", \"090_LIB_ENERGY_METER\");
+    desactivar_address_fp(\"_09_IG2_AR_BateriaCond_CT2\", \"090_LIB_ENERGY_METER\");
+    desactivar_address_fp(\"_09_IG1_AR_Interruptor_Transfo_1\", \"090_LIB_ENERGY_METER\");
+    activar_address_fp(\"_09_IG1_AR_Interruptor_Transfo_2\", \"090_LIB_ENERGY_METER\");
+    desactivar_address_fp(\"_09_IG2_AR_Interruptor_Transfo_1\", \"090_LIB_ENERGY_METER\");
+    desactivar_address_fp(\"_09_IG2_AR_Interruptor_Transfo_2\", \"090_LIB_ENERGY_METER\");
+  }
+
+  else if (n_seleccionado == 4)
+  {
+    desactivar_address_fp(\"_09_IG1_AR_BateriaCond_CT1\", \"090_LIB_ENERGY_METER\");
+    desactivar_address_fp(\"_09_IG2_AR_BateriaCond_CT2\", \"090_LIB_ENERGY_METER\");
+    desactivar_address_fp(\"_09_IG1_AR_Interruptor_Transfo_1\", \"090_LIB_ENERGY_METER\");
+    desactivar_address_fp(\"_09_IG1_AR_Interruptor_Transfo_2\", \"090_LIB_ENERGY_METER\");
+    activar_address_fp(\"_09_IG2_AR_Interruptor_Transfo_1\", \"090_LIB_ENERGY_METER\");
+    desactivar_address_fp(\"_09_IG2_AR_Interruptor_Transfo_2\", \"090_LIB_ENERGY_METER\");
+  }
+
+  else if (n_seleccionado == 5)
+  {
+    desactivar_address_fp(\"_09_IG1_AR_BateriaCond_CT1\", \"090_LIB_ENERGY_METER\");
+    desactivar_address_fp(\"_09_IG2_AR_BateriaCond_CT2\", \"090_LIB_ENERGY_METER\");
+    desactivar_address_fp(\"_09_IG1_AR_Interruptor_Transfo_1\", \"090_LIB_ENERGY_METER\");
+    desactivar_address_fp(\"_09_IG1_AR_Interruptor_Transfo_2\", \"090_LIB_ENERGY_METER\");
+    desactivar_address_fp(\"_09_IG2_AR_Interruptor_Transfo_1\", \"090_LIB_ENERGY_METER\");
+    activar_address_fp(\"_09_IG2_AR_Interruptor_Transfo_2\", \"090_LIB_ENERGY_METER\");
+  }
+}
+
+"
+"showBackground" "0"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+0  -2 -2 1921 951
+"main()
+{
+  activar_address_fp(\"_09_IG1_AR_BateriaCond_CT1\", \"090_LIB_ENERGY_METER\"); //Función para establecer como activa los address de una instancia
+}
+
+" 0
+6 "_09_IG1_AR_BateriaCond_CT1" 2
+LANG:10001 2 #1
+LANG:10010 29 AR BATERÍA CONDENSADORES CT1
+1 "vision/sinopticos/11_analizadores_redes/analizadores_redes/analizador_red.pnl" 2
+LANG:10001 0 
+LANG:10010 0 
+1
+"$INST""_09_IG1_AR_BateriaCond_CT1"
+
+"_09_IG2_AR_BateriaCond_CT2" 2
+LANG:10001 2 #1
+LANG:10010 29 AR BATERÍA CONDENSADORES CT2
+1 "vision/sinopticos/11_analizadores_redes/analizadores_redes/analizador_red.pnl" 2
+LANG:10001 0 
+LANG:10010 0 
+1
+"$INST""_09_IG2_AR_BateriaCond_CT2"
+
+"_09_IG1_AR_Interruptor_Transfo_1" 2
+LANG:10001 2 #1
+LANG:10010 34 AR IG1 INTERRUPTOR TRANSFORMADOR 1
+1 "vision/sinopticos/11_analizadores_redes/analizadores_redes/analizador_red.pnl" 2
+LANG:10001 0 
+LANG:10010 0 
+1
+"$INST""_09_IG1_AR_Interruptor_Transfo_1"
+
+"_09_IG1_AR_Interruptor_Transfo_2" 2
+LANG:10001 2 #1
+LANG:10010 34 AR IG1 INTERRUPTOR TRANSFORMADOR 2
+1 "vision/sinopticos/11_analizadores_redes/analizadores_redes/analizador_red.pnl" 2
+LANG:10001 0 
+LANG:10010 0 
+1
+"$INST""_09_IG1_AR_Interruptor_Transfo_2"
+
+"_09_IG2_AR_Interruptor_Transfo_1" 2
+LANG:10001 2 #1
+LANG:10010 34 AR IG2 INTERRUPTOR TRANSFORMADOR 1
+1 "vision/sinopticos/11_analizadores_redes/analizadores_redes/analizador_red.pnl" 2
+LANG:10001 0 
+LANG:10010 0 
+1
+"$INST""_09_IG2_AR_Interruptor_Transfo_1"
+
+"_09_IG2_AR_Interruptor_Transfo_2" 2
+LANG:10001 2 #2
+LANG:10010 34 AR IG2 INTERRUPTOR TRANSFORMADOR 2
+1 "vision/sinopticos/11_analizadores_redes/analizadores_redes/analizador_red.pnl" 2
+LANG:10001 0 
+LANG:10010 0 
+1
+"$INST""_09_IG2_AR_Interruptor_Transfo_2"
+
+
+0
+LAYER, 1 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 2 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 3 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 4 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 5 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 6 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 7 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+0

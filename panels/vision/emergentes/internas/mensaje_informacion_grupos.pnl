@@ -1,0 +1,335 @@
+V 14
+4
+LANG:10001 11 Information
+LANG:10010 11 Information
+LANG:10000 11 Information
+LANG:10027 20 Информация
+PANEL,-1 -1 621 110 N "LIB_DEUSER_BLANCO" 1
+"$TEXTO"
+"main()
+{
+  titleBar(0);
+}" 0
+ E E E E 1 -1 -1 0  251 55
+""0  1
+E "string help_keyword = \"\";
+
+void closeMessageInfo()
+{
+  dyn_anytype da, daa;
+
+  da[1] = myModuleName();
+  da[2] = myPanelName();
+  daa[1] = 0;
+  daa[2] = \"false\";
+  da[3] = daa;
+
+  if ( isEvConnOpen() )
+    PanelOffReturn(makeDynFloat(0),makeDynString(\"false\"));
+  else
+    panelOff(da);
+}
+" 0
+ 4
+"CBRef" "0"
+"EClose" "main()
+{
+  closeMessageInfo();
+}
+" 0
+
+"dpi" "96"
+"pdpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10001 6 Layer1
+LANG:10010 6 Layer1
+6 5
+"imgInfo"
+""
+1 14 14 E E E 1 E 1 E N "_Transparent" E N "_3DFace" E E
+ E E
+3 0 0 0 0 0
+E E E
+0
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 1 0 1 E 1 0 1 6 16 2  1 3  "pictures/StandardIcons/info.svg" 13434828 E 14 14 54 54
+6 16
+"RECTANGLE3"
+""
+1 282 34 E E E 1 E 1 E N {1,72,152} E N "_Transparent" E E
+ E E
+7 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+4
+"transparentForMouseInGedi" ""
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 6.953604587569123 0 1.60696287291238 -1960.916493694493 -54.63673767902091 1 E 282 34 371 102
+6 17
+"RECTANGLE2"
+""
+1 63 18 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "LIB_IRC_AZUL_03" E E
+ E E
+8 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E -1 1 3 2 1 E 0.001563313802083333 0 -1.117881106056852 9.772320337921798 130.3953352670651 1 E 63 18 1982 117
+6 18
+"RECTANGLE1"
+""
+1 63 18 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N {1,72,152} E E
+ E E
+9 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E -1 1 3 2 1 E 0.004689941406249998 0 -1.124532042619171 -0.3138328193515179 130.5150521251869 1 E 63 18 1982 117
+13 19
+"btn_aceptar"
+"MEDIANO_BLANCO"
+1 349.7787037037015 100.0240965052686 E E E 1 E 1 E N "_ButtonText" E N "_Transparent" E E
+ E E
+10 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 6 Accept
+LANG:10010 7 Aceptar
+LANG:10011 6 Accept
+LANG:10009 8 Accepter
+LANG:10008 6 Accept
+LANG:10018 6 Accept
+
+6
+"hoverbclr" "N \"AZUL_01\""
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10011 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10018 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  498.0000000000001 58 553.7040740740749 100.0874466743685
+
+P 
+4294967295
+"pictures/iconos/botoneras/aceptar.svg"
+6
+LANG:10001 12 PUSH_BUTTON1
+LANG:10010 12 PUSH_BUTTON1
+LANG:10011 12 PUSH_BUTTON1
+LANG:10009 12 PUSH_BUTTON1
+LANG:10008 12 PUSH_BUTTON1
+LANG:10018 12 PUSH_BUTTON1
+"main()
+{
+  dyn_anytype da, daa;
+
+  da[1] = myModuleName();
+  da[2] = myPanelName();
+  daa[1] = 1;
+  daa[2] = \"true\";
+  da[3] = daa;
+
+  if ( isEvConnOpen() )
+    PanelOffReturn(makeDynFloat(1),makeDynString(\"true\"));
+  else
+    panelOff(da);
+}
+" 0
+ E E E
+13 20
+"btn_cancelar"
+"MEDIANO_BLANCO"
+1 402.9107113348629 100.0309640578604 E E E 1 E 1 E N "_ButtonText" E N "_Transparent" E E
+ E E
+11 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 6 Cancel
+LANG:10010 8 Cancelar
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+6
+"hoverbclr" "N \"AZUL_01\""
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10011 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10018 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  551.1014814814821 58.00686755259171 606.8055555555568 100.0943142269603
+
+P 
+4294967295
+"pictures/iconos/botoneras/cancelar.svg"
+6
+LANG:10001 12 PUSH_BUTTON1
+LANG:10010 12 PUSH_BUTTON1
+LANG:10011 12 PUSH_BUTTON1
+LANG:10009 12 PUSH_BUTTON1
+LANG:10008 12 PUSH_BUTTON1
+LANG:10018 12 PUSH_BUTTON1
+"main()
+{
+  closeMessageInfo();
+}
+" 0
+ E E E
+6 21
+"fondo"
+""
+1 20 10 E E E 1 E 1 E N "AZUL_01" E N {1,72,152} E E
+ E E
+12 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 0.8733796296296419 0 0.9521861668592151 482.5324074074074 50.48500588399961 1 E 20 10 140 50
+4 22
+"LINE2"
+""
+1 552.898651952393 63.55112656820008 E E E 1 E 1 E N "AZUL_01" E N {255,255,255} E E
+ E E
+13 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 3 2 1 E  553.2412222222226 63.23461727075853 553.2412222222226 94.86656450879343
+29 23
+"Label1"
+"MEDIANO_AZUL"
+1 77.46269305371993 28.56306103859764 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+14 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"text" "string ---"
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  77.46269305371993 28.56306103859764 546.4626930537199 61.56306103859764
+5 Label
+0
+"main()
+{
+  int tam_w, tam_h;
+
+  getValue(\"\", \"size\", tam_w, tam_h);
+  setValue(\"\", \"text\", makeCR($TEXTO, tam_w), \"visible\", TRUE);
+}
+" 0
+0
+LAYER, 1 
+2
+LANG:10001 6 Layer2
+LANG:10010 6 Layer2
+0
+LAYER, 2 
+2
+LANG:10001 6 Layer3
+LANG:10010 6 Layer3
+0
+LAYER, 3 
+2
+LANG:10001 6 Layer4
+LANG:10010 6 Layer4
+0
+LAYER, 4 
+2
+LANG:10001 6 Layer5
+LANG:10010 6 Layer5
+0
+LAYER, 5 
+2
+LANG:10001 6 Layer6
+LANG:10010 6 Layer6
+0
+LAYER, 6 
+2
+LANG:10001 6 Layer7
+LANG:10010 6 Layer7
+0
+LAYER, 7 
+2
+LANG:10001 6 Layer8
+LANG:10010 6 Layer8
+0
+0

@@ -1,0 +1,336 @@
+V 14
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+PANEL,-1 -1 86 120 N "_Transparent" 5
+"$DECIMALES"
+"$DP"
+"$INST"
+"$POSICION"
+"$TAG"
+"main()
+{
+  if (tag != \"TRUE\")
+  {
+    tag = FALSE;
+
+  }
+
+  parametrosOK = parametrosRellenos(); //Comprobamos si todos los $ estan rellenos. Si no se usan, se usará NULL.
+}
+" 0
+ E E E E 1 -1 -1 0  0 0
+""0  1
+E "/***********************VARIABLES COMUNES PARA EL OBJETO***************************
+  $INHA - Sirve para indicar si queremos una botonera de accionamiento con el botón/opción de Inhabilitar (TRUE/FALSE).
+  $ESQ_ELEC - Sirve para indicar si queremos una botonera con el botón/opción Esquemas Eléctricos (TRUE/FALSE).
+  $INST = Nombre de la instancia
+  $AUTO_MODIF = se usa para modifcar o no el la consigna de auto
+  $ELEM = se usa para seleccionar la imagen que se mostrará en el faceplate motor, bomba, sinfin, cinta...
+  $TAG = se usa para mostrar o no el TAG en el faceplate
+  ******************/
+bool tag = $TAG, parametrosOK = FALSE;
+
+bool parametrosRellenos()//Comprobamos que todos los parametros del objeto esten rellenos, sino el objeto será de color morado.
+{
+  if ($INST != \"\"  && $TAG != \"\" && $DP != \"\" && $DECIMALES != \"\" && $POSICION != \"\")
+  {
+    return TRUE;// Si todos los parametros están rellenos devolvemos TRUE.
+  }
+  else
+  {
+    pgb_nivel.color(\"LIB_IRC_MORADO_01\");
+    pgb_nivel.foreCol(\"LIB_IRC_MORADO_01\");
+    return FALSE;
+  }
+}
+
+" 0
+ 4
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+"pdpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10001 0 
+LANG:10010 0 
+2 9
+"ptxf_unidad"
+""
+1 74 2 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_BLANCO" E E
+ E E
+8 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+6
+"layoutAlignment" "AlignNone"
+"focusPolicy" "StrongFocus"
+"showFocus" "0"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"transformable" "0"
+"main()
+{
+  dyn_int posicion;
+  dyn_int tamanio_nivel;
+  dyn_int tamanio_text;
+  tamanio_nivel = pgb_nivel.sizeAsDyn;
+  tamanio_text =  ptxf_unidad.sizeAsDyn;
+  posicion = pgb_nivel.positionAsDyn; //Obtenemos la posición de referencia.
+  int pos_x;
+  int pos_y;
+
+  switch ($POSICION)// Dependiendo del parametro se pondrá el texto en una posición concreta.
+  {
+    case (\"DERECHA\"):
+    {
+      this.format(\"[0s,,,AlignLeft|AlignVCenter]\");//Cambiamos alineación de texto a la izquierda.
+      pos_x = posicion[1] + tamanio_nivel[1] + 5;
+      pos_y = posicion[2] + tamanio_text[2] / 2;
+      this.position(pos_x, pos_y);
+      break;
+    }
+
+    case (\"IZQUIERDA\"):
+    {
+      this.format(\"[0s,,,AlignRight|AlignVCenter]\");//Cambiamos alineación de texto a la derecha.
+      pos_x = posicion[1] - tamanio_text[1] - 5;
+      pos_y = posicion[2] + tamanio_text[2] / 2;
+      this.position(pos_x, pos_y);
+      break;
+    }
+  }
+}" 0
+ E 0 1 3 2 1 E 1.05908967741853 0 0.7799112917190223 -75.37263612897119 5.440177416561955 0 E 74 2 92 16
+0 2 2 "0s" 0 0 0 73 0 0  74 2 1
+6
+LANG:10001 34 Tahoma,-1,5,5,75,0,0,0,0,0,Negrita
+LANG:10010 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10011 34 Tahoma,-1,5,5,75,0,0,0,0,0,Negrita
+LANG:10009 34 Tahoma,-1,5,5,75,0,0,0,0,0,Negrita
+LANG:10008 34 Tahoma,-1,5,5,75,0,0,0,0,0,Negrita
+LANG:10018 34 Tahoma,-1,5,5,75,0,0,0,0,0,Negrita
+0 6
+LANG:10001 4 Max.
+LANG:10010 5 Máx.
+LANG:10011 4 Max.
+LANG:10009 4 Max.
+LANG:10008 4 Max.
+LANG:10018 4 Max.
+2 10
+"PRIMITIVE_TEXT1"
+""
+1 74 2 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_BLANCO" E E
+ E E
+9 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+6
+"layoutAlignment" "AlignNone"
+"focusPolicy" "StrongFocus"
+"showFocus" "0"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"transformable" "0"
+"main()
+{
+  dyn_int posicion;
+  dyn_int tamanio_nivel;
+  dyn_int tamanio_text;
+  tamanio_nivel = pgb_nivel.sizeAsDyn;
+  tamanio_text =  PRIMITIVE_TEXT1.sizeAsDyn;
+  posicion = pgb_nivel.positionAsDyn; //Obtenemos la posición de referencia.
+  int pos_x;
+  int pos_y;
+
+  switch ($POSICION)// Dependiendo del parametro se pondrá el texto en una posición concreta.
+  {
+    case (\"DERECHA\"):
+    {
+      this.format(\"[0s,,,AlignLeft|AlignVCenter]\");//Cambiamos alineación de texto a la izquierda.
+      pos_x = posicion[1] + tamanio_nivel[1] + 5;
+      pos_y = posicion[2] + tamanio_nivel[2] - tamanio_text[2] * 1.25;
+      this.position(pos_x, pos_y);
+      break;
+    }
+
+    case (\"IZQUIERDA\"):
+    {
+      this.format(\"[0s,,,AlignRight|AlignVCenter]\");//Cambiamos alineación de texto a la derecha.
+      pos_x = posicion[1] - tamanio_text[1] - 5;
+      pos_y = posicion[2] + tamanio_nivel[2] - tamanio_text[2] * 1.25;
+      this.position(pos_x, pos_y);
+      break;
+    }
+  }
+}" 0
+ E 0 1 3 2 1 E 1.05908967741853 0 0.7799112917190223 -75.37263612897119 87.40514026272815 0 E 74 2 92 16
+0 2 2 "0s" 0 0 0 73 0 0  74 2 1
+6
+LANG:10001 34 Tahoma,-1,5,5,75,0,0,0,0,0,Negrita
+LANG:10010 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10011 34 Tahoma,-1,5,5,75,0,0,0,0,0,Negrita
+LANG:10009 34 Tahoma,-1,5,5,75,0,0,0,0,0,Negrita
+LANG:10008 34 Tahoma,-1,5,5,75,0,0,0,0,0,Negrita
+LANG:10018 34 Tahoma,-1,5,5,75,0,0,0,0,0,Negrita
+0 6
+LANG:10001 4 Max.
+LANG:10010 5 Mín.
+LANG:10011 4 Max.
+LANG:10009 4 Max.
+LANG:10008 4 Max.
+LANG:10018 4 Max.
+0
+LAYER, 1 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 2 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 3 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 4 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 5 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 6 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 7 
+2
+LANG:10001 0 
+LANG:10010 0 
+29 3
+"pgb_nivel"
+"pgb_standard_2"
+1 25 1 E E E 1 E 1 E N "LIB_DEUSER_NEGRO" E N "_3DFace" E E
+ E E
+2 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+11
+"alignment" "enum 8"
+"layoutDirection" "enum 0"
+"progress" "int 50"
+"percentageVisible" "bool TRUE"
+"orientation" "enum 1"
+"styleSheet" "string QWidget {font-family: Tahoma; font-size: 9px; font-style: normal; font-weight: 700; }QWidget:enabled {color: #e1a1a7ff; }"
+"textVisible" "bool TRUE"
+"invertedAppearance" "bool FALSE"
+"layoutAlignment" "AlignNone"
+"focusPolicy" "StrongFocus"
+"showFocus" "0"
+6
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,11,5,75,0,0,0,0,0,Negrita
+LANG:10011 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10018 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  24.91695501730106 1.440177416561951 63.91695501730105 110.440177416562
+11 ProgressBar
+0
+"main()
+{
+  if (parametrosOK)
+  {
+    cambiarValorNivel($DP);
+  }
+}
+" 0
+13 13
+"PUSH_BUTTON1"
+""
+1 0.881820645162977 49.62379321110429 E E E 1 E 1 E N "_ButtonText" E N "_Transparent" E E
+ E E
+12 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+3
+"layoutAlignment" "AlignNone"
+"focusPolicy" "StrongFocus"
+"showFocus" "0"
+6
+LANG:10001 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10010 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10011 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10009 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10008 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10018 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  -1.118179354837024 -2.038937909412547 84.94656441872142 120.7968829861098
+
+T 
+6
+LANG:10001 12 PUSH_BUTTON1
+LANG:10010 0 
+LANG:10011 12 PUSH_BUTTON1
+LANG:10009 12 PUSH_BUTTON1
+LANG:10008 12 PUSH_BUTTON1
+LANG:10018 12 PUSH_BUTTON1
+"main(mapping event)
+{
+  if (parametrosOK)
+  {
+    //INST = Nombre de la instancia
+    abrirFaceplates($INST, FALSE, \"motor\", FALSE, FALSE, tag);
+  }
+}
+" 0
+ E E E
+0
+0

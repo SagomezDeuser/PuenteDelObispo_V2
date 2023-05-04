@@ -1,0 +1,112 @@
+V 14
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+PANEL,-1 -1 102 66 N "LIB_IRC_BLANCO" 5
+"$COL1"
+"$COL2"
+"$COL3"
+"$COL4"
+"$DP"
+E E E E E 1 -1 -1 0  0 0
+""0  1
+E E 4
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+"pdpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10001 0 
+LANG:10010 0 
+7 6
+"btn_indicador"
+""
+1 50 25 E E E 1 E 1 E N "LIB_IRC_GRIS_04" E N "LIB_IRC_GRIS_03" E E
+ E E
+5 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+6
+"shadowOffset" "[1,1]"
+"shadowColor" "{63,63,63,131}"
+"shadowRadius" "15"
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+  dpConnect(\"cambiar_estado\", $DP);
+}
+
+void cambiar_estado(string dp, int valor)
+{
+  if(valor == 0)
+  {
+    this.backCol($COL1);
+  }
+  else if(valor == 1)
+  {
+    this.backCol($COL2);
+  }
+  else if(valor == 2)
+  {
+    this.backCol($COL3);
+  }
+  else if($COL4 != NULL)
+  {
+    if(valor == 3)
+    {
+      this.backCol($COL4);
+    }
+  }
+}" 0
+ E 0 2 3 2 1 E U  1 E 49.57142857142858 25.17436974789917 7.5 7.5
+0
+LAYER, 1 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 2 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 3 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 4 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 5 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 6 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 7 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+0

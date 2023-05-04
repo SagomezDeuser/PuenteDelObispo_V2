@@ -1,0 +1,1691 @@
+V 14
+6
+LANG:10001 0 
+LANG:10010 19 config_s7_principal
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+PANEL,-1 -1 960 940 N "LIB_IRC_BLANCO" 0
+"main()
+{
+  RootPanelOnModule(\"vision/sinopticos/06_configuracion/configuracion/config_dp_emergentes/configuracion_ini.pnl\",\"ini\",\"modulo_config\",makeDynString());
+}" 0
+ E E E E 1 -1 -1 0  14.00000000000006 14
+""0  1
+E E 4
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+"pdpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10001 0 
+LANG:10010 0 
+6 1
+"rect_fondo_config"
+""
+1 20 10 E E E 1 E 1 E N "_Transparent" E N "LIB_IRC_AZUL_03" E E
+ E E
+0 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+4
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E -1 1 3 2 1 E 8.717286795713793 0 0.7249999999999999 -174.3457359142759 -7.25 4 "[linear,pad,0,0,-0.012,0.988,0.00671,LIB_IRC_AZUL_03,1,{255,255,255}]" E 20 10 130 50
+6 2
+"RECTANGLE1"
+""
+1 20 10 E E E 1 E 1 E N "_Transparent" E N "LIB_IRC_AZUL_03" E E
+ E E
+1 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+4
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E -1 1 3 2 1 E 8.717286795713793 0 0.7302631578947369 -174.3457359142759 902.6973684210527 4 "[linear,pad,0.988,1,0.976,0.0241,0,LIB_IRC_AZUL_03,1,{255,255,255}]" E 20 10 130 50
+13 21
+"btn_aceptar"
+"GRANDE_AZUL"
+1 662.8764751823089 240.7982896151596 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_BLANCO" E E
+ E E
+20 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 6 Accept
+LANG:10010 7 Aceptar
+LANG:10011 6 Accept
+LANG:10009 8 Accepter
+LANG:10008 6 Accept
+LANG:10018 6 Accept
+
+5
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10011 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10018 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  876.210619309888 216.9491686246159 939.4095878323203 245.7395174408097
+
+P 
+4294967295
+"pictures/iconos/botoneras/flecha_der_off.svg"
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+"main(mapping event)
+{
+  RootPanelOnModule(\"vision/sinopticos/06_configuracion/configuracion/config_dp_emergentes/configuracion_mapeo_dp_mdp.pnl\",\"mapeo_dp_mdp\",\"modulo_config\",makeDynString());
+}
+" 0
+ E E E
+13 22
+"PUSH_BUTTON1"
+"GRANDE_AZUL"
+1 667.3437975015877 90.79828961515965 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_BLANCO" E E
+ E E
+21 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 6 Accept
+LANG:10010 7 Aceptar
+LANG:10011 6 Accept
+LANG:10009 8 Accepter
+LANG:10008 6 Accept
+LANG:10018 6 Accept
+
+5
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10011 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10018 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  880.6779416291668 66.94916862461595 943.8769101515991 95.73951744080976
+
+P 
+4294967295
+"pictures/iconos/botoneras/flecha_der_off.svg"
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+"main(mapping event)
+{
+    RootPanelOnModule(\"vision/sinopticos/06_configuracion/configuracion/config_dp_emergentes/configuracion_mapeo_csv.pnl\",\"mapeo_csv\",\"modulo_config\",makeDynString());
+}
+" 0
+ E E E
+13 24
+"PUSH_BUTTON3"
+"GRANDE_AZUL"
+1 664.6658558724209 403.7084950492219 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_BLANCO" E E
+ E E
+23 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 6 Accept
+LANG:10010 7 Aceptar
+LANG:10011 6 Accept
+LANG:10009 8 Accepter
+LANG:10008 6 Accept
+LANG:10018 6 Accept
+
+5
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10011 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10018 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  878 379.8593740586783 941.1989685224323 408.6497228748721
+
+P 
+4294967295
+"pictures/iconos/botoneras/flecha_der_off.svg"
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+"main(mapping event)
+{
+    RootPanelOnModule(\"vision/sinopticos/06_configuracion/configuracion/config_dp_emergentes/configuracion_lowlevel_dp.pnl\",\"lowlevel_dp\",\"modulo_config\",makeDynString());
+}
+" 0
+ E E E
+13 25
+"PUSH_BUTTON4"
+"GRANDE_AZUL"
+1 664.6658558724209 449.6187004832842 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_BLANCO" E E
+ E E
+24 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 6 Accept
+LANG:10010 7 Aceptar
+LANG:10011 6 Accept
+LANG:10009 8 Accepter
+LANG:10008 6 Accept
+LANG:10018 6 Accept
+
+5
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10011 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10018 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  878 425.7695794927405 941.1989685224323 454.5599283089343
+
+P 
+4294967295
+"pictures/iconos/botoneras/flecha_der_off.svg"
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+"main(mapping event)
+{
+    RootPanelOnModule(\"vision/sinopticos/06_configuracion/configuracion/config_dp_emergentes/configuracion_address_dp.pnl\",\"address_dp\",\"modulo_config\",makeDynString());
+}
+" 0
+ E E E
+13 26
+"PUSH_BUTTON5"
+"GRANDE_AZUL"
+1 664.6658558724209 496.5289059173465 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_BLANCO" E E
+ E E
+25 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 6 Accept
+LANG:10010 7 Aceptar
+LANG:10011 6 Accept
+LANG:10009 8 Accepter
+LANG:10008 6 Accept
+LANG:10018 6 Accept
+
+5
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10011 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10018 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  878 472.6797849268028 941.1989685224323 501.4701337429966
+
+P 
+4294967295
+"pictures/iconos/botoneras/flecha_der_off.svg"
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+"main(mapping event)
+{
+    RootPanelOnModule(\"vision/sinopticos/06_configuracion/configuracion/config_dp_emergentes/configuracion_poll_dp.pnl\",\"poll_dp\",\"modulo_config\",makeDynString());
+}
+" 0
+ E E E
+13 27
+"PUSH_BUTTON6"
+"GRANDE_AZUL"
+1 664.8983043843141 608.7982896151595 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_BLANCO" E E
+ E E
+26 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 6 Accept
+LANG:10010 7 Aceptar
+LANG:10011 6 Accept
+LANG:10009 8 Accepter
+LANG:10008 6 Accept
+LANG:10018 6 Accept
+
+5
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10011 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10018 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  878.2324485118932 584.9491686246158 941.4314170343255 613.7395174408098
+
+P 
+4294967295
+"pictures/iconos/botoneras/flecha_der_off.svg"
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+"main(mapping event)
+{
+    RootPanelOnModule(\"vision/sinopticos/06_configuracion/configuracion/config_dp_emergentes/configuracion_alert_hdl.pnl\",\"alert_hdl\",\"modulo_config\",makeDynString());
+}
+" 0
+ E E E
+13 28
+"PUSH_BUTTON7"
+"GRANDE_AZUL"
+1 664.8983043843141 658.7982896151595 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_BLANCO" E E
+ E E
+27 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 6 Accept
+LANG:10010 7 Aceptar
+LANG:10011 6 Accept
+LANG:10009 8 Accepter
+LANG:10008 6 Accept
+LANG:10018 6 Accept
+
+5
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10011 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10018 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  878.2324485118932 634.9491686246158 941.4314170343255 663.7395174408097
+
+P 
+4294967295
+"pictures/iconos/botoneras/flecha_der_off.svg"
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+"main(mapping event)
+{
+    RootPanelOnModule(\"vision/sinopticos/06_configuracion/configuracion/config_dp_emergentes/configuracion_activa_alert.pnl\",\"activa_alert\",\"modulo_config\",makeDynString());
+}
+" 0
+ E E E
+13 30
+"PUSH_BUTTON9"
+"GRANDE_AZUL"
+1 664.8983043843141 768.7982896151595 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_BLANCO" E E
+ E E
+29 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 6 Accept
+LANG:10010 7 Aceptar
+LANG:10011 6 Accept
+LANG:10009 8 Accepter
+LANG:10008 6 Accept
+LANG:10018 6 Accept
+
+5
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10011 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10018 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  878.2324485118932 744.9491686246158 941.4314170343255 773.7395174408097
+
+P 
+4294967295
+"pictures/iconos/botoneras/flecha_der_off.svg"
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+"main(mapping event)
+{
+    RootPanelOnModule(\"vision/sinopticos/06_configuracion/configuracion/config_dp_emergentes/configuracion_archive.pnl\",\"archive\",\"modulo_config\",makeDynString());
+}
+" 0
+ E E E
+4 31
+"LINE1"
+""
+1 478.1866969564319 231.3443430327128 E E E 1 E 1 E N "LIB_IRC_AZUL_02" E N {255,255,255} E E
+ E E
+30 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 3 2 3 2 1 E  478.1866969564319 231.3443430327128 866.8559768198184 231.3443430327128
+4 32
+"LINE2"
+""
+1 540 81.34434303271284 E E E 1 E 1 E N "LIB_IRC_AZUL_02" E N {255,255,255} E E
+ E E
+31 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 3 2 3 2 1 E  540 81.34434303271284 871.3232991390973 81.34434303271284
+4 34
+"LINE4"
+""
+1 440.0073019112388 394.2545484667751 E E E 1 E 1 E N "LIB_IRC_AZUL_02" E N {255,255,255} E E
+ E E
+33 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 3 2 3 2 1 E  440.0073019112388 394.2545484667751 868.6453575099304 394.2545484667752
+4 35
+"LINE5"
+""
+1 390 440.1647539008374 E E E 1 E 1 E N "LIB_IRC_AZUL_02" E N {255,255,255} E E
+ E E
+34 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 3 2 3 2 1 E  390 440.1647539008374 868.6453575099304 440.1647539008375
+4 36
+"LINE6"
+""
+1 464.820560415092 487.2350668714982 E E E 1 E 1 E N "LIB_IRC_AZUL_02" E N {255,255,255} E E
+ E E
+35 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 3 2 3 2 1 E  464.820560415092 487.2350668714982 868.6453575099304 487.2350668714982
+4 37
+"LINE7"
+""
+1 380.0000000000001 599.3443430327127 E E E 1 E 1 E N "LIB_IRC_AZUL_02" E N {255,255,255} E E
+ E E
+36 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 3 2 3 2 1 E  380.0000000000001 599.3443430327127 868.6453575099305 599.3443430327128
+4 38
+"LINE8"
+""
+1 249.9999999999999 649.3443430327127 E E E 1 E 1 E N "LIB_IRC_AZUL_02" E N {255,255,255} E E
+ E E
+37 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 3 2 3 2 1 E  249.9999999999999 649.3443430327127 868.6453575099304 649.3443430327128
+4 39
+"LINE9"
+""
+1 337.0020112050475 759.3443430327127 E E E 1 E 1 E N "LIB_IRC_AZUL_02" E N {255,255,255} E E
+ E E
+38 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 3 2 3 2 1 E  337.0020112050475 759.3443430327127 868.6453575099304 759.3443430327127
+4 40
+"LINE10"
+""
+1 31.68771910959214 203.1257907102837 E E E 1 E 1 E N "LIB_IRC_AZUL_02" E N {255,255,255} E E
+ E E
+39 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 2 3 2 1 E  32 203 284 203
+4 41
+"LINE11"
+""
+1 666.1866969564319 203.1257907102837 E E E 1 E 1 E N "LIB_IRC_AZUL_02" E N {255,255,255} E E
+ E E
+40 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 2 3 2 1 E  666.1866969564319 203.1257907102837 936.6648777269027 203.1257907102837
+4 42
+"LINE12"
+""
+1 33.47709979970421 334.5870233146574 E E E 1 E 1 E N "LIB_IRC_AZUL_02" E N {255,255,255} E E
+ E E
+41 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 2 3 2 1 E  33.47709979970421 334.5870233146574 319 334.5870233146575
+4 43
+"LINE13"
+""
+1 640 334.5870233146574 E E E 1 E 1 E N "LIB_IRC_AZUL_02" E N {255,255,255} E E
+ E E
+42 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 2 3 2 1 E  640 334.5870233146574 938.4542584170148 334.5870233146574
+4 44
+"LINE14"
+""
+1 33.47709979970409 544.5870233146575 E E E 1 E 1 E N "LIB_IRC_AZUL_02" E N {255,255,255} E E
+ E E
+43 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 2 3 2 1 E  33.47709979970409 544.5870233146575 311 544.5870233146576
+4 45
+"LINE15"
+""
+1 650 544.5870233146575 E E E 1 E 1 E N "LIB_IRC_AZUL_02" E N {255,255,255} E E
+ E E
+44 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 2 3 2 1 E  650 544.5870233146575 938.4542584170146 544.5870233146575
+4 46
+"LINE16"
+""
+1 33.47709979970421 707.8564070124706 E E E 1 E 1 E N "LIB_IRC_AZUL_02" E N {255,255,255} E E
+ E E
+45 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 2 3 2 1 E  33.47709979970421 707.8564070124706 323.9999999999999 707.8564070124706
+4 47
+"LINE17"
+""
+1 636 707.8564070124706 E E E 1 E 1 E N "LIB_IRC_AZUL_02" E N {255,255,255} E E
+ E E
+46 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 2 3 2 1 E  636 707.8564070124706 938.4542584170147 707.8564070124706
+4 50
+"LINE18"
+""
+1 33.47709979970421 804.8564070124706 E E E 1 E 1 E N "LIB_IRC_AZUL_02" E N {255,255,255} E E
+ E E
+49 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 2 3 2 1 E  33.47709979970421 804.8564070124706 376.9999999999999 804.8564070124706
+4 51
+"LINE19"
+""
+1 580 804.8564070124706 E E E 1 E 1 E N "LIB_IRC_AZUL_02" E N {255,255,255} E E
+ E E
+50 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 2 3 2 1 E  580 804.8564070124706 940.0994842612162 804.8564070124706
+14 53
+"txf_num_ios"
+"MEDIANO_AZUL"
+1 196.2823136507343 426.0903505891571 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_BLANCO" E E
+ E E
+52 0 0 0 0 0
+E E E
+1
+9
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+5
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,80}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+9
+LANG:10001 30 Noto Sans,-1,13,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,13,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10005 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10000 30 Noto Sans,-1,13,5,50,0,0,0,0,0
+LANG:10027 30 Noto Sans,-1,13,5,50,0,0,0,0,0
+0  428.4564066747762 828.7939070124703 624.9318165108423 861.7939070124704
+3 "0d" 0 0 0 10 0 -1  E E E
+13 54
+"btn_num_ios"
+"GRANDE_BLANCO"
+1 108.150420077557 858.0439070124703 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Button" E E
+ E E
+53 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 6 Cancel
+LANG:10010 15 Número de I/Os
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+5
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10011 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10018 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  335.0681834891578 826.5772403458035 402.0015168224892 864.010573679137
+
+T 
+6
+LANG:10001 0 
+LANG:10010 4 I/Os
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+"main()
+{
+  string dp_nom;
+  dyn_string dpl, els;
+  dyn_int num_drivers;
+  int num_driver, i, d, num_ios;
+
+  dpGet(\"_Connections.Driver.ManNums\", num_drivers);
+
+  if(dynlen(num_drivers) == 0){
+    setValue(\"txf_num_ios\", \"text\", \"No driver running\");
+  }else{
+    for(d = 1; d <= dynlen(num_drivers); d++){
+      dyn_string ds_dpWait, ds_dpReturn;
+      dyn_anytype da_conditions, da_return;
+
+      num_driver = num_drivers[d];
+
+      dpSet(\"_Driver\" + num_driver + \".AD.DPMatch\", makeDynString());
+      dpSet(\"_Driver\" + num_driver + \".AD.HWMask\", \"*\");
+
+      ds_dpWait[1] = \"_Driver\" + num_driver + \".AD.DPMatch:_online.._value\";
+      ds_dpReturn[1] = \"_Driver\" + num_driver + \".AD.DPMatch:_online.._value\";
+
+      dpWaitForValue(ds_dpWait, da_conditions, ds_dpReturn, da_return, 30);
+
+      dpl = da_return[1];
+
+      for(i = 1 ; i <= dynlen(dpl); i++){
+        dp_nom = dpSubStr(dpl[i], DPSUB_DP_EL);
+
+        if(dpElementType(dp_nom) == DPEL_BIT32_STRUCT ||
+           dpElementType(dp_nom) == DPEL_BLOB_STRUCT ||
+           dpElementType(dp_nom) == DPEL_BOOL_STRUCT ||
+           dpElementType(dp_nom) == DPEL_CHAR_STRUCT ||
+           dpElementType(dp_nom) == DPEL_DYN_BIT32_STRUCT ||
+           dpElementType(dp_nom) == DPEL_DYN_BLOB_STRUCT ||
+           dpElementType(dp_nom) == DPEL_DYN_BOOL_STRUCT ||
+           dpElementType(dp_nom) == DPEL_DYN_CHAR_STRUCT ||
+           dpElementType(dp_nom) == DPEL_DYN_FLOAT_STRUCT ||
+           dpElementType(dp_nom) == DPEL_DYN_INT_STRUCT ||
+           dpElementType(dp_nom) == DPEL_DYN_STRING_STRUCT ||
+           dpElementType(dp_nom) == DPEL_DYN_TIME_STRUCT ||
+           dpElementType(dp_nom) == DPEL_DYN_UINT_STRUCT ||
+           dpElementType(dp_nom) == DPEL_FLOAT_STRUCT ||
+           dpElementType(dp_nom) == DPEL_INT_STRUCT ||
+           dpElementType(dp_nom) == DPEL_STRING_STRUCT ||
+           dpElementType(dp_nom) == DPEL_TIME_STRUCT ||
+           dpElementType(dp_nom) == DPEL_UINT_STRUCT){
+
+          els = dpNames(dpSubStr(dp_nom, DPSUB_DP_EL) + \".**\");
+          num_ios += dynlen(els);
+        }else{
+          num_ios++;
+        }
+      }
+    }
+    setValue(\"txf_num_ios\", \"text\", num_ios);  //Establecemos el número total de I/Os en el TextField
+  }
+}" 0
+ E E E
+13 56
+"PUSH_BUTTON10"
+"GRANDE_AZUL"
+1 663.1089236942021 272.7084950492219 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_BLANCO" E E
+ E E
+55 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 6 Accept
+LANG:10010 7 Aceptar
+LANG:10011 6 Accept
+LANG:10009 8 Accepter
+LANG:10008 6 Accept
+LANG:10018 6 Accept
+
+5
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10011 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10018 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  876.4430678217811 248.8593740586782 939.6420363442135 277.649722874872
+
+P 
+4294967295
+"pictures/iconos/botoneras/flecha_der_off.svg"
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+"main(mapping event)
+{
+  RootPanelOnModule(\"vision/sinopticos/06_configuracion/configuracion/config_dp_emergentes/configuracion_mapeo_dp_dp.pnl\",\"mapeo_dp_dp\",\"modulo_config\",makeDynString());
+}
+" 0
+ E E E
+4 57
+"LINE20"
+""
+1 575.0025091146374 263.2545484667751 E E E 1 E 1 E N "LIB_IRC_AZUL_02" E N {255,255,255} E E
+ E E
+56 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 3 2 3 2 1 E  575.0025091146374 263.2545484667751 866.8559768198184 263.2545484667751
+13 59
+"PUSH_BUTTON11"
+"GRANDE_AZUL"
+1 662.8764751823088 304.6187004832842 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_BLANCO" E E
+ E E
+58 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 6 Accept
+LANG:10010 7 Aceptar
+LANG:10011 6 Accept
+LANG:10009 8 Accepter
+LANG:10008 6 Accept
+LANG:10018 6 Accept
+
+5
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10011 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10018 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  876.210619309888 280.7695794927405 939.4095878323203 309.5599283089343
+
+P 
+4294967295
+"pictures/iconos/botoneras/flecha_der_off.svg"
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+"main(mapping event)
+{
+  RootPanelOnModule(\"vision/sinopticos/06_configuracion/configuracion/config_dp_emergentes/configuracion_mapeo_dpe_dpe.pnl\",\"mapeo_dpe_dpe\",\"modulo_config\",makeDynString());
+}
+" 0
+ E E E
+4 60
+"LINE21"
+""
+1 490 295.1647539008374 E E E 1 E 1 E N "LIB_IRC_AZUL_02" E N {255,255,255} E E
+ E E
+59 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 3 2 3 2 1 E  490 295.1647539008374 866.8559768198182 295.1647539008374
+4 63
+"LINE23"
+""
+1 33.35422685823462 44.1257907102834 E E E 1 E 1 E N "LIB_IRC_AZUL_02" E N {255,255,255} E E
+ E E
+62 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 2 3 2 1 E  33.35422685823462 44.1257907102834 296 44.12579071028344
+4 64
+"LINE24"
+""
+1 654.0122444487176 44.1257907102834 E E E 1 E 1 E N "LIB_IRC_AZUL_02" E N {255,255,255} E E
+ E E
+63 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 2 3 2 1 E  654.0122444487176 44.1257907102834 938.3233042544448 44.1257907102834
+13 66
+"PUSH_BUTTON12"
+"GRANDE_AZUL"
+1 667.3437975015877 129.2982896151597 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_BLANCO" E E
+ E E
+65 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 6 Accept
+LANG:10010 7 Aceptar
+LANG:10011 6 Accept
+LANG:10009 8 Accepter
+LANG:10008 6 Accept
+LANG:10018 6 Accept
+
+5
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10011 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10018 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  880.6779416291668 105.449168624616 943.8769101515991 134.2395174408098
+
+P 
+4294967295
+"pictures/iconos/botoneras/flecha_der_off.svg"
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+"main(mapping event)
+{
+    RootPanelOnModule(\"vision/sinopticos/06_configuracion/configuracion/config_dp_emergentes/configuracionMapeoCSVAlarmasAvisos.pnl\",\"mapeoAlarmasAvisosCSV\",\"modulo_config\",makeDynString());
+}
+" 0
+ E E E
+4 67
+"LINE25"
+""
+1 540 119.8443430327129 E E E 1 E 1 E N "LIB_IRC_AZUL_02" E N {255,255,255} E E
+ E E
+66 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 3 2 3 2 1 E  540 119.8443430327129 871.323299139097 119.8443430327129
+13 69
+"PUSH_BUTTON13"
+"GRANDE_AZUL"
+1 667.3437975015877 167.7982896151597 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_BLANCO" E E
+ E E
+68 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 6 Accept
+LANG:10010 7 Aceptar
+LANG:10011 6 Accept
+LANG:10009 8 Accepter
+LANG:10008 6 Accept
+LANG:10018 6 Accept
+
+5
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10011 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10018 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  880.6779416291668 143.949168624616 943.8769101515991 172.7395174408098
+
+P 
+4294967295
+"pictures/iconos/botoneras/flecha_der_off.svg"
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+"main(mapping event)
+{
+    RootPanelOnModule(\"vision/sinopticos/06_configuracion/configuracion/config_dp_emergentes/configuracionMapeoCSVDB.pnl\",\"mapeoDBCSV\",\"modulo_config\",makeDynString());
+}
+" 0
+ E E E
+4 70
+"LINE26"
+""
+1 409.9999999999999 158.3443430327129 E E E 1 E 1 E N "LIB_IRC_AZUL_02" E N {255,255,255} E E
+ E E
+69 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 3 2 3 2 1 E  409.9999999999999 158.3443430327129 871.3232991390971 158.3443430327129
+29 71
+"Label1"
+"GRANDE_AZUL"
+1 305.7136027774249 24.14861430773253 E E E 1 E 1 E N "_3DText" E N "WF_EwoWaitBackground" E E
+ E E
+70 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"text" "string MAPEO DE DATAPOINTS CON CSV"
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 27 Tahoma,-1,16,5,50,0,0,0,0,0
+0  305.7136027774249 24.14861430773253 654.0244888974353 64.10296711283431
+5 Label
+0
+E29 72
+"Label2"
+"MEDIANO_AZUL"
+1 36.16964525134847 61.36716663016193 E E E 1 E 1 E N "_3DText" E N "WF_EwoWaitBackground" E E
+ E E
+71 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"text" "string Crear y mapear DPs  de ACCIONAMIENTOS contenidos en un CSV"
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 27 Tahoma,-1,16,5,50,0,0,0,0,0
+0  36.16964525134847 61.36716663016193 525.9334367668175 101.3215194352637
+5 Label
+0
+E29 73
+"Label3"
+"MEDIANO_AZUL"
+1 36.16964525134853 99.86716663016192 E E E 1 E 1 E N "_3DText" E N "WF_EwoWaitBackground" E E
+ E E
+72 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"text" "string Crear y mapear DPs de ALARMAS y AVISOS contenidos en un CSV"
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 27 Tahoma,-1,16,5,50,0,0,0,0,0
+0  36.16964525134853 99.86716663016192 525.9334367668176 139.8215194352637
+5 Label
+0
+E29 75
+"Label5"
+"MEDIANO_AZUL"
+1 36.16964525134853 138.3671666301619 E E E 1 E 1 E N "_3DText" E N "WF_EwoWaitBackground" E E
+ E E
+74 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"text" "string Crear y mapear DB de PLC contenidos en un CSV"
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 27 Tahoma,-1,16,5,50,0,0,0,0,0
+0  36.16964525134853 138.3671666301619 525.9334367668176 178.3215194352637
+5 Label
+0
+E29 76
+"Label6"
+"GRANDE_AZUL"
+1 290.0478447069121 183.1486143077328 E E E 1 E 1 E N "_3DText" E N "WF_EwoWaitBackground" E E
+ E E
+75 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"text" "string MAPEO DE DATAPOINTS COMPLETOS"
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 27 Tahoma,-1,16,5,50,0,0,0,0,0
+0  290.0478447069121 183.1486143077328 666.3733939128638 223.1029671128346
+5 Label
+0
+E29 77
+"Label7"
+"MEDIANO_AZUL"
+1 31.70232293206971 211.367166630162 E E E 1 E 1 E N "_3DText" E N "WF_EwoWaitBackground" E E
+ E E
+76 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"text" "string Crear y mapear por completo un DP en función de su MDP"
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 27 Tahoma,-1,16,5,50,0,0,0,0,0
+0  31.70232293206971 211.367166630162 478.1866969564319 251.3215194352638
+5 Label
+0
+E29 78
+"Label8"
+"MEDIANO_AZUL"
+1 31.70232293206971 243.2773720642242 E E E 1 E 1 E N "_3DText" E N "WF_EwoWaitBackground" E E
+ E E
+77 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"text" "string Crear y mapear por completo un DP en función otro DP del mismo DPT"
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 27 Tahoma,-1,16,5,50,0,0,0,0,0
+0  31.70232293206971 243.2773720642242 559.4231895043877 283.2317248693259
+5 Label
+0
+E29 79
+"Label9"
+"MEDIANO_AZUL"
+1 31.7023229320697 275.1875774982866 E E E 1 E 1 E N "_3DText" E N "WF_EwoWaitBackground" E E
+ E E
+78 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"text" "string Mapear una/varias variables en función de otra concreta"
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 27 Tahoma,-1,16,5,50,0,0,0,0,0
+0  31.7023229320697 275.1875774982866 489.9999999999999 315.1419303033883
+5 Label
+0
+E29 80
+"Label10"
+"GRANDE_AZUL"
+1 336.3813476394987 314.6098469121067 E E E 1 E 1 E N "_3DText" E N "WF_EwoWaitBackground" E E
+ E E
+79 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"text" "string MAPEO DE ADDRESS DE DPs"
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 27 Tahoma,-1,16,5,50,0,0,0,0,0
+0  336.3813476394987 314.6098469121067 623.6186523605013 354.5641997172085
+5 Label
+0
+E29 81
+"Label11"
+"MEDIANO_AZUL"
+1 33.49170362218177 374.2773720642243 E E E 1 E 1 E N "_3DText" E N "WF_EwoWaitBackground" E E
+ E E
+80 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"text" "string Modificar el Low Level Comparison de uno/varios DP"
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 27 Tahoma,-1,16,5,50,0,0,0,0,0
+0  33.49170362218177 374.2773720642243 440.0146038224776 414.2317248693261
+5 Label
+0
+E29 82
+"Label12"
+"MEDIANO_AZUL"
+1 33.49170362218172 420.1875774982866 E E E 1 E 1 E N "_3DText" E N "WF_EwoWaitBackground" E E
+ E E
+81 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"text" "string Modificar el Address active de uno/varios DP"
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 27 Tahoma,-1,16,5,50,0,0,0,0,0
+0  33.49170362218172 420.1875774982866 389.9999999999999 460.1419303033883
+5 Label
+0
+E29 83
+"Label13"
+"MEDIANO_AZUL"
+1 33.49170362218172 467.0977829323488 E E E 1 E 1 E N "_3DText" E N "WF_EwoWaitBackground" E E
+ E E
+82 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"text" "string Modificar el Poll Group / Subs de uno o varios DPs/DPEs"
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 27 Tahoma,-1,16,5,50,0,0,0,0,0
+0  33.49170362218172 467.0977829323488 464.6411208301838 507.0521357374505
+5 Label
+0
+E29 84
+"Label14"
+"GRANDE_AZUL"
+1 326.4515351057893 524.6098469121065 E E E 1 E 1 E N "_3DText" E N "WF_EwoWaitBackground" E E
+ E E
+83 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"text" "string MAPEO DE ALERT_HDL DE DPs"
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 27 Tahoma,-1,16,5,50,0,0,0,0,0
+0  326.4515351057893 524.6098469121065 633.5484648942107 564.5641997172083
+5 Label
+0
+E29 85
+"Label15"
+"MEDIANO_AZUL"
+1 33.49170362218177 579.3671666301619 E E E 1 E 1 E N "_3DText" E N "WF_EwoWaitBackground" E E
+ E E
+84 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"text" "string Mapear Alert Handling de uno o varios DPEs"
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 27 Tahoma,-1,16,5,50,0,0,0,0,0
+0  33.49170362218177 579.3671666301619 380.0000000000001 619.3215194352636
+5 Label
+0
+E29 86
+"Label16"
+"MEDIANO_AZUL"
+1 33.49170362218177 629.367166630162 E E E 1 E 1 E N "_3DText" E N "WF_EwoWaitBackground" E E
+ E E
+85 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"text" "string Activar/Desactivar alerts"
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 27 Tahoma,-1,16,5,50,0,0,0,0,0
+0  33.49170362218177 629.367166630162 249.9999999999999 669.3215194352638
+5 Label
+0
+E29 87
+"Label17"
+"GRANDE_AZUL"
+1 335.9414760700574 687.8792306099197 E E E 1 E 1 E N "_3DText" E N "WF_EwoWaitBackground" E E
+ E E
+86 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"text" "string MAPEO DE ARCHIVE DE DPs"
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 27 Tahoma,-1,16,5,50,0,0,0,0,0
+0  335.9414760700574 687.8792306099197 624.0585239299426 727.8335834150214
+5 Label
+0
+E29 88
+"Label18"
+"GRANDE_AZUL"
+1 391.4829541277106 784.8792306099199 E E E 1 E 1 E N "_3DText" E N "WF_EwoWaitBackground" E E
+ E E
+87 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"text" "string NÚMERO DE I/Os"
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 27 Tahoma,-1,16,5,50,0,0,0,0,0
+0  391.4829541277106 784.8792306099199 568.5170458722894 824.8335834150216
+5 Label
+0
+E29 89
+"Label19"
+"MEDIANO_AZUL"
+1 33.49170362218184 739.367166630162 E E E 1 E 1 E N "_3DText" E N "WF_EwoWaitBackground" E E
+ E E
+88 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"text" "string Mapear archive de uno o varios DPEs"
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 27 Tahoma,-1,16,5,50,0,0,0,0,0
+0  33.49170362218184 739.367166630162 320.0000000000001 779.3215194352638
+5 Label
+0
+E0
+LAYER, 1 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 2 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 3 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 4 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 5 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 6 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 7 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+0

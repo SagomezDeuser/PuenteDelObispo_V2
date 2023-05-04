@@ -1,0 +1,641 @@
+V 14
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+PANEL,-1 -1 310 178 N "_Transparent" 2
+"$INST_PID"
+"$NOMBRE_PID"
+"main()
+{
+  titleBar(0);
+  //REVISAR
+  activarAddressFP($INST_PID); //Función para establecer como activa los address de una instancia
+}
+" 0
+ "main()
+{
+  //REVISAR
+    desactivarAddressFP($INST_PID); //Función para establecer como desactiva los address de una instancia
+}
+" 0
+ E E E 1 -1 -1 0  0 0
+""0  1
+E "//--------------------------------------------------------------------------------
+//Clases importadas a utilizar por las funciones de la librería
+lib_pid pid = lib_pid($INST_PID, \"\");
+" 0
+ 4
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+"pdpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10001 0 
+LANG:10010 0 
+14 19
+"TEXT_FIELD2"
+"MEDIANO_AZUL"
+1 12.94474801894671 72.64551130985521 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+18 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+5
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+7
+LANG:10001 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10005 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  10.83161927024889 45.04024815196045 133.8316192702489 72.0810292239676
+3 "0.3f" 4 0 0 10 0 -1  "main(mapping event)
+{
+  teclado(pid.get_gain(),\"keypad\");
+}
+" 0
+ "main()
+{
+  dpConnect(\"cambiar_valor\",pid.get_gain());
+}
+
+//Cambia el valor que muestra elemento
+cambiar_valor(string dp, float valor){
+  setValue(\"\", \"text\", valor);
+}
+" 0
+ E
+14 20
+"TEXT_FIELD3"
+"MEDIANO_AZUL"
+1 10 120 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+19 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+5
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+7
+LANG:10001 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10005 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  7.885920589548306 92.3947368421053 131.8859205895486 119.4355179141127
+3 "0.2f" 3 0 0 10 0 -1  "main(mapping event)
+{
+  teclado(pid.get_ti(),\"keypad\");
+}
+" 0
+ "main()
+{
+  dpConnect(\"cambiar_valor\",pid.get_ti());
+}
+
+//Cambia el valor que muestra elemento
+cambiar_valor(string dp, float valor){
+  setValue(\"\", \"text\", valor);
+}
+" 0
+ E
+14 21
+"TEXT_FIELD4"
+"MEDIANO_AZUL"
+1 167.4198346301346 72.81750192985248 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+20 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+5
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+7
+LANG:10001 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10005 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  165.3067058814369 45.21223877195768 288.3067058814369 71.90903860397037
+3 "6s" 6 0 0 10 0 -1  "main(mapping event)
+{
+  teclado(pid.get_setpoint_maximo(),\"keypad\");
+}
+" 0
+ "main()
+{
+  dpConnect(\"cambiar_valor\",pid.get_setpoint_maximo());
+}
+
+//Cambia el valor que muestra elemento
+cambiar_valor(string dp, float valor){
+  this.text = valor + \" %\";
+}
+" 0
+ E
+14 22
+"TEXT_FIELD5"
+"MEDIANO_AZUL"
+1 164.9741359494342 120.1719906199974 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+21 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+5
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+7
+LANG:10001 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10005 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  162.8610072007365 92.56672746210265 285.8610072007365 119.2635272941153
+3 "6s" 6 0 0 10 0 -1  "main(mapping event)
+{
+  teclado(pid.get_setpoint_minimo(),\"keypad\");
+}
+" 0
+ "main()
+{
+  dpConnect(\"cambiar_valor\",pid.get_setpoint_minimo());
+}
+
+//Cambia el valor que muestra elemento
+cambiar_valor(string dp, float valor){
+  this.text = valor + \" %\";
+}
+" 0
+ E
+29 23
+"Label127"
+"MEDIANO_AZUL"
+1 -46.8704173110826 -150.3073693751663 E E E 1 E 1 E N "_3DText" E N "_Transparent" E E
+ E E
+22 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+5
+"text" "string GANANCIA (P)"
+"styleSheet" "string "
+"alignment" "enum 1"
+"lineWidth" "int 1"
+"layoutAlignment" "AlignNone"
+6
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10011 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10018 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  17.7727695551491 28.7417765820036 126.8904689853485 46.84786999340265
+5 Label
+0
+E29 24
+"Label128"
+"MEDIANO_AZUL"
+1 65.83656818350707 -149.2051767122969 E E E 1 E 1 E N "_3DText" E N "_Transparent" E E
+ E E
+23 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+5
+"text" "string MÁXIMO SETPOINT"
+"styleSheet" "string QWidget{font-family: \"Tahoma\"; font-size: 15px; font-style: normal; font-weight: 700; }QWidget:enabled {background: #00000000; }"
+"alignment" "enum 1"
+"lineWidth" "int 1"
+"layoutAlignment" "AlignNone"
+6
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10011 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10018 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  153.1305691042933 28.79482328770312 300.4828426585805 46.79482328770312
+5 Label
+0
+E29 25
+"Label129"
+"MEDIANO_AZUL"
+1 -47.77661973532128 -101.5459919469035 E E E 1 E 1 E N "_3DText" E N "_Transparent" E E
+ E E
+24 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+5
+"text" "string INTEGRAL (I)"
+"styleSheet" "string "
+"alignment" "enum 1"
+"lineWidth" "int 1"
+"layoutAlignment" "AlignNone"
+6
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10011 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10018 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  16.03169931287272 76.4540080530967 123.7401418662242 94.4540080530967
+5 Label
+0
+E29 26
+"Label130"
+"MEDIANO_AZUL"
+1 63.37964727272717 -101.5459919469035 E E E 1 E 1 E N "_3DText" E N "_Transparent" E E
+ E E
+25 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+5
+"text" "string MÍNIMO SETPOINT"
+"styleSheet" "string QWidget{font-family: \"Tahoma\"; font-size: 15px; font-style: normal; font-weight: 700; }QWidget:enabled {background: #00000000; }"
+"alignment" "enum 1"
+"lineWidth" "int 1"
+"layoutAlignment" "AlignNone"
+6
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10011 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10018 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  150.6797340015827 76.45400805309669 298.0422803998904 94.4540080530967
+5 Label
+0
+E14 27
+"TEXT_FIELD6"
+"MEDIANO_AZUL"
+1 10 170 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+26 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+5
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+7
+LANG:10001 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10005 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  7.885920589548192 142.3947368421053 131.8859205895486 169.4355179141127
+3 "0.2f" 3 0 0 10 0 -1  "main(mapping event)
+{
+  teclado(pid.get_td(),\"keypad\");
+}
+" 0
+ "main()
+{
+  dpConnect(\"cambiar_valor\",pid.get_td());
+}
+
+//Cambia el valor que muestra elemento
+cambiar_valor(string dp, float valor){
+  setValue(\"\", \"text\", valor);
+}
+" 0
+ E
+29 29
+"Label131"
+"MEDIANO_AZUL"
+1 -47.7037303736593 -51.57562755239914 E E E 1 E 1 E N "_3DText" E N "_Transparent" E E
+ E E
+28 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+5
+"text" "string DERIVADA (D)"
+"styleSheet" "string "
+"alignment" "enum 1"
+"lineWidth" "int 1"
+"layoutAlignment" "AlignNone"
+6
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10011 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10018 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  16.10458867453469 126.424372447601 123.8130312278862 144.424372447601
+5 Label
+0
+E6 35
+"fondo"
+""
+1 20 10 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_DEUSER_BLANCO" E E
+ E E
+34 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 2 3 2 1 E 2.565083018840712 0 4.364661998451595 -51.1116226376997 -43.23309992257975 1 E 20 10 140 50
+2 36
+"txf_zona"
+""
+1 178 46 E E E 1 E 1 E N "LIB_DEUSER_BLANCO" E N {1,72,152} E E
+ E E
+35 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+  this.text($NOMBRE_PID);
+}" 0
+ E 0 0 3 2 1 E 1.699875874092714 0 0.7156717456629869 -300.4013568217387 -31.07603674723521 1 E 178 46 338 79
+0 2 2 "0s" 0 0 0 73 0 0  178 46 1
+2
+LANG:10001 34 Tahoma,-1,16,5,50,0,0,0,0,0,Normal
+LANG:10010 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+0 2
+LANG:10001 20 SINÓPTICO SECADEROS
+LANG:10010 3 ---
+13 37
+"btn_config"
+""
+1 274.7374058230756 -0.05712628874516668 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "LIB_IRC_AZUL_01" E E
+ E E
+36 0 0 0 0 0
+E E E
+1
+7
+LANG:10001 14 Configuración
+LANG:10010 14 Configuración
+LANG:10011 14 Configuración
+LANG:10009 14 Configuración
+LANG:10008 14 Configuración
+LANG:10018 14 Configuración
+LANG:10005 0 
+
+4
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"focusPolicy" "StrongFocus"
+"showFocus" "0"
+7
+LANG:10001 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,21,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10009 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10008 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10018 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10005 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  272.3133772431977 -2.057126288745166 310 28.89337465146673
+
+T 
+2
+LANG:10001 0 
+LANG:10010 1 X
+"main(mapping event)
+{
+  PanelOff();
+}
+" 0
+ E E E
+14 38
+"TEXT_FIELD7"
+"MEDIANO_AZUL"
+1 164.4750866111881 170 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+37 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+5
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+7
+LANG:10001 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10005 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  162.3610072007363 142.3947368421053 286.3610072007367 169.4355179141127
+3 "0.2f" 3 0 0 10 0 -1  "main(mapping event)
+{
+  teclado(pid.get_manualvalue(),\"keypad\");
+}
+" 0
+ "main()
+{
+  dpConnect(\"cambiar_valor\",pid.get_manualvalue());
+}
+
+//Cambia el valor que muestra elemento
+cambiar_valor(string dp, float valor){
+  setValue(\"\", \"text\", valor);
+}
+" 0
+ E
+29 39
+"Label132"
+"MEDIANO_AZUL"
+1 115.6729226296277 -51.54599194690351 E E E 1 E 1 E N "_3DText" E N "_Transparent" E E
+ E E
+38 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+5
+"text" "string PID MANUAL"
+"styleSheet" "string "
+"alignment" "enum 1"
+"lineWidth" "int 1"
+"layoutAlignment" "AlignNone"
+6
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10011 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10018 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  174.6144001627669 126.4540080530966 274.1076142387062 144.4540080530966
+5 Label
+0
+E0
+LAYER, 1 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 2 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 3 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 4 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 5 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 6 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 7 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+0

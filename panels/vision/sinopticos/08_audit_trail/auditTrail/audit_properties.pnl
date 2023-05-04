@@ -1,0 +1,703 @@
+V 14
+4
+LANG:10001 8 (NoName)
+LANG:10010 8 (NoName)
+LANG:10000 8 (NoName)
+LANG:10027 18 (БезИмени)
+PANEL,-1 -1 476 536 N "LIB_IRC_BLANCO" 0
+"main()
+{
+  titleBar(0);
+  getProperties();
+}" 0
+ E E E E 1 -1 -1 0  10 454
+""0  1
+E "getConfigDP(string &dp, string configName, string dpt = \"_ASConfig\", string dpFilter = \"_AuditProp\")
+{
+  dyn_dyn_anytype tab;
+  string selectString = \"SELECT '_online.._value' FROM '\"+dpFilter+\"**.Name' WHERE _DPT = \\\"\"+dpt+\"\\\" AND '_online.._value' == \\\"\" + configName + \"\\\"\";
+  dp = \"\";
+
+  // get DP of selected configuration
+  dpQuery(selectString, tab);
+
+  if ( dynlen(getLastError()) )
+  {
+    dyn_errClass err = getLastError();
+    errorDialog(err);
+    return;
+  }
+
+  if ( dynlen(tab) < 2 ) return;
+
+  dp = dpSubStr(tab[2][1], DPSUB_DP) ;
+}
+
+getConfigList(dyn_string &configNames, string dpt = \"_ASConfig\", string dpFilter = \"_AuditProp\")
+{
+  dyn_dyn_anytype configs;
+  int i;
+  string selectString = \"SELECT '_online.._value' FROM '\"+dpFilter+\"**.Name' WHERE _DPT = \\\"\"+dpt+\"\\\"\";
+
+  dpQuery(\"SELECT '_online.._value' FROM '\"+dpFilter+\"**.Name' WHERE _DPT = \\\"\"+dpt+\"\\\" AND '_online.._value' == \\\"\\\"\", configs);
+  for (i = 2; i <= dynlen(configs); i++)
+  {
+    dpDelete(dpSubStr(configs[i][1], DPSUB_SYS_DP));
+  }
+
+
+  dpQuery(selectString, configs);
+
+
+  if ( dynlen(getLastError()) )
+  {        dyn_errClass err = getLastError();
+    errorDialog(err);
+    return;
+  }
+
+  for (i = 2; i <= dynlen(configs); i++)
+    dynAppend(configNames, configs[i][2]);
+
+
+}
+
+
+
+setProperties(string sPropertiesDP = \"\")
+{
+  time tStart, tEnd;
+  string sStart, sEnd;
+  unsigned uTimerangeType, uFilterState;
+  langString lsHeader;
+  string sUsernameFilter, sItemFilter, sHostFilter;
+  string sFilter;
+  dyn_string ds;
+  bool bIsOpen;
+  string sOffset;
+
+  if ( sPropertiesDP == \"\")
+      sPropertiesDP = \"_AuditProp_\"+myUiNumber()+\"_\"+myModuleName();
+
+  if (dpExists(sPropertiesDP))     // create and sett default
+   {
+
+      if (dpTypeName(sPropertiesDP) == \"_ASProperties\")
+        sOffset = \".Settings\";
+
+       // time filter
+	   getTimeRange(tStart, tEnd, bIsOpen);
+ 	   if ( bIsOpen )
+	      uTimerangeType = 1;
+	   else
+	      uTimerangeType = 0;
+
+       // printer header
+	   lsHeader = langtextliste.items ;
+
+       // filter
+       //sUsernameFilter = txtUsernameFilter.text;
+       sUsernameFilter = \"\";
+       //sItemFilter = txtItemFilter.text ;
+       sItemFilter = \"\" ;
+       //sHostFilter = txtHostFilter.text ;
+       sHostFilter = \"\" ;
+
+       sFilter = sUsernameFilter + \"|\" +  sItemFilter  + \"|\" + sHostFilter;
+
+      dpSet(sPropertiesDP + sOffset +\".Filter.State:_original.._value\", uFilterState,
+            sPropertiesDP + sOffset +\".Timerange.Type:_original.._value\", uTimerangeType,
+            sPropertiesDP + sOffset +\".Timerange.Begin:_original.._value\", tStart,
+            sPropertiesDP + sOffset +\".Timerange.End:_original.._value\", tEnd,
+            sPropertiesDP + sOffset +\".Header:_original.._value\", lsHeader,
+            sPropertiesDP + sOffset +\".Filter.DpComment:_original.._value\", sFilter
+              ) ;
+
+   }
+}
+
+getProperties(string sPropertiesDP = \"\")
+{
+  time tStart, tEnd;
+  string sStart, sEnd;
+  unsigned uTimerangeType, uFilterState;
+  langString lsHeader;
+  string sUsernameFilter, sItemFilter, sHostFilter;
+  string sFilter;
+  dyn_string ds;
+  bool bIsOpen;
+  string sOffset;
+
+  if ( sPropertiesDP == \"\")
+      sPropertiesDP = \"_AuditProp_\"+myUiNumber()+\"_\"+myModuleName();
+
+  if (dpExists(sPropertiesDP))     // create and sett default
+   {
+      if (dpTypeName(sPropertiesDP) == \"_ASProperties\")
+        sOffset = \".Settings\";
+
+
+      dpGet(sPropertiesDP + sOffset +\".Filter.State:_online.._value\", uFilterState,
+            sPropertiesDP + sOffset +\".Timerange.Type:_online.._value\", uTimerangeType,
+            sPropertiesDP + sOffset +\".Timerange.Begin:_online.._value\", tStart,
+            sPropertiesDP + sOffset +\".Timerange.End:_online.._value\", tEnd,
+            sPropertiesDP + sOffset +\".Header:_online.._value\", lsHeader,
+            sPropertiesDP + sOffset +\".Filter.DpComment:_online.._value\", sFilter
+              ) ;
+
+       ds = strsplit ( sFilter, \"|\");
+       if ( dynlen( ds) > 0)   sUsernameFilter  = ds[1];
+       if ( dynlen( ds) > 1)   sItemFilter = ds[2];
+       if ( dynlen( ds) > 2)   sHostFilter = ds[3];
+        // time filter
+
+       if ( uTimerangeType == 0)
+         bIsOpen = TRUE;
+       else
+         bIsOpen = FALSE;
+
+	   setTimeRange(tStart, tEnd, bIsOpen);
+
+       // printer header
+	   if (getNoOfLangs()>1)
+	   {
+          langtextedit.visible = TRUE;
+          txtHeader.editable = FALSE;
+	   }
+	   ds= lsHeader;
+
+	   langtextliste.items = ds;
+	   txtHeader.text = lsHeader;
+
+       // filter
+       //txtUsernameFilter.text = sUsernameFilter;
+       //txtItemFilter.text = sItemFilter;
+       //txtHostFilter.text = sHostFilter;
+   }
+}
+
+" 0
+ 4
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+"pdpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10001 6 Layer1
+LANG:10010 6 Layer1
+6 16
+"RECTANGLE3"
+""
+1 8 62 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_BLANCO" E E
+ E E
+17 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+5
+"transparentForMouse" ""
+"transparentForMouseInGedi" ""
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 2 3 2 1 E 7.9 0 6 -62.2 -371 1 E 8 62 68 151
+30 10
+"Frame1"
+""
+1 10 549 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+11 0 0 0 0 0
+E E E
+0
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 2 1 0 1 E 1 0 0.7684210526315789 1 60.90526315789474 0 E 10 453 464 549
+4
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 arial,-1,13,5,50,0,0,0,0,0
+0 4
+LANG:10001 13 Configuration
+LANG:10010 14 Configuración
+LANG:10000 13 Konfiguration
+LANG:10027 24 Конфигурация
+22 3
+"configName"
+"MEDIANO_AZUL"
+1 20 426.8000000000001 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Window" E E
+ E E
+4 0 0 0 0 0
+E E E
+0
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+1
+"layoutAlignment" "AlignCenter"
+4
+LANG:10001 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10000 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 arial,-1,13,5,50,0,0,0,0,0
+0  20 427.9999999999999 240 471.9999999999999
+0
+
+"main()
+{
+  dyn_string configNames;
+
+  getConfigList(configNames);
+
+  setValue(\"configName\", \"items\", configNames);
+}" 0
+
+E
+E
+ 1 0
+13 4
+"laden"
+"GRANDE_BLANCO"
+1 255 427.9999999999999 E E E 1 E 1 E N {0,0,0} E N "_Transparent" E E
+ E E
+5 0 0 0 0 0
+E E E
+1
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+1
+"layoutAlignment" "AlignCenter"
+4
+LANG:10001 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10010 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10000 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 arial,-1,13,5,50,0,0,0,0,0
+0  255 427.9999999999999 318 470.9999999999999
+
+P 
+4294967295
+"pictures/iconos/botoneras/cargar.svg"
+2
+LANG:10001 0 
+LANG:10010 0 
+"main()
+{
+  string dpConfig, configName, header;
+   
+  getValue(\"configName\", \"text\", configName);
+
+  if ( configName == \"\" ) return;
+  
+  getConfigDP(dpConfig, configName);
+  
+  if ( dpConfig == \"\" )
+  {
+    ChildPanelOnCentralModal(\"vision/MessageWarning\", \"\",
+      makeDynString(\"$1:\" + getCatStr(\"sc\", \"unknownConfig\")));
+    return;
+  }
+
+  getProperties(dpConfig);
+
+}" 0
+ E E E
+13 5
+"speichern"
+"GRANDE_BLANCO"
+1 314 427.9999999999999 E E E 1 E 1 E N {0,0,0} E N "_Transparent" E E
+ E E
+6 0 0 0 0 0
+E E E
+1
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+1
+"layoutAlignment" "AlignCenter"
+4
+LANG:10001 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10010 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10000 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 arial,-1,13,5,50,0,0,0,0,0
+0  314 427.9999999999999 377 470.9999999999999
+
+P 
+4294967295
+"pictures/iconos/botoneras/botonera_formularios/guardar.svg"
+2
+LANG:10001 0 
+LANG:10010 0 
+"/*
+  save all properties to configuration DP
+*/
+
+main()
+{
+  string dpConfig, configName;
+  dyn_string configNames;
+  bool reread = false;
+  
+  getValue(\"configName\", \"text\", configName);
+  if ( configName == \"\" ) return;
+  
+  getConfigDP(dpConfig, configName);
+  
+  if ( dpConfig == \"\" )
+  {
+    // this is an unknown name -> create new DP for it
+    dyn_string dps = dpNames(\"_AuditProp_*\", \"_ASConfig\");  // get all config. names
+    int num;
+  
+    if ( dynlen(dps) > 0 )
+    {
+      dynSortAsc(dps);
+      sscanf(dpSubStr(dps[dynlen(dps)], DPSUB_DP), \"_AuditProp_%d\", num);
+    }
+    
+    num++;
+    sprintf(dpConfig, \"_AuditProp_%03d\", num);   // 3 digit number with leading zeros
+
+    reread = true;
+  }
+
+  if (! dpExists(dpConfig))    // gerneate DP
+  {
+	  dpCreate(dpConfig,  \"_ASConfig\");
+	  dpSet( dpConfig+\".Name:_original.._value\", configName,
+	         dpConfig+\".User:_original.._value\", getUserId(getUserName()));
+  }
+  setProperties(dpConfig);
+  
+  
+  if ( reread )
+  {
+    // refresh list
+    getConfigList(configNames);
+    setValue(\"configName\", \"items\", configNames);
+  }
+}
+
+
+
+
+" 0
+ E E E
+13 6
+"lschen"
+"GRANDE_BLANCO"
+1 373 427.9999999999999 E E E 1 E 1 E N {0,0,0} E N "_Transparent" E E
+ E E
+7 0 0 0 0 0
+E E E
+1
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+1
+"layoutAlignment" "AlignCenter"
+4
+LANG:10001 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10010 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10000 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 arial,-1,13,5,50,0,0,0,0,0
+0  373 427.9999999999999 436 470.9999999999999
+
+P 
+4294967295
+"pictures/iconos/botoneras/botonera_formularios/borrar.svg"
+2
+LANG:10001 0 
+LANG:10010 0 
+"main()
+{
+  string dpConfig, configName;
+  dyn_string configNames;
+  dyn_string ds;
+  dyn_float df;
+   
+  getValue(\"configName\", \"text\", configName);
+
+  if ( configName == \"\" ) return;
+  
+  getConfigDP(dpConfig, configName);
+  
+  if ( dpConfig == \"\" )
+  {
+    ChildPanelOnCentralModal(\"vision/MessageWarning\", \"\",
+      makeDynString(\"$1:\" + getCatStr(\"sc\", \"unknownConfig\")));
+    return;
+  }
+  
+   ChildPanelOnCentralModalReturn(\"vision/MessageInfo\",  getCatStr(\"general\", \"information\"),
+      makeDynString( getCatStr(\"dpeMonitor\", \"dpeMon_delete_config\"), getCatStr(\"general\", \"yes\"), getCatStr(\"general\", \"no\")), df, ds);
+   
+   if (dynlen(df) > 0 && df[1] == 1) 
+     dpDelete(dpConfig);
+  
+  // refresh list
+  getConfigList(configNames);
+  setValue(\"configName\", \"items\", configNames);
+}" 0
+ E E E
+13 7
+"ok"
+"GRANDE_BLANCO"
+1 345 487.0714285714286 E E E 1 E 1 E N {0,0,0} E N "_Transparent" E E
+ E E
+8 0 0 0 0 0
+E E E
+1
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+1
+"layoutAlignment" "AlignCenter"
+4
+LANG:10001 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10010 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10000 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 arial,-1,13,5,50,0,0,0,0,0
+0  345 487.0714285714286 408 530.0714285714287
+
+P 
+4294967295
+"pictures/iconos/botoneras/aceptar.svg"
+2
+LANG:10001 0 
+LANG:10010 0 
+"main()
+{
+  setProperties();  
+    
+  PanelOffReturn(makeDynFloat(1), makeDynString(\"true\"));
+}" 0
+ E E E
+13 8
+"abbrechen"
+"GRANDE_BLANCO"
+1 405.0000000000001 487.0714285714286 E E E 1 E 1 E N {0,0,0} E N "_Transparent" E E
+ E E
+9 0 0 0 27 0
+E E E
+1
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+1
+"layoutAlignment" "AlignCenter"
+4
+LANG:10001 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10010 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10000 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 arial,-1,13,5,50,0,0,0,0,0
+0  405.0000000000001 487.0714285714286 468.0000000000001 530.0714285714287
+
+P 
+4294967295
+"pictures/iconos/botoneras/cancelar.svg"
+2
+LANG:10001 0 
+LANG:10010 0 
+"main()
+{
+  PanelOffReturn(makeDynFloat(0), makeDynString(\"false\"));
+}" 0
+ E E E
+28 9
+"Tab1"
+"MEDIANO_AZUL"
+1 10 1.102325581395348 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_BLANCO" E E
+ E E
+10 0 0 0 0 0
+E E E
+0
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+1
+"layoutAlignment" "AlignCenter"
+4
+LANG:10001 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10000 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 arial,-1,13,5,50,0,0,0,0,0
+0  10 1 466 413
+E2 "timerange" 4
+LANG:10001 10 Time range
+LANG:10010 15 Rango de tiempo
+LANG:10000 11 Zeitbereich
+LANG:10027 35 Временной интервал
+1 "vision/VT_timerange.pnl" 2
+LANG:10001 0 
+LANG:10010 0 
+0
+
+"Common" 4
+LANG:10001 6 Common
+LANG:10010 10 Impresión
+LANG:10000 9 Allgemein
+LANG:10027 10 Общее
+1 "vision/audit_propGeneral.pnl" 2
+LANG:10001 0 
+LANG:10010 0 
+0
+
+
+6 11
+"RECTANGLE1"
+""
+1 45 504 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_AZUL_01" E E
+ E E
+12 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E -1 1 3 2 1 E 1 0 1 212 -74.00000000000006 1 E 45 504 224 543
+4 12
+"LINE1"
+""
+1 316 435.9285714285713 E E E 1 E 1 E N "AZUL_01" E N "LIB_IRC_BLANCO" E E
+ E E
+13 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 2 3 2 1 E  316 435.9285714285713 316 465.0714285714286
+4 13
+"LINE2"
+""
+1 375 435.9285714285713 E E E 1 E 1 E N "AZUL_01" E N "LIB_IRC_BLANCO" E E
+ E E
+14 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 2 3 2 1 E  375 435.9285714285713 375 465.0714285714286
+6 14
+"RECTANGLE2"
+""
+1 45 504 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_AZUL_01" E E
+ E E
+15 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E -1 1 3 2 1 E 0.664804469273743 0 1 317.0837988826816 -14.92857142857139 1 E 45 504 224 543
+4 15
+"LINE3"
+""
+1 405.8324022346369 494.9999999999999 E E E 1 E 1 E N "AZUL_01" E N "LIB_IRC_BLANCO" E E
+ E E
+16 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 2 3 2 1 E  405.8324022346369 494.9999999999999 405.8324022346369 524.1428571428571
+0
+LAYER, 1 
+2
+LANG:10001 6 Layer2
+LANG:10010 6 Layer2
+0
+LAYER, 2 
+2
+LANG:10001 6 Layer3
+LANG:10010 6 Layer3
+0
+LAYER, 3 
+2
+LANG:10001 6 Layer4
+LANG:10010 6 Layer4
+0
+LAYER, 4 
+2
+LANG:10001 6 Layer5
+LANG:10010 6 Layer5
+0
+LAYER, 5 
+2
+LANG:10001 6 Layer6
+LANG:10010 6 Layer6
+0
+LAYER, 6 
+2
+LANG:10001 6 Layer7
+LANG:10010 6 Layer7
+0
+LAYER, 7 
+2
+LANG:10001 6 Layer8
+LANG:10010 6 Layer8
+0
+0

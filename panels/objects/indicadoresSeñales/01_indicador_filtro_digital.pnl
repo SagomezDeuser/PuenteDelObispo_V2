@@ -1,0 +1,240 @@
+V 14
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+PANEL,-1 -1 102 66 N "LIB_IRC_BLANCO" 5
+"$COLOR_ACTIVO"
+"$COLOR_INACTIVO"
+"$INST"
+"$POSICION"
+"$TEXTO"
+"main()
+{
+parametrosOK = parametrosRellenos();
+}
+" 0
+ E E E E 1 -1 -1 0  0 0
+""0  1
+E "//INST = Nombre de la instancia
+//COLOR_ACTIVO = Color de activo de la señal, ejemplo: rojo, verde, gris
+//COLOR_INACTIVO = Color de inactivo de la señal, ejemplo: rojo, verde, gris
+string colorActivo = $COLOR_ACTIVO, colorInactivo = $COLOR_INACTIVO ;
+bool parametrosOK = FALSE;
+
+bool parametrosRellenos()
+{
+  if ($INST != \"\" && $COLOR_ACTIVO != \"\" && $COLOR_INACTIVO != \"\" && $TEXTO != \"\" && $POSICION != \"\")   //Comprobamos que hemos rellenado los $
+  {
+    return TRUE;
+  }
+  else//ES OBLIGARORIO RELLENAR LOS PARAMETROS SINO EL OBJETO SERÁ MORADO.
+  {
+    btn_indicador.backCol(\"LIB_IRC_MORADO_01\");
+    return FALSE;
+  }
+}
+
+" 0
+ 4
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+"pdpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10001 0 
+LANG:10010 0 
+7 6
+"btn_indicador"
+""
+1 50 25 E E E 1 E 1 E N "LIB_IRC_GRIS_04" E N "LIB_IRC_GRIS_03" E E
+ E E
+5 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+6
+"shadowOffset" "[1,1]"
+"shadowColor" "{63,63,63,131}"
+"shadowRadius" "15"
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+
+  if (parametrosOK)
+  {
+    if ($COLOR_INACTIVO != \"NULL\")  //Comprobamos que los parametros se van a usar. Sino se usaran los colores standars.
+    {
+      colorInactivo = \"LIB_IRC_GRIS_03\";
+    }
+
+    else if ($COLOR_ACTIVO != \"NULL\")  //Comprobamos que los parametros se van a usar. Sino se usaran los colores standars.
+    {
+      colorActivo = \"LIB_IRC_VERDE_01\";
+    }
+
+    cambiarEstadoIndicadorSenial($INST, colorActivo, colorInactivo);
+  }
+  else
+  {
+    this.backCol = \"LIB_IRC_MORADO_01\";
+  }
+}
+
+
+" 0
+ E 0 2 3 2 1 E U  1 E 49.57142857142858 25.17436974789917 7.5 7.5
+0
+LAYER, 1 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 2 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 3 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 4 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 5 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 6 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 7 
+2
+LANG:10001 0 
+LANG:10010 0 
+2 5
+"txf_indicador"
+"txf_standard_5"
+1 2.999999999999998 9.575318388306727 E E E 1 E 0 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+4 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+7
+"minimumSize" "78 46"
+"maximumSize" "78 46"
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+  dyn_int posicion;
+  dyn_int tamanio_in;
+  dyn_int tamanio_text;
+  //TEXTO = texto que queremos visualizar.
+  //POSICION = posición donde queremos el texto. Ejemplo: ARRIBA, ABAJO, IZQUIERDA, DERECHA
+if (parametrosOK)
+  {
+    if ($TEXTO != \"NULL\") //Comprobamos si el texto es diferente de NULL para realizar el script.
+    {
+      this.text($TEXTO); //Asignamos el texto.
+      tamanio_in = btn_indicador.sizeAsDyn;
+      tamanio_text = txf_indicador.sizeAsDyn;
+      posicion = btn_indicador.positionAsDyn; //Obtenemos la posición de referencia.
+      int pos_x;
+      int pos_y;
+
+
+      switch ($POSICION)// Dependiendo del parametro se pondrá el texto en una posición concreta.
+      {
+        case (\"ABAJO\"):
+        {
+          pos_x = posicion[1] - tamanio_text[1] / 2;
+          pos_y = posicion[2] + tamanio_in[2] - tamanio_text[2] / 1.5 + 2;
+          this.position(pos_x, pos_y);
+          break;
+        }
+
+        case (\"ARRIBA\"):
+        {
+          pos_x = posicion[1] - tamanio_text[1] / 2;
+          pos_y = posicion[2] - tamanio_text[2] / 4 - tamanio_in[2] - 2;
+          this.position(pos_x, pos_y);
+          break;
+        }
+
+        case (\"DERECHA\"):
+        {
+          this.format(\"[0s,,,AlignLeft|AlignVCenter]\");//Cambiamos alineación de texto a la izquierda.
+          pos_x = posicion[1] + tamanio_in[1] / 1.5;
+          pos_y = posicion[2] - tamanio_text[2] / 2;
+          this.position(pos_x, pos_y);
+          break;
+        }
+
+        case (\"IZQUIERDA\"):
+        {
+          this.format(\"[0s,,,AlignRight|AlignVCenter]\");//Cambiamos alineación de texto a la derecha.
+          pos_x = posicion[1] - tamanio_text[1] - tamanio_in[1] / 1.75;
+          pos_y = posicion[2] - tamanio_text[2] / 2;
+          this.position(pos_x, pos_y);
+          break;
+        }
+      }
+
+      this.visible(TRUE); //Cuando el texto esta formateado será visible. SOLO ES VISIBLE SI EL TEXTO ES DIFERENTE DE NULL.
+    }
+    else
+    {
+      this.visible(FALSE); //Cuando el texto esta formateado será visible. SOLO ES VISIBLE SI EL TEXTO ES DIFERENTE DE NULL.
+    }
+  }
+}
+" 0
+ E 0 0 3 2 1 E 0.7897762178592619 0 0.5894500029099089 8.897953351676598 29.35582854814929 1 E 3 10 100 38
+0 2 2 "0s" 0 0 0 73 0 0  3 10 1
+6
+LANG:10001 35 Tahoma,-1,11,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,11,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,11,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,11,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,11,5,75,0,0,0,0,0,Negrita
+0 6
+LANG:10001 0 
+LANG:10010 5 Texto
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+0
+0

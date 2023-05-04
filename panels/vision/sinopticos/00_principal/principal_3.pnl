@@ -1,0 +1,965 @@
+V 14
+6
+LANG:10001 0 
+LANG:10010 11 principal_3
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+PANEL,-1 -1 1920 1080 N "LIB_IRC_BLANCO" 2
+"$NOMPANTALLA"
+"$RESET"
+"main()
+{
+  moduleShowFullScreen(myModuleName());
+  setWindowTitle(myModuleName(), \"PLANTILLA - PANTALLA 3\");
+
+  /*ModuleOnWithPanel(\"SCREEN2\", 1920, 0, 1920, 1080, 1, 1, \"\",
+                    \"vision/irc/00_principal/principal/principal_2.pnl\",
+                    \"SCREEN2\",
+                    makeDynString(\"$NOMSCREEN:SCREEN2\"));*/
+}
+" 0
+ "main()
+{
+  ModuleOff(\"PANTALLA2\");
+  ModuleOff(\"PANTALLA1\");
+  ModuleOff(\"PANTALLA4\");
+  ModuleOff(\"PANTALLA5\");
+  ModuleOff(\"PANTALLA6\");
+}" 0
+ E E E 1 -1 -1 0  0 0
+""0  1
+E E 5
+"CBRef" "1"
+"EClose" E
+"windowIcon" "logotipos/logo_deuser_sin_nombre.svg"
+"dpi" "96"
+"pdpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10001 0 
+LANG:10010 0 
+29 11
+"Principal_3"
+""
+1 0 100 E E E 1 E 1 E N "_3DText" E N "_Transparent" E E
+ E E
+10 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+15
+"newPanelAnimDuration" "int 0"
+"oldPanelAnimDuration" "int 0"
+"newPanelAnimateOpacity" "bool TRUE"
+"oldPanelAnimateOpacity" "bool TRUE"
+"newPanelAnimateSize" "bool TRUE"
+"oldPanelAnimateSize" "bool TRUE"
+"newPanelAnimType" "string TopLeft"
+"oldPanelAnimType" "string BottomRight"
+"ModuleName" "string pantalla_principal_2"
+"verticalScrollBarPolicy" "enum 1"
+"alignment" "enum 132"
+"horizontalScrollBarPolicy" "enum 1"
+"transparentForMouseInGedi" ""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10010 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10011 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10009 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10008 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10018 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  2.842170943040401e-14 99.5 1919 1078.5
+15 Canvas.Canvas.1
+0
+"main()
+{
+  this.ModuleName(\"PRINCIPAL\" + $NOMPANTALLA);
+  RootPanelOnModule(\"vision/inicio.pnl\", \"Principal 3\", \"PRINCIPAL\" + $NOMPANTALLA, makeDynString(\"$NOMPANTALLA:\" + $NOMPANTALLA));
+}" 0
+6 156
+"RECTANGLE2"
+""
+1 63 18 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "LIB_IRC_AZUL_03" E E
+ E E
+55 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E -1 1 3 2 1 E 1.000520833333333 0 0.02005643997579479 -63.53255208333313 87.5153362882279 1 E 63 18 1982 117
+6 157
+"RECTANGLE1"
+""
+1 63 18 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N {1,72,152} E E
+ E E
+56 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E -1 1 3 2 1 E 1.000520833333333 0 0.08205704840613934 -64.03281249999996 89.3993253364817 1 E 63 18 1982 117
+15 236
+"hora"
+""
+1 1658.696913222988 43.73312969924813 E E E 1 E 1 E N {1,72,152} E N "_Transparent" E E
+ E E
+71 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+2
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10010 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10011 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10009 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10008 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10018 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  1650.002029650415 23.50098684210528 1741.082029650416 47.50098684210527
+E 1 0 "%H:%M:%S" "%d/%m/%y"
+1 1 1 1
+6
+LANG:10001 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+0  6
+LANG:10001 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+0 
+15 237
+"fecha"
+""
+1 183.0620296504156 15.71348684210528 E E E 1 E 1 E N {1,72,152} E N "_Transparent" E E
+ E E
+72 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+2
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10010 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10011 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10009 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10008 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10018 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  1652.302029650416 5.713486842105267 1738.782029650416 29.71348684210527
+E 1 1 "%H:%M:%S" "%d/%m/%y"
+0 1 1 1
+6
+LANG:10001 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+0  6
+LANG:10001 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+0 
+1 874 1 "" 19
+0
+2 583
+"txf_pantalla_actual"
+""
+1 178 46 E E E 1 E 1 E N {1,72,152} E N {1,72,152} E E
+ E E
+81 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 15 Pantalla Actual
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+  int n_ui = myUiNumber();
+  dpConnect(\"pantalla_actual\",\"ui_\" + n_ui + \"_pantalla_3.pantalla_actual\");
+}
+void pantalla_actual(string dp, string pantalla){
+  this.text(pantalla);
+}" 0
+ E 0 1 3 2 1 E 1.193046875 0 2.669480553414522 -10.86234374999994 -126.2853387846823 0 E 178 46 338 79
+0 2 2 "0s" 0 0 0 73 0 0  178 46 1
+2
+LANG:10001 34 Tahoma,-1,16,5,50,0,0,0,0,0,Normal
+LANG:10010 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+0 2
+LANG:10001 20 SINÓPTICO SECADEROS
+LANG:10010 3 ---
+13 724
+"btn_rearmar"
+""
+1 1605.429623287727 14.42809473376356 E E E 1 E 1 E N "_Transparent" E N {1,72,152} E E
+ E E
+85 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 10 Rearmament
+LANG:10010 6 Rearme
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+4
+"hoverfclr" "N \"AZUL_01\""
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  1535.77359375 -3.057413958106022 1633.77359375 51.94258604189397
+
+P 
+4294967295
+"pictures/iconos/botoneras/botonera_principal_pc/es_ES/rearmar_off.svg"
+2
+LANG:10001 0 
+LANG:10010 0 
+"main(mapping event)
+{
+  string downpixmap, uppixmap;
+
+  this.transparentForMouse = TRUE;
+
+  downpixmap = this.buttonDownPixmap;
+  uppixmap = this.buttonUpPixmap;
+
+  if(downpixmap == \"\")  downpixmap = uppixmap;  //Si el path de la imagen del button DownPixmap está vacia se rellena con la del UpPixmap que debe estar rellena al colocar el button
+  strreplace(downpixmap, \"_off\",\"_on\");
+  strreplace(uppixmap, \"_off\",\"_on\");
+  setValue(\"\", \"buttonType\", BT_PIXMAP,
+                    \"buttonDownPixmap\", downpixmap,
+                    \"buttonUpPixmap\", uppixmap);
+
+  //Set variables de acuse a TRUE
+  dpSetWait($RESET, TRUE);
+  delay(2);
+  //Set variables de acuse a FALSE
+  dpSetWait($RESET, FALSE);
+
+  //Acuse de alarmas
+  dyn_dyn_anytype resultado_consulta;
+  string nombre_dpe;
+
+ //Genera el string para la consulta que se encarga de añadir alarmas o cambiar el estado a acusado
+   string consulta = \"SELECT ALERT '_alert_hdl.._value','_alert_hdl.._came_time','_alert_hdl.._ack_time','_alert_hdl.._gone_time','_alert_hdl.._text' \" +
+                    \"FROM '*' \" +
+                    \"WHERE _DPT NOT LIKE \\\"_*\\\"\" +
+                    \"SORT BY 2 DESC \";
+
+//Realiza la conexión entre los resutlados de las variables incluidas en la consulta con la función para actualizar la tabla, ya sean nuevas o existentes que han cambiado de estado
+  dpQuery(consulta, resultado_consulta);
+
+  for(int i = 2; i <= dynlen(resultado_consulta); i++)
+  {
+    nombre_dpe = dpSubStr(resultado_consulta[i][1], DPSUB_DP_EL);
+    dpSet(nombre_dpe + \":_alert_hdl.._ack\", 2);
+  }
+  delay(2);
+
+  //Cambia la imagen
+  strreplace(downpixmap, \"_on\",\"_off\");
+  strreplace(uppixmap, \"_on\",\"_off\");
+  setValue(\"\", \"buttonType\", BT_PIXMAP,
+                    \"buttonDownPixmap\", downpixmap,
+                    \"buttonUpPixmap\", uppixmap);
+
+  this.transparentForMouse = FALSE;
+}
+" 0
+ E E "main()
+{
+  string img_menu;
+
+  img_menu = ruta_idioma_botonera_pc();
+
+  setValue(\"\",\"buttonType\", BT_PIXMAP,
+              \"buttonDownPixmap\", img_menu + \"rearmar_on.svg\",
+              \"buttonUpPixmap\", img_menu + \"rearmar_off.svg\");
+}
+" 0
+
+1 875 2 "" 1
+0
+4 726
+"LINE1"
+""
+1 394.7735937500003 -1.06674454300482 E E E 1 E 1 E N "LIB_IRC_AZUL_03" E N "LIB_IRC_BLANCO" E E
+ E E
+86 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 2 3 2 1 E  394.7735937500003 -1.06674454300482 394.7735937500001 85.94063687012377
+4 727
+"LINE2"
+""
+1 1536.77359375 -1.066744543004827 E E E 1 E 1 E N "LIB_IRC_AZUL_03" E N "LIB_IRC_BLANCO" E E
+ E E
+87 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 2 3 2 1 E  1536.77359375 -1.066744543004827 1536.77359375 85.94063687012377
+13 728
+"PUSH_BUTTON1"
+""
+1 1613.129444400276 2.789000191174209 E E E 1 E 1 E N "_Transparent" E N "AZUL_01" E E
+ E E
+88 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 10 Rearmament
+LANG:10010 6 Rearme
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+4
+"hoverfclr" "N \"AZUL_01\""
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  1542.77359375 47.94258604189397 1625.77359375 51.94258604189397
+
+T 
+2
+LANG:10001 0 
+LANG:10010 0 
+E E E E
+25 729
+"tabla_listado_alarmas"
+"PEQUENIO_AZUL"
+1 384.8951113526732 -1.85372010622261 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_BLANCO" E E
+ E E
+89 0 0 0 0 0
+E E E
+0
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+3
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+0  392.7735937500001 -3.057413958106022 1477.77359375 87.94258604189397
+"main()
+{
+  formatear_estilo_tabla(\"tabla_listado_alarmas\", \"AlignVCenter | AlignHCenter\", \"LIB_IRC_BLANCO\", \"{240,250,255}\");  //Damos formato a la tabla con el listado de variables
+
+  setMultiValue(\"\", \"deleteAllLines\",  //Borra las líneas existentes
+                \"\", \"tableMode\", 0,
+                \"\", \"selectByClick\", 1);
+
+  //Genera el string para la consulta que se encarga de añadir alarmas o cambiar el estado a acusado
+  string consulta = \"SELECT ALERT '_alert_hdl.._value','_alert_hdl.._came_time','_alert_hdl.._ack_time','_alert_hdl.._gone_time','_alert_hdl.._text','_alert_hdl.._class'\" +
+                    \"FROM '*' \" +
+                    \"WHERE _DPT NOT LIKE \\\"_*\\\"\"
+                    + \"SORT BY 2 DESC\";
+
+  dpQueryConnectSingle(\"cambiar_alarmas_tabla\", true, consulta, consulta);
+}
+
+cambiar_alarmas_tabla(string consulta, dyn_dyn_anytype resultado_consulta)
+{
+  int estado_alarma, fila, columna, descripcion_ok, n_prioridad = 0;
+  time fecha_inicio;
+  string nombre_dpe, nombre_dp, texto_alarma, descripcion, tag, color_fondo_alarma, color_fuente_alarma, clase;
+  dyn_dyn_anytype array_tabla;
+
+  for (int i = 2; i <= dynlen(resultado_consulta); i++)
+  {
+    //Obtención de datos sobre la variable de alarma, nombre del dpe, dp, descripcion del elemento y texto de alarma
+    nombre_dpe = dpSubStr(resultado_consulta[i][1], DPSUB_DP_EL);
+    nombre_dp = dpSubStr(resultado_consulta[i][1], DPSUB_DP);
+    descripcion = dpGetDescription(nombre_dpe);
+
+    if (nombre_dp.contains(\"Alarma\") || nombre_dp.contains(\"Aviso\") || nombre_dp.contains(\"MARCAS\"))
+    {
+      descripcion = dpGetDescription(nombre_dpe);
+    }
+
+    tag = dpGetAlias(nombre_dpe);
+
+    texto_alarma = getCatStr(\"alarmas\", resultado_consulta[i][7]); //Texto de la alarma
+
+    dpGet(nombre_dpe + \":_alert_hdl.._act_state\", estado_alarma,  //Obtención del estado de la alarma
+          nombre_dpe + \":_alert_hdl.._act_state_color\", color_fondo_alarma,  //Obtención de los colores de alarma
+          nombre_dpe + \":_alert_hdl.._act_state_fore_color\", color_fuente_alarma);
+
+    //Obtención de tiempos de alarma
+    fecha_inicio = resultado_consulta[i][4];
+    clase = resultado_consulta[i][8];
+    dpGet(clase + \":_alert_class.._prior\", n_prioridad);
+
+    switch (estado_alarma)
+    {
+      case (0):  //Alarma en estado 0, ha pasado a no estar activa y ya está acusada por lo que debe borrarse
+      {
+        setValue(\"\", \"deleteLine\", 1, \"nombre_dpe\", nombre_dpe);
+        break;
+      } case (1): //Alarma activa y sin acusar, debe pintarse una nueva línea
+
+      {
+        setValue(\"\", \"deleteLine\", 1, \"nombre_dpe\", nombre_dpe);
+        setValue(\"\", \"appendLine\", \"fecha_inicio\", fecha_inicio, \"tag\", tag, \"elemento\", nombre_dpe, \"descripcion\", descripcion, \"nombre_dpe\", nombre_dpe, \"prioridad\", n_prioridad);
+        break;
+      } case (2): //Alarma activa y acusada, se cambia de color
+
+      {
+        setValue(\"\", \"updateLine\", 1, \"nombre_dpe\", nombre_dpe, \"fecha_inicio\", fecha_inicio, \"tag\", tag, \"elemento\", nombre_dpe, \"descripcion\", descripcion, \"nombre_dpe\", nombre_dpe, \"prioridad\", n_prioridad);
+        break;
+      } case (3): //Alarma desactiva pero sin acusar, se borra, solo se pintan activas no acusadas
+
+      {
+        setValue(\"\", \"deleteLine\", 1, \"nombre_dpe\", nombre_dpe);
+        break;
+      }
+    }
+
+    if (estado_alarma == 1 || estado_alarma == 2)
+    {
+      setValue(\"\", \"setCurrentLine\", 1, \"nombre_dpe\", nombre_dpe);
+      getValue(\"\", \"currentCell\", fila, columna);
+      setValue(\"\", \"cellBackColRC\", fila, \"fecha_inicio\", color_fondo_alarma,   \"cellForeColRC\", fila, \"fecha_inicio\", color_fuente_alarma,
+               \"cellBackColRC\", fila, \"tag\", color_fondo_alarma,           \"cellForeColRC\", fila, \"tag\", color_fuente_alarma,
+               \"cellBackColRC\", fila, \"elemento\", color_fondo_alarma,      \"cellForeColRC\", fila, \"elemento\", color_fuente_alarma,
+               \"cellBackColRC\", fila, \"descripcion\", color_fondo_alarma,   \"cellForeColRC\", fila, \"descripcion\", color_fuente_alarma,
+               \"cellBackColRC\", fila, \"prioridad\", color_fondo_alarma,   \"cellForeColRC\", fila, \"prioridad\", color_fuente_alarma);
+    }
+  }
+
+  dyn_string filtro = makeDynString(\"prioridad\", \"fecha_inicio\");
+  setMultiValue(\"\", \"tableMode\", 1,
+                \"\", \"selectLineN\", 0,
+                \"\", \"tableMode\", 0,
+                \"\", \"sortDyn\", FALSE, filtro);
+}
+" 0
+E 1 0 1 6 0 "fecha_inicio" 13 1 0 "[%Y-%m-%d %H:%M:%St,False,,AlignHCenter|AlignVCenter]" 7
+LANG:10001 10 Start date
+LANG:10010 12 Fecha inicio
+LANG:10011 14 Eintrittsdatum
+LANG:10009 10 Start date
+LANG:10008 15 Data di entrata
+LANG:10018 15 Data de entrada
+LANG:10005 10 Entry date
+E
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+160 "tag" 8 1 0 "[0s,,,AlignHCenter|AlignVCenter]" 7
+LANG:10001 3 Tag
+LANG:10010 3 Tag
+LANG:10011 18 Bestätigungsdatum
+LANG:10009 3 Tag
+LANG:10008 16 Data di conferma
+LANG:10018 21 Data de confirmação
+LANG:10005 19 Acknowledgment date
+E
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+120 "elemento" 47 1 0 "[0s,,,AlignLeft|AlignVCenter]" 7
+LANG:10001 7 Element
+LANG:10010 8 Elemento
+LANG:10011 7 Element
+LANG:10009 7 Element
+LANG:10008 8 Elemento
+LANG:10018 8 Elemento
+LANG:10005 7 Element
+E
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+300 "descripcion" 30 1 0 "[0s,,,AlignLeft|AlignVCenter]" 7
+LANG:10001 11 Description
+LANG:10010 12 Descripción
+LANG:10011 12 Beschreibung
+LANG:10009 11 Description
+LANG:10008 11 Descrizione
+LANG:10018 11 Descrição
+LANG:10005 11 Description
+E
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+500 "nombre_dpe" 0 0 0 "s" 7
+LANG:10001 10 nombre_dpe
+LANG:10010 10 nombre_dpe
+LANG:10011 9 nombreDPE
+LANG:10009 10 nombre_dpe
+LANG:10008 9 nombreDPE
+LANG:10018 9 nombreDPE
+LANG:10005 9 nombreDPE
+E
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+0 "prioridad" 6 0 0 "[50s,,,AlignLeft]" 7
+LANG:10001 2 #1
+LANG:10010 9 prioridad
+LANG:10011 2 #1
+LANG:10009 2 #1
+LANG:10008 2 #1
+LANG:10018 2 #1
+LANG:10005 9 nombreDPE
+E
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+300 
+22 22 10 0
+6
+LANG:10001 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+0 0 0 0 1 7
+1 0
+1 876 3 "" 21
+0
+1 877 4 "" 23
+0
+29 802
+"Label2"
+"MEDIANO_AZUL"
+1 1631.544608575209 61.49156480875112 E E E 1 E 1 E N "_3DText" E N "_3DFace" E E
+ E E
+93 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"text" "string usuario_logueado"
+"alignment" "enum 132"
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 27 Tahoma,-1,16,5,50,0,0,0,0,0
+0  1631.544608575209 61.49156480875112 1771.544608575209 81.49156480875112
+5 Label
+1
+0 "clicked" "(mapping event)"
+"  string user = getUserName();
+  ChildPanelOnCentralModal(\"vision/emergentes/internas/cambiar_password.pnl\", \"Cambiar_Password\", makeDynString(\"$username:\" + user));"
+"main()
+{
+  this.text = getUserName();
+}
+" 0
+1 843 0 "" 182
+0
+13 838
+"PUSH_BUTTON45"
+""
+1 1518.464954709849 25.83161305590509 E E E 1 E 1 E N "_Transparent" E N {1,72,152} E E
+ E E
+94 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 10 Rearmament
+LANG:10010 13 Anular Bocina
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+4
+"hoverfclr" "N \"AZUL_01\""
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  1474 -3 1537 89.36727892378653
+
+P 
+4294967295
+"pictures/iconos/botoneras/bocina_on.svg"
+2
+LANG:10001 0 
+LANG:10010 0 
+" main(mapping event)
+ {
+  int val1;
+  dpGet(\"13_ALARMAS.HabilitarBocina\", val1);
+   string downpixmap, uppixmap;
+
+   this.transparentForMouse = TRUE;
+
+   downpixmap = this.buttonDownPixmap;
+   uppixmap = this.buttonUpPixmap;
+
+   if(downpixmap == \"\")  downpixmap = uppixmap;  //Si el path de la imagen del button DownPixmap está vacia se rellena con la del UpPixmap que debe estar rellena al colocar el button
+   strreplace(downpixmap, \"_off\",\"_on\");
+   strreplace(uppixmap, \"_off\",\"_on\");
+   setValue(\"\", \"buttonType\", BT_PIXMAP,
+                     \"buttonDownPixmap\", downpixmap,
+                   \"buttonUpPixmap\", uppixmap);
+
+  //Set variables de acuse a TRUE
+  dpSetWait(\"13_ALARMAS.HabilitarBocina\", !val1);
+  this.transparentForMouse = FALSE;
+
+}" 0
+ E E " main()
+ {
+   string img_menu;
+
+   img_menu = ruta_idioma_botonera_pc();
+
+   setValue(\"\", \"buttonType\", BT_PIXMAP,
+            \"buttonDownPixmap\", img_menu + \"bocina_off.svg\",
+            \"buttonUpPixmap\", img_menu + \"bocina_on.svg\");
+   dpConnect(\"cambiar_imagen\", \"13_ALARMAS.HabilitarBocina\");
+ }
+ void cambiar_imagen(string dp1, bool valor)
+ {
+   string downpixmap, uppixmap;
+
+   downpixmap = this.buttonDownPixmap;
+   uppixmap = this.buttonUpPixmap;
+
+   if (downpixmap == \"\")  downpixmap = uppixmap; //Si el path de la imagen del button DownPixmap está vacia se rellena con la del UpPixmap que debe estar rellena al colocar el button
+   if (valor)
+   {
+     strreplace(downpixmap, \"_off\", \"_on\");
+     strreplace(uppixmap, \"_off\", \"_on\");
+     setValue(\"\", \"buttonType\", BT_PIXMAP,
+              \"buttonDownPixmap\", downpixmap,
+              \"buttonUpPixmap\", uppixmap);
+   }
+   else
+   {
+     strreplace(downpixmap, \"_on\", \"_off\");
+     strreplace(uppixmap, \"_on\", \"_off\");
+     setValue(\"\", \"buttonType\", BT_PIXMAP,
+              \"buttonDownPixmap\", downpixmap,
+              \"buttonUpPixmap\", uppixmap);
+   }
+}" 0
+
+14 841
+"TEXT_FIELD21"
+""
+1 1474.938854864421 -71.85955652339051 E E E 1 E 0 E N "LIB_IRC_AZUL_01" E N "White" E E
+ E E
+97 0 0 0 0 0
+E E E
+1
+9
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"textChangedCB" "main(string newText)
+{
+  //Revisa si esta habilitado el sonido y si hay alarma y reproduce un sonido de bocina
+  int val1;
+  int val2;
+  dpGet(\"13_ALARMAS.SonarBocina:_online.._value\", val1);
+  dpGet(\"13_ALARMAS.HabilitarBocina:_online.._value\",val2);
+  if (val1 == 1 && val2 == 1){
+  startSound(WINCCOA_PATH+\"data/sounds/ALARM.WAV\", TRUE);
+  }else{
+  stopSound();
+  }
+}"
+6
+LANG:10001 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10011 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10009 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10008 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,11,5,75,0,0,0,0,0,Negrita
+0  1475.935970569611 61.07184198139257 1542.299144734834 89.2856100973348
+3 "0s" 0 0 0 9 0 -1  E "main()
+{
+  dpConnect(\"cambiar_estado_decanter\", \"13_ALARMAS.HabilitarBocina\");
+}
+
+void cambiar_estado_decanter(string dp, int valor)
+{
+  this.text = valor;
+}" 0
+ E
+14 842
+"TEXT_FIELD20"
+""
+1 1473.002884294811 -135.931398504783 E E E 1 E 0 E N "LIB_IRC_AZUL_01" E N "White" E E
+ E E
+98 0 0 0 0 0
+E E E
+1
+9
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"textChangedCB" "main(string newText)
+{
+  //Revisa si esta habilitado el sonido y si hay alarma y reproduce un sonido de bocina
+  int val1;
+  int val2;
+  dpGet(\"13_ALARMAS.SonarBocina:_online.._value\", val1);
+  dpGet(\"13_ALARMAS.HabilitarBocina:_online.._value\",val2);
+  if (val1 == 1 && val2 == 1){
+  startSound(WINCCOA_PATH+\"data/sounds/ALARM.WAV\", TRUE);
+  }else{
+  stopSound();
+  }
+}"
+6
+LANG:10001 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10011 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10009 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10008 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,11,5,75,0,0,0,0,0,Negrita
+0  1474 -3 1540.363174165224 25.21376811594223
+3 "0s" 0 0 0 9 0 -1  E "main()
+{
+  dpConnect(\"cambiar_estado_decanter\", \"13_ALARMAS.SonarBocina\");
+}
+
+void cambiar_estado_decanter(string dp, int valor)
+{
+  this.text = valor;
+}" 0
+ E
+0
+LAYER, 1 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 2 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 3 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 4 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 5 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 6 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 7 
+2
+LANG:10001 0 
+LANG:10010 0 
+1 846 0 "" 35
+0
+0
+3 0 "botonera" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/botoneras/01_botonera_principal.pnl" 120.0380763624276 228.1298919747039 T 51 1 0 1 -257.0380763624276 -169.1298919747039
+0
+3 1 "logo_deuser" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"vision/sinopticos/00_principal/principal/logo_deuser.pnl" 1832.185610179796 8.888864076093093 T 69 1.001043839098428 0 0.9642255892255891 -71.09811715527877 6.429129798682968
+0
+3 2 "btn_logout" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"vision/sinopticos/00_principal/principal/principal_login.pnl" 1677.729081942315 27.01688664596277 T 84 1.362318840579711 0 0.9235958846348451 -747.723911531149 26.33694014306425
+0
+3 3 "PANEL_REF1" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"vision/sinopticos/00_principal/principal/logoCliente.pnl" -0.4997395833385383 2.985587557603679 T 92 1 0 1 0.4997395833385383 -2.985587557603679
+0
+3 4 "PANEL_REF2" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"vision/sinopticos/00_principal/principal/falloComPLC.pnl" 136 13.99999999999999 T 93 1 0 1 -137.5000000000007 -15.50000000000001
+0
+0

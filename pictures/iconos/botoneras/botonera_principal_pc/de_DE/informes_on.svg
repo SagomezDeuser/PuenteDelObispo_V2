@@ -1,0 +1,32 @@
+<svg width="1450" height="640" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid meet">
+ <defs>
+  <path id="ddvQlREpV" d="m476.39,142.62l118.61,0l-118.61,-97.62l0,97.62z"/>
+  <path id="b6CsF82Q5" d="m593.26,172.14l0,422.86l-548.26,0l0,-548.57l402.75,0l0,125.71l145.51,0zm-167.67,364.27l97.56,0l0,-104.76l-97.56,0l0,104.76zm-310.48,0l97.56,0l0,-241.9l-97.56,0l0,241.9zm155.24,0l97.56,0l0,-173.33l-97.56,0l0,173.33z"/>
+ </defs>
+ <g>
+  <title>background</title>
+  <rect fill="none" id="canvas_background" height="642" width="1452" y="-1" x="-1"/>
+ </g>
+ <g>
+  <title>Layer 1</title>
+  <g stroke="null" id="svg_1">
+   <g stroke="null" id="svg_2">
+    <g stroke="null" id="svg_3">
+     <g stroke="null" id="svg_4">
+      <use x="0" y="0" transform="matrix(0.7979769706726074,0,0,1,9.091036319732666,0) " stroke="null" id="svg_5" fill="#ffffff" xlink:href="#ddvQlREpV"/>
+      <g stroke="null" id="svg_6">
+       <use x="0" y="0" transform="matrix(0.7979769706726074,0,0,1,9.091036319732666,0) " stroke="#000000" id="svg_7" stroke-opacity="0" fill-opacity="0" xlink:href="#ddvQlREpV"/>
+      </g>
+     </g>
+     <g stroke="null" id="svg_8">
+      <use x="0" y="0" transform="matrix(0.7979769706726074,0,0,1,9.091036319732666,0) " stroke="null" id="svg_9" fill="#ffffff" xlink:href="#b6CsF82Q5"/>
+      <g stroke="null" id="svg_10">
+       <use x="0" y="0" transform="matrix(0.7979769706726074,0,0,1,9.091036319732666,0) " stroke="#000000" id="svg_11" stroke-opacity="0" fill-opacity="0" xlink:href="#b6CsF82Q5"/>
+      </g>
+     </g>
+    </g>
+   </g>
+  </g>
+  <text font-weight="bold" xml:space="preserve" text-anchor="start" font-family="'Trebuchet MS', Gadget, sans-serif" font-size="180" id="svg_12" y="384" x="630" stroke-width="null" stroke="#ffffff" fill="#ffffff">BERICHTS</text>
+ </g>
+</svg>

@@ -1,0 +1,46 @@
+# ascii dump of database
+
+# DpType
+TypeName
+_S7PlusConfig._S7PlusConfig	1#1
+	Subscriptions	1#2
+		Names	9#3
+		Pollgroups	9#4
+		Options	9#5
+	PublicKey	25#6
+	AlarmClassMapping	9#7
+	CaCertificates	9#8
+
+# Datapoint/DpId
+DpName	TypeName	ID
+_S7PlusConfig	_S7PlusConfig	409
+
+# DpValue
+Manager/User	ElementName	TypeName	_original.._value	_original.._status64	_original.._stime
+UI (1)/0	_S7PlusConfig.Subscriptions.Names	_S7PlusConfig	"_010_LIB_PID", "_090_LIB_ENERGY_METER", "_13_DB_INVERTIR_LOGICA_SENSORES", "_504_LIB_TRATAMIENTO_ANALOGICA", "_505_LIB_FILTRO_DIGITAL", "_531_LIB_ACCIONAMIENTO_MOTOR_D", "_531_LIB_ACCIONAMIENTO_MOTOR_D_VARIADOR", "_531_LIB_ACCIONAMIENTO_MOTOR_S", "_531_LIB_ACCIONAMIENTO_MOTOR_S_VARIADOR", "_531_LIB_ACCIONAMIENTO_VALVULA", "_531_LIB_ACCIONAMIENTO_VALVULA_DOBLE", "_531_LIB_ACCIONAMIENTO_VALVULA_MOTOR", "_550_LIB_VF_COMUNICACION", "_998_LIB_SIWAREX_200", "_999_LIB_SIWAREX_500", "_002_LIB_ALARMA", "_003_LIB_AVISO"	0x8300000000000101	12.05.2022 12:14:57.932
+UI (1)/0	_S7PlusConfig.Subscriptions.Pollgroups	_S7PlusConfig	"_010_LIB_PID", "_090_LIB_ENERGY_METER", "_13_DB_INVERTIR_LOGICA_SENSORES", "_504_LIB_TRATAMIENTO_ANALOGICA", "_505_LIB_FILTRO_DIGITAL", "_531_LIB_ACCIONAMIENTO_MOTOR_D", "_531_LIB_ACCIONAMIENTO_MOTOR_D_VARIADOR", "_531_LIB_ACCIONAMIENTO_MOTOR_S", "_531_LIB_ACCIONAMIENTO_MOTOR_S_VARIADOR", "_531_LIB_ACCIONAMIENTO_VALVULA", "_531_LIB_ACCIONAMIENTO_VALVULA_DOBLE", "_531_LIB_ACCIONAMIENTO_VALVULA_MOTOR", "_550_LIB_VF_COMUNICACION", "_998_LIB_SIWAREX_200", "_999_LIB_SIWAREX_500", "_002_LIB_ALARMA", "_003_LIB_AVISO"	0x8300000000000101	12.05.2022 12:14:57.932
+UI (1)/0	_S7PlusConfig.Subscriptions.Options	_S7PlusConfig	"1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1"	0x8300000000000101	12.05.2022 12:14:57.932
+
+# DpAuth
+Manager/User	StampSec	StampMSec	ElementName	TypeName	DetailNr	_auth.._type	_auth.._write	_auth.._read	_auth.._owner_write	_auth.._owner_read	_auth.._owner
+ASC (1)/0	1650446023	245	_S7PlusConfig.PublicKey	_S7PlusConfig		62					0
+ASC (1)/0	1650446023	245	_S7PlusConfig.PublicKey	_S7PlusConfig	1		\4	\255	\255	\255
+ASC (1)/0	1650446023	245	_S7PlusConfig.PublicKey	_S7PlusConfig	2		\4	\255	\255	\255
+ASC (1)/0	1650446023	245	_S7PlusConfig.PublicKey	_S7PlusConfig	6		\4	\255	\255	\255
+ASC (1)/0	1650446023	245	_S7PlusConfig.PublicKey	_S7PlusConfig	14		\255	\255	\255	\255
+ASC (1)/0	1650446023	245	_S7PlusConfig.PublicKey	_S7PlusConfig	16		\255	\255	\255	\255
+ASC (1)/0	1650446023	245	_S7PlusConfig.PublicKey	_S7PlusConfig	18		\255	\255	\255	\255
+ASC (1)/0	1650446023	245	_S7PlusConfig.PublicKey	_S7PlusConfig	20		\255	\255	\255	\255
+ASC (1)/0	1650446023	245	_S7PlusConfig.PublicKey	_S7PlusConfig	21		\255	\255	\255	\255
+ASC (1)/0	1650446023	245	_S7PlusConfig.PublicKey	_S7PlusConfig	23		\255	\255	\255	\255
+ASC (1)/0	1650446023	245	_S7PlusConfig.PublicKey	_S7PlusConfig	24		\255	\255	\255	\255
+ASC (1)/0	1650446023	245	_S7PlusConfig.PublicKey	_S7PlusConfig	26		\255	\255	\255	\255
+ASC (1)/0	1650446023	245	_S7PlusConfig.PublicKey	_S7PlusConfig	31		\255	\255	\255	\255
+ASC (1)/0	1650446023	245	_S7PlusConfig.PublicKey	_S7PlusConfig	32		\255	\255	\255	\255
+ASC (1)/0	1650446023	245	_S7PlusConfig.PublicKey	_S7PlusConfig	33		\255	\255	\255	\255
+ASC (1)/0	1650446023	245	_S7PlusConfig.PublicKey	_S7PlusConfig	34		\255	\255	\255	\255
+ASC (1)/0	1650446023	245	_S7PlusConfig.PublicKey	_S7PlusConfig	36		\4	\255	\255	\255
+ASC (1)/0	1650446023	245	_S7PlusConfig.PublicKey	_S7PlusConfig	37		\255	\255	\255	\255
+ASC (1)/0	1650446023	245	_S7PlusConfig.PublicKey	_S7PlusConfig	40		\255	\255	\255	\255
+ASC (1)/0	1650446023	245	_S7PlusConfig.PublicKey	_S7PlusConfig	41		\255	\255	\255	\255
+# ascii dump of database

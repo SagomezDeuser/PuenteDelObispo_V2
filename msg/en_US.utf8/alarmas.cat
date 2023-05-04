@@ -1,0 +1,16 @@
+Aviso Baja,LOW WARNING
+Alarma Muy Baja,TOO LOW ALARM 
+Aviso Alta,HIGH WARNING
+Alarma Muy Alta,TOO HIGH ALARM 
+Alarma General,General Alarm
+Alarma EP,PROTECTION STATE ALARM
+Alarma VF,FC Alarm
+Alarma CM F1,F1 START CONF Alarm
+Alarma CM F2,F2 START CONF Alarm
+Alarma CP F1,F1 STOP CONF Alarm
+Alarma CP F2,F2 STOP CONF Alarm
+Alarma EXT,EXT Alarm
+Alarma POS,POS Alarm
+Alarma,ALARM
+Alarma Rotura Hilo,
+Aviso,

@@ -1,0 +1,308 @@
+V 14
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+PANEL,-1 -1 550 180 N "LIB_DEUSER_BLANCO" 0
+"main()
+{
+  setWindowTitle(myModuleName(), myPanelName(), \" \");  //Eliminamos el title que aparece en el Frame del Panel
+  windowStyle(myModuleName(),myPanelName(),0,0);  //Eliminamos los botones para maximizar y minimizar el Panel
+}" 0
+ E E E E 1 -1 -1 0  0 0
+""0  1
+E E 5
+"CBRef" "1"
+"EClose" E
+"windowIcon" "iconos/ventanas/gestion.svg"
+"dpi" "96"
+"pdpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10001 0 
+LANG:10010 0 
+14 28
+"TEXT_FIELD1"
+""
+1 33.12535089664494 14.4379383247076 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+27 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,30,5,75,0,0,0,0,0,Negrita
+0  17.01625534509097 6.412526351865447 295.016255345091 43.41252635186545
+2 "0s" 0 0 0 0 0 -1  E "main()
+{
+  this.text(\"Poll Groups MDP\");
+}" 0
+ E
+6 29
+"RECTANGLE2"
+""
+1 63 18 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "LIB_IRC_AZUL_03" E E
+ E E
+28 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E -1 1 3 2 1 E 0.001563313802083333 0 -1.913829984479718 8.161448506872883 218.2871253295125 1 E 63 18 1982 117
+6 30
+"RECTANGLE4"
+""
+1 63 18 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N {1,72,152} E E
+ E E
+29 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E -1 1 3 2 1 E 0.004689941406249998 0 -1.910508180073952 -0.9247046504004315 218.837273062731 1 E 63 18 1982 117
+13 31
+"PUSH_BUTTON1"
+"MEDIANO_BLANCO"
+1 688.2482572396485 312.9350593046693 E E E 1 E 1 E N "_ButtonText" E N "_Transparent" E E
+ E E
+30 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 6 Accept
+LANG:10010 7 Aceptar
+LANG:10011 6 Accept
+LANG:10009 8 Accepter
+LANG:10008 6 Accept
+LANG:10018 6 Accept
+
+6
+"hoverbclr" "N \"AZUL_01\""
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10011 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10018 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  400.1177645632184 111.6409456086198 473.9606407283313 174.5517842483326
+
+P 
+4294967295
+"pictures/iconos/botoneras/aceptar.svg"
+6
+LANG:10001 12 PUSH_BUTTON1
+LANG:10010 12 PUSH_BUTTON1
+LANG:10011 12 PUSH_BUTTON1
+LANG:10009 12 PUSH_BUTTON1
+LANG:10008 12 PUSH_BUTTON1
+LANG:10018 12 PUSH_BUTTON1
+"main(mapping event)
+{
+  string aux_st = \"ok\";
+  float confirmar = 1;
+
+  dpSet(\"_Ui_\" + myManNum() + \".ReturnValue.Float:_original.._value\", confirmar);  //Devolvemos al Panel Principal el resultado
+  dpSet(\"_Ui_\" + myManNum() + \".ReturnValue.Text:_original.._value\", aux_st);  //Devolvemos al Panel Principal el resultado
+
+  PanelOff();  //Cerramos el Panel
+}" 0
+ E E E
+13 32
+"PUSH_BUTTON2"
+"MEDIANO_BLANCO"
+1 759.7280192009342 312.9985478913565 E E E 1 E 1 E N "_ButtonText" E N "_Transparent" E E
+ E E
+31 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 6 Cancel
+LANG:10010 8 Cancelar
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+6
+"hoverbclr" "N \"AZUL_01\""
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10011 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10018 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  471.1810135645495 111.704434195307 545.0238897296624 174.6152728350198
+
+P 
+4294967295
+"pictures/iconos/botoneras/cancelar.svg"
+6
+LANG:10001 12 PUSH_BUTTON1
+LANG:10010 12 PUSH_BUTTON1
+LANG:10011 12 PUSH_BUTTON1
+LANG:10009 12 PUSH_BUTTON1
+LANG:10008 12 PUSH_BUTTON1
+LANG:10018 12 PUSH_BUTTON1
+"main(mapping event)
+{
+  string aux_st = \"\";
+  float confirmar = 0;
+
+  dpSet(\"_Ui_\" + myManNum() + \".ReturnValue.Float:_original.._value\", confirmar);  //Devolvemos al Panel Principal el resultado
+  dpSet(\"_Ui_\" + myManNum() + \".ReturnValue.Text:_original.._value\", aux_st);  //Devolvemos al Panel Principal el resultado
+
+  PanelOff();  //Cerramos el Panel
+}" 0
+ E E E
+6 33
+"fondo"
+""
+1 20 10 E E E 1 E 1 E N "AZUL_01" E N {1,72,152} E E
+ E E
+32 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 1.173435419440742 0 1.472770965992822 378.8368058415145 98.78625877531728 1 E 20 10 140 50
+4 34
+"LINE2"
+""
+1 473.3778746744679 118.9959655024409 E E E 1 E 1 E N "AZUL_01" E N {255,255,255} E E
+ E E
+33 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 3 2 1 E  473.8381373994366 118.5064123877635 473.8381373994366 167.4323631224403
+29 35
+"txf_conf_mdp"
+"MEDIANO_AZUL"
+1 19.01625534509097 72.95789766532093 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+34 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"text" "string ¿Está seguro que desea modificar el Poll Group del MDP seleccionado?"
+"styleSheet" "string "
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 27 Tahoma,-1,16,5,50,0,0,0,0,0
+0  19.01625534509097 72.95789766532093 495.0162553450909 89.95789766532093
+5 Label
+0
+"main()
+{
+      this.text(getCatStr(\"objetos\",this.name));
+}" 0
+6 36
+"RECTANGLE5"
+""
+1 146 119 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+35 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+4
+"transparentForMouseInGedi" ""
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 1 0 1 -146 -119 1 E 146 119 695 298
+0
+LAYER, 1 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 2 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 3 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 4 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 5 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 6 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 7 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+0

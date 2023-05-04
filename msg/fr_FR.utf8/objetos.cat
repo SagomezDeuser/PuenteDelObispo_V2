@@ -1,0 +1,168 @@
+txf_borrar_fila,Effacer un rang : Y cliquer deux fois
+txf_borrar_tabla,Effacer la pleine table
+txf_valor_act,Valeur actuelle
+txf_referencia,SELECTIONNER LE DATAPOINT DE REFERENCE QUE VA ETRE COPIE
+txf_copiado,SELECTIONNER LES DATAPOINTS QUE VONT ETRE CARTOGRAPHIES
+txf_tabla_copiado,LES DATAPOINTS QUE RECEVRONT LA CONFIGURATION
+txf_config_alarmas,Parametres d'alarme
+txf_hh,Trop eleve (HH)
+txf_h,Eleve (H)
+txf_l,Faible (L)
+txf_ll,Trop bas (LL)
+txf_conf_address,Etes-vous sur de vouloir activer / desactiver les adresses?
+txf_conf_pausa,Etes-vous sur de mettre en pause?
+ptxf_interfaz,Interface
+ptxf_pantalla,Afficher
+txf_conf_ll,Etes-vous sur de vouloir activer / desactiver la comparaison de bas niveau?
+txf_conf_map,Etes-vous sur de vouloir mapper tous les DP de DPT selectionnes?
+txf_conf_mdp,Etes-vous sur de vouloir modifier le MDP selectionne?
+txf_conf_modpg,Etes-vous sur de vouloir modifier le groupe de sondage du MDP selectionne?
+txf_conf_pg,Voulez-vous vraiment creer le groupe de sondage avec le nom au format CSV? Si vous rejetez, vous maintiendrez le point de donnees maitre lie
+label_modo,MODE DE FONCTIONNEMENT
+label_operativa,FONCTIONNEMENT MANUEL
+txf_enc_alarmas,ALARMES
+txf_alarma,ALARME
+txf_ep,ETAT DE PROTECTION
+txf_cm,COMMENCER LA CONFIRMATION
+txf_cp,ARRETER LA CONFIRMATION
+txf_fe,PANNE EXTERNE
+label_cfm_marcha,DEMARRER CFM.
+label_cfm_paro,ARRET DE CFM.
+label_t_arranque,HEURE DE DEPART
+label_t_paro,HEURE D'ARRET
+txf_vf,FREQ. ECHEC DU CONVERTISSEUR
+label_csg_auto,POINT DE CONSIGNE AUTO
+label_csg_manual,POINT DE CONSIGNE MANUEL
+label_vel_actual,VITESSE ACTUELLE
+label_corriente,INTENSITE
+label_frecuencia,LA FREQUENCE
+label_cfm_marcha_f1,CFM DE DEMARRAGE AVANT.
+label_cfm_marcha_f2,CFM DE DEMARRAGE EN ARRIERE.
+label_cfm_paro_f1,CFM ARRET AVANT.
+label_cfm_paro_f2,CFM ARRET ARRET.
+label_t_apertura,HORAIRE D'OUVERTURE
+label_t_cierre,HEURE DE FERMETURE
+txf_ca,CONFIRMATION D'OUVERTURE
+txf_cc,CONFIRMATION DE CLOTURE
+txf_fp,ECHEC DE POSITIONNEMENT
+label_formula,Recette
+label_produccion,Production
+label_ton,Tn / h
+fecha_inicio,Date de debut
+acuse,Reconnaissance
+fecha_acuse,Date d'accuse de reception
+tag,Marque
+alias,Alias
+descripcion,La description
+alarma,Alarme
+aviso,avertissement
+label_acuse_todo,RECONNAITRE TOUT
+label_rango,Intervalle
+label_dia,Journee
+label_mes,Mois
+label_ano,An
+label_cuadro,Panneau
+label_variable,Variable
+label_graf_frec,Graphiques frequents
+label_intervalo,Intervalle
+label_min,Min
+zona,Zone
+detalle,Details
+valor,Valeur
+unidad,Unite
+label_descr_dp,Description DP
+label_alias_dp,Alias ??DP
+label_dp,DP
+cb_address,Activer l'adresse
+cb_address_mdp,Selon MDP
+label_vaciar,Supprimer
+para_completo,PARA complet
+label_crear_en_funcion,Creer selon
+txf_rb_vaciado_para,Supprimer le PARA complet
+txf_rb_vaciado_dpt_mdp,Il supprime tous les types de points de donnees, y compris leurs points de donnees maitres
+txf_rb_vaciado_dpt,Il supprime tous les types de points de donnees, en conservant leurs points de donnees maitres
+txf_rb_vaciado_dpt_csv,Il supprime les types de points de donnees avec les DP en CSV, en conservant leurs points de donnees maitres
+label_buscar,CHERCHER
+cb_var_interna,VARIABLE INTERNE
+cb_selec_multiple,Choix multiple
+label_periferia,Peripherie
+label_referencia,Reference
+label_driver,Conducteurs
+label_conexion,Connexion
+label_transformacion,Type de transformation
+label_direccion,Direction
+cb_activo,actif
+label_origen_address,Origine de l'adresse
+clase,Classe
+dp_alarma,Alarme DP
+label_alarma_came,Venu
+label_alarma_went,Est alle
+label_clase_alarma,Classe d'alarme
+label_config,Configuration
+label_config_1,Configuration
+label_config_2,Configuration
+label_config_3,Configuration
+label_config_4,Configuration
+label_escala,Echelle
+label_escala_1,Echelle
+label_escala_2,Echelle
+label_escala_3,Echelle
+label_escala_4,Echelle
+label_estable,Stable
+label_estable_1,Stable
+label_estable_2,Stable
+label_estable_3,Stable
+label_estable_4,Stable
+label_division,Division
+label_division_1,Division
+label_division_2,Division
+label_division_3,Division
+label_division_4,Division
+label_cero,Zero
+label_cero_1,Zero
+label_cero_2,Zero
+label_cero_3,Zero
+label_cero_4,Zero
+label_const_peso,Constantes de poids
+label_const_peso_1,Constantes de poids
+label_const_peso_2,Constantes de poids
+label_const_peso_3,Constantes de poids
+label_const_peso_4,Constantes de poids
+label_cero_5,Zero
+label_cero_6,Zero
+label_cero_7,Zero
+label_cero_8,Zero
+label_cero_9,Zero
+label_ganancia,Gain
+label_ganancia_1,Gain
+label_ganancia_2,Gain
+label_ganancia_3,Gain
+label_ganancia_4,Gain
+label_calibracion,Etalonner
+label_calibracion_1,Etalonner
+label_calibracion_2,Etalonner
+label_calibracion_3,Etalonner
+label_calibracion_4,Etalonner
+label_peso_ajuste,Poids de montage
+label_peso_ajuste_1,Poids de montage
+label_peso_ajuste_2,Poids de montage
+label_peso_ajuste_3,Poids de montage
+label_peso_ajuste_4,Poids de montage
+label_punto_ajuste,Points de montage
+label_punto_ajuste_1,Points de montage
+label_punto_ajuste_2,Points de montage
+label_punto_ajuste_3,Points de montage
+label_punto_ajuste_4,Points de montage
+label_vel,% La vitesse
+codigo,Code
+nombre,Nom
+ult_mod,Derniere modification
+label_buscar_nom,Recherche par nom
+label_mod_accion,MODE DE FONCTIONNEMENT
+label_secuencia,SEQUENCE
+label_supervision,SURVEILLANCE
+txf_cm_f1,CONFIRMATION DU DEMARRAGE A L'AVANCE
+txf_cm_f2,CONFIRMATION DE DEPART A REBOURS
+txf_cp_f1,CONFIRMATION D'ARRET EN AVANT
+txf_cp_f2,CONFIRMATION DE L'ARRET EN ARRIERE
+label_orden,

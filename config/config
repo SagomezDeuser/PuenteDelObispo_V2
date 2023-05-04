@@ -1,0 +1,104 @@
+[general]
+pvss_path = "C:/Siemens/Automation/WinCC_OA/3.18"
+proj_path = "C:/WinCC_OA_Proj_3_18/PuenteDelObispo_V2"
+proj_version = "3.18"
+langs = "en_US.utf8"
+langs = "es_ES.utf8"
+lang = "es_ES.utf8"	#Idioma por defecto
+useNGA = 1	#Usa base de datos de nueva generación (InfluxDB).
+#useCMContainerSerialNumber = "3-5535504"
+pmonPort = 5000
+
+[webClient]
+httpPort = 8080
+httpsPort = 8089
+httpAuth = 0
+rootPanel = login.pnl
+
+[httpServer]
+uiArguments = -p login.pnl
+
+[ui]
+CtrlDLL = "CtrlADO"
+versionControl = "git"
+defaultPanelFormat = “XML”
+numPanelBakFiles = 0
+
+
+
+LoadCtrlLibs = "uss_userSettings"	#Librería interna winccoa para control de usuarios.
+LoadCtrlLibs = "std"	#Librería interna winccoa para gestión de email.
+
+
+
+#Librerías de control de DEUSER.
+LoadCtrlLibs = "deuser/base_datos/funciones_bd"
+LoadCtrlLibs = "deuser/clases/funciones_clases"
+LoadCtrlLibs = "deuser/componentes_graficos/funciones_componentes"
+LoadCtrlLibs = "deuser/configuracion/funciones_config"
+LoadCtrlLibs = "deuser/email/funciones_email"
+LoadCtrlLibs = "deuser/estilos/funciones_estilo"
+LoadCtrlLibs = "deuser/faceplates/funciones_faceplate"
+LoadCtrlLibs = "deuser/idiomas/funciones_idiomas"
+LoadCtrlLibs = "deuser/usuarios/funciones_usuarios"
+
+
+
+#Librerías de clases de DEUSER.
+LoadCtrlLibs = "clases/010_lib_pid"
+LoadCtrlLibs = "clases/090_lib_energy_meter"
+LoadCtrlLibs = "clases/504_lib_tratamiento_analogica"
+LoadCtrlLibs = "clases/505_lib_filtro_digital"
+LoadCtrlLibs = "clases/531_lib_accionamiento_motor_d"
+LoadCtrlLibs = "clases/531_lib_accionamiento_motor_d_variador"
+LoadCtrlLibs = "clases/531_lib_accionamiento_motor_s"
+LoadCtrlLibs = "clases/531_lib_accionamiento_motor_s_variador"
+LoadCtrlLibs = "clases/531_lib_accionamiento_valvula"
+LoadCtrlLibs = "clases/531_lib_accionamiento_valvula_doble"
+LoadCtrlLibs = "clases/531_lib_accionamiento_valvula_motor"
+LoadCtrlLibs = "clases/550_lib_comunicacion_vf"
+LoadCtrlLibs = "clases/800_lib_servo"
+LoadCtrlLibs = "clases/998_lib_siwarex_200"
+LoadCtrlLibs = "clases/999_lib_siwarex_500"
+
+
+
+[ui_extend]
+CtrlDLL = "CtrlADO"
+
+
+
+LoadCtrlLibs = "uss_userSettings"	#Librería interna winccoa para control de usuarios.
+LoadCtrlLibs = "std"	#Librería interna winccoa para gestión de email.
+
+
+
+#Librerías de control de DEUSER.
+LoadCtrlLibs = "deuser/base_datos/funciones_bd"
+LoadCtrlLibs = "deuser/clases/funciones_clases"
+LoadCtrlLibs = "deuser/componentes_graficos/funciones_componentes"
+LoadCtrlLibs = "deuser/configuracion/funciones_config"
+LoadCtrlLibs = "deuser/email/funciones_email"
+LoadCtrlLibs = "deuser/estilos/funciones_estilo"
+LoadCtrlLibs = "deuser/faceplates/funciones_faceplate"
+LoadCtrlLibs = "deuser/idiomas/funciones_idiomas"
+LoadCtrlLibs = "deuser/usuarios/funciones_usuarios"
+
+
+
+#Librerías de clases de DEUSER.
+LoadCtrlLibs = "clases/010_lib_pid"
+LoadCtrlLibs = "clases/090_lib_energy_meter"
+LoadCtrlLibs = "clases/504_lib_tratamiento_analogica"
+LoadCtrlLibs = "clases/505_lib_filtro_digital"
+LoadCtrlLibs = "clases/531_lib_accionamiento_motor_d"
+LoadCtrlLibs = "clases/531_lib_accionamiento_motor_d_variador"
+LoadCtrlLibs = "clases/531_lib_accionamiento_motor_s"
+LoadCtrlLibs = "clases/531_lib_accionamiento_motor_s_variador"
+LoadCtrlLibs = "clases/531_lib_accionamiento_valvula"
+LoadCtrlLibs = "clases/531_lib_accionamiento_valvula_doble"
+LoadCtrlLibs = "clases/531_lib_accionamiento_valvula_motor"
+LoadCtrlLibs = "clases/550_lib_comunicacion_vf"
+LoadCtrlLibs = "clases/800_lib_servo"
+LoadCtrlLibs = "clases/998_lib_siwarex_200"
+LoadCtrlLibs = "clases/999_lib_siwarex_500"

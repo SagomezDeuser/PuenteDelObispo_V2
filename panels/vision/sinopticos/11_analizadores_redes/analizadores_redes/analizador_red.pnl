@@ -1,0 +1,257 @@
+V 14
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10005 0 
+LANG:10018 0 
+LANG:10008 0 
+LANG:10011 0 
+PANEL,-1 -1 1920 920 N "white" 1
+"$INST"
+"main()
+{
+  dpConnect(\"grafica_0\", \"ConfiguracionSCADA.configuracion_graficas.indiceGraficaAnalizadorRed\");
+}
+void grafica_0(string dp1, int valor)
+{
+  if (valor == 0)
+  {
+    string rango_min_str, rango_max_str;
+    string modulo = myModuleName(), url, servidor;
+    dpGet(\"ConfiguracionSCADA.ip_servidor\", servidor);
+  url = \"http://\" + servidor + \":3000/d/winccoa-0dp/winccoa-0dp?orgId=1&kiosk&from=\" + rango_min_str + \"&to=\" + rango_max_str + \"&viewPanel=2&refresh=3s\";
+
+    if (isPanelOpen(\"graficas_analizador_\" + modulo)) PanelOffPanel(\"graficas_analizador_\" + modulo);
+
+//     dyn_anytype da = makeDynAnytype(myModuleName(), \"objects/graficas/grafica_grafana/mssql_tabs/grafica_analizador.pnl\",
+//                                     myPanelName(), \"graficas_analizador_\" + modulo, 732, 136, 1.0, true,
+//                                     makeDynString(\"$URL:\" + url), false, makeMapping(\"makeVisible\", FALSE));
+//     childPanel(da);
+    graficas.url(url);
+  }
+}
+" 0
+ E E E E 1 -1 -1 0  0 0
+""0  1
+E E 5
+"CBRef" "1"
+"EClose" E
+"windowIcon" "Iconos/Ventana/gestion_icon.svg"
+"dpi" "96"
+"pdpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10001 0 
+LANG:10010 0 
+1 790 0 "" 194
+0
+1 803 1 "" 16
+0
+1 816 2 "" 194
+0
+1 829 3 "" 193
+0
+1 836 4 "" 194
+0
+1 849 5 "" 194
+0
+1 862 7 "" 194
+0
+1 875 8 "" 194
+0
+6 591
+"RECTANGLE4"
+""
+1 853 70 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_BLANCO" E E
+ E E
+820 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 3 3 2 1 E 1.143410852713177 0 1.081594863835034 -245.3294573643405 -5.711640468452362 1 E 853 70 1885 781
+20 690
+""
+"PEQUENIO_AZUL"
+1 215.971074380165 859.0000000000001 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+821 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+2
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10010 34 Tahoma,-1,15,5,50,0,0,0,0,0,Normal
+LANG:10011 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10009 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10008 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10018 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  213.971074380165 857.0000000000001 702 912
+1
+T 
+6
+LANG:10001 3 ???
+LANG:10010 34 Registrar valores en base de datos
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0 
+2
+LANG:10001 0 
+LANG:10010 0 
+E E
+0 0 0 0 0
+0
+"main()
+{
+  bool bbdd;
+  dpGet($INST + \".Static.archivado_bbdd\", bbdd);
+  if(bbdd){
+    this.state(0) = 1;
+  }else{
+    this.state(0) = 0;
+  }
+}
+" 0
+"main(int button, int state)
+{
+  dpSetWait($INST + \".Static.archivado_bbdd\", this.state(0));
+}
+" 0
+29 789
+"ptxf_titulo_cuadro"
+"GRANDE_AZUL"
+1 867.4999999999994 3.499999999999954 E E E 1 E 1 E N "_3DText" E N "_Transparent" E E
+ E E
+822 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"text" "string Analizador de Red"
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 27 Tahoma,-1,16,5,50,0,0,0,0,0
+0  867.4999999999994 3.499999999999954 1052.5 43.49999999999996
+5 Label
+0
+"main()
+{
+
+  string descripcion;
+
+  descripcion = getCatStr(\"dps\", $INST);
+
+  this.text = descripcion;
+
+}" 0
+0
+LAYER, 1 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 2 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 3 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 4 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 5 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 6 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 7 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+3 0 "PANEL_REF1" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"vision/sinopticos/11_analizadores_redes/analizadores_redes/ar_voltajeN.pnl" 10 120 T 810 1 0 1 0 -50
+1
+"$INST""$INST"
+3 1 "PANEL_REF2" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"vision/sinopticos/11_analizadores_redes/analizadores_redes/ar_voltajeL.pnl" 380 110 T 811 1 0 1 -14 -52.4885202957705
+1
+"$INST""$INST"
+3 2 "PANEL_REF3" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"vision/sinopticos/11_analizadores_redes/analizadores_redes/ar_intensidad.pnl" 10 340 T 812 1 0 1 -5.898059818321144e-16 -70
+1
+"$INST""$INST"
+3 3 "PANEL_REF4" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"vision/sinopticos/11_analizadores_redes/analizadores_redes/ar_otros.pnl" 400 340 T 813 1 0 1 -25.66767854982788 -69.83025770040274
+1
+"$INST""$INST"
+3 4 "PANEL_REF5" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"vision/sinopticos/11_analizadores_redes/analizadores_redes/ar_pot_act.pnl" 10 540 T 814 1 0 1 -0.03152544994778476 -70.16434196888179
+1
+"$INST""$INST"
+3 5 "PANEL_REF6" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"vision/sinopticos/11_analizadores_redes/analizadores_redes/ar_pot_react.pnl" 400 540 T 815 1 0 1 -25.66767854982781 -70.12223300673782
+1
+"$INST""$INST"
+3 7 "PANEL_REF8" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"vision/sinopticos/11_analizadores_redes/analizadores_redes/ar_factor.pnl" 410 740 T 817 1 0 1 -400.0315254499476 -70.49302590664524
+1
+"$INST""$INST"
+3 8 "PANEL_REF9" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"vision/sinopticos/11_analizadores_redes/analizadores_redes/ar_energia.pnl" 560 790 T 818 1 0 1 -185.0640627830565 -120.986051813291
+1
+"$INST""$INST"
+0

@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   version="1.1"
+   id="svg2"
+   width="803"
+   height="283"
+   viewBox="0 0 803 283"
+   sodipodi:docname="TUBERIA_VERDE_HORIZONTAL.svg"
+   inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)">
+  <metadata
+     id="metadata8">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs6" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     id="namedview4"
+     showgrid="false"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     inkscape:zoom="0.45579078"
+     inkscape:cx="245.72678"
+     inkscape:cy="582.4918"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg2" />
+  <g
+     id="g4771">
+    <path
+       style="fill:#00bc00"
+       d="M 0,141.5 V 0 H 401.5 803 V 141.5 283 H 401.5 0 Z"
+       id="path4801"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:#00b900"
+       d="M 0,158.5 V 34 H 401.5 803 V 158.5 283 H 401.5 0 Z M 0,1.5 C 0,0.16915733 45.277778,0 401.5,0 757.72222,0 803,0.16915733 803,1.5 803,2.8308427 757.72222,3 401.5,3 45.277778,3 0,2.8308427 0,1.5 Z"
+       id="path4799"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:#00b300"
+       d="M 0,164 V 45 H 401.5 803 V 164 283 H 401.5 0 Z M 200.83149,0.25001071 c 110.73232,-0.14019189 291.63232,-0.14018918 402,6.03e-6 C 713.19917,0.39021195 622.6,0.50491441 401.5,0.50491109 180.4,0.50490778 90.09917,0.3902026 200.83149,0.25001071 Z"
+       id="path4797"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:#00ab00"
+       d="M 0,173 V 63 H 401.5 803 V 173 283 H 401.5 0 Z"
+       id="path4795"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:#00a300"
+       d="M 0,181 V 79 H 401.5 803 V 181 283 H 401.5 0 Z"
+       id="path4793"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:#009b00"
+       d="M 0,189 V 95 H 401.5 803 v 94 94 H 401.5 0 Z"
+       id="path4791"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:#009300"
+       d="M 0,195.5 V 108 H 401.5 803 V 195.5 283 H 401.5 0 Z"
+       id="path4789"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:#008b00"
+       d="M 0,204.5 V 126 H 401.5 803 V 204.5 283 H 401.5 0 Z"
+       id="path4787"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:#008300"
+       d="M 0,217.5 V 152 H 401.5 803 V 217.5 283 H 401.5 0 Z"
+       id="path4785"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:#007b00"
+       d="M 0,231 V 179 H 401.5 803 v 52 52 H 401.5 0 Z"
+       id="path4783"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:#007300"
+       d="M 0,242 V 201 H 401.5 803 v 41 41 H 401.5 0 Z"
+       id="path4781"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:#006b00"
+       d="M 0,251 V 219 H 401.5 803 v 32 32 H 401.5 0 Z"
+       id="path4779"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:#006300"
+       d="M 0,259 V 235 H 401.5 803 v 24 24 H 401.5 0 Z"
+       id="path4777"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:#005b00"
+       d="M 0,265.5 V 248 H 401.5 803 V 265.5 283 H 401.5 0 Z"
+       id="path4775"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:#005500"
+       d="M 0,270.5 V 258 H 401.5 803 V 270.5 283 H 401.5 0 Z"
+       id="path4773"
+       inkscape:connector-curvature="0" />
+  </g>
+</svg>

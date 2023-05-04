@@ -1,0 +1,27 @@
+dp_existe,El DP ya existe
+tit_inv_senal,Invertir Señal
+msg_preg_inv_senal,¿Está seguro de que desea invertir la señal seleccionada?
+borrrar_usuario,¿Desea borrar el usuario?\nEsta acción no se puede revertir.
+mdp_selec_no_existe,El MDP seleccionado no existe
+dp_no_valido,El nombre del DP no es válido
+fallo_consulta,Fallo en la consulta
+msg_error_login,El usuario o la contraseña no son correctos
+usuario_no_seleccionado,No se ha seleccionado un usuario
+grupo_no_seleccionado,No se ha seleccionado un grupo
+grupo_usado,No se puede borrar, el grupo está en uso.
+modificar_grupo,¿Desea modificar el grupo seleccionado?
+borrar_grupo,¿Desea borrar el grupo seleccionado?
+pass_igual_old,La contraseña no puede ser igual que la anterior.\nEscriba una contraseña válida.
+pass_diferente_confirmacion,La contraseña y la confirmación de la contraseña \n son diferentes.\nEscriba una contraseña válida.
+pass_no_valida,La contraseña debe tener 8 caracteres \nincluyendo una maýuscula,  un número \n y un caracter especial.
+pass_vacia,La contraseña no está rellena.\nEscriba una contraseña válida.
+usuario_vacio,El usuario no está relleno.\nEscriba un usuario válido.
+usuario_invalido,El usuario no es correcto.\nEscriba un usuario válido.
+usuario_existe,El usuario ya existe.\nEscriba un usuario válido.
+sin_grupo,No se ha asignado nigún grupo al usuario.\nAsigne un grupo al usuario.
+sin_nombre_visualizacion,El nombre de visualización no está relleno.\nEscriba un nombre de visualización.
+grupo_no_valido,Los datos del grupo no son válidos.\nEscriba los datos del grupo correctamente.
+incidencia_no_seleccionada,No se ha seleccionado una incidencia.
+exportar_tabla,La tabla se ha exportado correctamente.
+existe_csv,El archivo CSV ya existe.\n¿Desea sobrescribir el archivo CSV?\nEsta acción no podrá deshacerse.
+titulo_sobrescribir_csv,Sobrescribir el archivo CSV

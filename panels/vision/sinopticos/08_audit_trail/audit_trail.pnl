@@ -1,0 +1,1379 @@
+V 14
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+PANEL,-1 -1 1920 1080 N "white" 0
+"bool bConnect;
+int iMaxLines;
+string sPropertiesDP;
+string sHostFilter, sUsernameFilter, sItemFilter;
+
+main()
+{
+  int iType;
+  dyn_string ds;
+  dyn_float df;
+
+  sPropertiesDP = \"_AuditProp_\" + myUiNumber() + \"_\" + myModuleName();
+  iMaxLines = 100;  // default
+
+  dpGet(\"_AuditTrail.:_archive.._type\", iType);
+
+  if (iType == DPCONFIG_NONE)
+  {
+    if (getUserPermission(2))
+      ChildPanelOnCentralModalReturn(\"vision/audit_config.pnl\", getCatStr(\"sc\", \"audittrailconfigheader\"), makeDynString(), df, ds);
+    else
+      ChildPanelOnCentralModalReturn(\"vision/MessageWarning\", getCatStr(\"va\", \"headerPanelhost\"), makeDynString(getCatStr(\"general\", \"permission\"), getCatStr(\"general\", \"cancel\")), df, ds);
+
+    dpGet(\"_AuditTrail.:_archive.._type\", iType);
+  }
+
+  //if(iType == DPCONFIG_NONE)  PanelOff();          LINEA ORIGINAL PREPARADA POR SI LA PANTALLA ES EMERGENTE
+  if (iType == DPCONFIG_NONE) RootPanelOn(\"vision/sinopticos/inicio.pnl\", \"inicio\", \"\");
+
+  if (!dpExists(sPropertiesDP))     // create and sett default
+  {
+    dpCreate(sPropertiesDP, \"_ASProperties\");
+    dpSet(sPropertiesDP + \".Settings.Filter.State:_original.._value\", 0,
+          sPropertiesDP + \".Settings.Timerange.Type:_original.._value\", 0,
+          sPropertiesDP + \".Settings.Timerange.MaxLines:_original.._value\", 100,
+          sPropertiesDP + \".Settings.Timerange.Chrono:_original.._value\", true,
+          sPropertiesDP + \".Settings.Name:_original.._value\", \"\",
+          sPropertiesDP + \".Settings.User:_original.._value\", DEFAULT_USERID,
+          sPropertiesDP + \".Settings.Type.AlertSummary:_original.._value\", 0) ;
+  }
+
+  dpConnect(\"redrawScreen\", false,  sPropertiesDP + \".Settings.Timerange.Type:_online.._value\",
+            sPropertiesDP + \".Settings.Timerange.Begin:_online.._value\",
+            sPropertiesDP + \".Settings.Timerange.End:_online.._value\");
+
+  dpConnect(\"maxLinesCB\", sPropertiesDP + \".Settings.Timerange.MaxLines:_online.._value\",
+            sPropertiesDP + \".Settings.Filter.DpComment:_online.._value\");
+
+
+  ChildPanelOnCentralModalReturn(\"vision/audit_properties.pnl\", getCatStr(\"STD_Symbols\", \"properties\") + \"_\" + myPanelName(),
+                                 makeDynString(\"\"), df, ds);
+
+  if (dynlen(df) > 0 && df[1] == 1)
+  {
+    refreshScreen();
+    configNames.text = \"\";
+  }
+}
+
+maxLinesCB(string dp1, int max, string dp2, string sFilter)      // change of maxlines
+{
+  dyn_string ds = strsplit(sFilter, \"|\");;
+
+  if (max < 100)
+    max = 100;
+
+  iMaxLines = max;  // scriptglobal
+  ds[4] = \"\";  // dummy
+
+  if (dynlen(ds) > 0)  sUsernameFilter  = ds[1];  // scriptglobal
+
+  if (dynlen(ds) > 1)  sItemFilter = ds[2];       // scriptglobal
+
+  if (dynlen(ds) > 2)  sHostFilter = ds[3];       // scriptglobal
+
+  refreshScreen();
+}
+
+redrawScreen(string dp1, bool b, string dp2, time tStart, string dp3, time tEnd)
+{
+  int type;
+
+  if (b && tEnd > getCurrentTime())   // end in the future
+    type = 1;                         // open with connect
+  else if (!b && tEnd > getCurrentTime())   // end in the future
+    type = 1;     // getPeriod
+  else if (tEnd <= getCurrentTime())    // end in the past
+    type = 2;     // getPeriod
+
+  if (tEnd == tStart  && tStart == makeTime(1970, 1, 1))
+    return;
+
+  tabla_audit_trail.deleteAllLines();
+
+  // disconnect if necessary
+  if (bConnect)
+  {
+    dpDisconnect(\"auditCB\", \"_AuditTrail.time:_online.._value\",
+                 \"_AuditTrail.username:_online.._value\",
+                 \"_AuditTrail.host:_online.._value\",
+                 \"_AuditTrail.uinum:_online.._value\",
+                 \"_AuditTrail.batchid:_online.._value\",
+                 \"_AuditTrail.item:_online.._value\",
+                 \"_AuditTrail.itemtype:_online.._value\",
+                 \"_AuditTrail.action:_online.._value\",
+                 \"_AuditTrail.oldval:_online.._value\",
+                 \"_AuditTrail.newval:_online.._value\",
+                 \"_AuditTrail.reason:_online.._value\");
+
+    bConnect = FALSE;
+
+  }
+
+  // connect
+  if (type == 1 || type == 0)
+  {
+    dpConnect(\"auditCB\", FALSE, \"_AuditTrail.time:_online.._value\",
+              \"_AuditTrail.username:_online.._value\",
+              \"_AuditTrail.host:_online.._value\",
+              \"_AuditTrail.uinum:_online.._value\",
+              \"_AuditTrail.batchid:_online.._value\",
+              \"_AuditTrail.item:_online.._value\",
+              \"_AuditTrail.itemtype:_online.._value\",
+              \"_AuditTrail.action:_online.._value\",
+              \"_AuditTrail.oldval:_online.._value\",
+              \"_AuditTrail.newval:_online.._value\",
+              \"_AuditTrail.reason:_online.._value\");
+    bConnect = TRUE;
+  }
+
+  if (type == 2 || type == 1)
+  {
+    dyn_int dp1; 	dyn_time   t;
+    dyn_int dp2;	dyn_string username;
+    dyn_int dp3;	dyn_string host;
+    dyn_int dp4;	dyn_uint   uinum;
+    dyn_int dp5;	dyn_uint   batchid;
+    dyn_int dp6;	dyn_string item;
+    dyn_int dp7;	dyn_string itemtype;
+    dyn_int dp8;	dyn_string action;
+    dyn_int dp9;	dyn_anytype oldval;
+    dyn_int dp10;	dyn_anytype newval;
+    dyn_int dp11;	dyn_string reason;
+    dyn_time dt1, dt2, dt3, dt4, dt5, dt6, dt7, dt8, dt9, dt10, dt11;
+
+    int i;
+    dyn_string ds;
+    string sUsernameFilter, sItemFilter, sHostFilter;
+
+    dyn_bool dbool1, dbool2;
+
+    if (tStart == 0 || tEnd == 0 || (tEnd < tStart))
+      return;
+
+    dpGetPeriod(tStart, tEnd, 0, \"_AuditTrail.time:_offline.._value\", t, dt1, dp1,       // get elements
+                \"_AuditTrail.username:_offline.._value\", username,  dt2, dp2,
+                \"_AuditTrail.host:_offline.._value\",     host,      dt3, dp3,
+                \"_AuditTrail.uinum:_offline.._value\",    uinum,     dt4, dp4,
+                \"_AuditTrail.batchid:_offline.._value\",  batchid,   dt5, dp5,
+                \"_AuditTrail.item:_offline.._value\",     item,      dt6, dp6,
+                \"_AuditTrail.itemtype:_offline.._value\", itemtype,  dt7, dp7,
+                \"_AuditTrail.action:_offline.._value\",   action,    dt8, dp8,
+                \"_AuditTrail.oldval:_offline.._value\",   oldval,    dt9, dp9,
+                \"_AuditTrail.newval:_offline.._value\",   newval,    dt10, dp10,
+                \"_AuditTrail.reason:_offline.._value\",  reason,    dt11, dp11);
+
+    auditCBLines(t, username, host, uinum, batchid, item, itemtype, action, oldval, newval, reason); // write after filtercheck in table
+
+  }
+
+  refreshScreen();
+}
+
+auditCB(string dp1, time t,
+        string dp2,	string username,
+        string dp3,	string host,
+        string dp4,	unsigned  uinum,
+        string dp5,	unsigned batchid,
+        string dp6,	string item,
+        string dp7,	string itemtype,
+        string dp8,	string action,
+        string dp9,	anytype oldval,
+        string dp10, anytype newval,
+        string dp11, string reason)
+
+{
+  string sTime = formatTime(\"%c\", t);
+  string display = host;
+  int manid = uinum;
+  string device = item;
+  anytype oldvalue = oldval;
+  anytype newvalue = newval;
+  int lines = tabla_audit_trail.lineCount;
+  bool bool1 = TRUE, bool2 = TRUE, bool3 = TRUE;
+  string ds, var;
+
+  if (sUsernameFilter != \"\"  && sUsernameFilter != \"*\")
+    bool1 = patternMatch(sUsernameFilter,  username);
+
+  if (sItemFilter != \"\" && sItemFilter != \"*\")
+    bool2 = patternMatch(sItemFilter,  item);
+
+  if (sHostFilter != \"\" && sHostFilter != \"*\")
+    bool3 = patternMatch(sHostFilter,  host);
+
+  if (!(bool1 && bool2 && bool3))              // skip line -> no match
+    return;
+
+  //ds = dpGetComment(device);
+
+  ds = getCatStr(\"dps\", dpSubStr(device, DPSUB_DP));
+  var = dpSubStr(device, DPSUB_DP_EL);
+  var.replace(ds, \"\");
+
+  ds = ds + \" - \" + var;
+
+  tabla_audit_trail.appendLine(\"time\", sTime, \"username\", username, \"display\", display, \"manid\", manid, \"batchid\", batchid, \"device\", ds, \"action\", action, \"oldvalue\", oldvalue, \"newvalue\", newvalue, \"reason\", reason, \"dp\", device);
+
+  if (lines > iMaxLines)                        // delete first line(s)
+    tabla_audit_trail.deleteLinesN(1, lines - iMaxLines);
+}
+
+auditCBLines(dyn_time &t, dyn_string &username, dyn_string &host, dyn_uint &uinum, dyn_uint &batchid, dyn_string &item, dyn_string &itemtype, dyn_string &action, dyn_anytype &oldval, dyn_anytype &newval, dyn_string &reason)
+{
+  int i;
+  int lines = tabla_audit_trail.lineCount;
+  dyn_bool dbool1, dbool2;
+  dyn_string dsTime;
+  dyn_string ds, var;
+  string vari, el;
+
+  if (sUsernameFilter != \"\" && sUsernameFilter != \"*\")  dbool1 = patternMatch(sUsernameFilter,  username);
+
+  if (dynlen(dbool1) > 0)
+    for (i = dynlen(t); i > 0; i--)
+    {
+      if (dbool1[i] == FALSE)  // -> remove  not matching with username or host
+      {
+        dynRemove(t, i);
+        dynRemove(username, i);
+        dynRemove(host, i);
+        dynRemove(uinum, i);
+        dynRemove(batchid, i);
+        dynRemove(item, i);
+        dynRemove(itemtype, i);
+        dynRemove(action, i);
+        dynRemove(oldval, i);
+        dynRemove(newval, i);
+        dynRemove(reason, i);
+      }
+    }
+
+  dynClear(dbool1);
+
+  if (sHostFilter != \"\" && sHostFilter != \"*\")  dbool1 = patternMatch(sHostFilter,  host);
+
+  if (dynlen(dbool1) > 0)
+    for (i = dynlen(t); i > 0; i--)
+    {
+      if (dbool1[i] == FALSE)  // -> remove  not matching with username or host
+      {
+        dynRemove(t, i);
+        dynRemove(username, i);
+        dynRemove(host, i);
+        dynRemove(uinum, i);
+        dynRemove(batchid, i);
+        dynRemove(item, i);
+        dynRemove(itemtype, i);
+        dynRemove(action, i);
+        dynRemove(oldval, i);
+        dynRemove(newval, i);
+        dynRemove(reason, i);
+      }
+    }
+
+
+  for (i = 1; i <= dynlen(item); i++){     // find matching comments
+    //ds[i] = dpGetComment(item[i]);
+    el = item[i];
+
+  ds[i] = getCatStr(\"dps\", dpSubStr(item[i], DPSUB_DP));
+  vari = dpSubStr(el, DPSUB_DP_EL);
+  vari.replace(dpSubStr(el, DPSUB_DP), \"\");
+  var[i] = getCatStr(\"var\", vari);
+  ds[i] = ds[i] + \" - \" + var[i];
+}
+
+  if (sItemFilter != \"\" && sItemFilter != \"*\")  dbool2 = patternMatch(sItemFilter, item);
+
+  if (sItemFilter != \"\" && sItemFilter != \"*\")  dbool1 = patternMatch(sItemFilter, ds);
+
+  if (dynlen(dbool2) > 0)
+    for (i = dynlen(t); i > 0; i--)
+    {
+      if (dbool2[i] == FALSE && dbool1[i] == FALSE)  // -> remove  if not maching with comment and dp !!
+      {
+        dynRemove(t, i);
+        dynRemove(username, i);
+        dynRemove(host, i);
+        dynRemove(uinum, i);
+        dynRemove(batchid, i);
+        dynRemove(item, i);
+        dynRemove(itemtype, i);
+        dynRemove(action, i);
+        dynRemove(oldval, i);
+        dynRemove(newval, i);
+        dynRemove(reason, i);
+        dynRemove(ds, i);
+      }
+    }
+
+  for (i = dynlen(t); i > 0; i--)
+  {
+    dsTime[i] = formatTime(\"%c\", t[i]);
+  }
+
+  tabla_audit_trail.appendLines(dynlen(t), \"time\", dsTime, \"username\", username, \"display\", host, \"manid\", uinum, \"batchid\", batchid, \"device\", ds, \"action\", action, \"oldvalue\", oldval, \"newvalue\", newval, \"reason\", reason, \"dp\", item);
+
+//  if (lines > iMaxLines)                        // delete first line(s)
+//    tabla_audit_trail.deleteLinesN(1, lines-iMaxLines);
+
+}
+" 0
+ E E E E 1 -1 -1 0  0 0
+""0  1
+E "refreshScreen()
+{
+  time tStart, tEnd;
+  string sStart, sEnd;
+  string sPropertiesDP;
+  unsigned uTimerangeType, uFilterState;
+  string sFilter;
+  dyn_string ds, dsConfigs;
+  string user;
+
+  sPropertiesDP = \"_AuditProp_\" + myUiNumber() + \"_\" + myModuleName();
+
+
+
+
+  if (dpExists(sPropertiesDP))     // create and sett default
+  {
+    dpGet(sPropertiesDP + \".Settings.Filter.State:_online.._value\", uFilterState,
+          sPropertiesDP + \".Settings.Timerange.Type:_online.._value\", uTimerangeType,
+          sPropertiesDP + \".Settings.Timerange.Begin:_online.._value\", tStart,
+          sPropertiesDP + \".Settings.Timerange.End:_online.._value\", tEnd,
+          sPropertiesDP + \".Settings.Filter.DpComment:_online.._value\", sFilter) ;
+
+  }
+
+
+  sStart = formatTime(\"%c\", tStart);
+  sEnd = formatTime(\"%c\", tEnd);
+
+  if (tEnd == 0)
+    txtTime.text = getCatStr(\"sc\", \"current\");
+  else
+    txtTime.text = sStart + \" -> \" + sEnd;
+
+  ds = strsplit(sFilter, \"|\");
+  ds[4] = \"\";
+  sFilter = \"\";
+
+  if (ds[1] != \"\" && ds[1] != \"*\")
+    sFilter = getCatStr(\"sc\", \"userFilter\") + \"=\\\"\" + ds[1] + \"\\\"\";
+
+  if (ds[2] != \"\" && ds[2] != \"*\")
+  {
+    if (sFilter != \"\")
+      sFilter += \", \";
+
+    sFilter += getCatStr(\"sc\", \"deviceFilter\") + \"=\\\"\" + ds[2] + \"\\\"\";
+  }
+
+  if (ds[3] != \"\" && ds[3] != \"*\")
+  {
+    if (sFilter != \"\")
+      sFilter += \", \";
+
+    sFilter += getCatStr(\"sc\", \"hostFilter\") + \"=\\\"\" + ds[3] + \"\\\"\";
+  }
+
+  txtFilter.text = sFilter;
+  txtOptions.text	= \"\";
+
+  getConfigList(dsConfigs);
+
+  configNames.items = dsConfigs;
+}
+
+getConfigList(dyn_string &configNames, string dpt = \"_ASConfig\", string dpFilter = \"_AuditProp\")
+{
+  dyn_dyn_anytype configs;
+  int i;
+  string selectString = \"SELECT '_online.._value' FROM '\" + dpFilter + \"**.Name' WHERE _DPT = \\\"\" + dpt + \"\\\"\";
+
+  dpQuery(\"SELECT '_online.._value' FROM '\" + dpFilter + \"**.Name' WHERE _DPT = \\\"\" + dpt + \"\\\" AND '_online.._value' == \\\"\\\"\", configs);
+
+  for (i = 2; i <= dynlen(configs); i++)
+  {
+    dpDelete(dpSubStr(configs[i][1], DPSUB_SYS_DP));
+  }
+
+
+  dpQuery(selectString, configs);
+
+
+  if (dynlen(getLastError()))
+  {
+    dyn_errClass err = getLastError();
+    errorDialog(err);
+    return;
+  }
+
+  for (i = 2; i <= dynlen(configs); i++)
+    dynAppend(configNames, configs[i][2]);
+}
+" 0
+ 4
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+"pdpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10001 0 
+LANG:10010 0 
+30 5
+"Frame1"
+""
+1 20 605 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+4 0 0 0 0 0
+E E E
+0
+8
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 2 1 0 1 E 1.912372022368814 0 1.369863013698633 -20.44951787891549 77.86338823397057 0 E 20 531 1010 605
+8
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10011 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10009 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10008 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10018 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10000 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 arial,-1,13,5,50,0,0,0,0,0
+0 8
+LANG:10001 10 Properties
+LANG:10010 11 Propiedades
+LANG:10011 13 Eigenschaften
+LANG:10009 10 Properties
+LANG:10008 10 Properties
+LANG:10018 10 Properties
+LANG:10000 13 Eigenschaften
+LANG:10027 16 Свойства
+22 6
+"configNames"
+"PEQUENIO_AZUL"
+1 124.7979225684608 778.3237202595528 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Window" E E
+ E E
+5 0 0 0 0 0
+E E E
+0
+8
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10000 0 
+LANG:10027 0 
+
+1
+"layoutAlignment" "AlignCenter"
+8
+LANG:10001 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10010 34 Tahoma,-1,13,5,50,0,0,0,0,0,Normal
+LANG:10011 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10009 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10008 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10018 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10000 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 arial,-1,13,5,50,0,0,0,0,0
+0  170.7979225684608 859.1658255227107 353.7979225684608 897.1658255227107
+0
+
+"main()
+{
+  dyn_string configNames;
+
+  getConfigList(configNames);
+
+  this.items = configNames;
+
+}
+
+
+
+" 0
+
+"main()
+{
+  string dpConfig, configName, header;
+
+  configName = this.text;
+
+  if (configName == \"\") return;
+
+  getConfigDP(dpConfig, configName);
+
+  if (dpConfig == \"\")
+  {
+    ChildPanelOnCentralModal(\"vision/MessageWarning\", \"\",
+                             makeDynString(\"$1:\" + getCatStr(\"sc\", \"unknownConfig\")));
+    return;
+  }
+
+  getProperties(dpConfig);
+
+}
+
+
+getConfigDP(string &dp, string configName, string dpt = \"_ASConfig\", string dpFilter = \"_AuditProp\")
+{
+  dyn_dyn_anytype tab;
+  string selectString = \"SELECT '_online.._value' FROM '\" + dpFilter + \"**.Name' WHERE _DPT = \\\"\" + dpt + \"\\\" AND '_online.._value' == \\\"\" + configName + \"\\\"\";
+  dp = \"\";
+
+  // get DP of selected configuration
+  dpQuery(selectString, tab);
+
+  if (dynlen(getLastError()))
+  {
+    dyn_errClass err = getLastError();
+    errorDialog(err);
+    return;
+  }
+
+  if (dynlen(tab) < 2) return;
+
+  dp = dpSubStr(tab[2][1], DPSUB_DP) ;
+}
+
+
+getProperties(string sPropertiesDP = \"\")
+{
+  time tStart, tEnd;
+  string sStart, sEnd;
+  unsigned uTimerangeType, uFilterState;
+  langString lsHeader;
+  string sUsernameFilter, sItemFilter, sHostFilter;
+  string sFilter;
+  dyn_string ds;
+  bool bIsOpen;
+  string sOffset;
+
+  if (sPropertiesDP == \"\")
+    sPropertiesDP = \"_AuditProp_\" + myUiNumber() + \"_\" + myModuleName();
+
+  if (dpExists(sPropertiesDP))     // create and sett default
+  {
+    if (dpTypeName(sPropertiesDP) == \"_ASProperties\")
+      sOffset = \".Settings\";
+
+
+    dpGet(sPropertiesDP + sOffset + \".Filter.State:_online.._value\", uFilterState,
+          sPropertiesDP + sOffset + \".Timerange.Type:_online.._value\", uTimerangeType,
+          sPropertiesDP + sOffset + \".Timerange.Begin:_online.._value\", tStart,
+          sPropertiesDP + sOffset + \".Timerange.End:_online.._value\", tEnd,
+          sPropertiesDP + sOffset + \".Header:_online.._value\", lsHeader,
+          sPropertiesDP + sOffset + \".Filter.DpComment:_online.._value\", sFilter
+         ) ;
+
+    sPropertiesDP = \"_AuditProp_\" + myUiNumber() + \"_\" + myModuleName();
+    sOffset = \".Settings\";
+
+    dpSet(sPropertiesDP + sOffset + \".Filter.State:_original.._value\", uFilterState,
+          sPropertiesDP + sOffset + \".Timerange.Type:_original.._value\", uTimerangeType,
+          sPropertiesDP + sOffset + \".Timerange.Begin:_original.._value\", tStart,
+          sPropertiesDP + sOffset + \".Timerange.End:_original.._value\", tEnd,
+          sPropertiesDP + sOffset + \".Header:_original.._value\", lsHeader,
+          sPropertiesDP + sOffset + \".Filter.DpComment:_original.._value\", sFilter
+         ) ;
+
+
+
+  }
+
+
+}
+
+" 0
+
+E
+ 0 0
+14 7
+"txtTime"
+"PEQUENIO_AZUL"
+1 531.4627053511683 824.4387306997252 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_BLANCO" E E
+ E E
+6 0 0 0 0 0
+E E E
+0
+8
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10000 0 
+LANG:10027 0 
+
+1
+"layoutAlignment" "AlignCenter"
+8
+LANG:10001 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10010 34 Tahoma,-1,13,5,50,0,0,0,0,0,Normal
+LANG:10011 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10009 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10008 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10018 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10000 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 arial,-1,13,5,50,0,0,0,0,0
+0  538.133852691218 823.8085937134239 1196.805476864967 855.561662562383
+2 "0s" 0 0 0 0 0 -1  E E E
+25 8
+"tabla_audit_trail"
+"MEDIANO_AZUL"
+1 0 -2.315964456265487 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_DEUSER_BLANCO" E E
+ E E
+7 0 0 0 0 0
+E E E
+0
+8
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10000 0 
+LANG:10027 0 
+
+1
+"layoutAlignment" "AlignCenter"
+6
+LANG:10001 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+0  8 7.000000000000002 1911 801.9859154929577
+"main()
+{
+  formatear_estilo_tabla(\"tabla_audit_trail\", \"AlignVCenter | AlignHCenter\", \"LIB_IRC_BLANCO\", \"{240,250,255}\");  //Damos formato a la tabla con el listado de variables
+}" 0
+"main(int row, string column, string value)
+{
+  if (value != \"\" && value != \"0\")
+    switch (column)
+    {
+      case \"device\":
+      case \"batchid\":
+      case \"action\":
+      case \"reason\":
+        ChildPanelOnCentralModal(\"vision/MessageInfoList\", getCatStr(\"scheduler\", \"details\") + \"_\" + myPanelName(),
+                                 makeDynString(getCatStr(\"scheduler\", \"details\"), value, getCatStr(\"general\", \"OK\")));
+
+
+
+        break;
+
+      default: break;
+    }
+
+  txtOptions.text	= this.cellValueRC(row, \"dp\");
+
+}
+" 0
+ 1 0 1 11 1 "time" 12 1 0 "[0s,,,AlignHCenter|AlignVCenter]" 8
+LANG:10001 4 Time
+LANG:10010 5 Fecha
+LANG:10011 4 Zeit
+LANG:10009 4 Time
+LANG:10008 4 Time
+LANG:10018 4 Time
+LANG:10000 4 Zeit
+LANG:10027 10 Время
+E
+8
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10000 0 
+LANG:10027 0 
+
+150 "username" 6 1 0 "[0s,,,AlignHCenter|AlignVCenter]" 8
+LANG:10001 4 User
+LANG:10010 7 Usuario
+LANG:10011 8 Benutzer
+LANG:10009 4 User
+LANG:10008 4 User
+LANG:10018 4 User
+LANG:10000 8 Benutzer
+LANG:10027 24 Пользователь
+E
+8
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10000 0 
+LANG:10027 0 
+
+120 "display" 8 1 0 "[0s,,,AlignHCenter|AlignVCenter]" 8
+LANG:10001 4 Host
+LANG:10010 2 PC
+LANG:10011 7 Rechner
+LANG:10009 4 Host
+LANG:10008 4 Host
+LANG:10018 4 Host
+LANG:10000 7 Rechner
+LANG:10027 8 Хост
+E
+8
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10000 0 
+LANG:10027 0 
+
+100 "manid" 2 1 0 "[0s,,,AlignHCenter|AlignVCenter]" 8
+LANG:10001 2 Id
+LANG:10010 2 Id
+LANG:10011 2 ID
+LANG:10009 2 Id
+LANG:10008 2 Id
+LANG:10018 2 Id
+LANG:10000 2 ID
+LANG:10027 11 Идент.
+E
+8
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10000 0 
+LANG:10027 0 
+
+60 "batchid" 6 0 0 "[0s,,,AlignHCenter|AlignVCenter]" 8
+LANG:10001 12 Batch id ...
+LANG:10010 7 ID Lote
+LANG:10011 10 ChrgNr ...
+LANG:10009 12 Batch id ...
+LANG:10008 12 Batch id ...
+LANG:10018 12 Batch id ...
+LANG:10000 10 ChrgNr ...
+LANG:10027 17 ИД пакета
+E
+8
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10000 0 
+LANG:10027 0 
+
+110 "device" 14 1 0 "s" 8
+LANG:10001 15 Used device ...
+LANG:10010 11 Dispositivo
+LANG:10011 23 Betroffenen Geräte ...
+LANG:10009 15 Used device ...
+LANG:10008 15 Used device ...
+LANG:10018 15 Used device ...
+LANG:10000 23 Betroffenen Geräte ...
+LANG:10027 53 Пользовательское устройство
+E
+8
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10000 0 
+LANG:10027 0 
+
+533 "action" 6 0 0 "s" 8
+LANG:10001 10 Action ...
+LANG:10010 7 Acción
+LANG:10011 10 Aktion ...
+LANG:10009 10 Action ...
+LANG:10008 10 Action ...
+LANG:10018 10 Action ...
+LANG:10000 10 Aktion ...
+LANG:10027 24 Выполнение ...
+E
+8
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10000 0 
+LANG:10027 0 
+
+245 "oldvalue" 8 1 0 "[0s,,,AlignHCenter|AlignVCenter]" 8
+LANG:10001 9 Old value
+LANG:10010 13 Valor antiguo
+LANG:10011 10 Alter Wert
+LANG:10009 9 Old value
+LANG:10008 9 Old value
+LANG:10018 9 Old value
+LANG:10000 10 Alter Wert
+LANG:10027 29 Старое значение
+E
+8
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10000 0 
+LANG:10027 0 
+
+210 "newvalue" 8 1 0 "[0s,,,AlignHCenter|AlignVCenter]" 8
+LANG:10001 9 New value
+LANG:10010 11 Valor nuevo
+LANG:10011 10 Neuer Wert
+LANG:10009 9 New value
+LANG:10008 9 New value
+LANG:10018 9 New value
+LANG:10000 10 Neuer Wert
+LANG:10027 27 Новое значение
+E
+8
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10000 0 
+LANG:10027 0 
+
+210 "reason" 9 1 0 "s" 8
+LANG:10001 10 Reason ...
+LANG:10010 6 Motivo
+LANG:10011 9 Grund ...
+LANG:10009 10 Reason ...
+LANG:10008 10 Reason ...
+LANG:10018 10 Reason ...
+LANG:10000 9 Grund ...
+LANG:10027 18 Причина ...
+E
+8
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10000 0 
+LANG:10027 0 
+
+500 "dp" 9 0 0 "s" 8
+LANG:10001 9 Grund ...
+LANG:10010 9 Grund ...
+LANG:10011 13 DP unsichtbar
+LANG:10009 9 Grund ...
+LANG:10008 9 Grund ...
+LANG:10018 9 Grund ...
+LANG:10000 13 DP unsichtbar
+LANG:10027 17 Скрытый DP
+E
+8
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10000 0 
+LANG:10027 0 
+
+0 
+24 24 "" 1 8
+LANG:10001 1 1
+LANG:10010 1 1
+LANG:10011 1 1
+LANG:10009 1 1
+LANG:10008 1 1
+LANG:10018 1 1
+LANG:10000 1 1
+LANG:10027 1 1
+8 30
+6
+LANG:10001 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+0 0 2 0 1 7
+1 0
+14 9
+"txtFilter"
+"PEQUENIO_AZUL"
+1 449.9450310255638 862.7948950832872 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_BLANCO" E E
+ E E
+8 0 0 0 0 0
+E E E
+0
+8
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10000 0 
+LANG:10027 0 
+
+1
+"layoutAlignment" "AlignCenter"
+8
+LANG:10001 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10010 34 Tahoma,-1,13,5,50,0,0,0,0,0,Normal
+LANG:10011 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10009 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10008 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10018 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10000 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 arial,-1,13,5,50,0,0,0,0,0
+0  469.2181303116142 862.1647580969857 1892.133852691218 894.1668929484356
+2 "0s" 0 0 0 0 0 -1  E E E
+14 10
+"txtOptions"
+"PEQUENIO_AZUL"
+1 1248.366417910448 824.4387306997253 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_BLANCO" E E
+ E E
+9 0 0 0 0 0
+E E E
+0
+8
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10000 0 
+LANG:10027 0 
+
+1
+"layoutAlignment" "AlignCenter"
+8
+LANG:10001 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10010 34 Tahoma,-1,13,5,50,0,0,0,0,0,Normal
+LANG:10011 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10009 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10008 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10018 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10000 26 arial,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 arial,-1,13,5,50,0,0,0,0,0
+0  1248.276440037772 823.8085937134238 1892.133852691218 855.5616625623832
+2 "0s" 0 0 0 0 0 -1  E E E
+13 12
+"btn_imprimir"
+"btn_formulario_1"
+1 1550.023449492842 964.9239138140671 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+11 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 8 Imprimir
+LANG:10010 8 Imprimir
+LANG:10011 8 Imprimir
+LANG:10009 8 Imprimir
+LANG:10008 8 Imprimir
+LANG:10018 8 Imprimir
+
+5
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10011 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10018 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  1762.633852691218 910.9239138140671 1825.633852691218 973.9239138140671
+
+P 
+4294967295
+"pictures/iconos/botoneras/imprimir.svg"
+6
+LANG:10001 12 PUSH_BUTTON1
+LANG:10010 12 PUSH_BUTTON1
+LANG:10011 12 PUSH_BUTTON1
+LANG:10009 12 PUSH_BUTTON1
+LANG:10008 12 PUSH_BUTTON1
+LANG:10018 12 PUSH_BUTTON1
+"main()
+{
+  dyn_string header, footer;
+  string dummy;
+  langString headerText;
+
+  unsigned valState;
+  string stateText;
+  string valShortcut;
+  string valPrio;
+  string valDpComment;
+  string valAlertText;
+  dyn_string valDpList;
+
+  unsigned valType;
+  time valBegin;
+  time valEnd;
+
+  dyn_int valTypeSelections;
+  bool    valTypeAlertSummary;
+  bool    bFirstType;
+  int     i;
+  string  valTypeFooter;
+
+  dyn_string valSystemSelections;
+  string     valSystemFooter;
+
+  // TI 18225 - pallesch / variables for printTable()
+  bool    showDialog = false;
+  string  shapeName = \"tabla_audit_trail\";
+  int     columnsType = PT_VISIBLECOLUMNS;
+  dyn_int columns = makeDynInt();
+  bool    fitToPage = true;
+  bool    landscape = true;
+  bool    gridLines = true;
+  bool    gridBackground = true;
+  dyn_int margin = makeDynInt(20, 20, 20, 20);
+  string  printerName = \"\";
+
+  time tStart, tEnd;
+  string sStart, sEnd;
+  string sPropertiesDP;
+  unsigned uTimerangeType, uFilterState;
+  string sFilter;
+  string sOffset;
+  langString lsHeader;
+  dyn_string ds;
+
+  sPropertiesDP = \"_AuditProp_\" + myUiNumber() + \"_\" + myModuleName();
+
+  if (dpExists(sPropertiesDP))     // create and sett default
+  {
+    if (dpTypeName(sPropertiesDP) == \"_ASProperties\")
+      sOffset = \".Settings\";
+
+
+    dpGet(sPropertiesDP + sOffset + \".Filter.State:_online.._value\", uFilterState,
+          sPropertiesDP + sOffset + \".Timerange.Type:_online.._value\", uTimerangeType,
+          sPropertiesDP + sOffset + \".Timerange.Begin:_online.._value\", tStart,
+          sPropertiesDP + sOffset + \".Timerange.End:_online.._value\", tEnd,
+          sPropertiesDP + sOffset + \".Header:_online.._value\", lsHeader,
+          sPropertiesDP + sOffset + \".Filter.DpComment:_online.._value\", sFilter
+         ) ;
+
+
+
+    ds = strsplit(sFilter, \"|\");
+
+
+    ds[4] = \"\";
+    sFilter = \"\";
+
+    if (ds[1] != \"\" && ds[1] != \"*\")
+      sFilter = getCatStr(\"sc\", \"userFilter\") + \"=\\\"\" + ds[1] + \"\\\"\";
+
+    if (ds[2] != \"\" && ds[2] != \"*\")
+    {
+      if (sFilter != \"\")
+        sFilter += \", \";
+
+      sFilter += getCatStr(\"sc\", \"deviceFilter\") + \"=\\\"\" + ds[1] + \"\\\"\";
+    }
+
+    if (ds[3] != \"\" && ds[3] != \"*\")
+    {
+      if (sFilter != \"\")
+        sFilter += \", \";
+
+      sFilter += getCatStr(\"sc\", \"hostFilter\") + \"=\\\"\" + ds[3] + \"\\\"\";
+    }
+
+
+
+
+    headerText = lsHeader;
+    valBegin = tStart;
+    valEnd = tEnd;
+    valType = uTimerangeType;
+
+
+
+    header[1] = \"\\\\left{\" + getCatStr(\"sc\", \"alerts\") + \",\" +
+                ((headerText == \"\") ? \"\" : (headerText + \",\")) +
+                formatTime(\"%c\", getCurrentTime()) + \"}\\\\center{\" +
+                // show timerange only in closed mode
+                ((valType == 2) ? (formatTime(\"%c\", valBegin) + \" - \" + formatTime(\"%c\", valEnd)) : \"\") +
+                \"}\\\\right{\\\\page/\\\\numpages}\";
+    header[2] = \"\\\\fill{_}\";
+    header[3] = \"\\\\tablehead\";
+    header[4] = \"\\\\fill{_}\";
+
+    footer[1] = \"\\\\fill{_}\";
+    footer[2] = getCatStr(\"sc\", \"filter\") + \": \" + sFilter;
+
+
+
+
+    if (isMotif())
+    {
+      setValue(\"tabla_audit_trail\", \"printTable\",
+               header,
+               makeDynString(),   // no special column attributes
+               footer,
+               _UNIX ? \"AS_UNIX.cfg\" : \"AS_NT.cfg\",  // config-file for Alert Screen
+               PAPER_FORMAT_A4_COND,
+               true,              // landscape ?
+               false,             // all columns ?
+               '|',               // delimiter
+               0,                 // leftSpace
+               0);                // lineSpace
+    }
+    else
+    {
+      // TI 18225 - pallesch / new printTable() instead of setValue( \"printTable\" ...
+      printTable(shapeName,
+                 showDialog,
+                 header,
+                 footer,
+                 columnsType,
+                 columns,
+                 fitToPage,
+                 landscape,
+                 gridLines,
+                 gridBackground,
+                 margin,
+                 printerName);
+
+    }
+  }
+}
+" 0
+ E E E
+13 13
+"btn_propiedades"
+"btn_formulario_1"
+1 1750.359379615599 105.7606485079446 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+12 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 6 Closed
+LANG:10010 14 Configuración
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+5
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10011 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10018 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  1848.133852691218 910.9239138140671 1911.133852691218 973.9239138140671
+
+P 
+4294967295
+"pictures/iconos/botoneras/config.svg"
+6
+LANG:10001 12 PUSH_BUTTON1
+LANG:10010 12 PUSH_BUTTON1
+LANG:10011 12 PUSH_BUTTON1
+LANG:10009 12 PUSH_BUTTON1
+LANG:10008 12 PUSH_BUTTON1
+LANG:10018 12 PUSH_BUTTON1
+"main()
+{
+  dyn_float df;
+  dyn_string ds;
+
+  ChildPanelOnCentralModalReturn(\"vision/audit_properties.pnl\", getCatStr(\"STD_Symbols\", \"properties\") + \"_\" + myPanelName(), makeDynString(\"\"), df, ds);
+
+  if (dynlen(df) > 0 && df[1] == 1)
+    refreshScreen();
+
+  configNames.text = \"\";
+}
+" 0
+ E E E
+29 14
+"Label1"
+"GRANDE_AZUL"
+1 28 863 E E E 1 E 1 E N "_3DText" E N "_Transparent" E E
+ E E
+13 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"text" "string Configuración:"
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 27 Tahoma,-1,16,5,50,0,0,0,0,0
+0  28 863 167.8989612842304 893
+5 Label
+0
+E29 15
+"Label2"
+"GRANDE_AZUL"
+1 377.5704137694223 824.6851281379035 E E E 1 E 1 E N "_3DText" E N "_Transparent" E E
+ E E
+14 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"text" "string Rango tiempo:"
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 27 Tahoma,-1,16,5,50,0,0,0,0,0
+0  377.5704137694223 824.6851281379035 532.6714524851919 854.6851281379035
+5 Label
+0
+E29 16
+"Label3"
+"GRANDE_AZUL"
+1 377.5704137694223 863 E E E 1 E 1 E N "_3DText" E N "_Transparent" E E
+ E E
+15 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"text" "string Filtro:"
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 27 Tahoma,-1,16,5,50,0,0,0,0,0
+0  377.5704137694223 863 444 893
+5 Label
+0
+E29 17
+"Label4"
+"GRANDE_AZUL"
+1 1210.05058607939 824.4006876067588 E E E 1 E 1 E N "_3DText" E N "_Transparent" E E
+ E E
+16 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"text" "string DP:"
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 27 Tahoma,-1,16,5,50,0,0,0,0,0
+0  1210.05058607939 824.4006876067588 1253.366417910448 854.4006876067588
+5 Label
+0
+E0
+LAYER, 1 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 2 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 3 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 4 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 5 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 6 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 7 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+0

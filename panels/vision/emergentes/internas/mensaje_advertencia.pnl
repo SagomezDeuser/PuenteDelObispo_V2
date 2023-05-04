@@ -1,0 +1,229 @@
+V 14
+7
+LANG:10001 15 Msg_Advertencia
+LANG:10010 15 Advertencia_msg
+LANG:10011 9 Error_msg
+LANG:10009 15 Msg_Advertencia
+LANG:10008 9 Error_msg
+LANG:10018 9 Error_msg
+LANG:10005 9 Error_msg
+PANEL,-1 -1 620 110 N "white" 1
+"$TEXTO"
+"main()
+{
+  titleBar(0);
+}" 0
+ E E E E 1 -1 -1 0  0 0
+""0  1
+E E 5
+"CBRef" "1"
+"EClose" E
+"windowIcon" "iconos/ventanas/warning.svg"
+"dpi" "96"
+"pdpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10001 0 
+LANG:10010 0 
+6 4
+"img_warning"
+""
+1 14 14 E E E 1 E 1 E N "_3DFace" E N "_Transparent" E E
+ E E
+2 0 0 0 0 0
+E E E
+0
+9
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E -1 1 1 0 1 E 1.225 0 1.225 1.850000000000002 13.31369047619047 2  1 3  "pictures/iconos/botoneras/botonera_mensajes_emergentes/warning.svg" 13434828 E 14 14 54 54
+6 9
+"RECTANGLE2"
+""
+1 63 18 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "LIB_IRC_AZUL_03" E E
+ E E
+5 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E -1 1 3 2 1 E 0.001563313802083333 0 -1.864028747536057 7.901512044270838 188.3600101255837 1 E 63 18 1982 117
+6 10
+"RECTANGLE1"
+""
+1 63 18 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N {1,72,152} E E
+ E E
+6 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E -1 1 3 2 1 E 0.004689941406249998 0 -1.936085600131739 -2.184641113002474 195.657033472306 1 E 63 18 1982 117
+13 11
+"btn_cancelar"
+"MEDIANO_BLANCO"
+1 410 100 E E E 1 E 1 E N "_ButtonText" E N "LIB_IRC_AZUL_01" E E
+ E E
+7 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 6 Cancel
+LANG:10010 8 Cancelar
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+6
+"hoverbclr" "N \"AZUL_01\""
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10011 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10018 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  552.2449909803074 53.83121580050275 605.9021948895714 99.86280076454045
+
+P 
+4294967295
+"pictures/iconos/botoneras/cancelar.svg"
+6
+LANG:10001 12 PUSH_BUTTON1
+LANG:10010 12 PUSH_BUTTON1
+LANG:10011 12 PUSH_BUTTON1
+LANG:10009 12 PUSH_BUTTON1
+LANG:10008 12 PUSH_BUTTON1
+LANG:10018 12 PUSH_BUTTON1
+"main(mapping event)
+{
+  PanelOff();  //Cerramos el Panel
+}
+" 0
+ E E E
+6 12
+"RECTANGLE3"
+""
+1 282 34 E E E 1 E 1 E N {1,72,152} E N "_Transparent" E E
+ E E
+8 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+4
+"transparentForMouseInGedi" ""
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 6.953796873201841 0 1.603360409696011 -1960.860071797643 -54.54276178899309 1 E 282 34 371 102
+29 13
+"Label1"
+"MEDIANO_AZUL"
+1 80 7.945535714285704 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+9 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"text" "string ---"
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,12,-1,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,12,-1,5,50,0,0,0,0,0
+0  80 7.945535714285704 535 101.9818452380952
+5 Label
+0
+"main()
+{
+  int tam_w, tam_h;
+
+  getValue(\"\", \"size\", tam_w, tam_h);
+  setValue(\"\", \"text\", makeCR($TEXTO, tam_w), \"visible\", TRUE);
+  setValue(\"\", \"minimumSize\", tam_w, tam_h);
+}
+" 0
+0
+LAYER, 1 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 2 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 3 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 4 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 5 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 6 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 7 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+0

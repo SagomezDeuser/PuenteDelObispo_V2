@@ -1,0 +1,23 @@
+<svg width="1400" height="500" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid meet">
+ <defs>
+  <path id="bHuHftFjq" d="m255.43,300.41l-11.88,-168.37l17.64,0l0,-32.17l-157.88,0l0,32.17l19.56,0l-28.12,378l-12.75,0l0,36.82l483.6,0l0,-36.82l-21.83,0l0,-209.63l-288.34,0z"/>
+ </defs>
+ <g>
+  <title>background</title>
+  <rect fill="none" id="canvas_background" height="502" width="1402" y="-1" x="-1"/>
+ </g>
+ <g>
+  <title>Layer 1</title>
+  <g stroke="null" id="svg_1">
+   <g stroke="null" id="svg_2">
+    <g stroke="null" id="svg_3">
+     <use stroke="#ffffff" x="-2.416058" y="-5.860777" transform="matrix(0.6898271402829437,0,0,0.6898271402829437,25.43417449679862,30.976964351857617) " id="svg_4" fill="#ffffff" xlink:href="#bHuHftFjq"/>
+     <g stroke="null" id="svg_5">
+      <use fill="#ffffff" stroke="#ffffff" x="-2.416058" y="-5.860777" transform="matrix(0.6898271402829437,0,0,0.6898271402829437,25.43417449679862,30.976964351857617) " id="svg_6" stroke-opacity="0" fill-opacity="0" xlink:href="#bHuHftFjq"/>
+     </g>
+    </g>
+   </g>
+  </g>
+  <text xml:space="preserve" text-anchor="start" font-family="'Tahoma', Gadget, sans-serif" font-size="105" id="svg_7" y="291.666669" x="550" stroke-width="0" stroke="#ffffff" fill="#ffffff">PLANTA</text>
+ </g>
+</svg>

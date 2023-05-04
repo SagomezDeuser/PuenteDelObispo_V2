@@ -1,0 +1,17 @@
+<svg width="1400" height="500" xmlns="http://www.w3.org/2000/svg">
+ <metadata>Svg Vector Icons : http://www.onlinewebfonts.com/icon</metadata>
+
+ <g>
+  <title>background</title>
+  <rect fill="none" id="canvas_background" height="502" width="1402" y="-1" x="-1"/>
+ </g>
+ <g>
+  <title>Layer 1</title>
+  <g stroke="null" id="svg_1">
+   <g stroke="null" id="svg_2">
+    <path fill="#ffffff" stroke="#ffffff" id="svg_3" d="m398.080755,143.974305c-1.903762,-8.97748 -11.316809,-16.292463 -20.90613,-16.292463l-117.82173,0c-9.589321,0 -22.986166,-6.483735 -29.755099,-14.422155l-10.329673,-11.928411c-6.768932,-7.93842 -20.165778,-14.380593 -29.755099,-14.380593l-56.266751,0c-9.589321,0 -18.297271,9.102167 -19.354916,20.240892l-5.076699,61.262987l292.721074,0l-3.454976,-24.480257l0,0zm17.415899,44.887399l-325.472835,0c-5.922816,0 -10.541202,5.984986 -9.977124,12.925908l15.97045,197.08893c0.634587,8.021544 6.381129,14.172781 13.255826,14.172781l286.974532,0c6.874697,0 12.585984,-6.151236 13.255826,-14.172781l15.97045,-197.08893c0.564078,-6.940922 -4.089563,-12.925908 -9.977124,-12.925908l0,0z"/>
+   </g>
+  </g>
+  <text xml:space="preserve" text-anchor="start" font-family="'Tahoma', Gadget, sans-serif" font-size="105" id="svg_4" y="291.818912" x="550" stroke-width="0" stroke="#ffffff" fill="#ffffff">ARCHIVOS</text>
+ </g>
+</svg>

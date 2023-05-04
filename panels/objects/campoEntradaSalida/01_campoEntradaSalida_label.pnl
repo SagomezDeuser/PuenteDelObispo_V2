@@ -1,0 +1,298 @@
+V 14
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+PANEL,-1 -1 148 58 N "_Transparent" 6
+"$CONFIGURABLE"
+"$DECIMALES"
+"$DP"
+"$TAG"
+"$TEXTO"
+"$UNIDAD"
+"main()
+{
+  if (tag != \"TRUE\")
+  {
+    tag = \"FALSE\";
+  }
+  parametrosOK = parametrosRellenos(); //Comprobamos si todos los $ estan rellenos. Si no se usan, se usará NULL.
+}
+" 0
+ E E E E 1 -1 -1 0  0 0
+""0  1
+E "/***********************VARIABLES COMUNES PARA EL OBJETO***************************
+$DP nombre de la variable completa dp.variable
+$TEXTO texto informativo que se mostrará para identificar el campo
+$UNIDAD unidad que se mostrará en el campo
+$DECIMALES número de decimales que se mostrarán
+$CONFIGURABLE si es una analógica abrirá su faceplates y si es una variable normal abrirá el teclado para poder escribir un valor
+  ******************/
+bool parametrosOK = FALSE;
+string tag = $TAG;
+
+bool parametrosRellenos()//Comprobamos que todos los parametros del objeto esten rellenos, sino el objeto será de color morado.
+{
+  if ($DP != \"\" && $TEXTO != \"\" && $UNIDAD != \"\" && $DECIMALES != \"\" && $CONFIGURABLE != \"\" && tag != \"\")
+  {
+    return TRUE;// Si todos los parametros están rellenos devolvemos TRUE.
+  }
+  else
+  {
+    txf_valor.color(\"LIB_IRC_MORADO_01\");
+    txf_valor.foreCol(\"LIB_IRC_MORADO_01\");
+    return FALSE;
+  }
+}
+" 0
+ 4
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+"pdpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10001 0 
+LANG:10010 0 
+6 7
+"RECTANGLE1"
+""
+1 220.0516583860348 -24.04707586893039 E E E 1 E 1 E N "LIB_IRC_AZULTRANS_03" E N "LIB_IRC_AZUL_03" E E
+ E E
+6 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+7
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,80}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "LIB_IRC_BLANCO"
+"antiAliased" "1"
+E "main(mapping event)
+{
+  if (parametrosOK && $CONFIGURABLE == \"TRUE\")
+  {
+    string tipoInst = dpTypeName($DP);
+    dyn_string dpSplit;
+    if (tipoInst == \"504_LIB_TRATAMIENTO_ANALOGICA\")
+    {
+      dpSplit = strsplit($DP, \".\");//Separamos el nombre del DP para obtener solo el nombre del DP sin variable asociada
+      abrirFaceplates(dpSplit[1],FALSE,\"motor\",FALSE,FALSE,tag);
+    }
+    else
+    {
+      teclado($DP, \"keypad\");
+    }
+  }
+}
+" 0
+ 0 2 3 2 1 E -1.000413700434839 0 0.2899283639734003 362.747741273992 11.51074540398995 1 E 220 40 360 150
+6 8
+"RECTANGLE2"
+""
+1 220.0516583860348 38.73259414093829 E E E 1 E 1 E N "LIB_IRC_AZULTRANS_03" E N "LIB_IRC_AZUL_01" E E
+ E E
+7 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+8
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,80}"
+"shadowRadius" "18"
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "LIB_IRC_BLANCO"
+"antiAliased" "1"
+"main()
+{
+  if (parametrosOK && $TEXTO != \"NULL\") //Comprobamos si el texto es diferente de NULL para realizar el script.
+  {
+    this.visible(TRUE); //Cuando el texto esta formateado será visible. SOLO ES VISIBLE SI EL TEXTO ES DIFERENTE DE NULL.
+  }
+}
+" 0
+ "main(mapping event)
+{
+  if (parametrosOK && $CONFIGURABLE == \"TRUE\")
+  {
+    string tipoInst = dpTypeName($DP);
+    dyn_string dpSplit;
+    if (tipoInst == \"504_LIB_TRATAMIENTO_ANALOGICA\")
+    {
+      dpSplit = strsplit($DP, \".\");//Separamos el nombre del DP para obtener solo el nombre del DP sin variable asociada
+      abrirFaceplates(dpSplit[1],FALSE,\"motor\",FALSE,FALSE,tag);
+    }
+    else
+    {
+      teclado($DP, \"keypad\");
+    }
+  }
+}
+" 0
+ 0 2 3 2 1 E -1.000443903426731 0 0.1807167140069381 362.7565001416406 -3.99962713811475 1 E 220 40 360 150
+29 9
+"lb_nombre"
+"PEQUEÑO"
+1 2.627768147888617 3.22904142216278 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "LIB_IRC_AZUL_01" E E
+ E E
+8 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+6
+"styleSheet" "string "
+"text" "string ---"
+"layoutDirection" "enum 0"
+"textInteractionFlags" "enum 0"
+"alignment" "enum 132"
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+0  2.627768147888617 3.22904142216278 142.6277681478886 23.16846069254438
+5 Label
+0
+"main()
+{
+  //TEXTO = texto que queremos visualizar.
+  if (parametrosOK && $TEXTO != \"NULL\") //Comprobamos si el texto es diferente de NULL para realizar el script.
+  {
+    this.text($TEXTO); //Asignamos el texto.
+    this.visible(TRUE); //Cuando el texto esta formateado será visible. SOLO ES VISIBLE SI EL TEXTO ES DIFERENTE DE NULL.
+  }
+}
+" 0
+0
+LAYER, 1 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 2 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 3 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 4 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 5 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 6 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 7 
+2
+LANG:10001 0 
+LANG:10010 0 
+14 3
+"txf_valor"
+"txf_standard_1"
+1 0.3320309177805805 5.092756020429731 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_BLANCO" E E
+ E E
+2 0 0 0 0 0
+E E E
+1
+9
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+2
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10010 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10011 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10009 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10008 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,11,5,75,0,0,0,0,0,Negrita
+0  4.627768147888688 25.55393998146298 139.6277681478887 51.55393998146298
+2 "0s" 0 0 0 9 0 -1  "main(mapping event)
+{
+  if (parametrosOK && $CONFIGURABLE == \"TRUE\")
+  {
+    string tipoInst = dpTypeName($DP);
+    dyn_string dpSplit;
+    if (tipoInst == \"504_LIB_TRATAMIENTO_ANALOGICA\")
+    {
+      dpSplit = strsplit($DP, \".\");//Separamos el nombre del DP para obtener solo el nombre del DP sin variable asociada
+      abrirFaceplates(dpSplit[1],FALSE,\"motor\",FALSE,FALSE,tag);
+    }
+    else
+    {
+      teclado($DP, \"keypad\");
+    }
+  }
+}
+" 0
+ "main()
+{
+  if (parametrosOK)
+  {
+    cambiarValor($DP, $UNIDAD, $DECIMALES);
+  }
+}
+" 0
+ E
+0
+4 0 "LAYOUT_GROUP1" 1
+1 0 
+7 
+
+"" ""
+0 3 0 0
+4 1 "LAYOUT_GROUP3" -1
+3 1 
+8 9 3 
+0 
+"" ""
+0 2 0 0
+0

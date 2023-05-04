@@ -1,0 +1,15 @@
+<svg width="1000" height="600" xmlns="http://www.w3.org/2000/svg">
+ <metadata>Svg Vector Icons : http://www.onlinewebfonts.com/icon</metadata>
+
+ <g>
+  <title>background</title>
+  <rect x="-1" y="-1" width="1002" height="602" id="canvas_background" fill="none"/>
+ </g>
+ <g>
+  <title>Layer 1</title>
+  <g stroke="null" id="svg_1">
+   <path stroke="null" fill="#ffffff" d="m363.156062,290.109762c-21.912903,-12.193076 -241.331701,-142.230585 -254.407008,-148.986208c-16.26263,-8.502199 -32.67014,5.404502 -32.67014,19.871419l0,278.496446c0,15.949849 14.017014,26.824754 27.925373,19.80548c18.906663,-9.556735 240.752183,-126.939792 257.087249,-134.914706c17.09569,-8.304477 21.478282,-23.529348 2.064525,-34.27243z" id="svg_2"/>
+  </g>
+  <text stroke="#ffffff" transform="matrix(1.1259557008743286,0,0,1.1259557008743286,-54.28493901900947,-47.22354753874242) " font-weight="normal" xml:space="preserve" text-anchor="start" font-family="'Tahoma', Gadget, sans-serif" font-size="105" id="svg_3" y="346.57653" x="434.55249" stroke-width="0" fill="#ffffff">MARCHA</text>
+ </g>
+</svg>

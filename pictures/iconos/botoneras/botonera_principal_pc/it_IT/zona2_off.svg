@@ -1,0 +1,18 @@
+<svg width="1450" height="640" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid meet">
+ <defs>
+  <path id="aDVDHBrIc" d="m526.89,277.21c-18.22,0 -32.79,15.71 -32.79,35.14c0,12.32 0,73.94 0,184.86l-28.22,0c0,-205.21 0,-319.21 0,-342.01c0,-32.95 -83.96,-59.8 -187.41,-59.8c-103.44,0 -187.4,26.63 -187.4,59.8c0,22.8 0,136.8 0,342.01l-19.85,0l0,41.46l504.29,0l0,-41.46l-15.66,0l0,-184.86l-0.18,0c-9.84,-23.43 -20.76,-35.14 -32.78,-35.14z"/>
+ </defs>
+ <g>
+  <g stroke="null" id="svg_1">
+   <g stroke="null" id="svg_2">
+    <g stroke="null" id="svg_3">
+     <use stroke="null" transform="matrix(1.0576868173719873,0,0,1.2343528270721436,-2.59590678173943,-10.54587721824646) " x="-26.220001" y="-49.246178" id="svg_4" fill="#B3C8E0" xlink:href="#aDVDHBrIc"/>
+     <g stroke="null" id="svg_5">
+      <use stroke="#B3C8E0" transform="matrix(1.0576868173719873,0,0,1.2343528270721436,-2.59590678173943,-10.54587721824646) " x="-26.220001" y="-49.246178" id="svg_6" stroke-opacity="0" fill-opacity="0" xlink:href="#aDVDHBrIc"/>
+     </g>
+    </g>
+   </g>
+  </g>
+  <text font-weight="bold" xml:space="preserve" text-anchor="start" font-family="'Trebuchet MS', Gadget, sans-serif" font-size="180" id="svg_7" y="384" x="730" stroke-width="null" stroke="#B3C8E0" fill="#B3C8E0">ZONA 2</text>
+ </g>
+</svg>

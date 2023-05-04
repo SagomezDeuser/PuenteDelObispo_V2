@@ -1,0 +1,168 @@
+txf_borrar_fila,Eliminar uma linha: Clicar duas vezes nele
+txf_borrar_tabla,Eliminar a tabela inteira
+txf_valor_act,Valor atual
+txf_referencia,SELECIONAR REFERENCIA DATAPOINT QUEM VAI COPIAR-SE
+txf_copiado,SELECIONAR DATAPOINTS QUE VAO FAZER-SE O MAPA
+txf_tabla_copiado,DATAPOINTS QUE RECEBERA A CONFIGURACAO
+txf_config_alarmas,Configuracoes de alarme
+txf_hh,Muito Alto (HH)
+txf_h,Alto (H)
+txf_l,Baixo (L)
+txf_ll,Muito baixo (LL)
+txf_conf_address,Tem certeza de que deseja ativar / desativar enderecos?
+txf_conf_pausa,Tem certeza de que deseja fazer uma pausa?
+ptxf_interfaz,Interface
+ptxf_pantalla,Exibicao
+txf_conf_ll,Tem certeza de que deseja ativar / desativar a comparsao de baixo nivel?
+txf_conf_map,Tem certeza de que deseja mapear todos os DPs do DPT selecionados?
+txf_conf_mdp,Tem certeza de que deseja modificar o MDP selecionado?
+txf_conf_modpg,Tem certeza de que deseja modificar o grupo de pesquisa do MDP selecionado?
+txf_conf_pg,Tem certeza de que deseja criar o grupo de pesquisa com o nome em CSV? Se voce rejeitar, mantera o relacionado ao ponto de dados mestre
+label_modo,MODO DE OPERACAO
+label_operativa,OPERATIVO MANUAL
+txf_enc_alarmas,ALARMES
+txf_alarma,ALARME
+txf_ep,ESTADO DE PROTECAO
+txf_cm,COMECANDO A CONFIRMACAO
+txf_cp,PARANDO A CONFIRMACAO
+txf_fe,FALHA EXTERNA
+label_cfm_marcha,INICIO CFM.
+label_cfm_paro,PARANDO CFM.
+label_t_arranque,HORA DE INICIO
+label_t_paro,TEMPO DE PARADA
+txf_vf,FREQ. FALHA NO CONVERSOR
+label_csg_auto,PONTO DE CONFIGURACAO AUTO
+label_csg_manual,PONTO DE CONFIGURACAO MANUAL
+label_vel_actual,VELOCIDADE ATUAL
+label_corriente,INTENSIDADE
+label_frecuencia,FREQUENCIA
+label_cfm_marcha_f1,CFM. COMECO PARA A FRENTE
+label_cfm_marcha_f2,CFM. COMECANDO PARA TRAS
+label_cfm_paro_f1,CFM. PARAGEM PARA A FRENTE
+label_cfm_paro_f2,CFM. PARADA DE VOLTA
+label_t_apertura,TEMPO DE ABERTURA
+label_t_cierre,HORARIO DE ENCERRAMENTO
+txf_ca,CONFIRMACAO DE ABERTURA
+txf_cc,CONFIRMACAO DE ENCERRAMENTO
+txf_fp,FALHA DE POSICIONAMENTO
+label_formula,Receita
+label_produccion,Producao
+label_ton,Tn / h
+fecha_inicio,data de inicio
+acuse,Reconhecimento
+fecha_acuse,Data de reconhecimento
+tag,Tag
+alias,Alias
+descripcion,Descricao
+alarma,Alarme
+aviso,Aviso
+label_acuse_todo,RECONHECEMOS TUDO
+label_rango,Alcance
+label_dia,Dia
+label_mes,Mes
+label_ano,Ano
+label_cuadro,Painel
+label_variable,Variavel
+label_graf_frec,Graficos frequentes
+label_intervalo,Intervalo
+label_min,Min
+zona,Zona
+detalle,Detalhes
+valor,Valor
+unidad,Unidade
+label_descr_dp,DP Descricao
+label_alias_dp,Alias ??do DP
+label_dp,DP
+cb_address,Ativar endereco
+cb_address_mdp,De acordo com o MDP
+label_vaciar,Excluir
+para_completo,PARA completo
+label_crear_en_funcion,Criar de acordo com
+txf_rb_vaciado_para,Excluir PARA completo
+txf_rb_vaciado_dpt_mdp,Exclui todos os tipos de ponto de dados, incluindo os pontos de dados principais
+txf_rb_vaciado_dpt,Exclui todos os tipos de dados, mantendo seus pontos de dados mestres
+txf_rb_vaciado_dpt_csv,Exclui tipos de dados datados com DPs em CSV, mantendo seus dados mestre
+label_buscar,PROCURAR
+cb_var_interna,VARIAVEL DO INTERNO
+cb_selec_multiple,Multipla escolha
+label_periferia,Periferia
+label_referencia,Referencia
+label_driver,Drivers
+label_conexion,Conexao
+label_transformacion,Tipo de transformacao
+label_direccion,Direcao
+cb_activo,Ativo
+label_origen_address,Origem do endereco
+clase,Classe
+dp_alarma,DP de alarme
+label_alarma_came,Veio
+label_alarma_went,Foi
+label_clase_alarma,Classe de alarme
+label_config,Configuracao
+label_config_1,Configuracao
+label_config_2,Configuracao
+label_config_3,Configuracao
+label_config_4,Configuracao
+label_escala,Escala
+label_escala_1,Escala
+label_escala_2,Escala
+label_escala_3,Escala
+label_escala_4,Escala
+label_estable,Estabulo
+label_estable_1,Estabulo
+label_estable_2,Estabulo
+label_estable_3,Estabulo
+label_estable_4,Estabulo
+label_division,Divisao
+label_division_1,Divisao
+label_division_2,Divisao
+label_division_3,Divisao
+label_division_4,Divisao
+label_cero,Zero
+label_cero_1,Zero
+label_cero_2,Zero
+label_cero_3,Zero
+label_cero_4,Zero
+label_const_peso,Constantes de peso
+label_const_peso_1,Constantes de peso
+label_const_peso_2,Constantes de peso
+label_const_peso_3,Constantes de peso
+label_const_peso_4,Constantes de peso
+label_cero_5,Zero
+label_cero_6,Zero
+label_cero_7,Zero
+label_cero_8,Zero
+label_cero_9,Zero
+label_ganancia,Ganho
+label_ganancia_1,Ganho
+label_ganancia_2,Ganho
+label_ganancia_3,Ganho
+label_ganancia_4,Ganho
+label_calibracion,Calibrar
+label_calibracion_1,Calibrar
+label_calibracion_2,Calibrar
+label_calibracion_3,Calibrar
+label_calibracion_4,Calibrar
+label_peso_ajuste,Peso de montagem
+label_peso_ajuste_1,Peso de montagem
+label_peso_ajuste_2,Peso de montagem
+label_peso_ajuste_3,Peso de montagem
+label_peso_ajuste_4,Peso de montagem
+label_punto_ajuste,Pontos de montagem
+label_punto_ajuste_1,Pontos de montagem
+label_punto_ajuste_2,Pontos de montagem
+label_punto_ajuste_3,Pontos de montagem
+label_punto_ajuste_4,Pontos de montagem
+label_vel,% Rapidez
+codigo,Codigo
+nombre,Nome
+ult_mod,Ultima modificacao
+label_buscar_nom,Procura por nome
+label_mod_accion,MODO DE FUNCIONAMENTO
+label_secuencia,SEQUENCIA
+label_supervision,SUPERVISAO
+txf_cm_f1,EXPEDIR CONFIRMACAO INICIAL
+txf_cm_f2,PARA TRAS COMECO DE CONFIRMACAO
+txf_cp_f1,EXPEDIR CONFIRMACAO PARADORA
+txf_cp_f2,PARA TRAS PARAGEM DE CONFIRMACAO
+label_orden,

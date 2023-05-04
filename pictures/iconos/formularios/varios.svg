@@ -1,0 +1,17 @@
+<svg width="2000" height="600" xmlns="http://www.w3.org/2000/svg">
+ <metadata>Svg Vector Icons : http://www.onlinewebfonts.com/icon</metadata>
+
+ <g>
+  <title>background</title>
+  <rect fill="none" id="canvas_background" height="602" width="2002" y="-1" x="-1"/>
+ </g>
+ <g>
+  <title>Layer 1</title>
+  <g stroke="null" id="svg_1">
+   <g stroke="null" id="svg_2">
+    <path fill="#ffffff" stroke="null" id="svg_3" d="m547.276249,153.35543c-2.736869,-12.416789 -16.269164,-22.534173 -30.054873,-22.534173l-169.381762,0c-13.785709,0 -33.045155,-8.967681 -42.776244,-19.947342l-14.850047,-16.498233c-9.731089,-10.979661 -28.990535,-19.889856 -42.776244,-19.889856l-80.889675,0c-13.785709,0 -26.304349,12.589244 -27.824832,27.99526l-7.298317,84.733088l420.818903,0l-4.96691,-33.858744l0,0zm25.03728,62.083945l-467.903181,0c-8.514703,0 -15.154143,8.277859 -14.343219,17.877877l22.959287,272.594506c0.91229,11.094631 9.173578,19.602431 19.056715,19.602431l412.557614,0c9.883137,0 18.093743,-8.5078 19.056715,-19.602431l22.959287,-272.594506c0.810924,-9.600017 -5.879199,-17.877877 -14.343219,-17.877877l0,0z"/>
+   </g>
+  </g>
+  <text xml:space="preserve" text-anchor="start" font-family="'Tahoma', Gadget, sans-serif" font-size="180" id="svg_4" y="364.999941" x="765.001076" stroke-width="0" stroke="#ffffff" fill="#ffffff">VARIOS</text>
+ </g>
+</svg>

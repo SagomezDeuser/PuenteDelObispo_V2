@@ -1,0 +1,938 @@
+V 14
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+PANEL,-1 -1 214 631 N "_Transparent" 0
+E E E E E 1 -1 -1 0  0 0
+""0  1
+E "dyn_string nom_btn_informes = makeDynString(\"informe_alarmas\", \"informe_incidencias\", \"informe_produccion\", \"informe_accionamientos\", \"informe_analogicas\");
+
+cambiar_estado_btn_botonera()
+{
+  string nombre = this.name, nombre_boton;
+  for(int i = 1; i<=dynlen(nom_btn_informes); i++){
+    nombre_boton = nom_btn_informes[i];
+    if(nombre_boton == nombre)  setValue(nombre_boton,\"backCol\",\"LIB_DEUSER_AZUL_06\");
+    else setValue(nombre_boton,\"backCol\",\"_Transparent\");
+  }
+}
+void animacion_botonera()
+{
+  string nom;
+  mapping paneles;
+  int x, y, g;
+
+  getValue(\"botonera_informes\", \"position\", x, y);
+  g = createAnimation();
+  animate(g, \"btn_desplegable\", \"positionAsDyn\", makeDynInt(50, y), makeDynInt(50, y), makeMapping(\"duration\", 300));
+  animate(g, \"btn_desplegable\", \"sizeAsDyn\", makeDynInt(50, 40), makeDynInt(50, 40), makeMapping(\"duration\", 300));
+
+  animate(\"botonera_informes\", \"positionAsDyn\", makeDynInt(x, y), makeDynInt(x - 135, y), makeMapping(\"duration\", 200));
+  startAnimation(g, \"keep\", makeMapping(\"direction\", \"Backward\"));
+}
+
+
+
+
+
+
+" 0
+ 4
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+"pdpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10001 0 
+LANG:10010 0 
+13 8
+"PUSH_BUTTON1"
+""
+1 -1 40.00014466534508 E E E 1 E 1 E N "_ButtonText" E N "LIB_IRC_AZUL_01" E E
+ E E
+7 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+5
+"shadowOffset" "[4,4]"
+"shadowColor" "{63,63,63,131}"
+"shadowRadius" "20"
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  -3 38.0010082273614 130.5158293963181 626.9999763796451
+
+T 
+2
+LANG:10001 0 
+LANG:10010 0 
+E E E E
+13 9
+"informe_alarmas"
+""
+1 -0.2420853018409579 36.99997637964496 E E E 1 E 1 E N "white" E N "_Transparent" E E
+ E E
+8 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 8 Synoptic
+LANG:10010 15 Informe Alarmas
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 41 Trebuchet MS,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  -2.242085301840959 34.99997637964496 129.7579146981591 87.99997637964496
+
+T 
+2
+LANG:10001 0 
+LANG:10010 7 ALARMAS
+"main(mapping event)
+{
+  int x_pos, y_pos, x_btn_pos, y_btn_pos;
+  string path_uppixmap, path_downpixmap, url_informe;
+
+  cambiar_estado_btn_botonera();
+
+  //Obtenemos los valores que necesitamos para la animación del desplegable y el cambio del botón
+  dpGet(\"ConfiguracionSCADA.configuracion_bd.direccion_servidor_informes\", url_informe);
+
+  setMultiValue(\"btn_cabecera\", \"text\", \"Informe de Alarmas\",
+                \"web_informes\", \"url\", url_informe + this.name); //Seteamos la web que queremos mostrar
+
+  animacion_botonera();
+
+}
+" 0
+ E E E
+13 10
+"informe_incidencias"
+""
+1 182.6150575553019 69.99997637964496 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Transparent" E E
+ E E
+9 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 14 Current Alarms
+LANG:10010 19 Informe Incidencias
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 41 Trebuchet MS,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  -2.242085301840957 83.99997637964496 129.757914698159 136.999976379645
+
+T 
+2
+LANG:10001 0 
+LANG:10010 11 INCIDENCIAS
+"main(mapping event)
+{
+  int x_pos, y_pos, x_btn_pos, y_btn_pos;
+  string path_uppixmap, path_downpixmap, url_informe;
+  cambiar_estado_btn_botonera();
+
+  dpGet(\"ConfiguracionSCADA.configuracion_bd.direccion_servidor_informes\", url_informe);
+
+  setMultiValue(\"btn_cabecera\", \"text\", \"Informe de Incidencias\",
+                \"web_informes\", \"url\", url_informe + this.name);  //Seteamos la web que queremos mostrar
+
+  animacion_botonera();
+}
+" 0
+ E E E
+13 11
+"informe_produccion"
+""
+1 130.0483460476659 130.4149095516885 E E E 1 E 1 E N "white" E N "_Transparent" E E
+ E E
+10 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 17 Historical Alarms
+LANG:10010 19 Informe Producción
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 41 Trebuchet MS,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  -2.423649278221585 132.9999645694675 129.5763507217784 185.9999645694675
+
+T 
+2
+LANG:10001 0 
+LANG:10010 11 PRODUCCIÓN
+"main(mapping event)
+{
+  int x_pos, y_pos, x_btn_pos, y_btn_pos;
+  string path_uppixmap, path_downpixmap, url_informe;
+
+  cambiar_estado_btn_botonera();
+  dpGet(\"ConfiguracionSCADA.configuracion_bd.direccion_servidor_informes\", url_informe);
+
+  setMultiValue(\"btn_cabecera\", \"text\", \"Informe de Producción\",
+                \"web_informes\", \"url\", url_informe + this.name); //Seteamos la web que queremos mostrar
+
+  animacion_botonera();
+}
+" 0
+ E E E
+13 12
+"btn_informes"
+""
+1 -0.2461688030938058 526.999976379645 E E E 1 E 1 E N "white" E N "_Transparent" E E
+ E E
+11 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 6 Zone 1
+LANG:10010 7 Informe
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 41 Trebuchet MS,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  -2.242085301840956 524.999976379645 129.757914698159 577.9999763796451
+
+T 
+2
+LANG:10001 0 
+LANG:10010 0 
+E E E E
+13 13
+"btn_incidencias"
+""
+1 -0.2502523043462908 477.951958398903 E E E 1 E 1 E N "white" E N "_Transparent" E E
+ E E
+12 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 6 Zone 2
+LANG:10010 9 Análisis
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 41 Trebuchet MS,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  -2.242085301840959 475.999976379645 129.7579146981591 528.999976379645
+
+T 
+2
+LANG:10001 0 
+LANG:10010 0 
+E E E E
+13 14
+"btn_config"
+""
+1 -0.2543358055991258 428.951958398903 E E E 1 E 1 E N "white" E N "_Transparent" E E
+ E E
+13 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 6 Zone 4
+LANG:10010 14 Configuración
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 41 Trebuchet MS,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  -2.242085301840959 426.999976379645 129.7579146981591 479.999976379645
+
+T 
+2
+LANG:10001 0 
+LANG:10010 0 
+E E E E
+13 16
+"informe_accionamientos"
+""
+1 -0.2625028081047949 183.9519583989031 E E E 1 E 1 E N "white" E N "_Transparent" E E
+ E E
+15 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 6 Zone 1
+LANG:10010 22 Informe Accionamientos
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 41 Trebuchet MS,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  -2.242085301840959 181.999976379645 129.7579146981591 234.999976379645
+
+T 
+2
+LANG:10001 0 
+LANG:10010 14 ACCIONAMIENTOS
+"main(mapping event)
+{
+  int x_pos, y_pos, x_btn_pos, y_btn_pos;
+  string path_uppixmap, path_downpixmap, url_informe;
+
+  cambiar_estado_btn_botonera();
+  dpGet(\"ConfiguracionSCADA.configuracion_bd.direccion_servidor_informes\", url_informe);
+
+  setMultiValue(\"btn_cabecera\", \"text\", \"Informe de Accionamientos\",
+                \"web_informes\", \"url\", url_informe + this.name); //Seteamos la web que queremos mostrar
+
+  animacion_botonera();
+}
+" 0
+ E E E
+13 17
+"informe_analogicas"
+""
+1 -0.5488562756666857 232.9519583989029 E E E 1 E 1 E N "white" E N "_Transparent" E E
+ E E
+16 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 6 Zone 2
+LANG:10010 19 Informe Analógicas
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 41 Trebuchet MS,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  -2.242085301840955 230.999976379645 129.757914698159 283.999976379645
+
+T 
+2
+LANG:10001 0 
+LANG:10010 11 ANALÓGICAS
+"main(mapping event)
+{
+  int x_pos, y_pos, x_btn_pos, y_btn_pos;
+  string path_uppixmap, path_downpixmap, url_informe;
+
+  cambiar_estado_btn_botonera();
+  dpGet(\"ConfiguracionSCADA.configuracion_bd.direccion_servidor_informes\", url_informe);
+
+  setMultiValue(\"btn_cabecera\", \"text\", \"Informe de Analógicas\",
+                \"web_informes\", \"url\", url_informe + this.name); //Seteamos la web que queremos mostrar
+
+  animacion_botonera();
+}
+" 0
+ E E E
+13 18
+"btn_centrifugacion"
+""
+1 0.02385065945656706 281.9519583989031 E E E 1 E 1 E N "white" E N "_Transparent" E E
+ E E
+17 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 6 Zone 3
+LANG:10010 6 Zona 3
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 41 Trebuchet MS,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  -2.242085301840957 279.999976379645 129.757914698159 332.999976379645
+
+T 
+2
+LANG:10001 0 
+LANG:10010 0 
+E E E E
+13 19
+"btn_zona_4"
+""
+1 -0.2625028081044929 330.9519583989031 E E E 1 E 1 E N "white" E N "_Transparent" E E
+ E E
+18 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 6 Zone 4
+LANG:10010 6 Zona 4
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 41 Trebuchet MS,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  -2.242085301840959 328.999976379645 129.7579146981591 381.999976379645
+
+T 
+2
+LANG:10001 0 
+LANG:10010 0 
+E E E E
+13 20
+"btn_zona_5"
+""
+1 -0.2420853018409568 379.951958398903 E E E 1 E 1 E N "white" E N "_Transparent" E E
+ E E
+19 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 6 Zone 5
+LANG:10010 6 Zona 5
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 41 Trebuchet MS,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  -2.242085301840956 377.999976379645 129.7579146981591 430.999976379645
+
+T 
+2
+LANG:10001 0 
+LANG:10010 0 
+E E E E
+13 21
+"btn_audit_trail"
+""
+1 -0.2584193068510419 575.9519583989032 E E E 1 E 1 E N "white" E N "_Transparent" E E
+ E E
+20 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 6 Zone 5
+LANG:10010 18 Esquema Eléctrico
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 41 Trebuchet MS,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  -2.242085301840956 573.9999763796451 129.757914698159 626.9999763796451
+
+T 
+2
+LANG:10001 0 
+LANG:10010 0 
+E E E E
+13 23
+"btn_desplegable"
+""
+1 180 -2.362035503722382e-05 E E E 1 E 1 E N "_Transparent" E N {1,72,152} E E
+ E E
+22 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 14 Menú Informes
+
+4
+"shadowOffset" "[4,4]"
+"shadowColor" "{63,63,63,131}"
+"shadowRadius" "20"
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  128 -2.000023620355037 181 40.99997637964496
+
+P 
+4294967295
+"pictures/iconos/otros/tab/tab_albaranes_2.svg"
+2
+LANG:10001 0 
+LANG:10010 0 
+"main(mapping event)
+{
+  int x, y, g;
+  getValue(\"botonera_informes\", \"position\", x, y);
+  g = createAnimation();
+  animate(g, \"\", \"positionAsDyn\", makeDynInt(50, y), makeDynInt(132, y), makeMapping(\"duration\", 250));
+  animate(g, \"\", \"sizeAsDyn\", makeDynInt(50, 40), makeDynInt(132, 40), makeMapping(\"duration\", 250));
+
+  if (x < 0)
+  {
+    animate(\"botonera_informes\", \"positionAsDyn\", makeDynInt(x, y), makeDynInt(0, y), makeMapping(\"duration\", 200));
+    startAnimation(g);
+  }
+  else
+  {
+    startAnimation(g, \"keep\", makeMapping(\"direction\", \"Backward\"));
+    animate(\"botonera_informes\", \"positionAsDyn\", makeDynInt(x, y), makeDynInt(x - 135, y), makeMapping(\"duration\", 200));
+  }
+}
+" 0
+ E E E
+13 24
+"linea_1"
+""
+1 5.257914698159066 85.99997637964496 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+23 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  3.257914698159066 83.99997637964496 124.2579146981591 87.99997637964496
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+13 25
+"linea_2"
+""
+1 5.257914698159073 134.999976379645 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+24 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  3.257914698159073 132.999976379645 124.2579146981591 136.999976379645
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+13 26
+"linea_3"
+""
+1 5.257914698159073 183.999976379645 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+25 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  3.257914698159073 181.999976379645 124.2579146981591 185.999976379645
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+13 27
+"linea_4"
+""
+1 5.257914698159073 232.999976379645 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+26 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  3.257914698159073 230.999976379645 124.2579146981591 234.999976379645
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+13 28
+"linea_5"
+""
+1 5.257914698159073 281.999976379645 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+27 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  3.257914698159073 279.999976379645 124.2579146981591 283.999976379645
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+13 29
+"linea_6"
+""
+1 5.257914698159073 330.999976379645 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+28 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  3.257914698159073 328.999976379645 124.2579146981591 332.999976379645
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+13 30
+"linea_7"
+""
+1 5.257914698159073 379.999976379645 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+29 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  3.257914698159073 377.999976379645 124.2579146981591 381.999976379645
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+13 31
+"linea_8"
+""
+1 5.257914698159066 428.999976379645 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+30 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  3.257914698159066 426.999976379645 124.2579146981591 430.999976379645
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+13 32
+"linea_9"
+""
+1 5.257914698159066 477.999976379645 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+31 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  3.257914698159066 475.999976379645 124.2579146981591 479.999976379645
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+13 33
+"linea_10"
+""
+1 5.257914698159066 526.999976379645 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+32 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  3.257914698159066 524.999976379645 124.2579146981591 528.999976379645
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+13 34
+"linea_11"
+""
+1 5.257914698159073 575.9999763796451 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+33 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  3.257914698159073 573.9999763796451 124.2579146981591 577.9999763796451
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+13 37
+"PUSH_BUTTON2"
+""
+1 5.257914698159063 36.99997637964496 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+36 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  3.257914698159063 34.99997637964496 124.2579146981591 38.99997637964496
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+0
+LAYER, 1 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 2 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 3 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 4 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 5 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 6 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 7 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+0

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="700"
+   height="640"
+   version="1.1"
+   id="svg5"
+   sodipodi:docname="reset_off.svg"
+   inkscape:version="1.1 (c68e22c387, 2021-05-23)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs9" />
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="true"
+     showgrid="false"
+     inkscape:zoom="1.340625"
+     inkscape:cx="350.20979"
+     inkscape:cy="320.37296"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg5" />
+  <g
+     id="g3"
+     style="fill:#ffffff">
+    <path
+       fill="#014898"
+       id="path2"
+       d="m598.595064,295.668776c-10.897319,-7.269095 -25.622058,-4.325412 -32.886409,6.571907l-0.705092,1.057639c-8.578101,-117.157637 -106.633415,-209.859938 -225.942692,-209.859938c-124.926303,0.001581 -226.560833,101.636111 -226.560833,226.562414s101.63453,226.560833 226.560833,226.560833c17.462902,0 31.618508,-14.155606 31.618508,-31.618508s-14.155606,-31.618508 -31.618508,-31.618508c-90.057414,-0.001581 -163.323818,-73.267987 -163.323818,-163.323818s73.266406,-163.323818 163.323818,-163.323818c83.469697,0 152.503965,62.944543 162.157095,143.857884c-7.608994,-9.471323 -21.32036,-11.733628 -31.618508,-4.866088c-10.897319,7.265933 -13.839421,21.990672 -6.573488,32.886409l46.956645,70.415997c5.541144,8.309344 14.557161,13.270288 24.117017,13.270288c9.559856,0 18.574292,-4.962525 24.112274,-13.270288l46.956645,-70.415997c7.264352,-10.897319 4.32225,-25.620477 -6.573488,-32.886409l0.000003,0.000001z"
+       style="fill:#ffffff" />
+  </g>
+</svg>

@@ -1,0 +1,330 @@
+V 14
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+PANEL,-1 -1 131 72 N "LIB_IRC_BLANCO" 10
+"$AUTO_MODIF"
+"$DECIMALES"
+"$DP"
+"$ELEM"
+"$ESQ_ELEC"
+"$INHA"
+"$INST"
+"$TAG"
+"$TEXTO"
+"$UNIDAD"
+"main()
+{
+  /*Tratamos los $ para que tengan unos valores definidos
+    Para todos los $ de visibilidad si no es == \"TRUE\" se pondrá por defecto FALSE
+    Para el $ELEM si es NULL el valor por defecto será motor
+    Se definen en el Initialize del panel para poder usarlo en todos los objetos
+  */
+  if (autoModificable != \"TRUE\")
+  {
+    autoModificable = \"FALSE\";
+  }
+
+  if (elemento == \"NULL\")
+  {
+    elemento = \"motor\";
+  }
+
+  if (inhabilitado != \"TRUE\")
+  {
+    inhabilitado = \"FALSE\";
+  }
+
+  if (esquema != \"TRUE\")
+  {
+    esquema = \"FALSE\";
+  }
+
+  if (tag != \"TRUE\")
+  {
+    tag = FALSE;
+  }
+
+  parametrosOK = parametrosRellenos(); //Comprobamos si todos los $ estan rellenos. Si no se usan, se usará NULL.
+}
+" 0
+ E E E E 1 -1 -1 0  0 0
+""0  1
+E "/***********************VARIABLES COMUNES PARA EL OBJETO***************************
+  $INHA - Sirve para indicar si queremos una botonera de accionamiento con el botón/opción de Inhabilitar (TRUE/FALSE).
+  $ESQ_ELEC - Sirve para indicar si queremos una botonera con el botón/opción Esquemas Eléctricos (TRUE/FALSE).
+  $INST = Nombre de la instancia
+  $TIPO_INST = Nombre de la clase de la instancia
+  $VAR = Nombre de la variable, incluyendo el tipo (Ejemplo: \"Input.Xr_Dato_1\")
+  $AUTO_MODIF = se usa para modifcar o no el la consigna de auto
+  $ELEM = se usa para seleccionar la imagen que se mostrará en el faceplate motor, bomba, sinfin, cinta...
+  $TAG = se usa para mostrar o no el TAG en el faceplate
+  $INST_VISIBLE = se usa para mostrar la flecha de sentido de giro
+  ******************/
+string autoModificable = $AUTO_MODIF, elemento = $ELEM, inhabilitado = $INHA, esquema = $ESQ_ELEC, texto = $TEXTO;
+bool tag = $TAG, parametrosOK = FALSE;
+
+bool parametrosRellenos()//Comprobamos que todos los parametros del objeto esten rellenos, sino el objeto será de color morado.
+{
+  if ($INST != \"\" && $AUTO_MODIF != \"\" && $ELEM != \"\" && $INHA != \"\" && $ESQ_ELEC != \"\" && $TAG != \"\" && $TEXTO != \"\" && $DP != \"\" && $UNIDAD != \"\" && $DECIMALES != \"\")
+  {
+    return TRUE;// Si todos los parametros están rellenos devolvemos TRUE.
+  }
+  else
+  {
+   btn_indicador.buttonType = BT_PIXMAP;
+    btn_indicador.buttonDownPixmap = \"iconos/indicador_modo/indicador_error_180.svg\";
+    btn_indicador.buttonUpPixmap = \"iconos/indicador_modo/indicador_error_180.svg\";
+//     setValue(\"\", \"buttonType\", BT_PIXMAP,
+//              \"buttonDownPixmap\", \"iconos/indicador_modo/indicador_error_0.svg\",
+//              \"buttonUpPixmap\", \"iconos/indicador_modo/indicador_error_0.svg\");
+    //setMultiValue(\"txf_valor\", \"color\", \"LIB_IRC_MORADO_01\", \"\", \"foreCol\", \"LIB_IRC_MORADO_01\");
+    txf_valor.color(\"LIB_IRC_MORADO_01\");
+    return FALSE;
+  }
+}
+" 0
+ 4
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+"pdpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10001 0 
+LANG:10010 0 
+6 11
+"sentido_180"
+""
+1 68 19 E E E 1 E 0 E N "_Transparent" E N "_Transparent" E E
+ E E
+10 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+4
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  if (parametrosOK)
+  {
+    //INST = Nombre de la instancia
+    cambiarSentidoGiro($INST, \"arriba\");
+  }
+}
+" 0
+ E 0 0 3 2 1 E 1.068181818181818 0 1.857142857142857 -73.1363636363636 -29.36162504890332 2  1 0  "pictures/iconos/indicador_modo/flecha_horario_arriba.svg" 4294967295 E 68 19 112 33
+29 12
+"Label1"
+"PEQUENIO_AZUL"
+1 29 91.00948884539864 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+11 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+4
+"text" "string Inst"
+"styleSheet" "string "
+"alignment" "enum 132"
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Noto Sans,-1,13,5,75,0,0,0,0,0,Bold
+0  29 5.009488845398636 134 29.00948884539863
+5 Label
+0
+"main()
+{
+  if (parametrosOK)
+  {
+    if (texto == \"FALSE\")
+    {
+      this.visible = FALSE;
+    }
+    else if (texto == \"NULL\")
+    {
+      this.text = dpGetAlias($INST + \".\");
+      this.visible = TRUE;
+      this.alignment(\"AlignCenter\");
+    }
+    else
+    {
+      this.text = texto;
+      this.visible = TRUE;
+    }
+  }
+}
+" 0
+0
+LAYER, 1 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 2 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 3 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 4 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 5 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 6 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 7 
+2
+LANG:10001 0 
+LANG:10010 0 
+14 5
+"txf_valor"
+"MEDIANO_AZUL"
+1 33 40 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+4 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+2
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+0  31 27 132 59
+2 "10s" 10 0 0 8 0 -1  "main()
+{
+  if (parametrosOK)
+  {
+    if (dpTypeName($DP) == \"504_LIB_TRATAMIENTO_ANALOGICA\")
+    {
+      string dp;
+      dp = dpSubStr($DP, DPSUB_DP);//Recogemos la instancia del datapoint
+      abrirFaceplates(dp, autoModificable, elemento, inhabilitado, esquema, tag);
+    }
+    else
+    {
+      //$INST = Nombre de la instancia
+      abrirFaceplates($INST, autoModificable, elemento, inhabilitado, esquema, tag);
+    }
+  }
+}
+" 0
+ "main()
+{
+  if (parametrosOK)  //Comprobamos que hemos rellenado los $
+  {
+    //DP completo Ejemplo: (\"motor1.Input.Xr_Dato_1\")
+    //Unidad si es FALSE no se muestra si es NULL muestra la que tenga por defecto la variable o escribimos una a mano
+    //Decimales número de decimales que se quiere mostrar
+    cambiarValor($DP, $UNIDAD, $DECIMALES);
+  }
+}
+" 0
+ E
+13 8
+"btn_indicador"
+""
+1 -4 14 E E E 1 E 1 E N "_ButtonText" E N "_Transparent" E E
+ E E
+7 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+3
+"layoutAlignment" "AlignNone"
+"focusPolicy" "NoFocus"
+"showFocus" "0"
+6
+LANG:10001 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10010 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10011 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10009 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10008 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10018 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  -4 16.13733650416172 44 69.13733650416172
+
+P 
+4294967295
+"pictures/iconos/indicador_modo/indicador_autooff_180.svg"
+6
+LANG:10001 12 PUSH_BUTTON1
+LANG:10010 12 PUSH_BUTTON1
+LANG:10011 12 PUSH_BUTTON1
+LANG:10009 12 PUSH_BUTTON1
+LANG:10008 12 PUSH_BUTTON1
+LANG:10018 12 PUSH_BUTTON1
+"main(mapping event)
+{
+  if (parametrosOK)
+  {
+    //$INST = Nombre de la instancia
+    abrirFaceplates($INST, autoModificable, elemento, inhabilitado, esquema, tag);
+  }
+}
+" 0
+ E E "main()
+{
+  if (parametrosOK)  //Comprobamos que hemos rellenado los $
+  {
+    //INST = Nombre de la instancia
+    cambiarEstadoIndicador($INST, \"180\");
+  }
+}
+" 0
+
+0
+0

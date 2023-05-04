@@ -1,0 +1,2055 @@
+V 14
+2
+LANG:10001 0 
+LANG:10010 0 
+PANEL,-1 -1 1920 940 N "LIB_IRC_BLANCO" 0
+"main()
+{
+  string so_ui;
+
+  dpGet(\"System1:_Ui_\" + myUiNumber() + \".DisplayName\", so_ui);
+
+  if (!patternMatch(\"*Linux*\", so_ui))
+  {
+    titleBar(0, myModuleName(), myPanelName());
+  }
+
+  m_um = UserManagement::getInstance();
+
+  dpConnect(\"rellenar_tabla_grupos\", \"_Groups.UserName:_online.._value\");
+  dpConnect(\"rellenar_tabla_usuarios\", \"_Users.UserName:_online.._value\",\"_Users.Enabled:_online.._value\");
+}
+" 0
+ E E E E 1 -1 -1 0  12.99999999999999 21
+""0  1
+E "#uses \"deuser/usuarios/funciones_usuarios\"
+#uses \"classes/userManagement/UserManagement\"
+#uses \"classes/auth/OaAuthFactory\"
+#uses \"classes/userManagement/UserManagementHooks\"
+
+shared_ptr<UserManagementGroup> m_group;
+shared_ptr<UserManagement> m_um;
+shared_ptr<UserManagementGroup> m_group;
+dyn_anytype m_users; //dyn<shared_ptr<UserManagementUser>>
+
+void rellenar_tabla_usuarios(string dp, dyn_string users, string dp2, dyn_bool mode_aux)
+{
+  dyn_string mode;
+  dyn_bool mode_aux;
+  dpGet(\"_Users.Enabled\", mode_aux);
+  users_table_gestion.deleteAllLines;
+
+  for (int i = 1; i <= dynlen(mode_aux); i++)
+  {
+    if (mode_aux[i])
+    {
+
+
+      if (getLangIdx(getActiveLangId()) == 0)
+      {
+        mode[i] = \"HABILITADO\";
+      }
+
+      else if (getLangIdx(getActiveLangId()) == 1)
+      {
+        mode[i] = \"ENABLED\";
+      }
+    }
+    else
+    {
+      if (getLangIdx(getActiveLangId()) == 0)
+      {
+        mode[i] = \"DESHABILITADO\";
+      }
+
+      else if (getLangIdx(getActiveLangId()) == 1)
+      {
+        mode[i] = \"DISABLED\";
+      }
+    }
+
+  }
+
+  for (int i = 1; i <= dynlen(users); i++)
+  {
+    if (users[i] != \"para\" && users[i] != \"root\" && users[i] != \"admin\")
+    {
+      setValue(\"users_table_gestion\", \"appendLine\", \"Usuario\", users[i], \"Estado\", mode[i]);
+    }
+  }
+}
+
+dyn_string obtener_nombre_usuarios()
+{
+  dyn_string usernames;
+
+  for (int i = 1; i <= dynlen(m_users); i++)
+  {
+    string name = m_users[i].getName();
+    dynAppend(usernames, name);
+  }
+
+  return usernames;
+}
+
+void guardar_propiedades_grupo(string msgKey = \"cannotmodify\")
+{
+  dyn_string errorList;
+
+  if (!m_um.saveChangesError(errorList))
+  {
+    ChildPanelOnCentralModal(
+      \"vision/MessageWarning\",
+      getCatStr(\"para\", \"warning\"),
+      makeDynString(getCatStr(\"userMan\", msgKey) + \"\\n\" + strjoin(errorList, \"\\n\")));
+  }
+  else
+  {
+    if (m_group != nullptr)
+    {
+      datos_grupo_seleccionado(m_group.getName());
+    }
+    else if (dynlen(grupos_table_gestion.lineCount()) > 0)
+    {
+      grupos_table_gestion.selectLineN(0);
+    }
+  }
+}
+
+void datos_grupo_seleccionado(string groupName)
+{
+  if (groupName == \"\")
+    return;
+
+  bool           bWinGroup = false;
+  OaAuthFactory  factory;
+  mixed          authMethod = factory.getAuth();
+  bool           editEnabled = (authMethod.getAuthType() == OaAuthenticationType::Standard);
+  dyn_string     cbb_miembros;
+
+  m_group = nullptr;
+  m_group = m_um.getGroupByName(groupName);
+
+  if (m_group == nullptr)
+  {
+    return;
+  }
+
+  m_users = m_um.getSavedUsersByGroupId(m_group.getId());
+
+  cbb_miembros = obtener_nombre_usuarios();
+
+  setMultiValue(\"cbb_miembros\",    \"items\",   cbb_miembros,
+                \"cbb_miembros\",    \"text\",    dynlen(cbb_miembros) > 0 ? cbb_miembros[1] : \"\",
+                \"txf_nombre_grupo\",        \"text\",    m_group.getName(),
+                \"txf_nombre_completo\",   \"text\",    m_group.getFullName(),
+                \"txf_descripcion\",    \"text\",    m_group.getComment());
+}
+
+void cmdClose()
+{
+  dyn_float df, dfDummy;
+  dyn_string ds, dsDummy;
+
+  if (m_group == nullptr || m_group.getId() == DEFAULT_USERID)
+  {
+    PanelOffReturn(dfDummy, dsDummy);
+    return;
+  }
+
+  if (m_group.isDirty())
+  {
+    ChildPanelOnCentralModalReturn(\"vision/MessageInfo\",
+                                   getCatStr(\"para\", \"information\"),
+                                   makeDynString(getCatStr(\"userMan\", \"changed_paneloff\"),
+                                       getCatStr(\"para\", \"yes\"),
+                                       getCatStr(\"para\", \"no\")),
+                                   df, ds);
+
+    if (dynlen(df) < 1 || df[1] < 1)
+    {
+      return;
+    }
+  }
+
+  PanelOffReturn(dfDummy, dsDummy);
+}
+
+
+void rellenar_tabla_grupos(string dp, dyn_string groupNames)
+{
+  int n_grupos = dynlen(groupNames);
+  bool permiso = permisos_usuario_operacion(20,FALSE,FALSE);
+  grupos_table_gestion.deleteAllLines;
+
+  for (int i = 1; i <= n_grupos; i++)
+  {
+    if (i == 1 || i == 2 || i == 3)
+    {
+      if (permiso)grupos_table_gestion.appendLine(\"grupos\", groupNames[i]);
+    }
+    else
+    {
+      grupos_table_gestion.appendLine(\"grupos\", groupNames[i]);
+    }
+  }
+}
+
+void closePanel()
+{
+  PanelOffReturn(makeDynFloat(0), makeDynString());
+}
+
+
+bits_permisos_vivibles(bool visible)
+{
+  bool permiso = permisos_usuario_operacion(20,FALSE,FALSE);
+
+  if (permiso)
+  {
+    setMultiValue(\"frame_recortado\", \"visible\", FALSE,
+                  \"tb_permisos_10_16\", \"visible\", FALSE,
+                  \"text10\", \"visible\", FALSE,
+                  \"text11\", \"visible\", FALSE,
+                  \"text12\", \"visible\", FALSE,
+                  \"text13\", \"visible\", FALSE,
+                  \"text14\", \"visible\", FALSE,
+                  \"text15\", \"visible\", FALSE,
+                  \"text16\", \"visible\", FALSE);
+  }
+  else
+  {
+    setMultiValue(\"frame_recortado\", \"visible\", TRUE,
+                  \"tb_permisos_10_16\", \"visible\", TRUE,
+                  \"text10\", \"visible\", TRUE,
+                  \"text11\", \"visible\", TRUE,
+                  \"text12\", \"visible\", TRUE,
+                  \"text13\", \"visible\", TRUE,
+                  \"text14\", \"visible\", TRUE,
+                  \"text15\", \"visible\", TRUE,
+                  \"text16\", \"visible\", TRUE);
+  }
+}
+
+
+permisos_visible(string grupo)
+{
+  int            j, k;
+  bit32          b32;
+  string         sBit, sCol;
+  dyn_langString desliste;
+
+  m_um = UserManagement::getInstance();
+
+  bits_permisos_vivibles(true);
+  tb_permisos_10_16.deleteAllLines();
+
+  m_group = nullptr;
+  m_group = m_um.getGroupByName(grupo);
+
+  if (m_group == nullptr)
+  {
+    errClass error = makeError(0, PRIO_INFO, ERR_PARAM, 0, \"\", 0, 0, __FILE__ + \": m_group not set\");
+    throwError(error);
+    return;
+  }
+
+  b32 = m_group.getPermissionSet();
+  desliste = m_um.getAllPermissionDescriptions();
+
+  tb_permisos_10_16.appendLine(\"#1\", \"\");
+
+  for (j = 0; j < 32; j++)
+  {
+    k = j + 2; sCol = \"#\" + k;
+    sBit = (getBit(b32, j)) ? 1 : 0;
+    setValue(\"tb_permisos_10_16\", \"cellValueRC\", 0, sCol, sBit);
+
+    if (dynlen(desliste) > j) setValue(\"tb_permisos_10_16\", \"columnToolTipText\", k - 1, desliste[j + 1] + \"(\" + (j + 1) + \")\");
+  }
+}
+
+" 0
+ 4
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+"pdpi" "92.6073"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10001 0 
+LANG:10010 0 
+25 16
+"users_table_gestion"
+"GRANDE_AZUL"
+1 283.7957205053803 167.8654644898589 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+15 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+
+1
+"layoutAlignment" "AlignNone"
+3
+LANG:10001 34 Consolas,-1,16,5,75,0,0,0,0,0,Bold
+LANG:10010 34 Consolas,-1,16,5,75,0,0,0,0,0,Bold
+LANG:10011 34 Consolas,-1,16,5,75,0,0,0,0,0,Bold
+0  202 146 805 569
+"main()
+{
+  this.tableMode(1);
+}" 0
+"main(int row, string column, string value)
+{
+  this.selectLineN(row);
+}" 0
+ 1 0 1 2 3 "Usuario" 12 1 0 "[0s,,,AlignHCenter|AlignVCenter]" 3
+LANG:10001 4 USER
+LANG:10010 7 USUARIO
+LANG:10011 4 USER
+E
+3
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+
+300 "Estado" 10 1 0 "[0s,,,AlignHCenter|AlignVCenter]" 3
+LANG:10001 5 STATE
+LANG:10010 6 ESTADO
+LANG:10011 5 STATE
+E
+3
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+
+300 
+30 30 "" 1 3
+LANG:10001 2 #3
+LANG:10010 2 #3
+LANG:10011 2 #3
+"" 1 3
+LANG:10001 2 #2
+LANG:10010 2 #2
+LANG:10011 2 #2
+"" 1 3
+LANG:10001 2 #1
+LANG:10010 2 #1
+LANG:10011 2 #1
+10 0
+3
+LANG:10001 34 Consolas,-1,16,5,75,0,0,0,0,0,Bold
+LANG:10010 34 Consolas,-1,16,5,75,0,0,0,0,0,Bold
+LANG:10011 34 Consolas,-1,16,5,75,0,0,0,0,0,Bold
+0 0 1 0 1 7
+1 0
+13 17
+"btn_crear_usuario"
+"MEDIANO_BLANCO"
+1 50 810 E E E 1 E 1 E N "LIB_DEUSER_BLANCO" E N "LIB_IRC_AZUL_01" E E
+ E E
+16 0 0 0 0 0
+E E E
+1
+4
+LANG:10001 13 Add new group
+LANG:10010 0 
+LANG:10000 23 Neue Gruppe hinzufügen
+LANG:10027 41 Добавить новую группу:
+
+2
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+4
+LANG:10001 26 arial,-1,13,5,40,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10000 26 arial,-1,13,5,40,0,0,0,0,0
+LANG:10027 26 arial,-1,13,5,40,0,0,0,0,0
+0  48.47122445695672 788.2756410256407 241.4712244569561 841.2756410256407
+
+T 
+3
+LANG:10001 8 Add User
+LANG:10010 13 Crear Usuario
+LANG:10011 8 Add User
+"main(mapping event)
+{
+  bool permiso = permisos_usuario_operacion(12,FALSE);
+
+  if (permiso)
+  {
+    ChildPanelOnCentralModal(\"vision/emergentes/internas/nuevo_usuario.pnl\",
+                             \"crear_usuarios\",
+                             makeDynString(\"\", \"new\", myPanelName()));
+  }
+}
+" 0
+ E E E
+13 18
+"btn_cambiar_pass"
+"MEDIANO_BLANCO"
+1 -39.42146259050605 801.134194461054 E E E 1 E 1 E N "LIB_DEUSER_BLANCO" E N "LIB_IRC_AZUL_01" E E
+ E E
+17 0 0 0 0 0
+E E E
+1
+4
+LANG:10001 13 Add new group
+LANG:10010 0 
+LANG:10000 23 Neue Gruppe hinzufügen
+LANG:10027 41 Добавить новую группу:
+
+2
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+4
+LANG:10001 26 arial,-1,13,5,40,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10000 26 arial,-1,13,5,40,0,0,0,0,0
+LANG:10027 26 arial,-1,13,5,40,0,0,0,0,0
+0  266.8141496379712 786.7720149738743 459.8141496379707 839.7720149738743
+
+T 
+3
+LANG:10001 15 Change Password
+LANG:10010 19 Cambiar Contraseña
+LANG:10011 15 Change Password
+"main(mapping event)
+{
+  shape table;
+  bool prueba;
+  string user;
+  dyn_int linea;
+  int n;
+
+  bool permiso = permisos_usuario_operacion(12,FALSE);
+
+  if (permiso)
+  {
+    table = getShape(this.panel, \"users_table_gestion\");
+    getValue(table, \"cellValueRC\", table.selectLineN(), \"Usuario\", user);
+
+    if (table.selectLineN!=-1)
+    {
+      ChildPanelOnCentralModal(\"vision/emergentes/internas/cambiar_password.pnl\", \"Cambiar_Password\", makeDynString(\"$username:\" + user));
+    }
+    else
+    {
+      mostrar_msg_emergente(4, \"usuario_no_seleccionado\");
+    }
+  }
+
+}
+" 0
+ E E E
+13 19
+"btn_borrar_usuario"
+"MEDIANO_BLANCO"
+1 708.0287755430442 808.268388922108 E E E 1 E 1 E N "LIB_DEUSER_BLANCO" E N "LIB_IRC_AZUL_01" E E
+ E E
+18 0 0 0 0 0
+E E E
+1
+4
+LANG:10001 13 Add new group
+LANG:10010 0 
+LANG:10000 23 Neue Gruppe hinzufügen
+LANG:10027 41 Добавить новую группу:
+
+2
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+4
+LANG:10001 26 arial,-1,13,5,40,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10000 26 arial,-1,13,5,40,0,0,0,0,0
+LANG:10027 26 arial,-1,13,5,40,0,0,0,0,0
+0  706.5000000000002 786.5440299477486 899.4999999999998 839.5440299477486
+
+T 
+3
+LANG:10001 11 Remove User
+LANG:10010 14 Borrar Usuario
+LANG:10011 11 Remove User
+"main(mapping event)
+{
+
+  int row = users_table_gestion.selectLineN();
+  string userName = users_table_gestion.cellValueRC(row, \"Usuario\");
+  dyn_float  resultFloats;
+  dyn_string resultStrings;
+  bool permiso = permisos_usuario_operacion(12, FALSE);
+
+  if (permiso && row != -1)
+  {
+    string question = getCatStr(\"mensajes_emergentes\", \"borrrar_usuario\");
+    dyn_float  resultFloats;
+    dyn_string resultStrings;
+
+    ChildPanelOnCentralModalReturn(\"vision/emergentes/internas/borrar_usuario.pnl\",
+                                   \"Borrar usuario\", \"\",
+                                   resultFloats, resultStrings);
+
+    if (dynlen(resultStrings) > 0 && resultStrings[1] == \"true\")
+    {
+      shared_ptr<UserManagementUser> user = m_um.getUserByName(userName);
+
+      if (user != nullptr)
+      {
+        user.remove();
+        dyn_string errorList;
+
+        if (! m_um.saveChangesError(errorList))
+        {
+          ChildPanelOnCentralModal(\"vision/MessageWarning\",
+                                   getCatStr(\"para\", \"warning\"),
+                                   makeDynString(getCatStr(\"userMan\", \"cannotdelete\") + \"\\n\" + strjoin(errorList, \"\\n\")));
+        }
+      }
+      else
+      {
+        mostrar_msg_emergente(4, \"usuario_no_seleccionado\");
+      }
+    }
+  }
+}
+
+
+" 0
+ E E "main()
+{
+  permisos_usuario_visualizacion(12,FALSE);
+}" 0
+
+2 26
+"Text1"
+"txf_standard_1"
+1 1446 147.8715538847116 E E E 1 E 1 E N "LIB_DEUSER_AZUL_08" E N "_Transparent" E E
+ E E
+25 0 0 0 0 0
+E E E
+0
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 0 1 E U  0 E 1410 149.8715538847116 1448 165
+0 2 0 "0s" 0 0 0 194 0 0  1448 149.8715538847116 1
+4
+LANG:10001 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10000 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,75,0,0,0,0,0
+0 4
+LANG:10001 11 Group name:
+LANG:10010 5 Grupo
+LANG:10000 5 Name:
+LANG:10027 7 Имя:
+2 27
+"txtComment"
+"txf_standard_1"
+1 1482 276.2905179615706 E E E 1 E 1 E N "LIB_DEUSER_AZUL_08" E N "_Transparent" E E
+ E E
+26 0 0 0 0 0
+E E E
+0
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 0 1 E U  0 E 1410 277.2905179615706 1484 292
+0 2 2 "0s" 0 0 0 194 0 0  1484 277.2905179615706 1
+4
+LANG:10001 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10000 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,75,0,0,0,0,0
+0 4
+LANG:10001 12 Description:
+LANG:10010 12 Descripción
+LANG:10000 13 Beschreibung:
+LANG:10027 17 Описание:
+2 29
+"Text3"
+"txf_standard_1"
+1 1470 340 E E E 1 E 1 E N "LIB_DEUSER_AZUL_08" E N "_Transparent" E E
+ E E
+28 0 0 0 0 0
+E E E
+0
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 0 1 E U  0 E 1410 341 1472 356
+0 2 2 "0s" 0 0 0 194 0 0  1472 341 1
+4
+LANG:10001 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10000 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,75,0,0,0,0,0
+0 4
+LANG:10001 8 Members:
+LANG:10010 8 Miembros
+LANG:10000 11 Mitglieder:
+LANG:10027 11 Члены:
+2 30
+"Text2"
+"txf_standard_1"
+1 1457 211.5810359231411 E E E 1 E 1 E N "LIB_DEUSER_AZUL_08" E N "_Transparent" E E
+ E E
+29 0 0 0 0 0
+E E E
+0
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 0 1 E U  0 E 1410 213.5810359231411 1459 229
+0 2 0 "0s" 0 0 0 194 0 0  1459 213.5810359231411 1
+4
+LANG:10001 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10000 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,75,0,0,0,0,0
+0 4
+LANG:10001 10 Full name:
+LANG:10010 6 Nombre
+LANG:10000 12 Voller Name:
+LANG:10027 20 Полное имя:
+14 33
+"txf_descripcion"
+"PEQUENIO_AZUL"
+1 1486.25 270.6999927714748 E E E 1 E 1 E N "LIB_DEUSER_NEGRO" E N "_Transparent" E E
+ E E
+32 0 0 0 0 0
+E E E
+0
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+2
+"layoutAlignment" "AlignCenter"
+"textChangedCB" "main(string newText)
+{
+  bool permiso = permisos_usuario_operacion(12,FALSE,FALSE);
+
+  if (permiso)
+  {
+    if (m_group != nullptr)
+    {
+      m_group.setComment(newText);
+    }
+  }
+}
+"
+4
+LANG:10001 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10000 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,40,0,0,0,0,0
+0  1484.25 270.6999927714748 1775.39074500768 295.5477098183329
+3 "0s" 0 0 0 0 0 -1  E E E
+22 34
+"cbb_miembros"
+"PEQUENIO_AZUL"
+1 1493.25 337 E E E 1 E 1 E N "LIB_DEUSER_NEGRO" E N "LIB_DEUSER_BLANCO" E E
+ E E
+33 0 0 0 0 0
+E E E
+0
+4
+LANG:10001 22 User of selected group
+LANG:10010 22 User of selected group
+LANG:10000 30 Benutzer der gewählten Gruppe
+LANG:10027 54 Пользователь выбранных групп
+
+1
+"layoutAlignment" "AlignCenter"
+4
+LANG:10001 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10000 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,40,0,0,0,0,0
+0  1491.25 335 1856 362
+0
+
+E
+E
+E
+ 0 0
+13 35
+"btn_aplicar"
+""
+1 1673.5 141.4357769423558 E E E 1 E 1 E N "_Transparent" E N "LIB_IRC_AZUL_01" E E
+ E E
+34 0 0 0 0 0
+E E E
+1
+4
+LANG:10001 19 Save group settings
+LANG:10010 0 
+LANG:10000 30 Gruppeneinstellungen speichern
+LANG:10027 48 Сохранить настройки групп
+
+2
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignCenter"
+4
+LANG:10001 26 arial,-1,13,5,40,0,0,0,0,0
+LANG:10010 26 arial,-1,13,5,40,0,0,0,0,0
+LANG:10000 26 arial,-1,13,5,40,0,0,0,0,0
+LANG:10027 26 arial,-1,13,5,40,0,0,0,0,0
+0  1793 221.9357769423558 1856 284.9357769423559
+
+P 
+4294967295
+"pictures/iconos/botoneras/botonera_formularios/guardar.svg"
+2
+LANG:10001 0 
+LANG:10010 0 
+"void main()
+{
+  dyn_string ds;
+  dyn_float df;
+  bool permiso = permisos_usuario_operacion(12,FALSE);
+
+  if (permiso)
+  {
+    if (m_group == nullptr)
+    {
+      ChildPanelOnCentralModalReturn(\"vision/emergentes/internas/mensaje_error_grupos.pnl\",
+                                     getCatStr(\"para\", \"warning\"),
+                                     makeDynString(getCatStr(\"mensajes_emergentes\", \"grupo_no_seleccionado\")),
+                                     df, ds);
+      return;
+    }
+
+    ChildPanelOnCentralModalReturn(\"vision/emergentes/internas/mensaje_informacion_grupos.pnl\",
+                                   getCatStr(\"para\", \"information\"),
+                                   makeDynString(getCatStr(\"mensajes_emergentes\", \"modificar_grupo\")),
+                                   df, ds);
+
+    if (dynlen(df) < 1 || !df[1])
+    {
+      return;
+    }
+
+    guardar_propiedades_grupo();
+  }
+}
+" 0
+ E E E
+14 36
+"txf_nombre_completo"
+"PEQUENIO_AZUL"
+1 1493.25 209.3999855429497 E E E 1 E 1 E N "LIB_DEUSER_NEGRO" E N "_Transparent" E E
+ E E
+35 0 0 0 0 0
+E E E
+0
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+2
+"layoutAlignment" "AlignCenter"
+"textChangedCB" "main(string newText)
+{
+
+  bool permiso = permisos_usuario_operacion(12, FALSE,FALSE);
+
+  if (permiso)
+  {
+    if (m_group != nullptr)
+    {
+      m_group.setFullName(newText);
+    }
+  }
+}
+"
+4
+LANG:10001 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10000 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,40,0,0,0,0,0
+0  1491.25 209.3999855429497 1782.39074500768 234.0954196366659
+3 "50s" 50 0 0 0 0 -1  E E E
+14 37
+"txf_nombre_grupo"
+"PEQUENIO_AZUL"
+1 1493.25 145.8715538847116 E E E 0 E 1 E N "LIB_DEUSER_NEGRO" E N "_Transparent" E E
+ E E
+36 0 0 0 0 0
+E E E
+0
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+1
+"layoutAlignment" "AlignCenter"
+4
+LANG:10001 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10000 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,40,0,0,0,0,0
+0  1491.25 145.8715538847116 1854.25 170.8715538847116
+3 "50s" 50 0 0 0 0 -1  E E E
+13 39
+"btn_borrar_grupo"
+"MEDIANO_BLANCO"
+1 1664.5 784.4606966144154 E E E 1 E 1 E N "LIB_DEUSER_BLANCO" E N "LIB_IRC_AZUL_01" E E
+ E E
+38 0 0 0 0 0
+E E E
+1
+4
+LANG:10001 13 Add new group
+LANG:10010 0 
+LANG:10000 23 Neue Gruppe hinzufügen
+LANG:10027 41 Добавить новую группу:
+
+2
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignCenter"
+4
+LANG:10001 26 arial,-1,13,5,40,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10000 26 arial,-1,13,5,40,0,0,0,0,0
+LANG:10027 26 arial,-1,13,5,40,0,0,0,0,0
+0  1662.5 786.5440299477486 1855.5 839.5440299477486
+
+T 
+4
+LANG:10001 6 Delete
+LANG:10010 12 Borrar Grupo
+LANG:10000 8 Löschen
+LANG:10027 14 Удалить
+"void main()
+{
+  dyn_string ds;
+  dyn_float df;
+  bool permiso = permisos_usuario_operacion(12,FALSE);
+
+  if (permiso)
+  {
+
+    if (m_group == nullptr)
+    {
+      ChildPanelOnCentralModalReturn(\"vision/emergentes/internas/mensaje_error_grupos.pnl\",
+                                     getCatStr(\"para\", \"warning\"),
+                                     makeDynString(getCatStr(\"mensajes_emergentes\", \"grupo_no_seleccionado\")),
+                                     df, ds);
+      return;
+    }
+
+    if (dynlen(m_users) > 0)
+    {
+      ChildPanelOnCentralModalReturn(\"vision/emergentes/internas/mensaje_error_grupos.pnl\",
+                                     getCatStr(\"para\", \"warning\"),
+                                     makeDynString(getCatStr(\"mensajes_emergentes\", \"grupo_usado\")),
+                                     df, ds);
+      return;
+    }
+
+    ChildPanelOnCentralModalReturn(\"vision/emergentes/internas/mensaje_informacion_grupos.pnl\",
+                                   getCatStr(\"para\", \"information\"),
+                                   makeDynString(getCatStr(\"mensajes_emergentes\", \"borrar_grupo\")),
+                                   df, ds);
+
+    if (dynlen(df) < 1 || !df[1])
+    {
+      return;
+    }
+
+    m_group.remove();
+    guardar_propiedades_grupo(\"cannotdelete\");
+  }
+}
+" 0
+ E E E
+13 40
+"btn_crear_grupo"
+"MEDIANO_BLANCO"
+1 1046.011480991014 784.4606966144153 E E E 1 E 1 E N "LIB_DEUSER_BLANCO" E N "LIB_IRC_AZUL_01" E E
+ E E
+39 0 0 0 0 0
+E E E
+1
+4
+LANG:10001 13 Add new group
+LANG:10010 0 
+LANG:10000 23 Neue Gruppe hinzufügen
+LANG:10027 41 Добавить новую группу:
+
+2
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignCenter"
+4
+LANG:10001 26 arial,-1,13,5,40,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10000 26 arial,-1,13,5,40,0,0,0,0,0
+LANG:10027 26 arial,-1,13,5,40,0,0,0,0,0
+0  1044.011480991014 786.5440299477486 1237.011480991014 839.5440299477486
+
+T 
+4
+LANG:10001 3 Add
+LANG:10010 11 Crear Grupo
+LANG:10000 11 Hinzufügen
+LANG:10027 16 Добавить
+"void main()
+{
+  int groupId = -1;
+  dyn_float df;
+  dyn_string ds;
+
+  OaAuthFactory factory;
+  mixed auth = factory.getAuth(); // Get the current authentication method
+  bool permiso = permisos_usuario_operacion(12,FALSE);
+
+  if (permiso)
+  {
+
+    if (auth.getAuthType() != OaAuthenticationType::Standard) // AD or \"User defined\"
+    {
+      ChildPanelOnCentralModalReturn(
+        \"vision/ud_groupSelect.pnl\",
+        getCatStr(\"userMan\", \"groupSelect\"),
+        makeDynString(),
+        df,
+        ds);
+    }
+    else
+    {
+      ChildPanelOnCentralModalReturn(\"vision/emergentes/internas/nuevo_grupo.pnl\",
+                                     getCatStr(\"userMan\", \"addinggroup\"),
+                                     makeDynString(), df, ds);
+
+      if (dynlen(df) < 1 || df[1] == -1)
+      {
+        return;
+      }
+
+      if (ds[1] == \"\" || strpos(ds[1], \" \") >= 0)
+      {
+        ChildPanelOnCentralModalReturn(\"vision/emergentes/internas/mensaje_error_grupos.pnl\",
+                                       getCatStr(\"para\", \"warning\"),
+                                       makeDynString(getCatStr(\"mensajes_emergentes\", \"grupo_no_valido\")),
+                                       df, ds);
+        return;
+      }
+
+      string errStr;
+
+      if (!UserManagementHooks::checkGroupName(ds[1], errStr))
+      {
+        ChildPanelOnCentralModalReturn(\"vision/emergentes/internas/mensaje_error_grupos.pnl\",
+                                       getCatStr(\"para\", \"warning\"),
+                                       makeDynString(errStr),
+                                       df, ds);
+        return;
+      }
+
+      // ds[1]: groupName
+      // ds[2]: txf_nombre_completo
+      // ds[3]: txf_descripcion
+      shared_ptr<UserManagementGroup> group = new UserManagementGroup(ds[1]);
+      dyn_string errorList;
+
+      if (group.getError() != -1)
+      {
+        group.setFullName(ds[2]);
+        group.setComment(ds[3]);
+        m_um.addGroup(group);
+
+        if (m_um.saveChangesError(errorList))
+        {
+          groupId = group.getId();
+        }
+      }
+
+      if (groupId < 0)
+      {
+        ChildPanelOnCentralModalReturn(
+          \"vision/emergentes/internas/mensaje_error_grupos.pnl\",
+          getCatStr(\"para\", \"warning\"),
+          makeDynString(getCatStr(\"mensajes_emergentes\", \"grupo_no_valido\")),
+          df,
+          ds);
+        return;
+      }
+
+      m_group = nullptr;
+      m_group = m_um.getGroup(groupId);
+
+      if (m_group != nullptr)
+      {
+        datos_grupo_seleccionado(m_group.getName());
+      }
+    }
+  }
+}
+" 0
+ E E E
+25 44
+"grupos_table_gestion"
+"GRANDE_AZUL"
+1 1089.284588273918 167.7303249791145 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+43 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+
+1
+"layoutAlignment" "AlignNone"
+3
+LANG:10001 34 Consolas,-1,16,5,75,0,0,0,0,0,Bold
+LANG:10010 34 Consolas,-1,16,5,75,0,0,0,0,0,Bold
+LANG:10011 34 Consolas,-1,16,5,75,0,0,0,0,0,Bold
+0  1044.005740495507 145.9357769423558 1347.005740495507 568.9357769423558
+"main()
+{
+  this.tableMode(1);
+  this.selectByClick(3);
+}" 0
+"main(int row, string column, string value)
+{
+  datos_grupo_seleccionado(value);
+  permisos_visible(value);
+}
+" 0
+ 1 0 1 1 3 "grupos" 12 1 0 "[0s,,,AlignHCenter|AlignVCenter]" 3
+LANG:10001 4 USER
+LANG:10010 6 Grupos
+LANG:10011 4 USER
+E
+3
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+
+300 
+30 30 "" 1 3
+LANG:10001 2 #3
+LANG:10010 2 #3
+LANG:10011 2 #3
+"" 1 3
+LANG:10001 2 #2
+LANG:10010 2 #2
+LANG:10011 2 #2
+"" 1 3
+LANG:10001 2 #1
+LANG:10010 2 #1
+LANG:10011 2 #1
+10 0
+3
+LANG:10001 34 Consolas,-1,16,5,75,0,0,0,0,0,Bold
+LANG:10010 34 Consolas,-1,16,5,75,0,0,0,0,0,Bold
+LANG:10011 34 Consolas,-1,16,5,75,0,0,0,0,0,Bold
+0 0 1 0 1 7
+1 0
+6 87
+"RECTANGLE3"
+""
+1 282 34 E E E 1 E 1 E N {1,72,152} E N "_Transparent" E E
+ E E
+86 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+4
+"transparentForMouseInGedi" ""
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 10.5505617977528 0 13.51470588235294 -2005.258426966289 -449.5 1 E 282 34 371 102
+6 88
+"RECTANGLE4"
+""
+1 282 34 E E E 1 E 1 E N {1,72,152} E N "_Transparent" E E
+ E E
+87 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+4
+"transparentForMouseInGedi" ""
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 10.5471633314453 0 13.51470588235294 -2964.300059467573 -449.5 1 E 282 34 371 102
+25 132
+"tb_permisos_10_16"
+""
+1 1421.599967700256 454.2816091954023 E E E 0 E 0 E N "LIB_IRC_AZUL_01" E N "LIB_DEUSER_BLANCO" E E
+ E E
+131 0 0 0 0 0
+E E E
+0
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+1
+"layoutAlignment" "AlignCenter"
+4
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10000 26 Arial,-1,12,5,40,0,0,0,0,0
+LANG:10027 26 arial,-1,12,5,40,0,0,0,0,0
+0  1440.441698966407 467.7183908045977 1828.525032299741 498.051724137931
+"main()
+{
+  permisos_usuario_visualizacion(20,TRUE,FALSE);
+}
+" 0
+E 0 0 1 33 1 "#1" 11 0 0 "s" 4
+LANG:10001 2 #1
+LANG:10010 2 #1
+LANG:10000 2 #1
+LANG:10027 2 #1
+E
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+112 "#2" 1 0 0 "s" 4
+LANG:10001 2 #2
+LANG:10010 2 #2
+LANG:10000 2 #2
+LANG:10027 2 #2
+E
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+24 "#3" 1 0 0 "s" 4
+LANG:10001 2 #3
+LANG:10010 2 #3
+LANG:10000 2 #3
+LANG:10027 2 #3
+E
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+24 "#4" 1 0 0 "s" 4
+LANG:10001 2 #4
+LANG:10010 2 #4
+LANG:10000 2 #4
+LANG:10027 2 #4
+E
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+24 "#5" 1 0 0 "s" 4
+LANG:10001 2 #5
+LANG:10010 2 #5
+LANG:10000 2 #5
+LANG:10027 2 #5
+E
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+24 "#6" 1 0 0 "s" 4
+LANG:10001 2 #6
+LANG:10010 2 #6
+LANG:10000 2 #6
+LANG:10027 2 #6
+E
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+24 "#7" 1 0 0 "s" 4
+LANG:10001 2 #7
+LANG:10010 2 #7
+LANG:10000 2 #7
+LANG:10027 2 #7
+E
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+24 "#8" 1 0 0 "s" 4
+LANG:10001 2 #8
+LANG:10010 2 #8
+LANG:10000 2 #8
+LANG:10027 2 #8
+E
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+24 "#9" 1 0 0 "s" 4
+LANG:10001 2 #9
+LANG:10010 2 #9
+LANG:10000 2 #9
+LANG:10027 2 #9
+E
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+24 "#10" 1 0 0 "s" 4
+LANG:10001 3 #10
+LANG:10010 3 #10
+LANG:10000 3 #10
+LANG:10027 3 #10
+E
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+24 "#11" 1 1 0 "s" 4
+LANG:10001 3 #11
+LANG:10010 3 #11
+LANG:10000 3 #11
+LANG:10027 3 #11
+E
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+55 "#12" 1 1 0 "s" 4
+LANG:10001 3 #12
+LANG:10010 3 #12
+LANG:10000 3 #12
+LANG:10027 3 #12
+E
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+55 "#13" 1 1 0 "s" 4
+LANG:10001 3 #13
+LANG:10010 3 #13
+LANG:10000 3 #13
+LANG:10027 3 #13
+E
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+55 "#14" 1 1 0 "s" 4
+LANG:10001 3 #14
+LANG:10010 3 #14
+LANG:10000 3 #14
+LANG:10027 3 #14
+E
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+55 "#15" 1 1 0 "s" 4
+LANG:10001 3 #15
+LANG:10010 3 #15
+LANG:10000 3 #15
+LANG:10027 3 #15
+E
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+55 "#16" 1 1 0 "s" 4
+LANG:10001 3 #16
+LANG:10010 3 #16
+LANG:10000 3 #16
+LANG:10027 3 #16
+E
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+55 "#17" 1 1 0 "s" 4
+LANG:10001 3 #17
+LANG:10010 3 #17
+LANG:10000 3 #17
+LANG:10027 3 #17
+E
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+55 "#18" 1 0 0 "s" 4
+LANG:10001 3 #18
+LANG:10010 3 #18
+LANG:10000 3 #18
+LANG:10027 3 #18
+E
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+24 "#19" 1 0 0 "s" 4
+LANG:10001 3 #19
+LANG:10010 3 #19
+LANG:10000 3 #19
+LANG:10027 3 #19
+E
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+0 "#20" 1 0 0 "s" 4
+LANG:10001 3 #20
+LANG:10010 3 #20
+LANG:10000 3 #20
+LANG:10027 3 #20
+E
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+24 "#21" 1 0 0 "s" 4
+LANG:10001 3 #21
+LANG:10010 3 #21
+LANG:10000 3 #21
+LANG:10027 3 #21
+E
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+24 "#22" 1 0 0 "s" 4
+LANG:10001 3 #22
+LANG:10010 3 #22
+LANG:10000 3 #22
+LANG:10027 3 #22
+E
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+24 "#23" 1 0 0 "s" 4
+LANG:10001 3 #23
+LANG:10010 3 #23
+LANG:10000 3 #23
+LANG:10027 3 #23
+E
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+24 "#24" 1 0 0 "s" 4
+LANG:10001 3 #24
+LANG:10010 3 #24
+LANG:10000 3 #24
+LANG:10027 3 #24
+E
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+24 "#25" 1 0 0 "s" 4
+LANG:10001 3 #25
+LANG:10010 3 #25
+LANG:10000 3 #25
+LANG:10027 3 #25
+E
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+24 "#26" 1 0 0 "s" 4
+LANG:10001 3 #26
+LANG:10010 3 #26
+LANG:10000 3 #26
+LANG:10027 3 #26
+E
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+24 "#27" 1 0 0 "s" 4
+LANG:10001 3 #27
+LANG:10010 3 #27
+LANG:10000 3 #27
+LANG:10027 3 #27
+E
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+24 "#28" 1 0 0 "s" 4
+LANG:10001 3 #28
+LANG:10010 3 #28
+LANG:10000 3 #28
+LANG:10027 3 #28
+E
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+24 "#29" 1 0 0 "s" 4
+LANG:10001 3 #29
+LANG:10010 3 #29
+LANG:10000 3 #29
+LANG:10027 3 #29
+E
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+24 "#30" 1 0 0 "s" 4
+LANG:10001 3 #30
+LANG:10010 3 #30
+LANG:10000 3 #30
+LANG:10027 3 #30
+E
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+24 "#31" 1 0 0 "s" 4
+LANG:10001 3 #31
+LANG:10010 3 #31
+LANG:10000 3 #31
+LANG:10027 3 #31
+E
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+24 "#32" 1 0 0 "s" 4
+LANG:10001 3 #32
+LANG:10010 3 #32
+LANG:10000 3 #32
+LANG:10027 3 #32
+E
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+24 "#33" 1 0 0 "s" 4
+LANG:10001 3 #33
+LANG:10010 3 #33
+LANG:10000 3 #33
+LANG:10027 3 #33
+E
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+24 
+26 26 "" 1 4
+LANG:10001 2 #1
+LANG:10010 2 #1
+LANG:10000 2 #1
+LANG:10027 2 #1
+8 72
+4
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10000 26 Arial,-1,12,5,40,0,0,0,0,0
+LANG:10027 26 arial,-1,12,5,40,0,0,0,0,0
+0 0 0 0 1 7
+1 0
+2 146
+"text10"
+"txf_standard_1"
+1 1459.591731266152 442.5046824537442 E E E 1 E 0 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+145 0 0 0 0 0
+E E E
+0
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  permisos_usuario_visualizacion(20,TRUE,FALSE);
+}
+" 0
+ E 0 1 1 2 1 E U  1 E 1459.591731266152 442.5046824537442 1477 458
+0 2 2 "0s" 0 0 0 192 0 0  1459.591731266152 442.5046824537442 1
+4
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10000 30 Helvetica,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 4
+LANG:10001 1 0
+LANG:10010 2 10
+LANG:10000 1 0
+LANG:10027 1 0
+2 147
+"text11"
+"txf_standard_1"
+1 1514.591731266152 442.5046824537442 E E E 1 E 0 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+146 0 0 0 0 0
+E E E
+0
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  permisos_usuario_visualizacion(20,TRUE,FALSE);
+}
+" 0
+ E 0 1 1 2 1 E U  1 E 1514.591731266152 442.5046824537442 1532 458
+0 2 2 "0s" 0 0 0 192 0 0  1514.591731266152 442.5046824537442 1
+4
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10000 30 Helvetica,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 4
+LANG:10001 1 1
+LANG:10010 2 11
+LANG:10000 1 1
+LANG:10027 1 1
+2 148
+"text12"
+"txf_standard_1"
+1 1569.591731266152 442.5046824537442 E E E 1 E 0 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+147 0 0 0 0 0
+E E E
+0
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  permisos_usuario_visualizacion(20,TRUE,FALSE);
+}
+" 0
+ E 0 1 1 2 1 E U  1 E 1569.591731266152 442.5046824537442 1587 458
+0 2 2 "0s" 0 0 0 192 0 0  1569.591731266152 442.5046824537442 1
+4
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10000 30 Helvetica,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 4
+LANG:10001 1 2
+LANG:10010 2 12
+LANG:10000 1 2
+LANG:10027 1 2
+2 149
+"text13"
+"txf_standard_1"
+1 1624.216731266151 442.5046824537442 E E E 1 E 0 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+148 0 0 0 0 0
+E E E
+0
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  permisos_usuario_visualizacion(20,TRUE,FALSE);
+}
+" 0
+ E 0 1 1 2 1 E U  1 E 1624.216731266151 442.5046824537442 1642 458
+0 2 2 "0s" 0 0 0 192 0 0  1624.216731266151 442.5046824537442 1
+4
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10000 30 Helvetica,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 4
+LANG:10001 1 3
+LANG:10010 2 13
+LANG:10000 1 3
+LANG:10027 1 3
+2 150
+"text14"
+"txf_standard_1"
+1 1679.591731266152 442.5046824537442 E E E 1 E 0 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+149 0 0 0 0 0
+E E E
+0
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  permisos_usuario_visualizacion(20,TRUE,FALSE);
+}
+" 0
+ E 0 1 1 2 1 E U  1 E 1679.591731266152 442.5046824537442 1697 458
+0 2 2 "0s" 0 0 0 192 0 0  1679.591731266152 442.5046824537442 1
+4
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10000 30 Helvetica,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 4
+LANG:10001 1 4
+LANG:10010 2 14
+LANG:10000 1 4
+LANG:10027 1 4
+2 151
+"text15"
+"txf_standard_1"
+1 1734.591731266152 442.5046824537442 E E E 1 E 0 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+150 0 0 0 0 0
+E E E
+0
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  permisos_usuario_visualizacion(20,TRUE,FALSE);
+}
+" 0
+ E 0 1 1 2 1 E U  1 E 1734.591731266152 442.5046824537442 1752 458
+0 2 2 "0s" 0 0 0 192 0 0  1734.591731266152 442.5046824537442 1
+4
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10000 30 Helvetica,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 4
+LANG:10001 1 5
+LANG:10010 2 15
+LANG:10000 1 5
+LANG:10027 1 5
+2 152
+"text16"
+"txf_standard_1"
+1 1789.591731266152 442.5046824537442 E E E 1 E 0 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+151 0 0 0 0 0
+E E E
+0
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+4
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  permisos_usuario_visualizacion(20,TRUE,FALSE);
+}
+" 0
+ E 0 1 1 2 1 E U  1 E 1789.591731266152 442.5046824537442 1807 458
+0 2 2 "0s" 0 0 0 192 0 0  1789.591731266152 442.5046824537442 1
+4
+LANG:10001 26 Arial,-1,13,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10000 30 Helvetica,-1,13,5,50,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,50,0,0,0,0,0
+0 4
+LANG:10001 1 6
+LANG:10010 2 16
+LANG:10000 1 6
+LANG:10027 1 6
+30 175
+"frame_recortado"
+""
+1 10 190 E E E 1 E 0 E N "LIB_DEUSER_AZUL_08" E N "_Transparent" E E
+ E E
+174 0 0 0 0 0
+E E E
+0
+4
+LANG:10001 0 
+LANG:10010 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignCenter"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  permisos_usuario_visualizacion(20,TRUE,FALSE);
+}
+" 0
+ E 0 2 1 0 1 E 1.0880195599022 0 1.043096185842759 1398.71153566713 328.2310572141741 0 E 10 70 420 190
+4
+LANG:10001 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10000 26 Arial,-1,13,5,75,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,75,0,0,0,0,0
+0 4
+LANG:10001 18 Authorization Bits
+LANG:10010 21 Bits de Autorización
+LANG:10000 17 Berechtigungsbits
+LANG:10027 29 Биты полномочий
+13 176
+"btn_habilitar_usuarios"
+"MEDIANO_BLANCO"
+1 180.9214625905084 800.9062094349283 E E E 1 E 1 E N "LIB_DEUSER_BLANCO" E N "LIB_IRC_AZUL_01" E E
+ E E
+175 0 0 0 0 0
+E E E
+1
+4
+LANG:10001 13 Add new group
+LANG:10010 0 
+LANG:10000 23 Neue Gruppe hinzufügen
+LANG:10027 41 Добавить новую группу:
+
+2
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+4
+LANG:10001 26 arial,-1,13,5,40,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10000 26 arial,-1,13,5,40,0,0,0,0,0
+LANG:10027 26 arial,-1,13,5,40,0,0,0,0,0
+0  487.1570748189857 786.5440299477486 680.1570748189852 839.5440299477486
+
+T 
+3
+LANG:10001 15 Change Password
+LANG:10010 33 Habilitar / Deshabilitar
+Usuarios
+LANG:10011 15 Change Password
+"main(mapping event)
+{
+  string user, estado;
+  shape table;
+  bool enable;
+  dyn_string confirmar_st;
+  dyn_float confirmar;
+
+  bool permiso = permisos_usuario_operacion(12, FALSE);
+
+  if (permiso)
+  {
+    table = getShape(this.panel, \"users_table_gestion\");
+    getValue(table, \"cellValueRC\", table.selectLineN(), \"Usuario\", user);
+    getValue(table, \"cellValueRC\", table.selectLineN(), \"Estado\", estado);
+
+    if (table.selectLineN != -1)
+    {
+      if (estado == \"HABILITADO\" || estado == \"ENABLED\")
+      {
+        enable = setUserEnabledPVSS(getUserId(user), FALSE);
+      }
+      else
+      {
+
+        ChildPanelOnCentralModalReturn(\"vision/emergentes/internas/cambiar_password.pnl\",
+                                 \"Cambiar_Password\",
+                                 makeDynString(\"$username:\" + user, \"$sin_verificar:\" + true), confirmar, confirmar_st);
+
+        if (dynlen(confirmar) != 0 && confirmar[1] == 1) enable = setUserEnabledPVSS(getUserId(user), TRUE);
+      }
+    }
+    else
+    {
+      mostrar_msg_emergente(4, \"usuario_no_seleccionado\");
+    }
+  }
+}" 0
+ E E E
+6 128
+"RECTANGLE5"
+""
+1 1447 457 E E E 1 E 0 E N "LIB_IRC_AZUL_01" E N {255,255,255} E E
+ E E
+127 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  permisos_usuario_visualizacion(20,TRUE);
+}
+" 0
+ E 0 2 3 2 1 E 1.011849901250826 0 0.9753086419753089 -21.28844147687163 24.5023414218816 1 E 1447 457 1826.749999999999 484
+13 177
+"PUSH_BUTTON1"
+"GRANDE_AZUL"
+1 60.00000000000001 45 E E E 1 E 0 E N "_ButtonText" E N "LIB_IRC_AZUL_01" E E
+ E E
+176 0 0 0 0 0
+E E E
+8
+2
+LANG:10001 0 
+LANG:10010 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  58.00000000000001 28 262.0000000000001 82
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON1
+LANG:10010 15 CAMBIAR USUARIO
+"main(mapping event)
+{
+  LogoutDialog(FALSE, 0, \"logout\", \"\");
+}" 0
+ E E E
+29 178
+"Label1"
+"GRANDE_AZUL"
+1 387.75 55.99999999999994 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+177 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"text" "string GESTIÓN DE USURIOS"
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,27,5,75,0,0,0,0,0,Negrita
+0  387.75 55.99999999999994 619.25 105.9999999999999
+5 Label
+0
+E29 179
+"Label2"
+"GRANDE_AZUL"
+1 1323.75 55.99999999999994 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+178 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"text" "string GESTIÓN DE GRUPOS"
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,27,5,75,0,0,0,0,0,Negrita
+0  1323.75 55.99999999999994 1555.25 105.9999999999999
+5 Label
+0
+E0
+LAYER, 1 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 2 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 3 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 4 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 5 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 6 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 7 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+0

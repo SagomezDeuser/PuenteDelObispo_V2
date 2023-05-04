@@ -1,0 +1,961 @@
+V 14
+7
+LANG:10001 0 
+LANG:10010 26 VALVULA_MOTORIZADA_GRAFICA
+LANG:10011 0 
+LANG:10009 17 MOTOR_D_VF_CONFIG
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+PANEL,-1 -1 520 500 N "LIB_IRC_BLANCO" 1
+"$INST"
+E E E E E 1 -1 -1 0  60 79
+""0  1
+E "//Clases importadas a utilizar por las funciones de la librería
+lib_accionamiento_motor_d_var accionamiento_motor_d_var = lib_accionamiento_motor_d_var($INST,\"asdf\");
+" 0
+ 5
+"CBRef" "1"
+"EClose" E
+"type" "BG_ACCIONAMIENTO_VALVULA_MOTOR"
+"dpi" "96"
+"pdpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10001 0 
+LANG:10010 0 
+29 158
+"wv_graficas"
+""
+1 168.0000000000001 -2.512183978068826 E E E 1 E 1 E N "_3DText" E N "_3DFace" E E
+ E E
+157 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"contextMenuPolicy" "enum 1"
+"transparentForMouseInGedi" ""
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  -0.9999999999999432 -2.512183978068826 518 288.5266621951055
+11 WebView.ewo
+1
+0 "loadFinished" "(bool ok)"
+"  btn_ocultar.visible = TRUE;"
+"main()
+{
+  btn_ocultar.visible = FALSE;
+  this.url(\"http://localhost:3000/d/Influx-1dp/influx-1dp?orgId=1&kiosk&var-tipo_dato=original_value_float&var-dp=System1:\" + $INST + \".Input.Xr_Dato_1&from=now-4h&to=now&var-leyenda=POSICIÓN\");
+}" 0
+13 159
+"PUSH_BUTTON7"
+""
+1 468.0843373493974 -2.022388059701483 E E E 0 E 1 E N "_ButtonText" E N {245,245,245} E E
+ E E
+158 0 0 0 27 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 27 Tahoma,-1,11,5,50,0,0,0,0,0
+LANG:10010 27 Tahoma,-1,11,5,50,0,0,0,0,0
+0  466.0843373493974 -4.022388059701483 505.0000000000001 47.97761194029852
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON1
+LANG:10010 1 
+
+E E E E
+13 160
+"PUSH_BUTTON8"
+""
+1 -2.887001460863008 -20.68905472636816 E E E 0 E 1 E N "_ButtonText" E N {245,245,245} E E
+ E E
+159 0 0 0 72 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 27 Tahoma,-1,11,5,50,0,0,0,0,0
+LANG:10010 27 Tahoma,-1,11,5,50,0,0,0,0,0
+0  -3 -4.022388059701486 38.11102873030581 47.97761194029852
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON1
+LANG:10010 1 
+
+E E E E
+13 161
+"PUSH_BUTTON9"
+""
+1 -58.8680447997989 -20.68905472636816 E E E 0 E 1 E N "_ButtonText" E N {245,245,245} E E
+ E E
+160 0 0 0 80 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 27 Tahoma,-1,11,5,50,0,0,0,0,0
+LANG:10010 27 Tahoma,-1,11,5,50,0,0,0,0,0
+0  34.11102873030581 -4.022388059701486 75.22205746061167 47.97761194029852
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON1
+LANG:10010 1 
+
+E E E E
+13 162
+"PUSH_BUTTON10"
+""
+1 -114.8490881387348 -20.68905472636816 E E E 0 E 1 E N "_ButtonText" E N {245,245,245} E E
+ E E
+161 0 0 0 83 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 27 Tahoma,-1,11,5,50,0,0,0,0,0
+LANG:10010 27 Tahoma,-1,11,5,50,0,0,0,0,0
+0  71.22205746061167 -4.022388059701486 112.3330861909175 47.97761194029852
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON1
+LANG:10010 1 
+
+E E E E
+13 163
+"PUSH_BUTTON11"
+""
+1 -170.8301314776707 -20.68905472636816 E E E 0 E 1 E N "_ButtonText" E N {245,245,245} E E
+ E E
+162 0 0 0 27 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 27 Tahoma,-1,11,5,50,0,0,0,0,0
+LANG:10010 27 Tahoma,-1,11,5,50,0,0,0,0,0
+0  108.3330861909175 -4.022388059701486 149.4441149212233 47.97761194029852
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON1
+LANG:10010 1 
+
+E E E E
+13 164
+"PUSH_BUTTON12"
+""
+1 -226.8111748166066 -20.68905472636816 E E E 0 E 1 E N "_ButtonText" E N {245,245,245} E E
+ E E
+163 0 0 0 69 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 27 Tahoma,-1,11,5,50,0,0,0,0,0
+LANG:10010 27 Tahoma,-1,11,5,50,0,0,0,0,0
+0  145.4441149212233 -4.022388059701486 186.5551436515291 47.97761194029852
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON1
+LANG:10010 1 
+
+E E E E
+13 165
+"PUSH_BUTTON13"
+""
+1 -282.7922181555425 -20.68905472636816 E E E 0 E 1 E N "_ButtonText" E N {245,245,245} E E
+ E E
+164 0 0 0 86 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 27 Tahoma,-1,11,5,50,0,0,0,0,0
+LANG:10010 27 Tahoma,-1,11,5,50,0,0,0,0,0
+0  182.5551436515291 -4.022388059701486 223.6661723818349 47.97761194029852
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON1
+LANG:10010 1 
+
+E E E E
+13 166
+"PUSH_BUTTON14"
+""
+1 -338.7732614944783 -20.68905472636816 E E E 0 E 1 E N "_ButtonText" E N {245,245,245} E E
+ E E
+165 0 0 0 68 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 27 Tahoma,-1,11,5,50,0,0,0,0,0
+LANG:10010 27 Tahoma,-1,11,5,50,0,0,0,0,0
+0  219.6661723818349 -4.022388059701486 260.7772011121407 47.97761194029852
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON1
+LANG:10010 1 
+
+E E E E
+13 167
+"PUSH_BUTTON15"
+""
+1 -394.7543048334143 -20.68905472636816 E E E 0 E 1 E N "_ButtonText" E N {245,245,245} E E
+ E E
+166 0 0 0 79 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 27 Tahoma,-1,11,5,50,0,0,0,0,0
+LANG:10010 27 Tahoma,-1,11,5,50,0,0,0,0,0
+0  256.7772011121407 -4.022388059701486 297.8882298424466 47.97761194029852
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON1
+LANG:10010 1 
+
+E E E E
+13 168
+"PUSH_BUTTON16"
+""
+1 -450.7353481723503 -20.68905472636816 E E E 0 E 1 E N "_ButtonText" E N {245,245,245} E E
+ E E
+167 0 0 0 84 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 27 Tahoma,-1,11,5,50,0,0,0,0,0
+LANG:10010 27 Tahoma,-1,11,5,50,0,0,0,0,0
+0  293.8882298424466 -4.022388059701486 334.9992585727524 47.97761194029852
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON1
+LANG:10010 1 
+
+E E E E
+13 169
+"PUSH_BUTTON17"
+""
+1 -506.7163915112862 -20.68905472636816 E E E 0 E 1 E N "_ButtonText" E N {245,245,245} E E
+ E E
+168 0 0 0 76 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 27 Tahoma,-1,11,5,50,0,0,0,0,0
+LANG:10010 27 Tahoma,-1,11,5,50,0,0,0,0,0
+0  330.9992585727524 -4.022388059701486 372.1102873030581 47.97761194029852
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON1
+LANG:10010 1 
+
+E E E E
+13 170
+"PUSH_BUTTON18"
+""
+1 -97.23707450401341 -20.68905472636816 E E E 0 E 1 E N "_ButtonText" E N {245,245,245} E E
+ E E
+169 1 0 0 83 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 27 Tahoma,-1,11,5,50,0,0,0,0,0
+LANG:10010 27 Tahoma,-1,11,5,50,0,0,0,0,0
+0  368.1102873030581 -4.022388059701486 409.2213160333639 47.97761194029852
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON1
+LANG:10010 1 
+
+E E E E
+13 171
+"PUSH_BUTTON19"
+""
+1 -60.12604577370758 -20.68905472636816 E E E 0 E 1 E N "_ButtonText" E N {245,245,245} E E
+ E E
+170 0 0 0 73 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 27 Tahoma,-1,11,5,50,0,0,0,0,0
+LANG:10010 27 Tahoma,-1,11,5,50,0,0,0,0,0
+0  405.2213160333639 -4.022388059701486 446.3323447636699 47.97761194029852
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON1
+LANG:10010 1 
+
+E E E E
+13 172
+"PUSH_BUTTON20"
+""
+1 -23.01501704340176 -20.68905472636816 E E E 0 E 1 E N "_ButtonText" E N {245,245,245} E E
+ E E
+171 0 0 0 70 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 27 Tahoma,-1,11,5,50,0,0,0,0,0
+LANG:10010 27 Tahoma,-1,11,5,50,0,0,0,0,0
+0  442.3323447636699 -4.022388059701486 483.4433734939757 47.97761194029852
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON1
+LANG:10010 1 
+
+E E E E
+6 179
+"RECTANGLE2"
+""
+1 90 200 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_AZUL_03" E E
+ E E
+178 0 0 0 0 0
+E E E
+0
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+5
+"layoutAlignment" "AlignNone"
+"focusPolicy" "StrongFocus"
+"showFocus" "0"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 2 3 2 1 E 1.744755244755245 0 0.9999999999999951 -147.0279720279721 91.00671641791149 1 E 90 200 376 226
+29 180
+"Label124"
+"lblRect"
+1 10.87709251101314 324.3521869952668 E E E 1 E 1 E N "_3DText" E N "_3DFace" E E
+ E E
+179 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+6
+"indent" "int -1"
+"lineWidth" "int 1"
+"margin" "int 0"
+"styleSheet" "string "
+"layoutAlignment" "AlignNone"
+"focusPolicy" "NoFocus"
+6
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10011 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10018 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  9.79999999999994 324.9845204115808 508.8000000000001 489.984520411581
+5 Label
+0
+E6 181
+"RECTANGLE126"
+""
+1 209 106.0000000000002 E E E 1 E 1 E N {0,0,0} E N {59,124,174} E E
+ E E
+180 0 0 0 0 0
+E E E
+0
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+4
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E -1 1 3 2 1 E 1 0 0.7777777777777777 47.79999999999998 235.5400759671364 1 E 209 106.0000000000002 214 115
+29 183
+"ell_estado_prot"
+"lblCircle"
+1 104.5 338.9845204115808 E E E 1 E 1 E N "_3DText" E N "_3DFace" E E
+ E E
+182 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+1
+"layoutAlignment" "AlignNone"
+6
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10011 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10018 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  104.5 338.9845204115808 124.5 358.9845204115808
+5 Label
+0
+"main()
+{
+  dpConnect(\"cambiar_estado\", accionamiento_valvula_motor.get_alm_ep()); //Mediante la instacia de librería, obtenemos el estado de la alarma (\"Static.DATOS_ALARMA.Output.Yd_Alarma_EP\")
+}
+
+//Cambia el color de fondo según el estado de la alarma
+void cambiar_estado(string dp, bool estado){
+  if(estado)  setValue(\"\", \"backCol\", \"LIB_IRC_ROJO_12\");
+  else  setValue(\"\", \"backCol\", \"LIB_IRC_GRIS_03\");
+}" 0
+29 184
+"ell_alama_ca"
+"lblCircle"
+1 104.5 368.9845204115808 E E E 1 E 1 E N "_3DText" E N "_3DFace" E E
+ E E
+183 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+1
+"layoutAlignment" "AlignNone"
+6
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10011 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10018 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  104.5 368.9845204115808 124.5 388.9845204115808
+5 Label
+0
+"main()
+{
+  dpConnect(\"cambiar_estado\", accionamiento_valvula_motor.get_alm_cm_f1()); //Mediante la instacia de librería, obtenemos el estado de la alarma (\"Static.DATOS_ALARMA.Output.Yd_Alarma_CM_F1\")
+}
+
+//Cambia el color de fondo según el estado de la alarma
+void cambiar_estado(string dp, bool estado){
+  if(estado)  setValue(\"\", \"backCol\", \"LIB_IRC_ROJO_12\");
+  else  setValue(\"\", \"backCol\", \"LIB_IRC_GRIS_03\");
+}" 0
+29 185
+"ell_alama_cc"
+"lblCircle"
+1 104.5 398.9845204115808 E E E 1 E 1 E N "_3DText" E N "_3DFace" E E
+ E E
+184 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+1
+"layoutAlignment" "AlignNone"
+6
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10011 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10018 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  104.5 398.9845204115808 124.5 418.9845204115808
+5 Label
+0
+"main()
+{
+  dpConnect(\"cambiar_estado\", accionamiento_valvula_motor.get_alm_cp_f1()); //Mediante la instacia de librería, obtenemos el estado de la alarma (\"Static.DATOS_ALARMA.Output.Yd_Alarma_CP_F1\")
+}
+
+//Cambia el color de fondo según el estado de la alarma
+void cambiar_estado(string dp, bool estado){
+  if(estado)  setValue(\"\", \"backCol\", \"LIB_IRC_ROJO_12\");
+  else  setValue(\"\", \"backCol\", \"LIB_IRC_GRIS_03\");
+}" 0
+29 186
+"ell_fallo_ext"
+"lblCircle"
+1 104.5 430.0371966935342 E E E 1 E 1 E N "_3DText" E N "_3DFace" E E
+ E E
+185 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+1
+"layoutAlignment" "AlignNone"
+6
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10011 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10018 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  104.5 430.0371966935342 124.5 450.0371966935342
+5 Label
+0
+"main()
+{
+  dpConnect(\"cambiar_estado\", accionamiento_valvula_motor.get_alm_ext()); //Mediante la instacia de librería, obtenemos el estado de la alarma (\"Static.DATOS_ALARMA.Output.Yd_Alarma_EXT\")
+}
+
+//Cambia el color de fondo según el estado de la alarma
+void cambiar_estado(string dp, bool estado){
+  if(estado)  setValue(\"\", \"backCol\", \"LIB_IRC_ROJO_12\");
+  else  setValue(\"\", \"backCol\", \"LIB_IRC_GRIS_03\");
+}" 0
+29 187
+"ell_fallo_pos"
+"lblCircle"
+1 104.5 460.0371966935342 E E E 1 E 1 E N "_3DText" E N "_3DFace" E E
+ E E
+186 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+1
+"layoutAlignment" "AlignNone"
+6
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10011 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10018 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  104.5 460.0371966935342 124.5 480.0371966935342
+5 Label
+0
+"main()
+{
+  dpConnect(\"cambiar_estado\", accionamiento_valvula_motor.get_alm_pos()); //Mediante la instacia de librería, obtenemos el estado de la alarma (\"Static.DATOS_ALARMA.Output.Yd_Alarma_POS\")
+}
+
+//Cambia el color de fondo según el estado de la alarma
+void cambiar_estado(string dp, bool estado){
+  if(estado)  setValue(\"\", \"backCol\", \"LIB_IRC_ROJO_12\");
+  else  setValue(\"\", \"backCol\", \"LIB_IRC_GRIS_03\");
+}" 0
+29 188
+"txf_ep"
+"MEDIANO_AZUL"
+1 13.09589063235925 161.9845204115807 E E E 1 E 1 E N "_3DText" E N "_Transparent" E E
+ E E
+187 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+5
+"text" "string ESTADO PROTECCIONES"
+"styleSheet" "string "
+"alignment" "enum 1"
+"lineWidth" "int 1"
+"layoutAlignment" "AlignNone"
+6
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10011 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10018 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  138.0958906323593 339.9845204115808 349.0958906323592 357.9845204115808
+5 Label
+0
+"main()
+{
+  this.text(getCatStr(\"objetos\", this.name)); //Traduce el texto mostrado en función del catálogo \"objetos\"
+}" 0
+29 189
+"txf_ca"
+"MEDIANO_AZUL"
+1 13.09589063235925 191.9845204115806 E E E 1 E 1 E N "_3DText" E N "_Transparent" E E
+ E E
+188 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+5
+"text" "string CONFIRMACIÓN APERTURA"
+"styleSheet" "string "
+"alignment" "enum 1"
+"lineWidth" "int 1"
+"layoutAlignment" "AlignNone"
+6
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10011 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10018 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  138.0958906323593 369.9845204115808 349.0958906323592 387.9845204115808
+5 Label
+0
+"main()
+{
+  this.text(getCatStr(\"objetos\", this.name)); //Traduce el texto mostrado en función del catálogo \"objetos\"
+}" 0
+29 190
+"txf_cc"
+"MEDIANO_AZUL"
+1 13.37970915549129 221.9845204115807 E E E 1 E 1 E N "_3DText" E N "_Transparent" E E
+ E E
+189 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+5
+"text" "string CONFIRMACIÓN CIERRE"
+"styleSheet" "string "
+"alignment" "enum 1"
+"lineWidth" "int 1"
+"layoutAlignment" "AlignNone"
+6
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10011 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10018 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  138.3797091554914 399.9845204115808 349.3797091554913 417.9845204115808
+5 Label
+0
+"main()
+{
+  this.text(getCatStr(\"objetos\", this.name)); //Traduce el texto mostrado en función del catálogo \"objetos\"
+}" 0
+29 191
+"txf_fe"
+"MEDIANO_AZUL"
+1 7.548123637221095 253.0371966935341 E E E 1 E 1 E N "_3DText" E N "_Transparent" E E
+ E E
+190 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+5
+"text" "string FALLO EXTERNO"
+"styleSheet" "string "
+"alignment" "enum 1"
+"lineWidth" "int 1"
+"layoutAlignment" "AlignNone"
+6
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10011 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10018 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  138.3797091554914 431.0371966935342 359.2234255103317 449.0371966935342
+5 Label
+0
+"main()
+{
+  this.text(getCatStr(\"objetos\", this.name)); //Traduce el texto mostrado en función del catálogo \"objetos\"
+}" 0
+29 192
+"txf_fp"
+"MEDIANO_AZUL"
+1 7.548644026979392 283.037196693534 E E E 1 E 1 E N "_3DText" E N "_Transparent" E E
+ E E
+191 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+5
+"text" "string FALLO POSICIONAMIENTO"
+"styleSheet" "string "
+"alignment" "enum 1"
+"lineWidth" "int 1"
+"layoutAlignment" "AlignNone"
+6
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10011 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10018 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  138.3802295452497 461.0371966935342 359.2239459000899 479.0371966935342
+5 Label
+0
+"main()
+{
+  this.text(getCatStr(\"objetos\", this.name)); //Traduce el texto mostrado en función del catálogo \"objetos\"
+}" 0
+13 193
+"PUSH_BUTTON21"
+""
+1 -0.9999999999999432 11.77353030764547 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_BLANCO" E E
+ E E
+192 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+0  -2.999999999999943 -4.512183978068826 505.0000000000001 48.46740785866587
+
+T 
+2
+LANG:10001 13 PUSH_BUTTON21
+LANG:10010 9 POSICIÓN
+E E E E
+29 194
+"txf_enc_alarmas"
+"MEDIANO_AZUL"
+1 176.5249214215727 187.9805032069757 E E E 1 E 1 E N "_3DText" E N "_Transparent" E E
+ E E
+193 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+5
+"text" "string ALARMAS"
+"styleSheet" "string "
+"alignment" "enum 132"
+"lineWidth" "int 0"
+"layoutAlignment" "AlignNone"
+6
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,12,5,75,0,0,0,0,0,Negrita
+LANG:10011 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10018 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  174.8 293.5067164179105 343.8 311.5067164179105
+5 Label
+0
+"main()
+{
+  this.text(getCatStr(\"objetos\", this.name));  //Traduce el texto mostrado en función del catálogo \"objetos\"
+}" 0
+0
+LAYER, 1 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 2 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 3 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 4 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 5 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 6 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 7 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+1 0 "btn_ocultar" -1
+14 0 
+159 160 161 162 163 164 165 166 167 168 169 170 171 172 
+
+"layoutAlignment" "AlignNone"
+"" ""
+0

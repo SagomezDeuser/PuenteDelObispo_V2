@@ -1,0 +1,674 @@
+V 14
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+PANEL,-1 -1 500 500 N "white" 1
+"$INST"
+E E E E E 1 -1 -1 0  8 27.35638717805844
+""0  1
+E "lib_siwarex_200 c = lib_siwarex_200($INST,\"\");
+" 0
+ 4
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+"pdpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10001 0 
+LANG:10010 0 
+22 5
+"COMBO_BOX1"
+"cbb_standard_1"
+1 19.5394714065412 138 E E E 1 E 1 E N {1,72,152} E N "white" E E
+ E E
+4 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+3
+"layoutAlignment" "AlignNone"
+"focusPolicy" "StrongFocus"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,12,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,12,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,12,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,12,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,12,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,12,5,75,0,0,0,0,0,Negrita
+0  17.5394714065412 132 481.5394714065412 160
+13
+6
+LANG:10001 22 Sin valor seleccionado
+LANG:10010 22 Sin valor seleccionado
+LANG:10011 22 Sin valor seleccionado
+LANG:10009 22 Sin valor seleccionado
+LANG:10008 22 Sin valor seleccionado
+LANG:10018 22 Sin valor seleccionado
+
+0
+6
+LANG:10001 47 Proceso bruto (después del filtro pasabajos 1)
+LANG:10010 47 Proceso bruto (después del filtro pasabajos 1)
+LANG:10011 47 Proceso bruto (después del filtro pasabajos 1)
+LANG:10009 47 Proceso bruto (después del filtro pasabajos 1)
+LANG:10008 47 Proceso bruto (después del filtro pasabajos 1)
+LANG:10018 47 Proceso bruto (después del filtro pasabajos 1)
+
+0
+6
+LANG:10001 46 Proceso neto (después del filtro pasabajos 1)
+LANG:10010 46 Proceso neto (después del filtro pasabajos 1)
+LANG:10011 46 Proceso neto (después del filtro pasabajos 1)
+LANG:10009 46 Proceso neto (después del filtro pasabajos 1)
+LANG:10008 46 Proceso neto (después del filtro pasabajos 1)
+LANG:10018 46 Proceso neto (después del filtro pasabajos 1)
+
+0
+6
+LANG:10001 23 Peso de tara de proceso
+LANG:10010 23 Peso de tara de proceso
+LANG:10011 23 Peso de tara de proceso
+LANG:10009 23 Peso de tara de proceso
+LANG:10008 23 Peso de tara de proceso
+LANG:10018 23 Peso de tara de proceso
+
+0
+6
+LANG:10001 52 Proceso bruto/neto (después del filtro pasabajos 1)
+LANG:10010 52 Proceso bruto/neto (después del filtro pasabajos 1)
+LANG:10011 52 Proceso bruto/neto (después del filtro pasabajos 1)
+LANG:10009 52 Proceso bruto/neto (después del filtro pasabajos 1)
+LANG:10008 52 Proceso bruto/neto (después del filtro pasabajos 1)
+LANG:10018 52 Proceso bruto/neto (después del filtro pasabajos 1)
+
+0
+6
+LANG:10001 21 Peso Grueso/Neto x 10
+LANG:10010 21 Peso Grueso/Neto x 10
+LANG:10011 21 Peso Grueso/Neto x 10
+LANG:10009 21 Peso Grueso/Neto x 10
+LANG:10008 21 Peso Grueso/Neto x 10
+LANG:10018 21 Peso Grueso/Neto x 10
+
+0
+6
+LANG:10001 47 Proceso bruto (después del filtro pasabajos 2)
+LANG:10010 47 Proceso bruto (después del filtro pasabajos 2)
+LANG:10011 47 Proceso bruto (después del filtro pasabajos 2)
+LANG:10009 47 Proceso bruto (después del filtro pasabajos 2)
+LANG:10008 47 Proceso bruto (después del filtro pasabajos 2)
+LANG:10018 47 Proceso bruto (después del filtro pasabajos 2)
+
+0
+6
+LANG:10001 46 Proceso neto (después del filtro pasabajos 2)
+LANG:10010 46 Proceso neto (después del filtro pasabajos 2)
+LANG:10011 46 Proceso neto (después del filtro pasabajos 2)
+LANG:10009 46 Proceso neto (después del filtro pasabajos 2)
+LANG:10008 46 Proceso neto (después del filtro pasabajos 2)
+LANG:10018 46 Proceso neto (después del filtro pasabajos 2)
+
+0
+6
+LANG:10001 20 Dígitos sin filtrar
+LANG:10010 20 Dígitos sin filtrar
+LANG:10011 20 Dígitos sin filtrar
+LANG:10009 20 Dígitos sin filtrar
+LANG:10008 20 Dígitos sin filtrar
+LANG:10018 20 Dígitos sin filtrar
+
+0
+6
+LANG:10001 49 Valor de dígito filtrado (después del filtro 1)
+LANG:10010 49 Valor de dígito filtrado (después del filtro 1)
+LANG:10011 49 Valor de dígito filtrado (después del filtro 1)
+LANG:10009 49 Valor de dígito filtrado (después del filtro 1)
+LANG:10008 49 Valor de dígito filtrado (después del filtro 1)
+LANG:10018 49 Valor de dígito filtrado (después del filtro 1)
+
+0
+6
+LANG:10001 49 Valor de dígito filtrado (después del filtro 2)
+LANG:10010 49 Valor de dígito filtrado (después del filtro 2)
+LANG:10011 49 Valor de dígito filtrado (después del filtro 2)
+LANG:10009 49 Valor de dígito filtrado (después del filtro 2)
+LANG:10008 49 Valor de dígito filtrado (después del filtro 2)
+LANG:10018 49 Valor de dígito filtrado (después del filtro 2)
+
+0
+6
+LANG:10001 17 Refresco Contador
+LANG:10010 17 Refresco Contador
+LANG:10011 17 Refresco Contador
+LANG:10009 17 Refresco Contador
+LANG:10008 17 Refresco Contador
+LANG:10018 17 Refresco Contador
+
+0
+6
+LANG:10001 33 Operación-/Errores tecnológicos
+LANG:10010 33 Operación-/Errores tecnológicos
+LANG:10011 33 Operación-/Errores tecnológicos
+LANG:10009 33 Operación-/Errores tecnológicos
+LANG:10008 33 Operación-/Errores tecnológicos
+LANG:10018 33 Operación-/Errores tecnológicos
+
+0
+
+"main()
+{
+  dpConnect(\"mostrar_estado\", c.get_comm_1());
+}
+
+void mostrar_estado(string dpSource, string estado){
+  shape cb = getShape(\"COMBO_BOX1\");
+
+  switch (estado){
+    case (0): { setValue(\"COMBO_BOX1\", \"selectedPos\", 1);
+        break;}
+    case (1): { setValue(\"COMBO_BOX1\", \"selectedPos\", 2);
+        break;}
+    case (2): { setValue(\"COMBO_BOX1\", \"selectedPos\", 3);
+        break;}
+    case (3): { setValue(\"COMBO_BOX1\", \"selectedPos\", 4);
+        break;}
+    case (4): { setValue(\"COMBO_BOX1\", \"selectedPos\", 5);
+        break;}
+    case (5): { setValue(\"COMBO_BOX1\", \"selectedPos\", 6);
+        break;}
+    case (7): { setValue(\"COMBO_BOX1\", \"selectedPos\", 7);
+        break;}
+    case (8): { setValue(\"COMBO_BOX1\", \"selectedPos\", 8);
+        break;}
+    case (9): { setValue(\"COMBO_BOX1\", \"selectedPos\", 9);
+        break;}
+    case (10): { setValue(\"COMBO_BOX1\", \"selectedPos\", 10);
+        break;}
+    case (11): { setValue(\"COMBO_BOX1\", \"selectedPos\", 11);
+        break;}
+    case (12): { setValue(\"COMBO_BOX1\", \"selectedPos\", 12);
+        break;}
+    case (15): { setValue(\"COMBO_BOX1\", \"selectedPos\", 13);
+        break;}
+  }
+}
+" 0
+
+"main()
+{
+  shape cb = getShape(\"COMBO_BOX1\");
+  int idx;
+  idx = cb.selectedPos();
+
+  switch (idx){
+    case (1): {c.set_comm_1(0);
+        break;}
+    case (2): {c.set_comm_1(1);
+        break;}
+    case (3): {c.set_comm_1(2);
+        break;}
+    case (4): {c.set_comm_1(3);
+        break;}
+    case (5): {c.set_comm_1(4);
+        break;}
+    case (6): {c.set_comm_1(5);
+        break;}
+    case (7): {c.set_comm_1(7);
+        break;}
+    case (8): {c.set_comm_1(8);
+        break;}
+    case (9): {c.set_comm_1(9);
+        break;}
+    case (10): {c.set_comm_1(10);
+        break;}
+    case (11): {c.set_comm_1(11);
+        break;}
+    case (12): {c.set_comm_1(12);
+        break;}
+    case (13): {c.set_comm_1(15);
+        break;}
+  }
+}
+" 0
+
+E
+ 0 0
+13 8
+"PUSH_BUTTON2"
+"btn_formulario_1"
+1 266.4970985251852 141.8218064109708 E E E 1 E 1 E N "_Transparent" E N "_Button" E E
+ E E
+7 0 0 0 0 0
+E E E
+1
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+3
+"layoutAlignment" "AlignNone"
+"focusPolicy" "StrongFocus"
+"showFocus" "0"
+7
+LANG:10001 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10009 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10008 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10018 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10005 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  213.0394714065412 429.8218064109709 286.0394714065412 492.8218064109709
+
+P 
+4294967295
+"pictures/iconos/otros/tab/tab_formulas_2.svg"
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+"main(mapping event)
+{
+  c.set_comandos(4014, 1);
+}
+" 0
+ E E E
+2 15
+"txf_valor_proceso_2"
+""
+1 10 0 E E E 1 E 1 E N {1,72,152} E N "_Transparent" E E
+ E E
+14 0 0 0 0 0
+E E E
+0
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+6
+"layoutAlignment" "AlignNone"
+"focusPolicy" "StrongFocus"
+"showFocus" "0"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 2 1 1 E 1.305360776811153 0 0.6351198440047988 8.047727696477949 222.3027918579145 1 E 10 0 360 60
+0 2 2 "0s" 0 0 0 73 0 0  10 0 2
+7
+LANG:10001 35 MS Shell Dlg 2,-1,15,5,75,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,11,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 MS Shell Dlg 2,-1,15,5,75,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10005 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+0 7
+LANG:10001 10 PARAMETROS
+LANG:10010 31 DEFINICION "VALOR DE PROCESO 2"
+LANG:10011 6 ALARME
+LANG:10009 10 PARAMETROS
+LANG:10008 7 ALLARMI
+LANG:10018 7 ALARMES
+LANG:10005 6 ALARMS
+7
+LANG:10001 35 MS Shell Dlg 2,-1,15,5,75,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,11,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 MS Shell Dlg 2,-1,15,5,75,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10005 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+0 6
+LANG:10001 27 ("s_IO_DATA.PROCESS_VAL_2")
+LANG:10010 27 ("s_IO_DATA.PROCESS_VAL_2")
+LANG:10011 27 ("s_IO_DATA.PROCESS_VAL_2")
+LANG:10009 27 ("s_IO_DATA.PROCESS_VAL_2")
+LANG:10008 27 ("s_IO_DATA.PROCESS_VAL_2")
+LANG:10018 27 ("s_IO_DATA.PROCESS_VAL_2")
+22 24
+"COMBO_BOX2"
+"cbb_standard_1"
+1 19.5394714065412 288 E E E 1 E 1 E N {1,72,152} E N "white" E E
+ E E
+23 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+3
+"layoutAlignment" "AlignNone"
+"focusPolicy" "StrongFocus"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,12,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,12,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,12,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,12,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,12,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,12,5,75,0,0,0,0,0,Negrita
+0  17.5394714065412 282 481.5394714065412 310
+13
+6
+LANG:10001 22 Sin valor seleccionado
+LANG:10010 22 Sin valor seleccionado
+LANG:10011 22 Sin valor seleccionado
+LANG:10009 22 Sin valor seleccionado
+LANG:10008 22 Sin valor seleccionado
+LANG:10018 22 Sin valor seleccionado
+
+0
+6
+LANG:10001 47 Proceso bruto (después del filtro pasabajos 1)
+LANG:10010 47 Proceso bruto (después del filtro pasabajos 1)
+LANG:10011 47 Proceso bruto (después del filtro pasabajos 1)
+LANG:10009 47 Proceso bruto (después del filtro pasabajos 1)
+LANG:10008 47 Proceso bruto (después del filtro pasabajos 1)
+LANG:10018 47 Proceso bruto (después del filtro pasabajos 1)
+
+0
+6
+LANG:10001 46 Proceso neto (después del filtro pasabajos 1)
+LANG:10010 46 Proceso neto (después del filtro pasabajos 1)
+LANG:10011 46 Proceso neto (después del filtro pasabajos 1)
+LANG:10009 46 Proceso neto (después del filtro pasabajos 1)
+LANG:10008 46 Proceso neto (después del filtro pasabajos 1)
+LANG:10018 46 Proceso neto (después del filtro pasabajos 1)
+
+0
+6
+LANG:10001 23 Peso de tara de proceso
+LANG:10010 23 Peso de tara de proceso
+LANG:10011 23 Peso de tara de proceso
+LANG:10009 23 Peso de tara de proceso
+LANG:10008 23 Peso de tara de proceso
+LANG:10018 23 Peso de tara de proceso
+
+0
+6
+LANG:10001 52 Proceso bruto/neto (después del filtro pasabajos 1)
+LANG:10010 52 Proceso bruto/neto (después del filtro pasabajos 1)
+LANG:10011 52 Proceso bruto/neto (después del filtro pasabajos 1)
+LANG:10009 52 Proceso bruto/neto (después del filtro pasabajos 1)
+LANG:10008 52 Proceso bruto/neto (después del filtro pasabajos 1)
+LANG:10018 52 Proceso bruto/neto (después del filtro pasabajos 1)
+
+0
+6
+LANG:10001 21 Peso Grueso/Neto x 10
+LANG:10010 21 Peso Grueso/Neto x 10
+LANG:10011 21 Peso Grueso/Neto x 10
+LANG:10009 21 Peso Grueso/Neto x 10
+LANG:10008 21 Peso Grueso/Neto x 10
+LANG:10018 21 Peso Grueso/Neto x 10
+
+0
+6
+LANG:10001 47 Proceso bruto (después del filtro pasabajos 2)
+LANG:10010 47 Proceso bruto (después del filtro pasabajos 2)
+LANG:10011 47 Proceso bruto (después del filtro pasabajos 2)
+LANG:10009 47 Proceso bruto (después del filtro pasabajos 2)
+LANG:10008 47 Proceso bruto (después del filtro pasabajos 2)
+LANG:10018 47 Proceso bruto (después del filtro pasabajos 2)
+
+0
+6
+LANG:10001 46 Proceso neto (después del filtro pasabajos 2)
+LANG:10010 46 Proceso neto (después del filtro pasabajos 2)
+LANG:10011 46 Proceso neto (después del filtro pasabajos 2)
+LANG:10009 46 Proceso neto (después del filtro pasabajos 2)
+LANG:10008 46 Proceso neto (después del filtro pasabajos 2)
+LANG:10018 46 Proceso neto (después del filtro pasabajos 2)
+
+0
+6
+LANG:10001 20 Dígitos sin filtrar
+LANG:10010 20 Dígitos sin filtrar
+LANG:10011 20 Dígitos sin filtrar
+LANG:10009 20 Dígitos sin filtrar
+LANG:10008 20 Dígitos sin filtrar
+LANG:10018 20 Dígitos sin filtrar
+
+0
+6
+LANG:10001 49 Valor de dígito filtrado (después del filtro 1)
+LANG:10010 49 Valor de dígito filtrado (después del filtro 1)
+LANG:10011 49 Valor de dígito filtrado (después del filtro 1)
+LANG:10009 49 Valor de dígito filtrado (después del filtro 1)
+LANG:10008 49 Valor de dígito filtrado (después del filtro 1)
+LANG:10018 49 Valor de dígito filtrado (después del filtro 1)
+
+0
+6
+LANG:10001 49 Valor de dígito filtrado (después del filtro 2)
+LANG:10010 49 Valor de dígito filtrado (después del filtro 2)
+LANG:10011 49 Valor de dígito filtrado (después del filtro 2)
+LANG:10009 49 Valor de dígito filtrado (después del filtro 2)
+LANG:10008 49 Valor de dígito filtrado (después del filtro 2)
+LANG:10018 49 Valor de dígito filtrado (después del filtro 2)
+
+0
+6
+LANG:10001 17 Refresco Contador
+LANG:10010 17 Refresco Contador
+LANG:10011 17 Refresco Contador
+LANG:10009 17 Refresco Contador
+LANG:10008 17 Refresco Contador
+LANG:10018 17 Refresco Contador
+
+0
+6
+LANG:10001 33 Operación-/Errores tecnológicos
+LANG:10010 33 Operación-/Errores tecnológicos
+LANG:10011 33 Operación-/Errores tecnológicos
+LANG:10009 33 Operación-/Errores tecnológicos
+LANG:10008 33 Operación-/Errores tecnológicos
+LANG:10018 33 Operación-/Errores tecnológicos
+
+0
+
+"main()
+{
+  dpConnect(\"mostrar_estado\", c.get_comm_2());
+}
+
+void mostrar_estado(string dpSource, string estado){
+  shape cb = getShape(\"COMBO_BOX2\");
+
+  switch (estado){
+    case (0): { setValue(\"COMBO_BOX2\", \"selectedPos\", 1);
+        break;}
+    case (1): { setValue(\"COMBO_BOX2\", \"selectedPos\", 2);
+        break;}
+    case (2): { setValue(\"COMBO_BOX2\", \"selectedPos\", 3);
+        break;}
+    case (3): { setValue(\"COMBO_BOX2\", \"selectedPos\", 4);
+        break;}
+    case (4): { setValue(\"COMBO_BOX2\", \"selectedPos\", 5);
+        break;}
+    case (5): { setValue(\"COMBO_BOX2\", \"selectedPos\", 6);
+        break;}
+    case (7): { setValue(\"COMBO_BOX2\", \"selectedPos\", 7);
+        break;}
+    case (8): { setValue(\"COMBO_BOX2\", \"selectedPos\", 8);
+        break;}
+    case (9): { setValue(\"COMBO_BOX2\", \"selectedPos\", 9);
+        break;}
+    case (10): { setValue(\"COMBO_BOX2\", \"selectedPos\", 10);
+        break;}
+    case (11): { setValue(\"COMBO_BOX2\", \"selectedPos\", 11);
+        break;}
+    case (12): { setValue(\"COMBO_BOX2\", \"selectedPos\", 12);
+        break;}
+    case (15): { setValue(\"COMBO_BOX2\", \"selectedPos\", 13);
+        break;}
+  }
+}
+" 0
+
+"main()
+{
+  shape cb = getShape(\"COMBO_BOX2\");
+  int idx;
+  idx = cb.selectedPos();
+
+  switch (idx){
+    case (1): {c.set_comm_2(0);
+        break;}
+    case (2): {c.set_comm_2(1);
+        break;}
+    case (3): {c.set_comm_2(2);
+        break;}
+    case (4): {c.set_comm_2(3);
+        break;}
+    case (5): {c.set_comm_2(4);
+        break;}
+    case (6): {c.set_comm_2(5);
+        break;}
+    case (7): {c.set_comm_2(7);
+        break;}
+    case (8): {c.set_comm_2(8);
+        break;}
+    case (9): {c.set_comm_2(9);
+        break;}
+    case (10): {c.set_comm_2(10);
+        break;}
+    case (11): {c.set_comm_2(11);
+        break;}
+    case (12): {c.set_comm_2(12);
+        break;}
+    case (13): {c.set_comm_2(15);
+        break;}
+  }
+}
+" 0
+
+E
+ 0 0
+2 25
+"txf_valor_proceso_1"
+""
+1 10 0 E E E 1 E 1 E N {1,72,152} E N "_Transparent" E E
+ E E
+24 0 0 0 0 0
+E E E
+0
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+6
+"layoutAlignment" "AlignNone"
+"focusPolicy" "StrongFocus"
+"showFocus" "0"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 2 1 1 E 1.308186851838429 0 0.6351198440047988 7.524903816431774 78 1 E 10 0 360 60
+0 2 2 "0s" 0 0 0 73 0 0  10 0 2
+7
+LANG:10001 35 MS Shell Dlg 2,-1,15,5,75,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,11,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 MS Shell Dlg 2,-1,15,5,75,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10005 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+0 7
+LANG:10001 10 PARAMETROS
+LANG:10010 32 DEFINICIÓN "VALOR DE PROCESO 1"
+LANG:10011 6 ALARME
+LANG:10009 10 PARAMETROS
+LANG:10008 7 ALLARMI
+LANG:10018 7 ALARMES
+LANG:10005 6 ALARMS
+7
+LANG:10001 35 MS Shell Dlg 2,-1,15,5,75,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,11,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 MS Shell Dlg 2,-1,15,5,75,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10005 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+0 6
+LANG:10001 27 ("s_IO_DATA.PROCESS_VAL_1")
+LANG:10010 27 ("s_IO_DATA.PROCESS_VAL_1")
+LANG:10011 27 ("s_IO_DATA.PROCESS_VAL_1")
+LANG:10009 27 ("s_IO_DATA.PROCESS_VAL_1")
+LANG:10008 27 ("s_IO_DATA.PROCESS_VAL_1")
+LANG:10018 27 ("s_IO_DATA.PROCESS_VAL_1")
+0
+LAYER, 1 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 2 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 3 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 4 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 5 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 6 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 7 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+0

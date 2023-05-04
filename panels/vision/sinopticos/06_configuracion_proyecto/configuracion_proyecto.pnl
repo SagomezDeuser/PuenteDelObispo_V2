@@ -1,0 +1,980 @@
+V 14
+2
+LANG:10001 0 
+LANG:10010 0 
+PANEL,-1 -1 1920 940 N "LIB_IRC_BLANCO" 0
+E E E E E 1 -1 -1 0  12.99999999999999 21
+""0  1
+E E 4
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+"pdpi" "92.6073"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10001 0 
+LANG:10010 0 
+6 9
+"RECTANGLE2"
+""
+1 13 20 E E E 1 E 1 E N {1,72,152} E N "LIB_IRC_BLANCO" E E
+ E E
+8 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 2 3 2 1 E 0.9921327460594475 0 1.245810055865922 189.1061533952093 -7.916201117318434 1 E 13 20 395 199
+6 1
+"RECTANGLE1"
+"btn_formulario_1"
+1 60 30 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_AZUL_01" E E
+ E E
+0 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 2 3 2 1 E 1.024324324324324 0 0.3625 140.5444196345227 6.125000000000018 1 E 60 30 430 110
+2 2
+"PRIMITIVE_TEXT1"
+""
+1 30 50 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+1 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E 15.19722833515716 0 2.051282051282052 -233.9129709607327 -44.48054302503812 0 E 30 50 40 60
+0 2 2 "0s" 0 0 0 64 0 0  30 50 1
+2
+LANG:10001 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+0 2
+LANG:10001 7 Usuario
+LANG:10010 8 Usuario:
+2 3
+"PRIMITIVE_TEXT2"
+""
+1 30 50 E E E 1 E 1 E N {255,255,255} E N "LIB_IRC_BLANCO" E E
+ E E
+2 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E 29.32806797840736 0 2.051282051282052 -665.9785001502753 -81.56410256410257 0 E 30 50 40 60
+0 2 2 "0s" 0 0 0 64 0 0  30 50 1
+2
+LANG:10001 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+0 2
+LANG:10001 7 Usuario
+LANG:10010 26 Configuración de pantalla
+2 4
+"PRIMITIVE_TEXT3"
+""
+1 30 50 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+3 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E 18.09999999999997 0 2.051282051282052 -320.9961209060168 25.41795220713773 0 E 30 50 40 60
+0 2 2 "0s" 0 0 0 64 0 0  30 50 1
+2
+LANG:10001 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+0 2
+LANG:10001 7 Usuario
+LANG:10010 22 Pantallas disponibles:
+2 5
+"PRIMITIVE_TEXT4"
+""
+1 30 50 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+4 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E 19.45709398587102 0 2.051282051282052 -361.7089404821484 95.31644743931358 0 E 30 50 40 60
+0 2 2 "0s" 0 0 0 64 0 0  30 50 1
+2
+LANG:10001 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+0 2
+LANG:10001 7 Usuario
+LANG:10010 23 Pantallas configuradas:
+14 6
+"txf_temperatura"
+"txf_standard_5"
+1 422.0038790939823 56.08355953906448 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "AZUL_01" E E
+ E E
+5 0 0 0 0 0
+E E E
+1
+9
+LANG:10001 0 
+LANG:10010 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10009 0 
+LANG:10011 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+4
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,80}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+9
+LANG:10001 30 Noto Sans,-1,13,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,13,5,50,0,0,0,0,0
+LANG:10011 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10005 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10000 30 Noto Sans,-1,13,5,50,0,0,0,0,0
+LANG:10027 30 Noto Sans,-1,13,5,50,0,0,0,0,0
+0  419.5038790939823 54.08355953906448 562.5038790939823 87.08355953906448
+2 "0s" 0 0 0 9 0 -1  E "main()
+{
+  this.text = getUserName(getUserId());
+}" 0
+ E
+14 7
+"pantallas_disponibles"
+"txf_standard_5"
+1 422.0038790939823 123.7384650276506 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "AZUL_01" E E
+ E E
+6 0 0 0 0 0
+E E E
+1
+9
+LANG:10001 0 
+LANG:10010 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10009 0 
+LANG:10011 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+4
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,80}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+9
+LANG:10001 30 Noto Sans,-1,13,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,13,5,50,0,0,0,0,0
+LANG:10011 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10005 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10000 30 Noto Sans,-1,13,5,50,0,0,0,0,0
+LANG:10027 30 Noto Sans,-1,13,5,50,0,0,0,0,0
+0  419.5038790939823 121.7384650276506 562.5038790939823 154.7384650276506
+2 "0d" 0 0 0 9 0 -1  E "main()
+{
+  string nombre_usuario = getUserName(getUserId());
+  int n_ui = myUiNumber();
+
+  dpConnect(\"numero_pantallas_disponibles\", \"ui_\" + n_ui + \"_config_\" + nombre_usuario + \".pantallas_disponibles\");
+}
+
+void numero_pantallas_disponibles(string dp, int numero_pantallas)
+{
+  this.text = numero_pantallas;
+}" 0
+ E
+14 8
+"pantallas_configuradas"
+"txf_standard_5"
+1 422.0038790939823 191.3933705162367 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_BLANCO" E E
+ E E
+7 0 0 0 0 0
+E E E
+1
+9
+LANG:10001 0 
+LANG:10010 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10009 0 
+LANG:10011 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+4
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,80}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+9
+LANG:10001 30 Noto Sans,-1,13,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,13,5,50,0,0,0,0,0
+LANG:10011 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10005 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10000 30 Noto Sans,-1,13,5,50,0,0,0,0,0
+LANG:10027 30 Noto Sans,-1,13,5,50,0,0,0,0,0
+0  419.5038790939823 189.3933705162367 562.5038790939823 222.3933705162367
+3 "0d" 0 0 0 9 0 -1  E "main()
+{
+  string nombre_usuario = getUserName(getUserId());
+    int n_ui = myUiNumber();
+
+  dpConnect(\"numero_pantallas_configuradas\", \"ui_\" + n_ui + \"_config_\" + nombre_usuario + \".pantallas_configuradas\");
+
+}
+
+void numero_pantallas_configuradas(string dp, int numero_pantallas)
+{
+  this.text = numero_pantallas;
+}" 0
+ "main()
+{
+  string nombre_usuario = getUserName(getUserId());
+  int numero_pantallas_config = this.text, numero_pantallas_disponibles = pantallas_disponibles.text, n_ui = myUiNumber();
+
+  if (numero_pantallas_config > numero_pantallas_disponibles)
+  {
+    numero_pantallas_config = numero_pantallas_disponibles;
+  }
+
+  dpSet(\"ui_\" + n_ui + \"_config_\" + nombre_usuario + \".pantallas_configuradas\", numero_pantallas_config);
+  ChildPanelOnCentralModal(\"vision/sinopticos/06_configuracion_proyecto/configuracion_proyecto/emergente_aviso_pantallas.pnl\", \"Aviso\", \"\");
+}" 0
+
+6 10
+"RECTANGLE3"
+""
+1 13 20 E E E 1 E 1 E N {1,72,152} E N "LIB_IRC_BLANCO" E E
+ E E
+9 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 2 3 2 1 E 2.909523580563403 0 1.256983240223464 569.7265483955094 -10.13966480446927 1 E 13 20 395 199
+6 11
+"RECTANGLE4"
+"btn_formulario_1"
+1 60 30 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_AZUL_01" E E
+ E E
+10 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 2 3 2 1 E 3.003928443651752 0 0.3625 427.3146483237285 4.125000000000018 1 E 60 30 430 110
+2 12
+"PRIMITIVE_TEXT5"
+""
+1 30 50 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+11 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E 9.74535241511485 0 2.051282051282052 335.1897824893881 -34.23695328144839 0 E 30 50 40 60
+0 2 2 "0s" 0 0 0 64 0 0  30 50 1
+2
+LANG:10001 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+0 2
+LANG:10001 7 Usuario
+LANG:10010 10 Host SMTP:
+2 13
+"PRIMITIVE_TEXT6"
+""
+1 30 50 E E E 1 E 1 E N {255,255,255} E N "LIB_IRC_BLANCO" E E
+ E E
+12 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E 29.32806797840736 0 2.051282051282052 -260.4320243014238 -83.56410256410257 0 E 30 50 40 60
+0 2 2 "0s" 0 0 0 64 0 0  30 50 1
+2
+LANG:10001 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+0 2
+LANG:10001 7 Usuario
+LANG:10010 30 Configuración email del SCADA
+2 14
+"PRIMITIVE_TEXT7"
+""
+1 30 50 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+13 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E 7.045352415114837 0 2.051282051282052 416.9897824893886 25.41795220713773 0 E 30 50 40 60
+0 2 2 "0s" 0 0 0 64 0 0  30 50 1
+2
+LANG:10001 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+0 2
+LANG:10001 7 Usuario
+LANG:10010 8 Usuario:
+2 15
+"PRIMITIVE_TEXT8"
+""
+1 30 50 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+14 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E 10.14535241511486 0 2.051282051282052 324.0897824893877 95.31644743931358 0 E 30 50 40 60
+0 2 2 "0s" 0 0 0 64 0 0  30 50 1
+2
+LANG:10001 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+0 2
+LANG:10001 7 Usuario
+LANG:10010 12 Contraseña:
+14 16
+"TEXT_FIELD1"
+"txf_standard_5"
+1 740.7304977990182 64.08355953906448 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_DEUSER_BLANCO" E E
+ E E
+15 0 0 0 0 0
+E E E
+1
+9
+LANG:10001 0 
+LANG:10010 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10009 0 
+LANG:10011 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+4
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,80}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+9
+LANG:10001 30 Noto Sans,-1,13,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,13,5,50,0,0,0,0,0
+LANG:10011 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10005 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10000 30 Noto Sans,-1,13,5,50,0,0,0,0,0
+LANG:10027 30 Noto Sans,-1,13,5,50,0,0,0,0,0
+0  737.0038790939822 62.08355953906448 1221.003879093982 95.08355953906448
+3 "255s" 255 0 0 9 0 -1  "main(mapping event)
+{
+  teclado(\"configuracion_email.smtp.host\",\"completo\");
+}" 0
+ "main()
+{
+  dpConnect(\"cambiar_valor\",\"configuracion_email.smtp.host\");
+}
+void cambiar_valor(string dp1, string valor){
+  this.text = valor;
+}" 0
+ E
+14 17
+"TEXT_FIELD2"
+"txf_standard_5"
+1 741.530497799018 123.7384650276506 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_DEUSER_BLANCO" E E
+ E E
+16 0 0 0 0 0
+E E E
+1
+9
+LANG:10001 0 
+LANG:10010 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10009 0 
+LANG:10011 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+4
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,80}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+9
+LANG:10001 30 Noto Sans,-1,13,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,13,5,50,0,0,0,0,0
+LANG:10011 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10005 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10000 30 Noto Sans,-1,13,5,50,0,0,0,0,0
+LANG:10027 30 Noto Sans,-1,13,5,50,0,0,0,0,0
+0  737.8038790939821 121.7384650276506 1221.803879093982 154.7384650276506
+3 "255s" 255 0 0 9 0 -1  "main(mapping event)
+{
+  teclado(\"configuracion_email.smtp.user\",\"completo\");
+}" 0
+ "main()
+{
+  dpConnect(\"cambiar_valor\",\"configuracion_email.smtp.user\");
+}
+void cambiar_valor(string dp1, string valor){
+  this.text = valor;
+}" 0
+ E
+14 18
+"TEXT_FIELD3"
+"txf_standard_5"
+1 741.6304977990181 191.3933705162367 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_BLANCO" E E
+ E E
+17 0 0 0 0 0
+E E E
+1
+9
+LANG:10001 0 
+LANG:10010 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10009 0 
+LANG:10011 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+4
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,80}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+9
+LANG:10001 30 Noto Sans,-1,13,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,13,5,50,0,0,0,0,0
+LANG:10011 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10005 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10000 30 Noto Sans,-1,13,5,50,0,0,0,0,0
+LANG:10027 30 Noto Sans,-1,13,5,50,0,0,0,0,0
+0  737.903879093982 189.3933705162367 1221.903879093982 222.3933705162367
+3 "255s" 255 0 0 9 0 -1  "main(mapping event)
+{
+  teclado(\"configuracion_email.smtp.pass\",\"completo\");
+}" 0
+ "main()
+{
+  dpConnect(\"cambiar_valor\",\"configuracion_email.smtp.pass\");
+}
+void cambiar_valor(string dp1, string valor){
+  this.text = valor;
+}" 0
+ E
+25 30
+"tabla_direcciones"
+"tb_standard_1"
+1 1238.879963356683 108.6395969604148 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_BLANCO" E E
+ E E
+29 0 0 0 0 0
+E E E
+0
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+5
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+7
+LANG:10001 26 Arial,-1,12,5,75,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10011 26 Arial,-1,12,5,75,0,0,0,0,0
+LANG:10009 26 Arial,-1,12,5,75,0,0,0,0,0
+LANG:10008 26 Arial,-1,12,5,75,0,0,0,0,0
+LANG:10018 26 Arial,-1,12,5,75,0,0,0,0,0
+LANG:10005 26 Arial,-1,12,5,75,0,0,0,0,0
+0  1237.003879093982 109.2384650276506 1641.003879093982 222.3933705162367
+"main()
+{
+  formatear_estilo_tabla(\"tabla_direcciones\", \"AlignHCenter|AlignVCenter\", \"LIB_IRC_BLANCO\", \"{240,250,255}\");  //Damos formato a la tabla con el listado de variables
+  dpConnect(\"cambiar_valor\", \"configuracion_email.direcciones_emails\");
+}
+void cambiar_valor(string dp1, dyn_string valor)
+{
+  this.deleteAllLines;
+  for (int i = 1; i <= dynlen(valor); i++)
+  {
+    this.appendLine(\"direcciones\", valor[i]);
+  }
+}" 0
+E 1 0 1 1 0 "direcciones" 6 1 0 "[0s,,,AlignHCenter|AlignVCenter]" 7
+LANG:10001 2 #4
+LANG:10010 11 Direcciones
+LANG:10011 7 Element
+LANG:10009 8 Elemento
+LANG:10008 8 Elemento
+LANG:10018 8 Elemento
+LANG:10005 7 Element
+E
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+400 
+30 30 10 0
+7
+LANG:10001 26 Arial,-1,12,5,75,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10011 26 Arial,-1,12,5,75,0,0,0,0,0
+LANG:10009 26 Arial,-1,12,5,75,0,0,0,0,0
+LANG:10008 26 Arial,-1,12,5,75,0,0,0,0,0
+LANG:10018 26 Arial,-1,12,5,75,0,0,0,0,0
+LANG:10005 26 Arial,-1,12,5,75,0,0,0,0,0
+0 0 1 0 1 7
+1 0
+13 31
+"btn_anadir"
+""
+1 1649.003879093982 77.02355953906446 E E E 1 E 1 E N "LIB_DEUSER_BLANCO" E N "LIB_IRC_AZUL_01" E E
+ E E
+30 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+1
+"layoutAlignment" "AlignNone"
+6
+LANG:10001 27 Tahoma,-1,11,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,48,5,75,0,0,0,0,0,Negrita
+LANG:10011 27 Tahoma,-1,11,5,50,0,0,0,0,0
+LANG:10009 27 Tahoma,-1,11,5,50,0,0,0,0,0
+LANG:10008 27 Tahoma,-1,11,5,50,0,0,0,0,0
+LANG:10018 27 Tahoma,-1,11,5,50,0,0,0,0,0
+0  1651.003879093982 52 1704.003879093982 105
+
+P 
+4294967295
+"pictures/iconos/formularios/nuevo_icon.svg"
+2
+LANG:10001 0 
+LANG:10010 0 
+"main(mapping event)
+{
+  if (txf_direccion.text !=\"\"){
+    tabla_direcciones.appendLine(\"direcciones\",txf_direccion.text);
+  }
+  else{
+    txf_direccion.backCol(\"LIB_IRC_ROJO_01\");
+    delay(2,000);
+    txf_direccion.backCol(\"LIB_IRC_BLANCO\");
+  }
+}" 0
+ E E E
+13 32
+"PUSH_BUTTON1"
+""
+1 1652.633508723612 114.5725004882791 E E E 1 E 1 E N "_ButtonText" E N "LIB_IRC_AZUL_01" E E
+ E E
+31 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 0 
+LANG:10010 28 Borrar elemento seleccionado
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+2
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+6
+LANG:10001 27 Tahoma,-1,11,5,50,0,0,0,0,0
+LANG:10010 27 Tahoma,-1,11,5,50,0,0,0,0,0
+LANG:10011 27 Tahoma,-1,11,5,50,0,0,0,0,0
+LANG:10009 27 Tahoma,-1,11,5,50,0,0,0,0,0
+LANG:10008 27 Tahoma,-1,11,5,50,0,0,0,0,0
+LANG:10018 27 Tahoma,-1,11,5,50,0,0,0,0,0
+0  1650.633508723612 107.8955505761694 1703.633508723612 167.0835595390645
+
+P 
+4294967295
+"pictures/iconos/botoneras/borrar.svg"
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+"main(mapping event)
+{
+  dyn_int filas;
+  string titulo_em, texto_em;
+  dyn_string confirmar_st;
+  dyn_float confirmar;
+
+  titulo_em = \"Borrar registro seleccionado\";
+  texto_em = \"¿Desea borrar el registro de la tabla seleccionado?\";
+  ChildPanelOnCentralModalReturn(\"vision/emergentes/internas/confirmacion_personalizada.pnl\", \"Borrar registro\",
+                                 makeDynString(\"$TITULO:\" + titulo_em, \"$TEXTO:\" + texto_em), confirmar, confirmar_st); //Mostramos la ventana de confirmación para modificar o no
+
+  if (dynlen(confirmar) != 0 && confirmar[1] == 1)
+  {
+    filas = tabla_direcciones.getSelectedLines();
+    tabla_direcciones.deleteLineN(filas[1]);
+  }
+}" 0
+ E E E
+13 33
+"linea_11"
+""
+1 1652.509302933906 109.9895550576169 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+32 0 0 0 0 0
+E E "main(bool enter)
+{
+  botonera_sec.visible = FALSE;
+  botonera_ext.visible = FALSE;
+}" 0
+
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  1650.509302933906 107.9895550576169 1704.007584304984 111.9895550576169
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+13 34
+"btn_guardar"
+""
+1 2835.650666712641 146.2874522164873 E E E 1 E 1 E N "_ButtonText" E N "LIB_IRC_AZUL_01" E E
+ E E
+33 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 0 
+LANG:10010 30 Guardar gráfica en frecuentes
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+2
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+6
+LANG:10001 27 Tahoma,-1,11,5,50,0,0,0,0,0
+LANG:10010 27 Tahoma,-1,11,5,50,0,0,0,0,0
+LANG:10011 27 Tahoma,-1,11,5,50,0,0,0,0,0
+LANG:10009 27 Tahoma,-1,11,5,50,0,0,0,0,0
+LANG:10008 27 Tahoma,-1,11,5,50,0,0,0,0,0
+LANG:10018 27 Tahoma,-1,11,5,50,0,0,0,0,0
+0  1650.650666712641 163.2471413228738 1703.650666712641 222.4351502857689
+
+P 
+4294967295
+"pictures/iconos/botoneras/botonera_formularios/guardar.svg"
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+"main(mapping event)
+{
+  int filas;
+  string cont_fila;
+  string titulo_em, texto_em;
+  dyn_string confirmar_st, direcciones_emails;
+  dyn_float confirmar;
+
+  titulo_em = \"Guardar direcciones emails\";
+  texto_em = \"¿Desea guardar las direcciones emails?\";
+  ChildPanelOnCentralModalReturn(\"vision/emergentes/internas/confirmacion_personalizada.pnl\", \"Guardar gráfica\",
+                                 makeDynString(\"$TITULO:\" + titulo_em, \"$TEXTO:\" + texto_em), confirmar, confirmar_st); //Mostramos la ventana de confirmación para modificar o no
+
+  if (dynlen(confirmar) != 0 && confirmar[1] == 1)
+  {
+    filas = tabla_direcciones.lineCount;
+
+    for (int i = 1; i <= filas; i++)
+    {
+      cont_fila = tabla_direcciones.getLineN(i - 1);
+      direcciones_emails.append(cont_fila);
+    }
+    dpSetWait(\"configuracion_email.direcciones_emails\", direcciones_emails);
+  }
+}" 0
+ E E E
+13 35
+"PUSH_BUTTON2"
+""
+1 1652.548007073097 165.144460546203 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+34 0 0 0 0 0
+E E "main(bool enter)
+{
+  botonera_sec.visible = FALSE;
+  botonera_ext.visible = FALSE;
+}" 0
+
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  1650.548007073097 163.144460546203 1704.046288444174 167.144460546203
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+14 36
+"txf_direccion"
+"txf_standard_5"
+1 1239.003879093982 64.08355953906448 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_DEUSER_BLANCO" E E
+ E E
+35 0 0 0 0 0
+E E E
+1
+9
+LANG:10001 0 
+LANG:10010 24 Escrbir dirección nueva
+LANG:10008 0 
+LANG:10018 0 
+LANG:10009 0 
+LANG:10011 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+4
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,80}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+9
+LANG:10001 30 Noto Sans,-1,13,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,13,5,50,0,0,0,0,0
+LANG:10011 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10005 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10000 30 Noto Sans,-1,13,5,50,0,0,0,0,0
+LANG:10027 30 Noto Sans,-1,13,5,50,0,0,0,0,0
+0  1235.565030173119 62.08355953906448 1639.565030173119 95.08355953906448
+3 "255s" 255 0 0 9 0 -1  "main(mapping event)
+{
+  teclado(\"\",\"completo\");
+}" 0
+ E E
+2 37
+"PRIMITIVE_TEXT9"
+""
+1 30 50 E E E 1 E 1 E N {1,72,152} E N "_Window" E E
+ E E
+36 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E 26.32194244604316 0 2.051282051282052 448.1261812522554 -54.94871794871793 0 E 30 50 40 60
+0 2 2 "0s" 0 0 0 64 0 0  30 50 1
+2
+LANG:10001 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+0 2
+LANG:10001 7 Usuario
+LANG:10010 25 Añadir nueva dirección:
+0
+LAYER, 1 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 2 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 3 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 4 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 5 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 6 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 7 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+0

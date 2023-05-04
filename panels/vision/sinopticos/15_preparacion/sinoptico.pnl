@@ -1,0 +1,3937 @@
+V 14
+2
+LANG:10001 0 
+LANG:10010 0 
+PANEL,-1 -1 1881 980 N "White" 0
+E E E E E 1 -1 -1 0  560 310
+""0  1
+E "const mapping estado_decanter = makeMapping(0, \"PARO\",
+                                   1, \"MARCHA\",
+                                   2, \"ALARMA\",
+                                   3, \"F. CARRERA\");
+
+const mapping paneles_menu_scada = makeMapping(1, \"vision/sinopticos/00_sinoptico_general/sinoptico_general\",
+                                   2, \"vision/sinopticos/01_alarmas/alarmas\",
+                                   3, \"vision/sinopticos/02_historicos/historicos\",
+                                   6, \"vision/sinopticos/06_configuracion/configuracion\",
+                                   7, \"vision/sinopticos/04_incidencias/incidencias\",
+                                   8, \"vision/sinopticos/03_informes/informes\",
+                                   9, \"vision/sinopticos/08_audit_trail/audit_trail\",
+                                   10, \"vision/sinopticos/07_esquematica/esquematica\",
+                                   11, \"vision/sinopticos/09_manual/manual\",
+                                   12, \"vision/inicio\",
+                                   13, \"vision/sinopticos/05_graficas/graficas_influx\",
+                                   14, \"vision/sinopticos/05_graficas/multigraficas_influx\",
+                                   15, \"vision/sinopticos/10_registros/registros\",
+                                   16, \"vision/sinopticos/13_bodega/depositos\",
+                                   17, \"vision/sinopticos/12_granuladora/sinoptico\",
+                                   18, \"vision/sinopticos/14_extractora/sinoptico\",
+                                   19, \"vision/sinopticos/15_preparacion/sinoptico\",
+                                   20, \"vision/sinopticos/16_secadero/sinoptico\",
+                                   21, \"vision/sinopticos/17_repaso/sinoptico\",
+                                   22, \"vision/sinopticos/18_hueso/sinoptico\",
+                                   23, \"vision/sinopticos/15_preparacion/alimentacion\",
+                                   24, \"vision/sinopticos/15_preparacion/salida\",
+                                   25, \"vision/sinopticos/15_preparacion/granuladora1\",
+                                   26, \"vision/sinopticos/15_preparacion/granuladora2\",
+                                   100, \"vision/sinopticos/06_configuracion/configuracion/config_dp_emergentes/configuracion_principal\");
+
+void cambiar_panel_activo(int clave)
+{
+  string nom;
+  mapping paneles;
+  int x, y, g;
+  int n_pantalla = numero_pantalla();
+
+  nom = paneles_menu_scada.value(clave);
+
+//   getValue(\"botonera\", \"position\", x, y);
+//   g = createAnimation();
+//   animate(g, \"btn_desplegable\", \"positionAsDyn\", makeDynInt(50, y), makeDynInt(50, y), makeMapping(\"duration\", 300));
+//   animate(g, \"btn_desplegable\", \"sizeAsDyn\", makeDynInt(50, 40), makeDynInt(50, 40), makeMapping(\"duration\", 300));
+
+  paneles = get_mapa_nombres_paneles();
+
+  if (myModuleName() == \"PRINCIPALPANTALLA1\")
+  {
+//     animate(\"botonera\", \"positionAsDyn\", makeDynInt(x, y), makeDynInt(x - 135, y), makeMapping(\"duration\", 200));
+//     startAnimation(g, \"keep\", makeMapping(\"direction\", \"Backward\"));
+    RootPanelOnModule(nom + \".pnl\", nom, \"PRINCIPALPANTALLA1\", makeDynString(\"$MODULO:\" + myModuleName(), \"$N_PANTALLA:\" + n_pantalla));
+  }
+  else if (myModuleName() == \"PRINCIPALPANTALLA2\")
+  {
+//     animate(\"botonera\", \"positionAsDyn\", makeDynInt(x, y), makeDynInt(x - 135, y), makeMapping(\"duration\", 200));
+//     startAnimation(g, \"keep\", makeMapping(\"direction\", \"Backward\"));
+    RootPanelOnModule(nom + \".pnl\", nom, \"PRINCIPALPANTALLA2\", makeDynString(\"$MODULO:\" + myModuleName(), \"$N_PANTALLA:\" + n_pantalla));
+  }
+  else if (myModuleName() == \"PRINCIPALPANTALLA3\")
+  {
+//     animate(\"botonera\", \"positionAsDyn\", makeDynInt(x, y), makeDynInt(x - 135, y), makeMapping(\"duration\", 200));
+//     startAnimation(g, \"keep\", makeMapping(\"direction\", \"Backward\"));
+    RootPanelOnModule(nom + \".pnl\", nom, \"PRINCIPALPANTALLA3\", makeDynString(\"$MODULO:\" + myModuleName(), \"$N_PANTALLA:\" + n_pantalla));
+  }
+  else if (myModuleName() == \"PRINCIPALPANTALLA4\")
+  {
+//     animate(\"botonera\", \"positionAsDyn\", makeDynInt(x, y), makeDynInt(x - 135, y), makeMapping(\"duration\", 200));
+//     startAnimation(g, \"keep\", makeMapping(\"direction\", \"Backward\"));
+    RootPanelOnModule(nom + \".pnl\", nom, \"PRINCIPALPANTALLA4\", makeDynString(\"$MODULO:\" + myModuleName(), \"$N_PANTALLA:\" + n_pantalla));
+  }
+  else if (myModuleName() == \"PRINCIPALPANTALLA5\")
+  {
+//     animate(\"botonera\", \"positionAsDyn\", makeDynInt(x, y), makeDynInt(x - 135, y), makeMapping(\"duration\", 200));
+//     startAnimation(g, \"keep\", makeMapping(\"direction\", \"Backward\"));
+    RootPanelOnModule(nom + \".pnl\", nom, \"PRINCIPALPANTALLA5\", makeDynString(\"$MODULO:\" + myModuleName(), \"$N_PANTALLA:\" + n_pantalla));
+  }
+  else if (myModuleName() == \"PRINCIPALPANTALLA6\")
+  {
+//     animate(\"botonera\", \"positionAsDyn\", makeDynInt(x, y), makeDynInt(x - 135, y), makeMapping(\"duration\", 200));
+//     startAnimation(g, \"keep\", makeMapping(\"direction\", \"Backward\"));
+    RootPanelOnModule(nom + \".pnl\", nom, \"PRINCIPALPANTALLA6\", makeDynString(\"$MODULO:\" + myModuleName(), \"$N_PANTALLA:\" + n_pantalla));
+  }
+}
+
+mapping get_mapa_nombres_paneles()
+{
+  return (paneles_menu_scada);
+}
+
+void cambiar_pantalla_actual_preparacion(string pantalla_actual, string pantalla = myModuleName())
+{
+  int n_ui = myUiNumber();
+  strreplace(pantalla, \"PRINCIPALPANTALLA\", \"\");
+  dpSetWait(\"ui_\" + n_ui + \"_pantalla_\" + pantalla + \".pantalla_actual\", pantalla_actual);
+}
+
+void convertir_decimal_hex(string dp, int decimal){
+  int  cociente, cociente_aux, resto;
+  string hexa;
+  for(int i=1; i<=2; i++){
+    if(i == 1){
+      cociente = floor(decimal/16);
+      resto = decimal%16;
+      if(resto < 10) hexa.insert(0,resto);
+      else if(resto == 10) hexa.insert(0,\"A\");
+      else if(resto == 11) hexa.insert(0,\"B\");
+      else if(resto == 12) hexa.insert(0,\"C\");
+      else if(resto == 13) hexa.insert(0,\"D\");
+      else if(resto == 14) hexa.insert(0,\"E\");
+      else if(resto == 15) hexa.insert(0,\"F\");
+    }
+    else{
+      cociente_aux = floor(cociente/16);
+      resto = cociente%16;
+      cociente = cociente_aux;
+      if(resto < 10) hexa.insert(0,resto);
+      else if(resto == 10) hexa.insert(0,\"A\");
+      else if(resto == 11) hexa.insert(0,\"B\");
+      else if(resto == 12) hexa.insert(0,\"C\");
+      else if(resto == 13) hexa.insert(0,\"D\");
+      else if(resto == 14) hexa.insert(0,\"E\");
+      else if(resto == 15) hexa.insert(0,\"F\");
+    }
+  }
+  if(hexa == \"0A\")
+    hexa = \"10\";
+  else if(hexa == \"0B\")
+    hexa = \"11\";
+  else if(hexa == \"0C\")
+    hexa = \"12\";
+  else if(hexa == \"0D\")
+    hexa = \"13\";
+  else if(hexa == \"0E\")
+    hexa = \"14\";
+  else if(hexa == \"0F\")
+    hexa = \"15\";
+  else if(hexa == \"1A\")
+    hexa = \"26\";
+  else if(hexa == \"1B\")
+    hexa = \"27\";
+  else if(hexa == \"1C\")
+    hexa = \"28\";
+  else if(hexa == \"1D\")
+    hexa = \"29\";
+  else if(hexa == \"1E\")
+    hexa = \"30\";
+  else if(hexa == \"1F\")
+    hexa = \"31\";
+  else if(hexa == \"2A\")
+    hexa = \"42\";
+  else if(hexa == \"2B\")
+    hexa = \"43\";
+  else if(hexa == \"2C\")
+    hexa = \"44\";
+  else if(hexa == \"2D\")
+    hexa = \"45\";
+  else if(hexa == \"2E\")
+    hexa = \"46\";
+  else if(hexa == \"2F\")
+    hexa = \"47\";
+  else
+    hexa = hexa;
+  this.text = hexa;
+}
+
+" 0
+ 4
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+"pdpi" "141.951"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10001 0 
+LANG:10010 0 
+6 6
+"RECTANGLE6"
+""
+1 90 120 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+5 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E -1 0 3 2 1 E 1.084249206854879 0 0.2195360195360195 232.4175713830609 133.6556776556777 2  1 0  "pictures/maquinarias/sinfin_hor_largo_gris.svg" 4294967295 E 90 120 390 260
+6 7
+"RECTANGLE7"
+""
+1 90 120 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+6 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E -1 0 3 2 1 E 0.3133333333333333 0 0.6092796092796097 604.2707573354473 123.6214896214896 2  1 0  "pictures/maquinarias/tolva_gris.svg" 4294967295 E 90 120 390 260
+6 8
+"RECTANGLE8"
+""
+1 90 120 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+7 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E -1 0 3 2 1 E 1.764540378006875 0 0.2195360195360195 551.1913659793812 133.6556776556777 2  1 0  "pictures/maquinarias/sinfin_hor_largo_inv_gris.svg" 4294967295 E 90 120 390 260
+6 9
+"RECTANGLE9"
+""
+1 90 120 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+8 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E -1 0 3 2 1 E 1.252921678121423 0 0.2195360195360196 427.2509764076129 259.6898656898658 2  1 0  "pictures/maquinarias/sinfin_hor_gris.svg" 4294967295 E 90 120 390 260
+6 20
+"RECTANGLE20"
+""
+1 90 120 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+19 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E -1 0 3 2 1 E 1.74 0 0.2095238095238095 423.4 874.8571428571429 2  1 0  "pictures/maquinarias/sinfin_hor_largo_gris.svg" 4294967295 E 90 120 390 260
+6 22
+"RECTANGLE22"
+""
+1 90 120 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+21 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E -1 0 3 2 1 E 0.6715850662815331 0 1.689453364908838 1269.557344034662 167.2655962109394 2  1 0  "pictures/maquinarias/tolva_gris.svg" 4294967295 E 90 120 390 260
+6 23
+"RECTANGLE23"
+""
+1 90 120 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+22 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E -1 0 3 2 1 E 1.03 0 0.2095238095238096 1421.142508327308 529.1201162072149 2  1 0  "pictures/maquinarias/sinfin_hor_gris_invert.svg" 4294967295 E 90 120 390 260
+6 29
+"RECTANGLE29"
+""
+1 340 620 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+28 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E -1 0 3 2 1 E 0.8454545454545452 0 1.064834092387769 342.5593819839955 -47.16294924622891 2  1 0  "pictures/maquinarias/deshuesadora.png" 4294967295 E 340 620 780 910
+6 27
+"RECTANGLE27"
+""
+1 340 620 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+26 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E -1 0 3 2 1 E 0.75 0 0.7241379310344828 115.0139274385409 -114.9313292071912 2  1 0  "pictures/maquinarias/decanter1.png" 4294967295 E 340 620 780 910
+6 28
+"RECTANGLE28"
+""
+1 340 620 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+27 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E -1 0 3 2 1 E 0.75 0 0.7241379310344828 494.347260771874 -114.9313292071912 2  1 0  "pictures/maquinarias/decanter2.png" 4294967295 E 340 620 780 910
+6 36
+"RECTANGLE36"
+""
+1 90 120 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+35 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E -1 0 3 2 1 E 0.07263969072165018 0 1.714285714285714 44.54740342945059 -5.441366180411705 2  1 0  "pictures/maquinarias/elevador5.png" 4294967295 E 90 120 390 260
+6 40
+"RECTANGLE40"
+""
+1 90 120 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+39 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E -1 0 3 2 1 E 0.4998773219401642 0 1.735714285714287 1175.011041025385 211.7142857142856 2  1 0  "pictures/maquinarias/elevador4.png" 4294967295 E 90 120 390 260
+6 41
+"RECTANGLE41"
+""
+1 90 120 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+40 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E -1 0 3 2 1 E 0.5138043630242676 0 0.1319737328893814 463.8256725944718 309.1973400874622 2  1 0  "pictures/maquinarias/sinfin_hor_gris_invert.svg" 4294967295 E 90 120 390 260
+6 43
+"RECTANGLE43"
+""
+1 90 120 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+42 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E -1 0 3 2 1 E 0.5138043630242676 0 0.1319737328893814 736.9669815017523 309.1973400874623 2  1 0  "pictures/maquinarias/sinfin_hor_gris.svg" 4294967295 E 90 120 390 260
+6 49
+"RECTANGLE49"
+""
+1 90 120 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+48 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E -1 0 3 2 1 E 1.087040378006874 0 0.1660311191268783 422.1802934179222 580.1104537389627 2  1 0  "pictures/maquinarias/sinfin_hor_gris.svg" 4294967295 E 90 120 390 260
+6 53
+"RECTANGLE53"
+""
+1 90 120 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+52 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E -1 0 3 2 1 E 0.300550081352004 0 0.7570663075217793 1090.799395711259 327.1862311315745 2  1 0  "pictures/maquinarias/tolva_gris.svg" 4294967295 E 90 120 390 260
+6 54
+"RECTANGLE54"
+""
+1 90 120 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+53 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E -1 0 3 2 1 E 0.4998998389366479 0 1.735714285714286 1587.366546982513 154.777501763802 2  1 0  "pictures/maquinarias/elevador2.png" 4294967295 E 90 120 390 260
+13 61
+"btn_alimentacion"
+""
+1 320.0139274385409 13.03418803418808 E E E 1 E 1 E N "white" E N "LIB_IRC_AZUL_01" E E
+ E E
+60 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 8 Synoptic
+LANG:10010 6 Inicio
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,21,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  318.0139274385409 11.03418803418808 537.7279868786884 84.93610398530271
+
+T 
+2
+LANG:10001 0 
+LANG:10010 12 ALIMENTACION
+"main(mapping event)
+{
+  cambiar_panel_activo(23);
+  cambiar_pantalla_actual_preparacion(\"PREPARACIÓN\\nALIMENTACIÓN\");
+  int n_ui = myUiNumber();
+  int n_pantalla = numero_pantalla();
+}" 0
+ E E E
+13 64
+"PUSH_BUTTON2"
+""
+1 626.1260408406033 13.03418803418808 E E E 1 E 1 E N "white" E N "LIB_IRC_AZUL_01" E E
+ E E
+63 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 8 Synoptic
+LANG:10010 6 Inicio
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,21,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  624.1260408406033 11.03418803418808 843.8401002807508 84.93610398530271
+
+T 
+2
+LANG:10001 0 
+LANG:10010 6 SALIDA
+"main(mapping event)
+{
+  cambiar_panel_activo(24);
+  cambiar_pantalla_actual_preparacion(\"PREPARACIÓN\\nSALIDA\");
+  int n_ui = myUiNumber();
+  int n_pantalla = numero_pantalla();
+}" 0
+ E E E
+13 67
+"PUSH_BUTTON5"
+""
+1 1347.255730222156 13.03418803418808 E E E 1 E 1 E N "white" E N "LIB_IRC_AZUL_01" E E
+ E E
+66 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 8 Synoptic
+LANG:10010 6 Inicio
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,21,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  1345.255730222156 11.03418803418808 1564.969789662304 84.93610398530271
+
+T 
+2
+LANG:10001 0 
+LANG:10010 14 REARME
+ENGRASA
+"main(mapping event)
+{
+  dpSet(\"015_PREPARACION.cio15013\", TRUE);
+  delay(1);
+  dpSet(\"015_PREPARACION.cio15013\", FALSE);
+}" 0
+ E E "main()
+{
+  dpConnect(\"cambiar_fondo\", \"015_PREPARACION.cio15013\");
+}
+
+void cambiar_fondo(string dp, bool valor)
+{
+  if(valor)
+  {
+    this.backCol(\"LIB_IRC_ROJO_12\");
+  }
+  else
+  {
+    this.backCol(\"LIB_IRC_AZUL_01\");
+  }
+}" 0
+
+13 68
+"PUSH_BUTTON6"
+""
+1 1467.466920890322 879.2995864972028 E E E 1 E 1 E N "white" E N "LIB_IRC_AZUL_01" E E
+ E E
+67 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 8 Synoptic
+LANG:10010 6 Inicio
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,21,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  1465.466920890322 877.2995864972028 1648.782046149774 951.2015024483173
+
+T 
+2
+LANG:10001 0 
+LANG:10010 12 REARME
+MOTOR
+"main(mapping event)
+{
+  dpSet(\"015_PREPARACION.cio15008\", TRUE);
+  delay(1);
+  dpSet(\"015_PREPARACION.cio15008\", FALSE);
+}" 0
+ E E "main()
+{
+  dpConnect(\"cambiar_fondo\", \"015_PREPARACION.cio15015\");
+}
+
+void cambiar_fondo(string dp, bool valor)
+{
+  if(valor)
+  {
+    this.backCol(\"LIB_IRC_ROJO_12\");
+  }
+  else
+  {
+    this.backCol(\"LIB_IRC_AZUL_01\");
+  }
+}" 0
+
+13 69
+"PUSH_BUTTON7"
+""
+1 1267.151795630868 879.2995864972029 E E E 1 E 1 E N "white" E N "LIB_IRC_AZUL_01" E E
+ E E
+68 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 8 Synoptic
+LANG:10010 6 Inicio
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,21,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  1265.151795630868 877.2995864972029 1448.466920890321 951.2015024483175
+
+T 
+2
+LANG:10001 0 
+LANG:10010 11 PARO
+BOCINA
+"main(mapping event)
+{
+  dpSet(\"015_PREPARACION.cio15009\", TRUE);
+  delay(1);
+  dpSet(\"015_PREPARACION.cio15009\", FALSE);
+}" 0
+ E E "main()
+{
+  dpConnect(\"cambiar_fondo\", \"015_PREPARACION.cio15014\");
+}
+
+void cambiar_fondo(string dp, bool valor)
+{
+  if(valor)
+  {
+    this.backCol(\"LIB_IRC_ROJO_12\");
+  }
+  else
+  {
+    this.backCol(\"LIB_IRC_AZUL_01\");
+  }
+}" 0
+
+13 70
+"PUSH_BUTTON8"
+""
+1 110.0139274385409 883.0341880341881 E E E 1 E 1 E N "white" E N "LIB_IRC_AZUL_01" E E
+ E E
+69 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 8 Synoptic
+LANG:10010 6 Inicio
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,21,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  108.0139274385409 881.0341880341881 250.9071000339027 954.9361039853027
+
+T 
+2
+LANG:10001 0 
+LANG:10010 3 G 1
+"main(mapping event)
+{
+  cambiar_panel_activo(25);
+  cambiar_pantalla_actual_preparacion(\"PREPARACIÓN\\nALIMENTACIÓN\");
+  int n_ui = myUiNumber();
+  int n_pantalla = numero_pantalla();
+}" 0
+ E E E
+13 72
+"PUSH_BUTTON10"
+""
+1 269.56734114086 883.0341880341881 E E E 1 E 1 E N "white" E N "LIB_IRC_AZUL_01" E E
+ E E
+71 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 8 Synoptic
+LANG:10010 6 Inicio
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,21,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  267.56734114086 881.0341880341881 410.4605137362218 954.9361039853027
+
+T 
+2
+LANG:10001 0 
+LANG:10010 3 G 2
+"main(mapping event)
+{
+  cambiar_panel_activo(26);
+  cambiar_pantalla_actual_preparacion(\"PREPARACIÓN\\nALIMENTACIÓN\");
+  int n_ui = myUiNumber();
+  int n_pantalla = numero_pantalla();
+}" 0
+ E E E
+13 73
+"PUSH_BUTTON11"
+""
+1 1626.602807255071 12.66061041819324 E E E 1 E 1 E N "white" E N "LIB_IRC_VERDE_01" E E
+ E E
+72 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 8 Synoptic
+LANG:10010 6 Inicio
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,21,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  1624.602807255071 10.66061041819324 1757.917932514524 85.30968160129777
+
+T 
+2
+LANG:10001 0 
+LANG:10010 12 BOCINA
+NIVEL
+"main(mapping event)
+{
+  bool valor;
+
+  dpGet(\"015_PREPARACION.cio15012\", valor);
+  dpSet(\"015_PREPARACION.cio15012\", !valor);
+}" 0
+ E E "main()
+{
+  dpConnect(\"cambiar_fondo\", \"015_PREPARACION.cio15012\");
+}
+
+void cambiar_fondo(string dp, bool valor)
+{
+  if(valor)
+  {
+    this.backCol(\"LIB_IRC_ROJO_12\");
+  }
+  else
+  {
+    this.backCol(\"LIB_IRC_VERDE_01\");
+  }
+}" 0
+
+1 1333 3 "" 6
+0
+1 1335 4 "" 6
+0
+1 1337 11 "" 6
+0
+1 1339 12 "" 6
+0
+1 1341 13 "" 6
+0
+1 1343 14 "" 6
+0
+1 1345 15 "" 6
+0
+1 1347 16 "" 6
+0
+1 1349 17 "" 6
+0
+1 1351 18 "" 6
+0
+1 1353 19 "" 6
+0
+1 1355 20 "" 6
+0
+1 1357 21 "" 6
+0
+1 1359 22 "" 6
+0
+1 1361 23 "" 6
+0
+1 1363 24 "" 6
+0
+2 124
+"PRIMITIVE_TEXT1"
+""
+1 1060 500 E E E 1 E 1 E N "White" E N "LIB_IRC_ROJO_12" E E
+ E E
+97 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+  dpConnect(\"cambiar_visibilidad\", \"015_PREPARACION.cio20210\");
+}
+
+void cambiar_visibilidad(string dp, bool valor)
+{
+  this.visible(!valor);
+}" 0
+ E 0 1 3 2 1 E 1.280822323281807 0 0.9985987993016368 7.783534633788236 255.9764379843598 1 E 1060 500 1200 570
+0 2 2 "0s" 0 0 0 73 0 0  1060 500 1
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+0 2
+LANG:10001 20 N. CONFIRMA EXTRAC
+LANG:10010 20 N. CONFIRMA EXTRAC
+2 175
+"PRIMITIVE_TEXT2"
+""
+1 310 470 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Window" E E
+ E E
+98 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+  dpConnect(\"cambiar_estado_decanter\", \"015_PREPARACION.d112\");
+}
+
+void cambiar_estado_decanter(string dp, int valor)
+{
+  this.text = estado_decanter.value(valor);
+}" 0
+ E 0 1 3 2 1 E 0.9285714285714286 0 1 132.1567845813981 -25.96581196581192 0 E 310 470 450 500
+0 2 2 "0s" 0 0 0 73 0 0  310 470 1
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+0 2
+LANG:10001 4 PARO
+LANG:10010 4 PARO
+2 176
+"PRIMITIVE_TEXT3"
+""
+1 310 470 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Window" E E
+ E E
+99 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+  dpConnect(\"cambiar_estado_decanter\", \"015_PREPARACION.d122\");
+}
+
+void cambiar_estado_decanter(string dp, int valor)
+{
+  this.text = estado_decanter.value(valor);
+}" 0
+ E 0 1 3 2 1 E 0.9285714285714286 0 1 610.662847617809 -27.24848091497662 0 E 310 470 450 500
+0 2 2 "0s" 0 0 0 73 0 0  310 470 1
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+0 2
+LANG:10001 4 PARO
+LANG:10010 4 PARO
+6 229
+"RECTANGLE60"
+""
+1 220.0516583860348 -24.04707586893039 E E E 1 E 1 E N "LIB_IRC_AZULTRANS_03" E N "LIB_IRC_AZUL_03" E E
+ E E
+102 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+7
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,80}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "LIB_IRC_BLANCO"
+"antiAliased" "1"
+E E 0 2 3 2 1 E -0.7809409846412841 0 0.2899283639734003 796.7905685073406 364.7772253407729 1 E 220 40 360 150
+14 230
+"txf_valor"
+""
+1 516.0326768551288 244.8890214134629 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+103 0 0 0 0 0
+E E E
+1
+9
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10011 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10009 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10008 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,11,5,75,0,0,0,0,0,Negrita
+0  517.6544069915384 377.8204199182459 597.0143895525479 406.0341880341881
+2 "0.1f" 2 0 0 9 0 -1  E "main()
+{
+  dpConnect(\"cambiar_valor\", \"015_PREPARACION.d25154\");
+}
+
+void cambiar_valor(string dp, float valor)
+{
+  this.text(valor);
+}" 0
+ E
+6 231
+"RECTANGLE61"
+""
+1 220.0516583860348 -24.04707586893039 E E E 1 E 1 E N "LIB_IRC_AZULTRANS_03" E N "LIB_IRC_AZUL_03" E E
+ E E
+104 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+7
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,80}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "LIB_IRC_BLANCO"
+"antiAliased" "1"
+E E 0 2 3 2 1 E -0.5926388022499721 0 0.2899283639734003 843.3576579447847 344.0061173992112 1 E 220 40 360 150
+14 232
+"TEXT_FIELD1"
+"txf_standard_1"
+1 632.3080678456552 281.9408941549173 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_BLANCO" E E
+ E E
+105 0 0 0 0 0
+E E E
+1
+9
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+2
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10011 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10009 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10008 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,11,5,75,0,0,0,0,0,Negrita
+0  632.4897458559132 356.1550503195478 681.8855126895468 384.5281598267358
+3 "0s" 0 0 0 9 0 -1  "
+main(mapping event)
+{
+  tecladoHex(\"015_PREPARACION.nd200\", \"keypad\", FALSE, 0, \"\", \"50\", \"0\", \"015_PREPARACION.d200\");
+}
+" 0
+ "main()
+{
+  dpConnect(\"convertir_decimal_hex\", \"015_PREPARACION.d200\");
+}
+/**
+main()
+{
+  dpConnect(\"cambiar_estado_decanter\", \"015_PREPARACION.d200\");
+}
+
+void cambiar_estado_decanter(string dp, int valor)
+{
+  this.text = valor;
+}
+ **/" 0
+ E
+14 283
+"TEXT_FIELD2"
+""
+1 678.3975728245332 287.5035670104759 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+106 0 0 0 0 0
+E E E
+1
+9
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+2
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10011 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10009 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10008 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,11,5,75,0,0,0,0,0,Negrita
+0  677.8473502527289 358.434865947465 712.0139274385409 386.0341880341881
+2 "0s" 0 0 0 9 0 -1  E "main()
+{
+  this.text(\"Hz\");
+}" 0
+ E
+6 437
+"RECTANGLE62"
+""
+1 220.0516583860348 -24.04707586893039 E E E 1 E 1 E N "LIB_IRC_AZULTRANS_03" E N "LIB_IRC_AZUL_03" E E
+ E E
+110 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+7
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,80}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "LIB_IRC_BLANCO"
+"antiAliased" "1"
+E E 0 2 3 2 1 E -0.7809409846412841 0 0.2899283639734003 1106.346061124689 364.7772253407729 1 E 220 40 360 150
+14 438
+"TEXT_FIELD3"
+""
+1 825.3168049296477 244.8890214134629 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+111 0 0 0 0 0
+E E E
+1
+9
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10011 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10009 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10008 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,11,5,75,0,0,0,0,0,Negrita
+0  826.8731755787165 377.8204199182459 904.8731755787165 406.0341880341881
+2 "0.1f" 2 0 0 9 0 -1  E "main()
+{
+  dpConnect(\"cambiar_valor\", \"015_PREPARACION.d25160\");
+}
+
+void cambiar_valor(string dp, float valor)
+{
+  this.text(valor);
+}" 0
+ E
+6 439
+"RECTANGLE63"
+""
+1 220.0516583860348 -24.04707586893039 E E E 1 E 1 E N "LIB_IRC_AZULTRANS_03" E N "LIB_IRC_AZUL_03" E E
+ E E
+112 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+7
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,80}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "LIB_IRC_BLANCO"
+"antiAliased" "1"
+E E 0 2 3 2 1 E -0.5926388022499721 0 0.2899283639734003 950.4250786975606 344.0061173992112 1 E 220 40 360 150
+14 440
+"TEXT_FIELD4"
+"txf_standard_1"
+1 739.217768807634 282.4469223623696 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_BLANCO" E E
+ E E
+113 0 0 0 0 0
+E E E
+1
+9
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+2
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10011 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10009 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10008 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,11,5,75,0,0,0,0,0,Negrita
+0  739.2749197649175 356.6610785270001 786.0795613111667 385.0341880341881
+3 "0s" 0 0 0 9 0 -1  "main(mapping event)
+{
+  tecladoHex(\"015_PREPARACION.nd204\", \"keypad\", FALSE, 0, \"\", \"50\", \"0\", \"015_PREPARACION.d204\");
+}
+" 0
+ "main()
+{
+  dpConnect(\"convertir_decimal_hex\", \"015_PREPARACION.d204\");
+}
+
+/**
+main()
+{
+  dpConnect(\"cambiar_estado_decanter\", \"015_PREPARACION.d204\");
+}
+
+void cambiar_estado_decanter(string dp, int valor)
+{
+  this.text = valor;
+}
+ **/" 0
+ E
+14 441
+"TEXT_FIELD5"
+""
+1 785.4649935773093 285.503567010476 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+114 0 0 0 0 0
+E E E
+1
+9
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+2
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10011 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10009 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10008 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,11,5,75,0,0,0,0,0,Negrita
+0  784.914771005505 356.434865947465 819.081348191317 384.0341880341882
+2 "0s" 0 0 0 9 0 -1  E "main()
+{
+  this.text(\"Hz\");
+}" 0
+ E
+6 442
+"RECTANGLE64"
+""
+1 220.0516583860348 -24.04707586893039 E E E 1 E 1 E N "LIB_IRC_AZULTRANS_03" E N "LIB_IRC_AZUL_03" E E
+ E E
+115 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+7
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,80}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "LIB_IRC_BLANCO"
+"antiAliased" "1"
+E E 0 2 3 2 1 E -0.7809409846412841 0 0.2899283639734003 675.5019716459168 535.7717290489136 1 E 220 40 360 150
+14 443
+"TEXT_FIELD6"
+""
+1 393.6334981352589 415.8835251216035 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+116 0 0 0 0 0
+E E E
+1
+9
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10011 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10009 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10008 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,11,5,75,0,0,0,0,0,Negrita
+0  395.1898687843277 548.8149236263865 473.1898687843277 577.0286917423288
+2 "0.1f" 2 0 0 9 0 -1  E "main()
+{
+  dpConnect(\"cambiar_valor\", \"015_PREPARACION.d25172\");
+}
+
+void cambiar_valor(string dp, float valor)
+{
+  this.text(valor);
+}" 0
+ E
+6 444
+"RECTANGLE65"
+""
+1 220.0516583860348 -24.04707586893039 E E E 1 E 1 E N "LIB_IRC_AZULTRANS_03" E N "LIB_IRC_AZUL_03" E E
+ E E
+117 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+7
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,80}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "LIB_IRC_BLANCO"
+"antiAliased" "1"
+E E 0 2 3 2 1 E -0.7809409846412841 0 0.2899283639734003 675.5423137967717 570.2868529914098 1 E 220 40 360 150
+14 445
+"TEXT_FIELD7"
+""
+1 396.6678087680482 450.3986490640997 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+118 0 0 0 0 0
+E E E
+1
+9
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10011 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10009 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10008 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,11,5,75,0,0,0,0,0,Negrita
+0  397.0694282507992 583.3300475688826 451.0416778446701 611.5438156848249
+2 "0.0f" 1 0 0 9 0 -1  E "main()
+{
+  dpConnect(\"cambiar_valor\", \"015_PREPARACION.d582\");
+}
+
+void cambiar_valor(string dp, float valor)
+{
+  this.text(valor);
+}" 0
+ E
+6 446
+"RECTANGLE66"
+""
+1 220.0516583860348 -24.04707586893039 E E E 1 E 1 E N "LIB_IRC_AZULTRANS_03" E N "LIB_IRC_AZUL_03" E E
+ E E
+119 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+7
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,80}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "LIB_IRC_BLANCO"
+"antiAliased" "1"
+E E 0 2 3 2 1 E -0.7809409846412841 0 0.2899283639734003 1257.861286210478 680.0061173992113 1 E 220 40 360 150
+14 447
+"TEXT_FIELD8"
+""
+1 976.3800890782625 560.1179134719013 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+120 0 0 0 0 0
+E E E
+1
+9
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10011 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10009 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10008 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,11,5,75,0,0,0,0,0,Negrita
+0  977.888400664506 693.0493119766842 1054.888400664506 721.2630800926265
+2 "0.1f" 2 0 0 9 0 -1  E "main()
+{
+  dpConnect(\"cambiar_valor\", \"015_PREPARACION.d25166\");
+}
+
+void cambiar_valor(string dp, float valor)
+{
+  this.text(valor);
+}" 0
+ E
+6 448
+"RECTANGLE67"
+""
+1 220.0516583860348 -24.04707586893039 E E E 1 E 1 E N "LIB_IRC_AZULTRANS_03" E N "LIB_IRC_AZUL_03" E E
+ E E
+121 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+7
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,80}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "LIB_IRC_BLANCO"
+"antiAliased" "1"
+E E 0 2 3 2 1 E -0.7809409846412841 0 0.2899283639734003 2035.081215330818 495.4406296129351 1 E 220 40 360 150
+14 449
+"TEXT_FIELD9"
+""
+1 1754.499210853681 375.6628511057929 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "White" E E
+ E E
+122 0 0 0 0 0
+E E E
+1
+9
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10011 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10009 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10008 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,11,5,75,0,0,0,0,0,Negrita
+0  1755.49632655887 508.594249610576 1821.859500724094 536.8080177265182
+3 "0s" 0 0 0 9 0 -1  "
+main(mapping event)
+{
+  tecladoHex(\"015_PREPARACION.nd212\", \"keypad\", FALSE, 0, \"\", \"100\", \"0\", \"015_PREPARACION.d212\");
+}" 0
+ "main()
+{
+  dpConnect(\"cambiar_estado_decanter\", \"015_PREPARACION.d212\");
+}
+
+void cambiar_estado_decanter(string dp, int valor)
+{
+  this.text = valor;
+}" 0
+ E
+14 450
+"TEXT_FIELD10"
+""
+1 1818.05300970598 375.6593097435962 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+123 0 0 0 0 0
+E E E
+1
+9
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10011 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10009 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10008 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,11,5,75,0,0,0,0,0,Negrita
+0  1818.126640897628 508.5907082483791 1865.274198709736 536.8044763643214
+2 "0s" 0 0 0 9 0 -1  E "main()
+{
+  this.text(\"Hz\");
+}" 0
+ E
+2 451
+"PRIMITIVE_TEXT4"
+""
+1 310 470 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Window" E E
+ E E
+124 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E 0.9285714285714286 0 1 -227.8571428571429 360 0 E 310 470 450 500
+0 2 2 "0s" 0 0 0 73 0 0  310 470 1
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+0 2
+LANG:10001 9 FALLO RPM
+LANG:10010 9 FALLO RPM
+1 1365 25 "" 6
+0
+1 1366 26 "" 6
+0
+1 1367 27 "" 6
+0
+1 1368 30 "" 6
+0
+1 1369 31 "" 6
+0
+1 1370 32 "" 6
+0
+1 1372 34 "" 1
+0
+1 1373 35 "" 1
+0
+1 1374 37 "" 1
+0
+1 1375 38 "" 1
+0
+1 1376 39 "" 1
+0
+1 1377 40 "" 1
+0
+1 1378 41 "" 1
+0
+1 1379 42 "" 1
+0
+1 1380 43 "" 1
+0
+1 1381 44 "" 1
+0
+1 1382 45 "" 1
+0
+1 1383 46 "" 1
+0
+1 1384 47 "" 1
+0
+1 1385 48 "" 1
+0
+1 1386 49 "" 1
+0
+1 1387 50 "" 1
+0
+1 1388 51 "" 1
+0
+1 1389 52 "" 1
+0
+1 1371 33 "" 6
+0
+1 1390 53 "" 1
+0
+1 1391 56 "" 1
+0
+2 521
+"PRIMITIVE_TEXT5"
+""
+1 1060 500 E E E 1 E 1 E N "White" E N "LIB_IRC_ROJO_12" E E
+ E E
+160 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+  dpConnect(\"cambiar_visibilidad\", \"015_PREPARACION.cio12300\");
+}
+
+void cambiar_visibilidad(string dp, bool valor)
+{
+  this.visible(valor);
+}" 0
+ E 0 1 3 2 1 E 2.07142857142857 0 0.5522043733337463 -1895.700358275743 -162.5260772454825 1 E 1060 500 1200 570
+0 2 2 "0s" 0 0 0 73 0 0  1060 500 1
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+0 2
+LANG:10001 20 N. CONFIRMA EXTRAC
+LANG:10010 16 Fallo Engrase G1
+2 522
+"PRIMITIVE_TEXT6"
+""
+1 1060 500 E E E 1 E 1 E N "White" E N "LIB_IRC_ROJO_12" E E
+ E E
+161 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+  dpConnect(\"cambiar_visibilidad\", \"015_PREPARACION.cio12301\");
+}
+
+void cambiar_visibilidad(string dp, bool valor)
+{
+  this.visible(valor);
+}" 0
+ E 0 1 3 2 1 E 2.07142857142857 0 0.5522043733337463 -1390.907188172649 -162.5260772454825 1 E 1060 500 1200 570
+0 2 2 "0s" 0 0 0 73 0 0  1060 500 1
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+0 2
+LANG:10001 20 N. CONFIRMA EXTRAC
+LANG:10010 16 Fallo Engrase G2
+2 523
+"PRIMITIVE_TEXT7"
+""
+1 1060 500 E E E 1 E 1 E N "White" E N "LIB_IRC_ROJO_12" E E
+ E E
+162 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+  dpConnect(\"cambiar_visibilidad\", \"015_PREPARACION.cio25011\");
+}
+
+void cambiar_visibilidad(string dp, bool valor)
+{
+  this.visible(valor);
+}" 0
+ E 0 1 3 2 1 E 2.07142857142857 0 0.5522043733337463 -1895.700358275743 -76.47628616228747 1 E 1060 500 1200 570
+0 2 2 "0s" 0 0 0 73 0 0  1060 500 1
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+0 2
+LANG:10001 20 N. CONFIRMA EXTRAC
+LANG:10010 12 Fallo RPM G1
+2 524
+"PRIMITIVE_TEXT8"
+""
+1 1060 500 E E E 1 E 1 E N "White" E N "LIB_IRC_ROJO_12" E E
+ E E
+163 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+  dpConnect(\"cambiar_visibilidad\", \"015_PREPARACION.cio25012\");
+}
+
+void cambiar_visibilidad(string dp, bool valor)
+{
+  this.visible(valor);
+}" 0
+ E 0 1 3 2 1 E 2.07142857142857 0 0.5522043733337463 -1390.907188172649 -76.47628616228747 1 E 1060 500 1200 570
+0 2 2 "0s" 0 0 0 73 0 0  1060 500 1
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+0 2
+LANG:10001 20 N. CONFIRMA EXTRAC
+LANG:10010 12 Fallo RPM G2
+2 594
+"PRIMITIVE_TEXT9"
+""
+1 1060 500 E E E 1 E 1 E N "White" E N "LIB_IRC_ROJO_12" E E
+ E E
+164 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+  dpConnect(\"cambiar_visibilidad\", \"015_PREPARACION.cio10300\");
+}
+
+void cambiar_visibilidad(string dp, bool valor)
+{
+  this.visible(valor);
+}" 0
+ E 0 1 3 2 1 E 0.9285714285714279 0 0.8752329192546597 -951.2857142857137 39.11723602484395 1 E 1060 500 1200 570
+0 2 2 "0s" 0 0 0 73 0 0  1060 500 2
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+0 2
+LANG:10001 20 N. CONFIRMA EXTRAC
+LANG:10010 10 PARO CINTA
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+0 2
+LANG:10001 0 
+LANG:10010 9 POR NIVEL
+6 663
+"RECTANGLE68"
+""
+1 220.0516583860348 -24.04707586893039 E E E 1 E 1 E N "LIB_IRC_AZULTRANS_03" E N "LIB_IRC_AZUL_03" E E
+ E E
+165 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+7
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,80}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "LIB_IRC_BLANCO"
+"antiAliased" "1"
+E E 0 2 3 2 1 E -0.7809409846412841 0 0.2899283639734003 1161.861286210478 536.0061173992113 1 E 220 40 360 150
+14 664
+"TEXT_FIELD11"
+""
+1 881.8320300154372 416.1179134719013 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+166 0 0 0 0 0
+E E E
+1
+9
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10011 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10009 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10008 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,11,5,75,0,0,0,0,0,Negrita
+0  883.3884006645061 549.0493119766843 961.3884006645061 577.2630800926265
+2 "0.1f" 2 0 0 9 0 -1  E "main()
+{
+  dpConnect(\"cambiar_valor\", \"015_PREPARACION.d25178\");
+}
+
+void cambiar_valor(string dp, float valor)
+{
+  this.text(valor);
+}" 0
+ E
+6 665
+"RECTANGLE69"
+""
+1 220.0516583860348 -24.04707586893039 E E E 1 E 1 E N "LIB_IRC_AZULTRANS_03" E N "LIB_IRC_AZUL_03" E E
+ E E
+167 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+7
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,80}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "LIB_IRC_BLANCO"
+"antiAliased" "1"
+E E 0 2 3 2 1 E -0.7809409846412841 0 0.2899283639734003 1161.901628361333 570.5212413417075 1 E 220 40 360 150
+14 666
+"TEXT_FIELD12"
+""
+1 883.0815656488938 450.6330374143973 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+168 0 0 0 0 0
+E E E
+1
+9
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10011 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10009 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10008 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,11,5,75,0,0,0,0,0,Negrita
+0  883.3884006645061 583.5644359191804 935.3884006645061 611.7782040351227
+2 "0.0f" 1 0 0 9 0 -1  E "main()
+{
+  dpConnect(\"cambiar_valor\", \"015_PREPARACION.d586\");
+}
+
+void cambiar_valor(string dp, float valor)
+{
+  this.text(valor);
+}" 0
+ E
+14 667
+"TEXT_FIELD13"
+""
+1 591.4808614174392 307.3032280538375 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+169 0 0 0 0 0
+E E E
+1
+9
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+2
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10011 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10009 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10008 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,11,5,75,0,0,0,0,0,Negrita
+0  590.9306388456349 378.2345269908266 625.0972160314469 405.8338490775495
+2 "0s" 0 0 0 9 0 -1  E "main()
+{
+  this.text(\"C\");
+}" 0
+ E
+14 668
+"TEXT_FIELD14"
+""
+1 900.9643341860518 307.6896294162145 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+170 0 0 0 0 0
+E E E
+1
+9
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+2
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10011 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10009 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10008 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,11,5,75,0,0,0,0,0,Negrita
+0  900.4141116142475 378.6209283532037 934.5806888000595 406.2202504399268
+2 "0s" 0 0 0 9 0 -1  E "main()
+{
+  this.text(\"C\");
+}" 0
+ E
+14 669
+"TEXT_FIELD15"
+""
+1 468.8472607718741 478.1908477040068 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+171 0 0 0 0 0
+E E E
+1
+9
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+2
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10011 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10009 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10008 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,11,5,75,0,0,0,0,0,Negrita
+0  468.2970382000698 549.122146640996 502.4636153858818 576.7214687277191
+2 "0s" 0 0 0 9 0 -1  E "main()
+{
+  this.text(\"A\");
+}" 0
+ E
+14 670
+"TEXT_FIELD16"
+""
+1 446.5994717824217 512.7059716465033 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+172 0 0 0 0 0
+E E E
+1
+9
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+2
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10011 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10009 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10008 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,11,5,75,0,0,0,0,0,Negrita
+0  447.0694282507993 583.6372705834924 502.4636153858819 611.2365926702154
+2 "0s" 0 0 0 9 0 -1  E "main()
+{
+  this.text(\"RPM\");
+}" 0
+ E
+14 671
+"TEXT_FIELD17"
+""
+1 953.8929420040923 478.2613144298221 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+173 0 0 0 0 0
+E E E
+1
+9
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+2
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10011 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10009 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10008 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,11,5,75,0,0,0,0,0,Negrita
+0  953.342719432288 549.1926133668113 987.5092966181001 576.7919354535343
+2 "0s" 0 0 0 9 0 -1  E "main()
+{
+  this.text(\"A\");
+}" 0
+ E
+14 672
+"TEXT_FIELD18"
+""
+1 932.758957989275 513.2764383723184 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+174 0 0 0 0 0
+E E E
+1
+9
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+2
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10011 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10009 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10008 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,11,5,75,0,0,0,0,0,Negrita
+0  933.2289144576526 584.2077373093075 988.6231015927352 611.8070593960305
+2 "0s" 0 0 0 9 0 -1  E "main()
+{
+  this.text(\"RPM\");
+}" 0
+ E
+14 673
+"TEXT_FIELD19"
+""
+1 1050.260188922293 622.4252360543047 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+175 0 0 0 0 0
+E E E
+1
+9
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+2
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10011 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10009 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10008 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,11,5,75,0,0,0,0,0,Negrita
+0  1049.709966350489 693.3565349912939 1083.876543536301 720.9558570780169
+2 "0s" 0 0 0 9 0 -1  E "main()
+{
+  this.text(\"C\");
+}" 0
+ E
+2 674
+"PRIMITIVE_TEXT10"
+""
+1 1060 500 E E E 1 E 1 E N "White" E N "LIB_IRC_ROJO_12" E E
+ E E
+176 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+  dpConnect(\"cambiar_visibilidad\", \"015_PREPARACION.cio10304\");
+}
+
+void cambiar_visibilidad(string dp, bool valor)
+{
+  this.visible(valor);
+}" 0
+ E 0 1 3 2 1 E 0.6061224489795899 0 0.285714285714286 841.6642800697023 158.9270451770452 1 E 1060 500 1200 570
+0 2 2 "0s" 0 0 0 73 0 0  1060 500 1
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+0 2
+LANG:10001 20 N. CONFIRMA EXTRAC
+LANG:10010 3 max
+2 675
+"PRIMITIVE_TEXT11"
+""
+1 1060 500 E E E 1 E 1 E N "White" E N "LIB_IRC_ROJO_12" E E
+ E E
+177 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+  dpConnect(\"cambiar_visibilidad\", \"015_PREPARACION.cio10305\");
+}
+
+void cambiar_visibilidad(string dp, bool valor)
+{
+  this.visible(valor);
+}" 0
+ E 0 1 3 2 1 E 0.6061224489795899 0 0.285714285714286 841.6642800697023 184.6538407877808 1 E 1060 500 1200 570
+0 2 2 "0s" 0 0 0 73 0 0  1060 500 1
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+0 2
+LANG:10001 20 N. CONFIRMA EXTRAC
+LANG:10010 3 min
+1 1392 62 "" 1
+0
+6 744
+"RECTANGLE70"
+""
+1 220.0516583860348 -24.04707586893039 E E E 1 E 1 E N "LIB_IRC_AZULTRANS_03" E N "LIB_IRC_AZUL_03" E E
+ E E
+178 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+7
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,80}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "LIB_IRC_BLANCO"
+"antiAliased" "1"
+E E 0 2 3 2 1 E -0.7809409846412841 0 0.2899283639734003 613.5001447868054 296.1109050094802 1 E 220 40 360 150
+14 745
+"TEXT_FIELD20"
+""
+1 333.3668675658147 176.2227010821697 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "White" E E
+ E E
+179 0 0 0 0 0
+E E E
+1
+9
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10011 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10009 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10008 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,11,5,75,0,0,0,0,0,Negrita
+0  334.3639832710038 309.1540995869527 400.7271574362277 337.3678677028948
+3 "0s" 0 0 0 9 0 -1  "main(mapping event)
+{
+  teclado(\"015_PREPARACION.d226\", \"keypad\", FALSE, 0, \"\", \"100\", \"0\");
+}" 0
+ "main()
+{
+  dpConnect(\"cambiar_estado_decanter\", \"015_PREPARACION.d226\");
+}
+
+void cambiar_estado_decanter(string dp, int valor)
+{
+  this.text = valor;
+}" 0
+ E
+14 746
+"TEXT_FIELD21"
+""
+1 396.4719391619677 176.3295851401408 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+180 0 0 0 0 0
+E E E
+1
+9
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10011 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10009 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10008 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,11,5,75,0,0,0,0,0,Negrita
+0  396.5455703536157 309.2609836449237 443.6931281657238 337.4747517608661
+2 "0s" 0 0 0 9 0 -1  E "main()
+{
+  this.text(\"%\");
+}" 0
+ E
+6 888
+"RECTANGLE71"
+""
+1 220.0516583860348 -24.04707586893039 E E E 1 E 1 E N "LIB_IRC_AZULTRANS_03" E N "LIB_IRC_AZUL_03" E E
+ E E
+186 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+7
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,80}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "LIB_IRC_BLANCO"
+"antiAliased" "1"
+E E 0 2 3 2 1 E -0.7809409846412841 0 0.2899283639734003 1293.833478120138 295.1109050094802 1 E 220 40 360 150
+14 889
+"TEXT_FIELD22"
+""
+1 1013.700200899148 175.2227010821697 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "White" E E
+ E E
+187 0 0 0 0 0
+E E E
+1
+9
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10011 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10009 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10008 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,11,5,75,0,0,0,0,0,Negrita
+0  1014.697316604337 308.1540995869527 1081.060490769561 336.3678677028948
+3 "0s" 0 0 0 9 0 -1  "
+main(mapping event)
+{
+  teclado(\"015_PREPARACION.d216\", \"keypad\", FALSE, 0, \"\", \"100\", \"0\");
+}" 0
+ "main()
+{
+  dpConnect(\"cambiar_estado_decanter\", \"015_PREPARACION.d216\");
+}
+
+void cambiar_estado_decanter(string dp, int valor)
+{
+  this.text = valor;
+}" 0
+ E
+14 890
+"TEXT_FIELD23"
+""
+1 1076.805272495301 175.3295851401408 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+188 0 0 0 0 0
+E E E
+1
+9
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10011 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10009 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10008 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,11,5,75,0,0,0,0,0,Negrita
+0  1076.878903686949 308.2609836449237 1124.026461499057 336.4747517608661
+2 "0s" 0 0 0 9 0 -1  E "main()
+{
+  this.text(\"%\");
+}" 0
+ E
+14 962
+"TEXT_FIELD26"
+""
+1 470.0139274385409 494.7486801073627 E E E 1 E 1 E N "_Transparent" E N "_Transparent" E E
+ E E
+192 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  468.0139274385409 474.0341880341881 553.0139274385409 538.5810741532823
+2 "0s" 0 0 0 0 0 -1  "main(mapping event)
+{
+    ChildPanelOnCentralModal(\"vision/faceplates/Marcha_Paro_Motor.pnl\",
+      \"\",
+      makeDynString(\"$Nombre:\" + \"Granuladora 1\",\"$Cio:\"+ \"cio10012\"));
+}" 0
+ E E
+14 963
+"TEXT_FIELD27"
+""
+1 881.1749025244522 493.7379631604117 E E E 1 E 1 E N "_Transparent" E N "_Transparent" E E
+ E E
+193 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  879.1749025244522 473.0234710872371 964.1749025244522 537.5703572063313
+2 "0s" 0 0 0 0 0 -1  "main(mapping event)
+{
+    ChildPanelOnCentralModal(\"vision/faceplates/Marcha_Paro_Motor.pnl\",
+      \"\",
+      makeDynString(\"$Nombre:\" + \"Granuladora 2\",\"$Cio:\"+ \"cio10202\"));
+}" 0
+ E E
+14 964
+"TEXT_FIELD28"
+""
+1 928.5455703536156 382.4754757180983 E E E 1 E 1 E N "_Transparent" E N "_Transparent" E E
+ E E
+194 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  926.5455703536156 361.7609836449237 1011.545570353616 426.3078697640179
+2 "0s" 0 0 0 0 0 -1  "main(mapping event)
+{
+    ChildPanelOnCentralModal(\"vision/faceplates/Marcha_Paro_Motor.pnl\",
+      \"\",
+      makeDynString(\"$Nombre:\" + \"Acon Gr Motriz 2\",\"$Cio:\"+ \"cio10201\"));
+}" 0
+ E E
+14 965
+"TEXT_FIELD29"
+""
+1 421.0455703536159 382.618229681511 E E E 1 E 1 E N "_Transparent" E N "_Transparent" E E
+ E E
+195 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  419.0455703536159 361.9037376083364 504.0455703536159 426.4506237274306
+2 "0s" 0 0 0 0 0 -1  "main(mapping event)
+{
+    ChildPanelOnCentralModal(\"vision/faceplates/Marcha_Paro_Motor.pnl\",
+      \"\",
+      makeDynString(\"$Nombre:\" + \"Acon Gr Motriz 1\",\"$Cio:\"+ \"cio10011\"));
+}" 0
+ E E
+14 966
+"TEXT_FIELD30"
+""
+1 601.3803644320868 166.4790009285225 E E E 1 E 1 E N "_Transparent" E N "_Transparent" E E
+ E E
+196 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  599.3803644320868 150.8641340824848 665.550315620885 198.9122327020183
+2 "0s" 0 0 0 0 0 -1  "main(mapping event)
+{
+    ChildPanelOnCentralModal(\"vision/faceplates/Marcha_Paro_Motor.pnl\",
+      \"\",
+      makeDynString(\"$Nombre:\" + \"SF Ent Orujo 2\",\"$Cio:\"+ \"Mcio10001\"));
+}" 0
+ E E
+14 967
+"TEXT_FIELD31"
+""
+1 258.7446455348293 169.7362270916276 E E E 1 E 1 E N "_Transparent" E N "_Transparent" E E
+ E E
+197 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  256.7446455348293 154.0709832981615 322.9145967236275 202.2820661593756
+2 "0s" 0 0 0 0 0 -1  "main(mapping event)
+{
+    ChildPanelOnCentralModal(\"vision/faceplates/Marcha_Paro_Motor.pnl\",
+      \"\",
+      makeDynString(\"$Nombre:\" + \"SF Ent Orujo 1\",\"$Cio:\"+ \"cio10000\"));
+}" 0
+ E E
+14 968
+"TEXT_FIELD32"
+""
+1 676.5413033777 166.5142998671521 E E E 1 E 1 E N "_Transparent" E N "_Transparent" E E
+ E E
+198 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  674.5413033777 150.8994330211145 740.711254566498 198.9475316406479
+2 "0s" 0 0 0 0 0 -1  "main(mapping event)
+{
+    ChildPanelOnCentralModal(\"vision/faceplates/Marcha_Paro_Motor.pnl\",
+      \"\",
+      makeDynString(\"$Nombre:\" + \"SF a Tolva Gran\",\"$Cio:\"+ \"cio10004\"));
+}" 0
+ E E
+14 974
+"TEXT_FIELD38"
+""
+1 1251.817817630776 385.0183878419502 E E E 1 E 1 E N "_Transparent" E N "_Transparent" E E
+ E E
+204 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  1249.817817630776 369.4035209959123 1315.987768819575 417.451619615446
+2 "0s" 0 0 0 0 0 -1  "main(mapping event)
+{
+    ChildPanelOnCentralModal(\"vision/faceplates/Marcha_Paro_Motor.pnl\",
+      \"\",
+      makeDynString(\"$Nombre:\" + \"Noria Orujo T\",\"$Cio:\"+ \"cio10009\"));
+}" 0
+ E E
+14 975
+"TEXT_FIELD39"
+""
+1 1728.166643482115 369.1580296497023 E E E 1 E 1 E N "_Transparent" E N "_Transparent" E E
+ E E
+205 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  1726.166643482115 353.5431628036646 1792.336594670913 401.591261423198
+2 "0s" 0 0 0 0 0 -1  "main(mapping event)
+{
+    ChildPanelOnCentralModal(\"vision/faceplates/Marcha_Paro_Motor.pnl\",
+      \"\",
+      makeDynString(\"$Nombre:\" + \"Elev T Rebose Pelet\",\"$Cio:\"+ \"cio10211\"));
+}" 0
+ E E
+14 976
+"TEXT_FIELD40"
+""
+1 1756.362969959498 564.5975225132147 E E E 1 E 1 E N "_Transparent" E N "_Transparent" E E
+ E E
+206 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  1754.362969959498 548.982655667177 1820.532921148297 597.0307542867105
+2 "0s" 0 0 0 0 0 -1  "main(mapping event)
+{
+    ChildPanelOnCentralModal(\"vision/faceplates/Marcha_Paro_Motor.pnl\",
+      \"\",
+      makeDynString(\"$Nombre:\" + \"Espiral T Rebose Pelet\",\"$Cio:\"+ \"cio10210\"));
+}" 0
+ E E
+14 977
+"TEXT_FIELD41"
+""
+1 1129.857551957878 874.7309122630674 E E E 1 E 1 E N "_Transparent" E N "_Transparent" E E
+ E E
+207 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  1127.857551957878 859.1160454170297 1194.027503146676 907.1641440365631
+2 "0s" 0 0 0 0 0 -1  "main(mapping event)
+{
+    ChildPanelOnCentralModal(\"vision/faceplates/Marcha_Paro_Motor.pnl\",
+      \"\",
+      makeDynString(\"$Nombre:\" + \"Elev Pelet\",\"$Cio:\"+ \"cio10208\"));
+}" 0
+ E E
+14 978
+"TEXT_FIELD42"
+""
+1 540.1391151495772 906.1405073081762 E E E 1 E 1 E N "_Transparent" E N "_Transparent" E E
+ E E
+208 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  538.1391151495772 890.5256404621385 604.3090663383755 938.573739081672
+2 "0s" 0 0 0 0 0 -1  "main(mapping event)
+{
+    ChildPanelOnCentralModal(\"vision/faceplates/Marcha_Paro_Motor.pnl\",
+      \"\",
+      makeDynString(\"$Nombre:\" + \"Espiral Salida Pelet\",\"$Cio:\"+ \"cio10207\"));
+}" 0
+ E E
+14 979
+"TEXT_FIELD43"
+""
+1 650.4289518441418 788.7593198991439 E E E 1 E 1 E N "_Transparent" E N "_Transparent" E E
+ E E
+209 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  648.4289518441418 773.1444530531063 714.59890303294 821.1925516726398
+2 "0s" 0 0 0 0 0 -1  "main(mapping event)
+{
+    ChildPanelOnCentralModal(\"vision/faceplates/Marcha_Paro_Motor.pnl\",
+      \"\",
+      makeDynString(\"$Nombre:\" + \"Exclusa Ciclon\",\"$Cio:\"+ \"cio10206\"));
+}" 0
+ E E
+14 980
+"TEXT_FIELD44"
+""
+1 586.2341874146401 718.1468799448347 E E E 1 E 1 E N "_Transparent" E N "_Transparent" E E
+ E E
+210 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  584.2341874146401 702.5320130987972 650.4041386034384 750.5801117183306
+2 "0s" 0 0 0 0 0 -1  "main(mapping event)
+{
+    ChildPanelOnCentralModal(\"vision/faceplates/Marcha_Paro_Motor.pnl\",
+      \"\",
+      makeDynString(\"$Nombre:\" + \"Vent Centrifugado\",\"$Cio:\"+ \"cio10205\"));
+}" 0
+ E E
+14 981
+"TEXT_FIELD45"
+""
+1 753.5521835778285 635.5945263959064 E E E 1 E 1 E N "_Transparent" E N "_Transparent" E E
+ E E
+211 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  751.5521835778285 619.9796595498688 817.7221347666267 668.0277581694022
+2 "0s" 0 0 0 0 0 -1  "main(mapping event)
+{
+    ChildPanelOnCentralModal(\"vision/faceplates/Marcha_Paro_Motor.pnl\",
+      \"\",
+      makeDynString(\"$Nombre:\" + \"Alveolar Enfriador\",\"$Cio:\"+ \"cio10204\"));
+}" 0
+ E E
+14 982
+"TEXT_FIELD46"
+""
+1 511.2958032814832 603.2199196671808 E E E 1 E 1 E N "_Transparent" E N "_Transparent" E E
+ E E
+212 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  509.2958032814832 587.6050528211431 575.4657544702814 635.6531514406765
+2 "0s" 0 0 0 0 0 -1  "main(mapping event)
+{
+    ChildPanelOnCentralModal(\"vision/faceplates/Marcha_Paro_Motor.pnl\",
+      \"\",
+      makeDynString(\"$Nombre:\" + \"SF Recog Granuladora\",\"$Cio:\"+ \"cio10209\"));
+}" 0
+ E E
+14 983
+"TEXT_FIELD47"
+""
+1 369.0139274385409 519.9933143169534 E E E 1 E 1 E N "_Transparent" E N "_Transparent" E E
+ E E
+213 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  367.0139274385409 511.6225276910109 402.2398409544112 536.2338961867076
+2 "0s" 0 0 0 0 0 -1  "main(mapping event)
+{
+    ChildPanelOnCentralModal(\"vision/faceplates/Marcha_Paro_Motor.pnl\",
+      \"\",
+      makeDynString(\"$Nombre:\" + \"Bomba Engrase 1\",\"$Cio:\"+ \"cio10013\"));
+}" 0
+ E E
+14 984
+"TEXT_FIELD48"
+""
+1 1043.136580646241 520.0885734653314 E E E 1 E 1 E N "_Transparent" E N "_Transparent" E E
+ E E
+214 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  1041.136580646241 511.7177868393887 1076.362494162111 536.3291553350856
+2 "0s" 0 0 0 0 0 -1  "main(mapping event)
+{
+    ChildPanelOnCentralModal(\"vision/faceplates/Marcha_Paro_Motor.pnl\",
+      \"\",
+      makeDynString(\"$Nombre:\" + \"Bomba Engrase 2\",\"$Cio:\"+ \"cio10203\"));
+}" 0
+ E E
+14 985
+"TEXT_FIELD49"
+""
+1 644.325581346368 216.0960102419001 E E E 1 E 1 E N "_Transparent" E N "_Transparent" E E
+ E E
+215 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  642.325581346368 200.4811433958625 708.4955325351663 248.5292420153959
+2 "0s" 0 0 0 0 0 -1  "main(mapping event)
+{
+    ChildPanelOnCentralModal(\"vision/faceplates/Marcha_Paro_Motor.pnl\",
+      \"\",
+      makeDynString(\"$Nombre:\" + \"Criba Entrada Tolva\",\"$Cio:\"+ \"cio10014\"));
+}" 0
+ E E
+14 986
+"TEXT_FIELD50"
+""
+1 539.3635588667844 290.1941771179339 E E E 1 E 1 E N "_Transparent" E N "_Transparent" E E
+ E E
+216 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  537.3635588667844 274.5793102718962 603.5335100555825 322.6274088914297
+2 "0s" 0 0 0 0 0 -1  "main(mapping event)
+{
+    ChildPanelOnCentralModal(\"vision/faceplates/Marcha_Paro_Motor.pnl\",
+      \"\",
+      makeDynString(\"$Nombre:\" + \"SF Dist Granuladora\",\"$Cio:\"+ \"cio10002\"));
+}" 0
+ E E
+14 987
+"TEXT_FIELD51"
+""
+1 626.9986940483032 330.5325649391765 E E E 1 E 1 E N "_Transparent" E N "_Transparent" E E
+ E E
+217 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  624.9986940483032 322.1617783132339 660.2246075641734 346.7731468089307
+2 "0s" 0 0 0 0 0 -1  "main(mapping event)
+{
+    ChildPanelOnCentralModal(\"vision/faceplates/Marcha_Paro_Motor.pnl\",
+      \"\",
+      makeDynString(\"$Nombre:\" + \"Dosificador\",\"$Cio:\"+ \"cio10010\"));
+}" 0
+ E E
+14 988
+"TEXT_FIELD52"
+""
+1 783.2093741739365 333.1095672424751 E E E 1 E 1 E N "_Transparent" E N "_Transparent" E E
+ E E
+218 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  781.2093741739365 324.7387806165325 816.4352876898067 349.3501491122294
+2 "0s" 0 0 0 0 0 -1  "main(mapping event)
+{
+    ChildPanelOnCentralModal(\"vision/faceplates/Marcha_Paro_Motor.pnl\",
+      \"\",
+      makeDynString(\"$Nombre:\" + \"Dosificador 2\",\"$Cio:\"+ \"cio10200\"));
+}" 0
+ E E
+6 1061
+"RECTANGLE74"
+""
+1 90 120 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+224 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E -1 0 3 2 1 E 0.9779761904761898 0 0.2195360195360195 -85.71379790869739 134.510857370326 2  1 0  "pictures/maquinarias/sinfin_hor_largo_gris.svg" 4294967295 E 90 120 390 260
+1 1393 63 "" 1
+0
+6 1127
+"RECTANGLE76"
+""
+1 90 120 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+227 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E -1 0 3 2 1 E 0.07263969072165018 0 2.318717528411394 1223.951773330801 -102.8665573869626 2  1 0  "pictures/maquinarias/elevador5.png" 4294967295 E 90 120 390 260
+6 1128
+"RECTANGLE77"
+""
+1 90 120 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+228 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E -1 0 3 2 1 E 0.4998773219401642 0 1.735714285714287 1045.011041025385 431.7142857142856 2  1 0  "pictures/maquinarias/elevador4.png" 4294967295 E 90 120 390 260
+14 1191
+"TEXT_FIELD53"
+""
+1 435.6600976224038 647.6652437934661 E E E 1 E 1 E N "_Transparent" E N "_Transparent" E E
+ E E
+231 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  433.6600976224038 632 499.830048811202 680.2110828612141
+2 "0s" 0 0 0 0 0 -1  "main(mapping event)
+{
+    ChildPanelOnCentralModal(\"vision/faceplates/Marcha_Paro_Motor.pnl\",
+      \"\",
+      makeDynString(\"$Nombre:\" + \"SF \",\"$Cio:\"+ \"cio10306\"));
+}" 0
+ E E
+6 1192
+"RECTANGLE79"
+""
+1 90 120 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+232 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E -1 0 3 2 1 E 0.9779761904761898 0 0.2195360195360195 91.91933452548793 611.2663287872726 2  1 0  "pictures/maquinarias/sinfin_hor_largo_gris.svg" 4294967295 E 90 120 390 260
+1 1394 64 "" 1
+0
+6 1196
+"RECTANGLE80"
+""
+1 220.0516583860348 -24.04707586893039 E E E 1 E 1 E N "LIB_IRC_AZULTRANS_03" E N "LIB_IRC_AZUL_03" E E
+ E E
+235 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+7
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,80}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "LIB_IRC_BLANCO"
+"antiAliased" "1"
+E E 0 2 3 2 1 E -0.5926388022499721 0 0.2899283639734003 638.7802770580929 666.508406871671 1 E 220 40 360 150
+14 1197
+"TEXT_FIELD56"
+"txf_standard_1"
+1 427.7306869589634 604.4431836273772 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_BLANCO" E E
+ E E
+236 0 0 0 0 0
+E E E
+1
+9
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+2
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10011 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10009 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10008 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,11,5,75,0,0,0,0,0,Negrita
+0  427.9123649692214 678.6573397920076 477.308131802855 707.0304492991957
+3 "0s" 0 0 0 9 0 -1  "
+main(mapping event)
+{
+  tecladoHex(\"015_PREPARACION.nd230\", \"keypad\", FALSE, 0, \"\", \"50\", \"0\", \"015_PREPARACION.d230\");
+}
+" 0
+ "main()
+{
+  dpConnect(\"convertir_decimal_hex\", \"015_PREPARACION.d230\");
+}
+/**
+main()
+{
+  dpConnect(\"cambiar_estado_decanter\", \"015_PREPARACION.d200\");
+}
+
+void cambiar_estado_decanter(string dp, int valor)
+{
+  this.text = valor;
+}
+ **/" 0
+ E
+14 1198
+"TEXT_FIELD57"
+""
+1 473.8201919378414 610.0058564829358 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+237 0 0 0 0 0
+E E E
+1
+9
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+2
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10011 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10009 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10008 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,11,5,75,0,0,0,0,0,Negrita
+0  473.2699693660371 680.9371554199249 507.4365465518491 708.536477506648
+2 "0s" 0 0 0 9 0 -1  E "main()
+{
+  this.text(\"Hz\");
+}" 0
+ E
+6 1329
+"RECTANGLE82"
+""
+1 220.0516583860348 -24.04707586893039 E E E 1 E 1 E N "LIB_IRC_AZULTRANS_03" E N "LIB_IRC_AZUL_03" E E
+ E E
+244 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+7
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,80}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "LIB_IRC_BLANCO"
+"antiAliased" "1"
+E E 0 2 3 2 1 E -0.7809409846412841 0 0.2899283639734003 1214.875306944203 834.698724975759 1 E 220 40 360 150
+14 1330
+"TEXT_FIELD62"
+""
+1 936.0008019154792 714.8105210484489 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+245 0 0 0 0 0
+E E E
+1
+9
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+3
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10011 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10009 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10008 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,11,5,75,0,0,0,0,0,Negrita
+0  936.4024213982302 847.7419195532318 990.3746709921011 875.9556876691742
+2 "0.0f" 1 0 0 9 0 -1  E "main()
+{
+  dpConnect(\"cambiar_valor\", \"015_PREPARACION.d25234\");
+}
+
+void cambiar_valor(string dp, float valor)
+{
+  this.text(valor);
+}" 0
+ E
+14 1331
+"TEXT_FIELD63"
+""
+1 985.9324649298527 777.1178436308525 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+246 0 0 0 0 0
+E E E
+1
+9
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+2
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,19,5,75,0,0,0,0,0,Negrita
+LANG:10011 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10009 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10008 34 Tahoma,-1,8,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,11,5,75,0,0,0,0,0,Negrita
+0  986.4024213982303 848.0491425678416 1041.796608533313 875.6484646545646
+2 "0s" 0 0 0 9 0 -1  E "main()
+{
+  this.text(\"%\");
+}" 0
+ E
+13 1332
+"PUSH_BUTTON12"
+""
+1 928.6716111942187 13.03418803418819 E E E 1 E 1 E N "white" E N "LIB_IRC_AZUL_01" E E
+ E E
+247 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 8 Synoptic
+LANG:10010 6 Inicio
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,21,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  926.6716111942187 11.03418803418819 1146.385670634366 84.93610398530282
+
+T 
+2
+LANG:10001 0 
+LANG:10010 15 ANULAR SENSORES
+"main(mapping event)
+{
+  ChildPanelOnCentral(\"vision/emergentes/anular_sensores\", \"Anular Sensores\", \"\");
+
+}" 0
+ E E E
+0
+LAYER, 1 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 2 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 3 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 4 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 5 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 6 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 7 
+2
+LANG:10001 0 
+LANG:10010 0 
+1 1334 3 "" 5
+0
+1 1336 4 "" 5
+0
+1 1338 11 "" 5
+0
+1 1340 12 "" 5
+0
+1 1342 13 "" 5
+0
+1 1344 14 "" 5
+0
+1 1346 15 "" 5
+0
+1 1348 16 "" 5
+0
+1 1350 17 "" 5
+0
+1 1352 18 "" 5
+0
+1 1354 19 "" 5
+0
+1 1356 20 "" 5
+0
+1 1358 21 "" 5
+0
+1 1360 22 "" 5
+0
+1 1362 23 "" 5
+0
+1 1364 24 "" 5
+0
+0
+3 3 "PANEL_REF4" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/indicadoresSeñales/01_indicador_filtro_digital.pnl" 1030.312270430464 240.2116240642181 T 76 1.644730548719087 0 1.540467694129335 -1314.572138458564 -86.00405859108051
+5
+"$COLOR_ACTIVO""LIB_IRC_VERDE_01"
+"$COLOR_INACTIVO""LIB_IRC_GRIS_03"
+"$INST""015_PREPARACION.cio12107"
+"$POSICION""NULL"
+"$TEXTO""NULL"
+3 4 "PANEL_REF5" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/indicadoresSeñales/01_indicador_filtro_digital.pnl" 1030.312270430464 240.2116240642181 T 77 1.644730548719087 0 1.540467694129335 -784.5721384585643 -86.00405859108051
+5
+"$COLOR_ACTIVO""LIB_IRC_VERDE_01"
+"$COLOR_INACTIVO""LIB_IRC_GRIS_03"
+"$INST""015_PREPARACION.cio12108"
+"$POSICION""NULL"
+"$TEXTO""NULL"
+3 11 "PANEL_REF12" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/indicadoresSeñales/01_indicador_filtro_digital.pnl" 1030.312270430464 240.2116240642181 T 84 1.644730548719087 0 1.540467694129335 -784.5721384585645 256.2829748202644
+5
+"$COLOR_ACTIVO""LIB_IRC_ROJO_12"
+"$COLOR_INACTIVO""LIB_IRC_GRIS_03"
+"$INST""015_PREPARACION.cio20113"
+"$POSICION""DERECHA"
+"$TEXTO""\"N. MAX SEG\""
+3 12 "PANEL_REF13" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/indicadoresSeñales/01_indicador_filtro_digital.pnl" 1030.312270430464 240.2116240642181 T 85 1.644730548719087 0 1.540467694129335 -784.5721384585645 338.8612768732983
+5
+"$COLOR_ACTIVO""LIB_IRC_ROJO_12"
+"$COLOR_INACTIVO""LIB_IRC_GRIS_03"
+"$INST""015_PREPARACION.cio20112"
+"$POSICION""DERECHA"
+"$TEXTO""\"N. MAX\""
+3 13 "PANEL_REF14" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/indicadoresSeñales/01_indicador_filtro_digital.pnl" 1030.312270430464 240.2116240642181 T 86 1.644730548719087 0 1.540467694129335 -20.09724717998981 320.4385489854668
+5
+"$COLOR_ACTIVO""LIB_IRC_ROJO_12"
+"$COLOR_INACTIVO""LIB_IRC_GRIS_03"
+"$INST""015_PREPARACION.cio25007"
+"$POSICION""DERECHA"
+"$TEXTO""\"INT MIN G1\""
+3 14 "PANEL_REF15" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/indicadoresSeñales/01_indicador_filtro_digital.pnl" 1030.312270430464 240.2116240642181 T 87 1.644730548719087 0 1.540467694129335 -20.09724717998981 362.4385489854668
+5
+"$COLOR_ACTIVO""LIB_IRC_ROJO_12"
+"$COLOR_INACTIVO""LIB_IRC_GRIS_03"
+"$INST""015_PREPARACION.cio25011"
+"$POSICION""DERECHA"
+"$TEXTO""\"INT PIST. G1\""
+3 15 "PANEL_REF16" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/indicadoresSeñales/01_indicador_filtro_digital.pnl" 1030.312270430464 240.2116240642181 T 88 1.644730548719087 0 1.540467694129335 -20.09724717998981 446.4385489854669
+5
+"$COLOR_ACTIVO""LIB_IRC_ROJO_12"
+"$COLOR_INACTIVO""LIB_IRC_GRIS_03"
+"$INST""015_PREPARACION.cio25009"
+"$POSICION""DERECHA"
+"$TEXTO""\"INT MIN G2\""
+3 16 "PANEL_REF17" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/indicadoresSeñales/01_indicador_filtro_digital.pnl" 1030.312270430464 240.2116240642181 T 89 1.644730548719087 0 1.540467694129335 -20.09724717998981 404.4385489854669
+5
+"$COLOR_ACTIVO""LIB_IRC_ROJO_12"
+"$COLOR_INACTIVO""LIB_IRC_GRIS_03"
+"$INST""015_PREPARACION.cio25008"
+"$POSICION""DERECHA"
+"$TEXTO""\"INT MAX G2\""
+3 17 "PANEL_REF18" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/indicadoresSeñales/01_indicador_filtro_digital.pnl" 1030.312270430464 240.2116240642181 T 90 1.644730548719087 0 1.540467694129335 -20.09724717998981 278.4385489854668
+5
+"$COLOR_ACTIVO""LIB_IRC_ROJO_12"
+"$COLOR_INACTIVO""LIB_IRC_GRIS_03"
+"$INST""015_PREPARACION.cio25006"
+"$POSICION""DERECHA"
+"$TEXTO""\"INT MAX G1\""
+3 18 "PANEL_REF19" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/indicadoresSeñales/01_indicador_filtro_digital.pnl" 1030.312270430464 240.2116240642181 T 91 1.644730548719087 0 1.540467694129335 -20.09724717998981 488.4385489854668
+5
+"$COLOR_ACTIVO""LIB_IRC_ROJO_12"
+"$COLOR_INACTIVO""LIB_IRC_GRIS_03"
+"$INST""015_PREPARACION.cio25012"
+"$POSICION""DERECHA"
+"$TEXTO""\"INT PIST. G2\""
+3 19 "PANEL_REF20" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/indicadoresSeñales/01_indicador_filtro_digital.pnl" 1030.312270430464 240.2116240642181 T 92 1.644730548719087 0 1.540467694129335 -1744.586065897106 209.9617533747313
+5
+"$COLOR_ACTIVO""LIB_IRC_ROJO_12"
+"$COLOR_INACTIVO""LIB_IRC_GRIS_03"
+"$INST""015_PREPARACION.cio25005"
+"$POSICION""DERECHA"
+"$TEXTO""\"TMP MIN ENFR\""
+3 20 "PANEL_REF21" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/indicadoresSeñales/01_indicador_filtro_digital.pnl" 1030.312270430464 240.2116240642181 T 93 1.644730548719087 0 1.540467694129335 -1744.586065897106 251.9617533747313
+5
+"$COLOR_ACTIVO""LIB_IRC_ROJO_12"
+"$COLOR_INACTIVO""LIB_IRC_GRIS_03"
+"$INST""015_PREPARACION.cio25000"
+"$POSICION""DERECHA"
+"$TEXTO""\"TMP MAX G1\""
+3 21 "PANEL_REF22" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/indicadoresSeñales/01_indicador_filtro_digital.pnl" 1030.312270430464 240.2116240642181 T 94 1.644730548719087 0 1.540467694129335 -1744.586065897106 335.9617533747314
+5
+"$COLOR_ACTIVO""LIB_IRC_ROJO_12"
+"$COLOR_INACTIVO""LIB_IRC_GRIS_03"
+"$INST""015_PREPARACION.cio25002"
+"$POSICION""DERECHA"
+"$TEXTO""\"TMP MAX G2\""
+3 22 "PANEL_REF23" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/indicadoresSeñales/01_indicador_filtro_digital.pnl" 1030.312270430464 240.2116240642181 T 95 1.644730548719087 0 1.540467694129335 -1744.586065897106 293.9617533747314
+5
+"$COLOR_ACTIVO""LIB_IRC_ROJO_12"
+"$COLOR_INACTIVO""LIB_IRC_GRIS_03"
+"$INST""015_PREPARACION.cio25001"
+"$POSICION""DERECHA"
+"$TEXTO""\"TMP MIN G1\""
+3 23 "PANEL_REF24" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/indicadoresSeñales/01_indicador_filtro_digital.pnl" 1030.312270430464 240.2116240642181 T 96 1.644730548719087 0 1.540467694129335 -1744.586065897106 167.9617533747313
+5
+"$COLOR_ACTIVO""LIB_IRC_ROJO_12"
+"$COLOR_INACTIVO""LIB_IRC_GRIS_03"
+"$INST""015_PREPARACION.cio25004"
+"$POSICION""DERECHA"
+"$TEXTO""\"TMP MAX ENFR\""
+3 24 "PANEL_REF25" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/indicadoresSeñales/01_indicador_filtro_digital.pnl" 1030.312270430464 240.2116240642181 T 97 1.644730548719087 0 1.540467694129335 -1744.586065897106 377.9617533747314
+5
+"$COLOR_ACTIVO""LIB_IRC_ROJO_12"
+"$COLOR_INACTIVO""LIB_IRC_GRIS_03"
+"$INST""015_PREPARACION.cio25003"
+"$POSICION""DERECHA"
+"$TEXTO""\"TMP MIN G2\""
+3 25 "PANEL_REF26" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/indicadoresSeñales/01_indicador_filtro_digital_2.pnl" 11.53164291507399 467.9139699089235 T 125 1.625 0 1.624999999999999 -2.573348250492657 -502.1950682974125
+5
+"$COL1""LIB_IRC_VERDE_01"
+"$COL2""LIB_IRC_GRIS_03"
+"$COL3""LIB_IRC_ROJO_12"
+"$COL4""LIB_IRC_ROJO_12"
+"$DP""015_PREPARACION.d119"
+3 26 "PANEL_REF27" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/indicadoresSeñales/01_indicador_filtro_digital_2.pnl" 11.53164291507399 467.9139699089235 T 125 1.625 0 1.624999999999999 491.2750077015457 -257.326013067812
+5
+"$COL1""LIB_IRC_GRIS_03"
+"$COL2""LIB_IRC_VERDE_01"
+"$COL3""LIB_IRC_ROJO_12"
+"$COL4""NULL"
+"$DP""015_PREPARACION.d115"
+3 27 "PANEL_REF28" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/indicadoresSeñales/01_indicador_filtro_digital_2.pnl" 11.53164291507399 467.9139699089235 T 125 1.625 0 1.624999999999999 759.2530791880486 -257.326013067812
+5
+"$COL1""LIB_IRC_GRIS_03"
+"$COL2""LIB_IRC_VERDE_01"
+"$COL3""LIB_IRC_ROJO_12"
+"$COL4""LIB_IRC_ROJO_12"
+"$DP""015_PREPARACION.d132"
+3 30 "PANEL_REF31" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/indicadoresSeñales/01_indicador_filtro_digital_2.pnl" 11.53164291507399 467.9139699089235 T 127 1.625 0 1.624999999999999 641.8519324361625 -122.5992174570765
+5
+"$COL1""LIB_IRC_VERDE_01"
+"$COL2""LIB_IRC_ROJO_12"
+"$COL3""LIB_IRC_GRIS_03"
+"$COL4""LIB_IRC_GRIS_03"
+"$DP""015_PREPARACION.d134"
+3 31 "PANEL_REF32" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/indicadoresSeñales/01_indicador_filtro_digital_2.pnl" 11.53164291507399 467.9139699089235 T 128 1.625 0 1.624999999999999 759.2750077015456 62.67398693218797
+5
+"$COL1""LIB_IRC_VERDE_01"
+"$COL2""LIB_IRC_GRIS_03"
+"$COL3""LIB_IRC_AZUL_01"
+"$COL4""LIB_IRC_ROJO_12"
+"$DP""015_PREPARACION.d133"
+3 32 "PANEL_REF33" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/indicadoresSeñales/01_indicador_filtro_digital_2.pnl" 11.53164291507399 467.9139699089235 T 129 1.625 0 1.624999999999999 1077.876607125458 27.39574366839929
+5
+"$COL1""LIB_IRC_VERDE_01"
+"$COL2""LIB_IRC_GRIS_03"
+"$COL3""LIB_IRC_GRIS_03"
+"$COL4""LIB_IRC_ROJO_12"
+"$DP""015_PREPARACION.d135"
+3 33 "PANEL_REF34" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/indicadoresSeñales/01_indicador_filtro_digital_2.pnl" 11.53164291507399 467.9139699089235 T 129 1.625 0 1.624999999999999 1343.632768776663 -431.2685519423363
+5
+"$COL1""LIB_IRC_GRIS_03"
+"$COL2""LIB_IRC_VERDE_01"
+"$COL3""LIB_IRC_ROJO_12"
+"$COL4""LIB_IRC_ROJO_12"
+"$DP""015_PREPARACION.d136"
+3 34 "PANEL_REF35" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/motores/motor.pnl" 67.89656669456852 209.9912964713296 T 130 1 0 1 533.2337977375184 -54.25886599530287
+2
+"$DP""015_PREPARACION.d101"
+"$INVERT""FALSE"
+3 35 "PANEL_REF36" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/motores/motor.pnl" 67.89656669456852 209.9912964713296 T 131 1 0 1 602.059761088732 -54.04598663956477
+2
+"$DP""015_PREPARACION.d104"
+"$INVERT""TRUE"
+3 37 "PANEL_REF38" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/motores/motor.pnl" 67.89656669456852 209.9912964713296 T 133 1 0 1 464.7261896239033 72.43224043126347
+2
+"$DP""015_PREPARACION.d102"
+"$INVERT""FALSE"
+3 38 "PANEL_REF39" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/motores/motor.pnl" 67.89656669456852 209.9912964713296 T 134 1.205265077322518 0 1.227000749684524 343.0139000648115 111.3747098366414
+2
+"$DP""015_PREPARACION.d111"
+"$INVERT""FALSE"
+3 39 "PANEL_REF40" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/motores/motor.pnl" 67.89656669456852 209.9912964713296 T 135 0.5733408907129245 0 0.548047679338496 582.0860494135269 208.7861632278239
+2
+"$DP""015_PREPARACION.d110"
+"$INVERT""TRUE"
+3 40 "PANEL_REF41" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/motores/motor.pnl" 67.89656669456852 209.9912964713296 T 136 0.5733408907129249 0 0.5480476793384963 744.281496148923 207.6233811338544
+2
+"$DP""015_PREPARACION.d120"
+"$INVERT""FALSE"
+3 41 "PANEL_REF42" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/motores/motor.pnl" 67.89656669456852 209.9912964713296 T 137 0.573340890712923 0 0.548047679338494 330.0860494135276 398.5372849786169
+2
+"$DP""015_PREPARACION.d113"
+"$INVERT""FALSE"
+3 42 "PANEL_REF43" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/motores/motor.pnl" 67.89656669456852 209.9912964713296 T 138 1.296970028857927 0 1.538352189916971 380.7874487066654 155.1502769138331
+2
+"$DP""015_PREPARACION.d112"
+"$INVERT""FALSE"
+3 43 "PANEL_REF44" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/motores/motor.pnl" 67.89656669456852 209.9912964713296 T 139 1.192020406143153 0 1.227000749684524 851.6049514966213 111.3747098366415
+2
+"$DP""015_PREPARACION.d121"
+"$INVERT""TRUE"
+3 44 "PANEL_REF45" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/motores/motor.pnl" 67.89656669456852 209.9912964713296 T 139 1.296970028857925 0 1.538352189916971 793.1495621087281 152.9936172440143
+2
+"$DP""015_PREPARACION.d122"
+"$INVERT""TRUE"
+3 45 "PANEL_REF46" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/motores/motor.pnl" 67.89656669456852 209.9912964713296 T 140 0.573340890712924 0 0.548047679338494 998.223936011465 398.5372849786169
+2
+"$DP""015_PREPARACION.d123"
+"$INVERT""TRUE"
+3 46 "PANEL_REF47" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/motores/motor.pnl" 67.89656669456852 209.9912964713296 T 141 0.7114121690664167 0 0.7727221929902082 471.7114836541952 434.7265761824232
+2
+"$DP""015_PREPARACION.d129"
+"$INVERT""FALSE"
+3 47 "PANEL_REF49" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/motores/motor.pnl" 67.89656669456852 209.9912964713296 T 143 0.7114121690664167 0 0.7727221929902082 720.7114836541953 465.5711397084583
+2
+"$DP""015_PREPARACION.d124"
+"$INVERT""FALSE"
+3 48 "PANEL_REF50" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/motores/motor.pnl" 67.89656669456852 209.9912964713296 T 144 0.7114121690664167 0 0.7727221929902082 546.7114836541955 549.5711397084584
+2
+"$DP""015_PREPARACION.d125"
+"$INVERT""FALSE"
+3 49 "PANEL_REF51" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/motores/motor.pnl" 67.89656669456852 209.9912964713296 T 145 0.544200333503381 0 0.6498216588981917 624.0645931996222 648.3791821994597
+2
+"$DP""015_PREPARACION.d126"
+"$INVERT""FALSE"
+3 50 "PANEL_REF52" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/motores/motor.pnl" 67.89656669456852 209.9912964713296 T 146 0.9222949296825534 0 0.9484580246511151 477.379340794746 697.498736421543
+2
+"$DP""015_PREPARACION.d127"
+"$INVERT""FALSE"
+3 51 "PANEL_REF53" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/motores/motor.pnl" 67.89656669456852 209.9912964713296 T 147 0.7114121690664167 0 0.7727221929902082 1089.88029282283 706.0702098093537
+2
+"$DP""015_PREPARACION.d128"
+"$INVERT""FALSE"
+3 52 "PANEL_REF54" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/motores/motor.pnl" 67.89656669456852 209.9912964713296 T 148 0.7114121690664168 0 0.7727221929902082 1688.222923828198 200.7999250243424
+2
+"$DP""015_PREPARACION.d131"
+"$INVERT""TRUE"
+3 53 "PANEL_REF55" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/motores/motor.pnl" 67.89656669456852 209.9912964713296 T 149 0.9423956994814668 0 0.9484580246511121 1687.85707586479 351.7617097716156
+2
+"$DP""015_PREPARACION.d130"
+"$INVERT""TRUE"
+3 56 "PANEL_REF58" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/motores/motor.pnl" 67.89656669456852 209.9912964713296 T 152 0.7114121690664168 0 0.7727221929902091 1207.801487756981 216.4977801150326
+2
+"$DP""015_PREPARACION.d109"
+"$INVERT""TRUE"
+3 62 "PANEL_REF64" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/motores/motor.pnl" 67.89656669456852 209.9912964713296 T 178 0.7114121690664167 0 0.7727221929902082 604.3694518672527 47.78997012150543
+2
+"$DP""015_PREPARACION.d114"
+"$INVERT""FALSE"
+3 63 "PANEL_REF66" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/motores/motor.pnl" 67.89656669456852 209.9912964713296 T 223 1 0 1 190.13039849365 -52.74676788827625
+2
+"$DP""015_PREPARACION.d101"
+"$INVERT""FALSE"
+3 64 "PANEL_REF67" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/motores/motor.pnl" 67.89656669456852 209.9912964713296 T 230 1 0 1 367.7635309278353 424.0087035286704
+2
+"$DP""015_PREPARACION.d234"
+"$INVERT""FALSE"
+0

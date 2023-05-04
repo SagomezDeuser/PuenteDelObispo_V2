@@ -1,0 +1,62 @@
+V 14
+2
+LANG:10010 18 despliegue_login_2
+LANG:10001 0 
+PANEL,-1 -1 1920 1080 N "LIB_IRC_BLANCO" 0
+"main()
+{
+  titleBar(0);  //Quitamos el borde del Frame de la ventana de Login
+  moduleShowFullScreen(myModuleName());
+}" 0
+ E E E E 1 -1 -1 0  60 80
+""0  1
+E E 4
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+"pdpi" "96"
+0 0 0
+"logotipos/logo_deuser.svg" -1 -1 697 122
+-1
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10010 0 
+LANG:10001 0 
+0
+LAYER, 1 
+2
+LANG:10010 0 
+LANG:10001 0 
+0
+LAYER, 2 
+2
+LANG:10010 0 
+LANG:10001 0 
+0
+LAYER, 3 
+2
+LANG:10010 0 
+LANG:10001 0 
+0
+LAYER, 4 
+2
+LANG:10010 0 
+LANG:10001 0 
+0
+LAYER, 5 
+2
+LANG:10010 0 
+LANG:10001 0 
+0
+LAYER, 6 
+2
+LANG:10010 0 
+LANG:10001 0 
+0
+LAYER, 7 
+2
+LANG:10010 0 
+LANG:10001 0 
+0
+0

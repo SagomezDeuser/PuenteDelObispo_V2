@@ -1,0 +1,725 @@
+V 14
+9
+LANG:10001 5 Login
+LANG:10010 5 Login
+LANG:10011 5 Login
+LANG:10009 5 Login
+LANG:10008 5 Login
+LANG:10018 5 Login
+LANG:10005 5 Login
+LANG:10000 5 Login
+LANG:10027 5 Login
+PANEL,-1 -1 568 413 N {255,255,255} 4
+"$closeModules"
+"$dollar"
+"$module"
+"$panel"
+"main()
+{
+  comprobarUiDuplicado();
+  LoginFrameworkView view = LoginFrameworkView(self, \"btn_Cancel\", \"btn_Action\", \"btn_Help\", \"cmbBx_Language\", \"txt_platform\", \"txt_version\", \"txt_welcome\");
+  m_loginFrameworkController.setLoginFrameworkView(view);
+
+  m_loginFrameworkController.setState(LoginFrameworkState::LOGIN);
+  m_loginFrameworkController.switchPanel(m_loginFrameworkController.getNextPanel());
+
+  if(isDollarDefined(\"$panel\"))
+  {
+    m_panel = $panel;
+  }
+
+  if(isDollarDefined(\"$module\"))
+  {
+    m_module = $module;
+  }
+
+  if(isDollarDefined(\"$dollar\"))
+  {
+    m_dollar = $dollar;
+  }
+
+  if(isDollarDefined(\"$closeModules\"))
+  {
+    m_closeModules = $closeModules;
+  }
+
+  m_loginFrameworkController.setModule(m_module);
+  m_loginFrameworkController.setPanel(m_panel);
+  m_loginFrameworkController.setDollar(m_dollar);
+  m_loginFrameworkController.setCloseModules(m_closeModules);
+
+  titleBar(0);  //Quitamos el borde del Frame de la ventana de Login
+  //setWindowTitle(myModuleName(), myPanelName(), \" \");  //Eliminamos el title que aparece en el Frame del Panel
+  //windowStyle(myModuleName(), myPanelName(), 0, 0);  //Eliminamos los botones para maximizar y minimizar el Panel
+}
+" 0
+ E E E E 1 0 0 0  0 0
+""0  1
+E "#uses \"login\"
+#uses \"classes/loginFramework/LoginFrameworkController\"
+
+string m_dollar = \"\";
+string m_panel = \"\";
+string m_module = \"\";
+string m_closeModules = \"0\";
+shared_ptr<LoginFrameworkController> m_loginFrameworkController = LoginFrameworkController::getInstance();
+
+// shared_ptr<OaAuthUI> m_ui;
+//initialize boolean
+// bool m_isInitialized = FALSE;
+//
+// shared_ptr<LoginFrameworkController> m_loginFrameworkController = LoginFrameworkController::getInstance();
+//
+// public bool authenticate()
+// {
+//   OaAuthenticationError err = m_ui.login();
+//
+//   if(err != OaAuthenticationError::None)
+//   {
+//     string message = getCatStr(\"OaLogin\", OaAuthError::getErrorKeyword(err), m_loginFrameworkController.getLangIndex());
+//     OaAuthError::throwAuthError(err);
+//     m_loginFrameworkController.displayFailedLogin(message);
+//     m_loginFrameworkController.setState(LoginFrameworkState::LOGIN); //rollback state in case of authentication error
+//     txt_password.text(\"\");
+//
+//     return false;
+//   }
+//
+//   return true;
+// }
+//
+// void setFrameworkView()
+// {
+//   m_loginFrameworkController.setBtnAcceptEnabled(TRUE);
+//   m_loginFrameworkController.setBtnAcceptVisible(TRUE);
+//   m_loginFrameworkController.setBtnCancelVisible(TRUE);
+//
+//   m_loginFrameworkController.setTxtPlatformVisible(TRUE);
+//   m_loginFrameworkController.setTxtVersionVisible(TRUE);
+//   m_loginFrameworkController.setTxtWelcomeVisible(TRUE);
+// }
+" 0
+ 5
+"CBRef" "1"
+"EClose" E
+"windowIcon" "iconos/ventanas/login.svg"
+"dpi" "96"
+"pdpi" "96"
+0 0 0
+"Imagenes/fondo_login.png" -1 -1 564 417
+-1
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10001 0 
+LANG:10010 0 
+6 16
+"RECTANGLE48"
+""
+1 40 150 E E E 1 E 1 E N {0,0,0} E N "LIB_IRC_AZUL_22" E E
+ E E
+15 0 0 0 0 0
+E E E
+0
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+4
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E -1 1 3 2 1 E 1.435294117647061 0 6.926029085103446 262.4627015665486 -1039.18523531862 4 "[linear,pad,0.012,0.0241,1,0.012,0,LIB_IRC_AZUL_22,0.997,_Transparent]" E 40 150 210 210
+13 1
+"btn_Cancel"
+"btn_botonera_login"
+1 196.7643877715216 434.3621794871797 E E E 1 E 0 E N "white" E N "LIB_IRC_AZUL_01" E E
+ E E
+1 0 0 0 0 0
+E E E
+1
+9
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+5
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+9
+LANG:10001 30 Noto Sans,-1,13,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10011 34 Tahoma,-1,13,5,50,0,0,0,0,0,Normal
+LANG:10009 30 Noto Sans,-1,13,5,50,0,0,0,0,0
+LANG:10008 34 Tahoma,-1,13,5,50,0,0,0,0,0,Normal
+LANG:10018 34 Tahoma,-1,13,5,50,0,0,0,0,0,Normal
+LANG:10005 34 Tahoma,-1,13,5,50,0,0,0,0,0,Normal
+LANG:10000 30 Noto Sans,-1,13,5,50,0,0,0,0,0
+LANG:10027 30 Noto Sans,-1,13,5,50,0,0,0,0,0
+0  132.7643877715212 467.8621794871789 160.7643877715212 496.8621794871792
+
+T 
+9
+LANG:10001 10 btn_Cancel
+LANG:10010 10 btn_Cancel
+LANG:10011 10 btn_Cancel
+LANG:10009 10 btn_Cancel
+LANG:10008 10 btn_Cancel
+LANG:10018 10 btn_Cancel
+LANG:10005 10 btn_Cancel
+LANG:10000 10 btn_Cancel
+LANG:10027 10 btn_Cancel
+E E E E
+13 0
+"btn_Action"
+"btn_botonera_login"
+1 175.7643877715212 487.6955128205129 E E E 1 E 0 E N "white" E N "LIB_IRC_AZUL_01" E E
+ E E
+0 0 0 0 0 0
+E E E
+8
+9
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+5
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+9
+LANG:10001 30 Noto Sans,-1,13,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10011 34 Tahoma,-1,13,5,50,0,0,0,0,0,Normal
+LANG:10009 30 Noto Sans,-1,13,5,50,0,0,0,0,0
+LANG:10008 34 Tahoma,-1,13,5,50,0,0,0,0,0,Normal
+LANG:10018 34 Tahoma,-1,13,5,50,0,0,0,0,0,Normal
+LANG:10005 34 Tahoma,-1,13,5,50,0,0,0,0,0,Normal
+LANG:10000 30 Noto Sans,-1,13,5,50,0,0,0,0,0
+LANG:10027 30 Noto Sans,-1,13,5,50,0,0,0,0,0
+0  156.7643877715209 467.6955128205126 259.7643877715208 496.6955128205124
+
+T 
+9
+LANG:10001 10 btn_Action
+LANG:10010 10 btn_Action
+LANG:10011 10 btn_Action
+LANG:10009 10 btn_Action
+LANG:10008 10 btn_Action
+LANG:10018 10 btn_Action
+LANG:10005 10 btn_Action
+LANG:10000 10 btn_Action
+LANG:10027 10 btn_Action
+"main(mapping event)
+{
+  m_loginFrameworkController.doContinue();
+}
+" 0
+ E E E
+22 2
+"cmbBx_Language"
+"cbb_standard_1"
+1 268.6720997924735 19.56622186332486 E E E 1 E 0 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_BLANCO" E E
+ E E
+2 0 0 0 0 0
+E E E
+0
+9
+LANG:10001 14 Scada language
+LANG:10010 12 Idioma Scada
+LANG:10011 0 
+LANG:10009 12 Langue Scada
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+5
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+9
+LANG:10001 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10005 34 Tahoma,-1,13,5,50,0,0,0,0,0,Normal
+LANG:10000 34 Arial,-1,13,5,50,0,0,0,0,0,Regular
+LANG:10027 34 Arial,-1,13,5,50,0,0,0,0,0,Regular
+0  367.4776521569287 20.49999999999999 500.4776521569287 49.49999999999999
+0
+
+E
+"main()
+{
+  m_loginFrameworkController.setCmbBxLanguageChanged(this.text());
+  m_loginFrameworkController.setLanguage();
+
+  int id_lenguaje;
+  string lenguaje_selec_st;
+
+  id_lenguaje = getLangIdx(this.text());  //Recuperamos apartir del nombre del lenguaje el ID único del mismo
+  switchLang(id_lenguaje);  //Cambiamos el idioma seleccionado por el usuario
+}
+" 0
+
+E
+ 0 0
+13 6
+"btn_Help"
+"btn_botonera_login"
+1 30.64381270902924 332.8910256410257 E E E 1 E 0 E N "white" E N "LIB_IRC_AZUL_01" E E
+ E E
+5 0 0 0 0 0
+E E E
+0
+9
+LANG:10001 4 Help
+LANG:10010 4 Help
+LANG:10011 5 Hilfe
+LANG:10009 4 Help
+LANG:10008 4 Help
+LANG:10018 4 Help
+LANG:10005 4 Help
+LANG:10000 5 Hilfe
+LANG:10027 14 Справка
+
+6
+"hoverbclr" "N \"_Transparent\""
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignCenter"
+"showFocus" "0"
+9
+LANG:10001 30 Noto Sans,-1,13,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10011 34 Tahoma,-1,13,5,50,0,0,0,0,0,Normal
+LANG:10009 30 Noto Sans,-1,13,5,50,0,0,0,0,0
+LANG:10008 34 Tahoma,-1,13,5,50,0,0,0,0,0,Normal
+LANG:10018 34 Tahoma,-1,13,5,50,0,0,0,0,0,Normal
+LANG:10005 34 Tahoma,-1,13,5,50,0,0,0,0,0,Normal
+LANG:10000 30 Noto Sans,-1,13,5,50,0,0,0,0,0
+LANG:10027 30 Noto Sans,-1,13,5,50,0,0,0,0,0
+0  33.64381270902916 467.7243589743587 136.6438127090292 496.7243589743587
+
+T 
+9
+LANG:10001 4 Help
+LANG:10010 5 Ayuda
+LANG:10011 5 Hilfe
+LANG:10009 4 Help
+LANG:10008 7 Aiutare
+LANG:10018 6 Ajudar
+LANG:10005 4 Help
+LANG:10000 5 Hilfe
+LANG:10027 14 Справка
+"main()
+{
+  m_loginFrameworkController.openHelp();
+}
+" 0
+ E E E
+2 9
+"txt_version"
+""
+1 20 339 E E E 1 E 0 E N "white" E N "_Transparent" E E
+ E E
+8 0 0 0 0 0
+E E E
+0
+9
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+5
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"showFocus" "0"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+  string s_version, s_patch, s_platform;
+  int i_patch;
+
+  s_version = getVersionInfo(\"VERSION\");
+  i_patch = (int)getVersionInfo(\"patch\");
+  s_platform = getVersionInfo(\"platform_subdir\");
+
+  if (i_patch != 0)
+  {
+    sprintf(s_patch,\"%03d\",i_patch);
+    this.text = \"Version \" + s_version + \" P\" + s_patch;
+  }
+  else
+  {
+    this.text = \"Version \" + s_version;
+  }
+
+  s_platform = strtoupper(s_platform);
+  txt_platform.text = s_platform;
+}
+" 0
+ E 0 1 1 0 1 E U  0 E 62 340 253.7500000000001 355.2307692307692
+0 2 2 "0s" 0 0 0 65 0 0  62 340 1
+9
+LANG:10001 30 Noto Sans,-1,13,5,50,0,0,0,0,0
+LANG:10010 34 Tahoma,-1,13,5,50,0,0,0,0,0,Normal
+LANG:10011 34 Tahoma,-1,13,5,50,0,0,0,0,0,Normal
+LANG:10009 30 Noto Sans,-1,13,5,50,0,0,0,0,0
+LANG:10008 34 Tahoma,-1,13,5,50,0,0,0,0,0,Normal
+LANG:10018 34 Tahoma,-1,13,5,50,0,0,0,0,0,Normal
+LANG:10005 34 Tahoma,-1,13,5,50,0,0,0,0,0,Normal
+LANG:10000 30 Noto Sans,-1,13,5,50,0,0,0,0,0
+LANG:10027 30 Noto Sans,-1,13,5,50,0,0,0,0,0
+0 9
+LANG:10001 4 Vers
+LANG:10010 4 Vers
+LANG:10011 4 Vers
+LANG:10009 4 Vers
+LANG:10008 4 Vers
+LANG:10018 4 Vers
+LANG:10005 4 Vers
+LANG:10000 13 V e r s i o n
+LANG:10027 12 Версия
+2 10
+"txt_platform"
+""
+1 -4 533 E E E 1 E 0 E N "WF_Text" E N "_Transparent" E E
+ E E
+9 0 0 0 0 0
+E E E
+0
+9
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+5
+"sizePolicy" "Fixed Fixed"
+"layoutAlignment" "AlignCenter"
+"showFocus" "0"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 1 0 1 E U  0 E 38 534 241.0000000000001 560
+0 2 2 "0s" 0 0 0 64 0 0  38 534 1
+9
+LANG:10001 30 Noto Sans,-1,13,5,50,0,0,0,0,0
+LANG:10010 34 Tahoma,-1,13,5,50,0,0,0,0,0,Normal
+LANG:10011 34 Tahoma,-1,13,5,50,0,0,0,0,0,Normal
+LANG:10009 30 Noto Sans,-1,13,5,50,0,0,0,0,0
+LANG:10008 34 Tahoma,-1,13,5,50,0,0,0,0,0,Normal
+LANG:10018 34 Tahoma,-1,13,5,50,0,0,0,0,0,Normal
+LANG:10005 34 Tahoma,-1,13,5,50,0,0,0,0,0,Normal
+LANG:10000 30 Noto Sans,-1,13,5,50,0,0,0,0,0
+LANG:10027 30 Noto Sans,-1,13,5,50,0,0,0,0,0
+0 9
+LANG:10001 4 Vers
+LANG:10010 4 Vers
+LANG:10011 9 Plattform
+LANG:10009 4 Vers
+LANG:10008 4 Vers
+LANG:10018 4 Vers
+LANG:10005 4 Vers
+LANG:10000 9 Plattform
+LANG:10027 18 Платформа
+2 14
+"txt_welcome"
+""
+1 38 497 E E E 1 E 0 E N {45,55,60} E N "_Window" E E
+ E E
+13 0 0 0 0 0
+E E E
+0
+9
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+5
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E U  0 E 38 497 264 521
+0 2 2 "0s" 0 0 0 192 0 0  38 497 1
+9
+LANG:10001 35 Noto Sans,-1,21,5,75,0,0,0,0,0,Bold
+LANG:10010 34 Tahoma,-1,21,5,50,0,0,0,0,0,Normal
+LANG:10011 34 Tahoma,-1,21,5,50,0,0,0,0,0,Normal
+LANG:10009 35 Noto Sans,-1,21,5,75,0,0,0,0,0,Bold
+LANG:10008 34 Tahoma,-1,21,5,50,0,0,0,0,0,Normal
+LANG:10018 34 Tahoma,-1,21,5,50,0,0,0,0,0,Normal
+LANG:10005 34 Tahoma,-1,21,5,50,0,0,0,0,0,Normal
+LANG:10000 35 Noto Sans,-1,21,5,75,0,0,0,0,0,Bold
+LANG:10027 35 Noto Sans,-1,21,5,75,0,0,0,0,0,Bold
+0 9
+LANG:10001 19 Welcome to WinCC OA
+LANG:10010 21 Bienvenido a WinCC OA
+LANG:10011 23 Willkommen bei WinCC OA
+LANG:10009 19 Welcome to WinCC OA
+LANG:10008 20 Benvenuto a WinCC OA
+LANG:10018 20 Bem-vindo a WinCC OA
+LANG:10005 19 Welcome to WinCC OA
+LANG:10000 23 Willkommen bei WinCC OA
+LANG:10027 19 Welcome to WinCC OA
+6 23
+"logo_irc"
+"panel_login"
+1 1738 18 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+22 0 0 0 0 0
+E E E
+0
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+4
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E -1 1 3 2 1 E 2.27075801095598 0 0.4160839160839158 -3895.990342285967 21.04491236713555 2  1 0  "pictures/Logotipos/logo_deuser.svg" 4294967295 E 1738 18 1837 117
+13 33
+"PUSH_BUTTON1"
+""
+1 178 394 E E E 1 E 1 E N "_ButtonText" E N "_Transparent" E E
+ E E
+32 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 6 Accept
+LANG:10010 7 Aceptar
+LANG:10011 6 Accept
+LANG:10009 8 Accepter
+LANG:10008 6 Accept
+LANG:10018 6 Accept
+
+6
+"hoverbclr" "N \"AZUL_01\""
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10011 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10018 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  391.0000000000001 330.0000000000001 469.0000000000001 393
+
+P 
+4294967295
+"pictures/iconos/botoneras/aceptar.svg"
+6
+LANG:10001 12 PUSH_BUTTON1
+LANG:10010 12 PUSH_BUTTON1
+LANG:10011 12 PUSH_BUTTON1
+LANG:10009 12 PUSH_BUTTON1
+LANG:10008 12 PUSH_BUTTON1
+LANG:10018 12 PUSH_BUTTON1
+"main(mapping event)
+{
+  m_loginFrameworkController.doContinue();
+}" 0
+ E E E
+13 34
+"PUSH_BUTTON2"
+""
+1 254.0436896920934 394 E E E 1 E 1 E N "_ButtonText" E N "_Transparent" E E
+ E E
+33 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 6 Cancel
+LANG:10010 8 Cancelar
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+6
+"hoverbclr" "N \"AZUL_01\""
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10011 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10018 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  467.0000000000001 330.0000000000001 545.0000000000001 393
+
+P 
+4294967295
+"pictures/iconos/botoneras/cancelar.svg"
+6
+LANG:10001 12 PUSH_BUTTON1
+LANG:10010 12 PUSH_BUTTON1
+LANG:10011 12 PUSH_BUTTON1
+LANG:10009 12 PUSH_BUTTON1
+LANG:10008 12 PUSH_BUTTON1
+LANG:10018 12 PUSH_BUTTON1
+"main(mapping event)
+{
+  int n_permiso = 12;
+  bool permiso = permisos_usuario_operacion(n_permiso, FALSE);
+  if (permiso)
+  {
+    m_loginFrameworkController.doCancel();
+  }
+}" 0
+ E E E
+6 35
+"fondo"
+""
+1 20 10 E E E 1 E 1 E N "AZUL_01" E N {1,72,152} E E
+ E E
+34 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 1.25 0 1.475 368.0000000000001 317.2500000000001 1 E 20 10 140 50
+4 36
+"LINE2"
+""
+1 467.5097059482956 337.4902940517045 E E E 1 E 1 E N "AZUL_01" E N {255,255,255} E E
+ E E
+35 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 3 2 1 E  468 337.0000000000001 468 386
+6 37
+"RECTANGLE105"
+""
+1 282 34 E E E 1 E 1 E N {1,72,152} E N "_Transparent" E E
+ E E
+36 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+4
+"transparentForMouseInGedi" ""
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 3 3 2 1 E 6.335668160364397 0 6.029411764705881 -1785.65842122276 -204 1 E 282 34 371 102
+0
+LAYER, 1 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 2 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 3 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 4 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 5 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 6 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 7 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+0

@@ -1,0 +1,3491 @@
+V 14
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+PANEL,-1 -1 453 894 N "_Transparent" 0
+"main()
+{
+  botonera_ext.visible = FALSE;
+  botonera_sec.visible = FALSE;
+}" 0
+ E E E E 1 -1 -1 0  0 0
+""0  1
+E "//--------------------------------------------------------------------------------
+// Listado de variables const a utilizar  en el ctl
+const mapping paneles_menu_scada = makeMapping(1, \"vision/sinopticos/00_sinoptico_general/sinoptico_general\",
+                                   2, \"vision/sinopticos/01_alarmas/alarmas\",
+                                   3, \"vision/sinopticos/02_historicos/historicos\",
+                                   6, \"vision/sinopticos/06_configuracion/configuracion\",
+                                   7, \"vision/sinopticos/04_incidencias/incidencias\",
+                                   8, \"vision/sinopticos/03_informes/informes\",
+                                   9, \"vision/sinopticos/08_audit_trail/audit_trail\",
+                                   10, \"vision/sinopticos/07_esquematica/esquematica\",
+                                   11, \"vision/sinopticos/09_manual/manual\",
+                                   12, \"vision/sinopticos/inicio\",
+                                   13, \"vision/sinopticos/05_graficas/graficas/cabecera_graficas\",
+                                   14, \"vision/sinopticos/11_analizadores_redes/tab_analizador_red_grupos\",
+                                   15, \"vision/sinopticos/10_registros/registros\",
+                                   16, \"vision/sinopticos/12_bodega/depositos\",
+                                   100, \"vision/sinopticos/06_configuracion/configuracion/config_dp_emergentes/configuracion_principal\");
+
+const mapping paneles_sec = makeMapping(1, \"vision/sinopticos/03_secaderos/secaderos_horno_1\",
+                                        2, \"vision/sinopticos/03_secaderos/secaderos_horno_2\");
+
+const mapping paneles_graf = makeMapping(1, \"vision/sinopticos/05_graficas/graficas/cabecera_graficas\",
+                             2, \"vision/sinopticos/05_graficas/graficas/cabecera_graficas_multi\");
+
+dyn_string nom_btn_panel = makeDynString(\"btn_principal\",
+                           \"btn_alarmas\",
+                           \"btn_historicos\",
+                           \"btn_config\",
+                           \"btn_incidencias\",
+                           \"btn_informes\",
+                           \"btn_audit_trail\",
+                           \"btn_esquematica\",
+                           \"btn_manual\",
+                           \"btn_graficas\",
+                           \"btn_deuser\");  //Agregamos al Array todos los botones a los cuales les cambiaremos su aspecto al ser pulsado uno de ellos
+
+dyn_string nom_btn_panel_sec = makeDynString(\"btn_sec_1\",
+                               \"btn_sec_2\",
+                               \"btn_sec_3\",
+                               \"btn_sec_4\",
+                               \"btn_sec_5\",
+                               \"btn_sec_6\");  //Agregamos al Array todos los botones a los cuales les cambiaremos su aspecto al ser pulsado uno de ellos
+
+dyn_string nom_btn_panel_ext = makeDynString(\"btn_ext_1\",
+                               \"btn_ext_2\",
+                               \"btn_ext_3\",
+                               \"btn_ext_4\",
+                               \"btn_ext_5\",
+                               \"btn_ext_6\");  //Agregamos al Array todos los botones a los cuales les cambiaremos su aspecto al ser pulsado uno de ellos
+
+dyn_string nom_btn_panel_graf = makeDynString(\"btn_graf_indi\",
+                                \"btn_graf_multi\");  //Agregamos al Array todos los botones a los cuales les cambiaremos su aspecto al ser pulsado uno de ellos
+
+/***************************************************************************************
+  @author jbudia
+  @date 14/11/2019
+  @brief Genera un diccionario con los nombres de los paneles usados en este faceplate.
+  @return paneles El diccionario con los nombres de paneles.
+****************************************************************************************/
+mapping get_mapa_nombres_paneles()
+{
+  return (paneles_menu_scada);
+}
+
+mapping get_mapa_nombres_paneles_sec()
+{
+  return (paneles_sec);
+}
+
+mapping get_mapa_nombres_paneles_graf()
+{
+  return (paneles_graf);
+}
+
+void cambiar_panel_activo(int clave)
+{
+  string nom;
+  mapping paneles;
+  int x, y, g;
+  int n_pantalla = numero_pantalla();
+
+  nom = paneles_menu_scada.value(clave);
+
+  getValue(\"botonera\", \"position\", x, y);
+  g = createAnimation();
+  animate(g, \"btn_desplegable\", \"positionAsDyn\", makeDynInt(50, y), makeDynInt(50, y), makeMapping(\"duration\", 300));
+  animate(g, \"btn_desplegable\", \"sizeAsDyn\", makeDynInt(50, 40), makeDynInt(50, 40), makeMapping(\"duration\", 300));
+
+  paneles = get_mapa_nombres_paneles();
+
+  if (myModuleName() == \"PANTALLA1\")
+  {
+    animate(\"botonera\", \"positionAsDyn\", makeDynInt(x, y), makeDynInt(x - 135, y), makeMapping(\"duration\", 200));
+    startAnimation(g, \"keep\", makeMapping(\"direction\", \"Backward\"));
+    RootPanelOnModule(nom + \".pnl\", nom, \"pantalla_principal\", makeDynString(\"$MODULO:\" + myModuleName(), \"$N_PANTALLA:\" + n_pantalla));
+
+
+  }
+  else if (myModuleName() == \"PANTALLA2\")
+  {
+    animate(\"botonera\", \"positionAsDyn\", makeDynInt(x, y), makeDynInt(x - 135, y), makeMapping(\"duration\", 200));
+    startAnimation(g, \"keep\", makeMapping(\"direction\", \"Backward\"));
+    RootPanelOnModule(nom + \".pnl\", nom, \"pantalla_principal_2\", makeDynString(\"$MODULO:\" + myModuleName(), \"$N_PANTALLA:\" + n_pantalla));
+  }
+}
+
+void cambiar_panel_activo_sec(int clave, int horno, int linea)
+{
+  string nom;
+  mapping paneles;
+  int x, y, g;
+  int n_pantalla = numero_pantalla();
+
+  nom = paneles_sec.value(clave);
+
+  getValue(\"botonera\", \"position\", x, y);
+  g = createAnimation();
+  animate(g, \"btn_desplegable\", \"positionAsDyn\", makeDynInt(50, y), makeDynInt(50, y), makeMapping(\"duration\", 300));
+  animate(g, \"btn_desplegable\", \"sizeAsDyn\", makeDynInt(50, 40), makeDynInt(50, 40), makeMapping(\"duration\", 300));
+
+  paneles = get_mapa_nombres_paneles_sec();
+
+  if (myModuleName() == \"PANTALLA1\")
+  {
+    animate(\"botonera\", \"positionAsDyn\", makeDynInt(x, y), makeDynInt(x - 135, y), makeMapping(\"duration\", 200));
+    startAnimation(g, \"keep\", makeMapping(\"direction\", \"Backward\"));
+    botonera_sec.visible = FALSE;
+    RootPanelOnModule(nom + \".pnl\", nom + horno + linea, \"pantalla_principal\", makeDynString(\"$HORNO:\" + horno, \"$LINEA:\" + linea, \"$MODULO:\" + myModuleName(), \"$N_PANTALLA:\" + n_pantalla));
+
+
+  }
+  else if (myModuleName() == \"PANTALLA2\")
+  {
+    animate(\"botonera\", \"positionAsDyn\", makeDynInt(x, y), makeDynInt(x - 135, y), makeMapping(\"duration\", 200));
+    startAnimation(g, \"keep\", makeMapping(\"direction\", \"Backward\"));
+    botonera_sec.visible = FALSE;
+    RootPanelOnModule(nom + \".pnl\", nom + horno + linea, \"pantalla_principal_2\", makeDynString(\"$HORNO:\" + horno, \"$LINEA:\" + linea, \"$MODULO:\" + myModuleName(), \"$N_PANTALLA:\" + n_pantalla));
+  }
+}
+
+void cambiar_panel_activo_ext(int grupo, int linea)
+{
+  string nom;
+  mapping paneles;
+  int x, y, g;
+  int n_pantalla = numero_pantalla();
+
+  nom = \"vision/sinopticos/05_centrifugacion/centrifugacion\";
+
+  getValue(\"botonera\", \"position\", x, y);
+  g = createAnimation();
+  animate(g, \"btn_desplegable\", \"positionAsDyn\", makeDynInt(50, y), makeDynInt(50, y), makeMapping(\"duration\", 300));
+  animate(g, \"btn_desplegable\", \"sizeAsDyn\", makeDynInt(50, 40), makeDynInt(50, 40), makeMapping(\"duration\", 300));
+
+  paneles = get_mapa_nombres_paneles_sec();
+
+  if (myModuleName() == \"PANTALLA1\")
+  {
+    animate(\"botonera\", \"positionAsDyn\", makeDynInt(x, y), makeDynInt(x - 135, y), makeMapping(\"duration\", 200));
+    startAnimation(g, \"keep\", makeMapping(\"direction\", \"Backward\"));
+    botonera_ext.visible = FALSE;
+    RootPanelOnModule(nom + \".pnl\", nom + grupo + linea, \"pantalla_principal\", makeDynString(\"$GRUPO:\" + grupo, \"$LINEA:\" + linea, \"$MODULO:\" + myModuleName(), \"$N_PANTALLA:\" + n_pantalla));
+    //RootPanelOnModule(nom + \".pnl\", nom + grupo + linea, \"pantalla_principal\", makeDynString(\"$DCT:\" + dct, \"$GRUPO:\" + grupo, \"$LINEA:\" + linea, \"$MODULO:\" + myModuleName(), \"$N_PANTALLA:\" + n_pantalla));
+
+
+  }
+  else if (myModuleName() == \"PANTALLA2\")
+  {
+    animate(\"botonera\", \"positionAsDyn\", makeDynInt(x, y), makeDynInt(x - 135, y), makeMapping(\"duration\", 200));
+    startAnimation(g, \"keep\", makeMapping(\"direction\", \"Backward\"));
+    botonera_ext.visible = FALSE;
+    RootPanelOnModule(nom + \".pnl\", nom + grupo + linea, \"pantalla_principal_2\", makeDynString(\"$GRUPO:\" + grupo, \"$LINEA:\" + linea, \"$MODULO:\" + myModuleName(), \"$N_PANTALLA:\" + n_pantalla));
+  }
+}
+
+void cambiar_panel_activo_graf(int clave)
+{
+  string nom;
+  mapping paneles;
+  int x, y, g;
+  int n_pantalla = numero_pantalla();
+
+  nom = paneles_graf.value(clave);
+
+  getValue(\"botonera\", \"position\", x, y);
+  g = createAnimation();
+  animate(g, \"btn_desplegable\", \"positionAsDyn\", makeDynInt(50, y), makeDynInt(50, y), makeMapping(\"duration\", 300));
+  animate(g, \"btn_desplegable\", \"sizeAsDyn\", makeDynInt(50, 40), makeDynInt(50, 40), makeMapping(\"duration\", 300));
+
+  paneles = get_mapa_nombres_paneles_graf();
+
+  botonera_graf.visible = FALSE;
+
+  if (myModuleName() == \"PANTALLA1\")
+  {
+    animate(\"botonera\", \"positionAsDyn\", makeDynInt(x, y), makeDynInt(x - 135, y), makeMapping(\"duration\", 200));
+    startAnimation(g, \"keep\", makeMapping(\"direction\", \"Backward\"));
+    RootPanelOnModule(nom + \".pnl\", nom, \"pantalla_principal\", makeDynString(\"$MODULO:\" + myModuleName(), \"$N_PANTALLA:\" + n_pantalla));
+
+
+  }
+  else if (myModuleName() == \"PANTALLA2\")
+  {
+    animate(\"botonera\", \"positionAsDyn\", makeDynInt(x, y), makeDynInt(x - 135, y), makeMapping(\"duration\", 200));
+    startAnimation(g, \"keep\", makeMapping(\"direction\", \"Backward\"));
+    RootPanelOnModule(nom + \".pnl\", nom, \"pantalla_principal_2\", makeDynString(\"$MODULO:\" + myModuleName(), \"$N_PANTALLA:\" + n_pantalla));
+  }
+}
+
+cambiar_estado_btn_botonera()
+{
+  string nombre = this.name, nombre_boton;
+
+  for (int i = 1; i <= dynlen(nom_btn_panel); i++)
+  {
+    nombre_boton = nom_btn_panel[i];
+
+    if (nombre_boton == nombre)  setValue(nombre_boton, \"backCol\", \"LIB_DEUSER_AZUL_06\");
+    else setValue(nombre_boton, \"backCol\", \"_Transparent\");
+  }
+}
+
+cambiar_estado_btn_botonera_sec()
+{
+  string nombre = this.name, nombre_boton;
+
+  for (int i = 1; i <= dynlen(nom_btn_panel_sec); i++)
+  {
+    nombre_boton = nom_btn_panel_sec[i];
+
+    if (nombre_boton == nombre)  setValue(nombre_boton, \"backCol\", \"LIB_DEUSER_AZUL_06\");
+    else setValue(nombre_boton, \"backCol\", \"_Transparent\");
+  }
+
+  string nombre = btn_secaderos.name, nombre_boton;
+
+  for (int i = 1; i <= dynlen(nom_btn_panel); i++)
+  {
+    nombre_boton = nom_btn_panel[i];
+
+    if (nombre_boton == nombre)  setValue(nombre_boton, \"backCol\", \"LIB_DEUSER_AZUL_06\");
+    else setValue(nombre_boton, \"backCol\", \"_Transparent\");
+  }
+
+}
+
+cambiar_estado_btn_botonera_ext()
+{
+  string nombre = this.name, nombre_boton;
+
+  for (int i = 1; i <= dynlen(nom_btn_panel_ext); i++)
+  {
+    nombre_boton = nom_btn_panel_ext[i];
+
+    if (nombre_boton == nombre)  setValue(nombre_boton, \"backCol\", \"LIB_DEUSER_AZUL_06\");
+    else setValue(nombre_boton, \"backCol\", \"_Transparent\");
+  }
+
+  string nombre = btn_centrifugacion.name, nombre_boton;
+
+  for (int i = 1; i <= dynlen(nom_btn_panel); i++)
+  {
+    nombre_boton = nom_btn_panel[i];
+
+    if (nombre_boton == nombre)  setValue(nombre_boton, \"backCol\", \"LIB_DEUSER_AZUL_06\");
+    else setValue(nombre_boton, \"backCol\", \"_Transparent\");
+  }
+
+}
+
+cambiar_estado_btn_botonera_graf()
+{
+  string nombre = this.name, nombre_boton;
+
+  for (int i = 1; i <= dynlen(nom_btn_panel_graf); i++)
+  {
+    nombre_boton = nom_btn_panel_graf[i];
+
+    if (nombre_boton == nombre)  setValue(nombre_boton, \"backCol\", \"LIB_DEUSER_AZUL_06\");
+    else setValue(nombre_boton, \"backCol\", \"_Transparent\");
+  }
+
+  string nombre = btn_graficas.name, nombre_boton;
+
+  for (int i = 1; i <= dynlen(nom_btn_panel); i++)
+  {
+    nombre_boton = nom_btn_panel[i];
+
+    if (nombre_boton == nombre)  setValue(nombre_boton, \"backCol\", \"LIB_DEUSER_AZUL_06\");
+    else setValue(nombre_boton, \"backCol\", \"_Transparent\");
+  }
+
+}
+
+
+" 0
+ 4
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+"pdpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10001 0 
+LANG:10010 0 
+13 107
+"btn_deuser"
+""
+1 0 844 E E E 1 E 0 E N "white" E N "LIB_IRC_AZUL_01" E E
+ E E
+106 0 0 0 0 0
+E E "main(bool enter)
+{
+  if (enter)
+  {
+    botonera_sec.visible = FALSE;
+    botonera_ext.visible = FALSE;
+    botonera_graf.visible = FALSE;
+    botonera_otros.visible = FALSE;
+  }
+}
+" 0
+
+1
+6
+LANG:10001 6 Zone 4
+LANG:10010 14 Configuración
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,11,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  -1.987511181266866 842.048017980742 132.5025347301514 895.048017980742
+
+B 
+4294967295
+"pictures/logotipos/deuser_blanca.svg"
+2
+LANG:10001 0 
+LANG:10010 21 CONFIGURACIÓN
+DEUSER
+"main(mapping event)
+{
+  bool permiso = permisos_usuario_operacion(20, TRUE);
+
+  if (permiso)
+  {
+    cambiar_panel_activo(100);
+    cambiar_pantalla_actual(\"CONFIGURACIÓN DEUSER\");
+    //cambiar_estado_btn_botonera();
+    int n_ui = myUiNumber();
+    int n_pantalla = numero_pantalla();
+    dpSet(\"ui_\" + n_ui + \"_botonera_\" + n_pantalla + \".indice\", 100);
+    botonera_ext.visible = FALSE;
+    botonera_sec.visible = FALSE;
+    botonera_graf.visible = FALSE;
+    botonera_otros.visible = FALSE;
+  }
+}
+" 0
+ E E "main()
+{
+  permisos_usuario_visualizacion(20, TRUE);
+}
+" 0
+
+0
+LAYER, 1 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 2 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 3 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 4 
+2
+LANG:10001 0 
+LANG:10010 0 
+13 88
+"PUSH_BUTTON29"
+""
+1 -200 774.05932756599 E E E 1 E 0 E N "_ButtonText" E N "LIB_IRC_AZUL_01" E E
+ E E
+87 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+5
+"shadowOffset" "[4,4]"
+"shadowColor" "{63,63,63,131}"
+"shadowRadius" "20"
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  128.0034068114305 488.0600224759275 262.0034068114305 591.0600224759276
+
+T 
+2
+LANG:10001 0 
+LANG:10010 0 
+E E E E
+13 89
+"btn_graf_indi"
+""
+1 130.890278858669 490.0605383997857 E E E 1 E 0 E N "white" E N "_Transparent" E E
+ E E
+88 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 8 Synoptic
+LANG:10010 10 Secadero 1
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  128.890278858669 488.0605383997857 260.890278858669 541.0605383997856
+
+P 
+4294967295
+"pictures/iconos/botoneras/botonera_principal_pc/es_ES/graficas_on.svg"
+2
+LANG:10001 0 
+LANG:10010 0 
+"main(mapping event)
+{
+  cambiar_panel_activo_graf(1);
+  cambiar_pantalla_actual(\"GRÁFICAS\");
+  //cambiar_estado_btn_botonera_graf();
+  int n_ui = myUiNumber();
+  int n_pantalla = numero_pantalla();
+  dpSet(\"ui_\" + n_ui + \"_botonera_\" + n_pantalla + \".indice\", 22);
+}
+" 0
+ E E "main()
+{
+  int n_ui = myUiNumber();
+  int n_pantalla = numero_pantalla();
+  dpConnect(\"cambiar_fondo\", \"ui_\" + n_ui + \"_botonera_\" + n_pantalla + \".indice\");
+}
+void cambiar_fondo(string dp, int valor)
+{
+  if (valor == 22) this.backCol(\"LIB_DEUSER_AZUL_06\");
+  else this.backCol(\"_Transparent\");
+}
+" 0
+
+13 90
+"btn_graf_multi"
+""
+1 313.7474217158119 524.0605383997856 E E E 1 E 0 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+89 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 14 Current Alarms
+LANG:10010 10 Secadero 2
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  128.890278858669 538.0605383997856 260.890278858669 591.0605383997856
+
+P 
+4294967295
+"pictures/iconos/botoneras/botonera_principal_pc/es_ES/multigraficas_on.svg"
+2
+LANG:10001 0 
+LANG:10010 0 
+"main(mapping event)
+{
+  cambiar_panel_activo_graf(2);
+  cambiar_pantalla_actual(\"MULTI GRÁFICAS\");
+  //cambiar_estado_btn_botonera_graf();
+  int n_ui = myUiNumber();
+  int n_pantalla = numero_pantalla();
+  dpSet(\"ui_\" + n_ui + \"_botonera_\" + n_pantalla + \".indice\", 23);
+}
+" 0
+ E E "main()
+{
+  int n_ui = myUiNumber();
+  int n_pantalla = numero_pantalla();
+  dpConnect(\"cambiar_fondo\", \"ui_\" + n_ui + \"_botonera_\" + n_pantalla + \".indice\");
+}
+void cambiar_fondo(string dp, int valor)
+{
+  if (valor == 23) this.backCol(\"LIB_DEUSER_AZUL_06\");
+  else this.backCol(\"_Transparent\");
+}
+" 0
+
+13 94
+"PUSH_BUTTON35"
+""
+1 136.390278858669 540.0605383997856 E E E 1 E 0 E N "_ButtonText" E N {190,210,255} E E
+ E E
+93 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  134.390278858669 538.0605383997856 255.390278858669 542.0605383997856
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+13 99
+"PUSH_BUTTON40"
+""
+1 -90.73076379225141 461.965252863934 E E E 1 E 0 E N "_ButtonText" E N {190,210,255} E E
+ E E
+98 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  128.0113215095895 493.0605383997857 132.0113215095895 586.0600224759276
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+0
+LAYER, 5 
+2
+LANG:10001 0 
+LANG:10010 0 
+13 75
+"fondo_ext"
+""
+1 105.8767034057153 460.7801797068534 E E E 1 E 1 E N "_ButtonText" E N "LIB_IRC_AZUL_01" E E
+ E E
+74 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+5
+"shadowOffset" "[4,4]"
+"shadowColor" "{63,63,63,131}"
+"shadowRadius" "20"
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  128.7556607547949 288.0302691998928 261.7556607547947 591.0302691998928
+
+T 
+2
+LANG:10001 0 
+LANG:10010 0 
+E E E E
+13 76
+"btn_ext_1"
+""
+1 131.0135754529538 289.5307851237509 E E E 1 E 1 E N "white" E N "_Transparent" E E
+ E E
+75 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 8 Synoptic
+LANG:10010 17 Centrifugación 1
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  129.0135754529538 287.5307851237509 261.0135754529538 340.5307851237509
+
+P 
+4294967295
+"XmUNSPECIFIED_PIXMAP"
+2
+LANG:10001 0 
+LANG:10010 0 
+"main(mapping event)
+{
+  cambiar_panel_activo_ext(1, 1);
+  cambiar_pantalla_actual(\"CENTRIFUGACIÓN\\nLÍNEA 1\");
+  //cambiar_estado_btn_botonera_ext();
+  int n_ui = myUiNumber();
+  int n_pantalla = numero_pantalla();
+  dpSet(\"ui_\" + n_ui + \"_botonera_\" + n_pantalla + \".indice\", 13);
+}
+" 0
+ E E "main()
+{
+  int n_ui = myUiNumber();
+  int n_pantalla = numero_pantalla();
+  dpConnect(\"cambiar_fondo\", \"ui_\" + n_ui + \"_botonera_\" + n_pantalla + \".indice\");
+}
+void cambiar_fondo(string dp, int valor)
+{
+  if (valor == 13) this.backCol(\"LIB_DEUSER_AZUL_06\");
+  else this.backCol(\"_Transparent\");
+}
+" 0
+
+13 77
+"btn_ext_2"
+""
+1 313.7821902652706 323.5307851237509 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+76 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 14 Current Alarms
+LANG:10010 17 Centrifugación 2
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  128.9250474081277 337.5307851237509 260.9250474081277 390.5307851237509
+
+P 
+4294967295
+"XmUNSPECIFIED_PIXMAP"
+2
+LANG:10001 0 
+LANG:10010 0 
+"main(mapping event)
+{
+  cambiar_panel_activo_ext(1, 2);
+  cambiar_pantalla_actual(\"CENTRIFUGACIÓN\\nLÍNEA 2\");
+  //cambiar_estado_btn_botonera_ext();
+  int n_ui = myUiNumber();
+  int n_pantalla = numero_pantalla();
+  dpSet(\"ui_\" + n_ui + \"_botonera_\" + n_pantalla + \".indice\", 14);
+}
+" 0
+ E E "main()
+{
+  int n_ui = myUiNumber();
+  int n_pantalla = numero_pantalla();
+  dpConnect(\"cambiar_fondo\", \"ui_\" + n_ui + \"_botonera_\" + n_pantalla + \".indice\");
+}
+void cambiar_fondo(string dp, int valor)
+{
+  if (valor == 14) this.backCol(\"LIB_DEUSER_AZUL_06\");
+  else this.backCol(\"_Transparent\");
+}
+" 0
+
+13 78
+"btn_ext_3"
+""
+1 261.3645281279208 384.9457301059721 E E E 1 E 1 E N "white" E N "_Transparent" E E
+ E E
+77 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 17 Historical Alarms
+LANG:10010 17 Centrifugación 3
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  128.8925328020334 387.5307851237509 260.8925328020335 440.5307851237509
+
+P 
+4294967295
+"XmUNSPECIFIED_PIXMAP"
+2
+LANG:10001 0 
+LANG:10010 0 
+"main(mapping event)
+{
+  cambiar_panel_activo_ext(2, 1);
+  cambiar_pantalla_actual(\"CENTRIFUGACIÓN\\nLÍNEA 3\");
+  //cambiar_estado_btn_botonera_ext();
+  int n_ui = myUiNumber();
+  int n_pantalla = numero_pantalla();
+  dpSet(\"ui_\" + n_ui + \"_botonera_\" + n_pantalla + \".indice\", 15);
+}
+" 0
+ E E "main()
+{
+  int n_ui = myUiNumber();
+  int n_pantalla = numero_pantalla();
+  dpConnect(\"cambiar_fondo\", \"ui_\" + n_ui + \"_botonera_\" + n_pantalla + \".indice\");
+}
+void cambiar_fondo(string dp, int valor)
+{
+  if (valor == 15) this.backCol(\"LIB_DEUSER_AZUL_06\");
+  else this.backCol(\"_Transparent\");
+}
+" 0
+
+13 79
+"btn_ext_4"
+""
+1 130.99315794669 439.482767143009 E E E 1 E 1 E N "white" E N "_Transparent" E E
+ E E
+78 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 6 Zone 1
+LANG:10010 17 Centrifugación 4
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  129.0135754529538 437.5307851237509 261.0135754529538 490.5307851237509
+
+P 
+4294967295
+"XmUNSPECIFIED_PIXMAP"
+2
+LANG:10001 0 
+LANG:10010 0 
+"main(mapping event)
+{
+  cambiar_panel_activo_ext(2, 2);
+  cambiar_pantalla_actual(\"CENTRIFUGACIÓN\\nLÍNEA 4\");
+  //cambiar_estado_btn_botonera_ext();
+  int n_ui = myUiNumber();
+  int n_pantalla = numero_pantalla();
+  dpSet(\"ui_\" + n_ui + \"_botonera_\" + n_pantalla + \".indice\", 16);
+}
+" 0
+ E E "main()
+{
+  int n_ui = myUiNumber();
+  int n_pantalla = numero_pantalla();
+  dpConnect(\"cambiar_fondo\", \"ui_\" + n_ui + \"_botonera_\" + n_pantalla + \".indice\");
+}
+void cambiar_fondo(string dp, int valor)
+{
+  if (valor == 16) this.backCol(\"LIB_DEUSER_AZUL_06\");
+  else this.backCol(\"_Transparent\");
+}
+" 0
+
+13 80
+"btn_ext_5"
+""
+1 130.7068044791282 488.7413835715046 E E E 1 E 1 E N "white" E N "_Transparent" E E
+ E E
+79 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 6 Zone 2
+LANG:10010 13 Extracción 5
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+4
+"hoverbclr" "N \"AZUL_01\""
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  129.0135754529538 486.7894015522464 261.0135754529538 539.7894015522464
+
+T 
+2
+LANG:10001 0 
+LANG:10010 0 
+"// main(mapping event)
+// {
+//   cambiar_panel_activo_ext(3,5);
+//   cambiar_pantalla_actual(\"CENTRIFUGACIÓN\\n GRUPO 3\\nLÍNEA 5\");
+//   cambiar_estado_btn_botonera_ext();
+//   int n_ui = myUiNumber();
+//  int n_pantalla = numero_pantalla();
+// dpSet(\"ui_\" + n_ui + \"_botonera_\" + n_pantalla + \".indice\",17);
+// }
+" 0
+ E E "main()
+{
+  int n_ui = myUiNumber();
+  int n_pantalla = numero_pantalla();
+  dpConnect(\"cambiar_fondo\", \"ui_\" + n_ui + \"_botonera_\" + n_pantalla + \".indice\");
+}
+void cambiar_fondo(string dp, int valor)
+{
+  if (valor == 17) this.backCol(\"LIB_DEUSER_AZUL_06\");
+  else this.backCol(\"_Transparent\");
+}
+" 0
+
+13 81
+"btn_ext_6"
+""
+1 131.2795114142513 539.482767143009 E E E 1 E 1 E N "white" E N "_Transparent" E E
+ E E
+80 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 6 Zone 3
+LANG:10010 13 Extracción 6
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+4
+"hoverbclr" "N \"AZUL_01\""
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  129.0135754529538 537.5307851237509 261.0135754529538 590.5307851237509
+
+T 
+2
+LANG:10001 0 
+LANG:10010 0 
+"// main(mapping event)
+// {
+//   cambiar_panel_activo_ext(3,6);
+//   cambiar_pantalla_actual(\"CENTRIFUGACIÓN\\n GRUPO 3\\nLÍNEA 6\");
+//   cambiar_estado_btn_botonera_ext();
+//   int n_ui = myUiNumber();
+//  int n_pantalla = numero_pantalla();
+//  dpSet(\"ui_\" + n_ui + \"_botonera_\" + n_pantalla + \".indice\",18);
+// }
+" 0
+ E E "main()
+{
+  int n_ui = myUiNumber();
+  int n_pantalla = numero_pantalla();
+  dpConnect(\"cambiar_fondo\", \"ui_\" + n_ui + \"_botonera_\" + n_pantalla + \".indice\");
+}
+void cambiar_fondo(string dp, int valor)
+{
+  if (valor == 18) this.backCol(\"LIB_DEUSER_AZUL_06\");
+  else this.backCol(\"_Transparent\");
+}
+" 0
+
+13 82
+"PUSH_BUTTON23"
+""
+1 136.5135754529538 339.5307851237509 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+81 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  134.5135754529538 337.5307851237509 255.5135754529538 341.5307851237509
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+13 83
+"PUSH_BUTTON24"
+""
+1 136.5135754529538 389.5307851237509 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+82 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  134.5135754529538 387.5307851237509 255.5135754529538 391.5307851237509
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+13 84
+"PUSH_BUTTON25"
+""
+1 136.5135754529538 439.5307851237509 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+83 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  134.5135754529538 437.5307851237509 255.5135754529538 441.5307851237509
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+13 85
+"PUSH_BUTTON26"
+""
+1 136.5135754529538 489.5307851237509 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+84 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  134.5135754529538 487.5307851237509 255.5135754529538 491.5307851237509
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+13 86
+"PUSH_BUTTON27"
+""
+1 136.5135754529538 539.5307851237509 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+85 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  134.5135754529538 537.5307851237509 255.5135754529538 541.5307851237509
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+13 87
+"PUSH_BUTTON28"
+""
+1 -90.60746719796663 187.8071670332988 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+86 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  128.1346181038743 292.5307851237509 132.1346181038743 583.5307851237509
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+0
+LAYER, 6 
+2
+LANG:10001 0 
+LANG:10010 0 
+13 60
+"fondo_secaderos"
+""
+1 -38.87555053764902 423.9998210139207 E E E 1 E 1 E N "_ButtonText" E N "LIB_IRC_AZUL_01" E E
+ E E
+59 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+5
+"shadowOffset" "[4,4]"
+"shadowColor" "{63,63,63,131}"
+"shadowRadius" "20"
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  128.0034068114303 238 262.0034068114308 541
+
+T 
+2
+LANG:10001 0 
+LANG:10010 0 
+E E E E
+13 62
+"btn_sec_1"
+""
+1 130.8823641605099 240.0005159238582 E E E 1 E 1 E N "white" E N "_Transparent" E E
+ E E
+61 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 8 Synoptic
+LANG:10010 10 Secadero 1
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  128.8823641605099 238.0005159238582 260.8823641605101 291.0005159238582
+
+P 
+4294967295
+"XmUNSPECIFIED_PIXMAP"
+2
+LANG:10001 0 
+LANG:10010 0 
+"main(mapping event)
+{
+  cambiar_panel_activo_sec(1, 1, 1);
+  cambiar_pantalla_actual(\"HORNO 1\\nSECADERO LÍNEA 1\");
+  int n_ui = myUiNumber();
+  int n_pantalla = numero_pantalla();
+  dpSet(\"ui_\" + n_ui + \"_botonera_\" + n_pantalla + \".indice\", 6);
+  //cambiar_estado_btn_botonera_sec();
+}
+" 0
+ E E "main()
+{
+  int n_ui = myUiNumber();
+  int n_pantalla = numero_pantalla();
+  dpConnect(\"cambiar_fondo\", \"ui_\" + n_ui + \"_botonera_\" + n_pantalla + \".indice\");
+}
+void cambiar_fondo(string dp, int valor)
+{
+  if (valor == 6) this.backCol(\"LIB_DEUSER_AZUL_06\");
+  else this.backCol(\"_Transparent\");
+}
+" 0
+
+13 63
+"btn_sec_2"
+""
+1 313.739507017653 274.0005159238582 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+62 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 14 Current Alarms
+LANG:10010 10 Secadero 2
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  128.8823641605099 288.0005159238582 260.8823641605101 341.0005159238582
+
+P 
+4294967295
+"XmUNSPECIFIED_PIXMAP"
+2
+LANG:10001 0 
+LANG:10010 0 
+"main(mapping event)
+{
+  cambiar_panel_activo_sec(1, 1, 2);
+  cambiar_pantalla_actual(\"HORNO 1\\nSECADERO LÍNEA 2\");
+  int n_ui = myUiNumber();
+  int n_pantalla = numero_pantalla();
+  dpSet(\"ui_\" + n_ui + \"_botonera_\" + n_pantalla + \".indice\", 7);
+  //cambiar_estado_btn_botonera_sec();
+}
+" 0
+ E E "main()
+{
+  int n_ui = myUiNumber();
+  int n_pantalla = numero_pantalla();
+  dpConnect(\"cambiar_fondo\", \"ui_\" + n_ui + \"_botonera_\" + n_pantalla + \".indice\");
+}
+void cambiar_fondo(string dp, int valor)
+{
+  if (valor == 7) this.backCol(\"LIB_DEUSER_AZUL_06\");
+  else this.backCol(\"_Transparent\");
+}
+" 0
+
+13 64
+"btn_sec_3"
+""
+1 261.2333168354769 335.4154609060793 E E E 1 E 0 E N "white" E N "_Transparent" E E
+ E E
+63 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 17 Historical Alarms
+LANG:10010 10 Secadero 3
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+4
+"hoverbclr" "N \"AZUL_01\""
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  128.7613215095895 338.0005159238582 260.7613215095896 391.0005159238582
+
+T 
+2
+LANG:10001 0 
+LANG:10010 0 
+"// main(mapping event)
+// {
+//   cambiar_panel_activo_sec(1,1,3);
+//   cambiar_pantalla_actual(\"HORNO 1\\nSECADERO LÍNEA 3\");
+//   cambiar_estado_btn_botonera_sec();
+//   int n_ui = myUiNumber();
+//  int n_pantalla = numero_pantalla();
+//  dpSet(\"ui_\" + n_ui + \"_botonera_\" + n_pantalla + \".indice\",8);
+// }
+" 0
+ E E "main()
+{
+  int n_ui = myUiNumber();
+  int n_pantalla = numero_pantalla();
+  dpConnect(\"cambiar_fondo\", \"ui_\" + n_ui + \"_botonera_\" + n_pantalla + \".indice\");
+}
+void cambiar_fondo(string dp, int valor)
+{
+  if (valor == 8) this.backCol(\"LIB_DEUSER_AZUL_06\");
+  else this.backCol(\"_Transparent\");
+}
+" 0
+
+13 65
+"btn_sec_4"
+""
+1 130.861946654246 389.9524979431163 E E E 1 E 1 E N "white" E N "_Transparent" E E
+ E E
+64 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 6 Zone 1
+LANG:10010 10 Secadero 4
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  128.8823641605099 388.0005159238582 260.8823641605101 441.0005159238582
+
+P 
+4294967295
+"XmUNSPECIFIED_PIXMAP"
+2
+LANG:10001 0 
+LANG:10010 0 
+"main(mapping event)
+{
+  cambiar_panel_activo_sec(2, 2, 4);
+  cambiar_pantalla_actual(\"HORNO 2\\nSECADERO LÍNEA 4\");
+  //cambiar_estado_btn_botonera_sec();
+  int n_ui = myUiNumber();
+  int n_pantalla = numero_pantalla();
+  dpSet(\"ui_\" + n_ui + \"_botonera_\" + n_pantalla + \".indice\", 9);
+}
+" 0
+ E E "main()
+{
+  int n_ui = myUiNumber();
+  int n_pantalla = numero_pantalla();
+  dpConnect(\"cambiar_fondo\", \"ui_\" + n_ui + \"_botonera_\" + n_pantalla + \".indice\");
+}
+void cambiar_fondo(string dp, int valor)
+{
+  if (valor == 9) this.backCol(\"LIB_DEUSER_AZUL_06\");
+  else this.backCol(\"_Transparent\");
+}
+" 0
+
+13 67
+"btn_sec_6"
+""
+1 131.3377787963471 489.9519820192581 E E E 1 E 1 E N "white" E N "_Transparent" E E
+ E E
+66 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 6 Zone 3
+LANG:10010 10 Secadero 6
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  129.0718428350495 488 261.0718428350497 541
+
+P 
+4294967295
+"XmUNSPECIFIED_PIXMAP"
+2
+LANG:10001 0 
+LANG:10010 0 
+"main(mapping event)
+{
+  cambiar_panel_activo_sec(2, 2, 6);
+  cambiar_pantalla_actual(\"HORNO 2\\nSECADERO LÍNEA 6\");
+  //cambiar_estado_btn_botonera_sec();
+  int n_ui = myUiNumber();
+  int n_pantalla = numero_pantalla();
+  dpSet(\"ui_\" + n_ui + \"_botonera_\" + n_pantalla + \".indice\", 11);
+}
+" 0
+ E E "main()
+{
+  int n_ui = myUiNumber();
+  int n_pantalla = numero_pantalla();
+  dpConnect(\"cambiar_fondo\", \"ui_\" + n_ui + \"_botonera_\" + n_pantalla + \".indice\");
+}
+void cambiar_fondo(string dp, int valor)
+{
+  if (valor == 11) this.backCol(\"LIB_DEUSER_AZUL_06\");
+  else this.backCol(\"_Transparent\");
+}
+" 0
+
+13 68
+"PUSH_BUTTON9"
+""
+1 136.3823641605099 290.0005159238582 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+67 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  134.3823641605099 288.0005159238582 255.3823641605099 292.0005159238582
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+13 69
+"PUSH_BUTTON10"
+""
+1 136.3823641605101 340.0005159238582 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+68 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  134.3823641605101 338.0005159238582 255.3823641605099 342.0005159238582
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+13 70
+"PUSH_BUTTON11"
+""
+1 136.3823641605101 390.0005159238582 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+69 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  134.3823641605101 388.0005159238582 255.3823641605099 392.0005159238582
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+13 71
+"PUSH_BUTTON12"
+""
+1 136.3823641605101 440.0005159238582 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+70 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  134.3823641605101 438.0005159238582 255.3823641605099 442.0005159238582
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+13 72
+"PUSH_BUTTON13"
+""
+1 136.3823641605101 490.0005159238582 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+71 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  134.3823641605101 488.0005159238582 255.3823641605099 492.0005159238582
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+13 74
+"PUSH_BUTTON15"
+""
+1 -90.73867849041048 138.276897833406 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+73 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  128.0034068114303 243.0005159238582 132.0034068114303 534.0005159238581
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+13 66
+"btn_sec_5"
+""
+1 130.5755931866842 439.9524979431162 E E E 1 E 1 E N "white" E N "_Transparent" E E
+ E E
+65 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 6 Zone 2
+LANG:10010 10 Secadero 5
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  128.8823641605099 438.0005159238582 260.8823641605101 491.0005159238582
+
+P 
+4294967295
+"XmUNSPECIFIED_PIXMAP"
+2
+LANG:10001 0 
+LANG:10010 0 
+"main(mapping event)
+{
+  cambiar_panel_activo_sec(2, 2, 5);
+  cambiar_pantalla_actual(\"HORNO 2\\nSECADERO LÍNEA 5\");
+  //cambiar_estado_btn_botonera_sec();
+  int n_ui = myUiNumber();
+  int n_pantalla = numero_pantalla();
+  dpSet(\"ui_\" + n_ui + \"_botonera_\" + n_pantalla + \".indice\", 10);
+}
+" 0
+ E E "main()
+{
+  int n_ui = myUiNumber();
+  int n_pantalla = numero_pantalla();
+  dpConnect(\"cambiar_fondo\", \"ui_\" + n_ui + \"_botonera_\" + n_pantalla + \".indice\");
+}
+void cambiar_fondo(string dp, int valor)
+{
+  if (valor == 10) this.backCol(\"LIB_DEUSER_AZUL_06\");
+  else this.backCol(\"_Transparent\");
+}
+" 0
+
+0
+LAYER, 7 
+2
+LANG:10001 0 
+LANG:10010 0 
+13 35
+"fondo"
+""
+1 0 40.00002217250737 E E E 1 E 1 E N "_ButtonText" E N "LIB_IRC_AZUL_01" E E
+ E E
+34 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+5
+"shadowOffset" "[4,4]"
+"shadowColor" "{63,63,63,131}"
+"shadowRadius" "20"
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  -2 38 132 792.0240089903709
+
+T 
+2
+LANG:10001 0 
+LANG:10010 0 
+E E E E
+13 14
+"btn_alarmas"
+""
+1 185.033493101876 74 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+13 0 0 0 0 0
+E E "main(bool enter)
+{
+  if (enter)
+  {
+    botonera_sec.visible = FALSE;
+    botonera_ext.visible = FALSE;
+    botonera_graf.visible = FALSE;
+  }
+}" 0
+
+1
+6
+LANG:10001 14 Current Alarms
+LANG:10010 16 Alarmas Actuales
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  -1.241146986717514 88 131.751101075298 141
+
+P 
+4294967295
+"pictures/iconos/botoneras/botonera_principal_pc/es_ES/alarma_actual_on.svg"
+2
+LANG:10001 0 
+LANG:10010 0 
+"main(mapping event)
+{
+  cambiar_panel_activo(2); //Cambia el panel activo del faceplate
+  cambiar_pantalla_actual(\"ALARMAS\");
+  //cambiar_estado_btn_botonera();
+  int n_ui = myUiNumber();
+  int n_pantalla = numero_pantalla();
+  dpSet(\"ui_\" + n_ui + \"_botonera_\" + n_pantalla + \".indice\", 2);
+  botonera_ext.visible = FALSE;
+  botonera_sec.visible = FALSE;
+  botonera_graf.visible = FALSE;
+}
+" 0
+ E E "main()
+{
+  int n_ui = myUiNumber();
+  int n_pantalla = numero_pantalla();
+  dpConnect(\"cambiar_fondo\", \"ui_\" + n_ui + \"_botonera_\" + n_pantalla + \".indice\");
+}
+void cambiar_fondo(string dp, int valor)
+{
+  if (valor == 2) this.backCol(\"LIB_DEUSER_AZUL_06\");
+  else this.backCol(\"_Transparent\");
+}
+" 0
+
+13 15
+"btn_historicos"
+""
+1 132.2422591556497 135.4149449822211 E E E 1 E 1 E N "white" E N "_Transparent" E E
+ E E
+14 0 0 0 0 0
+E E "main(bool enter)
+{
+  if (enter)
+  {
+    botonera_sec.visible = FALSE;
+    botonera_ext.visible = FALSE;
+    botonera_graf.visible = FALSE;
+  }
+}" 0
+
+1
+6
+LANG:10001 17 Historical Alarms
+LANG:10010 19 Alarmas Históricos
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  -1.241146986717534 138 131.751101075298 191
+
+P 
+4294967295
+"pictures/iconos/botoneras/botonera_principal_pc/es_ES/alarma_historicos_on.svg"
+2
+LANG:10001 0 
+LANG:10010 0 
+"main(mapping event)
+{
+  cambiar_panel_activo(3);
+  cambiar_pantalla_actual(\"HISTÓRICO\\nALARMAS\");
+  //cambiar_estado_btn_botonera();
+  int n_ui = myUiNumber();
+  int n_pantalla = numero_pantalla();
+  dpSet(\"ui_\" + n_ui + \"_botonera_\" + n_pantalla + \".indice\", 3);
+  botonera_ext.visible = FALSE;
+  botonera_sec.visible = FALSE;
+  botonera_graf.visible = FALSE;
+}
+" 0
+ E E "main()
+{
+  int n_ui = myUiNumber();
+  int n_pantalla = numero_pantalla();
+  dpConnect(\"cambiar_fondo\", \"ui_\" + n_ui + \"_botonera_\" + n_pantalla + \".indice\");
+}
+void cambiar_fondo(string dp, int valor)
+{
+  if (valor == 3) this.backCol(\"LIB_DEUSER_AZUL_06\");
+  else this.backCol(\"_Transparent\");
+}
+" 0
+
+13 20
+"btn_informes"
+""
+1 207.0123454689043 788.0300112379637 E E E 0 E 0 E N "white" E N "_Transparent" E E
+ E E
+19 0 0 0 0 0
+E E "main(bool enter)
+{
+  if (enter)
+  {
+    botonera_sec.visible = FALSE;
+    botonera_ext.visible = FALSE;
+    botonera_graf.visible = FALSE;
+  }
+}" 0
+
+1
+6
+LANG:10001 6 Zone 1
+LANG:10010 8 Informes
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  205.0164606252056 786.0300112379637 338.0087086872212 839.0300112379638
+
+P 
+4294967295
+"pictures/iconos/botoneras/botonera_principal_pc/es_ES/informes_on.svg"
+2
+LANG:10001 0 
+LANG:10010 0 
+"main(mapping event)
+{
+  cambiar_panel_activo(8);
+  cambiar_pantalla_actual(\"INFORMES\");
+  //cambiar_estado_btn_botonera();
+  int n_ui = myUiNumber();
+  int n_pantalla = numero_pantalla();
+  dpSet(\"ui_\" + n_ui + \"_botonera_\" + n_pantalla + \".indice\", 27);
+  botonera_ext.visible = FALSE;
+  botonera_sec.visible = FALSE;
+  botonera_graf.visible = FALSE;
+}
+" 0
+ E E "main()
+{
+  int n_ui = myUiNumber();
+  int n_pantalla = numero_pantalla();
+  dpConnect(\"cambiar_fondo\", \"ui_\" + n_ui + \"_botonera_\" + n_pantalla + \".indice\");
+}
+void cambiar_fondo(string dp, int valor)
+{
+  if (valor == 27) this.backCol(\"LIB_DEUSER_AZUL_06\");
+  else this.backCol(\"_Transparent\");
+}
+" 0
+
+13 21
+"btn_incidencias"
+""
+1 0.7506227006801822 589.4375 E E E 1 E 1 E N "white" E N "_Transparent" E E
+ E E
+20 0 0 0 0 0
+E E "main(bool enter)
+{
+  if (enter)
+  {
+    botonera_sec.visible = FALSE;
+    botonera_ext.visible = FALSE;
+    botonera_graf.visible = FALSE;
+  }
+}" 0
+
+1
+6
+LANG:10001 6 Zone 2
+LANG:10010 11 Incidencias
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  -1.241146986717546 587.485517980742 131.751101075298 640.485517980742
+
+P 
+4294967295
+"pictures/iconos/botoneras/botonera_principal_pc/es_ES/incidencias_on.svg"
+2
+LANG:10001 0 
+LANG:10010 0 
+"main(mapping event)
+{
+  cambiar_panel_activo(7);
+  cambiar_pantalla_actual(\"INCIDENCIAS\");
+  //cambiar_estado_btn_botonera();
+  int n_ui = myUiNumber();
+  int n_pantalla = numero_pantalla();
+  dpSet(\"ui_\" + n_ui + \"_botonera_\" + n_pantalla + \".indice\", 25);
+  botonera_ext.visible = FALSE;
+  botonera_sec.visible = FALSE;
+  botonera_graf.visible = FALSE;
+}
+" 0
+ E E "main()
+{
+  int n_ui = myUiNumber();
+  int n_pantalla = numero_pantalla();
+  dpConnect(\"cambiar_fondo\", \"ui_\" + n_ui + \"_botonera_\" + n_pantalla + \".indice\");
+}
+void cambiar_fondo(string dp, int valor)
+{
+  if (valor == 25) this.backCol(\"LIB_DEUSER_AZUL_06\");
+  else this.backCol(\"_Transparent\");
+}
+" 0
+
+13 22
+"btn_config"
+""
+1 0.746507544378879 540.024008990371 E E E 1 E 1 E N "white" E N "_Transparent" E E
+ E E
+21 0 0 0 0 0
+E E "main(bool enter)
+{
+  if (enter)
+  {
+    botonera_sec.visible = FALSE;
+    botonera_ext.visible = FALSE;
+    botonera_graf.visible = FALSE;
+  }
+}" 0
+
+1
+6
+LANG:10001 6 Zone 4
+LANG:10010 14 Configuración
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  -1.241146986717542 538.072026971113 131.751101075298 591.072026971113
+
+P 
+4294967295
+"pictures/iconos/botoneras/botonera_principal_pc/es_ES/config_on.svg"
+2
+LANG:10001 0 
+LANG:10010 0 
+"main(mapping event)
+{
+  bool permiso = permisos_usuario_operacion(12, TRUE);
+
+  if (permiso)
+  {
+    cambiar_panel_activo(6);
+    cambiar_pantalla_actual(\"CONFIGURACIÓN\");
+    //cambiar_estado_btn_botonera();
+    int n_ui = myUiNumber();
+    int n_pantalla = numero_pantalla();
+    dpSet(\"ui_\" + n_ui + \"_botonera_\" + n_pantalla + \".indice\", 24);
+    botonera_ext.visible = FALSE;
+    botonera_sec.visible = FALSE;
+    botonera_graf.visible = FALSE;
+  }
+}
+" 0
+ E E "main()
+{
+  int n_ui = myUiNumber();
+  int n_pantalla = numero_pantalla();
+  dpConnect(\"cambiar_fondo\", \"ui_\" + n_ui + \"_botonera_\" + n_pantalla + \".indice\");
+}
+void cambiar_fondo(string dp, int valor)
+{
+  if (valor == 24) this.backCol(\"LIB_DEUSER_AZUL_06\");
+  else this.backCol(\"_Transparent\");
+}
+" 0
+
+13 23
+"btn_esquematica"
+""
+1 194.8741338479072 689.9759910096291 E E E 1 E 0 E N "white" E N "_Transparent" E E
+ E E
+22 0 0 0 0 0
+E E "main(bool enter)
+{
+  if (enter)
+  {
+    botonera_sec.visible = FALSE;
+    botonera_ext.visible = FALSE;
+    botonera_graf.visible = FALSE;
+  }
+}" 0
+
+1
+6
+LANG:10001 6 Zone 5
+LANG:10010 18 Esquema Eléctrico
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  192.8905944731129 688.0240089903709 325.8828425351284 741.0240089903709
+
+P 
+4294967295
+"pictures/iconos/botoneras/botonera_principal_pc/es_ES/esquematica_on.svg"
+2
+LANG:10001 0 
+LANG:10010 0 
+"main(mapping event)
+{
+  cambiar_panel_activo(10);
+  cambiar_pantalla_actual(\"ESQUEMA\\nELÉCTRICO\");
+  //cambiar_estado_btn_botonera();
+  int n_ui = myUiNumber();
+  int n_pantalla = numero_pantalla();
+  dpSet(\"ui_\" + n_ui + \"_botonera_\" + n_pantalla + \".indice\", 29);
+  botonera_ext.visible = FALSE;
+  botonera_sec.visible = FALSE;
+  botonera_graf.visible = FALSE;
+}
+" 0
+ E E "main()
+{
+  int n_ui = myUiNumber();
+  int n_pantalla = numero_pantalla();
+  dpConnect(\"cambiar_fondo\", \"ui_\" + n_ui + \"_botonera_\" + n_pantalla + \".indice\");
+}
+void cambiar_fondo(string dp, int valor)
+{
+  if (valor == 29) this.backCol(\"LIB_DEUSER_AZUL_06\");
+  else this.backCol(\"_Transparent\");
+}
+" 0
+
+13 25
+"btn_secaderos"
+""
+1 0.4497039698922692 239.951982019258 E E E 1 E 1 E N "white" E N "_Transparent" E E
+ E E
+24 0 0 0 0 0
+E E "main(bool enter)
+{
+  if (enter)
+  {
+    botonera_sec.visible = TRUE;
+    botonera_ext.visible = FALSE;
+    botonera_graf.visible = FALSE;
+  }
+}" 0
+
+1
+6
+LANG:10001 6 Zone 2
+LANG:10010 9 Secaderos
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  -1.24114698671746 238 131.7511010752979 291
+
+P 
+4294967295
+"XmUNSPECIFIED_PIXMAP"
+2
+LANG:10001 0 
+LANG:10010 0 
+"main(mapping event)
+{
+  cambiar_panel_activo(4);
+  cambiar_pantalla_actual(\"SECADEROS\");
+  //cambiar_estado_btn_botonera();
+  int n_ui = myUiNumber();
+  int n_pantalla = numero_pantalla();
+  dpSet(\"ui_\" + n_ui + \"_botonera_\" + n_pantalla + \".indice\", 5);
+  delay(1);
+  botonera_ext.visible = FALSE;
+  botonera_sec.visible = FALSE;
+  botonera_graf.visible = FALSE;
+}
+" 0
+ E E "main()
+{
+  int n_ui = myUiNumber();
+  int n_pantalla = numero_pantalla();
+  dpConnect(\"cambiar_fondo\", \"ui_\" + n_ui + \"_botonera_\" + n_pantalla + \".indice\");
+}
+void cambiar_fondo(string dp, int valor)
+{
+  if (valor >= 5  && valor <= 11) this.backCol(\"LIB_DEUSER_AZUL_06\");
+  else this.backCol(\"_Transparent\");
+}
+" 0
+
+13 26
+"btn_centrifugacion"
+""
+1 1.026850493659835 289.9519820192581 E E E 1 E 1 E N "white" E N "_Transparent" E E
+ E E
+25 0 0 0 0 0
+E E "main(bool enter)
+{
+  if (enter)
+  {
+    botonera_ext.visible = TRUE;
+    botonera_sec.visible = FALSE;
+    botonera_graf.visible = FALSE;
+
+  }
+}" 0
+
+1
+6
+LANG:10001 6 Zone 3
+LANG:10010 15 Centrifugación
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  -1.241146986717514 288 131.751101075298 341
+
+P 
+4294967295
+"XmUNSPECIFIED_PIXMAP"
+2
+LANG:10001 0 
+LANG:10010 0 
+"main(mapping event)
+{
+  cambiar_panel_activo(5);
+  cambiar_pantalla_actual(\"CENTRIFUGACÍON\");
+  //cambiar_estado_btn_botonera();
+  int n_ui = myUiNumber();
+  int n_pantalla = numero_pantalla();
+  dpSet(\"ui_\" + n_ui + \"_botonera_\" + n_pantalla + \".indice\", 12);
+  delay(1);
+  botonera_ext.visible = FALSE;
+  botonera_sec.visible = FALSE;
+  botonera_graf.visible = FALSE;
+}
+
+" 0
+ E E "main()
+{
+  int n_ui = myUiNumber();
+  int n_pantalla = numero_pantalla();
+  dpConnect(\"cambiar_fondo\", \"ui_\" + n_ui + \"_botonera_\" + n_pantalla + \".indice\");
+}
+void cambiar_fondo(string dp, int valor)
+{
+  if (valor >= 12  && valor <= 18) this.backCol(\"LIB_DEUSER_AZUL_06\");
+  else this.backCol(\"_Transparent\");
+}
+" 0
+
+13 27
+"btn_zona_4"
+""
+1 0.738277231776568 339.9519820192581 E E E 1 E 1 E N "white" E N "_Transparent" E E
+ E E
+26 0 0 0 0 0
+E E "main(bool enter)
+{
+  if (enter)
+  {
+    botonera_sec.visible = FALSE;
+    botonera_ext.visible = FALSE;
+    botonera_graf.visible = FALSE;
+  }
+}" 0
+
+1
+6
+LANG:10001 6 Zone 4
+LANG:10010 0 
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  -1.241146986717545 338 131.751101075298 391
+
+P 
+4294967295
+"XmUNSPECIFIED_PIXMAP"
+2
+LANG:10001 0 
+LANG:10010 0 
+"main(mapping event)
+{
+  cambiar_panel_activo(16);
+  cambiar_pantalla_actual(\"TRANSPORTES\");
+  //cambiar_estado_btn_botonera();
+  int n_ui = myUiNumber();
+  int n_pantalla = numero_pantalla();
+  dpSet(\"ui_\" + n_ui + \"_botonera_\" + n_pantalla + \".indice\", 19);
+  botonera_ext.visible = FALSE;
+  botonera_sec.visible = FALSE;
+  botonera_graf.visible = FALSE;
+}
+" 0
+ E E "main()
+{
+  int n_ui = myUiNumber();
+  int n_pantalla = numero_pantalla();
+  dpConnect(\"cambiar_fondo\", \"ui_\" + n_ui + \"_botonera_\" + n_pantalla + \".indice\");
+}
+void cambiar_fondo(string dp, int valor)
+{
+  if (valor == 19) this.backCol(\"LIB_DEUSER_AZUL_06\");
+  else this.backCol(\"_Transparent\");
+}
+" 0
+
+13 28
+"btn_graficas"
+""
+1 0.7588530132824616 490.0120044951855 E E E 1 E 1 E N "white" E N "_Transparent" E E
+ E E
+27 0 0 0 0 0
+E E "main(bool enter)
+{
+  if (enter)
+  {
+    botonera_sec.visible = FALSE;
+    botonera_ext.visible = FALSE;
+    botonera_graf.visible = TRUE;
+  }
+}" 0
+
+1
+6
+LANG:10001 6 Zone 5
+LANG:10010 0 
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  -1.241146986717538 488.0600224759275 131.751101075298 541.0600224759276
+
+P 
+4294967295
+"pictures/iconos/botoneras/botonera_principal_pc/es_ES/graficas_on.svg"
+2
+LANG:10001 0 
+LANG:10010 0 
+"main(mapping event)
+{
+  cambiar_panel_activo(13);
+  cambiar_pantalla_actual(\"GRÁFICAS\");
+  //cambiar_estado_btn_botonera();
+  int n_ui = myUiNumber();
+  int n_pantalla = numero_pantalla();
+  dpSet(\"ui_\" + n_ui + \"_botonera_\" + n_pantalla + \".indice\", 21);
+  delay(1);
+  botonera_ext.visible = FALSE;
+  botonera_sec.visible = FALSE;
+  botonera_graf.visible = FALSE;
+}
+" 0
+ E E "main()
+{
+  int n_ui = myUiNumber();
+  int n_pantalla = numero_pantalla();
+  dpConnect(\"cambiar_fondo\", \"ui_\" + n_ui + \"_botonera_\" + n_pantalla + \".indice\");
+}
+void cambiar_fondo(string dp, int valor)
+{
+  if (valor >= 21  && valor <= 23) this.backCol(\"LIB_DEUSER_AZUL_06\");
+  else this.backCol(\"_Transparent\");
+}
+" 0
+
+13 31
+"btn_audit_trail"
+""
+1 207.0000000000017 738.9639865144436 E E E 0 E 0 E N "white" E N "_Transparent" E E
+ E "main(mapping event)
+{
+  ChildPanelOnCentralModal(\"vision/emergentes/internas/nuevo_email.pnl.bak\", \"Nuevo_Email\", \"\");
+}
+" 0
+
+30 0 0 0 0 0
+E E "main(bool enter)
+{
+  if (enter)
+  {
+    botonera_sec.visible = FALSE;
+    botonera_ext.visible = FALSE;
+    botonera_graf.visible = FALSE;
+  }
+}" 0
+
+1
+6
+LANG:10001 6 Zone 5
+LANG:10010 11 Audit Trail
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  205.0164606252057 737.0120044951855 338.0087086872212 790.0120044951855
+
+P 
+4294967295
+"pictures/iconos/botoneras/botonera_principal_pc/es_ES/audit_trail_on.svg"
+2
+LANG:10001 0 
+LANG:10010 0 
+"main(mapping event)
+{
+  cambiar_panel_activo(9);
+  cambiar_pantalla_actual(\"AUDIT\\nTRAIL\");
+  //cambiar_estado_btn_botonera();
+  int n_ui = myUiNumber();
+  int n_pantalla = numero_pantalla();
+  dpSet(\"ui_\" + n_ui + \"_botonera_\" + n_pantalla + \".indice\", 30);
+  botonera_ext.visible = FALSE;
+  botonera_sec.visible = FALSE;
+  botonera_graf.visible = FALSE;
+}
+" 0
+ E E "main()
+{
+  int n_ui = myUiNumber();
+  int n_pantalla = numero_pantalla();
+  dpConnect(\"cambiar_fondo\", \"ui_\" + n_ui + \"_botonera_\" + n_pantalla + \".indice\");
+}
+void cambiar_fondo(string dp, int valor)
+{
+  if (valor == 30) this.backCol(\"LIB_DEUSER_AZUL_06\");
+  else this.backCol(\"_Transparent\");
+}
+" 0
+
+13 32
+"btn_manual"
+""
+1 0.7423923880767802 689.014482019258 E E E 1 E 1 E N "white" E N "_Transparent" E E
+ E E
+31 0 0 0 0 0
+E E "main(bool enter)
+{
+  if (enter)
+  {
+    botonera_sec.visible = FALSE;
+    botonera_ext.visible = FALSE;
+    botonera_graf.visible = FALSE;
+  }
+}" 0
+
+1
+6
+LANG:10001 6 Zone 5
+LANG:10010 12 Manual SCADA
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  -1.241146986717534 687.0625000000001 131.751101075298 740.0625000000001
+
+P 
+4294967295
+"pictures/iconos/botoneras/botonera_principal_pc/es_ES/manual_scada_on.svg"
+2
+LANG:10001 0 
+LANG:10010 0 
+"main(mapping event)
+{
+  cambiar_panel_activo(11);
+  cambiar_pantalla_actual(\"MANUAL\\nSCADA\");
+  //cambiar_estado_btn_botonera();
+  int n_ui = myUiNumber();
+  int n_pantalla = numero_pantalla();
+  dpSet(\"ui_\" + n_ui + \"_botonera_\" + n_pantalla + \".indice\", 28);
+  botonera_ext.visible = FALSE;
+  botonera_sec.visible = FALSE;
+  botonera_graf.visible = FALSE;
+}
+" 0
+ E E "main()
+{
+  int n_ui = myUiNumber();
+  int n_pantalla = numero_pantalla();
+  dpConnect(\"cambiar_fondo\", \"ui_\" + n_ui + \"_botonera_\" + n_pantalla + \".indice\");
+}
+void cambiar_fondo(string dp, int valor)
+{
+  if (valor == 28) this.backCol(\"LIB_DEUSER_AZUL_06\");
+  else this.backCol(\"_Transparent\");
+}
+" 0
+
+13 34
+"btn_desplegable"
+""
+1 181 0 E E E 1 E 1 E N "_Transparent" E N "LIB_DEUSER_BLANCO" E E
+ E E
+33 0 0 0 0 0
+E E "main(bool enter)
+{
+  if (enter)
+  {
+    botonera_sec.visible = FALSE;
+    botonera_ext.visible = FALSE;
+    botonera_graf.visible = FALSE;
+  }
+}" 0
+
+1
+2
+LANG:10001 0 
+LANG:10010 15 Menú Principal
+
+4
+"shadowOffset" "[4,4]"
+"shadowColor" "{63,63,63,131}"
+"shadowRadius" "20"
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  129 -2 182 41
+
+P 
+4294967295
+"pictures/iconos/botoneras/botonera_principal_pc/icono_menu.svg"
+2
+LANG:10001 12 PUSH_BUTTON1
+LANG:10010 0 
+"main(mapping event)
+{
+  int x, y, g;
+  getValue(\"botonera\", \"position\", x, y);
+  g = createAnimation();
+  animate(g, \"\", \"positionAsDyn\", makeDynInt(50, y), makeDynInt(131, y), makeMapping(\"duration\", 250));
+  animate(g, \"\", \"sizeAsDyn\", makeDynInt(50, 40), makeDynInt(131, 40), makeMapping(\"duration\", 250));
+
+  if (x < 0)
+  {
+    animate(\"botonera\", \"positionAsDyn\", makeDynInt(x, y), makeDynInt(0, y), makeMapping(\"duration\", 200));
+    startAnimation(g);
+  }
+  else
+  {
+    startAnimation(g, \"keep\", makeMapping(\"direction\", \"Backward\"));
+    animate(\"botonera\", \"positionAsDyn\", makeDynInt(x, y), makeDynInt(x - 135, y), makeMapping(\"duration\", 200));
+  }
+}" 0
+ E E E
+13 46
+"linea_1"
+""
+1 6.257914698159066 90 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+45 0 0 0 0 0
+E E "main(bool enter)
+{
+  botonera_sec.visible = FALSE;
+  botonera_ext.visible = FALSE;
+}" 0
+
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  4.257914698159066 88 125.2579146981591 92
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+13 47
+"linea_2"
+""
+1 6.257914698159073 140 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+46 0 0 0 0 0
+E E "main(bool enter)
+{
+  botonera_sec.visible = FALSE;
+  botonera_ext.visible = FALSE;
+}" 0
+
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  4.257914698159073 138 125.2579146981591 142
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+13 48
+"linea_3"
+""
+1 6.257914698159073 190 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+47 0 0 0 0 0
+E E "main(bool enter)
+{
+  botonera_sec.visible = FALSE;
+  botonera_ext.visible = FALSE;
+}" 0
+
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  4.257914698159073 188 125.2579146981591 192
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+13 49
+"linea_4"
+""
+1 6.257914698159073 240 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+48 0 0 0 0 0
+E E "main(bool enter)
+{
+  botonera_sec.visible = FALSE;
+  botonera_ext.visible = FALSE;
+}" 0
+
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  4.257914698159073 238 125.2579146981591 242
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+13 50
+"linea_5"
+""
+1 6.257914698159073 290 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+49 0 0 0 0 0
+E E "main(bool enter)
+{
+  botonera_sec.visible = FALSE;
+  botonera_ext.visible = FALSE;
+}" 0
+
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  4.257914698159073 288 125.2579146981591 292
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+13 51
+"linea_6"
+""
+1 6.257914698159073 340 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+50 0 0 0 0 0
+E E "main(bool enter)
+{
+  botonera_sec.visible = FALSE;
+  botonera_ext.visible = FALSE;
+}" 0
+
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  4.257914698159073 338 125.2579146981591 342
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+13 52
+"linea_7"
+""
+1 6.257914698159073 440.048017980742 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+51 0 0 0 0 0
+E E "main(bool enter)
+{
+  botonera_sec.visible = FALSE;
+  botonera_ext.visible = FALSE;
+}" 0
+
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  4.257914698159073 438.048017980742 125.2579146981591 442.048017980742
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+13 53
+"linea_8"
+""
+1 5.507291997478884 490.048017980742 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+52 0 0 0 0 0
+E E "main(bool enter)
+{
+  botonera_sec.visible = FALSE;
+  botonera_ext.visible = FALSE;
+}" 0
+
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  3.507291997478884 488.048017980742 124.5072919974789 492.048017980742
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+13 54
+"linea_9"
+""
+1 5.507291997478884 540.048017980742 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+53 0 0 0 0 0
+E E "main(bool enter)
+{
+  botonera_sec.visible = FALSE;
+  botonera_ext.visible = FALSE;
+}" 0
+
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  3.507291997478884 538.048017980742 124.5072919974789 542.048017980742
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+13 55
+"linea_10"
+""
+1 5.50317684117793 640 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+54 0 0 0 0 0
+E E "main(bool enter)
+{
+  botonera_sec.visible = FALSE;
+  botonera_ext.visible = FALSE;
+}" 0
+
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  3.50317684117793 638 124.503176841178 642
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+13 56
+"linea_11"
+""
+1 5.503176841177937 690.0000000000001 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+55 0 0 0 0 0
+E E "main(bool enter)
+{
+  botonera_sec.visible = FALSE;
+  botonera_ext.visible = FALSE;
+}" 0
+
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  3.503176841177937 688.0000000000001 124.503176841178 692.0000000000001
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+13 59
+"linea_0"
+""
+1 6.257914698159066 40 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+58 0 0 0 0 0
+E E "main(bool enter)
+{
+  botonera_sec.visible = FALSE;
+  botonera_ext.visible = FALSE;
+}" 0
+
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  4.257914698159066 38 125.2579146981591 42
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+13 2
+"btn_principal"
+""
+1 0.7588530132824562 40.00103184771644 E E E 1 E 1 E N "white" E N "_Transparent" E E
+ E E
+1 0 0 0 0 0
+E E "main(bool enter)
+{
+  if (enter)
+  {
+    botonera_sec.visible = FALSE;
+    botonera_ext.visible = FALSE;
+    botonera_graf.visible = FALSE;
+  }
+}" 0
+
+1
+6
+LANG:10001 8 Synoptic
+LANG:10010 6 Inicio
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  -1.241146986717545 38.00103184771644 131.751101075298 91.00103184771643
+
+P 
+4294967295
+"pictures/iconos/botoneras/botonera_principal_pc/es_ES/home_on.svg"
+2
+LANG:10001 0 
+LANG:10010 0 
+"main(mapping event)
+{
+  cambiar_panel_activo(12);
+  cambiar_pantalla_actual(\"INICIO\");
+  //cambiar_estado_btn_botonera();
+  int n_ui = myUiNumber();
+  int n_pantalla = numero_pantalla();
+  dpSet(\"ui_\" + n_ui + \"_botonera_\" + n_pantalla + \".indice\", 1);
+  botonera_ext.visible = FALSE;
+  botonera_sec.visible = FALSE;
+  botonera_graf.visible = FALSE;
+}
+" 0
+ E E "main()
+{
+  int n_ui = myUiNumber();
+  int n_pantalla = numero_pantalla();
+  dpConnect(\"cambiar_fondo\", \"ui_\" + n_ui + \"_botonera_\" + n_pantalla + \".indice\");
+}
+void cambiar_fondo(string dp, int valor)
+{
+  if (valor == 1) this.backCol(\"LIB_DEUSER_AZUL_06\");
+  else this.backCol(\"_Transparent\");
+}" 0
+
+13 100
+"btn_analizadores"
+""
+1 0.7382772317765642 440.0000000000001 E E E 1 E 1 E N "white" E N "_Transparent" E E
+ E E
+99 0 0 0 0 0
+E E "main(bool enter)
+{
+  if (enter)
+  {
+    botonera_sec.visible = FALSE;
+    botonera_ext.visible = FALSE;
+    botonera_graf.visible = FALSE;
+  }
+}" 0
+
+1
+6
+LANG:10001 6 Zone 4
+LANG:10010 0 
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  -1.24114698671755 438.048017980742 131.751101075298 491.048017980742
+
+P 
+4294967295
+"pictures/iconos/botoneras/botonera_principal_pc/es_ES/analizadores.svg"
+2
+LANG:10001 0 
+LANG:10010 0 
+"main(mapping event)
+{
+  cambiar_panel_activo(14);
+  cambiar_pantalla_actual(\"ANALIZADORES\\nDE RED\");
+  //cambiar_estado_btn_botonera();
+  int n_ui = myUiNumber();
+  int n_pantalla = numero_pantalla();
+  dpSet(\"ui_\" + n_ui + \"_botonera_\" + n_pantalla + \".indice\", 20,
+        \"ConfiguracionSCADA.configuracion_graficas.indiceGraficaAnalizadorRed\", 0);
+  botonera_ext.visible = FALSE;
+  botonera_sec.visible = FALSE;
+  botonera_graf.visible = FALSE;
+}
+" 0
+ E E "main()
+{
+  int n_ui = myUiNumber();
+  int n_pantalla = numero_pantalla();
+  dpConnect(\"cambiar_fondo\", \"ui_\" + n_ui + \"_botonera_\" + n_pantalla + \".indice\");
+}
+void cambiar_fondo(string dp, int valor)
+{
+  if (valor == 20) this.backCol(\"LIB_DEUSER_AZUL_06\");
+  else this.backCol(\"_Transparent\");
+}
+" 0
+
+13 101
+"PUSH_BUTTON42"
+""
+1 6.25791469815907 389.5 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+100 0 0 0 0 0
+E E "main(bool enter)
+{
+  botonera_sec.visible = FALSE;
+  botonera_ext.visible = FALSE;
+}" 0
+
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  4.25791469815907 387.5 125.2579146981591 391.5
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+13 103
+"btn_registros"
+""
+1 0.7382772317765642 640.0144820192581 E E E 1 E 1 E N "white" E N "_Transparent" E E
+ E E
+102 0 0 0 0 0
+E E "main(bool enter)
+{
+  if (enter)
+  {
+    botonera_sec.visible = FALSE;
+    botonera_ext.visible = FALSE;
+    botonera_graf.visible = FALSE;
+  }
+}" 0
+
+1
+6
+LANG:10001 6 Zone 4
+LANG:10010 0 
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  -1.24114698671755 638.0625 131.751101075298 691.0625
+
+P 
+4294967295
+"pictures/iconos/botoneras/botonera_principal_pc/es_ES/registros.svg"
+2
+LANG:10001 0 
+LANG:10010 0 
+"main(mapping event)
+{
+  cambiar_panel_activo(15);
+  cambiar_pantalla_actual(\"REGISTROS\");
+  //cambiar_estado_btn_botonera();
+  int n_ui = myUiNumber();
+  int n_pantalla = numero_pantalla();
+  dpSet(\"ui_\" + n_ui + \"_botonera_\" + n_pantalla + \".indice\", 26);
+  botonera_ext.visible = FALSE;
+  botonera_sec.visible = FALSE;
+  botonera_graf.visible = FALSE;
+}
+" 0
+ E E "main()
+{
+  int n_ui = myUiNumber();
+  int n_pantalla = numero_pantalla();
+  dpConnect(\"cambiar_fondo\", \"ui_\" + n_ui + \"_botonera_\" + n_pantalla + \".indice\");
+}
+void cambiar_fondo(string dp, int valor)
+{
+  if (valor == 26) this.backCol(\"LIB_DEUSER_AZUL_06\");
+  else this.backCol(\"_Transparent\");
+}
+" 0
+
+13 102
+"PUSH_BUTTON43"
+""
+1 6.257914698159073 589.6490089903709 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+101 0 0 0 0 0
+E E "main(bool enter)
+{
+  botonera_sec.visible = FALSE;
+  botonera_ext.visible = FALSE;
+}" 0
+
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  4.257914698159073 587.6490089903709 125.2579146981591 591.6490089903709
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+13 104
+"btn_enviar_email"
+""
+1 0.7423923880785139 738.9639865144436 E E E 1 E 1 E N "white" E N "_Transparent" E E
+ E E
+103 0 0 0 0 0
+E E "main(bool enter)
+{
+  if (enter)
+  {
+    botonera_sec.visible = FALSE;
+    botonera_ext.visible = FALSE;
+    botonera_graf.visible = FALSE;
+  }
+}" 0
+
+1
+6
+LANG:10001 6 Zone 5
+LANG:10010 11 Audit Trail
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 41 Trebuchet MS,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  -1.241146986717609 737.0120044951855 131.751101075298 790.0120044951855
+
+B 
+4294967295
+"pictures/iconos/botoneras/enviar_email.svg"
+2
+LANG:10001 0 
+LANG:10010 21 ENVIAR      
+ EMAIL  
+"main(mapping event)
+{
+  int n_permiso = 12;
+  bool permiso = permisos_usuario_operacion(n_permiso, FALSE);
+
+  if (permiso)
+  {
+    ChildPanelOnCentralModal(\"vision/emergentes/internas/nuevo_email\", \"Nuevo_Email\", \"\");
+  }
+}
+" 0
+ E E E
+13 105
+"PUSH_BUTTON44"
+""
+1 6.875550537648969 739 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+104 0 0 0 0 0
+E E "main(bool enter)
+{
+  botonera_sec.visible = FALSE;
+  botonera_ext.visible = FALSE;
+}" 0
+
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  4.875550537648969 737 125.875550537649 741
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+13 106
+"btn_otros"
+""
+1 0.4833001874863359 390.4639865144435 E E E 1 E 1 E N "white" E N "_Transparent" E E
+ E E
+105 0 0 0 0 0
+E E "main(bool enter)
+{
+  if (enter)
+  {
+    botonera_sec.visible = FALSE;
+    botonera_ext.visible = FALSE;
+    botonera_graf.visible = FALSE;
+  }
+}" 0
+
+1
+6
+LANG:10001 6 Zone 4
+LANG:10010 0 
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 41 Trebuchet MS,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  -1.496124031007777 388.5120044951855 131.4961240310078 441.5120044951855
+
+B 
+4294967295
+"XmUNSPECIFIED_PIXMAP"
+2
+LANG:10001 0 
+LANG:10010 5 OTROS
+"main(mapping event)
+{
+  cambiar_panel_activo(17);
+  cambiar_pantalla_actual(\"GRANULADORA\");
+  //cambiar_estado_btn_botonera();
+  int n_ui = myUiNumber();
+  int n_pantalla = numero_pantalla();
+  dpSet(\"ui_\" + n_ui + \"_botonera_\" + n_pantalla + \".indice\", 31);
+  botonera_ext.visible = FALSE;
+  botonera_sec.visible = FALSE;
+  botonera_graf.visible = FALSE;
+}
+" 0
+ E E "main()
+{
+  int n_ui = myUiNumber();
+  int n_pantalla = numero_pantalla();
+  dpConnect(\"cambiar_fondo\", \"ui_\" + n_ui + \"_botonera_\" + n_pantalla + \".indice\");
+}
+void cambiar_fondo(string dp, int valor)
+{
+  if (valor == 31) this.backCol(\"LIB_DEUSER_AZUL_06\");
+  else this.backCol(\"_Transparent\");
+}
+" 0
+
+13 24
+"btn_sinoptico"
+""
+1 -5.662137425588298e-15 190 E E E 1 E 1 E N "white" E N "_Transparent" E E
+ E E
+23 0 0 0 0 0
+E E "main(bool enter)
+{
+  if (enter)
+  {
+    botonera_sec.visible = FALSE;
+    botonera_ext.visible = FALSE;
+    botonera_graf.visible = FALSE;
+  }
+}" 0
+
+1
+6
+LANG:10001 6 Zone 1
+LANG:10010 18 Sinóptico General
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+0  -1.979424218493814 188.0480179807419 131.0128238435217 241.0480179807419
+
+P 
+4294967295
+"XmUNSPECIFIED_PIXMAP"
+2
+LANG:10001 0 
+LANG:10010 6 BODEGA
+"main(mapping event)
+{
+  cambiar_panel_activo(16);
+  cambiar_pantalla_actual(\"BODEGA\");
+  //cambiar_estado_btn_botonera();
+  int n_ui = myUiNumber();
+  int n_pantalla = numero_pantalla();
+  dpSet(\"ui_\" + n_ui + \"_botonera_\" + n_pantalla + \".indice\", 4);
+  botonera_ext.visible = FALSE;
+  botonera_sec.visible = FALSE;
+  botonera_graf.visible = FALSE;
+}
+" 0
+ E E "main()
+{
+  int n_ui = myUiNumber();
+  int n_pantalla = numero_pantalla();
+  dpConnect(\"cambiar_fondo\", \"ui_\" + n_ui + \"_botonera_\" + n_pantalla + \".indice\");
+}
+void cambiar_fondo(string dp, int valor)
+{
+  if (valor == 4) this.backCol(\"LIB_DEUSER_AZUL_06\");
+  else this.backCol(\"_Transparent\");
+}
+" 0
+
+0
+1 2 "botonera_graf" 5
+5 0 
+88 89 90 94 99 
+
+"layoutAlignment" "AlignNone"
+"" ""
+1 4 "botonera_sec" -1
+13 0 
+60 62 63 64 65 66 67 68 69 70 71 72 74 
+
+"layoutAlignment" "AlignNone"
+"" ""
+1 5 "botonera_ext" -1
+13 1 
+75 76 77 78 79 80 81 82 83 84 85 86 87 
+2 
+"layoutAlignment" "AlignNone"
+"" ""
+0

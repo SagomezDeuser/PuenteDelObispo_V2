@@ -1,0 +1,113 @@
+V 14
+2
+LANG:10001 0 
+LANG:10010 0 
+PANEL,-1 -1 68 40 N "_3DFace" 2
+"$DP"
+"$INVERT"
+E E E E E 1 -1 -1 0  -7.105427357601002e-15 -7.105427357601002e-15
+""0  1
+E E 4
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+"pdpi" "141.951"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10001 0 
+LANG:10010 0 
+6 1
+"RECTANGLE18"
+""
+1 90 120 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+0 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  dpConnect(\"cambiar_estado_motor\", $DP);
+}
+
+void cambiar_estado_motor(string dp, int valor)
+{
+  if($INVERT == FALSE)
+  {
+    if(valor == 0)
+    {
+      setValue(\"\",\"fill\", \"[pattern,[fit,any,pictures/maquinarias/motor.png]]\");
+    }
+    else if(valor == 1)
+    {
+      setValue(\"\",\"fill\", \"[pattern,[fit,any,pictures/maquinarias/motor_verde.png]]\");
+    }
+    else if(valor == 2)
+    {
+      setValue(\"\",\"fill\", \"[pattern,[fit,any,pictures/maquinarias/motor_rojo.png]]\");
+    }
+  }
+  else
+  {
+    if(valor == 0)
+    {
+      setValue(\"\",\"fill\", \"[pattern,[fit,any,pictures/maquinarias/motor_invert.png]]\");
+    }
+    else if(valor == 1)
+    {
+      setValue(\"\",\"fill\", \"[pattern,[fit,any,pictures/maquinarias/motor_invert_verde.png]]\");
+    }
+    else if(valor == 2)
+    {
+      setValue(\"\",\"fill\", \"[pattern,[fit,any,pictures/maquinarias/motor_invert_rojo.png]]\");
+    }
+  }
+}" 0
+ E -1 0 3 2 1 E 0.2511330079253205 0 0.2711167499873764 -22.60197071327885 -32.53400999848517 2  1 0  "pictures/maquinarias/motor.png" 4294967295 E 90 120 390 260
+0
+LAYER, 1 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 2 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 3 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 4 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 5 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 6 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 7 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+0

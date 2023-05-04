@@ -1,0 +1,316 @@
+V 14
+7
+LANG:10001 0 
+LANG:10010 17 COMPONENTE SIMPLE
+LANG:10011 0 
+LANG:10009 12 MOTOR SIMPLE
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+PANEL,-1 -1 310 286 N "LIB_IRC_BLANCO" 4
+"$AUTO_MODIFICABLE"
+"$INST"
+"$TAG"
+"$TIPO_INST"
+"main()
+{
+  string descripcion;
+
+  descripcion = getCatStr(\"dps\", $INST); //Traduce el nombre de la instancia mediante el catálogo \"dps\"
+
+  addGlobal(\"nom_btn_panel_fp\", DYN_STRING_VAR);  //Creamos la variable global para utilizarla en todo el panel
+
+  nom_btn_panel_fp = makeDynString(\"btn_principal\");  //Agregamos al Array todos los botones a los cuales les cambiaremos su aspecto al ser pulsado uno de ellos
+
+  activar_address_fp($INST, $TIPO_INST); //Función para establecer como activa los address de una instancia pasada como
+                                         //parámetro junto al tipo de instancia de un faceplates.
+  setWindowTitle(myModuleName(), myPanelName(), \"PRINCIPAL - \" + descripcion); // Setea el nombre en la cabecera del módulo
+  windowStyle(myModuleName(), myPanelName(), 0, 0); //Modifica el estilo de la ventana
+}
+" 0
+ "main()
+{
+  desactivar_address_fp($INST, $TIPO_INST);//Función para establecer como desactiva los address de una instancia
+}" 0
+ E E E 1 -1 -1 0  40 40
+""0  1
+E "//--------------------------------------------------------------------------------
+// Listado de variables const a utilizar  en el ctl
+const string ruta_faceplates = \"vision/faceplates/512_LIB_COMPONENTE_SIMPLE/\";
+const mapping nom_paneles = makeMapping(0, \"512_LIB_COMPONENTE_SIMPLE_PRINCIPAL\");
+
+/***************************************************************************************
+  @author jbudia
+  @date 14/11/2019
+  @brief Genera un diccionario con los nombres de los paneles usados en este faceplate.
+  @return El diccionario con los nombres de paneles.
+****************************************************************************************/
+mapping get_mapa_nom_paneles(){
+  return (nom_paneles);
+}
+/******* Fin de la función get_mapa_nom_paneles() *********/
+
+/***************************************************************************************
+  @author jbudia
+  @date 14/11/2019
+  @brief Cambia el panel activo del faceplate.
+  @return No devuelve nada.
+****************************************************************************************/
+cambiar_panel_activo(int clave){
+  string nom_panel;
+  mapping ruta_paneles;
+
+  ruta_paneles = get_mapa_nom_paneles();
+  nom_panel = ruta_paneles.value(clave, \"\");//Obtenemos del diccionario creado anteriormente, el panel en cuestión a través de su clave
+  //Abre el panel en el módulo especificado por parámetro
+  RootPanelOnModule(ruta_faceplates + nom_panel + \".pnl\", nom_panel,  body.ModuleName, makeDynString(\"$INST:\" + $INST, \"$AUTO_MODIFICABLE:\" + $AUTO_MODIFICABLE, \"$TIPO_INST:\" + $TIPO_INST, \"$TAG:\" + $TAG));
+}
+/******* Fin de la función cambiar_panel_activo() *********/
+" 0
+ 6
+"CBRef" "1"
+"EClose" E
+"windowIcon" "iconos/ventanas/seleccion.svg"
+"type" "BG_COMPONENTE_SIMPLE"
+"dpi" "96"
+"pdpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10001 0 
+LANG:10010 0 
+29 19
+"body"
+""
+1 6.310887241768094e-30 -3 E E E 1 E 1 E N "_3DText" E N "_3DFace" E E
+ E E
+18 0 0 0 0 0
+E E E
+0
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+9
+"newPanelAnimDuration" "int 0"
+"oldPanelAnimDuration" "int 0"
+"newPanelAnimateOpacity" "bool TRUE"
+"oldPanelAnimateOpacity" "bool TRUE"
+"newPanelAnimateSize" "bool TRUE"
+"oldPanelAnimateSize" "bool TRUE"
+"newPanelAnimType" "string TopLeft"
+"oldPanelAnimType" "string BottomRight"
+"layoutAlignment" "AlignNone"
+7
+LANG:10001 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10010 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10011 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10009 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10008 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10018 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10005 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  7.006492321624085e-46 47 309 286
+15 Canvas.Canvas.1
+0
+"main()
+{
+  cambiar_panel_activo(0);//Cambia el panel activo del faceplate
+}
+" 0
+13 20
+"btn_principal"
+""
+1 -0.4999999999999982 -1 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "LIB_IRC_AZUL_01" E E
+ E E
+19 0 0 0 0 0
+E E E
+1
+7
+LANG:10001 9 Principal
+LANG:10010 9 Principal
+LANG:10011 9 Principal
+LANG:10009 9 Principal
+LANG:10008 9 Principal
+LANG:10018 9 Principal
+LANG:10005 0 
+
+6
+"hoverfclr" "N \"_Transparent\""
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"focusPolicy" "StrongFocus"
+"showFocus" "0"
+"isDefault" ""
+7
+LANG:10001 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10010 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10011 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10009 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10008 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10018 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10005 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  -2 0 311 48
+
+P 
+4294967295
+"pictures/iconos/faceplates/fp_principal/home_on.svg"
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+"main(mapping event)
+{
+  string descripcion;
+
+  descripcion = getCatStr(\"dps\", $INST);//Traduce el nombre de la instancia mediante el catálogo \"dps\"
+
+
+  cambiar_panel_activo(0); //Cambia el panel activo del faceplate
+  setWindowTitle(myModuleName(), myPanelName(), \"PRINCIPAL - \" + descripcion); // Setea el nombre en la cabecera del módulo
+  cambiar_estado_btns_objeto(this.name(), nom_btn_panel_fp); //Cambia las carácteristicas del buttonType en función del estado.
+                                                             //\"nom_btn_panel_fp\" es una variable global (array) con todos los botones (Ver Initialize del Panel)
+}
+" 0
+ E E "main()
+{
+  this.backCol(\"LIB_DEUSER_AZUL_06\"); // Cambiamos el color a la pestaña Principal.
+}
+" 0
+
+0
+LAYER, 1 
+2
+LANG:10001 0 
+LANG:10010 0 
+13 21
+"PUSH_BUTTON2"
+""
+1 -130.75 25 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+20 0 0 0 0 0
+E E "main(bool enter)
+{
+  botonera_sec.visible = FALSE;
+  botonera_ext.visible = FALSE;
+}" 0
+
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  -194.0079146981591 -2 318.9920853018409 3
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+13 22
+"PUSH_BUTTON3"
+""
+1 61 26 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+21 0 0 0 0 0
+E E "main(bool enter)
+{
+  botonera_sec.visible = FALSE;
+  botonera_ext.visible = FALSE;
+}" 0
+
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  -2.257914698159098 -1 510.7420853018409 4
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+13 23
+"PUSH_BUTTON4"
+""
+1 61 71 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+22 0 0 0 0 0
+E E "main(bool enter)
+{
+  botonera_sec.visible = FALSE;
+  botonera_ext.visible = FALSE;
+}" 0
+
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  -2 44 311 49
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+0
+LAYER, 2 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 3 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 4 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 5 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 6 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 7 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+0

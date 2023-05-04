@@ -1,0 +1,4523 @@
+V 14
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+PANEL,-1 -1 1920 960 N "white" 0
+E E E E E 1 -1 -1 0  0 0
+""0  1
+E "void controles_inactivos()
+{
+  setMultiValue(\"tabla_valores\", \"transparentForMouse\", TRUE,
+                \"btn_buscar\", \"transparentForMouse\", TRUE);
+}
+void controles_activos()
+{
+  setMultiValue(\"tabla_valores\", \"transparentForMouse\", FALSE,
+                \"btn_buscar\", \"transparentForMouse\", FALSE);
+}
+void pintar_tabla_valores(dyn_dyn_anytype resultado)
+{
+  controles_inactivos();  //Ponemos el símbolo de cargando, e inhabilitamos los controles hasta acabar el llenado de la tabla
+
+  for (int i = 1; i <= dynlen(resultado); i++) //Para cada motor traido del Query, separamos las partes de su DP y rellenamos las columnas de la tabla
+  {
+    setValue(\"tabla_valores\", \"appendLine\",
+             \"fecha_hora\",  resultado[i][1],
+             \"nombre_incidencia\",   resultado[i][2],
+             \"usuario\",     resultado[i][3],
+             \"prioridad\",      resultado[i][4],
+             \"lugar\", resultado[i][5],
+             \"elemento\",      resultado[i][6],
+             \"descripcion_incidencia\",      resultado[i][7],
+             \"causa_incidencia\",      resultado[i][8],
+             \"reparacion\",      resultado[i][9],
+             \"descripcion_reparacion\",      resultado[i][10]);
+  }
+
+  tabla_valores.selectLineN(0);
+  tabla_valores.selectByClick(0);
+  controles_activos();  //Rehabilitamos los mandos de control de la tabla, y quitamos el símbolo de cargando
+}
+
+void actualizar_tabla_seleccion()
+{
+  int rc, anio, mes, dia;
+  bool entrada, acuse, salida;
+  dyn_string fecha_hora, descripcion;
+  dyn_dyn_anytype resultado_consulta_1, datos_tabla;
+  string img, select_sql_1, inst_bd, cuadro, fecha_actual, fecha_ini, fecha_fin, hora_ini, min_ini, dia_ini, mes_ini, ano_ini, hora_fin, min_fin, dia_fin, mes_fin, ano_fin, modo, estado, descripciones;
+  time fecha_ini_time, fecha_fin_time;
+
+  hora_ini = cbb_hora_ini.selectedText;
+  min_ini = cbb_min_ini.selectedText;
+  dia_ini = cbb_dia_ini.selectedText;
+  mes_ini = cbb_mes_ini.selectedText;
+  ano_ini = cbb_ano_ini.selectedText;
+  fecha_ini = dia_ini + \"-\" + mes_ini + \"-\" + ano_ini + \" \" + hora_ini + \":\" + min_ini + \":00\";
+
+  fecha_ini_time = fecha_ini;
+
+  hora_fin = cbb_hora_fin.selectedText;
+  min_fin = cbb_min_fin.selectedText;
+  dia_fin = cbb_dia_fin.selectedText;
+  mes_fin = cbb_mes_fin.selectedText;
+  ano_fin = cbb_ano_fin.selectedText;
+  fecha_fin = dia_fin + \"-\" + mes_fin + \"-\" + ano_fin + \" \" + hora_fin + \":\" + min_fin + \":59\";
+
+  fecha_fin_time = fecha_fin;
+
+  inst_bd = instancia_bd();
+  select_sql_1 = \"SELECT DISTINCT Nombre_Incidencia \" +
+                 \"FROM \" + inst_bd + \"[Incidencias] \" +
+                 \"WHERE Fecha_Hora BETWEEN ' \" + fecha_ini + \" ' AND ' \" + fecha_fin + \" ' \" +
+                 \"ORDER BY Nombre_Incidencia ASC\";
+  tabla_desc.deleteAllLines();
+  resultado_consulta_1 = select_bd(\"SQL\", select_sql_1);
+
+  for (int i = 1; i <= dynlen(resultado_consulta_1); i++)
+  {
+    tabla_desc.appendLine(\"nombre_incidencia\", resultado_consulta_1[i][1]);
+  }
+}
+" 0
+ 4
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+"pdpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10001 0 
+LANG:10010 0 
+6 196
+"RECTANGLE66"
+""
+1 1250 12 E E E 1 E 1 E N {179,200,224} E N {255,255,255} E E
+ E E
+195 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+8
+"shadowOffset" "[4,4]"
+"shadowColor" "{63,63,63,63}"
+"shadowRadius" "8"
+"transparentForMouseInGedi" ""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 2 3 2 1 E 2.096809680968095 0 0.4218390804597701 -2609.494544274799 702.501394258185 1 E 1250 12 1856 592
+25 2
+"tabla_valores"
+"MEDIANO_AZUL"
+1 9.339756824960448 -6.190113287260225 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_BLANCO" E E
+ E E
+1 0 0 0 0 0
+E E E
+0
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+5
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+7
+LANG:10001 26 Arial,-1,12,5,75,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10011 26 Arial,-1,12,5,75,0,0,0,0,0
+LANG:10009 26 Arial,-1,12,5,75,0,0,0,0,0
+LANG:10008 26 Arial,-1,12,5,75,0,0,0,0,0
+LANG:10018 26 Arial,-1,12,5,75,0,0,0,0,0
+LANG:10005 26 Arial,-1,12,5,75,0,0,0,0,0
+0  7.666666666667268 7.99999999999992 1911.666666666667 692
+"main()
+{
+  setValue(\"\", \"deleteAllLines\");
+  formatear_estilo_tabla(\"tabla_valores\", \"AlignVCenter | AlignHCenter\", \"LIB_IRC_BLANCO\", \"{240,250,255}\");  //Damos formato a la tabla con el listado de variables
+}
+" 0
+E 1 0 1 10 0 "fecha_hora" 8 1 0 "[0s,,,AlignHCenter|AlignVCenter]" 7
+LANG:10001 6  Acuse
+LANG:10010 11 FECA - HORA
+LANG:10011 18 Bestätigungsdatum
+LANG:10009 6  Acuse
+LANG:10008 16 Data di conferma
+LANG:10018 21 Data de confirmação
+LANG:10005 19 Acknowledgment date
+E
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+110 "nombre_incidencia" 22 1 0 "[0s,,,AlignHCenter|AlignVCenter]" 7
+LANG:10001 11 Fecha acuse
+LANG:10010 11 INCIDENCIAS
+LANG:10011 12 Abreisedatum
+LANG:10009 11 Fecha acuse
+LANG:10008 16 Data di partenza
+LANG:10018 14 Data de saída
+LANG:10005 11 Output date
+E
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+150 "usuario" 14 1 0 "[0s,,,AlignHCenter|AlignVCenter]" 7
+LANG:10001 8 Elemento
+LANG:10010 7 USUARIO
+LANG:10011 7 Element
+LANG:10009 8 Elemento
+LANG:10008 8 Elemento
+LANG:10018 8 Elemento
+LANG:10005 7 Element
+E
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+150 "prioridad" 27 1 0 "[0s,,,AlignHCenter|AlignVCenter]" 7
+LANG:10001 12 Descripción
+LANG:10010 9 PRIORIDAD
+LANG:10011 12 Beschreibung
+LANG:10009 12 Descripción
+LANG:10008 11 Descrizione
+LANG:10018 11 Descrição
+LANG:10005 11 Description
+E
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+150 "lugar" 13 1 0 "[0s,,,AlignHCenter|AlignVCenter]" 7
+LANG:10001 9 nombreDPE
+LANG:10010 5 LUGAR
+LANG:10011 9 nombreDPE
+LANG:10009 9 nombreDPE
+LANG:10008 9 nombreDPE
+LANG:10018 9 nombreDPE
+LANG:10005 9 nombreDPE
+E
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+150 "elemento" 6 1 0 "[0s,,,AlignHCenter|AlignVCenter]" 7
+LANG:10001 2 #1
+LANG:10010 8 ELEMENTO
+LANG:10011 9 nombreDPE
+LANG:10009 9 nombreDPE
+LANG:10008 9 nombreDPE
+LANG:10018 9 nombreDPE
+LANG:10005 9 nombreDPE
+E
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+200 "descripcion_incidencia" 6 1 0 "[0s,,,AlignHCenter|AlignVCenter]" 7
+LANG:10001 2 #1
+LANG:10010 22 DESCRIPCION INCIDENCIA
+LANG:10011 9 nombreDPE
+LANG:10009 9 nombreDPE
+LANG:10008 9 nombreDPE
+LANG:10018 9 nombreDPE
+LANG:10005 9 nombreDPE
+E
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+350 "causa_incidencia" 6 1 0 "[0s,,,AlignHCenter|AlignVCenter]" 7
+LANG:10001 2 #1
+LANG:10010 17 CAUSAS INCIDENCIA
+LANG:10011 9 nombreDPE
+LANG:10009 9 nombreDPE
+LANG:10008 9 nombreDPE
+LANG:10018 9 nombreDPE
+LANG:10005 9 nombreDPE
+E
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+200 "reparacion" 6 1 0 "[0s,,,AlignHCenter|AlignVCenter]" 7
+LANG:10001 2 #1
+LANG:10010 10 REPARACION
+LANG:10011 9 nombreDPE
+LANG:10009 9 nombreDPE
+LANG:10008 9 nombreDPE
+LANG:10018 9 nombreDPE
+LANG:10005 9 nombreDPE
+E
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+110 "descripcion_reparacion" 6 1 0 "[0s,,,AlignHCenter]" 7
+LANG:10001 2 #1
+LANG:10010 22 DESCRIPCION REPARACION
+LANG:10011 9 nombreDPE
+LANG:10009 9 nombreDPE
+LANG:10008 9 nombreDPE
+LANG:10018 9 nombreDPE
+LANG:10005 9 nombreDPE
+E
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+350 
+75 75 10 0
+7
+LANG:10001 26 Arial,-1,12,5,75,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10011 26 Arial,-1,12,5,75,0,0,0,0,0
+LANG:10009 26 Arial,-1,12,5,75,0,0,0,0,0
+LANG:10008 26 Arial,-1,12,5,75,0,0,0,0,0
+LANG:10018 26 Arial,-1,12,5,75,0,0,0,0,0
+LANG:10005 26 Arial,-1,12,5,75,0,0,0,0,0
+0 0 1 0 1 7
+1 0
+13 93
+"btn_buscar"
+"GRANDE_BLANCO"
+1 1042 808.7902718114811 E E E 1 E 1 E N "LIB_DEUSER_BLANCO" E N "LIB_IRC_AZUL_01" E E
+ E E
+92 0 0 0 0 0
+E E E
+1
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+6
+"hoverbclr" "N \"AZUL_01\""
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+7
+LANG:10001 35 Tahoma,-1,21,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,21,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,21,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,21,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,21,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,21,5,75,0,0,0,0,0,Negrita
+LANG:10005 35 Tahoma,-1,21,5,75,0,0,0,0,0,Negrita
+0  1040.350890268654 806.8967965570355 1261.350890268654 851.8967965570353
+
+P 
+4294967295
+"pictures/iconos/botoneras/Iconos/buscar_texto.svg"
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+"main(mapping event)
+{
+  controles_inactivos();
+  setValue(\"tabla_valores\", \"deleteAllLines\");
+  consulta_sql();
+  controles_activos();
+}
+
+void consulta_sql()
+{
+  int rc, anio, mes, dia, nRegistrosSelect;
+  bool entrada, acuse, salida;
+  dyn_int filas;
+  dyn_string fecha_hora;
+  dyn_dyn_anytype resultado_consulta_1, datos_tabla;
+  string select_sql_1, inst_bd, fecha_actual, fecha_ini, fecha_fin, hora_ini, min_ini, dia_ini, mes_ini, ano_ini, hora_fin, min_fin, dia_fin, mes_fin, ano_fin, prioridad, reparacion, descripcion, descripciones = \"\";
+  time fecha_ini_time, fecha_fin_time;
+
+  hora_ini = cbb_hora_ini.selectedText;
+  min_ini = cbb_min_ini.selectedText;
+  dia_ini = cbb_dia_ini.selectedText;
+  mes_ini = cbb_mes_ini.selectedText;
+  ano_ini = cbb_ano_ini.selectedText;
+  fecha_ini = dia_ini + \"-\" + mes_ini + \"-\" + ano_ini + \" \" + hora_ini + \":\" + min_ini + \":00\";
+
+  fecha_ini_time = makeTime(ano_ini,mes_ini,dia_ini,hora_ini,min_ini,0);
+
+  hora_fin = cbb_hora_fin.selectedText;
+  min_fin = cbb_min_fin.selectedText;
+  dia_fin = cbb_dia_fin.selectedText;
+  mes_fin = cbb_mes_fin.selectedText;
+  ano_fin = cbb_ano_fin.selectedText;
+  fecha_fin = dia_fin+\"-\"+mes_fin+\"-\"+ano_fin+\" \"+hora_fin+\":\"+min_fin+\":59\";
+
+  fecha_fin_time=makeTime(ano_fin,mes_fin,dia_fin,hora_fin,min_fin,0);
+
+  if (fecha_ini_time > fecha_fin_time)
+  {
+    fecha_fin = dia_ini + \"-\" + mes_ini + \"-\" + ano_ini + \" \" + hora_ini + \":\" + min_ini + \":59\";
+
+    cbb_hora_fin.backCol = \"LIB_IRC_ROJO_09\";
+    cbb_min_fin.backCol = \"LIB_IRC_ROJO_09\";
+    cbb_dia_fin.backCol = \"LIB_IRC_ROJO_09\";
+    cbb_mes_fin.backCol = \"LIB_IRC_ROJO_09\";
+    cbb_ano_fin.backCol = \"LIB_IRC_ROJO_09\";
+
+    cbb_hora_fin.selectedPos = cbb_hora_ini.selectedPos;
+    cbb_min_fin.selectedPos = cbb_min_ini.selectedPos;
+    cbb_dia_fin.selectedPos = cbb_dia_ini.selectedPos;
+    cbb_mes_fin.selectedPos = cbb_mes_ini.selectedPos;
+    cbb_ano_fin.selectedPos = cbb_ano_ini.selectedPos;
+    actualizar_tabla_seleccion();
+
+    delay(2, 000);
+
+    cbb_hora_fin.backCol = \"LIB_IRC_BLANCO\";
+    cbb_min_fin.backCol = \"LIB_IRC_BLANCO\";
+    cbb_dia_fin.backCol = \"LIB_IRC_BLANCO\";
+    cbb_mes_fin.backCol = \"LIB_IRC_BLANCO\";
+    cbb_ano_fin.backCol = \"LIB_IRC_BLANCO\";
+
+  }
+
+  getValue(\"tabla_desc\", \"getSelectedLines\", filas);
+  if(filas<=20){
+    for (int i = 1; i <= dynlen(filas); i++)
+    {
+      getValue(\"tabla_desc\", \"cellValueRC\", filas[i], \"nombre_incidencia\", descripcion);
+
+      if (i == dynlen(filas)) descripciones = descripciones + \"'\" + descripcion + \"'\";
+      else descripciones = descripciones + \"'\" + descripcion + \"',\";
+    }
+  }
+
+  inst_bd = instancia_bd();
+    dpGet(\"ConfiguracionSCADA.configuracion_bd.nMaxSelect\", nRegistrosSelect);
+
+  select_sql_1 = \"SELECT TOP (\" + nRegistrosSelect + \") FORMAT(Fecha_Hora,'dd-MM-yyyy HH:mm'), Nombre_Incidencia, Usuario, Prioridad, Lugar, Elemento, Descripcion_Incidencia, Causa_Incidencia, Reparacion, Descripcion_Reparacion \" +
+                 \"FROM \" + inst_bd + \"[Incidencias] \" +
+                 \"WHERE Fecha_Hora BETWEEN '\" + fecha_ini + \"' AND '\" + fecha_fin + \"' AND Nombre_Incidencia IN(\" + descripciones + \") \" +
+                 \"ORDER BY Fecha_Hora\";
+
+
+  resultado_consulta_1 = select_bd(\"SQL\", select_sql_1);
+
+  for (int i = 1; i <= dynlen(resultado_consulta_1); i++)
+  {
+    if (resultado_consulta_1[i][4] == 1) prioridad = \"Muy baja\";
+    else if (resultado_consulta_1[i][4] == 2) prioridad = \"Baja\";
+    else if (resultado_consulta_1[i][4] == 3) prioridad = \"Media\";
+    else if (resultado_consulta_1[i][4] == 4) prioridad = \"Alta\";
+    else if (resultado_consulta_1[i][4] == 5) prioridad = \"Muy alta\";
+
+    if (resultado_consulta_1[i][9]==FALSE) reparacion = \"No\";
+    else if (resultado_consulta_1[i][9] == TRUE) reparacion = \"Si\";
+
+    datos_tabla[i][1] = resultado_consulta_1[i][1];
+    datos_tabla[i][2] = resultado_consulta_1[i][2];
+    datos_tabla[i][3] = resultado_consulta_1[i][3];
+    datos_tabla[i][4] = prioridad;
+    datos_tabla[i][5] = resultado_consulta_1[i][5];
+    datos_tabla[i][6] = resultado_consulta_1[i][6];
+    datos_tabla[i][7] = resultado_consulta_1[i][7];
+    datos_tabla[i][8] = resultado_consulta_1[i][8];
+    datos_tabla[i][9] = reparacion;
+    datos_tabla[i][10] = resultado_consulta_1[i][10];
+  }
+
+  pintar_tabla_valores(datos_tabla);
+}
+" 0
+ E E E
+6 147
+"RECTANGLE128"
+""
+1 1250 12 E E E 1 E 1 E N {179,200,224} E N {255,255,255} E E
+ E E
+146 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+7
+"shadowOffset" "[4,4]"
+"shadowColor" "{63,63,63,63}"
+"shadowRadius" "8"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 2 3 2 1 E 0.7508250825082509 0 0.2368739034710966 447.1083187633716 704.7209763820491 1 E 1250 12 1856 592
+14 149
+"nombre_archivo"
+"PEQUENIO_AZUL"
+1 1488.000000000002 754.9503272369384 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+148 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+2
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10010 34 Consolas,-1,16,5,75,0,0,0,0,0,Bold
+LANG:10011 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10009 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10008 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10018 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  1486.000000000002 744.9503272369384 1832.000000000002 772.9503272369384
+3 "0s" 0 0 0 9 0 -1  E E E
+13 150
+"export_bottom"
+"GRANDE_BLANCO"
+1 1704.951744341249 75.85296676214605 E E E 1 E 1 E N "LIB_DEUSER_BLANCO" E N "LIB_IRC_AZUL_01" E E
+ E E
+149 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+3
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10010 34 Consolas,-1,16,5,75,0,0,0,0,0,Bold
+LANG:10011 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10009 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10008 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10018 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  1575.000000000002 781.5634632237023 1653.000000000002 834.5634632237023
+
+P 
+4294967295
+"pictures/iconos/botoneras/aceptar.svg"
+6
+LANG:10001 13 PUSH_BUTTON13
+LANG:10010 22 Confirmar Exportación
+LANG:10011 13 PUSH_BUTTON13
+LANG:10009 13 PUSH_BUTTON13
+LANG:10008 13 PUSH_BUTTON13
+LANG:10018 13 PUSH_BUTTON13
+"main(mapping event)
+{
+  string path;
+  dyn_anytype respuesta;
+  /*Permisos de usuario - Operación. Devuelve un bool.
+  Parametros obligatorios de la función:
+    - Número de permiso que se comprobará. Desde 10 a 32. De 0 a 9 se usan para Wincc OA.
+    - Comprobar permiso de forma individual (TRUE) o el número de permiso y los superiores (FALSE).
+  Parametros opcionales de la función:
+    - Mostrar mensaje - El usuario no tiene permisos. Por defecto (TRUE).
+  */
+  int n_permiso = 12;
+  bool permiso = permisos_usuario_operacion(n_permiso, FALSE);
+
+  if (permiso)
+  {
+
+    if (nombre_archivo.text != \"\")
+    {
+      path = \"C:/ficheros_csv/incidencias/\" + nombre_archivo.text + \".csv\";
+
+      if (access(path, F_OK) != 0) // Si el archivo no existe, se crea y se añaden los valores.
+      {
+        tabla_valores.writeToFile(path, TABLE_WRITE_VISIBLE_COLUMNS | TABLE_WRITE_COLUMN_HEADER, \";\");
+        mostrar_msg_emergente(3, \"exportar_tabla\");
+        nombre_archivo.text(\"\");
+      }
+      else
+      {
+        respuesta = mostrar_msg_emergente(2, \"existe_csv\", \"titulo_sobrescribir_csv\");
+
+        if (respuesta[1][1] == 1)
+        {
+          tabla_valores.writeToFile(path, TABLE_WRITE_VISIBLE_COLUMNS | TABLE_WRITE_COLUMN_HEADER, \";\");
+          mostrar_msg_emergente(3, \"exportar_tabla\");
+          nombre_archivo.text(\"\");
+        }
+      }
+    }
+    else
+    {
+      nombre_archivo.backCol(\"LIB_IRC_ROJO_12\");
+      delay(2, 000);
+      nombre_archivo.backCol(\"LIB_DEUSER_BLANCO\");
+    }
+  }
+}
+" 0
+ E E E
+6 197
+"RECTANGLE125"
+""
+1 936 120 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_AZUL_03" E E
+ E E
+196 0 0 0 0 0
+E E E
+0
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+4
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 2 2 1 1 E 8.679999999999978 0 1 -7992.629109731325 651.5634632237022 1 E 936 120 986 170
+6 199
+"RECTANGLE127"
+""
+1 936 120 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_AZUL_03" E E
+ E E
+198 0 0 0 0 0
+E E E
+0
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+4
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 2 2 1 1 E 8.659999999999993 0 0.9999999999999996 -7973.909109731339 721.5634632237023 1 E 936 120 986 170
+22 201
+"cbb_dia_ini"
+"MEDIANO_AZUL"
+1 52.85089026865376 424.5634632237022 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_BLANCO" E E
+ E E
+200 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 15 Rango de tiempo
+LANG:10010 0 
+LANG:10011 15 Rango de tiempo
+LANG:10009 15 Rango de tiempo
+LANG:10008 15 Rango de tiempo
+LANG:10018 15 Rango de tiempo
+
+2
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,12,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+0  314.4167817415228 783.0634632237021 387.4167817415228 810.0634632237021
+31
+6
+LANG:10001 3 ???
+LANG:10010 2 01
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 02
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 03
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 04
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 05
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 06
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 07
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 08
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 09
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 10
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 11
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 12
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 13
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 14
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 15
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 16
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 17
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 18
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 19
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 20
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 21
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 22
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 23
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 24
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 25
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 26
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 27
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 28
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 29
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 30
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 31
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+
+E
+"main()
+{
+  actualizar_tabla_seleccion();
+}
+" 0
+
+E
+ 0 0
+22 202
+"cbb_mes_ini"
+"MEDIANO_AZUL"
+1 140.0472199477138 424.5634632237022 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_BLANCO" E E
+ E E
+201 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 15 Rango de tiempo
+LANG:10010 0 
+LANG:10011 15 Rango de tiempo
+LANG:10009 15 Rango de tiempo
+LANG:10008 15 Rango de tiempo
+LANG:10018 15 Rango de tiempo
+
+2
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,12,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+0  392.4167817415228 783.0634632237021 465.4167817415228 810.0634632237021
+12
+6
+LANG:10001 3 ???
+LANG:10010 2 01
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 02
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 03
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 04
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 05
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 06
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 07
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 08
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 09
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 10
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 11
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 12
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+
+E
+"main()
+{
+  actualizar_tabla_seleccion();
+}
+" 0
+
+E
+ 0 0
+22 203
+"cbb_ano_ini"
+"MEDIANO_AZUL"
+1 166.2152313539248 424.5634632237021 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_BLANCO" E E
+ E E
+202 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 15 Rango de tiempo
+LANG:10010 0 
+LANG:10011 15 Rango de tiempo
+LANG:10009 15 Rango de tiempo
+LANG:10008 15 Rango de tiempo
+LANG:10018 15 Rango de tiempo
+
+2
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,12,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+0  470.4167817415228 782.5634632237023 553.4167817415228 810.563463223702
+39
+6
+LANG:10001 3 ???
+LANG:10010 4 2022
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2023
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2024
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2025
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2026
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2027
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2028
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2029
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2030
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2031
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2032
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2033
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2034
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2035
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2036
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2037
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2038
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2039
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2040
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2041
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2042
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2043
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2044
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2045
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2046
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2047
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2048
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2049
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2050
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2051
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2052
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2053
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2054
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2055
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2056
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2057
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2058
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2059
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2060
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+
+E
+"main()
+{
+  actualizar_tabla_seleccion();
+}
+" 0
+
+E
+ 0 0
+22 204
+"cbb_hora_ini"
+"MEDIANO_AZUL"
+1 -116.5832182584772 424.5634632237022 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_BLANCO" E E
+ E E
+203 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 15 Rango de tiempo
+LANG:10010 0 
+LANG:10011 15 Rango de tiempo
+LANG:10009 15 Rango de tiempo
+LANG:10008 15 Rango de tiempo
+LANG:10018 15 Rango de tiempo
+
+2
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,12,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+0  144.9826732143888 783.0634632237021 217.9826732143888 810.0634632237021
+24
+6
+LANG:10001 3 ???
+LANG:10010 2 00
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 01
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 02
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 03
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 04
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 05
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 06
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 07
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 08
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 09
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 10
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 11
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 12
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 13
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 14
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 15
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 16
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 17
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 18
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 19
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 20
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 21
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 22
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 23
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+
+E
+"main()
+{
+  actualizar_tabla_seleccion();
+}
+" 0
+
+E
+ 0 0
+22 205
+"cbb_min_ini"
+"MEDIANO_AZUL"
+1 -36.40747338667734 423.8254528143015 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_BLANCO" E E
+ E E
+204 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 15 Rango de tiempo
+LANG:10010 0 
+LANG:10011 15 Rango de tiempo
+LANG:10009 15 Rango de tiempo
+LANG:10008 15 Rango de tiempo
+LANG:10018 15 Rango de tiempo
+
+2
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,12,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+0  225.1584180861887 782.3254528143015 298.1584180861887 809.3254528143016
+60
+6
+LANG:10001 3 ???
+LANG:10010 2 00
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 01
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 02
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 03
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 04
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 05
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 06
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 07
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 08
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 09
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 10
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 11
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 12
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 13
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 14
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 15
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 16
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 17
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 18
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 19
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 20
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 21
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 22
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 23
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 24
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 25
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 26
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 27
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 28
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 29
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 30
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 31
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 32
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 33
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 34
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 35
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 36
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 37
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 38
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 39
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 40
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 41
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 42
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 43
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 44
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 45
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 46
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 47
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 48
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 49
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 50
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 51
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 52
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 53
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 54
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 55
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 56
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 57
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 58
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 59
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+
+E
+"main()
+{
+  actualizar_tabla_seleccion();
+}
+" 0
+
+E
+ 0 0
+2 206
+"PRIMITIVE_TEXT6"
+""
+1 255 526 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+205 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+5
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E 0.0977048745603928 0 0.5439115737511401 195.5020387286217 499.315788168704 0 E 255 526 322 567
+0 2 2 "0s" 0 0 0 72 0 0  255 526 1
+6
+LANG:10001 34 Tahoma,-1,13,5,50,0,0,0,0,0,Normal
+LANG:10010 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10011 34 Tahoma,-1,13,5,50,0,0,0,0,0,Normal
+LANG:10009 34 Tahoma,-1,13,5,50,0,0,0,0,0,Normal
+LANG:10008 34 Tahoma,-1,13,5,50,0,0,0,0,0,Normal
+LANG:10018 34 Tahoma,-1,13,5,50,0,0,0,0,0,Normal
+0 6
+LANG:10001 16 Tiempo arranque:
+LANG:10010 1 :
+LANG:10011 16 Tiempo arranque:
+LANG:10009 16 Tiempo arranque:
+LANG:10008 16 Tiempo arranque:
+LANG:10018 16 Tiempo arranque:
+22 207
+"cbb_dia_fin"
+"MEDIANO_AZUL"
+1 52.28499879578499 494.5634632237021 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_BLANCO" E E
+ E E
+206 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 15 Rango de tiempo
+LANG:10010 0 
+LANG:10011 15 Rango de tiempo
+LANG:10009 15 Rango de tiempo
+LANG:10008 15 Rango de tiempo
+LANG:10018 15 Rango de tiempo
+
+2
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,12,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+0  313.850890268654 853.063463223702 386.850890268654 880.063463223702
+31
+6
+LANG:10001 3 ???
+LANG:10010 2 01
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 02
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 03
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 04
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 05
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 06
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 07
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 08
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 09
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 10
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 11
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 12
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 13
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 14
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 15
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 16
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 17
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 18
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 19
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 20
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 21
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 22
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 23
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 24
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 25
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 26
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 27
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 28
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 29
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 30
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 31
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+
+E
+"main()
+{
+  actualizar_tabla_seleccion();
+}
+" 0
+
+E
+ 0 0
+22 208
+"cbb_mes_fin"
+"MEDIANO_AZUL"
+1 139.481328474845 494.5634632237021 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_BLANCO" E E
+ E E
+207 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 15 Rango de tiempo
+LANG:10010 0 
+LANG:10011 15 Rango de tiempo
+LANG:10009 15 Rango de tiempo
+LANG:10008 15 Rango de tiempo
+LANG:10018 15 Rango de tiempo
+
+2
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,12,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+0  391.850890268654 853.063463223702 464.850890268654 880.063463223702
+12
+6
+LANG:10001 3 ???
+LANG:10010 2 01
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 02
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 03
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 04
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 05
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 06
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 07
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 08
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 09
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 10
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 11
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 12
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+
+E
+"main()
+{
+  actualizar_tabla_seleccion();
+}
+" 0
+
+E
+ 0 0
+22 209
+"cbb_ano_fin"
+"MEDIANO_AZUL"
+1 165.6493398810589 494.563463223702 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_BLANCO" E E
+ E E
+208 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 15 Rango de tiempo
+LANG:10010 0 
+LANG:10011 15 Rango de tiempo
+LANG:10009 15 Rango de tiempo
+LANG:10008 15 Rango de tiempo
+LANG:10018 15 Rango de tiempo
+
+2
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,12,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+0  469.850890268654 852.5634632237022 552.850890268654 880.5634632237018
+39
+6
+LANG:10001 3 ???
+LANG:10010 4 2022
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2023
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2024
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2025
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2026
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2027
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2028
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2029
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2030
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2031
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2032
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2033
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2034
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2035
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2036
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2037
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2038
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2039
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2040
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2041
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2042
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2043
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2044
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2045
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2046
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2047
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2048
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2049
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2050
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2051
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2052
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2053
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2054
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2055
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2056
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2057
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2058
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2059
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 4 2060
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+
+E
+"main()
+{
+  actualizar_tabla_seleccion();
+}
+" 0
+
+E
+ 0 0
+22 210
+"cbb_hora_fin"
+"MEDIANO_AZUL"
+1 -117.149109731346 494.5634632237021 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_BLANCO" E E
+ E E
+209 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 15 Rango de tiempo
+LANG:10010 0 
+LANG:10011 15 Rango de tiempo
+LANG:10009 15 Rango de tiempo
+LANG:10008 15 Rango de tiempo
+LANG:10018 15 Rango de tiempo
+
+2
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,12,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+0  144.416781741523 853.063463223702 217.416781741523 880.063463223702
+24
+6
+LANG:10001 3 ???
+LANG:10010 2 00
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 01
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 02
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 03
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 04
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 05
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 06
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 07
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 08
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 09
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 10
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 11
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 12
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 13
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 14
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 15
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 16
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 17
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 18
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 19
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 20
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 21
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 22
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 23
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+
+E
+"main()
+{
+  actualizar_tabla_seleccion();
+}
+" 0
+
+E
+ 0 0
+22 211
+"cbb_min_fin"
+"MEDIANO_AZUL"
+1 -35.14910973134602 494.5634632237021 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_BLANCO" E E
+ E E
+210 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 15 Rango de tiempo
+LANG:10010 0 
+LANG:10011 15 Rango de tiempo
+LANG:10009 15 Rango de tiempo
+LANG:10008 15 Rango de tiempo
+LANG:10018 15 Rango de tiempo
+
+2
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,12,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
+0  226.416781741523 853.063463223702 299.416781741523 880.063463223702
+60
+6
+LANG:10001 3 ???
+LANG:10010 2 00
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 01
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 02
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 03
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 04
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 05
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 06
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 07
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 08
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 09
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 10
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 11
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 12
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 13
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 14
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 15
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 16
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 17
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 18
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 19
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 20
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 21
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 22
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 23
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 24
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 25
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 26
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 27
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 28
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 29
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 30
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 31
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 32
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 33
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 34
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 35
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 36
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 37
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 38
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 39
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 40
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 41
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 42
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 43
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 44
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 45
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 46
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 47
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 48
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 49
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 50
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 51
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 52
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 53
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 54
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 55
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 56
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 57
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 58
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+6
+LANG:10001 3 ???
+LANG:10010 2 59
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0
+
+E
+"main()
+{
+  actualizar_tabla_seleccion();
+}
+" 0
+
+E
+ 0 0
+2 212
+"PRIMITIVE_TEXT8"
+""
+1 255 526 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+211 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+5
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E 0.0977048745603928 0 0.5439115737511401 194.9361472557532 569.315788168704 0 E 255 526 322 567
+0 2 2 "0s" 0 0 0 72 0 0  255 526 1
+6
+LANG:10001 34 Tahoma,-1,13,5,50,0,0,0,0,0,Normal
+LANG:10010 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10011 34 Tahoma,-1,13,5,50,0,0,0,0,0,Normal
+LANG:10009 34 Tahoma,-1,13,5,50,0,0,0,0,0,Normal
+LANG:10008 34 Tahoma,-1,13,5,50,0,0,0,0,0,Normal
+LANG:10018 34 Tahoma,-1,13,5,50,0,0,0,0,0,Normal
+0 6
+LANG:10001 16 Tiempo arranque:
+LANG:10010 1 :
+LANG:10011 16 Tiempo arranque:
+LANG:10009 16 Tiempo arranque:
+LANG:10008 16 Tiempo arranque:
+LANG:10018 16 Tiempo arranque:
+25 218
+"tabla_desc"
+"PEQUENIO_AZUL"
+1 586.6102657547594 758.4047280038855 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_BLANCO" E E
+ E E
+217 0 0 0 0 0
+E E E
+0
+7
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+5
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+7
+LANG:10001 26 Arial,-1,12,5,75,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10011 26 Arial,-1,12,5,75,0,0,0,0,0
+LANG:10009 26 Arial,-1,12,5,75,0,0,0,0,0
+LANG:10008 26 Arial,-1,12,5,75,0,0,0,0,0
+LANG:10018 26 Arial,-1,12,5,75,0,0,0,0,0
+LANG:10005 26 Arial,-1,12,5,75,0,0,0,0,0
+0  585.1842236019875 760.2301298903689 1019.184223601987 934.230129890369
+"main()
+{
+  setValue(\"\", \"deleteAllLines\");
+  formatear_estilo_tabla(\"tabla_desc\", \"AlignVCenter | AlignHCenter\", \"LIB_IRC_BLANCO\", \"{240,250,255}\");  //Damos formato a la tabla con el listado de variables
+  this.tableMode(TABLE_SELECT_MULTIPLE);
+  this.selectByClick(TABLE_SELECT_LINE);
+}
+" 0
+"main(int row, string column, string value)
+{
+  cb_accionamientos.state(0,FALSE);
+}" 0
+ 1 0 1 1 0 "nombre_incidencia" 6 1 0 "[0s,,,AlignLeft]" 6
+LANG:10001 2 #1
+LANG:10010 11 INCIDENCIAS
+LANG:10011 2 #1
+LANG:10009 2 #1
+LANG:10008 2 #1
+LANG:10018 2 #1
+E
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+415 
+28 28 10 0
+7
+LANG:10001 26 Arial,-1,12,5,75,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10011 26 Arial,-1,12,5,75,0,0,0,0,0
+LANG:10009 26 Arial,-1,12,5,75,0,0,0,0,0
+LANG:10008 26 Arial,-1,12,5,75,0,0,0,0,0
+LANG:10018 26 Arial,-1,12,5,75,0,0,0,0,0
+LANG:10005 26 Arial,-1,12,5,75,0,0,0,0,0
+0 0 2 0 1 7
+1 0
+20 219
+"cb_accionamientos"
+"PEQUENIO_AZUL"
+1 587.1797944437629 722.9940112683638 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_3DFace" E E
+ E E
+218 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+2
+"layoutAlignment" "AlignNone"
+"showBackground" "0"
+6
+LANG:10001 35 Tahoma,-1,11,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,11,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,11,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,11,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,11,5,75,0,0,0,0,0,Negrita
+0  585.1797944437629 720.9940112683638 896.1797944437629 748.9940112683638
+1
+T 
+6
+LANG:10001 3 ???
+LANG:10010 33 Seleccionar todas las incidencias
+LANG:10011 3 ???
+LANG:10009 3 ???
+LANG:10008 3 ???
+LANG:10018 3 ???
+
+0 
+2
+LANG:10001 0 
+LANG:10010 0 
+E E
+0 0 0 0 0
+0
+E"main(int button, int state)
+{
+  if (state)
+  {
+    for (int i = 1; i <= tabla_desc.lineCount(); i++)
+    {
+      tabla_desc.selectLineN(i - 1);
+    }
+  }
+  else
+  {
+    for (int i = 1; i <= tabla_desc.lineCount(); i++)
+    {
+      tabla_desc.deleteSelection();
+    }
+  }
+}
+" 0
+29 221
+"Label1"
+"GRANDE_AZUL"
+1 26.03753003686938 720.9032916975102 E E E 1 E 1 E N "_3DText" E N "_Transparent" E E
+ E E
+220 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"text" "string Búsqueda:"
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 27 Tahoma,-1,16,5,50,0,0,0,0,0
+0  26.03753003686938 720.9032916975102 140.4763574803344 743.3398284738082
+5 Label
+0
+E29 222
+"Label2"
+"MEDIANO_AZUL"
+1 160.8169398143868 747.9859957494816 E E E 1 E 1 E N "_3DText" E N "_Transparent" E E
+ E E
+221 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"text" "string Hora"
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 27 Tahoma,-1,16,5,50,0,0,0,0,0
+0  160.8169398143868 747.9859957494816 202.1484066143908 770.4225325257796
+5 Label
+0
+E29 223
+"Label3"
+"MEDIANO_AZUL"
+1 246.9926846861867 747.564222941323 E E E 1 E 1 E N "_3DText" E N "_Transparent" E E
+ E E
+222 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"text" "string Min"
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 27 Tahoma,-1,16,5,50,0,0,0,0,0
+0  246.9926846861867 747.564222941323 276.3241514861907 770.000759717621
+5 Label
+0
+E29 224
+"Label4"
+"MEDIANO_AZUL"
+1 336.4311871504704 747.2354844974606 E E E 1 E 1 E N "_3DText" E N "_Transparent" E E
+ E E
+223 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"text" "string Día"
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 27 Tahoma,-1,16,5,50,0,0,0,0,0
+0  336.4311871504704 747.2354844974606 365.4023763325754 769.6720212737586
+5 Label
+0
+E29 225
+"Label5"
+"MEDIANO_AZUL"
+1 412.4416221985659 747.4560795045697 E E E 1 E 1 E N "_3DText" E N "_Transparent" E E
+ E E
+224 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"text" "string Mes"
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 27 Tahoma,-1,16,5,50,0,0,0,0,0
+0  412.4416221985659 747.4560795045697 445.3919412844798 769.8926162808677
+5 Label
+0
+E29 226
+"Label6"
+"MEDIANO_AZUL"
+1 497.1260803263128 747.4560795045697 E E E 1 E 1 E N "_3DText" E N "_Transparent" E E
+ E E
+225 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"text" "string Año"
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 27 Tahoma,-1,16,5,50,0,0,0,0,0
+0  497.1260803263128 747.4560795045697 526.7074831567329 769.8926162808677
+5 Label
+0
+E29 227
+"Label7"
+"MEDIANO_AZUL"
+1 59.26253345732584 770.5634632237022 E E E 1 E 1 E N "_3DText" E N "_Transparent" E E
+ E E
+226 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"text" "string Desde:"
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 27 Tahoma,-1,16,5,50,0,0,0,0,0
+0  59.26253345732584 770.5634632237022 118.4176825846816 793.0000000000002
+5 Label
+0
+E29 228
+"Label8"
+"MEDIANO_AZUL"
+1 59.26253345732584 840.5634632237022 E E E 1 E 1 E N "_3DText" E N "_Transparent" E E
+ E E
+227 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"text" "string Hasta:"
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 27 Tahoma,-1,16,5,50,0,0,0,0,0
+0  59.26253345732584 840.5634632237022 109.8254902185918 863.0000000000002
+5 Label
+0
+E29 231
+"Label10"
+"GRANDE_AZUL"
+1 1540.310481092269 714.8053257199622 E E E 1 E 1 E N "_3DText" E N "_Transparent" E E
+ E E
+230 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"text" "string Exportar tabla"
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 27 Tahoma,-1,16,5,50,0,0,0,0,0
+0  1540.310481092269 714.8053257199622 1693.950575929965 737.2418624962602
+5 Label
+0
+E29 232
+"TEXT_EDIT2"
+"MEDIANO_AZUL"
+1 1409.146831094296 736.7583779180981 E E E 1 E 1 E N "_WindowText" E N "_Transparent" E E
+ E E
+231 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"text" "string Nombre Archivo"
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 27 Tahoma,-1,16,5,50,0,0,0,0,0
+0  1409.146831094296 736.7583779180981 1488.146831094296 781.2008454455055
+15 PVSS.TextEdit.1
+0
+E0
+LAYER, 1 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 2 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 3 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 4 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 5 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 6 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 7 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+0

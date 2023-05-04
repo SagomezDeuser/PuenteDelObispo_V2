@@ -1,0 +1,350 @@
+V 14
+6
+LANG:10011 0 
+LANG:10001 0 
+LANG:10010 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+PANEL,-1 -1 252 91 N "_3DFace" 2
+"$INST"
+"$INST_CONSIGNA"
+E E E E E 1 -1 -1 0  10 10
+""0  1
+E "lib_siwarex_500 c = lib_siwarex_500($INST,\"\");
+" 0
+ 4
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+"pdpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+6
+LANG:10011 0 
+LANG:10001 0 
+LANG:10010 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+6 8
+"RECTANGLE1"
+""
+1 220 40 E E E 1 E 1 E N "LIB_IRC_AZULTRANS_03" E N "LIB_IRC_AZUL_03" E E
+ E E
+7 0 0 0 0 0
+E E E
+0
+6
+LANG:10011 0 
+LANG:10001 0 
+LANG:10010 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+7
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,80}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+"dashclr"N "LIB_IRC_BLANCO"
+"antiAliased" "1"
+"transformable" "0"
+E "main(mapping event)
+{
+  ChildPanelOnCentral(\"vision/faceplates/999_LIB_SIWAREX_500/999_LIB_SIWAREX_500.pnl\", dpGetDescription($INST + \".\"), makeDynString(\"$INST:\" + $INST));
+}
+" 0
+ 0 2 3 2 1 E 1.735714285714286 0 0.7454545454545455 -378.8571428571429 -27.81818181818182 1 E 220 40 360 150
+14 2
+"es_cf"
+"txf_standard_1"
+1 110 24353 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_BLANCO" E E
+ E E
+1 0 0 0 0 0
+E E E
+0
+7
+LANG:10011 0 
+LANG:10001 0 
+LANG:10010 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+
+1
+"layoutAlignment" "AlignNone"
+7
+LANG:10011 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10001 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10018 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10005 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  107.3806919499028 27.12328146712025 240.3806919499028 52.12328146712025
+2 "15s" 15 0 0 10 0 -1  "main(mapping event)
+{
+    //ChildPanelOnCentral(\"vision/faceplates/SIWAREX/CELULA_PESAJE_INICIAL.pnl\", dpGetDescription($INST + \".\"), makeDynString(\"$INST:\" + $INST));
+}
+" 0
+ "main()
+{
+  dpConnect(\"mostrar_estado\", c.get_valor());
+}
+
+void mostrar_estado(string dpSource, string estado){
+  this.text(estado);
+}
+" 0
+ E
+14 3
+"TEXT_FIELD1"
+"txf_standard_1"
+1 109.3806919499028 63 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_BLANCO" E E
+ E E
+2 0 0 0 0 0
+E E E
+0
+6
+LANG:10011 0 
+LANG:10001 0 
+LANG:10010 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+1
+"layoutAlignment" "AlignNone"
+6
+LANG:10011 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10001 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,13,5,75,0,0,0,0,0,Negrita
+0  107.3806919499028 52.64907253095447 240.3806919499028 78
+2 "0s" 0 0 0 2 0 -1  "main()
+{
+  ChildPanelOnCentralModal(\"vision/utilidades/teclados_virtuales/teclado_keypad.pnl\", \"\", makeDynString(\"$DPE:\" + $INST_CONSIGNA));
+}
+" 0
+ "// SimpleCtrlScriptStart {invalid}
+main()
+{
+  if( !dpExists( $INST_CONSIGNA + \":_online.._value\")){
+    setValue(\"\", \"color\", \"LIB_IRC_MORADO_01\");
+    return;
+  }
+
+  dpConnect(\"cambiar_valor\", $INST_CONSIGNA + \":_online.._value\");
+
+}
+
+void cambiar_valor(string dp, string valor){
+  string unidad;
+
+  dpGet(c.get_unidad(), unidad);
+  setValue(\"\", \"text\", valor + \" \" + unidad);
+}
+" 0
+ E
+2 5
+"PRIMITIVE_TEXT6"
+""
+1 255 526 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+4 0 0 0 0 0
+E E E
+0
+6
+LANG:10011 0 
+LANG:10001 0 
+LANG:10010 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E "main(mapping event)
+{
+  ChildPanelOnCentral(\"vision/faceplates/999_LIB_SIWAREX_500/999_LIB_SIWAREX_500.pnl\", dpGetDescription($INST + \".\"), makeDynString(\"$INST:\" + $INST));
+}
+" 0
+ 0 1 3 2 1 E 1.278352598932452 0 0.4222222222222222 -315.5663818758875 -191.1211629773242 0 E 255 526 322 567
+0 2 2 "0s" 0 0 0 72 0 0  255 526 1
+6
+LANG:10011 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10001 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10010 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10009 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10008 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10018 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0 6
+LANG:10011 12 VALOR ACTUAL
+LANG:10001 12 VALOR ACTUAL
+LANG:10010 12 VALOR ACTUAL
+LANG:10009 12 VALOR ACTUAL
+LANG:10008 12 VALOR ACTUAL
+LANG:10018 12 VALOR ACTUAL
+2 6
+"PRIMITIVE_TEXT7"
+""
+1 255 526 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+5 0 0 0 0 0
+E E E
+0
+6
+LANG:10011 0 
+LANG:10001 0 
+LANG:10010 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E "main(mapping event)
+{
+  ChildPanelOnCentral(\"vision/faceplates/999_LIB_SIWAREX_500/999_LIB_SIWAREX_500.pnl\", dpGetDescription($INST + \".\"), makeDynString(\"$INST:\" + $INST));
+}
+" 0
+ 0 1 3 2 1 E 1.278352598932452 0 0.4222222222222222 -315.9799127277753 -165.59537191349 0 E 255 526 322 567
+0 2 2 "0s" 0 0 0 72 0 0  255 526 1
+6
+LANG:10011 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10001 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10010 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10009 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10008 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10018 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0 6
+LANG:10011 8 CONSIGNA
+LANG:10001 8 CONSIGNA
+LANG:10010 8 CONSIGNA
+LANG:10009 8 CONSIGNA
+LANG:10008 8 CONSIGNA
+LANG:10018 8 CONSIGNA
+2 7
+"PRIMITIVE_TEXT8"
+""
+1 255 526 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "_Transparent" E E
+ E E
+6 0 0 0 0 0
+E E E
+0
+6
+LANG:10011 0 
+LANG:10001 0 
+LANG:10010 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+  this.text = dpGetDescription($INST + \".\");
+}" 0
+ "main(mapping event)
+{
+  ChildPanelOnCentral(\"vision/faceplates/999_LIB_SIWAREX_500/999_LIB_SIWAREX_500.pnl\", dpGetDescription($INST + \".\"), makeDynString(\"$INST:\" + $INST));
+}
+" 0
+ 0 1 3 2 1 E 3.352702923760158 0 0.4222222222222222 -844.5257147069525 -214.0888888888889 0 E 255 526 322 567
+0 2 2 "0s" 0 0 0 72 0 0  255 526 1
+6
+LANG:10011 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10001 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10009 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+0 6
+LANG:10011 14 NOMBRE BASCULA
+LANG:10001 14 NOMBRE BASCULA
+LANG:10010 14 NOMBRE BASCULA
+LANG:10009 14 NOMBRE BASCULA
+LANG:10008 14 NOMBRE BASCULA
+LANG:10018 14 NOMBRE BASCULA
+0
+LAYER, 1 
+6
+LANG:10011 0 
+LANG:10001 0 
+LANG:10010 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+0
+LAYER, 2 
+6
+LANG:10011 0 
+LANG:10001 0 
+LANG:10010 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+0
+LAYER, 3 
+6
+LANG:10011 0 
+LANG:10001 0 
+LANG:10010 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+0
+LAYER, 4 
+6
+LANG:10011 0 
+LANG:10001 0 
+LANG:10010 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+0
+LAYER, 5 
+6
+LANG:10011 0 
+LANG:10001 0 
+LANG:10010 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+0
+LAYER, 6 
+6
+LANG:10011 0 
+LANG:10001 0 
+LANG:10010 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+0
+LAYER, 7 
+6
+LANG:10011 0 
+LANG:10001 0 
+LANG:10010 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+0
+0

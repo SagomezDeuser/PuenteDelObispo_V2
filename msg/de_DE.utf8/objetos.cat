@@ -1,0 +1,167 @@
+txf_borrar_fila,Eine Reihe loschen: Darin doppelklicken
+txf_borrar_tabla,Vollen Tisch loschen
+txf_valor_act,Aktueller Wert
+txf_referencia,AUSWAHLEN, DIE DABEI SIND, KARTOGRAFISCH DARGESTELLT ZU WERDEN
+txf_copiado,DATENPUNKTE AUSWÄHLEN, DIE KARTIERT WERDEN SOLLEN
+txf_tabla_copiado,DATENPUNKTE, DIE DIE KONFIGURATION ERHALTEN WERDEN
+txf_config_alarmas,Alarmeinstellungen
+txf_hh,Zu hoch (HH)
+txf_h,Hoch (H)
+txf_l,Niedrig (L)
+txf_ll,Zu niedrig (LL)
+txf_conf_address,Sind Sie sicher, dass Sie Adressen aktivieren/deaktivieren mochten?
+txf_conf_pausa,Wollen Sie wirklich innehalten?
+ptxf_interfaz,Schnittstelle
+ptxf_pantalla,Anzeige
+txf_conf_ll,Sind Sie sicher, dass Sie Low-Level-Vergleich aktivieren/deaktivieren mochten?
+txf_conf_map,Sind Sie sicher, dass Sie alle ausgewahlten DPs von DPT abbilden mochten?
+txf_conf_mdp,Sind Sie sicher, dass Sie den ausgewahlten MDP modifizieren mochten?
+txf_conf_modpg, Sind Sie sicher, dass Sie die ausgewahlte MDP-Umfragegruppe andern mochten?
+txf_conf_pg,Sind Sie sicher, dass Sie die Poll Group mit dem Namen in CSV erstellen mochten? Ich lehne Sie ab, Sie werden den Master-Datapoint-Verwandten pflegen
+label_modo,OPERATIONSMODE
+label_operativa,MANUELLE OPERATIVE
+txf_enc_alarmas,ALARMS
+txf_alarma,ALARM
+txf_ep,SCHUTZSTAAT
+txf_cm,STARTUNGSBESTIMMUNG
+txf_cp,STOPPEN KONFIRMATION
+txf_fe,AUSSERE GESCHAFTE
+label_cfm_marcha,CFM. STARTEN
+label_cfm_paro,STOPPEN CFM.
+label_t_arranque,STARTUNGSZEIT
+label_t_paro,STOPPEN TIME
+txf_vf,FREQUENZUMRITCHER AUSFALL
+label_csg_auto,AUTO SOLLWERT
+label_csg_manual,MANUAL SOLLWERT
+label_vel_actual,GESCHAFTSWIRTSCHAFT
+label_corriente,INTENSITAT
+label_frecuencia,FREQUENZ
+label_cfm_marcha_f1,ZUKUNFTSGERICHTETES STARTEN CFM.
+label_cfm_marcha_f2,ZURUCKGEWAHRT STARTEN CFM.
+label_cfm_paro_f1,ZUKUNFTSGERICHTETES STOPPEN CFM.
+label_cfm_paro_f2,ZURUCKGEWAHRT STOPPEN CFM.
+label_t_apertura,OFFNUNGSZEIT
+label_t_cierre,SCHLIESSZEIT
+txf_ca,EROFFNUNGSBESTIMMUNG
+txf_cc,SCHLIESSUNGSBESTIMMUNG
+txf_fp,POSITIONIERUNGSFEHLER
+label_formula,Rezept
+label_produccion,Produktion
+label_ton,Tn/h
+fecha_inicio,Anfangsdatum
+acuse,Danksagung
+fecha_acuse,Datum der Bestatigung
+tag,Tag
+alias,Alias
+descripcion,Beschreibung
+alarma,Alarm
+aviso,Warnung
+label_acuse_todo,ACKNOWLEDGE ALLE
+label_rango,Bereich
+label_dia,Tag
+label_mes,Monat
+label_ano,Jahr
+label_cuadro,Podiumsdiskussion
+label_variable,Variabel
+label_graf_frec,Haufige Schaubilder
+label_intervalo,Intervall
+label_min,Min
+zona,Gebiet
+detalle,Einzelheiten
+valor,Wert
+unidad,Einheit
+label_descr_dp,DP-Beschreibung
+label_alias_dp,DP-Alias
+label_dp,DP
+cb_address,Adresse aktivieren
+cb_address_mdp,Laut MDP
+label_vaciar,Streichen
+para_completo,Vollstandige PARA
+label_crear_en_funcion,Erstellen Sie nach
+txf_rb_vaciado_para,Vollstandige PARA loschen
+txf_rb_vaciado_dpt_mdp,Es loscht alle Datapoint-Typen, einschliesslich ihrer Master-Datapoints
+txf_rb_vaciado_dpt,Es loscht alle Datapoint-Typen, indem sie ihre Master-Datapoints
+txf_rb_vaciado_dpt_csv,Es loscht Datapoint-Typen mit DPs in CSV, durch die Aufrechterhaltung ihrer Master-Datapoints
+label_buscar,SUCHE
+cb_var_interna,INTERN VARIABLE
+cb_selec_multiple,Multiple Choice
+label_periferia,Peripherie
+label_referencia,Bezugnahme
+label_driver,Fahrer
+label_conexion,Vergemeinschaftung
+label_transformacion,Art der Umwandlung
+label_direccion,Richtung
+cb_activo,Aktiv
+label_origen_address,Herkunft der Anschrift
+clase,Klasse
+dp_alarma,Alarm DP
+label_alarma_came,Es kam
+label_alarma_went,Ging hin.
+label_clase_alarma,Alarmklasse
+label_config,Konfiguration
+label_config_1,Konfiguration
+label_config_2,Konfiguration
+label_config_3,Konfiguration
+label_config_4,Konfiguration
+label_escala,Skala
+label_escala_1,Skala
+label_escala_2,Skala
+label_escala_3,Skala
+label_escala_4,Skala
+label_estable,Stabile
+label_estable_1,Stabile
+label_estable_2,Stabile
+label_estable_3,Stabile
+label_estable_4,Stabile
+label_division,Teilung
+label_division_1,Teilung
+label_division_2,Teilung
+label_division_3,Teilung
+label_division_4,Teilung
+label_cero,Null
+label_cero_1,Null
+label_cero_2,Null
+label_cero_3,Null
+label_cero_4,Null
+label_const_peso,Gewichtskonstanten
+label_const_peso_1,Gewichtskonstanten
+label_const_peso_2,Gewichtskonstanten
+label_const_peso_3,Gewichtskonstanten
+label_const_peso_4,Gewichtskonstanten
+label_cero_5,Null
+label_cero_6,Null
+label_cero_7,Null
+label_cero_8,Null
+label_cero_9,Null
+label_ganancia,Gewinn
+label_ganancia_1,Gewinn
+label_ganancia_2,Gewinn
+label_ganancia_3,Gewinn
+label_ganancia_4,Gewinn
+label_calibracion,Kalibrierung
+label_calibracion_1,Kalibrierung
+label_calibracion_2,Kalibrierung
+label_calibracion_3,Kalibrierung
+label_calibracion_4,Kalibrierung
+label_peso_ajuste,Passendes Gewicht
+label_peso_ajuste_1,Passendes Gewicht
+label_peso_ajuste_2,Passendes Gewicht
+label_peso_ajuste_3,Passendes Gewicht
+label_peso_ajuste_4,Passendes Gewicht
+label_punto_ajuste,Passende Punkte
+label_punto_ajuste_1,Passende Punkte
+label_punto_ajuste_2,Passende Punkte
+label_punto_ajuste_3,Passende Punkte
+label_punto_ajuste_4,Passende Punkte
+label_vel,% Geschwindigkeit
+codigo,Kodex
+nombre,Name
+ult_mod,Letzte Anderung
+label_buscar_nom,Suche nach Namen
+label_mod_accion,FUNKTIONIERUNGSMODE
+label_secuencia,SEQUENZ
+label_supervision,AUFSICHT
+txf_cm_f1,ZUKUNFTSGERICHTETE STARTUNG
+txf_cm_f2,ZURÜCKGERICHTETE STARTUNG
+txf_cp_f1,ZUKUNFTSGERICHTETE STOPPING-BESTIMMUNG
+txf_cp_f2,ZURÜCKGERICHTETE STOPPING-BESTIMMUNG

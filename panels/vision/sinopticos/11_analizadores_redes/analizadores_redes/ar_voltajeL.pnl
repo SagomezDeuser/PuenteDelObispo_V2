@@ -1,0 +1,500 @@
+V 14
+2
+LANG:10001 0 
+LANG:10010 0 
+PANEL,-1 -1 338 180 N "_3DFace" 1
+"$INST"
+E E E E E 1 -1 -1 0  -8.363846900119825 -13.08327156987176
+""0  1
+E E 4
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+"pdpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10001 0 
+LANG:10010 0 
+6 16
+"RECTANGLE3"
+""
+1 282 34 E E E 1 E 1 E N {1,72,152} E N "white" E E
+ E E
+15 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+8
+"hoverbclr" "N \"AZUL_01\""
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,131}"
+"shadowRadius" "20"
+"transparentForMouseInGedi" ""
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  dpConnect(\"cambiar_seleccion\",\"CONFIGURACION_PLANTA.configuracion_grafica_analizador_red.indice_seleccion\");
+}
+void cambiar_seleccion(string dp1, int valor){
+  if(valor==2) this.backCol(\"LIB_IRC_AZULTRANS_02\");
+  else this.backCol(\"LIB_DEUSER_BLANCO\");
+}" 0
+ "main(mapping event)
+{
+  dyn_anytype datos;
+  string bbdd, hora_ini, hora_fin, rango_min_str, rango_max_str, tabla, leyenda_st;
+  dyn_string columna_datos, leyenda;
+  string modulo = myModuleName(), url, servidor;
+
+  columna_datos.clear();
+  leyenda.clear();
+
+  hora_ini = \"DATEADD(HH,-1,GETDATE())\";
+  hora_fin = \"GETDATE()\";
+  rango_min_str = \"now-8h\";
+  rango_max_str = \"now\";
+
+  tabla = \"Analizadores_Redes\";
+
+  columna_datos.append(\"Tension_L1_L2\");
+  leyenda_st = getCatStr(\"dps\", $INST);
+  leyenda_st = leyenda_st + dpGetUnit($INST + \".ST_Datos_DS_142.Tension_L1-L2\");
+  leyenda.append(leyenda_st);
+
+  columna_datos.append(\"Tension_L2_L3\");
+  leyenda_st = getCatStr(\"dps\", $INST);
+  leyenda_st = leyenda_st + dpGetUnit($INST + \".ST_Datos_DS_142.Tension_L2-L3\");
+  leyenda.append(leyenda_st);
+
+  columna_datos.append(\"Tension_L3_L1\");
+  leyenda_st = getCatStr(\"dps\", $INST);
+  leyenda_st = leyenda_st + dpGetUnit($INST + \".ST_Datos_DS_142.Tension_L3-L1\");
+  leyenda.append(leyenda_st);
+
+  dpGet(\"CONFIGURACION_PLANTA.configuracion_bd.nombre_bd\", bbdd,
+        \"CONFIGURACION_PLANTA.ip_servidor\",servidor);
+//   url = \"http://\" + servidor + \":3000/d/winccoa-3dp/winccoa-3dp?orgId=1&kiosk&from=\" + rango_min_str + \"&to=\" + rango_max_str +
+//         \"&var-bbdd=\" + bbdd + \"&var-hora_ini=\" + hora_ini + \"&var-hora_fin=\" + hora_fin + \"&var-limite_sup=0&var-limite_inf=0\" +
+//         \"&var-dp1=\" + $INST + \"&var-leyenda1=\" + leyenda[1] + \"&var-columna_datos1=\" + columna_datos[1] + \"&var-tabla1=\" + tabla +
+//         \"&var-dp2=\" + $INST + \"&var-leyenda2=\" + leyenda[2] + \"&var-columna_datos2=\" + columna_datos[2] + \"&var-tabla2=\" + tabla +
+//         \"&var-dp3=\" + $INST + \"&var-leyenda3=\" + leyenda[3] + \"&var-columna_datos3=\" + columna_datos[3] + \"&var-tabla3=\" + tabla +
+//         \"&viewPanel=2&refresh=3s\";
+
+  url = \"http://\" + servidor + \":3000/d/influx-3dp/influx-3dp?orgId=1&kiosk&from=\" + rango_min_str + \"&to=\" + rango_max_str +
+        \"&var-dp=System1:\" + $INST + \".ST_Datos_DS_142.Tension_L1-L2&var-leyenda=\" + leyenda[1] + \"&var-tipo_dato=original_value_float&var-grupo=EV_ANALIZADORES\" +
+        \"&var-dp2=System1:\" + $INST + \".ST_Datos_DS_142.Tension_L2-L3&var-leyenda2=\" + leyenda[2] + \"&var-tipo_dato2=original_value_float&var-grupo2=EV_ANALIZADORES\" +
+        \"&var-dp3=System1:\" + $INST + \".ST_Datos_DS_142.Tension_L3-L1&var-leyenda3=\" + leyenda[3] + \"&var-tipo_dato3=original_value_float&var-grupo3=EV_ANALIZADORES\" +
+        \"&refresh=5s\";
+
+  dpSetWait(\"CONFIGURACION_PLANTA.configuracion_grafica_analizador_red.indice_seleccion\",2);
+  string ui, display;
+  bool activo, ulc;
+
+  ui = myUiDpName();
+
+  dpGet(\"CONFIGURACION_PLANTA.configuracion_graficas.conexion_externa_grafana_ulc\", activo);
+  dpGet(ui + \".DisplayName\", display);
+
+  ulc = patternMatch(\"*ulc*\", display);
+
+  if (ulc && activo)
+  {
+    openUrl(url);
+  }
+  else
+  {
+    if (isPanelOpen(\"graficas_analizador_\" + modulo)) PanelOffPanel(\"graficas_analizador_\" + modulo);
+
+    dyn_anytype da = makeDynAnytype(myModuleName(), \"objects/graficas/grafica_grafana/mssql_tabs/grafica_analizador.pnl\", myPanelName(), \"graficas_analizador_\" + modulo, 732, 136, 1.0,
+                                    true, makeDynString(\"$URL:\" + url), false, makeMapping(\"makeVisible\", FALSE));
+    childPanel(da);
+    //graficas.url(url);
+  }
+}
+" 0
+ 0 1 3 2 1 E 3.707156731461846 0 2.492749619019919 -1045.41819827224 -84.75348704667725 1 E 282 34 371 102
+6 17
+"RECTANGLE2"
+""
+1 63 18 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "LIB_IRC_AZUL_03" E E
+ E E
+16 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E -1 1 3 2 1 E 1.429576668943697e-19 -0.001707691207002341 -3.332696455556612 -1.492654732289971e-16 389.9254853001228 29.90443708831052 1 E 63 18 1982 117
+6 18
+"RECTANGLE1"
+""
+1 63 18 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N {1,72,152} E E
+ E E
+17 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E -1 1 3 2 1 E 4.27644578196369e-19 -0.004080864136900718 -3.332696455556612 -1.1924128226766e-16 389.9254853001228 37.76406853397921 1 E 63 18 1982 117
+14 7
+"txf_vl1"
+"MEDIANO_AZUL"
+1 -470.6439585881971 -217.2409256930669 E E E 1 E 1 E N "LIB_DEUSER_NEGRO" E N "_Window" E E
+ E E
+6 0 0 0 0 0
+E E E
+1
+8
+LANG:10001 0 
+LANG:10010 0 
+LANG:10005 0 
+LANG:10018 0 
+LANG:10008 0 
+LANG:10011 0 
+LANG:10000 0 
+LANG:10027 0 
+
+2
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+8
+LANG:10001 30 Noto Sans,-1,13,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10005 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10000 30 Noto Sans,-1,13,5,50,0,0,0,0,0
+LANG:10027 30 Noto Sans,-1,13,5,50,0,0,0,0,0
+0  141.2591559131906 53.85194023853166 269.2591559131906 81.85194023853165
+2 "0.2f" 3 0 0 9 0 -1  E "main()
+{
+  dpConnect(\"cambiar_valor\", $INST + \".ST_Datos_DS_142.Tension_L1-L2\");
+}
+
+void cambiar_valor(string dp, float valor)
+{
+  setValue(\"\", \"text\", valor);
+}
+" 0
+ E
+14 8
+"txf_vl2"
+"MEDIANO_AZUL"
+1 -626.8299855697007 -178.8174939953469 E E E 1 E 1 E N "LIB_DEUSER_NEGRO" E N "_Window" E E
+ E E
+7 0 0 0 0 0
+E E E
+1
+8
+LANG:10001 0 
+LANG:10010 0 
+LANG:10005 0 
+LANG:10018 0 
+LANG:10008 0 
+LANG:10011 0 
+LANG:10000 0 
+LANG:10027 0 
+
+2
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+8
+LANG:10001 30 Noto Sans,-1,13,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10005 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10000 30 Noto Sans,-1,13,5,50,0,0,0,0,0
+LANG:10027 30 Noto Sans,-1,13,5,50,0,0,0,0,0
+0  141.0640867111453 91.83374329435253 269.2591559131906 119.8337432943526
+2 "0.2f" 3 0 0 9 0 -1  E "main()
+{
+  dpConnect(\"cambiar_valor\", $INST + \".ST_Datos_DS_142.Tension_L2-L3\");
+}
+
+void cambiar_valor(string dp, float valor)
+{
+  setValue(\"\", \"text\", valor);
+}
+" 0
+ E
+14 9
+"txf_vl3"
+"MEDIANO_AZUL"
+1 -626.8299855697007 -140.3940622976268 E E E 1 E 1 E N "LIB_DEUSER_NEGRO" E N "_Window" E E
+ E E
+8 0 0 0 0 0
+E E E
+1
+8
+LANG:10001 0 
+LANG:10010 0 
+LANG:10005 0 
+LANG:10018 0 
+LANG:10008 0 
+LANG:10011 0 
+LANG:10000 0 
+LANG:10027 0 
+
+2
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+8
+LANG:10001 30 Noto Sans,-1,13,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10005 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10018 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10008 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
+LANG:10000 30 Noto Sans,-1,13,5,50,0,0,0,0,0
+LANG:10027 30 Noto Sans,-1,13,5,50,0,0,0,0,0
+0  141.0640867111453 130.2571749920727 269.2591559131906 158.2571749920727
+2 "0.2f" 3 0 0 9 0 -1  E "main()
+{
+  dpConnect(\"cambiar_valor\", $INST + \".ST_Datos_DS_142.Tension_L3-L1\");
+}
+
+void cambiar_valor(string dp, float valor)
+{
+  setValue(\"\", \"text\", valor);
+}
+" 0
+ E
+29 19
+"Text_Titulo_Linea"
+"GRANDE_AZUL"
+1 110.2874366364079 1.023744259212725 E E E 1 E 1 E N "_3DText" E N "_Transparent" E E
+ E E
+18 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"text" "string Voltaje L-L"
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 27 Tahoma,-1,16,5,50,0,0,0,0,0
+0  110.2874366364079 1.023744259212725 218.379230030259 24.64864380985365
+5 Label
+0
+E29 20
+"Label2"
+"MEDIANO_AZUL"
+1 20.66298881631574 54.19813873474491 E E E 1 E 1 E N "_3DText" E N "_Transparent" E E
+ E E
+19 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"text" "string Voltaje L1-L2:"
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 27 Tahoma,-1,16,5,50,0,0,0,0,0
+0  20.66298881631574 54.19813873474491 144 77.82303828538581
+5 Label
+0
+E29 21
+"Label3"
+"MEDIANO_AZUL"
+1 20.66298881631574 92.69888385864772 E E E 1 E 1 E N "_3DText" E N "_Transparent" E E
+ E E
+20 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"text" "string Voltaje L2-L3:"
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 27 Tahoma,-1,16,5,50,0,0,0,0,0
+0  20.66298881631574 92.69888385864772 143.865376688906 116.3237834092886
+5 Label
+0
+E29 22
+"Label4"
+"MEDIANO_AZUL"
+1 20.66298881631575 131.2394392738245 E E E 1 E 1 E N "_3DText" E N "_Transparent" E E
+ E E
+21 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"text" "string Voltaje L3-L1:"
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 27 Tahoma,-1,16,5,50,0,0,0,0,0
+0  20.66298881631575 131.2394392738245 143.865376688906 154.8643388244654
+5 Label
+0
+E29 23
+"txf_unidad"
+"MEDIANO_AZUL"
+1 294.2198100683964 55.74328623385816 E E E 1 E 1 E N "_3DText" E N "_Transparent" E E
+ E E
+22 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"text" "string -"
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 27 Tahoma,-1,16,5,50,0,0,0,0,0
+0  294.2198100683964 55.74328623385816 311.3641902298474 79.36818578449905
+5 Label
+0
+"main()
+{
+  string unidad_dp;
+
+  unidad_dp = dpGetUnit($INST + \".ST_Datos_DS_142.Tension_L1-L2\");
+
+  setValue(\"\", \"text\", unidad_dp);
+}
+" 0
+29 24
+"Label6"
+"MEDIANO_AZUL"
+1 294.5184602515272 93.72508928967915 E E E 1 E 1 E N "_3DText" E N "_Transparent" E E
+ E E
+23 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"text" "string -"
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 27 Tahoma,-1,16,5,50,0,0,0,0,0
+0  294.5184602515272 93.72508928967915 311.3641902298473 117.3499888403201
+5 Label
+0
+"main()
+{
+  string unidad_dp;
+
+  unidad_dp = dpGetUnit($INST + \".ST_Datos_DS_142.Tension_L2-L3\");
+
+  setValue(\"\", \"text\", unidad_dp);
+}
+" 0
+29 25
+"Label7"
+"MEDIANO_AZUL"
+1 294.5046104346582 132.265644704856 E E E 1 E 1 E N "_3DText" E N "_Transparent" E E
+ E E
+24 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"text" "string -"
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 27 Tahoma,-1,16,5,50,0,0,0,0,0
+0  294.5046104346582 132.265644704856 311.3641902298473 155.8905442554968
+5 Label
+0
+"main()
+{
+  string unidad_dp;
+
+  unidad_dp = dpGetUnit($INST + \".ST_Datos_DS_142.Tension_L3-L1\");
+
+  setValue(\"\", \"text\", unidad_dp);
+}
+" 0
+0
+LAYER, 1 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 2 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 3 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 4 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 5 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 6 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 7 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+1 0 "SHAPE_GROUP1" -1
+3 0 
+16 18 17 
+
+"layoutAlignment" "AlignNone"
+"" ""
+0

@@ -1,0 +1,203 @@
+V 14
+2
+LANG:10001 0 
+LANG:10010 0 
+PANEL,-1 -1 500 100 N "LIB_IRC_BLANCO" 0
+"main()
+{
+  titleBar(0);
+}" 0
+ E E E E 1 -1 -1 0  1.110824381789151 -1.672474413042124
+""0  1
+E E 4
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+"pdpi" "92.6073"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10001 0 
+LANG:10010 0 
+6 5
+"RECTANGLE3"
+""
+1 282 34 E E E 1 E 1 E N {1,72,152} E N "_Transparent" E E
+ E E
+4 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E 0 1 3 2 1 E 5.606741573033707 0 1.455882352941177 -1581.101123595506 -49.6754784985949 1 E 282 34 371 102
+6 1
+"RECTANGLE2"
+""
+1 63 18 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "LIB_IRC_AZUL_03" E E
+ E E
+0 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E -1 1 3 2 1 E 0.001563313802083333 0 1.319933869876884 8.901511230468774 -24.52688613404614 1 E 63 18 1982 117
+6 2
+"RECTANGLE1"
+""
+1 63 18 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N {1,72,152} E E
+ E E
+1 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+E E -1 1 3 2 1 E 0.004689941406249998 0 1.320975070923218 -1.184641926804598 -24.55408329801645 1 E 63 18 1982 117
+13 7
+"PUSH_BUTTON1"
+"GRANDE_AZUL"
+1 434.2427732965886 194.5583300940158 E E E 1 E 1 E N "_ButtonText" E N {1,72,152} E E
+ E E
+6 0 0 0 0 0
+E E E
+1
+6
+LANG:10001 6 Cancel
+LANG:10010 8 Cancelar
+LANG:10011 6 Cancel
+LANG:10009 7 Annuler
+LANG:10008 6 Cancel
+LANG:10018 6 Cancel
+
+6
+"hoverbclr" "N \"AZUL_01\""
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignNone"
+"showFocus" "0"
+6
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10011 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10009 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10008 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10018 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  447.7330278681651 48.14655737274646 490.7330278681651 91.14655737274646
+
+P 
+4294967295
+"pictures/iconos/botoneras/aceptar.svg"
+2
+LANG:10001 0 
+LANG:10010 0 
+"main(mapping event)
+{
+  string aux_st = \"\";
+  float confirmar = 0;
+
+  dpSetWait(\"_Ui_\" + myManNum() + \".ReturnValue.Float:_original.._value\", confirmar);  //Devolvemos al Panel Principal el resultado
+  dpSetWait(\"_Ui_\" + myManNum() + \".ReturnValue.Text:_original.._value\", aux_st);  //Devolvemos al Panel Principal el resultado
+
+  PanelOff();  //Cerramos el Panel
+}
+" 0
+ E E E
+29 8
+"txf_conf_mdp"
+"MEDIANO_AZUL"
+1 19.61968293445716 23.09358806974151 E E E 1 E 1 E N "_3DText" E N "_Transparent" E E
+ E E
+7 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"text" "string Habrá que reiniciar el SCADA para aplicar los cambios"
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 27 Tahoma,-1,16,5,50,0,0,0,0,0
+0  19.61968293445716 23.09358806974151 428.2913775398179 46.97916426499515
+5 Label
+0
+E29 9
+"Label1"
+"PEQUENIO_AZUL"
+1 19.61968293445716 41 E E E 1 E 1 E N "_3DText" E N "_Transparent" E E
+ E E
+8 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"text" "string Nota: no es necesario reiniciar el PC completo"
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 27 Tahoma,-1,16,5,50,0,0,0,0,0
+0  19.61968293445716 41 300 64.88557619525363
+5 Label
+0
+E0
+LAYER, 1 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 2 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 3 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 4 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 5 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 6 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 7 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+0

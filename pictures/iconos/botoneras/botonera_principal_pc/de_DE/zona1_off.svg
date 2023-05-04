@@ -1,0 +1,18 @@
+<svg width="1450" height="640" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid meet">
+ <defs>
+  <path id="bHuHftFjq" d="m255.43,300.41l-11.88,-168.37l17.64,0l0,-32.17l-157.88,0l0,32.17l19.56,0l-28.12,378l-12.75,0l0,36.82l483.6,0l0,-36.82l-21.83,0l0,-209.63l-288.34,0z"/>
+ </defs>
+ <g>
+  <g stroke="null" id="svg_1">
+   <g stroke="null" id="svg_2">
+    <g stroke="null" id="svg_3">
+     <use stroke="null" transform="matrix(1.2208496620494558,0,0,1.2208496620494558,-9.938234792225508,-10.045760257281152) " x="-37" y="-53.023961" id="svg_4" fill="#B3C8E0" xlink:href="#bHuHftFjq"/>
+     <g stroke="null" id="svg_5">
+      <use stroke="#B3C8E0" transform="matrix(1.2208496620494558,0,0,1.2208496620494558,-9.938234792225508,-10.045760257281152) " x="-37" y="-53.023961" id="svg_6" stroke-opacity="0" fill-opacity="0" xlink:href="#bHuHftFjq"/>
+     </g>
+    </g>
+   </g>
+  </g>
+  <text font-weight="bold" xml:space="preserve" text-anchor="start" font-family="'Trebuchet MS', Gadget, sans-serif" font-size="180" id="svg_7" y="384" x="730" stroke="#B3C8E0" fill="#B3C8E0">ZONE 1</text>
+ </g>
+</svg>

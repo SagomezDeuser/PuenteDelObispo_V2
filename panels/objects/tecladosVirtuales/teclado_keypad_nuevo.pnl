@@ -1,0 +1,1900 @@
+V 14
+14
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:1 0 
+LANG:11 0 
+LANG:9 0 
+LANG:10 0 
+LANG:18 0 
+LANG:27 0 
+LANG:29 0 
+LANG:4 0 
+PANEL,-1 -1 231 431 N "LIB_IRC_BLANCO" 4
+"$MAX"
+"$MIN"
+"$TXT"
+"$oculto"
+"main()
+{
+
+  setWindowTitle(myModuleName(), myPanelName(), \"Teclado Virtual Keypad\");  //Eliminamos el title que aparece en el Frame del Panel
+//   windowStyle(myModuleName(), myPanelName(), 0, 0);  //Eliminamos los botones para maximizar y minimizar el Panel
+   string so_ui;
+
+  dpGet(\"System1:_Ui_\" + myUiNumber() + \".DisplayName\",so_ui);
+
+  if(!patternMatch(\"*Linux*\",so_ui))
+  {
+    titleBar(0,myModuleName(),myPanelName());
+  }
+}" 0
+ E E E E 1 -1 -1 0  0 0
+""0  1
+E "string display, valor_teclado;
+long max, min, valor_int;
+bool param_max, param_min;
+
+public nuevo_caracter(string chr){
+  if(chr == \"\\b\")  display = substr(display, 0, strlen(display) - 1);
+  else display = display + chr;
+
+  cambiar_display(display);
+}
+
+public cambiar_display(string caracter){
+  setValue(\"txf_valor\", \"text\", caracter);
+  display = caracter;
+}
+" 0
+ 5
+"CBRef" "1"
+"EClose" E
+"windowIcon" "iconos/ventanas/teclado.svg"
+"dpi" "96"
+"pdpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10001 0 
+LANG:10010 0 
+6 22
+"RECTANGLE1"
+""
+1 220 40 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_AZUL_01" E E
+ E E
+22 0 0 0 0 0
+E E E
+0
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+
+4
+"transparentForMouseInGedi" ""
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 2 3 2 1 E 1.642857142857142 0 3.912863442527623 -361.4285714285713 -156.9295163791434 2  1 0  "pictures/imagenes/imagen_deuser_2.png" 4294967295 E 220 40 360 150
+14 2
+"txf_valor"
+"txf_standard_1"
+1 13.50712945590991 8.292510660980696 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "LIB_IRC_BLANCO" E E
+ E E
+2 0 0 0 0 0
+E E E
+1
+14
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:1 0 
+LANG:11 0 
+LANG:9 0 
+LANG:10 0 
+LANG:18 0 
+LANG:27 0 
+LANG:29 0 
+LANG:4 0 
+
+4
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,80}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignCenter"
+14
+LANG:10001 35 MS Shell Dlg 2,-1,16,5,50,0,0,0,0,0
+LANG:10010 35 Tahoma,-1,21,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10009 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10008 35 MS Shell Dlg 2,-1,16,5,50,0,0,0,0,0
+LANG:10018 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:1 35 MS Shell Dlg 2,12,-1,5,50,0,0,0,0,0
+LANG:11 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:9 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:10 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:18 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:27 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:29 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:4 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+0  10.99999999999997 6.792510660980696 151 42.7925106609807
+3 "0s" 0 0 0 10 0 -1  E "main()
+{
+  this.text($TXT);
+   if ($oculto)
+   {
+     this.format(\"[0S,,,AlignRight|AlignVCenter\");
+   }
+   else
+   {
+     this.format(\"[0s,,,AlignRight|AlignVCenter\");
+   }
+}" 0
+ E
+13 23
+"btn_7"
+""
+1 10.99999999999994 100.2925106609807 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Transparent" E E
+ E E
+23 0 0 0 55 0
+E E E
+1
+14
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:1 0 
+LANG:11 0 
+LANG:9 0 
+LANG:10 0 
+LANG:18 0 
+LANG:27 0 
+LANG:29 0 
+LANG:4 0 
+
+6
+"hoverfclr" "N \"LIB_IRC_BLANCO\""
+"hoverbclr" "N \"AZUL_01\""
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,80}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignCenter"
+14
+LANG:10001 35 Tahoma,-1,27,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,32,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10009 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10008 35 MS Shell Dlg 2,-1,37,5,50,0,0,0,0,0
+LANG:10018 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:1 35 MS Shell Dlg 2,28,-1,5,50,0,0,0,0,0
+LANG:11 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:9 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:10 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:18 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:27 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:29 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:4 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+0  8.999999999999936 98.2925106609807 81.99999999999994 166.2925106609807
+
+T 
+14
+LANG:10001 1 7
+LANG:10010 1 7
+LANG:10011 1 7
+LANG:10009 1 7
+LANG:10008 1 7
+LANG:10018 1 7
+LANG:1 1 8
+LANG:11 12 PUSH_BUTTON5
+LANG:9 12 PUSH_BUTTON5
+LANG:10 12 PUSH_BUTTON5
+LANG:18 12 PUSH_BUTTON5
+LANG:27 12 PUSH_BUTTON5
+LANG:29 12 PUSH_BUTTON5
+LANG:4 12 PUSH_BUTTON5
+"main()
+{
+  nuevo_caracter(this.text);
+}
+" 0
+ E E E
+13 0
+"btn_cancelar"
+""
+1 -3.380952380952445 356.5581356609807 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Transparent" E E
+ E E
+0 0 0 0 27 0
+E E E
+1
+14
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:1 0 
+LANG:11 0 
+LANG:9 0 
+LANG:10 0 
+LANG:18 0 
+LANG:27 0 
+LANG:29 0 
+LANG:4 0 
+
+6
+"hoverfclr" "N \"LIB_IRC_BLANCO\""
+"hoverbclr" "N \"AZUL_01\""
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,80}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignCenter"
+14
+LANG:10001 35 Tahoma,-1,27,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,32,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10009 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10008 35 MS Shell Dlg 2,-1,37,5,50,0,0,0,0,0
+LANG:10018 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:1 35 MS Shell Dlg 2,28,-1,5,50,0,0,0,0,0
+LANG:11 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:9 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:10 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:18 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:27 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:29 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:4 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+0  9.999999999999936 354.5581356609807 81.99999999999994 421.5581356609807
+
+P 
+4294967295
+"pictures/iconos/botoneras/cancelar.svg"
+14
+LANG:10001 8 CANCELAR
+LANG:10010 8 CANCELAR
+LANG:10011 12 PUSH_BUTTON3
+LANG:10009 12 PUSH_BUTTON3
+LANG:10008 8 CANCELAR
+LANG:10018 12 PUSH_BUTTON3
+LANG:1 6 CANCEL
+LANG:11 12 PUSH_BUTTON3
+LANG:9 12 PUSH_BUTTON3
+LANG:10 12 PUSH_BUTTON3
+LANG:18 12 PUSH_BUTTON3
+LANG:27 12 PUSH_BUTTON3
+LANG:29 12 PUSH_BUTTON3
+LANG:4 12 PUSH_BUTTON3
+"main(mapping event)
+{
+  dyn_float valor1;
+  dyn_string valor2;
+  dpSet(\"_Ui_\"+myManNum()+\".ReturnValue.Float:_original.._value\",valor1);
+  dpSet(\"_Ui_\"+myManNum()+\".ReturnValue.Text:_original.._value\",\"ESC\");
+  PanelOff();
+}" 0
+ E E E
+13 1
+"btn_aceptar"
+""
+1 80.24999999999994 356.5581356609808 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Transparent" E E
+ E E
+1 0 0 0 16777220 0
+E E E
+1
+14
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:1 0 
+LANG:11 0 
+LANG:9 0 
+LANG:10 0 
+LANG:18 0 
+LANG:27 0 
+LANG:29 0 
+LANG:4 0 
+
+6
+"hoverfclr" "N \"LIB_IRC_BLANCO\""
+"hoverbclr" "N \"AZUL_01\""
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,80}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignCenter"
+14
+LANG:10001 35 Tahoma,-1,27,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,32,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10009 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10008 35 MS Shell Dlg 2,-1,37,5,50,0,0,0,0,0
+LANG:10018 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:1 35 MS Shell Dlg 2,28,-1,5,50,0,0,0,0,0
+LANG:11 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:9 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:10 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:18 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:27 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:29 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:4 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+0  78.24999999999994 354.5581356609807 150.2499999999999 421.5581356609807
+
+P 
+4294967295
+"pictures/iconos/botoneras/aceptar.svg"
+14
+LANG:10001 7 ACEPTAR
+LANG:10010 7 ACEPTAR
+LANG:10011 12 PUSH_BUTTON3
+LANG:10009 12 PUSH_BUTTON3
+LANG:10008 7 ACEPTAR
+LANG:10018 12 PUSH_BUTTON3
+LANG:1 6 ACCEPT
+LANG:11 12 PUSH_BUTTON3
+LANG:9 12 PUSH_BUTTON3
+LANG:10 12 PUSH_BUTTON3
+LANG:18 12 PUSH_BUTTON3
+LANG:27 12 PUSH_BUTTON3
+LANG:29 12 PUSH_BUTTON3
+LANG:4 12 PUSH_BUTTON3
+"main(mapping event)
+{
+  getValue(\"txf_valor\",\"text\",valor_teclado);
+  if(param_max && $MAX != \"\") max = $MAX;
+  else max = maxLONG();
+  if(param_min && $MIN != \"\") min = $MIN;
+  else min = minLONG();
+  valor_int = valor_teclado;
+  if((valor_int <= max && valor_int >= min)){
+    dyn_float valor1;
+    dyn_string valor2;
+    valor2[1] = valor_teclado;
+    dpSet(\"_Ui_\"+myManNum()+\".ReturnValue.Float:_original.._value\",valor1);
+    dpSet(\"_Ui_\"+myManNum()+\".ReturnValue.Text:_original.._value\",valor2);
+    PanelOff();
+  }
+  else if(valor_int > max){
+    txf_valor.backCol = \"LIB_IRC_ROJOTRANS_01\";
+    txf_max.backCol = \"LIB_IRC_ROJOTRANS_01\";
+    delay(2,0);
+    txf_valor.backCol = \"LIB_IRC_BLANCO\";
+    txf_max.backCol = \"{0,0,0,0}\";
+
+  }
+  else if(valor_int < min){
+    txf_valor.backCol = \"LIB_IRC_ROJOTRANS_01\";
+    txf_min.backCol = \"LIB_IRC_ROJOTRANS_01\";
+    delay(2,0);
+    txf_valor.backCol = \"LIB_IRC_BLANCO\";
+    txf_min.backCol = \"{0,0,0,0}\";
+  }
+}
+" 0
+ E E E
+13 3
+"btn_1"
+""
+1 10.99999999999994 228.4487606609806 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Transparent" E E
+ E E
+3 0 0 0 49 0
+E E E
+1
+14
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:1 0 
+LANG:11 0 
+LANG:9 0 
+LANG:10 0 
+LANG:18 0 
+LANG:27 0 
+LANG:29 0 
+LANG:4 0 
+
+6
+"hoverfclr" "N \"LIB_IRC_BLANCO\""
+"hoverbclr" "N \"AZUL_01\""
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,80}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignCenter"
+14
+LANG:10001 35 Tahoma,-1,27,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,32,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10009 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10008 35 MS Shell Dlg 2,-1,37,5,50,0,0,0,0,0
+LANG:10018 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:1 35 MS Shell Dlg 2,28,-1,5,50,0,0,0,0,0
+LANG:11 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:9 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:10 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:18 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:27 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:29 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:4 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+0  8.999999999999936 226.4487606609807 81.99999999999994 294.4487606609807
+
+T 
+14
+LANG:10001 1 1
+LANG:10010 1 1
+LANG:10011 1 1
+LANG:10009 1 1
+LANG:10008 1 1
+LANG:10018 1 1
+LANG:1 1 1
+LANG:11 12 PUSH_BUTTON5
+LANG:9 12 PUSH_BUTTON5
+LANG:10 12 PUSH_BUTTON5
+LANG:18 12 PUSH_BUTTON5
+LANG:27 12 PUSH_BUTTON5
+LANG:29 12 PUSH_BUTTON5
+LANG:4 12 PUSH_BUTTON5
+"main()
+{
+  nuevo_caracter(this.text);
+}
+" 0
+ E E E
+13 11
+"btn_2"
+""
+1 79.99999999999994 228.4487606609806 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Transparent" E E
+ E E
+11 0 0 0 50 0
+E E E
+1
+14
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:1 0 
+LANG:11 0 
+LANG:9 0 
+LANG:10 0 
+LANG:18 0 
+LANG:27 0 
+LANG:29 0 
+LANG:4 0 
+
+6
+"hoverfclr" "N \"LIB_IRC_BLANCO\""
+"hoverbclr" "N \"AZUL_01\""
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,80}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignCenter"
+14
+LANG:10001 35 Tahoma,-1,27,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,32,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10009 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10008 35 MS Shell Dlg 2,-1,37,5,50,0,0,0,0,0
+LANG:10018 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:1 35 MS Shell Dlg 2,28,-1,5,50,0,0,0,0,0
+LANG:11 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:9 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:10 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:18 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:27 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:29 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:4 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+0  77.99999999999994 226.4487606609807 150.9999999999999 294.4487606609807
+
+T 
+14
+LANG:10001 1 2
+LANG:10010 1 2
+LANG:10011 1 2
+LANG:10009 1 2
+LANG:10008 1 2
+LANG:10018 1 2
+LANG:1 1 2
+LANG:11 12 PUSH_BUTTON5
+LANG:9 12 PUSH_BUTTON5
+LANG:10 12 PUSH_BUTTON5
+LANG:18 12 PUSH_BUTTON5
+LANG:27 12 PUSH_BUTTON5
+LANG:29 12 PUSH_BUTTON5
+LANG:4 12 PUSH_BUTTON5
+"main()
+{
+  nuevo_caracter(this.text);
+}
+" 0
+ E E E
+13 12
+"btn_3"
+""
+1 148.9999999999999 228.4487606609806 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Transparent" E E
+ E E
+12 0 0 0 51 0
+E E E
+1
+14
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:1 0 
+LANG:11 0 
+LANG:9 0 
+LANG:10 0 
+LANG:18 0 
+LANG:27 0 
+LANG:29 0 
+LANG:4 0 
+
+6
+"hoverfclr" "N \"LIB_IRC_BLANCO\""
+"hoverbclr" "N \"AZUL_01\""
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,80}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignCenter"
+14
+LANG:10001 35 Tahoma,-1,27,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,32,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10009 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10008 35 MS Shell Dlg 2,-1,37,5,50,0,0,0,0,0
+LANG:10018 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:1 35 MS Shell Dlg 2,28,-1,5,50,0,0,0,0,0
+LANG:11 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:9 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:10 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:18 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:27 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:29 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:4 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+0  146.9999999999999 226.4487606609808 219.9999999999999 294.4487606609807
+
+T 
+14
+LANG:10001 1 3
+LANG:10010 1 3
+LANG:10011 1 3
+LANG:10009 1 3
+LANG:10008 1 3
+LANG:10018 1 3
+LANG:1 1 3
+LANG:11 12 PUSH_BUTTON5
+LANG:9 12 PUSH_BUTTON5
+LANG:10 12 PUSH_BUTTON5
+LANG:18 12 PUSH_BUTTON5
+LANG:27 12 PUSH_BUTTON5
+LANG:29 12 PUSH_BUTTON5
+LANG:4 12 PUSH_BUTTON5
+"main()
+{
+  nuevo_caracter(this.text);
+}
+" 0
+ E E E
+13 13
+"btn_4"
+""
+1 10.99999999999994 163.8550106609807 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Transparent" E E
+ E E
+13 0 0 0 52 0
+E E E
+1
+14
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:1 0 
+LANG:11 0 
+LANG:9 0 
+LANG:10 0 
+LANG:18 0 
+LANG:27 0 
+LANG:29 0 
+LANG:4 0 
+
+6
+"hoverfclr" "N \"LIB_IRC_BLANCO\""
+"hoverbclr" "N \"AZUL_01\""
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,80}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignCenter"
+14
+LANG:10001 35 Tahoma,-1,27,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,32,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10009 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10008 35 MS Shell Dlg 2,-1,37,5,50,0,0,0,0,0
+LANG:10018 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:1 35 MS Shell Dlg 2,28,-1,5,50,0,0,0,0,0
+LANG:11 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:9 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:10 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:18 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:27 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:29 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:4 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+0  8.999999999999936 162.3550106609807 81.99999999999994 230.3550106609807
+
+T 
+14
+LANG:10001 1 4
+LANG:10010 1 4
+LANG:10011 1 4
+LANG:10009 1 4
+LANG:10008 1 4
+LANG:10018 1 4
+LANG:1 1 4
+LANG:11 12 PUSH_BUTTON5
+LANG:9 12 PUSH_BUTTON5
+LANG:10 12 PUSH_BUTTON5
+LANG:18 12 PUSH_BUTTON5
+LANG:27 12 PUSH_BUTTON5
+LANG:29 12 PUSH_BUTTON5
+LANG:4 12 PUSH_BUTTON5
+"main()
+{
+  nuevo_caracter(this.text);
+}
+" 0
+ E E E
+13 14
+"btn_5"
+""
+1 79.99999999999994 163.8550106609807 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Transparent" E E
+ E E
+14 0 0 0 53 0
+E E E
+1
+14
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:1 0 
+LANG:11 0 
+LANG:9 0 
+LANG:10 0 
+LANG:18 0 
+LANG:27 0 
+LANG:29 0 
+LANG:4 0 
+
+6
+"hoverfclr" "N \"LIB_IRC_BLANCO\""
+"hoverbclr" "N \"AZUL_01\""
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,80}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignCenter"
+14
+LANG:10001 35 Tahoma,-1,27,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,32,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10009 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10008 35 MS Shell Dlg 2,-1,37,5,50,0,0,0,0,0
+LANG:10018 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:1 35 MS Shell Dlg 2,28,-1,5,50,0,0,0,0,0
+LANG:11 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:9 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:10 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:18 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:27 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:29 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:4 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+0  77.99999999999994 162.3550106609807 150.9999999999999 230.3550106609807
+
+T 
+14
+LANG:10001 1 5
+LANG:10010 1 5
+LANG:10011 1 5
+LANG:10009 1 5
+LANG:10008 1 5
+LANG:10018 1 5
+LANG:1 1 5
+LANG:11 12 PUSH_BUTTON5
+LANG:9 12 PUSH_BUTTON5
+LANG:10 12 PUSH_BUTTON5
+LANG:18 12 PUSH_BUTTON5
+LANG:27 12 PUSH_BUTTON5
+LANG:29 12 PUSH_BUTTON5
+LANG:4 12 PUSH_BUTTON5
+"main()
+{
+  nuevo_caracter(this.text);
+}
+" 0
+ E E E
+13 15
+"btn_6"
+""
+1 148.9999999999999 163.8550106609807 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Transparent" E E
+ E E
+15 0 0 0 54 0
+E E E
+1
+14
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:1 0 
+LANG:11 0 
+LANG:9 0 
+LANG:10 0 
+LANG:18 0 
+LANG:27 0 
+LANG:29 0 
+LANG:4 0 
+
+6
+"hoverfclr" "N \"LIB_IRC_BLANCO\""
+"hoverbclr" "N \"AZUL_01\""
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,80}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignCenter"
+14
+LANG:10001 35 Tahoma,-1,27,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,32,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10009 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10008 35 MS Shell Dlg 2,-1,37,5,50,0,0,0,0,0
+LANG:10018 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:1 35 MS Shell Dlg 2,28,-1,5,50,0,0,0,0,0
+LANG:11 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:9 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:10 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:18 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:27 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:29 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:4 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+0  146.9999999999999 162.3550106609807 219.9999999999999 230.3550106609807
+
+T 
+14
+LANG:10001 1 6
+LANG:10010 1 6
+LANG:10011 1 6
+LANG:10009 1 6
+LANG:10008 1 6
+LANG:10018 1 6
+LANG:1 1 6
+LANG:11 12 PUSH_BUTTON5
+LANG:9 12 PUSH_BUTTON5
+LANG:10 12 PUSH_BUTTON5
+LANG:18 12 PUSH_BUTTON5
+LANG:27 12 PUSH_BUTTON5
+LANG:29 12 PUSH_BUTTON5
+LANG:4 12 PUSH_BUTTON5
+"main()
+{
+  nuevo_caracter(this.text);
+}
+" 0
+ E E E
+13 18
+"btn_9"
+""
+1 148.9999999999999 100.2925106609807 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Transparent" E E
+ E E
+18 0 0 0 57 0
+E E E
+1
+14
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:1 0 
+LANG:11 0 
+LANG:9 0 
+LANG:10 0 
+LANG:18 0 
+LANG:27 0 
+LANG:29 0 
+LANG:4 0 
+
+6
+"hoverfclr" "N \"LIB_IRC_BLANCO\""
+"hoverbclr" "N \"AZUL_01\""
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,80}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignCenter"
+14
+LANG:10001 35 Tahoma,-1,27,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,32,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10009 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10008 35 MS Shell Dlg 2,-1,37,5,50,0,0,0,0,0
+LANG:10018 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:1 35 MS Shell Dlg 2,28,-1,5,50,0,0,0,0,0
+LANG:11 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:9 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:10 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:18 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:27 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:29 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:4 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+0  146.9999999999999 98.29251066098067 219.9999999999999 166.2925106609807
+
+T 
+14
+LANG:10001 1 9
+LANG:10010 1 9
+LANG:10011 1 9
+LANG:10009 1 9
+LANG:10008 1 9
+LANG:10018 1 9
+LANG:1 1 9
+LANG:11 12 PUSH_BUTTON5
+LANG:9 12 PUSH_BUTTON5
+LANG:10 12 PUSH_BUTTON5
+LANG:18 12 PUSH_BUTTON5
+LANG:27 12 PUSH_BUTTON5
+LANG:29 12 PUSH_BUTTON5
+LANG:4 12 PUSH_BUTTON5
+"main()
+{
+  nuevo_caracter(this.text);
+}
+" 0
+ E E E
+13 19
+"btn_0"
+""
+1 10.99999999999994 293.0581356609806 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Transparent" E E
+ E E
+19 0 0 0 48 0
+E E E
+1
+14
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:1 0 
+LANG:11 0 
+LANG:9 0 
+LANG:10 0 
+LANG:18 0 
+LANG:27 0 
+LANG:29 0 
+LANG:4 0 
+
+6
+"hoverfclr" "N \"LIB_IRC_BLANCO\""
+"hoverbclr" "N \"AZUL_01\""
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,80}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignCenter"
+14
+LANG:10001 35 Tahoma,-1,27,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,32,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10009 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10008 35 MS Shell Dlg 2,-1,37,5,50,0,0,0,0,0
+LANG:10018 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:1 35 MS Shell Dlg 2,28,-1,5,50,0,0,0,0,0
+LANG:11 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:9 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:10 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:18 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:27 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:29 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:4 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+0  8.999999999999936 290.5581356609807 81.99999999999994 358.5581356609807
+
+T 
+14
+LANG:10001 1 0
+LANG:10010 1 0
+LANG:10011 1 0
+LANG:10009 1 0
+LANG:10008 1 0
+LANG:10018 1 0
+LANG:1 1 0
+LANG:11 12 PUSH_BUTTON5
+LANG:9 12 PUSH_BUTTON5
+LANG:10 12 PUSH_BUTTON5
+LANG:18 12 PUSH_BUTTON5
+LANG:27 12 PUSH_BUTTON5
+LANG:29 12 PUSH_BUTTON5
+LANG:4 12 PUSH_BUTTON5
+"main()
+{
+  nuevo_caracter(this.text);
+}
+" 0
+ E E E
+13 20
+"btn_punto"
+""
+1 79.99999999999994 293.0581356609807 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Transparent" E E
+ E E
+20 0 0 0 46 0
+E E E
+1
+14
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:1 0 
+LANG:11 0 
+LANG:9 0 
+LANG:10 0 
+LANG:18 0 
+LANG:27 0 
+LANG:29 0 
+LANG:4 0 
+
+6
+"hoverfclr" "N \"LIB_IRC_BLANCO\""
+"hoverbclr" "N \"AZUL_01\""
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,80}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignCenter"
+14
+LANG:10001 35 Tahoma,-1,27,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,32,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10009 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10008 35 MS Shell Dlg 2,-1,37,5,50,0,0,0,0,0
+LANG:10018 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:1 35 MS Shell Dlg 2,28,-1,5,50,0,0,0,0,0
+LANG:11 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:9 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:10 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:18 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:27 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:29 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:4 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+0  77.99999999999994 290.5581356609807 150.9999999999999 358.5581356609807
+
+T 
+14
+LANG:10001 1 .
+LANG:10010 1 .
+LANG:10011 1 .
+LANG:10009 1 .
+LANG:10008 1 .
+LANG:10018 1 .
+LANG:1 1 .
+LANG:11 12 PUSH_BUTTON5
+LANG:9 12 PUSH_BUTTON5
+LANG:10 12 PUSH_BUTTON5
+LANG:18 12 PUSH_BUTTON5
+LANG:27 12 PUSH_BUTTON5
+LANG:29 12 PUSH_BUTTON5
+LANG:4 12 PUSH_BUTTON5
+"main()
+{
+  int dec_punto;
+
+  dec_punto = strpos(display, \".\");
+
+  if(dec_punto < 0 && strlen(display) >= 1)  nuevo_caracter(this.text);
+}" 0
+ E E E
+13 21
+"btn_borrar"
+""
+1 148.9999999999999 356.5581356609806 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Transparent" E E
+ E E
+21 0 0 0 16777219 0
+E E E
+1
+14
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:1 0 
+LANG:11 0 
+LANG:9 0 
+LANG:10 0 
+LANG:18 0 
+LANG:27 0 
+LANG:29 0 
+LANG:4 0 
+
+6
+"hoverfclr" "N \"LIB_IRC_BLANCO\""
+"hoverbclr" "N \"AZUL_01\""
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,80}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignCenter"
+14
+LANG:10001 35 Tahoma,-1,27,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,32,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10009 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10008 35 MS Shell Dlg 2,-1,37,5,50,0,0,0,0,0
+LANG:10018 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:1 35 MS Shell Dlg 2,28,-1,5,50,0,0,0,0,0
+LANG:11 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:9 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:10 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:18 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:27 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:29 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:4 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+0  146.9999999999999 354.0581356609807 219.9999999999999 422.0581356609807
+
+P 
+4294967295
+"pictures/iconos/botoneras/Iconos/borrar.svg"
+14
+LANG:10001 3 <--
+LANG:10010 6 BORRAR
+LANG:10011 12 PUSH_BUTTON5
+LANG:10009 12 PUSH_BUTTON5
+LANG:10008 3 <--
+LANG:10018 12 PUSH_BUTTON5
+LANG:1 3 <--
+LANG:11 12 PUSH_BUTTON5
+LANG:9 12 PUSH_BUTTON5
+LANG:10 12 PUSH_BUTTON5
+LANG:18 12 PUSH_BUTTON5
+LANG:27 12 PUSH_BUTTON5
+LANG:29 12 PUSH_BUTTON5
+LANG:4 12 PUSH_BUTTON5
+"main()
+{
+  nuevo_caracter(\"\\b\");
+}
+" 0
+ E E E
+13 17
+"btn_8"
+""
+1 79.99999999999994 100.2925106609807 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Transparent" E E
+ E E
+17 0 0 0 56 0
+E E E
+1
+14
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:1 0 
+LANG:11 0 
+LANG:9 0 
+LANG:10 0 
+LANG:18 0 
+LANG:27 0 
+LANG:29 0 
+LANG:4 0 
+
+6
+"hoverfclr" "N \"LIB_IRC_BLANCO\""
+"hoverbclr" "N \"AZUL_01\""
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,80}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignCenter"
+14
+LANG:10001 35 Tahoma,-1,27,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,32,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10009 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10008 35 MS Shell Dlg 2,-1,37,5,50,0,0,0,0,0
+LANG:10018 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:1 35 MS Shell Dlg 2,28,-1,5,50,0,0,0,0,0
+LANG:11 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:9 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:10 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:18 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:27 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:29 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:4 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+0  77.99999999999994 98.2925106609807 150.9999999999999 166.2925106609807
+
+T 
+14
+LANG:10001 1 8
+LANG:10010 1 8
+LANG:10011 1 8
+LANG:10009 1 8
+LANG:10008 1 8
+LANG:10018 1 8
+LANG:1 1 8
+LANG:11 12 PUSH_BUTTON5
+LANG:9 12 PUSH_BUTTON5
+LANG:10 12 PUSH_BUTTON5
+LANG:18 12 PUSH_BUTTON5
+LANG:27 12 PUSH_BUTTON5
+LANG:29 12 PUSH_BUTTON5
+LANG:4 12 PUSH_BUTTON5
+"main()
+{
+  nuevo_caracter(this.text);
+}
+" 0
+ E E E
+13 24
+"PUSH_BUTTON2"
+""
+1 190.8379237288136 55.7925106609807 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Transparent" E E
+ E E
+24 0 0 0 0 0
+E E E
+1
+9
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:10005 0 
+LANG:10000 0 
+LANG:10027 0 
+
+9
+"hoverfclr" "N \"LIB_IRC_BLANCO\""
+"hoverbclr" "N \"AZUL_01\""
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,70}"
+"shadowRadius" "18"
+"minimumSize" "0 0"
+"maximumSize" "60 45"
+"sizePolicy" "Preferred Preferred"
+"layoutAlignment" "AlignCenter"
+9
+LANG:10001 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10010 35 Tahoma,-1,24,5,75,0,0,0,0,0,Negrita
+LANG:10011 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10009 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10008 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10018 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10005 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10000 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+LANG:10027 47 Noto Sans Symbols2,-1,24,5,50,0,0,0,0,0,Regular
+0  188.25 6.792510660980696 219.9999999999999 42.7925106609807
+
+P 
+4294967295
+"pictures/iconos/botoneras/borrar.svg"
+6
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+"main()
+{
+  display = \"\";
+  txf_valor.text(\"\");
+}
+" 0
+ E E E
+13 25
+"PUSH_BUTTON1"
+""
+1 161.1188597995219 19.2925106609807 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Transparent" E E
+ E E
+25 0 0 0 0 0
+E E E
+1
+3
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+
+4
+"hoverfclr" "N \"LIB_IRC_BLANCO\""
+"hoverbclr" "N \"AZUL_01\""
+"layoutAlignment" "AlignNone"
+"isToggle" ""
+3
+LANG:10001 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10010 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10011 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+0  159.375 8.292510660980696 192.375 41.2925106609807
+
+P 
+4294967295
+"pictures/iconos/botoneras/eye_no_visibility_blanco.svg"
+3
+LANG:10001 12 PUSH_BUTTON1
+LANG:10010 12 PUSH_BUTTON1
+LANG:10011 12 PUSH_BUTTON1
+"main(mapping event)
+{
+   if(strpos(txf_valor.format,\"0S\") != 1)
+   {
+
+     string path = getPath(ICONS_REL_PATH, \"iconos/botoneras/eye_visibility_blanco.svg\");
+     this.buttonUpPixmap(path);
+     txf_valor.format(\"[0S,,,AlignRight|AlignVCenter\");
+   }
+   else
+   {
+     string path = getPath(ICONS_REL_PATH, \"iconos/botoneras/eye_no_visibility_blanco.svg\");
+     this.buttonUpPixmap(path);
+     txf_valor.format(\"[0s,,,AlignRight|AlignVCenter]\");
+   }
+
+}" 0
+ E E "main()
+{
+  if ($oculto)
+  {
+    string path = getPath(ICONS_REL_PATH, \"iconos/botoneras/eye_visibility_blanco.svg\");
+    this.buttonUpPixmap(path);
+  }
+  else
+  {
+    string path = getPath(ICONS_REL_PATH, \"iconos/botoneras/eye_no_visibility_blanco.svg\");
+    this.buttonUpPixmap(path);
+  }
+}" 0
+
+13 27
+"PUSH_BUTTON26"
+""
+1 148.9999999999999 293.0581356609806 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Transparent" E E
+ E E
+27 0 0 0 45 0
+E E E
+1
+14
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+LANG:10009 0 
+LANG:10008 0 
+LANG:10018 0 
+LANG:1 0 
+LANG:11 0 
+LANG:9 0 
+LANG:10 0 
+LANG:18 0 
+LANG:27 0 
+LANG:29 0 
+LANG:4 0 
+
+6
+"hoverfclr" "N \"LIB_IRC_BLANCO\""
+"hoverbclr" "N \"AZUL_01\""
+"shadowOffset" "[5,5]"
+"shadowColor" "{63,63,63,80}"
+"shadowRadius" "18"
+"layoutAlignment" "AlignCenter"
+14
+LANG:10001 35 Tahoma,-1,27,5,75,0,0,0,0,0,Negrita
+LANG:10010 35 Tahoma,-1,32,5,75,0,0,0,0,0,Negrita
+LANG:10011 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10009 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:10008 35 MS Shell Dlg 2,-1,37,5,50,0,0,0,0,0
+LANG:10018 35 MS Shell Dlg 2,-1,11,5,50,0,0,0,0,0
+LANG:1 35 MS Shell Dlg 2,28,-1,5,50,0,0,0,0,0
+LANG:11 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:9 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:10 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:18 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:27 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:29 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+LANG:4 37 MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0
+0  146.9999999999999 290.5581356609807 219.9999999999999 358.5581356609807
+
+T 
+14
+LANG:10001 1 .
+LANG:10010 1 -
+LANG:10011 1 .
+LANG:10009 1 .
+LANG:10008 1 .
+LANG:10018 1 .
+LANG:1 1 .
+LANG:11 12 PUSH_BUTTON5
+LANG:9 12 PUSH_BUTTON5
+LANG:10 12 PUSH_BUTTON5
+LANG:18 12 PUSH_BUTTON5
+LANG:27 12 PUSH_BUTTON5
+LANG:29 12 PUSH_BUTTON5
+LANG:4 12 PUSH_BUTTON5
+"main()
+{
+  int dec_punto;
+
+  dec_punto = strpos(display, \"-\");
+
+  if(dec_punto < 0 && strlen(display) == 0)  nuevo_caracter(this.text);
+}" 0
+ E E E
+2 28
+"PRIMITIVE_TEXT1"
+""
+1 17 54 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Window" E E
+ E E
+28 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E 1 0 0.849706007493958 -1.500000000000078 -2.892201728705116 0 E 17 54 75 109
+0 2 2 "0s" 0 0 0 64 0 0  17 54 2
+3
+LANG:10001 34 Consolas,-1,19,5,75,0,0,0,0,0,Bold
+LANG:10010 34 Consolas,-1,19,5,75,0,0,0,0,0,Bold
+LANG:10011 34 Consolas,-1,16,5,75,0,0,0,0,0,Bold
+0 3
+LANG:10001 4 Max:
+LANG:10010 4 Max:
+LANG:10011 4 Max:
+3
+LANG:10001 34 Consolas,-1,19,5,75,0,0,0,0,0,Bold
+LANG:10010 34 Consolas,-1,19,5,75,0,0,0,0,0,Bold
+LANG:10011 34 Consolas,-1,16,5,75,0,0,0,0,0,Bold
+0 3
+LANG:10001 4 Min:
+LANG:10010 4 Min:
+LANG:10011 4 Min:
+2 29
+"txf_max"
+""
+1 63 62 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Transparent" E E
+ E E
+29 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+  param_max = isDollarDefined(\"$MAX\");
+  if(param_max && $MAX != \"\")  this.text = $MAX;
+  else this.text = \"-\";
+}" 0
+ E 0 1 3 2 1 E 1.032101530421796 0 0.96 0.4861888764465974 -15.35238540590435 1 E 63 62 75 83
+0 2 2 "0s" 0 0 0 192 0 0  63 62 1
+3
+LANG:10001 34 Consolas,-1,19,5,75,0,0,0,0,0,Bold
+LANG:10010 34 Consolas,-1,19,5,75,0,0,0,0,0,Bold
+LANG:10011 34 Consolas,-1,16,5,75,0,0,0,0,0,Bold
+0 3
+LANG:10001 1 -
+LANG:10010 1 -
+LANG:10011 0 
+2 30
+"txf_min"
+""
+1 63 62 E E E 1 E 1 E N "LIB_IRC_BLANCO" E N "_Transparent" E E
+ E E
+30 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10010 0 
+LANG:10011 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+  param_min = isDollarDefined(\"$MIN\");
+  if(param_min && $MIN != \"\")  this.text = $MIN;
+  else this.text = \"-\";
+}" 0
+ E 0 1 3 2 1 E 1.032101530421796 0 1 0.4861888764465974 6.247614594095644 1 E 63 62 75 83
+0 2 2 "0s" 0 0 0 192 0 0  63 62 1
+3
+LANG:10001 34 Consolas,-1,19,5,75,0,0,0,0,0,Bold
+LANG:10010 34 Consolas,-1,19,5,75,0,0,0,0,0,Bold
+LANG:10011 34 Consolas,-1,16,5,75,0,0,0,0,0,Bold
+0 3
+LANG:10001 1 -
+LANG:10010 1 -
+LANG:10011 0 
+13 45
+"PUSH_BUTTON125"
+""
+1 -854.9069209138206 67 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+45 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  188 10 192 38
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+13 46
+"PUSH_BUTTON126"
+""
+1 -571.9766939473501 176.7355354921818 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+46 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  159.3333333333332 39.73553549218181 219.9999999999998 43.73553549218181
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+0
+LAYER, 1 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 2 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 3 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 4 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 5 
+2
+LANG:10001 0 
+LANG:10010 0 
+0
+LAYER, 6 
+2
+LANG:10001 0 
+LANG:10010 0 
+13 31
+"PUSH_BUTTON112"
+""
+1 -2331.719264089728 299.1775053304904 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+31 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  21.5 162.1775053304904 207.5 166.1775053304904
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+13 35
+"PUSH_BUTTON115"
+""
+1 -2331.719264089728 490.8962553304904 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+35 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  21.5 353.8962553304904 207.5 357.8962553304904
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+13 34
+"PUSH_BUTTON114"
+""
+1 -2331.719264089728 426.8962553304904 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+34 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  21.5 289.8962553304904 207.5 293.8962553304904
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+13 33
+"PUSH_BUTTON113"
+""
+1 -2331.719264089728 363.1775053304904 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+33 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  21.49999999999999 226.1775053304904 207.5 230.1775053304904
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+0
+LAYER, 7 
+2
+LANG:10001 0 
+LANG:10010 0 
+13 36
+"PUSH_BUTTON116"
+""
+1 -854.9069209138206 57.2925106609807 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+36 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  147 101.2925106609807 151 163.2925106609807
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+13 38
+"PUSH_BUTTON118"
+""
+1 -854.9069209138206 57.3550106609807 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+38 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  147 165.3550106609807 151 227.3550106609807
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+13 40
+"PUSH_BUTTON120"
+""
+1 -854.9069209138206 57.44876066098072 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+40 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  147 229.4487606609807 151 291.4487606609807
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+13 42
+"PUSH_BUTTON122"
+""
+1 -854.9069209138206 57.55813566098072 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+42 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  147 293.5581356609807 151 355.5581356609807
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+13 44
+"PUSH_BUTTON124"
+""
+1 -854.9069209138206 57.05813566098072 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+44 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  147 357.0581356609807 151 419.0581356609807
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+13 37
+"PUSH_BUTTON117"
+""
+1 -854.9069209138206 57.3550106609807 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+37 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  78 165.3550106609807 82 227.3550106609807
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+13 39
+"PUSH_BUTTON119"
+""
+1 -854.9069209138206 57.44876066098072 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+39 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  78 229.4487606609807 82 291.4487606609807
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+13 41
+"PUSH_BUTTON121"
+""
+1 -854.9069209138206 57.55813566098072 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+41 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  78 293.5581356609807 82 355.5581356609807
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+13 43
+"PUSH_BUTTON123"
+""
+1 -854.9069209138206 57.05813566098072 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+43 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  78 357.0581356609807 82 419.0581356609807
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+13 32
+"PUSH_BUTTON53"
+""
+1 -854.9069209138206 57.2925106609807 E E E 1 E 1 E N "_ButtonText" E N {190,210,255} E E
+ E E
+32 0 0 0 0 0
+E E E
+1
+2
+LANG:10001 0 
+LANG:10010 0 
+
+2
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10010 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  78 101.2925106609807 82 163.2925106609807
+
+T 
+2
+LANG:10001 12 PUSH_BUTTON3
+LANG:10010 0 
+E E E E
+0
+0
