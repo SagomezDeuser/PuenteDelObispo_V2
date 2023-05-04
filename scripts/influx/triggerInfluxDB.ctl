@@ -10,4 +10,5 @@ main()
 escribirInfluxDB(string trigger, time t1, time t2)
 {
   dpSet("System1:_NGA_G_NIVELES.commands.triggerWrite",TRUE);
+ //Hola Jorge
 }

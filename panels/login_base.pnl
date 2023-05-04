@@ -258,7 +258,7 @@ E"main(int button, int state)
 14 16
 "txt_username"
 "txf_standard_1"
-1 -23 111.37 E E E 0 E 1 E N "LIB_IRC_AZUL_01" E N "white" E E
+1 -110 420 E E E 0 E 1 E N "LIB_IRC_AZUL_01" E N "white" E E
  E E
 16 0 0 0 0 0
 E "main()
@@ -294,7 +294,7 @@ LANG:10018 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
 LANG:10005 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
 LANG:10000 30 Noto Sans,-1,13,5,50,0,0,0,0,0
 LANG:10027 30 Noto Sans,-1,13,5,50,0,0,0,0,0
-0  120.7080452993426 92.63 373.7080452993426 125.63
+0  33.7080452993426 401.26 286.7080452993426 434.26
 3 "0s" 0 0 0 1 0 -1  "main(mapping event)
 {
   teclado(\"\",\"completo\");
@@ -313,7 +313,7 @@ LANG:10027 30 Noto Sans,-1,13,5,50,0,0,0,0,0
 14 17
 "txt_password"
 "txf_standard_1"
-1 -127 203.8399999999999 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "white" E E
+1 -147.8020113248357 279.125 E E E 1 E 1 E N "LIB_IRC_AZUL_01" E N "white" E E
  E E
 17 0 0 0 0 0
 E "main()
@@ -354,7 +354,7 @@ LANG:10018 35 Tahoma,-1,16,5,75,0,0,0,0,0,Negrita
 LANG:10005 35 Tahoma,-1,15,5,75,0,0,0,0,0,Negrita
 LANG:10000 30 Noto Sans,-1,13,5,50,0,0,0,0,0
 LANG:10027 30 Noto Sans,-1,13,5,50,0,0,0,0,0
-0  16.70804529934261 277.4999999999999 269.7080452993426 310.4999999999999
+0  -4.093966025493074 352.785 248.906033974507 385.785
 3 "0S" 0 0 0 1 0 -1  "main(mapping event)
 {
   teclado(\"\",\"completo\",TRUE);
